@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Немецкий тренажер — Deutsch Meister</title>
+    <title>Deutsch Meister</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,12 +11,10 @@
         <div class="sidebar">
             <div class="sidebar-content">
                 <button class="section-toggle-btn" id="lessonsToggleBtn">КУРС ГРАММАТИКИ ▶</button>
-                <div class="lessons-container" id="lessonsContainer" style="display: none;">
-                    <div id="lessonsGrid" class="lessons-grid"></div>
-                </div>
+                <div id="lessonsContainer" style="display: none; margin-top: 10px;"></div>
 
                 <div class="section-title">ТРЕНАЖЁР</div>
-                <div class="levels-buttons">
+                <div class="levels-buttons" id="levelsButtons">
                     <button data-level="A1" class="level-btn">A1</button>
                     <button data-level="A2" class="level-btn active">A2</button>
                     <button data-level="B1" class="level-btn">B1</button>
@@ -28,13 +26,11 @@
                 <button class="mode-btn active" id="cardsModeBtn">КАРТОЧКИ</button>
                 <button class="mode-btn" id="quizModeBtn">ТЕСТ</button>
                 <button class="mode-btn" id="sentencesModeBtn">ФРАЗЫ</button>
+                <!-- НЕТ КНОПКИ УРОКИ -->
             </div>
         </div>
-
         <div class="main-panel">
-            <div class="top-bar">
-                <div class="counter-label" id="counterLabel">Загрузка...</div>
-            </div>
+            <div class="top-bar"><div class="counter-label" id="counterLabel">Загрузка...</div></div>
             <div class="content-area" id="contentArea"></div>
         </div>
     </div>
