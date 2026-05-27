@@ -1,0 +1,70 @@
+Я иду в школу. | ich gehe in die Schule
+Я сейчас в школе. | ich bin jetzt in der Schule
+Она едет в кино. | sie fährt ins Kino
+Она сидит в кино. | sie sitzt im Kino
+Она останется в машине. | sie bleibt im Auto
+Я иду в машину. | ich gehe ins Auto
+Я кладу книгу на стол. | ich lege das Buch auf den Tisch
+Книга лежит на столе. | das Buch liegt auf dem Tisch
+Ты кладешь ручку на стол. | du legst den Kuli auf den Tisch
+Сумка лежит на полу. | die Tasche liegt auf dem Boden
+Когда ты повесишь одежду в шкаф? | wann hängst du die Kleidung in den Schrank?
+Одежда должна висеть в шкафу. | die Kleidung soll im Schrank hängen
+Стол стоит на полу. | der Tisch steht auf dem Boden
+Ваза стоит на столе. | die Vase steht auf dem Tisch
+Мы ставим стол на пол. | wir stellen den Tisch auf den Boden
+Мы ставим шкаф в угол. | wir stellen den Schrank in die Ecke
+Шкаф стоит в углу. | der Schrank steht in der Ecke
+Кошка спит в углу. | die Katze schläft in der Ecke
+Мы вешаем картину на стену. | wir hängen das Bild an die Wand
+Картина висит на стене. | das Bild hängt an der Wand
+Она рисует на стене. | sie malt an der Wand
+Стол стоит рядом с креслом. | der Tisch steht neben dem Sessel
+Мы ставим стол рядом с креслом. | wir stellen den Tisch neben den Sessel
+Тарелка лежит около стакана. | der Teller liegt neben dem Glas
+Ты должен положить тарелку рядом со стаканом. | du musst den Teller neben das Glas legen
+Наш дом находится между школой и спортплощадкой. | unser Haus befindet sich zwischen der Schule und dem Sportplatz
+Моя школа между твоим домом и моей квартирой. | meine Schule ist zwischen deinem Haus und meiner Wohnung
+Ты должен поставить стул между шкафом и столом. | du musst den Stuhl zwischen den Schrank und den Tisch stellen
+Родители сидят за столом. | die Eltern sitzen am Tisch
+Дети тоже сидят за столом. | die Kinder sitzen auch am Tisch
+Он стоит у окна. | er steht am Fenster
+Почему ты весь день сидишь у окна? | warum sitzt du den ganzen Tag am Fenster?
+Что ты рисуешь на стене? | was malst du an der Wand?
+Нарисуй солнце на стене. | male die Sonne an die Wand
+Картина висит на стене. | das Bild hängt an der Wand
+Ручка лежит на столе. | der Kuli liegt auf dem Tisch
+Ваза стоит на полу. | die Vase steht auf dem Boden
+Фотография висит на стене. | das Foto hängt an der Wand
+Я кладу книгу на стол. | ich lege das Buch auf den Tisch
+Ты вешаешь картину на стену. | du hängst das Bild an die Wand
+Мы идем к доске. | wir gehen zur Tafel
+Он ставит вазу на стол. | er stellt die Vase auf den Tisch
+Он пишет на доске. | er schreibt an der Tafel
+Он кладет мел на стол. | er legt die Kreide auf den Tisch
+Я сижу за столом. | ich sitze am Tisch
+Подойди к столу. | komm an den Tisch
+Книга лежит за шкафом. | das Buch liegt hinter dem Schrank
+Стол стоит перед шкафом. | der Tisch steht vor dem Schrank
+Я прячу деньги за шкаф. | ich verstecke das Geld hinter den Schrank
+Ты прячешь деньги за кресло. | du versteckst das Geld hinter den Sessel
+Она стоит за школой. | sie steht hinter der Schule
+Ты стоишь перед домом. | du stehst vor dem Haus
+Лампа висит над столом. | die Lampe hängt über dem Tisch
+Кошка сидит под столом. | die Katze sitzt unter dem Tisch
+Ты можешь поискать под диваном. | du kannst unter dem Sofa suchen
+Что ты делаешь перед школой? | was machst du vor der Schule?
+У меня тренировка перед школой. | ich habe Training vor der Schule
+Собака спит под столом. | der Hund schläft unter dem Tisch
+Когда ты придешь домой? | wann kommst du nach Hause?
+Я приду домой в три часа. | ich komme um drei Uhr nach Hause
+Я учу немецкий дома. | ich lerne zu Hause Deutsch
+Она уже дома. | sie ist schon zu Hause
+Мы уже давно дома. | wir sind schon lange zu Hause
+Что ты делаешь дома? | was machst du zu Hause?
+Мы едем домой. | wir fahren nach Hause
+Мы хотим поесть дома. | wir wollen zu Hause essen
+Я могу пойти домой. | ich kann nach Hause gehen
+Вы едете домой. | ihr fahrt nach Hause
+Моя сестра сейчас дома. | meine Schwester ist jetzt zu Hause
+Его родители всегда дома. | seine Eltern sind immer zu Hause

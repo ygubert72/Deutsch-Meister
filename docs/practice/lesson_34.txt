@@ -1,0 +1,44 @@
+Я занимаюсь спортом, потому что хочу быть здоровым. | ich treibe Sport, weil ich gesund sein will
+Я учу немецкий, потому что мне нравится этот язык. | ich lerne Deutsch, weil mir diese Sprache gefällt
+Я хожу в школу, потому что все дети должны учиться. | ich gehe in die Schule, weil alle Kinder lernen müssen
+Он рано встает, потому что должен много работать. | er steht früh auf, weil er viel arbeiten muss
+Он едет в США, потому что хочет увидеть Нью-Йорк. | er fährt in die USA, weil er New York sehen will
+Он читает книги, потому что хочет быть умнее. | er liest Bücher, weil er klüger sein will
+Она занимается спортом, потому что хочет быть стройнее. | sie treibt Sport, weil sie schlanker sein will
+Она учит английский, потому что хочет жить в Америке. | sie lernt Englisch, weil sie in Amerika leben will
+Она останется сегодня дома, потому что очень устала. | sie bleibt heute zu Hause, weil sie sehr müde ist
+Мы поедем в кино, потому что очень хотим посмотреть этот фильм. | wir gehen ins Kino, weil wir diesen Film sehr sehen wollen
+Мы не можем так быстро идти, потому что мы устали. | wir können nicht so schnell gehen, weil wir müde sind
+Мы не пьем колу, потому что она вредная. | wir trinken keine Cola, weil sie ungesund ist
+Он не может купить билет, потому что у него нет денег. | er kann kein Ticket kaufen, weil er kein Geld hat
+Он не поедет с тобой, потому что ты ему не нравишься. | er fährt nicht mit dir, weil du ihm nicht gefällst
+Он не купил тебе подарок, потому что забыл. | er hat dir kein Geschenk gekauft, weil er vergessen hat
+Я не пойду в кино, потому что уже видел этот фильм. | ich gehe nicht ins Kino, weil ich diesen Film schon gesehen habe
+Я не буду покупать эту книгу, потому что я ее уже читал. | ich werde dieses Buch nicht kaufen, weil ich es schon gelesen habe
+Я не хочу с ней танцевать, потому что она мне не нравится. | ich will mit ihr nicht tanzen, weil sie mir nicht gefällt
+Ты не поедешь с нами, потому что ты не сделал домашнюю работу. | du fährst nicht mit uns, weil du die Hausaufgaben nicht gemacht hast
+Ты не получишь подарок, потому что плохо себя вел. | du bekommst kein Geschenk, weil du dich schlecht benommen hast
+Тебе нельзя играть в игровую приставку, потому что ты должен учить слова. | du darfst nicht an der Konsole spielen, weil du Vokabeln lernen musst
+Они не читают книги, потому что у них нет времени. | sie lesen keine Bücher, weil sie keine Zeit haben
+Они не смеются, потому что не поняли твоей шутки. | sie lachen nicht, weil sie deinen Witz nicht verstanden haben
+Они не разговаривают с тобой, потому что ты злой. | sie sprechen nicht mit dir, weil du böse bist
+Он говорит, что приедет через час. | er sagt, dass er in einer Stunde ankommt
+Она говорит, что прилетит через месяц. | sie sagt, dass sie in einem Monat anfliegt
+Он сказал, что приедет через три дня. | er sagte, dass er in drei Tagen ankommt
+Она сказала, что прилетит через два года. | sie sagte, dass sie in zwei Jahren anfliegt
+Через три часа я буду дома. | in drei Stunden bin ich zu Hause
+Три часа назад я был еще дома. | vor drei Stunden war ich noch zu Hause
+Он говорит, что приехал домой час назад. | er sagt, dass er vor einer Stunde nach Hause gekommen ist
+Она говорит, что прилетела месяц назад. | sie sagt, dass sie vor einem Monat angeflogen ist
+Он говорит, что приехал три дня назад. | er sagt, dass er vor drei Tagen angekommen ist
+Она говорит, что прилетела два года назад. | sie sagt, dass sie vor zwei Jahren angeflogen ist
+Ты учишь немецкий уже месяц. | du lernst schon seit einem Monat Deutsch
+Он в Германии уже три дня. | er ist schon seit drei Tagen in Deutschland
+Она во Франции уже два года. | sie ist schon seit zwei Jahren in Frankreich
+Я жду тебя уже три часа. | ich warte schon seit drei Stunden auf dich
+Ты ждешь меня уже две недели. | du wartest schon seit zwei Wochen auf mich
+Я еду в Германию на два дня. | ich fahre für zwei Tage nach Deutschland
+Он едет во Францию на три недели. | er fährt für drei Wochen nach Frankreich
+Я поеду в США на месяц. | ich werde für einen Monat in die USA fahren
+Мы поедем в Украину на неделю. | wir werden für eine Woche in die Ukraine fahren
+Они поедут в Италию на десять дней. | sie werden für zehn Tage nach Italien fahren

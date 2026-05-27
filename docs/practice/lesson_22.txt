@@ -1,0 +1,58 @@
+Ты такой же плохой, как она. | du bist genauso schlecht wie sie
+Тигр такой же большой, как лев. | der Tiger ist genauso groß wie der Löwe
+Кошка такая же маленькая, как белка. | die Katze ist genauso klein wie das Eichhörnchen
+Волк такой же старый, как лиса. | der Wolf ist genauso alt wie der Fuchs
+Слон такой же толстый, как носорог. | der Elefant ist genauso dick wie das Nashorn
+Верблюд такой же медленный, как осел. | das Kamel ist genauso langsam wie der Esel
+Змея такая же быстрая, как мышь. | die Schlange ist genauso schnell wie die Maus
+Заяц такой же маленький, как кошка. | der Hase ist genauso klein wie die Katze
+Ты играешь хуже меня. | du spielst schlechter als ich
+Слон больше лошади. | der Elefant ist größer als das Pferd
+Хомяк меньше белки. | der Hamster ist kleiner als das Eichhörnchen
+Он моложе, чем его брат. | er ist jünger als sein Bruder
+Она моложе своей сестры. | sie ist jünger als ihre Schwester
+Фильм новее книги. | der Film ist neuer als das Buch
+Волк сильнее лисы. | der Wolf ist stärker als der Fuchs
+Володя веселее Паши. | Wolodja ist lustiger als Pascha
+Оля грустнее Юли. | Olja ist trauriger than Julia
+Моя машина дальше, чем твоя машина. | mein Auto ist weiter als dein Auto
+Его дом старее, чем ее дом. | sein Haus ist älter als ihr Haus
+Ты ниже меня. | du bist kleiner als ich
+Корова быстрее черепахи. | die Kuh ist schneller als die Schildkröte
+Обезьяна веселее овцы. | der Affe ist lustiger als das Schaf
+Черепаха медленнее верблюда. | die Schildkröte ist langsamer als das Kamel
+Лошадь быстрее верблюда. | das Pferd ist schneller als das Kamel
+Мышка меньше коровы. | die Maus ist kleiner als die Kuh
+Обезьяна более худая, чем кенгуру. | der Affe ist dünner als das Känguru
+Сегодня погода лучше, чем вчера. | heute ist das Wetter besser als gestern
+Обезьяна быстрее, чем овца. | der Affe ist schneller als das Schaf
+Свинья толще, чем кошка. | das Schwein ist dicker als die Katze
+Мой брат младше, чем я. | mein Bruder ist jünger als ich
+Этот дом высокий. | dieses Haus ist hoch
+Тот дом выше. | jenes Haus ist höher
+Это здание высокое. | dieses Gebäude ist hoch
+То здание выше. | jenes Gebäude ist höher
+Твоя машина близко. | dein Auto ist nah
+Моя машина ближе. | mein Auto ist näher
+Его машина – ближе всего. | sein Auto ist am nächsten
+Моя школа близко. | meine Schule ist nah
+Твоя школа ближе. | deine Schule ist näher
+Ее школа ближе всего. | ihre Schule ist am nächsten
+Мой велосипед хороший. | mein Fahrrad ist gut
+Его велосипед лучше. | sein Fahrrad ist besser
+Ее велосипед – самый лучший. | ihr Fahrrad ist das beste
+Я охотно читаю. | ich lese gern
+Охотнее я хожу в кино. | lieber gehe ich ins Kino
+Охотнее всего я слушаю музыку. | am liebsten höre ich Musik
+Я ем много. | ich esse viel
+Ты ешь больше меня. | du isst mehr als ich
+Он ест больше всего. | er isst am meisten
+Мы готовим хорошо. | wir kochen gut
+Вы готовите лучше. | ihr kocht besser
+Они готовят лучше всех. | sie kochen am besten
+Эта башня высокая. | dieser Turm ist hoch
+Та башня выше. | jener Turm ist höher
+Наша башня самая высокая. | unser Turm ist der höchste
+Ты говоришь по-немецки хорошо. | du sprichst gut Deutsch
+Он говорит по-немецки лучше, чем ты. | er spricht besser Deutsch als du
+Она говорит по-немецки лучше всех. | sie spricht am besten Deutsch

@@ -1,0 +1,44 @@
+Я еду в Россию. | ich fahre nach Russland
+Я живу в Германии. | ich wohne in Deutschland
+Он работает в Австрии. | er arbeitet in Österreich
+Он учит язык в Англии. | er lernt die Sprache in England
+Она летит в Ирландию. | sie fliegt nach Irland
+Что ты делаешь в Голландии? | was machst du in Holland?
+Она едет в Бельгию. | sie fährt nach Belgien
+Мы живем во Франции. | wir wohnen in Frankreich
+Я хочу слетать в Италию. | ich will nach Italien fliegen
+Когда ты едешь в Португалию? | wann fährst du nach Portugal?
+Мы проведем лето в Испании. | wir verbringen den Sommer in Spanien
+Ты в Греции? | bist du in Griechenland?
+Я еду в Чехию двадцатого марта. | ich fahre am zwanzigsten März nach Tschechien
+Мы закупаемся в Польше. | wir kaufen in Polen ein
+Что ты делаешь в Румынии? | was machst du in Rumänien?
+Он едет в Венгрию. | er fährt nach Ungarn
+Мы летим в Швецию. | wir fliegen nach Schweden
+Они живут в Норвегии. | sie wohnen in Norwegen
+Он работает в Финляндии. | er arbeitet in Finnland
+Она едет в Данию. | sie fährt nach Dänemark
+Мы работаем в Японии. | wir arbeiten in Japan
+Он летит в Китай. | er fliegt nach China
+Что ты делаешь в США? | was machst du in den USA?
+Я хочу в 2020 году полететь в США. | ich will im Jahr 2020 in die USA fliegen
+Мне нравится в Нидерландах. | mir gefällt es in den Niederlanden
+Когда мы поедем в Нидерланды? | wann fahren wir in die Niederlande?
+Когда ты поедешь в Турцию? | wann fährst du in die Türkei?
+Я никогда не поеду в Турцию. | ich werde nie in die Türkei fahren
+Я был в Турции много раз. | ich war oft in der Türkei
+Что она делает в Украине? | was macht sie in der Ukraine?
+Она работает в Украине. | sie arbeitet in der Ukraine
+В пятницу мы едем в Украину. | am Freitag fahren wir in die Ukraine
+Я был в Швейцарии много раз. | ich war oft in der Schweiz
+Мы летим в Швейцарию тридцатого декабря. | wir fliegen am dreißigsten Dezember in die Schweiz
+Мы катаемся на лыжах в Швейцарии. | wir fahren in der Schweiz Ski
+Я еду семнадцатого апреля в Швейцарию. | ich fahre am siebzehnten April in die Schweiz
+Когда ты вернешься из США? | wann kommst du aus den USA zurück?
+Когда он вернется из Нидерландов? | wann kommt er aus den Niederlanden zurück?
+Когда она вернется из Турции? | wann kommt sie aus der Türkei zurück?
+Когда мы вернемся из Украины? | wann kommen wir aus der Ukraine zurück?
+Когда вы приедете из Швейцарии? | wann kommt ihr aus der Schweiz?
+Он не хочет возвращаться из Швейцарии. | er will nicht aus der Schweiz zurückkommen
+Когда ты был в Турции? | wann warst du in der Türkei?
+Я лечу в Турцию в июле. | ich fliege im Juli in die Türkei

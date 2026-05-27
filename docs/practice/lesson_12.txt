@@ -1,0 +1,66 @@
+Танцуй хорошо! | tanze gut!
+Сделай работу сегодня! | mache die Arbeit heute!
+Стой здесь! | stehe hier!
+Прыгай высоко! | springe hoch!
+Работай каждый день! | arbeite jeden Tag!
+Иди быстро! | geh schnell!
+Сиди спокойно! | sitz ruhig!
+Открой дверь! | öffne die Tür!
+Слушай музыку! | höre Musik!
+Пой песню! | sing ein Lied!
+Открой окно! | öffne das Fenster!
+Пиши предложение! | schreibe den Satz!
+Закажи пиццу! | bestelle eine Pizza!
+Купи машину! | kauf ein Auto!
+Спроси учителя! | frage den Lehrer!
+Ответь учителю! | antworte dem Lehrer!
+Приезжай домой! | komm nach Hause!
+Ответь маме! | antworte der Mutter!
+Работай дома! | arbeite zu Hause!
+Приезжай сегодня! | komm heute!
+Ешь суп! | iss die Suppe!
+Беги быстро! | lauf schnell!
+Дай мне книгу! | gib mir das Buch!
+Не упади! | fall nicht!
+Возьми мою машину! | nimm mein Auto!
+Не носи мою шляпу! | trag meinen Hut nicht!
+Говори громко! | sprich laut!
+Не спи сегодня! | schlaf heute nicht!
+Не забудь свою книгу! | vergiss dein Buch nicht!
+Помой свою машину! | wasch dein Auto!
+Помоги своему другу! | hilf deinem Freund!
+Езжай осторожно! | fahr vorsichtig!
+Смотри! | schau!
+Лови кошку! | fang die Katze!
+Читай книгу! | lies das Buch!
+Помоги своим родителям! | hilf deinen Eltern!
+Дай мне твою машину! | gib mir dein Auto!
+Дай мне сахар! | gib mir den Zucker!
+Дайте мне сахар! | geben Sie mir den Zucker!
+Помогите мне, пожалуйста! | helfen Sie mir bitte!
+Почитайте эту книгу. | lesen Sie dieses Buch
+Сидите здесь! | sitzen Sie hier!
+Закажите суп! | bestellen Sie die Suppe!
+Пойте громко! | singen Sie laut!
+Говорите, пожалуйста, не так громко! | sprechen Sie bitte nicht so laut!
+Приходите сегодня! | kommen Sie heute!
+Послушайте, пожалуйста! | hören Sie bitte zu!
+Спросите учителя! | fragen Sie den Lehrer!
+Спите хорошо! | schlafen Sie gut!
+Возьмите мою машину. | nehmen Sie mein Auto
+Не упадите! | fallen Sie nicht!
+Не забудьте Вашу книгу. | vergessen Sie Ihr Buch nicht
+Будь сегодня осторожен! | sei heute vorsichtig!
+Будьте осторожны! | seien Sie vorsichtig!
+Будь спокоен! | sei ruhig!
+Будьте спокойны! | seien Sie ruhig!
+Будь всегда храбрым! | sei immer mutig!
+Будьте храбрыми! | seien Sie mutig!
+Будь сильным! | sei stark!
+Будьте сильными! | seien Sie stark!
+Не бойся! | fürchte dich nicht!
+Не бойтесь! | fürchten Sie sich nicht!
+Имей терпение! | hab Geduld!
+Имейте терпение! | haben Sie Geduld!
+Имей мужество! | hab Mut!
+Имейте мужество! | haben Sie Mut!

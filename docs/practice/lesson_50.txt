@@ -1,0 +1,28 @@
+Продавец сказал, что у него нет этой книги. | der Verkäufer sagte, dass er dieses Buch nicht hat
+Он объяснил, что продал последнюю книгу вчера. | er erklärte, dass er das letzte Buch gestern verkauft hat
+Он думает, что новый тираж должен прийти завтра. | er denkt, dass die neue Auflage morgen kommen soll
+Он сказал, что оставит одну книгу специально для меня. | er sagte, dass er ein Buch speziell für mich zurücklegen wird
+Он сказал, я могу купить книгу завтра. | er sagte, ich kann das Buch morgen kaufen
+Она спросила, буду ли я дома в понедельник. | sie fragte, ob ich am Montag zu Hause sein werde
+Она спросила, смогу ли я пойти с ней в кино. | sie fragte, ob ich mit ihr ins Kino gehen kann
+Он ответил, что пойдет с удовольствием. | er antwortete, dass er gerne mitgeht
+Он ответил, что давно хотел посмотреть этот фильм. | er antwortete, dass er diesen Film schon lange sehen wollte
+Она сказала, что очень этому рада. | sie sagte, dass sie sich sehr darüber freut
+Он сказал, он ничего не знает об этой работе. | er sagte, er weiß nichts über diese Arbeit
+Он сказал, он не будет делать эту работу. | er sagte, er wird diese Arbeit nicht machen
+Она сказала, она не ездила в Швейцарию. | sie sagte, sie ist nicht in die Schweiz gefahren
+Она сказала, она никогда не поедет в Турцию. | sie sagte, sie wird nie in die Türkei fahren
+Он сказал, он все еще не купил машину. | er sagte, er hat noch kein Auto gekauft
+Он сказал, машина слишком дорогая. | er sagte, das Auto ist zu teuer
+Он сказал, он купит машину в следующем году. | er sagte, er wird nächstes Jahr ein Auto kaufen
+Она сказала, она не хочет с тобой говорить. | sie sagte, sie will nicht mit dir sprechen
+Она сказала, ты скучный. | sie sagte, du bist langweilig
+Она сказала, что поговорит с тобой в понедельник. | sie sagte, dass sie am Montag mit dir sprechen wird
+Он сказал, он не хочет с ней встречаться. | er sagte, er will sich nicht mit ihr treffen
+Он сказал, что она плохо выглядит. | er sagte, dass sie schlecht aussieht
+Отец сказал, он не будет помогать сыну. | der Vater sagte, er wird dem Sohn nicht helfen
+Отец сказал, он уже много для него сделал. | der Vater sagte, er hat schon viel für ihn getan
+Мама сказала, что не будет готовить ужин. | die Mutter sagte, dass sie kein Abendessen kochen wird
+Мама сказала, она слишком много работала. | die Mutter sagte, sie hat zu viel gearbeitet
+Мама сказала, она слишком устала. | die Mutter sagte, sie ist zu müde
+Мама сказала, что папа должен ей помочь. | die Mutter sagte, dass der Vater ihr helfen muss

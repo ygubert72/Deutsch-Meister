@@ -1,0 +1,50 @@
+Я знаю тебя. | ich kenne dich
+Ты знаешь меня. | du kennst mich
+Он знает ее. | er kennt sie
+Она знает его. | sie kennt ihn
+Мы знаем вас. | wir kennen euch
+Вы знаете нас. | ihr kennt uns
+Я знаю их. | ich kenne sie
+Они знают меня. | sie kennen mich
+Мы его знаем. | wir kennen ihn
+Он знает нас. | er kennt uns
+Ты его знаешь? | kennst du ihn?
+Она тебя знает? | kennt sie dich?
+Ты знаешь этот город? | kennst du diese Stadt?
+Я знаю это стихотворение. | ich kenne dieses Gedicht
+Я знаю его сестру. | ich kenne seine Schwester
+Он знает твоего отца. | er kennt deinen Vater
+Мы знаем твоего брата. | wir kennen deinen Bruder
+Я знаю ее уже три года. | ich kenne sie schon drei Jahre
+Ты знаешь этот фильм? | kennst du diesen Film?
+Ты знаешь эту книгу? | kennst du dieses Buch?
+Ты знаешь этого писателя? | kennst du diesen Schriftsteller?
+Ты знаешь ее? | kennst du sie?
+Ты знаешь эту девушку? | kennst du dieses Mädchen?
+Ты знаешь, что они завтра идут в кино? | weißt du, dass sie morgen ins Kino gehen?
+Я знаю эту книгу. | ich kenne dieses Buch
+Я знаю, что эта книга очень толстая. | ich weiß, dass dieses Buch sehr dick ist
+Я знаю все. | ich weiß alles
+Я не знаю ничего. | ich weiß nichts
+Я знаю твоего брата очень хорошо. | ich kenne deinen Bruder sehr gut
+Я знаю, что твои родители очень хорошие. | ich weiß, dass deine Eltern sehr gut sind
+Я знаю, когда ты приедешь. | ich weiß, wann du ankommst
+Я знаю твоих родителей уже двадцать лет. | ich kenne deine Eltern schon zwanzig Jahre
+Ты знаешь, где она живет? | weißt du, wo sie wohnt?
+Я знаю, что она всегда рано встает. | ich weiß, dass sie immer früh aufsteht
+Он не знает, где мы будем играть. | er weiß nicht, wo wir spielen werden
+Ты знаешь, что она учится в Германии? | weißt du, dass sie in Deutschland studiert?
+Он знает твою сестру. | er kennt deine Schwester
+Она знает его брата. | sie kennt seinen Bruder
+Мы хорошо знаем этот город. | wir kennen diese Stadt gut
+Ты знаешь это стихотворение? | kennst du dieses Gedicht?
+Ты еще помнишь, где она живет? | erinnerst du dich noch, wo sie wohnt?
+Он больше не помнит, где она живет. | er erinnert sich nicht mehr, wo sie wohnt
+Я знаю, что я стану знаменитым. | ich weiß, dass ich berühmt werde
+Он знает, что все напрасно. | er weiß, dass alles umsonst ist
+Мы знаем, что Германия победит. | wir wissen, dass Deutschland gewinnen wird
+Я ее знаю уже очень давно. | ich kenne sie schon sehr lange
+Она меня не знает. | sie kennt mich nicht
+Он не знает твою сестру. | er kennt deine Schwester nicht
+Почему ты его еще не знаешь? | warum kennst du ihn noch nicht?
+Почему она их еще не знает? | warum kennt sie sie noch nicht?

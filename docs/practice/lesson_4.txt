@@ -1,0 +1,60 @@
+Я делаю. | ich mache
+Ты играешь. | du spielst
+Мы стоим. | wir stehen
+Вы лежите. | Sie liegen
+Он идет. | er geht
+Она сидит. | sie sitzt
+Мы танцуем. | wir tanzen
+Вы слышите. | ihr hört
+Вы поете. | Sie singen
+Они пишут. | sie schreiben
+Я пью. | ich trinke
+Ты заказываешь. | du bestellst
+Он покупает. | er kauft
+Она продает. | sie verkauft
+Вы спрашиваете. | ihr fragt
+Мы отвечаем. | wir antworten
+Я играю. | ich spiele
+Мы делаем. | wir machen
+Ты стоишь. | du stehst
+Они лежат. | sie liegen
+Он танцует хорошо. | er tanzt gut
+Вы сидите далеко. | Sie sitzen weit
+Она поет громко. | sie singt laut
+Вы идете быстро. | Sie gehen schnell
+Вы продаете хорошо. | Sie verkaufen gut
+Они покупают машину. | sie kaufen ein Auto
+Я пишу красиво. | ich schreibe schön
+Ты заказываешь книгу. | du bestellst ein Buch
+Вы спрашиваете тихо. | ihr fragt leise
+Они отвечают громко. | sie antworten laut
+Ты получаешь много. | du bekommst viel
+Он получает мало. | er bekommt wenig
+Мы покупаем дешево. | wir kaufen billig
+Они продают дорого. | sie verkaufen teuer
+Вы играете хорошо. | ihr spielt gut
+Я пою громко. | ich singe laut
+Ты поешь тихо. | du singst leise
+Она отвечает быстро. | sie antwortet schnell
+Я играю хорошо. | ich spiele gut
+Мы много танцуем. | wir tanzen viel
+Папа пишет быстро. | der Vater schreibt schnell
+Мама поет красиво. | die Mutter singt schön
+Брат играет хорошо. | der Bruder spielt gut
+Сестра танцует хорошо. | die Schwester tanzt gut
+Бабушка лежит. | die Oma liegt
+Дедушка сидит. | der Opa sitzt
+Мужчина продает дорого. | der Mann verkauft teuer
+Женщина покупает дешево. | die Frau kauft billig
+Мальчик поет громко. | der Junge singt laut
+Девочка танцует плохо. | das Mädchen tanzt schlecht
+Кошка лежит. | die Katze liegt
+Собака играет. | der Hund spielt
+Мама заказывает книгу. | die Mutter bestellt ein Buch
+Папа покупает машину. | der Vater kauft ein Auto
+Дедушка спрашивает громко. | der Opa fragt laut
+Бабушка отвечает тихо. | die Oma antwortet leise
+Брат пишет медленно. | der Bruder schreibt langsam
+Сестра слышит. | die Schwester hört
+Собака пьет много. | der Hund trinkt viel
+Кошка прыгает высоко. | die Katze springt hoch

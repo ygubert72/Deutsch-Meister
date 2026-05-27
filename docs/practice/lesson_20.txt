@@ -1,0 +1,82 @@
+Я встаю всегда в пять. | ich stehe immer um fünf auf
+Она встает всегда в семь. | sie steht immer um sieben auf
+Мы редко встаем рано. | wir stehen selten früh auf
+Когда ты просыпаешься? | wann wachst du auf?
+Летом я встаю рано. | im Sommer stehe ich früh auf
+Зимой он встает поздно. | im Winter steht er spät auf
+Мы сегодня сходим куда-нибудь. | wir gehen heute irgendwohin
+Она всегда хорошо выглядит. | sie sieht immer gut aus
+Ты классно сегодня выглядишь! | du siehst heute toll aus!
+Я заберу свою сумку завтра. | ich hole meine Tasche morgen ab
+Ты меня заберешь сегодня? | holst du mich heute ab?
+Моя мама заберет меня в семь. | meine Mutter holt mich um sieben ab
+Когда мы начнем? | wann fangen wir an?
+Мы начнем в три часа. | wir fangen um drei Uhr an
+Я закупаюсь. | ich kaufe ein
+Она закупается в супермаркете. | sie kauft im Supermarkt ein
+Когда ты засыпаешь? | wann schläfst du ein?
+Она всегда засыпает в десять часов. | sie schläft immer um zehn Uhr ein
+Я принесу с собой лампу. | ich bringe die Lampe mit
+Ты принесешь книгу? | bringst du das Buch mit?
+Я тебя представлю. | ich stelle dich vor
+Она представляет свою подругу. | sie stellt ihre Freundin vor
+Он принесет пиццу. | er bringt die Pizza mit
+Она сейчас закупается. | sie kauft gerade ein
+Я заберу свою шляпу завтра. | ich hole meinen Hut morgen ab
+Я его приглашу. | ich lade ihn ein
+Он меня не пригласит. | er lädt mich nicht ein
+Когда мы выезжаем? | wann fahren wir ab?
+Мы выезжаем в пятницу. | wir fahren am Freitag ab
+Он закрывает дверь. | er schließt die Tür
+Она открывает окно. | sie öffnet das Fenster
+Открой окно! | öffne das Fenster!
+Закрой дверь! | schließe die Tür!
+Я закрою дверь. | ich schließe die Tür
+Забери его в восемь. | hole ihn um acht ab
+Когда мы должны завтра встать? | wann müssen wir morgen aufstehen?
+Во сколько тебе надо проснуться? | um wie viel Uhr musst du aufwachen?
+Мы должны завтра рано встать. | wir müssen morgen früh aufstehen
+Ей надо завтра проснуться в пять. | sie muss morgen um fünf aufwachen
+Ты хочешь со мной куда-нибудь сходить? | willst du mit mir irgendwohin gehen?
+Я не хочу с тобой никуда идти. | ich will mit dir nirgendwohin gehen
+Ты должна сегодня отлично выглядеть. | du musst heute toll aussehen
+Я хочу хорошо выглядеть. | ich will gut aussehen
+Ты можешь меня забрать? | kannst du mich abholen?
+Я могу тебя сегодня забрать. | ich kann dich heute abholen
+Когда мы можем начать? | wann können wir anfangen?
+Мы должны начать сегодня. | wir müssen heute anfangen
+Нам еще надо закупиться. | wir müssen noch einkaufen
+Мы хотим сначала закупиться. | wir wollen zuerst einkaufen
+Я просто хочу заснуть. | ich will einfach einschlafen
+Ты не можешь заснуть? | kannst du nicht einschlafen?
+Ты можешь принести с собой книгу? | kannst du ein Buch mitbringen?
+Я хочу представить моего друга. | ich will meinen Freund vorstellen
+Мы хотели бы сегодня вечером погулять. | wir würden heute Abend spazieren gehen
+Она иногда может выглядеть хорошо. | sie kann manchmal gut aussehen
+Когда ты сможешь меня забрать? | wann kannst du mich abholen?
+Я не могу тебя сегодня забрать. | ich kann dich heute nicht abholen
+Мы посетим ее завтра. | wir besuchen sie morgen
+Я тебя не понимаю. | ich verstehe dich nicht
+Когда ты встаешь? | wann stehst du auf?
+Ты сможешь встать в пять? | kannst du um fünf aufstehen?
+Я приглашу его завтра. | ich lade ihn morgen ein
+Я хочу их пригласить. | ich will sie einladen
+Кто переведет текст? | wer wird den Text übersetzen?
+Мы закупаемся. | wir kaufen ein
+Мы можем закупиться в супермаркете. | wir können im Supermarkt einkaufen
+Он тебя заберет. | er holt dich ab
+Я смогу забрать тебя в восемь. | ich kann dich um acht abholen
+Он начинает в полпятого. | er fängt um halb fünf an
+Мы хотим начать в шесть сорок пять. | wir wollen um sechs Uhr fünfundvierzig anfangen
+Они должны выехать в полвторого. | sie müssen um halb zwei abfahren
+Вы выезжаете в восемь? | fahrt ihr um acht ab?
+Ты хочешь с ней познакомиться? | willst du sie kennenlernen?
+Я познакомлюсь с ним завтра. | ich lerne ihn morgen kennen
+Они знакомятся с учителем. | sie lernen den Lehrer kennen
+С кем ты хочешь познакомиться? | wen willst du kennenlernen?
+Мы хотим с вами познакомиться! | wir wollen euch kennenlernen!
+Когда ты пойдешь гулять? | wann gehst du spazieren?
+Я всегда гуляю по утрам. | ich gehe immer morgens spazieren
+С кем ты хочешь пойти погулять? | mit wem willst du spazieren gehen?
+Он хочет сегодня погулять. | er will heute spazieren gehen
+Почему ты так часто гуляешь? | warum gehst du so oft spazieren?

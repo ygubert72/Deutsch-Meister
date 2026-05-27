@@ -1,0 +1,58 @@
+Это мой костюм. | das ist mein Anzug
+Это твой свитер. | das ist dein Pullover
+Это его шляпа. | das ist sein Hut
+Это ее юбка. | das ist ihr Rock
+Это наше пальто. | das ist unser Mantel
+Это ваш шарф. | das ist euer Schal
+Это их рубашка. | das ist ihr Hemd
+Это мое платье. | das ist mein Kleid
+Это твоя футболка. | das ist dein T-Shirt
+Это ее блузка. | das ist ihre Bluse
+Это его штаны. | das ist seine Hose
+Это наша куртка. | das ist unsere Jacke
+Это ваша одежда. | das ist eure Kleidung
+Это их шапка. | das ist ihre Mütze
+Это ее колготки. | das sind ihre Strumpfhosen
+Это мои джинсы. | das sind meine Jeans
+Это мои ботинки. | das sind meine Schuhe
+Это твои носки. | das sind deine Socken
+Мои носки старые. | meine Socken sind alt
+Наша шапка красивая. | unsere Mütze ist schön
+Ее колготки дешевые. | ihre Strumpfhosen sind billig
+Твои ботинки новые. | deine Schuhe sind neu
+Его джинсы дорогие. | seine Jeans sind teuer
+Ваша одежда грязная. | eure Kleidung ist schmutzig
+Их куртка чистая. | ihre Jacke ist sauber
+Мои штаны новые. | meine Hose ist neu
+Твоя блузка старая. | deine Bluse ist alt
+Его футболка дешевая. | sein T-Shirt ist billig
+Ее платье дорогое. | ihr Kleid ist teuer
+Моя рубашка белая. | mein Hemd ist weiß
+Твой шарф черный. | dein Schal ist schwarz
+Его пальто серое. | sein Mantel ist grau
+Ее юбка коричневая. | ihr Rock ist braun
+Его шляпа зеленая. | sein Hut ist grün
+Мой свитер красный. | mein Pullover ist rot
+Его костюм зеленый. | sein Anzug ist grün
+Их одежда оранжевая. | ihre Kleidung ist orange
+Ее джинсы голубые. | ihre Jeans sind blau
+У моего папы есть машина. | mein Vater hat ein Auto
+Он продает свою машину. | er verkauft sein Auto
+У моего друга есть велосипед. | mein Freund hat ein Fahrrad
+Он продает свой велосипед. | er verkauft sein Fahrrad
+У меня есть дом. | ich habe ein Haus
+Я продаю свой дом. | ich verkaufe mein Haus
+У твоей сестры есть кошка. | deine Schwester hat eine Katze
+Она продает свою кошку. | sie verkauft ihre Katze
+У тебя есть сестра. | du hast eine Schwester
+Ты любишь свою сестру. | du liebst deine Schwester
+У его брата есть дом. | sein Bruder hat ein Haus
+Он продает свой дом. | er verkauft sein Haus
+У ее мамы есть машина. | ihre Mutter hat ein Auto
+Она продает свою машину. | sie verkauft ihr Auto
+У нас есть квартира. | wir haben eine Wohnung
+Мы продаем свою квартиру. | wir verkaufen unsere Wohnung
+У вас есть корабль. | ihr habt ein Schiff
+Вы продаете свой корабль. | ihr verkauft euer Schiff
+У наших друзей есть квартира. | unsere Freunde haben eine Wohnung
+Они продают свою квартиру. | sie verkaufen ihre Wohnung

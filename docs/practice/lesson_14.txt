@@ -1,0 +1,57 @@
+В понедельник я учу немецкий. | am Montag lerne ich Deutsch
+Во вторник я дарю своей сестре ручку. | am Dienstag schenke ich meiner Schwester einen Kuli
+В среду я покупаю машину. | am Mittwoch kaufe ich ein Auto
+В четверг я продаю мои часы. | am Donnerstag verkaufe ich meine Uhr
+В пятницу я дарю своему брату машину. | am Freitag schenke ich meinem Bruder ein Auto
+В субботу я долго сплю. | am Samstag schlafe ich lange
+В воскресенье я ничего не делаю. | am Sonntag mache ich nichts
+Во вторник ты идешь в кино. | am Dienstag gehst du ins Kino
+В понедельник ты показываешь маме свой дом. | am Montag zeigst du der Mutter dein Haus
+Она может прийти в четверг. | sie kann am Donnerstag kommen
+Она хочет помочь своему папе в среду. | sie will am Mittwoch ihrem Vater helfen
+Мы хотим купить стол в субботу. | wir wollen am Samstag einen Tisch kaufen
+Мы должны учиться в пятницу. | wir müssen am Freitag lernen
+Они приедут в воскресенье. | sie kommen am Sonntag an
+Утром я показываю дом брату. | morgens zeige ich dem Bruder das Haus
+Днем я показываю машину сестре. | mittags zeige ich der Schwester das Auto
+Вечером я показываю ручку папе. | abends zeige ich dem Vater den Kuli
+Ночью я показываю костюм маме. | nachts zeige ich der Mutter den Anzug
+Утром ты посылаешь письмо адвокату. | morgens schickst du dem Anwalt den Brief
+Днем ты посылаешь письмо брату. | mittags schickst du dem Bruder den Brief
+Вечером она посылает письмо своей учительнице. | abends schickt sie ihrer Lehrerin den Brief
+Ночью ты посылаешь письмо своему другу. | nachts schickst du deinem Freund den Brief
+В январе мы покупаем дом. | im Januar kaufen wir ein Haus
+В феврале мы покупаем машину. | im Februar kaufen wir ein Auto
+В марте мы покупаем стол. | im März kaufen wir einen Tisch
+В апреле мы покупаем шкаф. | im April kaufen wir einen Schrank
+В мае мы покупаем квартиру. | im Mai kaufen wir eine Wohnung
+В июне мы покупаем книгу. | im Juni kaufen wir ein Buch
+В июле мы покупаем автобус. | im Juli kaufen wir einen Bus
+В августе я покупаю костюм. | im August kaufe ich einen Anzug
+В сентябре я покупаю шляпу. | im September kaufe ich einen Hut
+В октябре я покупаю юбку. | im Oktober kaufe ich einen Rock
+В ноябре я покупаю штаны. | im November kaufe ich eine Hose
+В декабре я покупаю ботинки. | im Dezember kaufe ich Schuhe
+Что ты любишь делать весной? | was machst du gern im Frühling?
+Что ты любишь делать летом? | was machst du gern im Sommer?
+Что ты любишь делать зимой? | was machst du gern im Winter?
+Что ты любишь делать осенью? | was machst du gern im Herbst?
+Весной я люблю гулять. | im Frühling gehe ich gern spazieren
+Летом я люблю бегать. | im Sommer laufe ich gern
+Осенью я люблю читать книги. | im Herbst lese ich gern Bücher
+Зимой я люблю долго спать. | im Winter schlafe ich gern lange
+Я родился в 1990 году. | ich bin im Jahr 1990 geboren
+Моя мама родилась в 1962 году. | meine Mutter ist im Jahr 1962 geboren
+Мой папа родился в 1960 году. | mein Vater ist im Jahr 1960 geboren
+Ее сестра родилась в 1984 году. | ihre Schwester ist im Jahr 1984 geboren
+Мы родились в 1994. | wir sind im Jahr 1994 geboren
+Они родились в 1986. | sie sind im Jahr 1986 geboren
+Его бабушка родилась в 1942 году. | seine Oma ist im Jahr 1942 geboren
+Ее дедушка родился в 1957 году. | ihr Opa ist im Jahr 1957 geboren
+Гете родился в 1749 году. | Goethe ist im Jahr 1749 geboren
+Наполеон родился в 1769 году. | Napoleon ist im Jahr 1769 geboren
+Шиллер родился в 1759 году. | Schiller ist im Jahr 1759 geboren
+Бах родился в 1685 году. | Bach ist im Jahr 1685 geboren
+Когда родился Чехов? | wann ist Tschechow geboren?
+Когда ты родился? | wann bist du geboren?
+Когда она родилась? | wann ist sie geboren?
