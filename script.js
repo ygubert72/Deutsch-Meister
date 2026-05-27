@@ -1,14 +1,9 @@
-
-// ============================================================
-// Deutsch-Meister — 100% копия
-// ============================================================
-
+// ========== ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ==========
 let currentMode = 'cards';
 let currentLevel = 'A2';
 let showLanguage = 'de';
 let quizDirection = 'de_to_ru';
 let sentenceLangFrom = 'ru';
-let sentenceLangTo = 'de';
 
 let wordsData = { A1: [], A2: [], B1: [], B2: [], C1: [] };
 let sentencesData = { A1: [], A2: [], B1: [], B2: [], C1: [] };
@@ -37,10 +32,9 @@ let currentLesson = 1;
 let currentLessonMode = 'theory';
 let lessonsCache = {};
 let practiceCache = {};
-
 let savedPositions = {};
 
-// ---------- ЗАГРУЗКА ----------
+// ========== ЗАГРУЗКА ДАННЫХ ==========
 async function loadAllData() {
     const levels = ['A1', 'A2', 'B1', 'B2', 'C1'];
     const basePath = '/Deutsch-Meister/docs/';
@@ -50,14 +44,12 @@ async function loadAllData() {
             const resp = await fetch(`${basePath}words/${level}.json`);
             if (resp.ok) wordsData[level] = await resp.json();
             else wordsData[level] = [];
-            console.log(`✅ ${level}: ${wordsData[level].length} слов`);
         } catch(e) { wordsData[level] = []; }
-
+        
         try {
             const resp = await fetch(`${basePath}sentences/${level}.json`);
             if (resp.ok) sentencesData[level] = await resp.json();
             else sentencesData[level] = [];
-            console.log(`✅ ${level}: ${sentencesData[level].length} фраз`);
         } catch(e) { sentencesData[level] = []; }
     }
 
@@ -66,6 +58,7 @@ async function loadAllData() {
             const resp = await fetch(`${basePath}lessons/lesson_${i}.txt`);
             lessonsCache[i] = resp.ok ? await resp.text() : `=== Урок ${i} ===\n\nСодержание урока пока не добавлено.`;
         } catch(e) { lessonsCache[i] = `=== Урок ${i} ===\n\nОшибка загрузки.`; }
+        
         try {
             const resp = await fetch(`${basePath}practice/lesson_${i}.txt`);
             practiceCache[i] = resp.ok ? await resp.text() : '';
@@ -75,9 +68,6 @@ async function loadAllData() {
     loadProgress();
     createLessonButtons();
     updateCounter();
-
-    if (savedPositions[`cards_${currentLevel}`]) cardsCurrentIndex = savedPositions[`cards_${currentLevel}`];
-    if (savedPositions[`sentences_${currentLevel}`]) sentencesCurrentIndex = savedPositions[`sentences_${currentLevel}`];
 }
 
 function loadProgress() {
@@ -141,8 +131,7 @@ function updateCounter() {
     if (currentMode === 'cards' || currentMode === 'quiz') {
         const total = wordsData[currentLevel]?.length || 0;
         const unstudied = getCurrentWords(currentLevel).length;
-        const studied = total - unstudied;
-        label.textContent = `Всего: ${total} | Учим: ${unstudied} | Выучено: ${studied}`;
+        label.textContent = `Всего: ${total} | Учим: ${unstudied} | Выучено: ${total - unstudied}`;
     } else if (currentMode === 'sentences') {
         const total = sentencesData[currentLevel]?.length || 0;
         let completed = 0;
@@ -166,18 +155,15 @@ function speakText(text) {
     window.speechSynthesis.speak(utterance);
 }
 
-// ---------- КАРТОЧКИ ----------
+// ========== КАРТОЧКИ ==========
 function renderCardsMode() {
     cardsCurrentWords = getCurrentWords(currentLevel);
-    const content = document.getElementById('contentArea');
-    content.innerHTML = `
+    document.getElementById('contentArea').innerHTML = `
         <div class="cards-mode">
             <div class="cards-direction-bar">
                 <button class="direction-btn" id="cardsDirectionBtn">${showLanguage === 'de' ? 'De → Ru' : 'Ru → De'}</button>
             </div>
-            <div class="card-container">
-                <div class="card" id="card"><div class="card-word" id="cardWord"></div></div>
-            </div>
+            <div class="card-container"><div class="card" id="card"><div class="card-word" id="cardWord"></div></div></div>
             <div class="cards-controls">
                 <button class="control-btn" id="studyBtn">В ИЗУЧЕНО</button>
                 <button class="control-btn" id="unstudyBtn">ВЕРНУТЬ</button>
@@ -200,8 +186,8 @@ function renderCardsMode() {
     document.getElementById('unstudyBtn').onclick = () => showUnstudyDialog();
     document.getElementById('resetStudiedBtn').onclick = () => resetAllStudied();
     document.getElementById('speakBtn').onclick = () => { if(cardsCurrentWords[cardsCurrentIndex]) speakText(cardsCurrentWords[cardsCurrentIndex].de); };
-    document.getElementById('prevCardBtn').onclick = () => { if(cardsCurrentIndex > 0) { cardsCurrentIndex--; cardsFlipped = false; updateCardDisplay(); savedPositions[`cards_${currentLevel}`] = cardsCurrentIndex; } };
-    document.getElementById('nextCardBtn').onclick = () => { if(cardsCurrentWords.length) { cardsCurrentIndex = (cardsCurrentIndex + 1) % cardsCurrentWords.length; cardsFlipped = false; updateCardDisplay(); savedPositions[`cards_${currentLevel}`] = cardsCurrentIndex; } };
+    document.getElementById('prevCardBtn').onclick = () => { if(cardsCurrentIndex > 0) { cardsCurrentIndex--; cardsFlipped = false; updateCardDisplay(); } };
+    document.getElementById('nextCardBtn').onclick = () => { if(cardsCurrentWords.length) { cardsCurrentIndex = (cardsCurrentIndex + 1) % cardsCurrentWords.length; cardsFlipped = false; updateCardDisplay(); } };
     updateCardDisplay();
     updateCounter();
 }
@@ -225,7 +211,7 @@ function markWordAsStudied() {
         progressData[currentLevel][idx] = { studied: true };
         saveProgress();
         cardsCurrentWords = getCurrentWords(currentLevel);
-        if (cardsCurrentIndex >= cardsCurrentWords.length && cardsCurrentWords.length > 0) cardsCurrentIndex = 0;
+        if (cardsCurrentIndex >= cardsCurrentWords.length && cardsCurrentWords.length) cardsCurrentIndex = 0;
         cardsFlipped = false;
         updateCardDisplay();
         updateCounter();
@@ -266,12 +252,11 @@ function resetAllStudied() {
     updateCounter();
 }
 
-// ---------- ТЕСТ ----------
+// ========== ТЕСТ ==========
 function renderQuizMode() {
     quizWordList = getCurrentWords(currentLevel);
     quizCurrentIndex = 0;
-    const content = document.getElementById('contentArea');
-    content.innerHTML = `
+    document.getElementById('contentArea').innerHTML = `
         <div class="quiz-mode">
             <div class="cards-direction-bar">
                 <button class="direction-btn" id="quizDirectionBtn">${quizDirection === 'de_to_ru' ? 'De → Ru' : 'Ru → De'}</button>
@@ -305,12 +290,11 @@ function showQuizWord() {
     if (!quizWordList.length) { document.getElementById('quizQuestion').textContent = "🎉 Все слова изучены!"; return; }
     if (quizCurrentIndex >= quizWordList.length) quizCurrentIndex = 0;
     quizCurrentWord = quizWordList[quizCurrentIndex];
-    const allWords = wordsData[currentLevel];
-    const others = allWords.filter(w => w.de !== quizCurrentWord.de);
+    const others = wordsData[currentLevel].filter(w => w.de !== quizCurrentWord.de);
     const shuffled = [...others];
-    for (let i = shuffled.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]; }
-    quizOptions = [quizCurrentWord, ...shuffled.slice(0, 5)];
-    for (let i = quizOptions.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [quizOptions[i], quizOptions[j]] = [quizOptions[j], quizOptions[i]]; }
+    for (let i = shuffled.length - 1; i > 0; i--) { const j = Math.floor(Math.random()*(i+1)); [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]; }
+    quizOptions = [quizCurrentWord, ...shuffled.slice(0,5)];
+    for (let i = quizOptions.length - 1; i > 0; i--) { const j = Math.floor(Math.random()*(i+1)); [quizOptions[i], quizOptions[j]] = [quizOptions[j], quizOptions[i]]; }
     if (quizDirection === 'de_to_ru') { document.getElementById('quizQuestion').textContent = quizCurrentWord.de; quizCorrectAnswer = quizCurrentWord.ru; }
     else { document.getElementById('quizQuestion').textContent = quizCurrentWord.ru; quizCorrectAnswer = quizCurrentWord.de; }
     const grid = document.getElementById('quizButtonsGrid');
@@ -345,12 +329,11 @@ function markQuizWordAsStudied() {
     }
 }
 
-// ---------- ФРАЗЫ ----------
+// ========== ФРАЗЫ ==========
 function renderSentencesMode() {
     sentencesList = getUncompletedSentences(currentLevel);
-    sentencesCurrentIndex = savedPositions[`sentences_${currentLevel}`] || 0;
-    const content = document.getElementById('contentArea');
-    content.innerHTML = `
+    sentencesCurrentIndex = 0;
+    document.getElementById('contentArea').innerHTML = `
         <div class="sentences-mode">
             <div class="cards-direction-bar">
                 <button class="direction-btn" id="sentencesDirectionBtn">${sentenceLangFrom === 'ru' ? 'Ru → De' : 'De → Ru'}</button>
@@ -385,8 +368,8 @@ function renderSentencesMode() {
     document.getElementById('sentenceStudyBtn').onclick = markSentenceAsStudied;
     document.getElementById('sentenceUnstudyBtn').onclick = showSentenceUnstudyDialog;
     document.getElementById('sentenceResetStudiedBtn').onclick = resetAllSentencesStudied;
-    document.getElementById('prevSentenceBtn').onclick = () => { if(sentencesCurrentIndex > 0) { sentencesCurrentIndex--; showCurrentSentence(); savedPositions[`sentences_${currentLevel}`] = sentencesCurrentIndex; } };
-    document.getElementById('nextSentenceBtn').onclick = () => { if(sentencesList.length) { sentencesCurrentIndex = (sentencesCurrentIndex + 1) % sentencesList.length; showCurrentSentence(); savedPositions[`sentences_${currentLevel}`] = sentencesCurrentIndex; } };
+    document.getElementById('prevSentenceBtn').onclick = () => { if(sentencesCurrentIndex > 0) { sentencesCurrentIndex--; showCurrentSentence(); } };
+    document.getElementById('nextSentenceBtn').onclick = () => { if(sentencesList.length) { sentencesCurrentIndex = (sentencesCurrentIndex + 1) % sentencesList.length; showCurrentSentence(); } };
     showCurrentSentence();
 }
 
@@ -430,9 +413,7 @@ function sentenceUndoWord() { if(sentencesSelectedWords.length) { const last = s
 function sentenceReset() { sentencesSelectedWords = []; sentencesAvailableWords.forEach(w => { sentencesWordActive[w] = true; }); updateSentenceDisplay(); }
 function sentenceCheck() {
     if (!sentencesSelectedWords.length) { sentenceBlinkRed(); return; }
-    let correct;
-    if (sentenceLangFrom === 'ru') correct = sentencesCurrentData.de.toLowerCase().replace(/[.,!?]/g, '');
-    else correct = sentencesCurrentData.ru.toLowerCase().replace(/[.,!?]/g, '');
+    let correct = sentenceLangFrom === 'ru' ? sentencesCurrentData.de.toLowerCase().replace(/[.,!?]/g, '') : sentencesCurrentData.ru.toLowerCase().replace(/[.,!?]/g, '');
     const user = sentencesSelectedWords.join(' ').toLowerCase().replace(/[.,!?]/g, '');
     if (user === correct) sentenceBlinkGreenAndNext();
     else sentenceBlinkRed();
@@ -501,14 +482,13 @@ function resetAllSentencesStudied() {
     updateCounter();
 }
 
-// ---------- УРОКИ ----------
+// ========== УРОКИ ==========
 function renderLessonsMode() {
-    const content = document.getElementById('contentArea');
-    content.innerHTML = `
+    document.getElementById('contentArea').innerHTML = `
         <div class="lessons-mode">
             <div class="lesson-header">
-                <div class="lesson-title" id="lessonTitle">УРОКИ</div>
-                <div class="lesson-counter" id="lessonCounter">Урок 1 из 50</div>
+                <div class="lesson-title">📖 УРОК ${currentLesson}</div>
+                <div class="lesson-counter">Урок ${currentLesson} из 50</div>
             </div>
             <div class="lesson-mode-buttons">
                 <button class="lesson-mode-btn active" id="lessonTheoryBtn">ТЕОРИЯ</button>
@@ -523,21 +503,21 @@ function renderLessonsMode() {
 }
 
 function updateLessonModeButtons() {
-    const theoryBtn = document.getElementById('lessonTheoryBtn');
-    const practiceBtn = document.getElementById('lessonPracticeBtn');
+    const theory = document.getElementById('lessonTheoryBtn');
+    const practice = document.getElementById('lessonPracticeBtn');
     if (currentLessonMode === 'theory') {
-        theoryBtn.classList.add('active'); theoryBtn.classList.remove('inactive');
-        practiceBtn.classList.add('inactive'); practiceBtn.classList.remove('active');
+        theory.classList.add('active'); theory.classList.remove('inactive');
+        practice.classList.add('inactive'); practice.classList.remove('active');
     } else {
-        practiceBtn.classList.add('active'); practiceBtn.classList.remove('inactive');
-        theoryBtn.classList.add('inactive'); theoryBtn.classList.remove('active');
+        practice.classList.add('active'); practice.classList.remove('inactive');
+        theory.classList.add('inactive'); theory.classList.remove('active');
     }
 }
 
 function loadLesson(num) {
     currentLesson = num;
-    document.getElementById('lessonTitle').textContent = `📖 УРОК ${num}`;
-    document.getElementById('lessonCounter').textContent = `Урок ${num} из 50`;
+    document.querySelector('.lesson-title').textContent = `📖 УРОК ${num}`;
+    document.querySelector('.lesson-counter').textContent = `Урок ${num} из 50`;
     if (currentLessonMode === 'theory') showLessonTheory();
     else showLessonPractice();
 }
@@ -569,17 +549,17 @@ function showLessonPractice() {
         container.innerHTML = `<div class="lesson-text">✨ В этом уроке нет упражнений ✨</div>`;
         return;
     }
-    let html = '<div class="lesson-practice-list">';
+    let html = '<div>';
     for (let exIdx = 0; exIdx < exercises.length; exIdx++) {
         const ex = exercises[exIdx];
         const answerWords = ex.answer.split(' ');
-        const extras = ['der', 'die', 'das', 'und', 'oder', 'aber', 'sehr', 'gut', 'nicht', 'auch', 'ich', 'du', 'er', 'sie', 'es', 'wir', 'ihr', 'Sie', 'man'];
+        const extras = ['der', 'die', 'das', 'und', 'oder', 'aber', 'sehr', 'gut', 'nicht', 'auch', 'ich', 'du', 'er', 'sie', 'es', 'wir', 'ihr', 'Sie'];
         let words = [...answerWords];
         while (words.length < 6) { const e = extras[Math.floor(Math.random() * extras.length)]; if (!words.includes(e)) words.push(e); }
         for (let i = words.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [words[i], words[j]] = [words[j], words[i]]; }
         const uniqueId = `practice_ex_${currentLesson}_${exIdx}`;
         html += `
-            <div class="practice-exercise-card" data-ex-idx="${exIdx}">
+            <div class="practice-exercise-card">
                 <div class="practice-question">📝 ${ex.question}</div>
                 <div class="practice-words-container" id="${uniqueId}_words"></div>
                 <div class="practice-selected-container" id="${uniqueId}_selected"></div>
@@ -590,7 +570,7 @@ function showLessonPractice() {
                 </div>
                 <div class="practice-message" id="${uniqueId}_msg"></div>
             </div>
-            <hr style="margin: 20px 0; border-color: #E0E0E0;">
+            <hr style="margin: 20px 0;">
         `;
         if (!window.practiceExercises) window.practiceExercises = {};
         window.practiceExercises[uniqueId] = { availableWords: [...words], selectedWords: [], wordActive: {}, answer: ex.answer.toLowerCase().replace(/[.,!?]/g, '') };
@@ -624,7 +604,7 @@ function initPracticeExercise(uniqueId) {
     const undoBtn = document.querySelector(`.practice-undo-btn[data-ex="${uniqueId}"]`);
     if (undoBtn) undoBtn.onclick = () => { if (exercise.selectedWords.length > 0) { const last = exercise.selectedWords.pop(); exercise.wordActive[last] = true; updateDisplay(); } };
     const resetBtn = document.querySelector(`.practice-reset-btn[data-ex="${uniqueId}"]`);
-    if (resetBtn) resetBtn.onclick = () => { exercise.selectedWords.forEach(w => { exercise.wordActive[w] = true; }); exercise.selectedWords = []; updateDisplay(); if (msgContainer) { msgContainer.innerHTML = ''; msgContainer.className = 'practice-message'; } };
+    if (resetBtn) resetBtn.onclick = () => { exercise.selectedWords.forEach(w => { exercise.wordActive[w] = true; }); exercise.selectedWords = []; updateDisplay(); if (msgContainer) { msgContainer.innerHTML = ''; } } };
     const checkBtn = document.querySelector(`.practice-check-btn[data-ex="${uniqueId}"]`);
     if (checkBtn) checkBtn.onclick = () => {
         if (exercise.selectedWords.length === 0) { msgContainer.innerHTML = '❌ Составьте предложение!'; msgContainer.className = 'practice-message error'; setTimeout(() => { if(msgContainer) msgContainer.innerHTML = ''; }, 1500); return; }
@@ -671,20 +651,19 @@ function toggleLessons() {
     }
 }
 
-// ---------- ПЕРЕКЛЮЧЕНИЕ ----------
+// ========== ПЕРЕКЛЮЧЕНИЕ РЕЖИМОВ ==========
 function setCardsMode() { currentMode = 'cards'; renderCardsMode(); updateModeButtons('cardsModeBtn'); updateCounter(); }
 function setQuizMode() { currentMode = 'quiz'; renderQuizMode(); updateModeButtons('quizModeBtn'); updateCounter(); }
 function setSentencesMode() { currentMode = 'sentences'; renderSentencesMode(); updateModeButtons('sentencesModeBtn'); updateCounter(); }
 function setLessonsMode() { currentMode = 'lessons'; renderLessonsMode(); updateModeButtons('lessonsModeBtn'); updateCounter(); }
 
 function updateModeButtons(activeId) {
-    const ids = ['cardsModeBtn', 'quizModeBtn', 'sentencesModeBtn', 'lessonsModeBtn'];
+    const ids = ['cardsModeBtn', 'quizModeBtn', 'sentencesModeBtn'];
     ids.forEach(id => { const btn = document.getElementById(id); if (btn) { if (id === activeId) btn.classList.add('active'); else btn.classList.remove('active'); } });
 }
 
 function updateLevelButtons() {
-    const btns = document.querySelectorAll('.level-btn');
-    btns.forEach(btn => {
+    document.querySelectorAll('.level-btn').forEach(btn => {
         if (btn.dataset.level === currentLevel) btn.classList.add('active');
         else btn.classList.remove('active');
     });
@@ -712,22 +691,14 @@ function changeLevel(level) {
 }
 
 function setupEventListeners() {
-    const cardsBtn = document.getElementById('cardsModeBtn');
-    const quizBtn = document.getElementById('quizModeBtn');
-    const sentencesBtn = document.getElementById('sentencesModeBtn');
-    const lessonsBtn = document.getElementById('lessonsModeBtn');
-    const toggleBtn = document.getElementById('lessonsToggleBtn');
-    const levelBtns = document.querySelectorAll('.level-btn');
-    
-    if (cardsBtn) cardsBtn.onclick = setCardsMode;
-    if (quizBtn) quizBtn.onclick = setQuizMode;
-    if (sentencesBtn) sentencesBtn.onclick = setSentencesMode;
-    if (lessonsBtn) lessonsBtn.onclick = setLessonsMode;
-    if (toggleBtn) toggleBtn.onclick = toggleLessons;
-    levelBtns.forEach(btn => btn.onclick = () => changeLevel(btn.dataset.level));
+    document.getElementById('cardsModeBtn').onclick = setCardsMode;
+    document.getElementById('quizModeBtn').onclick = setQuizMode;
+    document.getElementById('sentencesModeBtn').onclick = setSentencesMode;
+    document.getElementById('lessonsToggleBtn').onclick = toggleLessons;
+    document.querySelectorAll('.level-btn').forEach(btn => btn.onclick = () => changeLevel(btn.dataset.level));
 }
 
-// ---------- ЗАПУСК ----------
+// ========== ЗАПУСК ==========
 document.addEventListener('DOMContentLoaded', async () => {
     await loadAllData();
     setupEventListeners();
