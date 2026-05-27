@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deutsch Meister</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        h1 { color: #333; margin-bottom: 8px; }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .stat-value { font-size: 24px; font-weight: bold; display: block; }
+        .stat-label { font-size: 12px; opacity: 0.9; }
+        .level-selector { display: flex; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
+        .level-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            background: #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .level-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .menu {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .menu-btn {
+            padding: 16px;
+            border: 2px solid #667eea;
+            background: white;
+            border-radius: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .menu-btn:hover { background: #667eea; color: white; transform: translateY(-2px); }
+        .content-area {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 12px;
+            min-height: 200px;
+        }
+        .welcome { text-align: center; color: #666; }
+        @media (max-width: 480px) {
+            .container { padding: 16px; }
+            .menu-btn { padding: 12px; font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🇩🇪 Deutsch Meister</h1>
+        <p>Немецкий тренажер A1-C1</p>
+        
+        <div class="stats">
+            <div class="stat-card"><span class="stat-value" id="wordsCount">3820</span><span class="stat-label">слов</span></div>
+            <div class="stat-card"><span class="stat-value" id="phrasesCount">2609</span><span class="stat-label">фраз</span></div>
+            <div class="stat-card"><span class="stat-value" id="lessonsCount">50</span><span class="stat-label">уроков</span></div>
+        </div>
+
+        <div class="level-selector">
+            <button class="level-btn active" onclick="selectLevel('A1')">A1</button>
+            <button class="level-btn" onclick="selectLevel('A2')">A2</button>
+            <button class="level-btn" onclick="selectLevel('B1')">B1</button>
+            <button class="level-btn" onclick="selectLevel('B2')">B2</button>
+            <button class="level-btn" onclick="selectLevel('C1')">C1</button>
+        </div>
+
+        <div class="menu">
+            <button class="menu-btn" onclick="showCards()">📇 Карточки</button>
+            <button class="menu-btn" onclick="showQuiz()">📝 Тест</button>
+            <button class="menu-btn" onclick="showPhrases()">💬 Фразы</button>
+            <button class="menu-btn" onclick="showLessons()">📚 Уроки</button>
+        </div>
+
+        <div id="contentArea" class="content-area">
+            <div class="welcome">
+                <h3>Добро пожаловать!</h3>
+                <p>Выберите уровень и режим тренировки</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentLevel = 'A1';
+        
+        // Данные для демо (в полной версии будут все 3820 слов)
+        const words = {
+            A1: [{word: "Hallo", translation: "Привет"}, {word: "Guten Morgen", translation: "Доброе утро"}, {word: "Tschüss", translation: "Пока"}],
+            A2: [{word: "verstehen", translation: "понимать"}, {word: "sprechen", translation: "говорить"}],
+            B1: [{word: "erreichen", translation: "достигать"}, {word: "verbessern", translation: "улучшать"}],
+            B2: [{word: "umfassend", translation: "всесторонний"}, {word: "erheblich", translation: "значительный"}],
+            C1: [{word: "differenzieren", translation: "различать"}, {word: "implementieren", translation: "внедрять"}]
+        };
+        
+        const phrases = {
+            A1: ["Wie geht es dir?", "Ich heiße..."],
+            A2: ["Kannst du mir helfen?", "Ich möchte gerne..."]
+        };
+        
+        function selectLevel(level) {
+            currentLevel = level;
+            document.querySelectorAll('.level-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.innerText === level) btn.classList.add('active');
+            });
+            document.getElementById('contentArea').innerHTML = `<div class="welcome"><h3>Уровень ${level}</h3><p>Выберите режим тренировки</p></div>`;
+        }
+        
+        function showCards() {
+            const levelWords = words[currentLevel] || words.A1;
+            let html = '<div style="text-align: center"><h3>Карточки</h3>';
+            levelWords.forEach(w => {
+                html += `<div style="background:white;padding:15px;margin:10px 0;border-radius:10px"><strong>${w.word}</strong><br>${w.translation}</div>`;
+            });
+            html += '</div>';
+            document.getElementById('contentArea').innerHTML = html;
+        }
+        
+        function showQuiz() {
+            document.getElementById('contentArea').innerHTML = '<div class="welcome"><h3>Тест</h3><p>Скоро будет доступен</p></div>';
+        }
+        
+        function showPhrases() {
+            const levelPhrases = phrases[currentLevel] || phrases.A1;
+            let html = '<div><h3>Полезные фразы</h3>';
+            levelPhrases.forEach(p => {
+                html += `<div style="background:white;padding:12px;margin:8px 0;border-radius:8px">${p}</div>`;
+            });
+            html += '</div>';
+            document.getElementById('contentArea').innerHTML = html;
+        }
+        
+        function showLessons() {
+            document.getElementById('contentArea').innerHTML = '<div class="welcome"><h3>Уроки</h3><p>50 уроков с теорией и практикой</p><p>Скоро будут доступны</p></div>';
+        }
+        
+        // Обновляем статистику
+        document.getElementById('wordsCount').innerText = Object.values(words).flat().length;
+    </script>
+</body>
+</html>
