@@ -1,189 +1,295 @@
-let currentLevel = 'A1';
-let currentMode = null;
-
-// Данные для демо (в полной версии будут все 3820 слов)
-const words = {
-    A1: [
-        {word: "Hallo", translation: "Привет"},
-        {word: "Guten Morgen", translation: "Доброе утро"},
-        {word: "Gute Nacht", translation: "Спокойной ночи"},
-        {word: "Tschüss", translation: "Пока"},
-        {word: "Danke", translation: "Спасибо"},
-        {word: "Bitte", translation: "Пожалуйста"},
-        {word: "Ja", translation: "Да"},
-        {word: "Nein", translation: "Нет"},
-        {word: "Ich", translation: "Я"},
-        {word: "Du", translation: "Ты"}
-    ],
-    A2: [
-        {word: "verstehen", translation: "понимать"},
-        {word: "sprechen", translation: "говорить"},
-        {word: "lesen", translation: "читать"},
-        {word: "schreiben", translation: "писать"}
-    ],
-    B1: [
-        {word: "erreichen", translation: "достигать"},
-        {word: "verbessern", translation: "улучшать"},
-        {word: "entwickeln", translation: "развивать"}
-    ],
-    B2: [
-        {word: "umfassend", translation: "всесторонний"},
-        {word: "erheblich", translation: "значительный"},
-        {word: "dementsprechend", translation: "соответственно"}
-    ],
-    C1: [
-        {word: "differenzieren", translation: "различать"},
-        {word: "implementieren", translation: "внедрять"},
-        {word: "optimieren", translation: "оптимизировать"}
-    ]
-};
-
-const phrases = {
-    A1: [
-        {german: "Wie geht es dir?", russian: "Как дела?"},
-        {german: "Ich heiße...", russian: "Меня зовут..."},
-        {german: "Woher kommst du?", russian: "Откуда ты?"},
-        {german: "Ich komme aus...", russian: "Я из..."}
-    ],
-    A2: [
-        {german: "Kannst du mir helfen?", russian: "Ты можешь мне помочь?"},
-        {german: "Ich möchte gerne...", russian: "Я хотел бы..."},
-        {german: "Was kostet das?", russian: "Сколько это стоит?"}
-    ],
-    B1: [
-        {german: "Ich bin der Meinung, dass...", russian: "Я придерживаюсь мнения, что..."},
-        {german: "Es kommt darauf an...", russian: "Это зависит от..."}
-    ],
-    B2: [
-        {german: "Unter diesen Umständen...", russian: "При этих обстоятельствах..."},
-        {german: "Ich möchte betonen, dass...", russian: "Хочу подчеркнуть, что..."}
-    ],
-    C1: [
-        {german: "In Anbetracht der Tatsache...", russian: "Принимая во внимание..."},
-        {german: "Es ist unerlässlich, dass...", russian: "Необходимо, чтобы..."}
-    ]
-};
-
-function selectLevel(level) {
-    currentLevel = level;
-    document.querySelectorAll('.level-btn').forEach(btn => {
-        btn.classList.remove('active');
-        if(btn.innerText === level) btn.classList.add('active');
-    });
-    if (currentMode) {
-        if (currentMode === 'cards') showCards();
-        else if (currentMode === 'phrases') showPhrases();
-        else if (currentMode === 'quiz') showQuiz();
-        else if (currentMode === 'lessons') showLessons();
-    } else {
-        document.getElementById('contentArea').innerHTML = `<div class="welcome"><h3>Уровень ${level}</h3><p>Выберите режим тренировки</p></div>`;
-    }
+/* ===== ОСНОВНЫЕ ЦВЕТА ИЗ ВАШЕЙ ПРОГРАММЫ (theme.py) ===== */
+:root {
+    --bg-app: #F8F8F8;
+    --bg-sidebar: #FFFFFF;
+    --bg-card: #FFFFFF;
+    --text-primary: #1A1A1A;
+    --text-secondary: #888888;
+    --accent: #3B6FE0;
+    --accent-hover: #2D5BC7;
+    --text-on-accent: #FFFFFF;
+    --btn-inactive-bg: #E8F0FE;
+    --btn-control-bg: #E8F0FE;
+    --border: #E0E0E0;
+    --success-flash: #C8E6C9;
+    --error-flash: #FFCDD2;
 }
 
-function showCards() {
-    currentMode = 'cards';
-    const levelWords = words[currentLevel] || words.A1;
-    let html = '<div style="text-align: center"><h3>📇 Карточки</h3><div id="cardContainer">';
-    
-    levelWords.forEach((w, index) => {
-        html += `
-            <div class="card" onclick="this.classList.toggle('flipped')" style="background:white;padding:20px;margin:10px 0;border-radius:12px;cursor:pointer;transition:all 0.3s;box-shadow:0 2px 8px rgba(0,0,0,0.1)">
-                <strong style="font-size:18px">${w.word}</strong><br>
-                <span style="color:#666">${w.translation}</span>
-            </div>
-        `;
-    });
-    
-    html += '</div></div>';
-    document.getElementById('contentArea').innerHTML = html;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-function showQuiz() {
-    currentMode = 'quiz';
-    const levelWords = words[currentLevel] || words.A1;
-    const randomWord = levelWords[Math.floor(Math.random() * levelWords.length)];
-    
-    let html = `
-        <div style="text-align: center">
-            <h3>📝 Тест</h3>
-            <div style="background:white;padding:30px;border-radius:12px;margin:15px 0">
-                <p style="font-size:24px;margin-bottom:20px">${randomWord.word}</p>
-                <div id="quizOptions"></div>
-            </div>
-            <button onclick="showQuiz()" style="padding:10px 20px;background:#667eea;color:white;border:none;border-radius:8px;cursor:pointer">Следующий вопрос</button>
-        </div>
-    `;
-    
-    document.getElementById('contentArea').innerHTML = html;
-    
-    // Создаем варианты ответов
-    const allWords = Object.values(words).flat();
-    const wrongOptions = allWords.filter(w => w.word !== randomWord.word).slice(0, 3).map(w => w.translation);
-    const options = [randomWord.translation, ...wrongOptions].sort(() => Math.random() - 0.5);
-    
-    const optionsHtml = options.map(opt => `
-        <button onclick="checkAnswer('${opt}', '${randomWord.translation}')" style="display:block;width:100%;padding:12px;margin:8px 0;background:#f0f0f0;border:none;border-radius:8px;cursor:pointer">
-            ${opt}
-        </button>
-    `).join('');
-    
-    document.getElementById('quizOptions').innerHTML = optionsHtml;
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-app);
+    overflow: hidden;
 }
 
-function checkAnswer(selected, correct) {
-    if (selected === correct) {
-        alert('✅ Правильно!');
-    } else {
-        alert(`❌ Неправильно! Правильный ответ: ${correct}`);
-    }
-    showQuiz();
+.app-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
 }
 
-function showPhrases() {
-    currentMode = 'phrases';
-    const levelPhrases = phrases[currentLevel] || phrases.A1;
-    let html = '<div><h3>💬 Полезные фразы</h3>';
-    
-    levelPhrases.forEach(p => {
-        html += `
-            <div style="background:white;padding:15px;margin:10px 0;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.1)">
-                <strong style="font-size:16px">${p.german}</strong><br>
-                <span style="color:#666">${p.russian}</span>
-            </div>
-        `;
-    });
-    
-    html += '</div>';
-    document.getElementById('contentArea').innerHTML = html;
+/* ===== ЛЕВАЯ ПАНЕЛЬ (как в ui.py) ===== */
+.sidebar {
+    width: 320px;
+    background-color: var(--bg-sidebar);
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+.sidebar-content {
+    padding: 15px 10px;
+}
+.sidebar::-webkit-scrollbar { width: 6px; }
+.sidebar::-webkit-scrollbar-track { background: #F0F0F0; }
+.sidebar::-webkit-scrollbar-thumb { background: #CCCCCC; border-radius: 3px; }
+
+.section-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--text-primary);
+    margin: 20px 0 10px 0;
+    padding-left: 10px;
+}
+.section-toggle-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--bg-sidebar);
+    color: var(--text-primary);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.section-toggle-btn:hover { background-color: #F0F0F0; }
+
+.lessons-container {
+    padding: 10px;
+    background-color: var(--bg-app);
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.lessons-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+.lesson-btn {
+    padding: 8px;
+    background-color: var(--btn-inactive-bg);
+    color: var(--text-primary);
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.lesson-btn:hover { background-color: #D0E0F0; }
+
+.levels-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin: 10px 0;
+}
+.level-btn {
+    width: 70px;
+    padding: 8px;
+    background-color: var(--btn-inactive-bg);
+    color: var(--text-primary);
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.level-btn.active {
+    background-color: var(--accent);
+    color: var(--text-on-accent);
+    border-color: var(--accent);
 }
 
-function showLessons() {
-    currentMode = 'lessons';
-    const lessons = {
-        A1: ["Урок 1: Приветствия", "Урок 2: Числа", "Урок 3: Семья"],
-        A2: ["Урок 1: Прошедшее время", "Урок 2: Предлоги", "Урок 3: Модальные глаголы"],
-        B1: ["Урок 1: Падежи", "Урок 2: Союзы", "Урок 3: Придаточные предложения"],
-        B2: ["Урок 1: Конъюнктив", "Урок 2: Пассив", "Урок 3: Сложные предложения"],
-        C1: ["Урок 1: Нюансы", "Урок 2: Стилистика", "Урок 3: Деловая переписка"]
-    };
-    
-    const levelLessons = lessons[currentLevel] || lessons.A1;
-    let html = '<div><h3>📚 Уроки (теория + практика)</h3>';
-    
-    levelLessons.forEach((lesson, index) => {
-        html += `
-            <div style="background:white;padding:15px;margin:10px 0;border-radius:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.1)" onclick="alert('Урок ${index+1}: материал скоро будет добавлен')">
-                <strong>${lesson}</strong><br>
-                <span style="color:#666">Теория и упражнения</span>
-            </div>
-        `;
-    });
-    
-    html += '</div>';
-    document.getElementById('contentArea').innerHTML = html;
+.mode-btn {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    background-color: var(--btn-inactive-bg);
+    color: var(--text-primary);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.mode-btn.active {
+    background-color: var(--accent);
+    color: var(--text-on-accent);
+    border-color: var(--accent);
 }
 
-// Подсчет статистики
-document.getElementById('wordsCount').innerText = Object.values(words).flat().length;
-document.getElementById('phrasesCount').innerText = Object.values(phrases).flat().length;
-document.getElementById('lessonsCount').innerText = "50";
+/* ===== ПРАВАЯ ПАНЕЛЬ ===== */
+.main-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: var(--bg-app);
+}
+.top-bar {
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border);
+    background-color: var(--bg-app);
+}
+.counter-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+.content-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+/* ===== РЕЖИМ КАРТОЧЕК ===== */
+.cards-mode { display: flex; flex-direction: column; height: 100%; }
+.cards-direction-bar { display: flex; justify-content: flex-start; margin-bottom: 15px; }
+.direction-btn {
+    padding: 6px 12px;
+    background-color: var(--accent);
+    color: var(--text-on-accent);
+    border: none;
+    border-radius: 6px;
+    font-size: 11px;
+    cursor: pointer;
+}
+.card-container { flex: 1; display: flex; align-items: center; justify-content: center; margin: 20px 0; }
+.card {
+    background-color: var(--bg-card);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 500px;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    padding: 40px 20px;
+}
+.card:hover { transform: scale(1.02); }
+.card-word { font-size: 28px; font-weight: bold; color: var(--text-primary); word-break: break-word; }
+.cards-controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px; }
+.control-btn {
+    padding: 8px 16px;
+    background-color: var(--btn-control-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 12px;
+    cursor: pointer;
+}
+.control-btn.primary { background-color: var(--accent); color: var(--text-on-accent); border-color: var(--accent); }
+.hint-text { text-align: center; margin-top: 15px; font-size: 11px; color: var(--text-secondary); }
+
+/* ===== РЕЖИМ ТЕСТА ===== */
+.quiz-mode { display: flex; flex-direction: column; height: 100%; }
+.quiz-question { text-align: center; font-size: 24px; font-weight: bold; color: var(--text-primary); margin: 20px 0; }
+.quiz-buttons-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 20px 0; }
+.quiz-option-btn {
+    padding: 16px;
+    background-color: var(--bg-card);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+}
+.quiz-option-btn:hover { background-color: #F0F0F0; }
+.quiz-option-btn.correct-flash { background-color: var(--success-flash); }
+.quiz-option-btn.wrong-flash { background-color: var(--error-flash); }
+
+/* ===== РЕЖИМ ФРАЗ ===== */
+.sentences-mode { display: flex; flex-direction: column; height: 100%; }
+.sentence-question { text-align: center; font-size: 18px; color: var(--text-primary); margin: 15px 0; }
+.sentence-result {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin: 15px 0;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+.words-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 20px 0; min-height: 120px; }
+.word-btn {
+    padding: 12px 20px;
+    background-color: var(--btn-inactive-bg);
+    border: 1px solid var(--border);
+    border-radius: 40px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.sentence-controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 15px 0; }
+
+/* ===== РЕЖИМ УРОКОВ ===== */
+.lessons-mode { display: flex; flex-direction: column; height: 100%; }
+.lesson-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.lesson-title { font-size: 24px; font-weight: bold; color: var(--text-primary); }
+.lesson-counter { font-size: 14px; color: var(--text-secondary); }
+.lesson-mode-buttons { display: flex; gap: 10px; margin-bottom: 20px; }
+.lesson-mode-btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+}
+.lesson-mode-btn.active { background-color: var(--accent); color: var(--text-on-accent); }
+.lesson-mode-btn.inactive { background-color: var(--btn-inactive-bg); color: var(--text-primary); }
+.lesson-content {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    padding: 20px;
+    overflow-y: auto;
+    max-height: 60vh;
+}
+.lesson-text { line-height: 1.6; color: var(--text-primary); }
+.speak-inline-btn {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 16px;
+    padding: 2px 10px;
+    margin: 2px;
+    cursor: pointer;
+    font-size: 11px;
+}
+.practice-exercise {
+    margin-bottom: 15px;
+    padding: 12px;
+    background-color: var(--bg-app);
+    border-radius: 8px;
+}
+.practice-question { font-weight: bold; margin-bottom: 8px; color: var(--text-primary); }
+.practice-answer { color: var(--accent); }
+
+/* ===== АДАПТАЦИЯ ПОД ТЕЛЕФОН ===== */
+@media (max-width: 768px) {
+    .sidebar { width: 280px; }
+    .card-word { font-size: 22px; }
+    .quiz-question { font-size: 20px; }
+    .quiz-buttons-grid { grid-template-columns: 1fr; }
+}
