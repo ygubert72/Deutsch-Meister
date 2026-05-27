@@ -5,33 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Немецкий тренажер — Deutsch Meister</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇩🇪</text></svg>">
 </head>
 <body>
     <div class="app-container">
         <div class="sidebar">
             <div class="sidebar-content">
-                <!-- КУРС ГРАММАТИКИ -->
-                <div class="section-header">
-                    <button class="section-toggle-btn" id="lessonsToggleBtn">КУРС ГРАММАТИКИ ▶</button>
-                </div>
+                <button class="section-toggle-btn" id="lessonsToggleBtn">КУРС ГРАММАТИКИ ▶</button>
                 <div class="lessons-container" id="lessonsContainer" style="display: none;">
                     <div id="lessonsGrid" class="lessons-grid"></div>
                 </div>
 
-                <!-- ТРЕНАЖЁР -->
                 <div class="section-title">ТРЕНАЖЁР</div>
-                <div class="levels-buttons" id="levelsButtons">
-                    <button data-level="A1" class="level-btn" id="levelA1">A1</button>
-                    <button data-level="A2" class="level-btn" id="levelA2">A2</button>
-                    <button data-level="B1" class="level-btn" id="levelB1">B1</button>
-                    <button data-level="B2" class="level-btn" id="levelB2">B2</button>
-                    <button data-level="C1" class="level-btn" id="levelC1">C1</button>
+                <div class="levels-buttons">
+                    <button data-level="A1" class="level-btn">A1</button>
+                    <button data-level="A2" class="level-btn active">A2</button>
+                    <button data-level="B1" class="level-btn">B1</button>
+                    <button data-level="B2" class="level-btn">B2</button>
+                    <button data-level="C1" class="level-btn">C1</button>
                 </div>
 
-                <!-- РЕЖИМЫ -->
                 <div class="section-title">РЕЖИМЫ</div>
-                <button class="mode-btn" id="cardsModeBtn">КАРТОЧКИ</button>
+                <button class="mode-btn active" id="cardsModeBtn">КАРТОЧКИ</button>
                 <button class="mode-btn" id="quizModeBtn">ТЕСТ</button>
                 <button class="mode-btn" id="sentencesModeBtn">ФРАЗЫ</button>
             </div>
@@ -39,12 +33,11 @@
 
         <div class="main-panel">
             <div class="top-bar">
-                <div class="counter-label" id="counterLabel">Загрузка данных...</div>
+                <div class="counter-label" id="counterLabel">Загрузка...</div>
             </div>
             <div class="content-area" id="contentArea"></div>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
