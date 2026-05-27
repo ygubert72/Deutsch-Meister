@@ -1,0 +1,274 @@
+=== Урок 11. Отрицание. ===
+
+________________________________
+
+1. В простом предложении с одним глаголом – она ставится в конец:
+[озвучка:Ich spiele nicht] Ich spiele (я играю) – Ich spiele nicht (я не играю).
+
+2. В случае предложения с двумя глаголами nicht ставится на предпоследнее место:
+[озвучка:Ich kann hier nicht spielen] Ich kann hier spielen (я могу здесь играть) – Ich kann hier nicht spielen (я не могу здесь играть).
+
+3. В случае наличия предлогов в предложении nicht ставится перед ними:
+[озвучка:Ich will nicht mit dir spielen] Ich will nicht mit dir spielen (я не хочу с тобой играть)
+[озвучка:Ich soll heute nicht in die Schule gehen] Ich soll heute nicht in die Schule gehen (я не должен сегодня идти в школу)
+
+4. С прилагательными же все намного проще, точнее, все точно так же, как в русском языке:
+[озвучка:Sie läuft nicht schnell] Sie läuft nicht schnell (она бежит небыстро).
+[озвучка:Der Tisch ist nicht schön] Der Tisch ist nicht schön (стол некрасивый).
+
+5. Также nicht отрицает притяжательные местоимения:
+[озвучка:Das ist nicht mein Auto] Das ist nicht mein Auto.
+[озвучка:Er ist nicht mein Freund] Er ist nicht mein Freund.
+[озвучка:Das ist nicht deine Mütze] Das ist nicht deine Mütze.
+
+________________________________
+
+[озвучка:kein] Отрицательный артикль kein ведет себя точно так же как и неопределенный ein.
+[озвучка:Das ist kein Tisch] Das ist ein Tisch (это стол) – Das ist kein Tisch (это не стол).
+[озвучка:Das ist kein Auto] Das ist ein Auto (это машина) – Das ist kein Auto (это не машина).
+[озвучка:Das ist keine Lampe] Das ist eine Lampe (это лампа) – Das ist keine Lampe (это не лампа).
+[озвучка:Ich habe keinen Freund] Ich habe einen Freund (у меня есть друг) – Ich habe keinen Freund (у меня нет друга).
+[озвучка:Ich habe kein Auto] Ich habe ein Auto (у меня есть машина) – Ich habe kein Auto (у меня нет машины).
+[озвучка:Ich habe keine Freundin] Ich habe eine Freundin (у меня есть подружка) – Ich habe keine Freundin (у меня нет подружки).
+
+________________________________
+
+И в конце хотелось бы отметить, что в немецком в отличие от русского не бывает двойного отрицания.
+
+[озвучка:Ich fahre heute nicht nach Frankreich] Я не поеду сегодня во Францию. – Ich fahre heute nicht nach Frankreich.
+[озвучка:Ich fahre nie nach Frankreich] Я никогда не поеду во Францию. – Ich fahre nie nach Frankreich.
+[озвучка:Sie will hier nicht lernen] Она не хочет здесь учиться. – Sie will hier nicht lernen.
+[озвучка:Sie will nirgendwo lernen] Она не хочет нигде учиться. – Sie will nirgendwo lernen.
+
+________________________________
+
+Лексика к уроку:
+
+[озвучка:etwas] 1. Etwas
+[озвучка:alles] 2. Alles
+[озвучка:nichts] 3. Nichts
+[озвучка:immer] 4. Immer
+[озвучка:nie] 5. Nie
+[озвучка:schon] 6. Schon
+[озвучка:jetzt] 7. Jetzt
+[озвучкa:noch] 8. Noch
+
+________________________________
+
+Упражнение 1. Сделать предложения отрицательными.
+
+1. Ich arbeite. – Ich arbeite nicht.
+2. Du spielst.
+3. Sie lacht.
+4. Er weint jetzt.
+5. Wir antworten morgen.
+6. Ihr arbeitet heute.
+7. Sie will heute schlafen.
+8. Er kann den Text übersetzen.
+9. Sie sollen morgen kommen.
+10. Ich gehe heute in die Schule.
+11. Du sollst mit deinem Bruder spielen.
+12. Sie möchte in Deutschland studieren.
+13. Wir können dem Kellner helfen.
+14. Ich will mit dem Kind spielen.
+
+________________________________
+
+Упражнение 2. Сделать предложения отрицательными.
+
+1. Er ist nett. – Er ist nicht nett.
+2. Sie ist schön.
+3. Ich bin alt.
+4. Du bist jung.
+5. Wir sind dumm.
+6. Ihr seid klug.
+7. Sie sind schlecht.
+8. Ich bin stark.
+9. Du bist schwach.
+
+________________________________
+
+Упражнение 3. Сделать предложения отрицательными.
+
+1. Ich habe einen Bleistift – Ich habe keinen Bleistift.
+2. Du hast eine Mütze.
+3. Sie hat einen Hund.
+4. Er hat eine Katze.
+5. Das ist ein Tisch.
+6. Das ist eine Tür.
+7. Das ist eine Wohnung.
+8. Das sind Jeans.
+9. Das sind die Schuhe.
+
+________________________________
+
+Упражнение 4. Перевести предложения.
+
+1. Ты не веселый. – Du bist nicht lustig.
+2. Он не берет книгу.
+3. Она не далеко.
+4. У нее нет велосипеда.
+5. Они не старые.
+6. У него нет пальто.
+7. Он никогда не работает.
+8. У меня нет ручки.
+9. Фильм не скучный.
+10. У меня нет книги.
+11. У нее нет машины.
+12. У нас нет дома.
+13. У тебя нет друга.
+14. У них нет квартиры.
+15. Он спит не много.
+16. Это не мое платье.
+17. Она не дает машину.
+18. Это не наше пальто.
+19. Она ничего не ест.
+20. Ты едешь не медленно.
+21. Ему нельзя спросить.
+22. Это не их рубашка.
+23. Он не любит петь.
+24. Это не ваш шарф.
+25. Автобус не медленный.
+26. Они не хотят помочь.
+27. Это не твоя футболка.
+28. Это не ее блузка.
+29. Мы не спим.
+30. У нее нет юбки.
+
+________________________________
+
+Упражнение 5. Перевести предложения.
+
+1. Она не танцует.
+2. Она не хочет танцевать.
+3. Она не хочет танцевать с дедушкой.
+4. Я не хочу работать.
+5. Я не хочу сегодня работать.
+6. Я никогда не хочу работать.
+7. Мы не слышим.
+8. Они не хотят слушать.
+9. Он не говорит.
+10. Он не хочет говорить.
+11. Он не хочет говорить со своим другом.
+12. Мы не едем.
+13. Мы не хотим ехать.
+14. Мы не хотим ехать с родителями.
+
+________________________________
+
+🎉 ENDE DES ELFTEN UNTERRICHTS
+
+
+
+=== ÜBUNGEN ===
+
+F: Я никогда не поеду во Францию.
+A: Ich fahre heute nicht nach Frankreich.
+
+F: Она не хочет здесь учиться.
+A: Ich fahre nie nach Frankreich.
+
+F: Она не хочет нигде учиться.
+A: Sie will hier nicht lernen.
+
+F: A: Ich arbeite nicht.
+A: Sie will nirgendwo lernen.
+
+F: A: Du bist nicht lustig.
+A: Er ist nicht nett.
+
+F: Я не поеду сегодня во Францию
+A: Du bist nicht lustig.
+
+F: Я никогда не поеду во Францию
+A: Ich fahre heute nicht nach Frankreich
+
+F: Она не хочет здесь учиться
+A: Ich fahre nie nach Frankreich
+
+F: Она не хочет нигде учиться
+A: Sie will hier nicht lernen
+
+F: A: Du bist nicht lustig
+A: Sie will nirgendwo lernen
+
+F: Она не хочет здесь учиться.
+A: Ich fahre heute nicht nach Frankreich.
+
+F: Она не хочет нигде учиться.
+A: Ich fahre nie nach Frankreich.
+
+F: A: Ich arbeite nicht.
+A: Sie will hier nicht lernen.
+
+F: A: Du bist nicht lustig.
+A: Sie will nirgendwo lernen.
+
+F: Я не поеду сегодня во Францию
+A: Er ist nicht nett.
+
+F: Я никогда не поеду во Францию
+A: Du bist nicht lustig.
+
+F: Она не хочет здесь учиться
+A: Ich fahre heute nicht nach Frankreich
+
+F: Она не хочет нигде учиться
+A: Ich fahre nie nach Frankreich
+
+F: A: Du bist nicht lustig
+A: Sie will hier nicht lernen
+
+F: Она не хочет здесь учиться.
+A: Ich fahre heute nicht nach Frankreich.
+
+F: Она не хочет нигде учиться.
+A: Ich fahre nie nach Frankreich.
+
+F: A: Ich arbeite nicht.
+A: Sie will hier nicht lernen.
+
+F: A: Du bist nicht lustig.
+A: Sie will nirgendwo lernen.
+
+F: Я не поеду сегодня во Францию
+A: Er ist nicht nett.
+
+F: Я никогда не поеду во Францию
+A: Du bist nicht lustig.
+
+F: Она не хочет здесь учиться
+A: Ich fahre heute nicht nach Frankreich
+
+F: Она не хочет нигде учиться
+A: Ich fahre nie nach Frankreich
+
+F: A: Du bist nicht lustig
+A: Sie will hier nicht lernen
+
+F: Она не хочет здесь учиться.
+A: Sie will nirgendwo lernen
+
+F: Она не хочет нигде учиться.
+A: Ich fahre heute nicht nach Frankreich.
+
+F: A: Ich arbeite nicht.
+A: Ich fahre nie nach Frankreich.
+
+F: A: Du bist nicht lustig.
+A: Sie will hier nicht lernen.
+
+F: Я не поеду сегодня во Францию
+A: Sie will nirgendwo lernen.
+
+F: Я никогда не поеду во Францию
+A: Er ist nicht nett.
+
+F: Она не хочет здесь учиться
+A: Du bist nicht lustig.
+
+F: Она не хочет нигде учиться
+A: Ich fahre heute nicht nach Frankreich
+
+F: A: Du bist nicht lustig
+A: Ich fahre nie nach Frankreich

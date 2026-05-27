@@ -1,0 +1,139 @@
+=== Урок 13: Время. Wie spät ist es? Uhr/Stunde. ===
+
+________________________________
+
+[озвучка:Wie spät ist es] „Wie spät ist es?“ либо [озвучка:Wie viel Uhr ist es] „Wie viel Uhr ist es?“, что в дословном переводе означает соответственно «Как поздно?» и «Сколько часов?». Можно также просто спросить [озвучка:Wie spät] „Wie spät?“ и [озвучка:Wie viel Uhr] „Wie viel Uhr“. Диалог о времени может выглядеть так:
+
+[озвучка:Wie spät ist es] - Wie spät ist es?
+[озвучка:Es ist 3 Uhr] - Es ist 3 Uhr.
+
+________________________________
+
+• Чтобы спросить «Во сколько?», есть два варианта:
+[озвучка:Um wie viel Uhr] - Um wie viel Uhr?
+[озвучка:Wann] - Wann?
+
+Чтобы ответить, нам понадобится предлог „um“:
+[озвучка:Um 3 Uhr] - Um 3 Uhr
+[озвучка:Um 3] - Um 3
+[озвучка:Um halb 3] - Um halb 3
+
+Примерный диалог может звучать так:
+[озвучка:Wann gehen wir ins Kino] - Wann gehen wir ins Kino?
+[озвучка:Um 4] - Um 4
+
+________________________________
+
+• Чтобы сказать около трех, мы используем предлог gegen:
+[озвучка:Wir kommen gegen 3 Uhr] - Wir kommen gegen 3 Uhr.
+
+• Чтобы сказать неровные часы, используются предлоги „nach“ (после) и „vor“ (до). То есть «3:10» будет звучать по-немецки как [озвучка:10 nach 3] „10 nach 3“ (10 после 3), а «без десяти три» - [озвучка:10 vor 3] „10 vor 3“ (десять до трех). «15 минут» чаще всего выражается словом [озвучка:Viertel] „Viertel“ (четверть). Половина будет [озвучка:halb] „halb“. Ниже приведу еще несколько примеров:
+
+[озвучка:Es ist Viertel nach drei] Es ist Viertel nach drei.
+[озвучка:Es ist Viertel vor fünf] Es ist Viertel vor fünf.
+[озвучка:Ich gehe in die Schule um 8] Ich gehe in die Schule um 8.
+[озвучка:Ich gehe heute in die Schule um 10 vor 8] Ich gehe heute in die Schule um 10 vor 8.
+[озвучка:Ich esse immer um 12] Ich esse immer um 12.
+[озвучка:Ich esse heute um 15 nach 12] Ich esse heute um 15 nach 12.
+
+Можно также сказать простым вариантом:
+8:20 будет звучать [озвучка:Acht Uhr zwanzig Minuten] “Acht Uhr (und) zwanzig Minuten“, либо просто [озвучка:Acht zwanzig] „Acht zwanzig“. 17:40 – [озвучка:Siebzehn Uhr vierzig Minuten] „Siebzehn Uhr vierzig Minuten“ либо [озвучка:Siebzehn vierzig] „Siebzehn vierzig“.
+
+________________________________
+
+• И последнее, на чем мы остановимся в этом уроке – различие между словами
+[озвучка:die Uhr] - die Uhr (часы)
+[озвучка:die Stunde] - die Stunde (час, урок)
+
+Мы используем слово die Uhr, когда говорим о точном времени, либо о часах, как о предмете:
+[озвучка:Um vier Uhr] - Um vier Uhr. – В четыре часа.
+[озвучка:Das ist meine Uhr] - Das ist meine Uhr. – Это мои часы.
+
+Слово die Stunde мы используем, когда говорим о протяженности во времени, либо об уроках.
+[озвучка:Mein Training dauert zwei Stunden] - Mein Training dauert zwei Stunden. – Моя тренировка длится два часа.
+[озвучка:Ich habe heute sechs Stunden] - Ich habe heute sechs Stunden. – У меня сегодня шесть уроков.
+
+________________________________
+
+Упражнение 1: Ответить на вопрос „Wie spät ist es?“, используя „Es ist ---“ и предлоги nach и vor и слово Viertel и halb.
+
+1. 3:10 – Es ist zehn nach drei.
+2. 3:50 – Es ist zehn vor vier.
+3. 6:05
+4. 6:55
+5. 2:30
+6. 12:10
+7. 11:50
+8. 2:15
+9. 7:30
+10. 1:45
+11. 12:15
+12. 11:45
+13. 4:30
+14. 12:55
+15. 11:05
+16. 8:30
+
+________________________________
+
+Упражнение 2: Ответить на вопрос „Wann?“, используя схему „Um---“.
+
+1. 3:10 – Um drei Uhr zehn Minuten.
+2. 3:50 – Um drei Uhr fünfzig Minuten.
+3. 6:05
+4. 6:55
+5. 2:30
+6. 12:10
+7. 11:50
+8. 2:15
+9. 7:30
+10. 1:45
+11. 12:15
+12. 11:45
+13. 4:30
+14. 12:55
+15. 11:05
+16. 8:30
+
+________________________________
+
+Упражнение 3: Перевести предложения.
+
+1. У нас сегодня пять уроков.
+2. Мы поедем в 3 часа.
+3. Моя тренировка начинается в 2 часа.
+4. Твоя тренировка длится 2 часа.
+5. У них всегда 6 уроков.
+6. Фильм начинается в 8 часов.
+7. Фильм длится почти 2 часа.
+8. Я делаю дом. работу почти 3 часа.
+9. Я иду спать в 11 часов.
+10. Мы приедем в 5 часов.
+11. Я играю уже три часа.
+12. В 7 часов у меня немецкий.
+
+________________________________
+
+Упражнение 4: Ответить на вопросы.
+
+1. Wann gehst du zur Schule?
+2. Wann gehst du zur Uni?
+3. Wann frühstückst du?
+4. Wann hast du Mittagessen?
+5. Wann hast du Abendessen?
+6. Wann machst du die Hausaufgaben?
+
+________________________________
+
+Упражнение 5: Перевести предложения.
+
+1. Я приду около 3.
+2. Он приедет около 5
+3. Мы приедем около половины 3
+4. Я приеду около половины десятого.
+5. Фильм начнется около семи.
+6. Вы придете около трех?
+
+________________________________
+
+🎉 ENDE DES DREIZEHNTEN UNTERRICHTS

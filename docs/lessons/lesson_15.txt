@@ -1,0 +1,299 @@
+=== Урок 15: Akkusativ. Dativ. Уровень «Царь». ===
+
+________________________________
+
+[озвучка:der Mann] МУЖСКОЙ DER (EIN) MANN
+[озвучка:das Auto] СРЕДНИЙ DAS (EIN) AUTO
+[озвучка:die Frau] ЖЕНСКИЙ DIE (EINE) FRAU
+[озвучка:die Leute] МНОЖ. ЧИСЛО DIE LEUTE
+
+Nominativ - wer? was? (кто? что?)
+[озвучка:der] Der (ein)
+[озвучка:das] Das (ein)
+[озвучка:die] Die (eine)
+[озвучка:die] Die
+
+Akkusativ - wen? was? wohin? (кого? что? куда?)
+[озвучка:den] Den (einen)
+[озвучка:das] Das (ein)
+[озвучка:die] Die (eine)
+[озвучка:die] Die
+
+Dativ - wem? wo? wann? (кому? где? когда?)
+[озвучка:dem] Dem (einem)
+[озвучка:dem] Dem (einem)
+[озвучка:der] Der (einer)
+[озвучка:den] Den (-n)
+
+________________________________
+
+[озвучка:in] In - в.
+[озвучка:auf] Auf - на (горизонтальная поверхность)
+[озвучка:an] An - на (вертикальная поверхность)
+[озвучка:an] An - за (столом), у (окна).
+[озвучка:neben] Neben - около, рядом.
+[озвучка:zwischen] Zwischen - между
+[озвучка:hinter] Hinter - за, позади
+[озвучка:vor] Vor - перед, до.
+[озвучка:über] Über - над.
+[озвучка:unter] Unter - под.
+
+________________________________
+
+[озвучка:Ich gehe ins Kino] • Я иду (куда?) в кино - Ich gehe ins (in das) Kino.
+[озвучка:ich bin jetzt im Kino] • Я сейчас (где?) в кино - ich bin jetzt im (in dem) Kino.
+[озвучка:Ich stelle die Lampe auf den Tisch] • Я ставлю лампу (куда?) на стол - Ich stelle die Lampe auf den Tisch.
+[озвучка:Die Lampe steht auf dem Tisch] • Лампа стоит (где?) на столе - Die Lampe steht auf dem Tisch.
+[озвучка:Ich hänge das Bild an die Wand] • Я вешаю картину (куда?) на стену - Ich hänge das Bild an die Wand.
+[озвучка:Das Bild hängt an der Wand] • Картина висит (где?) на стене - Das Bild hängt an der Wand.
+
+________________________________
+
+Что касается вопроса «когда?», здесь нам придется вернуться к предыдущему уроку. Как вы, возможно, успели заметить, там все в Дативе:
+
+[озвучка:Ich schlafe immer viel im Winter] • Я всегда много сплю (когда?) зимой. - Ich schlafe immer viel im (in dem) Winter.
+[озвучка:Ich fahre nach Deutschland im Jahre 2018] • Я поеду в Германию (когда?) в 2018. - Ich fahre nach Deutschland im Jahre 2018.
+[озвучка:Am Montag lerne ich Deutsch] • (Когда?) В понедельник я учу немецкий. - Am Montag lerne ich Deutsch.
+[озвучка:Mein Geburtstag ist im Juni] • Мой день рождения (когда?) в июне. - Mein Geburtstag ist im Juni.
+
+________________________________
+
+Важный момент - если к слову подходят оба вопроса (Где? Куда?), то мы всегда ставим слово в Akkusativ. А иногда с русским языком вообще выходит противоречие!
+
+[озвучка:Wir stellen den Tisch neben den Sessel] • Мы ставим стол (Куда? Где?) рядом с креслом - Wir stellen den Tisch neben den Sessel.
+[озвучка:Er malt an die Wand] • Он рисует на стене (Он рисует на стену) - Er malt an die Wand.
+
+________________________________
+
+Подсказкой в определении падежа может также служить определение «действия» (Akk) или «позиции» (Dat). Прочитайте примеры выше еще раз сравните.
+
+Напоследок выучим два устоявшихся выражения:
+
+[озвучка:nach Hause] • Nach Hause - домой.
+[озвучка:zu Hause] • Zu Hause - дома.
+
+Употребляются всегда в такой форме без артиклей!
+
+Эта тема является одной из самых сложных во всей грамматике немецкого языка. Поэтому здесь мы сначала должны по максимуму отработать саму систему (где? куда?) с простыми предлогами auf и in, и лишь потом переходить к последующим упражнениям.
+
+________________________________
+
+Упражнение 1:
+
+[озвучка:Ich bin jetzt in meiner Wohnung] 1. Ich bin jetzt in meiner Wohnung.
+[озвучка:Ich gehe gerade in meine Wohnung] Ich gehe gerade in meine Wohnung.
+[озвучка:Mein Buch liegt auf meinem Tisch] 2. Mein Buch liegt auf meinem Tisch.
+[озвучка:Ich lege mein Buch auf meinen Tisch] Ich lege mein Buch auf meinen Tisch.
+
+________________________________
+
+Упражнение 2: Перевести предложения, используя in, auf.
+
+1. Я иду в школу.
+2. Я сейчас в школе.
+3. Она едет в кино.
+4. Она сидит в кино.
+5. Она останется в машине.
+6. Я иду в машину.
+7. Я кладу книгу на стол.
+8. Книга лежит на столе.
+9. Ты кладешь ручку на стол.
+10. Сумка лежит на полу.
+11. Когда ты повесишь одежду в шкаф?
+12. Одежда должна висеть в шкафу.
+13. Стол стоит на полу.
+14. Ваза стоит на столе.
+15. Мы ставим стол на пол.
+16. Мы ставим шкаф в угол.
+17. Шкаф стоит в углу.
+18. Кошка спит в углу.
+
+________________________________
+
+Упражнение 3: Перевести предложения, используя an, neben, zwischen.
+
+1. Мы вешаем картину на стену. Картина висит на стене. Она рисует на стене (Akk).
+2. Стол стоит рядом с креслом. Мы ставим стол рядом с креслом.
+3. Тарелка лежит около стакана. Ты должен положить тарелку рядом со стаканом.
+4. Наш дом находится (лежит) между школой и спортплощадкой.
+5. Моя школа – между твоим домом и моей квартирой.
+6. Ты должен поставить стул между шкафом и столом.
+7. Родители сидят за столом. Дети тоже сидят за столом.
+8. Он стоит у окна. Почему ты весь день сидишь у окна?
+9. Что ты рисуешь на стене? (Akk). Нарисуй солнце на стене (Akk).
+
+________________________________
+
+Упражнение 4: Перевести предложения, используя an или auf.
+
+1. Картина висит на стене. Ручка лежит на столе.
+2. Ваза стоит на полу. Фотография весит на стене.
+3. Я кладу книгу на стол. Ты вешаешь картину на стену.
+4. Мы идем к доске. Он ставит вазу на стол.
+5. Он пишет на доске. Он кладет мел на стол.
+6. Я сижу за столом. Подойди к столу.
+
+________________________________
+
+Упражнение 5: Перевести предложения, используя hinter, vor, über, unter.
+
+1. Книга лежит за шкафом.
+2. Стол стоит перед шкафом.
+3. Я прячу деньги (куда?) за шкаф.
+4. Ты прячешь деньги за кресло.
+5. Она стоит за школой.
+6. Ты стоишь перед домом.
+7. Лампа висит над столом.
+8. Кошка сидит под столом.
+9. Ты можешь поискать под диваном.
+10. Что ты делаешь перед школой?
+11. У меня тренировка перед школой.
+12. Собака спит под столом.
+
+________________________________
+
+Упражнение 6: Перевести предложения, используя zu Hause / nach Hause.
+
+1. Когда ты придешь домой?
+2. Я приду домой в три часа.
+3. Я учу немецкий дома.
+4. Она уже дома.
+5. Мы уже давно дома.
+6. Что ты делаешь дома?
+7. Мы едем домой.
+8. Мы хотим поесть дома.
+9. Я могу пойти домой.
+10. Вы едете домой.
+11. Моя сестра сейчас дома.
+12. Его родители всегда дома.
+
+________________________________
+
+🎉 ENDE DES FÜNFZEHNTEN UNTERRICHTS
+
+
+
+=== ÜBUNGEN ===
+
+F: в кино
+A: Ich gehe ins
+
+F: на стол
+A: ich bin jetzt im
+
+F: на столе
+A: Ich stelle die Lampe auf den Tisch.
+
+F: на стену
+A: Die Lampe steht auf dem Tisch.
+
+F: на стене
+A: Ich hänge das Bild an die Wand.
+
+F: зимой.
+A: Das Bild hängt an der Wand.
+
+F: A: Ich fahre nach Deutschland im Jahre
+A: Ich schlafe immer viel im
+
+F: в июне.
+A: Am Montag lerne ich Deutsch.
+
+F: рядом с креслом
+A: Mein Geburtstag ist im Juni.
+
+F: В понедельник я учу немецкий
+A: Wir stellen den Tisch neben den Sessel.
+
+F: в июне
+A: Am Montag lerne ich Deutsch
+
+F: на стол
+A: Ich gehe ins
+
+F: на столе
+A: ich bin jetzt im
+
+F: на стену
+A: Ich stelle die Lampe auf den Tisch.
+
+F: на стене
+A: Die Lampe steht auf dem Tisch.
+
+F: зимой.
+A: Ich hänge das Bild an die Wand.
+
+F: A: Ich fahre nach Deutschland im Jahre
+A: Das Bild hängt an der Wand.
+
+F: в июне.
+A: Ich schlafe immer viel im
+
+F: рядом с креслом
+A: Am Montag lerne ich Deutsch.
+
+F: В понедельник я учу немецкий
+A: Mein Geburtstag ist im Juni.
+
+F: в июне
+A: Wir stellen den Tisch neben den Sessel.
+
+F: на стол
+A: Ich gehe ins
+
+F: на столе
+A: ich bin jetzt im
+
+F: на стену
+A: Ich stelle die Lampe auf den Tisch.
+
+F: на стене
+A: Die Lampe steht auf dem Tisch.
+
+F: зимой.
+A: Ich hänge das Bild an die Wand.
+
+F: A: Ich fahre nach Deutschland im Jahre
+A: Das Bild hängt an der Wand.
+
+F: в июне.
+A: Ich schlafe immer viel im
+
+F: рядом с креслом
+A: Am Montag lerne ich Deutsch.
+
+F: В понедельник я учу немецкий
+A: Mein Geburtstag ist im Juni.
+
+F: в июне
+A: Wir stellen den Tisch neben den Sessel.
+
+F: на стол
+A: Am Montag lerne ich Deutsch
+
+F: на столе
+A: Ich gehe ins
+
+F: на стену
+A: ich bin jetzt im
+
+F: на стене
+A: Ich stelle die Lampe auf den Tisch.
+
+F: зимой.
+A: Die Lampe steht auf dem Tisch.
+
+F: A: Ich fahre nach Deutschland im Jahre
+A: Ich hänge das Bild an die Wand.
+
+F: в июне.
+A: Das Bild hängt an der Wand.
+
+F: рядом с креслом
+A: Ich schlafe immer viel im
+
+F: В понедельник я учу немецкий
+A: Am Montag lerne ich Deutsch.
+
+F: в июне
+A: Mein Geburtstag ist im Juni.
