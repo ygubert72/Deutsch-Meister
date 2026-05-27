@@ -1,8 +1,8 @@
+
 // ============================================================
-// Deutsch-Meister — 100% копия оригинального приложения
+// Deutsch-Meister — 100% копия
 // ============================================================
 
-// ---------- ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ----------
 let currentMode = 'cards';
 let currentLevel = 'A2';
 let showLanguage = 'de';
@@ -40,7 +40,7 @@ let practiceCache = {};
 
 let savedPositions = {};
 
-// ---------- ЗАГРУЗКА ДАННЫХ ----------
+// ---------- ЗАГРУЗКА ----------
 async function loadAllData() {
     const levels = ['A1', 'A2', 'B1', 'B2', 'C1'];
     const basePath = '/Deutsch-Meister/docs/';
@@ -48,46 +48,31 @@ async function loadAllData() {
     for (const level of levels) {
         try {
             const resp = await fetch(`${basePath}words/${level}.json`);
-            if (resp.ok) {
-                wordsData[level] = await resp.json();
-                console.log(`✅ Загружен словарь ${level}: ${wordsData[level].length} слов`);
-            } else {
-                wordsData[level] = [];
-            }
-        } catch (e) {
-            wordsData[level] = [];
-        }
+            if (resp.ok) wordsData[level] = await resp.json();
+            else wordsData[level] = [];
+            console.log(`✅ ${level}: ${wordsData[level].length} слов`);
+        } catch(e) { wordsData[level] = []; }
 
         try {
             const resp = await fetch(`${basePath}sentences/${level}.json`);
-            if (resp.ok) {
-                sentencesData[level] = await resp.json();
-                console.log(`✅ Загружены фразы ${level}: ${sentencesData[level].length} фраз`);
-            } else {
-                sentencesData[level] = [];
-            }
-        } catch (e) {
-            sentencesData[level] = [];
-        }
+            if (resp.ok) sentencesData[level] = await resp.json();
+            else sentencesData[level] = [];
+            console.log(`✅ ${level}: ${sentencesData[level].length} фраз`);
+        } catch(e) { sentencesData[level] = []; }
     }
 
     for (let i = 1; i <= 50; i++) {
         try {
             const resp = await fetch(`${basePath}lessons/lesson_${i}.txt`);
             lessonsCache[i] = resp.ok ? await resp.text() : `=== Урок ${i} ===\n\nСодержание урока пока не добавлено.`;
-        } catch (e) {
-            lessonsCache[i] = `=== Урок ${i} ===\n\nОшибка загрузки урока.`;
-        }
-
+        } catch(e) { lessonsCache[i] = `=== Урок ${i} ===\n\nОшибка загрузки.`; }
         try {
             const resp = await fetch(`${basePath}practice/lesson_${i}.txt`);
             practiceCache[i] = resp.ok ? await resp.text() : '';
-        } catch (e) {
-            practiceCache[i] = '';
-        }
+        } catch(e) { practiceCache[i] = ''; }
     }
 
-    loadProgressFromStorage();
+    loadProgress();
     createLessonButtons();
     updateCounter();
 
@@ -95,7 +80,7 @@ async function loadAllData() {
     if (savedPositions[`sentences_${currentLevel}`]) sentencesCurrentIndex = savedPositions[`sentences_${currentLevel}`];
 }
 
-function loadProgressFromStorage() {
+function loadProgress() {
     const saved = localStorage.getItem('deutsch_meister_progress');
     if (saved) { try { progressData = JSON.parse(saved); } catch(e) {} }
     const savedSent = localStorage.getItem('deutsch_meister_sentences_progress');
@@ -107,7 +92,6 @@ function saveProgress() {
     localStorage.setItem('deutsch_meister_sentences_progress', JSON.stringify(sentencesProgressData));
 }
 
-// ---------- ВСПОМОГАТЕЛЬНЫЕ ----------
 function getCurrentWords(level) {
     if (!wordsData[level]) return [];
     const current = [];
@@ -182,7 +166,7 @@ function speakText(text) {
     window.speechSynthesis.speak(utterance);
 }
 
-// ---------- РЕЖИМ КАРТОЧЕК ----------
+// ---------- КАРТОЧКИ ----------
 function renderCardsMode() {
     cardsCurrentWords = getCurrentWords(currentLevel);
     const content = document.getElementById('contentArea');
@@ -192,9 +176,7 @@ function renderCardsMode() {
                 <button class="direction-btn" id="cardsDirectionBtn">${showLanguage === 'de' ? 'De → Ru' : 'Ru → De'}</button>
             </div>
             <div class="card-container">
-                <div class="card" id="card">
-                    <div class="card-word" id="cardWord"></div>
-                </div>
+                <div class="card" id="card"><div class="card-word" id="cardWord"></div></div>
             </div>
             <div class="cards-controls">
                 <button class="control-btn" id="studyBtn">В ИЗУЧЕНО</button>
@@ -207,7 +189,6 @@ function renderCardsMode() {
             <div class="hint-text">Нажмите на карточку для перевода</div>
         </div>
     `;
-
     document.getElementById('cardsDirectionBtn').onclick = () => {
         showLanguage = showLanguage === 'de' ? 'ru' : 'de';
         cardsFlipped = false;
@@ -228,7 +209,7 @@ function renderCardsMode() {
 function updateCardDisplay() {
     const cardWord = document.getElementById('cardWord');
     if (!cardWord) return;
-    if (cardsCurrentWords.length === 0) { cardWord.textContent = "🎉 Все слова изучены! Верните слова из 'Изучено'"; return; }
+    if (cardsCurrentWords.length === 0) { cardWord.textContent = "🎉 Все слова изучены!"; return; }
     if (cardsCurrentIndex >= cardsCurrentWords.length) cardsCurrentIndex = 0;
     const word = cardsCurrentWords[cardsCurrentIndex];
     if (!cardsFlipped) cardWord.textContent = showLanguage === 'de' ? word.de : word.ru;
@@ -253,8 +234,8 @@ function markWordAsStudied() {
 
 function showUnstudyDialog() {
     const studied = getStudiedWords(currentLevel);
-    if (!studied.length) { alert("Нет изученных слов для возврата"); return; }
-    let msg = "Выберите слово для возврата:\n";
+    if (!studied.length) { alert("Нет изученных слов"); return; }
+    let msg = "Выберите слово:\n";
     studied.forEach((w, i) => msg += `${i+1}. ${w.de} - ${w.ru}\n`);
     const num = prompt(msg);
     if (num) {
@@ -285,7 +266,7 @@ function resetAllStudied() {
     updateCounter();
 }
 
-// ---------- РЕЖИМ ТЕСТА ----------
+// ---------- ТЕСТ ----------
 function renderQuizMode() {
     quizWordList = getCurrentWords(currentLevel);
     quizCurrentIndex = 0;
@@ -307,7 +288,6 @@ function renderQuizMode() {
             <div class="hint-text" id="quizProgress"></div>
         </div>
     `;
-
     document.getElementById('quizDirectionBtn').onclick = () => {
         quizDirection = quizDirection === 'de_to_ru' ? 'ru_to_de' : 'de_to_ru';
         showQuizWord();
@@ -322,7 +302,7 @@ function renderQuizMode() {
 }
 
 function showQuizWord() {
-    if (!quizWordList.length) { document.getElementById('quizQuestion').textContent = "🎉 Все слова изучены! Верните слова из 'Изучено'"; return; }
+    if (!quizWordList.length) { document.getElementById('quizQuestion').textContent = "🎉 Все слова изучены!"; return; }
     if (quizCurrentIndex >= quizWordList.length) quizCurrentIndex = 0;
     quizCurrentWord = quizWordList[quizCurrentIndex];
     const allWords = wordsData[currentLevel];
@@ -365,7 +345,7 @@ function markQuizWordAsStudied() {
     }
 }
 
-// ---------- РЕЖИМ ФРАЗ ----------
+// ---------- ФРАЗЫ ----------
 function renderSentencesMode() {
     sentencesList = getUncompletedSentences(currentLevel);
     sentencesCurrentIndex = savedPositions[`sentences_${currentLevel}`] || 0;
@@ -393,7 +373,6 @@ function renderSentencesMode() {
             </div>
         </div>
     `;
-
     document.getElementById('sentencesDirectionBtn').onclick = () => {
         sentenceLangFrom = sentenceLangFrom === 'ru' ? 'de' : 'ru';
         showCurrentSentence();
@@ -412,7 +391,7 @@ function renderSentencesMode() {
 }
 
 function showCurrentSentence() {
-    if (!sentencesList.length) { document.getElementById('sentenceQuestion').textContent = "🎉 Все фразы изучены! Верните фразы из 'Изучено'"; return; }
+    if (!sentencesList.length) { document.getElementById('sentenceQuestion').textContent = "🎉 Все фразы изучены!"; return; }
     if (sentencesCurrentIndex >= sentencesList.length) sentencesCurrentIndex = 0;
     sentencesCurrentData = sentencesList[sentencesCurrentIndex];
     let question, correctWords;
@@ -449,7 +428,6 @@ function updateSentenceDisplay() {
 
 function sentenceUndoWord() { if(sentencesSelectedWords.length) { const last = sentencesSelectedWords.pop(); sentencesWordActive[last] = true; updateSentenceDisplay(); } }
 function sentenceReset() { sentencesSelectedWords = []; sentencesAvailableWords.forEach(w => { sentencesWordActive[w] = true; }); updateSentenceDisplay(); }
-
 function sentenceCheck() {
     if (!sentencesSelectedWords.length) { sentenceBlinkRed(); return; }
     let correct;
@@ -459,7 +437,6 @@ function sentenceCheck() {
     if (user === correct) sentenceBlinkGreenAndNext();
     else sentenceBlinkRed();
 }
-
 function sentenceBlinkGreenAndNext() {
     const result = document.getElementById('sentenceResult');
     result.style.backgroundColor = '#C8E6C9';
@@ -469,13 +446,11 @@ function sentenceBlinkGreenAndNext() {
         showCurrentSentence();
     }, 500);
 }
-
 function sentenceBlinkRed() {
     const result = document.getElementById('sentenceResult');
     result.style.backgroundColor = '#FFCDD2';
     setTimeout(() => { result.style.backgroundColor = '#FFFFFF'; sentenceReset(); }, 500);
 }
-
 function markSentenceAsStudied() {
     if (!sentencesCurrentData) return;
     const idx = findSentenceIndex(currentLevel, sentencesCurrentData);
@@ -489,7 +464,6 @@ function markSentenceAsStudied() {
         updateCounter();
     }
 }
-
 function showSentenceUnstudyDialog() {
     const completed = [];
     if (sentencesProgressData[currentLevel]) {
@@ -497,8 +471,8 @@ function showSentenceUnstudyDialog() {
             if (sentencesProgressData[currentLevel][i]?.studied) completed.push(sentencesData[currentLevel][i]);
         }
     }
-    if (!completed.length) { alert("Нет изученных фраз для возврата"); return; }
-    let msg = "Выберите фразу для возврата:\n";
+    if (!completed.length) { alert("Нет изученных фраз"); return; }
+    let msg = "Выберите фразу:\n";
     completed.forEach((s, i) => msg += `${i+1}. ${s.de} -> ${s.ru}\n`);
     const num = prompt(msg);
     if (num) {
@@ -517,7 +491,6 @@ function showSentenceUnstudyDialog() {
         }
     }
 }
-
 function resetAllSentencesStudied() {
     if (!sentencesProgressData[currentLevel]) sentencesProgressData[currentLevel] = [];
     for (let i = 0; i < sentencesData[currentLevel].length; i++) sentencesProgressData[currentLevel][i] = { studied: false };
@@ -528,7 +501,7 @@ function resetAllSentencesStudied() {
     updateCounter();
 }
 
-// ---------- РЕЖИМ УРОКОВ (через КУРС ГРАММАТИКИ) ----------
+// ---------- УРОКИ ----------
 function renderLessonsMode() {
     const content = document.getElementById('contentArea');
     content.innerHTML = `
@@ -606,7 +579,7 @@ function showLessonPractice() {
         for (let i = words.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [words[i], words[j]] = [words[j], words[i]]; }
         const uniqueId = `practice_ex_${currentLesson}_${exIdx}`;
         html += `
-            <div class="practice-exercise-card" data-ex-idx="${exIdx}" data-answer="${ex.answer.toLowerCase().replace(/[.,!?]/g, '')}">
+            <div class="practice-exercise-card" data-ex-idx="${exIdx}">
                 <div class="practice-question">📝 ${ex.question}</div>
                 <div class="practice-words-container" id="${uniqueId}_words"></div>
                 <div class="practice-selected-container" id="${uniqueId}_selected"></div>
@@ -659,8 +632,10 @@ function initPracticeExercise(uniqueId) {
         if (user === exercise.answer) {
             msgContainer.innerHTML = '✅ Правильно!';
             msgContainer.className = 'practice-message success';
-            setTimeout(() => { const card = document.querySelector(`.practice-exercise-card[data-ex-idx="${uniqueId.split('_').pop()}"]`); if (card) { card.style.opacity = '0.6'; const next = card.nextElementSibling?.nextElementSibling; if (next) next.scrollIntoView({ behavior: 'smooth' }); } }, 800);
-        } else { msgContainer.innerHTML = `❌ Неправильно! Правильный ответ: ${exercise.answer}`; msgContainer.className = 'practice-message error'; }
+        } else {
+            msgContainer.innerHTML = `❌ Неправильно! Правильный ответ: ${exercise.answer}`;
+            msgContainer.className = 'practice-message error';
+        }
     };
     updateDisplay();
 }
@@ -685,10 +660,18 @@ function createLessonButtons() {
 function toggleLessons() {
     const container = document.getElementById('lessonsContainer');
     const btn = document.getElementById('lessonsToggleBtn');
-    if (lessonsExpanded) { container.style.display = 'none'; btn.textContent = 'КУРС ГРАММАТИКИ ▶'; lessonsExpanded = false; }
-    else { container.style.display = 'block'; btn.textContent = 'КУРС ГРАММАТИКИ ▼'; lessonsExpanded = true; }
+    if (lessonsExpanded) {
+        container.style.display = 'none';
+        btn.textContent = 'КУРС ГРАММАТИКИ ▶';
+        lessonsExpanded = false;
+    } else {
+        container.style.display = 'block';
+        btn.textContent = 'КУРС ГРАММАТИКИ ▼';
+        lessonsExpanded = true;
+    }
 }
 
+// ---------- ПЕРЕКЛЮЧЕНИЕ ----------
 function setCardsMode() { currentMode = 'cards'; renderCardsMode(); updateModeButtons('cardsModeBtn'); updateCounter(); }
 function setQuizMode() { currentMode = 'quiz'; renderQuizMode(); updateModeButtons('quizModeBtn'); updateCounter(); }
 function setSentencesMode() { currentMode = 'sentences'; renderSentencesMode(); updateModeButtons('sentencesModeBtn'); updateCounter(); }
@@ -699,26 +682,49 @@ function updateModeButtons(activeId) {
     ids.forEach(id => { const btn = document.getElementById(id); if (btn) { if (id === activeId) btn.classList.add('active'); else btn.classList.remove('active'); } });
 }
 
-function updateLevelButtons() { document.querySelectorAll('.level-btn').forEach(btn => { if (btn.dataset.level === currentLevel) btn.classList.add('active'); else btn.classList.remove('active'); }); }
+function updateLevelButtons() {
+    const btns = document.querySelectorAll('.level-btn');
+    btns.forEach(btn => {
+        if (btn.dataset.level === currentLevel) btn.classList.add('active');
+        else btn.classList.remove('active');
+    });
+}
 
 function changeLevel(level) {
     if (currentMode === 'cards') savedPositions[`cards_${currentLevel}`] = cardsCurrentIndex;
     if (currentMode === 'sentences') savedPositions[`sentences_${currentLevel}`] = sentencesCurrentIndex;
     currentLevel = level;
     updateLevelButtons();
-    if (currentMode === 'cards') { cardsCurrentWords = getCurrentWords(level); cardsCurrentIndex = savedPositions[`cards_${level}`] || 0; if (cardsCurrentIndex >= cardsCurrentWords.length && cardsCurrentWords.length) cardsCurrentIndex = 0; cardsFlipped = false; updateCardDisplay(); }
-    else if (currentMode === 'quiz') { quizCurrentIndex = 0; renderQuizMode(); }
-    else if (currentMode === 'sentences') { sentencesCurrentIndex = savedPositions[`sentences_${level}`] || 0; renderSentencesMode(); }
+    if (currentMode === 'cards') {
+        cardsCurrentWords = getCurrentWords(level);
+        cardsCurrentIndex = savedPositions[`cards_${level}`] || 0;
+        if (cardsCurrentIndex >= cardsCurrentWords.length && cardsCurrentWords.length) cardsCurrentIndex = 0;
+        cardsFlipped = false;
+        updateCardDisplay();
+    } else if (currentMode === 'quiz') {
+        quizCurrentIndex = 0;
+        renderQuizMode();
+    } else if (currentMode === 'sentences') {
+        sentencesCurrentIndex = savedPositions[`sentences_${level}`] || 0;
+        renderSentencesMode();
+    }
     updateCounter();
 }
 
 function setupEventListeners() {
-    document.getElementById('cardsModeBtn').onclick = setCardsMode;
-    document.getElementById('quizModeBtn').onclick = setQuizMode;
-    document.getElementById('sentencesModeBtn').onclick = setSentencesMode;
-    document.getElementById('lessonsModeBtn').onclick = setLessonsMode;
-    document.getElementById('lessonsToggleBtn').onclick = toggleLessons;
-    document.querySelectorAll('.level-btn').forEach(btn => btn.onclick = () => changeLevel(btn.dataset.level));
+    const cardsBtn = document.getElementById('cardsModeBtn');
+    const quizBtn = document.getElementById('quizModeBtn');
+    const sentencesBtn = document.getElementById('sentencesModeBtn');
+    const lessonsBtn = document.getElementById('lessonsModeBtn');
+    const toggleBtn = document.getElementById('lessonsToggleBtn');
+    const levelBtns = document.querySelectorAll('.level-btn');
+    
+    if (cardsBtn) cardsBtn.onclick = setCardsMode;
+    if (quizBtn) quizBtn.onclick = setQuizMode;
+    if (sentencesBtn) sentencesBtn.onclick = setSentencesMode;
+    if (lessonsBtn) lessonsBtn.onclick = setLessonsMode;
+    if (toggleBtn) toggleBtn.onclick = toggleLessons;
+    levelBtns.forEach(btn => btn.onclick = () => changeLevel(btn.dataset.level));
 }
 
 // ---------- ЗАПУСК ----------
@@ -727,5 +733,4 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupEventListeners();
     updateLevelButtons();
     setCardsMode();
-    updateCounter();
 });
