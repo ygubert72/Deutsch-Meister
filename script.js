@@ -96,7 +96,6 @@ async function loadAllData() {
     createLessonButtons();
     updateCounter();
 
-    // Если есть сохранённая позиция, восстанавливаем её
     if (savedPositions[`cards_${currentLevel}`]) {
         cardsCurrentIndex = savedPositions[`cards_${currentLevel}`];
     }
@@ -789,25 +788,28 @@ function toggleLessons() {
     }
 }
 
-// ---------- ПЕРЕКЛЮЧЕНИЕ РЕЖИМОВ И УРОВНЕЙ ----------
+// ---------- ПЕРЕКЛЮЧЕНИЕ РЕЖИМОВ ----------
 function setCardsMode() {
     currentMode = 'cards';
     renderCardsMode();
     updateModeButtons('cardsModeBtn');
     updateCounter();
 }
+
 function setQuizMode() {
     currentMode = 'quiz';
     renderQuizMode();
     updateModeButtons('quizModeBtn');
     updateCounter();
 }
+
 function setSentencesMode() {
     currentMode = 'sentences';
     renderSentencesMode();
     updateModeButtons('sentencesModeBtn');
     updateCounter();
 }
+
 function setLessonsMode() {
     currentMode = 'lessons';
     renderLessonsMode();
@@ -826,6 +828,7 @@ function updateModeButtons(activeId) {
     });
 }
 
+// ---------- ПЕРЕКЛЮЧЕНИЕ УРОВНЕЙ ----------
 function updateLevelButtons() {
     document.querySelectorAll('.level-btn').forEach(btn => {
         if (btn.dataset.level === currentLevel) btn.classList.add('active');
@@ -854,6 +857,7 @@ function changeLevel(level) {
     updateCounter();
 }
 
+// ---------- НАСТРОЙКА СОБЫТИЙ ----------
 function setupEventListeners() {
     document.getElementById('cardsModeBtn').onclick = setCardsMode;
     document.getElementById('quizModeBtn').onclick = setQuizMode;
