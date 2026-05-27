@@ -9,10 +9,8 @@
 </head>
 <body>
     <div class="app-container">
-        <!-- ЛЕВАЯ ПАНЕЛЬ -->
-        <div class="sidebar" id="sidebar">
+        <div class="sidebar">
             <div class="sidebar-content">
-                <!-- КУРС ГРАММАТИКИ (раскрывающийся список уроков) -->
                 <div class="section-header">
                     <button class="section-toggle-btn" id="lessonsToggleBtn">КУРС ГРАММАТИКИ ▶</button>
                 </div>
@@ -20,7 +18,6 @@
                     <div id="lessonsGrid" class="lessons-grid"></div>
                 </div>
 
-                <!-- ТРЕНАЖЁР (уровни A1-C1) -->
                 <div class="section-title">ТРЕНАЖЁР</div>
                 <div class="levels-buttons" id="levelsButtons">
                     <button data-level="A1" class="level-btn">A1</button>
@@ -30,23 +27,18 @@
                     <button data-level="C1" class="level-btn">C1</button>
                 </div>
 
-                <!-- РЕЖИМЫ -->
                 <div class="section-title">РЕЖИМЫ</div>
                 <button class="mode-btn" id="cardsModeBtn">КАРТОЧКИ</button>
                 <button class="mode-btn" id="quizModeBtn">ТЕСТ</button>
                 <button class="mode-btn" id="sentencesModeBtn">ФРАЗЫ</button>
-                <button class="mode-btn" id="lessonsModeBtn">УРОКИ</button>
             </div>
         </div>
 
-        <!-- ПРАВАЯ ПАНЕЛЬ -->
         <div class="main-panel">
             <div class="top-bar">
                 <div class="counter-label" id="counterLabel">Загрузка данных...</div>
             </div>
-            <div class="content-area" id="contentArea">
-                <!-- Сюда динамически загружаются режимы -->
-            </div>
+            <div class="content-area" id="contentArea"></div>
         </div>
     </div>
 
