@@ -1,1 +1,716 @@
+// ============================================================
+// ПОЛНАЯ ЛОГИКА Deutsch-Meister (100% копия вашей программы)
+// ============================================================
 
+// ---------- ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ----------
+let currentMode = 'cards';
+let currentLevel = 'A2';
+let showLanguage = 'de';
+let quizDirection = 'de_to_ru';
+let sentenceLangFrom = 'ru';
+let sentenceLangTo = 'de';
+
+let wordsData = {};
+let sentencesData = {};
+let progressData = {};
+let sentencesProgressData = {};
+
+let cardsCurrentIndex = 0;
+let cardsFlipped = false;
+let cardsCurrentWords = [];
+
+let quizCurrentIndex = 0;
+let quizWordList = [];
+let quizOptions = [];
+let quizCorrectAnswer = '';
+let quizCurrentWord = null;
+
+let sentencesCurrentIndex = 0;
+let sentencesList = [];
+let sentencesCurrentData = null;
+let sentencesSelectedWords = [];
+let sentencesAvailableWords = [];
+let sentencesWordActive = {};
+
+let lessonsExpanded = false;
+let currentLesson = 1;
+let currentLessonMode = 'theory';
+let lessonsCache = {};
+let practiceCache = {};
+
+let savedPositions = {};
+
+// ---------- ИНИЦИАЛИЗАЦИЯ ----------
+document.addEventListener('DOMContentLoaded', async () => {
+    await loadAllData();
+    setupEventListeners();
+    updateLevelButtons();
+    setCardsMode();
+    updateCounter();
+});
+
+// ---------- ЗАГРУЗКА ДАННЫХ (из папки docs) ----------
+async function loadAllData() {
+    const levels = ['A1', 'A2', 'B1', 'B2', 'C1'];
+    for (const level of levels) {
+        try {
+            const resp = await fetch(`docs/words/${level}.json`);
+            if (resp.ok) wordsData[level] = await resp.json();
+            else wordsData[level] = [];
+        } catch(e) { wordsData[level] = []; }
+        
+        try {
+            const resp = await fetch(`docs/sentences/${level}.json`);
+            if (resp.ok) sentencesData[level] = await resp.json();
+            else sentencesData[level] = [];
+        } catch(e) { sentencesData[level] = []; }
+    }
+    
+    for (let i = 1; i <= 50; i++) {
+        try {
+            const resp = await fetch(`docs/lessons/lesson_${i}.txt`);
+            lessonsCache[i] = resp.ok ? await resp.text() : `=== Урок ${i} ===\n\nСодержание урока пока не добавлено.`;
+        } catch(e) { lessonsCache[i] = `=== Урок ${i} ===\n\nОшибка загрузки урока.`; }
+        
+        try {
+            const resp = await fetch(`docs/practice/lesson_${i}.txt`);
+            practiceCache[i] = resp.ok ? await resp.text() : '';
+        } catch(e) { practiceCache[i] = ''; }
+    }
+    
+    loadProgressFromStorage();
+    createLessonButtons();
+}
+
+function loadProgressFromStorage() {
+    const saved = localStorage.getItem('deutsch_meister_progress');
+    if (saved) { try { progressData = JSON.parse(saved); } catch(e) {} }
+    const savedSent = localStorage.getItem('deutsch_meister_sentences_progress');
+    if (savedSent) { try { sentencesProgressData = JSON.parse(savedSent); } catch(e) {} }
+}
+
+function saveProgress() {
+    localStorage.setItem('deutsch_meister_progress', JSON.stringify(progressData));
+    localStorage.setItem('deutsch_meister_sentences_progress', JSON.stringify(sentencesProgressData));
+}
+
+// ---------- ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ (как в вашем WordsManager) ----------
+function getCurrentWords(level) {
+    if (!wordsData[level]) return [];
+    const current = [];
+    for (let i = 0; i < wordsData[level].length; i++) {
+        const studied = progressData[level]?.[i]?.studied;
+        if (!studied) current.push(wordsData[level][i]);
+    }
+    return current;
+}
+
+function getStudiedWords(level) {
+    if (!wordsData[level]) return [];
+    const studied = [];
+    for (let i = 0; i < wordsData[level].length; i++) {
+        if (progressData[level]?.[i]?.studied) studied.push(wordsData[level][i]);
+    }
+    return studied;
+}
+
+function getUncompletedSentences(level) {
+    if (!sentencesData[level]) return [];
+    const uncompleted = [];
+    for (let i = 0; i < sentencesData[level].length; i++) {
+        if (!sentencesProgressData[level]?.[i]?.studied) uncompleted.push(sentencesData[level][i]);
+    }
+    return uncompleted;
+}
+
+function findWordIndex(level, word) {
+    const words = wordsData[level];
+    for (let i = 0; i < words.length; i++) {
+        if (words[i].de === word.de && words[i].ru === word.ru) return i;
+    }
+    return -1;
+}
+
+function findSentenceIndex(level, sentence) {
+    const sents = sentencesData[level];
+    for (let i = 0; i < sents.length; i++) {
+        if (sents[i].de === sentence.de && sents[i].ru === sentence.ru) return i;
+    }
+    return -1;
+}
+
+function updateCounter() {
+    const label = document.getElementById('counterLabel');
+    if (currentMode === 'cards' || currentMode === 'quiz') {
+        const total = wordsData[currentLevel]?.length || 0;
+        const unstudied = getCurrentWords(currentLevel).length;
+        const studied = total - unstudied;
+        label.textContent = `Всего: ${total} | Учим: ${unstudied} | Выучено: ${studied}`;
+    } else if (currentMode === 'sentences') {
+        const total = sentencesData[currentLevel]?.length || 0;
+        let completed = 0;
+        if (sentencesProgressData[currentLevel]) {
+            completed = Object.values(sentencesProgressData[currentLevel]).filter(v => v?.studied).length;
+        }
+        label.textContent = `Всего фраз: ${total} | Выучено: ${completed}`;
+    } else {
+        label.textContent = `КУРС ГРАММАТИКИ`;
+    }
+}
+
+// ---------- АУДИО ----------
+function speakText(text) {
+    if (!text || !window.speechSynthesis) return;
+    const clean = text.replace(/[^\w\s\-äöüßÄÖÜ]/g, '');
+    if (!clean.trim()) return;
+    const utterance = new SpeechSynthesisUtterance(clean);
+    utterance.lang = 'de-DE';
+    utterance.rate = 0.9;
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(utterance);
+}
+
+// ---------- РЕЖИМ КАРТОЧЕК (как в cards_mode.py) ----------
+function renderCardsMode() {
+    cardsCurrentWords = getCurrentWords(currentLevel);
+    const content = document.getElementById('contentArea');
+    content.innerHTML = `
+        <div class="cards-mode">
+            <div class="cards-direction-bar">
+                <button class="direction-btn" id="cardsDirectionBtn">${showLanguage === 'de' ? 'De → Ru' : 'Ru → De'}</button>
+            </div>
+            <div class="card-container">
+                <div class="card" id="card">
+                    <div class="card-word" id="cardWord"></div>
+                </div>
+            </div>
+            <div class="cards-controls">
+                <button class="control-btn" id="studyBtn">В ИЗУЧЕНО</button>
+                <button class="control-btn" id="unstudyBtn">ВЕРНУТЬ</button>
+                <button class="control-btn" id="resetStudiedBtn">ВЕРНУТЬ ВСЕ</button>
+                <button class="control-btn" id="speakBtn">🔊</button>
+                <button class="control-btn" id="prevCardBtn">◀ НАЗАД</button>
+                <button class="control-btn" id="nextCardBtn">ВПЕРЕД ▶</button>
+            </div>
+            <div class="hint-text">Нажмите на карточку для перевода</div>
+        </div>
+    `;
+    
+    document.getElementById('cardsDirectionBtn').onclick = () => {
+        showLanguage = showLanguage === 'de' ? 'ru' : 'de';
+        cardsFlipped = false;
+        updateCardDisplay();
+        document.getElementById('cardsDirectionBtn').textContent = showLanguage === 'de' ? 'De → Ru' : 'Ru → De';
+    };
+    document.getElementById('card').onclick = () => { if(cardsCurrentWords.length) { cardsFlipped = !cardsFlipped; updateCardDisplay(); } };
+    document.getElementById('studyBtn').onclick = () => markWordAsStudied();
+    document.getElementById('unstudyBtn').onclick = () => showUnstudyDialog();
+    document.getElementById('resetStudiedBtn').onclick = () => resetAllStudied();
+    document.getElementById('speakBtn').onclick = () => { if(cardsCurrentWords[cardsCurrentIndex]) speakText(cardsCurrentWords[cardsCurrentIndex].de); };
+    document.getElementById('prevCardBtn').onclick = () => { if(cardsCurrentIndex > 0) { cardsCurrentIndex--; cardsFlipped = false; updateCardDisplay(); savedPositions[`cards_${currentLevel}`] = cardsCurrentIndex; } };
+    document.getElementById('nextCardBtn').onclick = () => { if(cardsCurrentWords.length) { cardsCurrentIndex = (cardsCurrentIndex + 1) % cardsCurrentWords.length; cardsFlipped = false; updateCardDisplay(); savedPositions[`cards_${currentLevel}`] = cardsCurrentIndex; } };
+    
+    updateCardDisplay();
+    updateCounter();
+}
+
+function updateCardDisplay() {
+    const cardWord = document.getElementById('cardWord');
+    if (!cardWord) return;
+    if (cardsCurrentWords.length === 0) {
+        cardWord.textContent = "Загрузка слов...";
+        return;
+    }
+    if (cardsCurrentIndex >= cardsCurrentWords.length) cardsCurrentIndex = 0;
+    const word = cardsCurrentWords[cardsCurrentIndex];
+    if (!cardsFlipped) cardWord.textContent = showLanguage === 'de' ? word.de : word.ru;
+    else cardWord.textContent = showLanguage === 'de' ? `${word.de}\n\n➡️\n\n${word.ru}` : `${word.ru}\n\n➡️\n\n${word.de}`;
+}
+
+function markWordAsStudied() {
+    if (!cardsCurrentWords.length) return;
+    const word = cardsCurrentWords[cardsCurrentIndex];
+    const idx = findWordIndex(currentLevel, word);
+    if (idx !== -1) {
+        if (!progressData[currentLevel]) progressData[currentLevel] = [];
+        progressData[currentLevel][idx] = { studied: true };
+        saveProgress();
+        cardsCurrentWords = getCurrentWords(currentLevel);
+        if (cardsCurrentIndex >= cardsCurrentWords.length && cardsCurrentWords.length > 0) cardsCurrentIndex = 0;
+        cardsFlipped = false;
+        updateCardDisplay();
+        updateCounter();
+    }
+}
+
+function showUnstudyDialog() {
+    const studied = getStudiedWords(currentLevel);
+    if (!studied.length) { alert("Нет изученных слов для возврата"); return; }
+    let msg = "Выберите слово для возврата:\n";
+    studied.forEach((w, i) => msg += `${i+1}. ${w.de} - ${w.ru}\n`);
+    const num = prompt(msg);
+    if (num) {
+        const idx = parseInt(num) - 1;
+        if (idx >= 0 && idx < studied.length) {
+            const word = studied[idx];
+            const wordIdx = findWordIndex(currentLevel, word);
+            if (wordIdx !== -1) {
+                if (!progressData[currentLevel]) progressData[currentLevel] = [];
+                progressData[currentLevel][wordIdx] = { studied: false };
+                saveProgress();
+                cardsCurrentWords = getCurrentWords(currentLevel);
+                updateCardDisplay();
+                updateCounter();
+            }
+        }
+    }
+}
+
+function resetAllStudied() {
+    if (!progressData[currentLevel]) progressData[currentLevel] = [];
+    for (let i = 0; i < wordsData[currentLevel].length; i++) {
+        progressData[currentLevel][i] = { studied: false };
+    }
+    saveProgress();
+    cardsCurrentWords = getCurrentWords(currentLevel);
+    cardsCurrentIndex = 0;
+    cardsFlipped = false;
+    updateCardDisplay();
+    updateCounter();
+}
+
+// ---------- РЕЖИМ ТЕСТА (как в quiz_mode.py) ----------
+function renderQuizMode() {
+    quizWordList = getCurrentWords(currentLevel);
+    quizCurrentIndex = 0;
+    const content = document.getElementById('contentArea');
+    content.innerHTML = `
+        <div class="quiz-mode">
+            <div class="cards-direction-bar">
+                <button class="direction-btn" id="quizDirectionBtn">${quizDirection === 'de_to_ru' ? 'De → Ru' : 'Ru → De'}</button>
+            </div>
+            <div class="quiz-question" id="quizQuestion"></div>
+            <div class="quiz-buttons-grid" id="quizButtonsGrid"></div>
+            <div class="cards-controls">
+                <button class="control-btn" id="quizStudyBtn">В ИЗУЧЕНО</button>
+                <button class="control-btn" id="quizUnstudyBtn">ВЕРНУТЬ</button>
+                <button class="control-btn" id="quizResetStudiedBtn">ВЕРНУТЬ ВСЕ</button>
+                <button class="control-btn" id="prevQuizBtn">◀ НАЗАД</button>
+                <button class="control-btn" id="nextQuizBtn">ВПЕРЕД ▶</button>
+            </div>
+            <div class="hint-text" id="quizProgress"></div>
+        </div>
+    `;
+    
+    document.getElementById('quizDirectionBtn').onclick = () => {
+        quizDirection = quizDirection === 'de_to_ru' ? 'ru_to_de' : 'de_to_ru';
+        showQuizWord();
+        document.getElementById('quizDirectionBtn').textContent = quizDirection === 'de_to_ru' ? 'De → Ru' : 'Ru → De';
+    };
+    document.getElementById('quizStudyBtn').onclick = () => markQuizWordAsStudied();
+    document.getElementById('quizUnstudyBtn').onclick = () => showUnstudyDialog();
+    document.getElementById('quizResetStudiedBtn').onclick = () => resetAllStudied();
+    document.getElementById('prevQuizBtn').onclick = () => { if(quizCurrentIndex > 0) { quizCurrentIndex--; showQuizWord(); } };
+    document.getElementById('nextQuizBtn').onclick = () => { if(quizWordList.length) { quizCurrentIndex = (quizCurrentIndex + 1) % quizWordList.length; showQuizWord(); } };
+    
+    showQuizWord();
+}
+
+function showQuizWord() {
+    if (!quizWordList.length) {
+        document.getElementById('quizQuestion').textContent = "Загрузка...";
+        return;
+    }
+    if (quizCurrentIndex >= quizWordList.length) quizCurrentIndex = 0;
+    quizCurrentWord = quizWordList[quizCurrentIndex];
+    const allWords = wordsData[currentLevel];
+    const others = allWords.filter(w => w.de !== quizCurrentWord.de);
+    const shuffled = [...others];
+    for (let i = shuffled.length - 1; i > 0; i--) { const j = Math.floor(Math.random()*(i+1)); [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]; }
+    quizOptions = [quizCurrentWord, ...shuffled.slice(0,5)];
+    for (let i = quizOptions.length - 1; i > 0; i--) { const j = Math.floor(Math.random()*(i+1)); [quizOptions[i], quizOptions[j]] = [quizOptions[j], quizOptions[i]]; }
+    
+    if (quizDirection === 'de_to_ru') {
+        document.getElementById('quizQuestion').textContent = quizCurrentWord.de;
+        quizCorrectAnswer = quizCurrentWord.ru;
+    } else {
+        document.getElementById('quizQuestion').textContent = quizCurrentWord.ru;
+        quizCorrectAnswer = quizCurrentWord.de;
+    }
+    
+    const grid = document.getElementById('quizButtonsGrid');
+    grid.innerHTML = '';
+    quizOptions.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'quiz-option-btn';
+        btn.textContent = quizDirection === 'de_to_ru' ? opt.ru : opt.de;
+        btn.onclick = () => {
+            const isCorrect = quizDirection === 'de_to_ru' ? (opt.ru === quizCorrectAnswer) : (opt.de === quizCorrectAnswer);
+            if (isCorrect) {
+                btn.classList.add('correct-flash');
+                setTimeout(() => {
+                    quizCurrentIndex = (quizCurrentIndex + 1) % quizWordList.length;
+                    showQuizWord();
+                }, 400);
+            } else {
+                btn.classList.add('wrong-flash');
+                setTimeout(() => btn.classList.remove('wrong-flash'), 500);
+            }
+        };
+        grid.appendChild(btn);
+    });
+    document.getElementById('quizProgress').textContent = `Текущее слово: ${quizCurrentIndex + 1} из ${quizWordList.length}`;
+}
+
+function markQuizWordAsStudied() {
+    if (!quizCurrentWord) return;
+    const idx = findWordIndex(currentLevel, quizCurrentWord);
+    if (idx !== -1) {
+        if (!progressData[currentLevel]) progressData[currentLevel] = [];
+        progressData[currentLevel][idx] = { studied: true };
+        saveProgress();
+        quizWordList = getCurrentWords(currentLevel);
+        quizCurrentIndex = 0;
+        showQuizWord();
+        updateCounter();
+    }
+}
+
+// ---------- РЕЖИМ ФРАЗ (как в sentences_mode.py) ----------
+function renderSentencesMode() {
+    sentencesList = getUncompletedSentences(currentLevel);
+    sentencesCurrentIndex = savedPositions[`sentences_${currentLevel}`] || 0;
+    const content = document.getElementById('contentArea');
+    content.innerHTML = `
+        <div class="sentences-mode">
+            <div class="cards-direction-bar">
+                <button class="direction-btn" id="sentencesDirectionBtn">${sentenceLangFrom === 'ru' ? 'Ru → De' : 'De → Ru'}</button>
+            </div>
+            <div class="sentence-question" id="sentenceQuestion"></div>
+            <div class="sentence-result" id="sentenceResult"></div>
+            <div class="words-container" id="sentenceWordsContainer"></div>
+            <div class="sentence-controls">
+                <button class="control-btn" id="sentenceUndoBtn">ВЕРНУТЬ СЛОВО</button>
+                <button class="control-btn" id="sentenceResetBtn">СБРОСИТЬ ВСЁ</button>
+                <button class="control-btn primary" id="sentenceCheckBtn">ПРОВЕРИТЬ</button>
+                <button class="control-btn" id="sentenceSpeakBtn">🔊</button>
+            </div>
+            <div class="cards-controls">
+                <button class="control-btn" id="sentenceStudyBtn">В ИЗУЧЕНО</button>
+                <button class="control-btn" id="sentenceUnstudyBtn">ВЕРНУТЬ</button>
+                <button class="control-btn" id="sentenceResetStudiedBtn">ВЕРНУТЬ ВСЕ</button>
+                <button class="control-btn" id="prevSentenceBtn">◀ НАЗАД</button>
+                <button class="control-btn" id="nextSentenceBtn">ВПЕРЕД ▶</button>
+            </div>
+        </div>
+    `;
+    
+    document.getElementById('sentencesDirectionBtn').onclick = () => {
+        sentenceLangFrom = sentenceLangFrom === 'ru' ? 'de' : 'ru';
+        showCurrentSentence();
+        document.getElementById('sentencesDirectionBtn').textContent = sentenceLangFrom === 'ru' ? 'Ru → De' : 'De → Ru';
+    };
+    document.getElementById('sentenceUndoBtn').onclick = sentenceUndoWord;
+    document.getElementById('sentenceResetBtn').onclick = sentenceReset;
+    document.getElementById('sentenceCheckBtn').onclick = sentenceCheck;
+    document.getElementById('sentenceSpeakBtn').onclick = () => { if(sentencesCurrentData) speakText(sentencesCurrentData.de); };
+    document.getElementById('sentenceStudyBtn').onclick = markSentenceAsStudied;
+    document.getElementById('sentenceUnstudyBtn').onclick = showSentenceUnstudyDialog;
+    document.getElementById('sentenceResetStudiedBtn').onclick = resetAllSentencesStudied;
+    document.getElementById('prevSentenceBtn').onclick = () => { if(sentencesCurrentIndex > 0) { sentencesCurrentIndex--; showCurrentSentence(); savedPositions[`sentences_${currentLevel}`] = sentencesCurrentIndex; } };
+    document.getElementById('nextSentenceBtn').onclick = () => { if(sentencesList.length) { sentencesCurrentIndex = (sentencesCurrentIndex + 1) % sentencesList.length; showCurrentSentence(); savedPositions[`sentences_${currentLevel}`] = sentencesCurrentIndex; } };
+    
+    showCurrentSentence();
+}
+
+function showCurrentSentence() {
+    if (!sentencesList.length) {
+        document.getElementById('sentenceQuestion').textContent = "Загрузка фраз...";
+        return;
+    }
+    if (sentencesCurrentIndex >= sentencesList.length) sentencesCurrentIndex = 0;
+    sentencesCurrentData = sentencesList[sentencesCurrentIndex];
+    let question, correctWords;
+    if (sentenceLangFrom === 'ru') {
+        question = sentencesCurrentData.ru;
+        correctWords = sentencesCurrentData.de.split(' ');
+    } else {
+        question = sentencesCurrentData.de;
+        correctWords = sentencesCurrentData.ru.split(' ');
+    }
+    document.getElementById('sentenceQuestion').textContent = `Составьте предложение:\n\n${question}`;
+    
+    const extras = ['der', 'die', 'das', 'und', 'oder', 'aber', 'sehr', 'gut', 'nicht', 'auch', 'ich', 'du', 'er', 'sie', 'es', 'wir', 'ihr', 'Sie'];
+    let words = [...correctWords];
+    while (words.length < 6) { const e = extras[Math.floor(Math.random()*extras.length)]; if (!words.includes(e)) words.push(e); }
+    for (let i = words.length - 1; i > 0; i--) { const j = Math.floor(Math.random()*(i+1)); [words[i], words[j]] = [words[j], words[i]]; }
+    sentencesAvailableWords = words.slice(0, 8);
+    sentencesSelectedWords = [];
+    sentencesWordActive = {};
+    sentencesAvailableWords.forEach(w => { sentencesWordActive[w] = true; });
+    updateSentenceDisplay();
+}
+
+function updateSentenceDisplay() {
+    const container = document.getElementById('sentenceWordsContainer');
+    const result = document.getElementById('sentenceResult');
+    if (!container) return;
+    container.innerHTML = '';
+    sentencesAvailableWords.forEach(word => {
+        if (sentencesWordActive[word]) {
+            const btn = document.createElement('button');
+            btn.className = 'word-btn';
+            btn.textContent = word;
+            btn.onclick = () => { if(sentencesWordActive[word]) { sentencesWordActive[word] = false; sentencesSelectedWords.push(word); updateSentenceDisplay(); } };
+            container.appendChild(btn);
+        }
+    });
+    result.textContent = sentencesSelectedWords.join(' ');
+}
+
+function sentenceUndoWord() {
+    if (sentencesSelectedWords.length) {
+        const last = sentencesSelectedWords.pop();
+        sentencesWordActive[last] = true;
+        updateSentenceDisplay();
+    }
+}
+
+function sentenceReset() {
+    sentencesSelectedWords = [];
+    sentencesAvailableWords.forEach(w => { sentencesWordActive[w] = true; });
+    updateSentenceDisplay();
+    document.getElementById('sentenceCheckBtn').style.backgroundColor = '#3B6FE0';
+    document.getElementById('sentenceResult').style.backgroundColor = '#FFFFFF';
+}
+
+function sentenceCheck() {
+    if (!sentencesSelectedWords.length) { sentenceBlinkRed(); return; }
+    let correct;
+    if (sentenceLangFrom === 'ru') correct = sentencesCurrentData.de.toLowerCase().replace(/[.,!?]/g, '');
+    else correct = sentencesCurrentData.ru.toLowerCase().replace(/[.,!?]/g, '');
+    const user = sentencesSelectedWords.join(' ').toLowerCase().replace(/[.,!?]/g, '');
+    if (user === correct) sentenceBlinkGreenAndNext();
+    else sentenceBlinkRed();
+}
+
+function sentenceBlinkGreenAndNext() {
+    const result = document.getElementById('sentenceResult');
+    result.style.backgroundColor = '#C8E6C9';
+    setTimeout(() => {
+        result.style.backgroundColor = '#FFFFFF';
+        sentencesCurrentIndex = (sentencesCurrentIndex + 1) % sentencesList.length;
+        showCurrentSentence();
+    }, 500);
+}
+
+function sentenceBlinkRed() {
+    const result = document.getElementById('sentenceResult');
+    result.style.backgroundColor = '#FFCDD2';
+    setTimeout(() => { result.style.backgroundColor = '#FFFFFF'; sentenceReset(); }, 500);
+}
+
+function markSentenceAsStudied() {
+    if (!sentencesCurrentData) return;
+    const idx = findSentenceIndex(currentLevel, sentencesCurrentData);
+    if (idx !== -1) {
+        if (!sentencesProgressData[currentLevel]) sentencesProgressData[currentLevel] = [];
+        sentencesProgressData[currentLevel][idx] = { studied: true };
+        saveProgress();
+        sentencesList = getUncompletedSentences(currentLevel);
+        sentencesCurrentIndex = 0;
+        showCurrentSentence();
+        updateCounter();
+    }
+}
+
+function showSentenceUnstudyDialog() {
+    const completed = [];
+    if (sentencesProgressData[currentLevel]) {
+        for (let i = 0; i < sentencesData[currentLevel].length; i++) {
+            if (sentencesProgressData[currentLevel][i]?.studied) completed.push(sentencesData[currentLevel][i]);
+        }
+    }
+    if (!completed.length) { alert("Нет изученных фраз для возврата"); return; }
+    let msg = "Выберите фразу для возврата:\n";
+    completed.forEach((s, i) => msg += `${i+1}. ${s.de} -> ${s.ru}\n`);
+    const num = prompt(msg);
+    if (num) {
+        const idx = parseInt(num) - 1;
+        if (idx >= 0 && idx < completed.length) {
+            const sentIdx = findSentenceIndex(currentLevel, completed[idx]);
+            if (sentIdx !== -1) {
+                sentencesProgressData[currentLevel][sentIdx] = { studied: false };
+                saveProgress();
+                sentencesList = getUncompletedSentences(currentLevel);
+                sentencesCurrentIndex = 0;
+                showCurrentSentence();
+                updateCounter();
+            }
+        }
+    }
+}
+
+function resetAllSentencesStudied() {
+    if (!sentencesProgressData[currentLevel]) sentencesProgressData[currentLevel] = [];
+    for (let i = 0; i < sentencesData[currentLevel].length; i++) {
+        sentencesProgressData[currentLevel][i] = { studied: false };
+    }
+    saveProgress();
+    sentencesList = getUncompletedSentences(currentLevel);
+    sentencesCurrentIndex = 0;
+    showCurrentSentence();
+    updateCounter();
+}
+
+// ---------- РЕЖИМ УРОКОВ (как в lessons_mode.py) ----------
+function renderLessonsMode() {
+    const content = document.getElementById('contentArea');
+    content.innerHTML = `
+        <div class="lessons-mode">
+            <div class="lesson-header">
+                <div class="lesson-title" id="lessonTitle">УРОКИ</div>
+                <div class="lesson-counter" id="lessonCounter">Урок 1 из 50</div>
+            </div>
+            <div class="lesson-mode-buttons">
+                <button class="lesson-mode-btn active" id="lessonTheoryBtn">ТЕОРИЯ</button>
+                <button class="lesson-mode-btn inactive" id="lessonPracticeBtn">ПРАКТИКА</button>
+            </div>
+            <div id="lessonContent" class="lesson-content"></div>
+        </div>
+    `;
+    document.getElementById('lessonTheoryBtn').onclick = () => { currentLessonMode = 'theory'; showLessonTheory(); updateLessonModeButtons(); };
+    document.getElementById('lessonPracticeBtn').onclick = () => { currentLessonMode = 'practice'; showLessonPractice(); updateLessonModeButtons(); };
+    loadLesson(currentLesson);
+}
+
+function updateLessonModeButtons() {
+    const theoryBtn = document.getElementById('lessonTheoryBtn');
+    const practiceBtn = document.getElementById('lessonPracticeBtn');
+    if (currentLessonMode === 'theory') {
+        theoryBtn.classList.add('active'); theoryBtn.classList.remove('inactive');
+        practiceBtn.classList.add('inactive'); practiceBtn.classList.remove('active');
+    } else {
+        practiceBtn.classList.add('active'); practiceBtn.classList.remove('inactive');
+        theoryBtn.classList.add('inactive'); theoryBtn.classList.remove('active');
+    }
+}
+
+function loadLesson(num) {
+    currentLesson = num;
+    document.getElementById('lessonTitle').textContent = `📖 УРОК ${num}`;
+    document.getElementById('lessonCounter').textContent = `Урок ${num} из 50`;
+    if (currentLessonMode === 'theory') showLessonTheory();
+    else showLessonPractice();
+}
+
+function showLessonTheory() {
+    const container = document.getElementById('lessonContent');
+    let content = lessonsCache[currentLesson] || `=== Урок ${currentLesson} ===\n\nСодержание урока пока не добавлено.`;
+    content = content.replace(/\[озвучка:([^\]]+)\]/g, (m, w) => `<button class="speak-inline-btn" onclick="speakText('${w.replace(/'/g, "\\'")}')">🔊 ${w}</button>`);
+    content = content.replace(/\n/g, '<br>');
+    container.innerHTML = `<div class="lesson-text">${content}</div>`;
+}
+
+function showLessonPractice() {
+    const container = document.getElementById('lessonContent');
+    const practice = practiceCache[currentLesson] || '';
+    if (!practice.trim()) {
+        container.innerHTML = `<div class="lesson-text">✨ В этом уроке нет упражнений ✨</div>`;
+        return;
+    }
+    const lines = practice.split('\n');
+    let html = '<div class="lesson-text">';
+    lines.forEach(line => {
+        if (line.includes('|')) {
+            const parts = line.split('|');
+            html += `<div class="practice-exercise">
+                        <div class="practice-question">${parts[0].trim()}</div>
+                        <div class="practice-answer">→ ${parts[1].trim()}</div>
+                     </div>`;
+        } else if (line.trim()) {
+            html += `<div style="margin-bottom: 8px;">${line}</div>`;
+        }
+    });
+    html += '</div>';
+    container.innerHTML = html;
+}
+
+function createLessonButtons() {
+    const grid = document.getElementById('lessonsGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    for (let i = 1; i <= 50; i++) {
+        const btn = document.createElement('button');
+        btn.className = 'lesson-btn';
+        btn.textContent = i;
+        btn.onclick = () => { currentLesson = i; if (currentMode === 'lessons') loadLesson(i); else { setLessonsMode(); loadLesson(i); } };
+        grid.appendChild(btn);
+    }
+}
+
+function toggleLessons() {
+    const container = document.getElementById('lessonsContainer');
+    const btn = document.getElementById('lessonsToggleBtn');
+    if (lessonsExpanded) {
+        container.style.display = 'none';
+        btn.textContent = 'КУРС ГРАММАТИКИ ▶';
+        lessonsExpanded = false;
+    } else {
+        container.style.display = 'block';
+        btn.textContent = 'КУРС ГРАММАТИКИ ▼';
+        lessonsExpanded = true;
+    }
+}
+
+// ---------- ПЕРЕКЛЮЧЕНИЕ РЕЖИМОВ И УРОВНЕЙ ----------
+function setCardsMode() { currentMode = 'cards'; renderCardsMode(); updateModeButtons('cardsModeBtn'); updateCounter(); }
+function setQuizMode() { currentMode = 'quiz'; renderQuizMode(); updateModeButtons('quizModeBtn'); updateCounter(); }
+function setSentencesMode() { currentMode = 'sentences'; renderSentencesMode(); updateModeButtons('sentencesModeBtn'); updateCounter(); }
+function setLessonsMode() { currentMode = 'lessons'; renderLessonsMode(); updateModeButtons('lessonsModeBtn'); updateCounter(); }
+
+function updateModeButtons(activeId) {
+    const ids = ['cardsModeBtn', 'quizModeBtn', 'sentencesModeBtn', 'lessonsModeBtn'];
+    ids.forEach(id => {
+        const btn = document.getElementById(id);
+        if (id === activeId) btn.classList.add('active');
+        else btn.classList.remove('active');
+    });
+}
+
+function updateLevelButtons() {
+    document.querySelectorAll('.level-btn').forEach(btn => {
+        if (btn.dataset.level === currentLevel) btn.classList.add('active');
+        else btn.classList.remove('active');
+    });
+}
+
+function changeLevel(level) {
+    if (currentMode === 'cards') savedPositions[`cards_${currentLevel}`] = cardsCurrentIndex;
+    if (currentMode === 'sentences') savedPositions[`sentences_${currentLevel}`] = sentencesCurrentIndex;
+    currentLevel = level;
+    updateLevelButtons();
+    if (currentMode === 'cards') {
+        cardsCurrentWords = getCurrentWords(level);
+        cardsCurrentIndex = savedPositions[`cards_${level}`] || 0;
+        if (cardsCurrentIndex >= cardsCurrentWords.length && cardsCurrentWords.length) cardsCurrentIndex = 0;
+        cardsFlipped = false;
+        updateCardDisplay();
+    } else if (currentMode === 'quiz') {
+        quizCurrentIndex = 0;
+        renderQuizMode();
+    } else if (currentMode === 'sentences') {
+        sentencesCurrentIndex = savedPositions[`sentences_${level}`] || 0;
+        renderSentencesMode();
+    }
+    updateCounter();
+}
+
+function setupEventListeners() {
+    document.getElementById('cardsModeBtn').onclick = setCardsMode;
+    document.getElementById('quizModeBtn').onclick = setQuizMode;
+    document.getElementById('sentencesModeBtn').onclick = setSentencesMode;
+    document.getElementById('lessonsModeBtn').onclick = setLessonsMode;
+    document.getElementById('lessonsToggleBtn').onclick = toggleLessons;
+    document.querySelectorAll('.level-btn').forEach(btn => btn.onclick = () => changeLevel(btn.dataset.level));
+}
