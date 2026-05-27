@@ -1,0 +1,136 @@
+=== Урок 37: Склонение прилагательных. ===
+
+________________________________
+
+Использовать прилагательные перед существительными можно тремя способами. Итак, случай первый! Мы просто ставим прилагательное вместо артикля, соответственно оно принимает необходимое окончание:
+
+[озвучка:neuer Mantel] Maskulinum Nominativ: Neuer Mantel
+[озвучка:neues Kleid] Neutrum Nominativ: Neues Kleid
+[озвучка:neue Mütze] Femininum Nominativ: Neue Mütze
+[озвучка:neue Schuhe] Plural Nominativ: Neue Schuhe
+
+[озвучка:neuen Mantel] Maskulinum Akkusativ: Neuen Mantel
+[озвучка:neues Kleid] Neutrum Akkusativ: Neues Kleid
+[озвучка:neue Mütze] Femininum Akkusativ: Neue Mütze
+[озвучка:neue Schuhe] Plural Akkusativ: Neue Schuhe
+
+[озвучка:neuem Mantel] Maskulinum Dativ: Neuem Mantel
+[озвучка:neuem Kleid] Neutrum Dativ: Neuem Kleid
+[озвучка:neuer Mütze] Femininum Dativ: Neuer Mütze
+[озвучка:neuen Schuhen] Plural Dativ: Neuen Schuhen
+
+[озвучка:neuen Mantels] Maskulinum Genitiv: Neuen Mantels
+[озвучка:neuen Kleides] Neutrum Genitiv: Neuen Kleides
+[озвучka:neuer Mütze] Femininum Genitiv: Neuer Mütze
+[озвучка:neuer Schuhe] Plural Genitiv: Neuer Schuhe
+
+________________________________
+
+[озвучка:Ich komme mit neuem Auto] • Ich komme mit neuem Auto.
+[озвучка:Neues Kleid gefällt mir sehr gut] • Neues Kleid gefällt mir sehr gut.
+[озвучка:Bei gutem Wetter gehen wir immer spazieren] • Bei gutem Wetter gehen wir immer spazieren.
+[озвучка:Gutes Wetter ist heute] • Gutes Wetter ist heute!
+
+________________________________
+
+Во втором и третьем случае мы должны внимательно посмотреть и запомнить выделенную область. Все сверхлогично – Номинатив и Аккузатив для среднего и женского родов совпадают полностью, во всех остальных случаях – мы просто ставим привычный артикль (будь то определенный или нет) и окончание –en для прилагательных. Все!
+
+[озвучка:der neue Mantel] Maskulinum Nominativ: Der neue Mantel / Ein neuer Mantel
+[озвучка:das neue Kleid] Neutrum Nominativ: Das neue Kleid / Ein neues Kleid
+[озвучка:die neue Mütze] Femininum Nominativ: Die neue Mütze / Eine neue Mütze
+[озвучка:die neuen Schuhe] Plural Nominativ: Die neuen Schuhe / ---
+
+[озвучка:den neuen Mantel] Maskulinum Akkusativ: Den neuen Mantel / Einen neuen Mantel
+[озвучка:das neue Kleid] Neutrum Akkusativ: Das neue Kleid / Ein neues Kleid
+[озвучка:die neue Mütze] Femininum Akkusativ: Die neue Mütze / Eine neue Mütze
+[озвучка:die neuen Schuhe] Plural Akkusativ: Die neuen Schuhe / ---
+
+[озвучка:dem neuen Mantel] Maskulinum Dativ: Dem neuen Mantel / Einem neuen Mantel
+[озвучка:dem neuen Kleid] Neutrum Dativ: Dem neuen Kleid / Einem neuen Kleid
+[озвучка:der neuen Mütze] Femininum Dativ: Der neuen Mütze / Einer neuen Mütze
+[озвучка:den neuen Schuhen] Plural Dativ: Den neuen Schuhen / ---
+
+[озвучка:des neuen Mantels] Maskulinum Genitiv: Des neuen Mantels / Eines neuen Mantels
+[озвучка:des neuen Kleides] Neutrum Genitiv: Des neuen Kleides / Eines neuen Kleides
+[озвучка:der neuen Mütze] Femininum Genitiv: Der neuen Mütze / Einer neuen Mütze
+[озвучка:der neuen Schuhe] Plural Genitiv: Der neuen Schuhe / ---
+
+________________________________
+
+[озвучка:Ich habe mir einen neuen Mantel gekauft] • Ich habe mir einen neuen Mantel gekauft.
+[озвучка:Er fährt nur mit dem neuen Auto] • Er fährt nur mit dem neuen Auto.
+[озвучка:Dein neues Kleid sieht schick aus] • Dein neues Kleid sieht schick aus!
+[озвучка:Wo ist meine neue Mütze] • Wo ist meine neue Mütze?
+[озвучка:Die Katze liegt auf deinem neuen Kleid] • Die Katze liegt auf deinem neuen Kleid!
+[озвучка:Wo sind meine neuen Schuhe] • Wo sind meine neuen Schuhe?
+
+________________________________
+
+Упражнение 1: Перевести предложения.
+
+1. Она пьет холодную воду.
+2. Ты пьешь теплое молоко.
+3. Они любят вареную картошку.
+4. Мой брат любит зеленые яблоки.
+5. Я люблю спелые фрукты.
+6. Его сестра ест только свежий хлеб.
+7. Мы гуляем только при хорошей погоде.
+8. Мама приготовила вкусный суп.
+9. Хорошая погода улучшает настроение.
+10. Тяжелая тренировка делает тебя сильнее.
+
+________________________________
+
+Упражнение 2: Перевести предложения (с неопределенным артиклем либо притяжательными местоимениями).
+
+1. Это красивая рубашка.
+2. Я купил красивую рубашку для своего брата.
+3. Мой брат был доволен своей красивой рубашкой.
+4. Это новая машина.
+5. Я уже давно хотел купить новую машину.
+6. Мы приехали на нашей новой машине.
+7. Наша новая машина понравилась моим хорошим друзьям.
+8. Это старая квартира.
+9. Он хочет продать свою старую квартиру.
+10. Он жил в своей старой квартире пять лет.
+11. Она купила красивую сумку в новом магазине.
+12. Кошка сидит на ее красивой сумке.
+13. Это черное пальто.
+14. Он купил черное пальто в феврале.
+15. Он не может найти свое черное пальто.
+16. Он живет в своем огромном доме.
+17. Его огромный дом находится в большом городе.
+18. Я надеваю мою новую черную рубашку.
+19. Она надевает свое новое красное платье.
+20. Он надевает свою новую коричневую шляпу.
+21. Мы поедем на нашей новой большой машине.
+
+________________________________
+
+Упражнение 3: Перевести предложения (с определенным артиклем).
+
+1. Он кладет новые письма на большой стол.
+2. Новые письма лежат на большом столе.
+3. Она вешает красивую картину на белую стену.
+4. Красивая картина висит на белой стене.
+5. Я ложусь на новый диван.
+6. Я сплю только на новом диване.
+7. Я покупаю дорогую квартиру.
+8. Теперь я живу в дорогой квартире.
+9. Он покупает огромный дом.
+10. Теперь он живет в огромном доме.
+11. Она покупает только дешевые продукты.
+12. Он никогда не выходит из дома без нового зонтика.
+13. Ему очень нравится новый зонтик.
+14. Он разговаривает с красивой девушкой.
+15. Красивая девушка всегда улыбается.
+16. Это машина красивой девушки.
+17. Это лошадь храброго парня.
+18. Это квартира моей новой подружки.
+19. Это дом ее старого друга.
+20. Это три страницы нового учебника.
+21. Это большой багажник красивой машины.
+
+________________________________
+
+🎉 ENDE DES SIEBENUNDDREISSIGSTEN UNTERRICHTS

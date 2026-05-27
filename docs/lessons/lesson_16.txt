@@ -1,0 +1,138 @@
+=== Урок 16: Порядковые числительные. Wann hast du Geburtstag? ===
+
+________________________________
+
+Am -
+
+[озвучка:am ersten] Ersten
+[озвучка:am zweiten] Zweiten
+[озвучка:am dritten] Dritten
+[озвучка:am vierten] Vierten
+[озвучка:am fünften] Fünften
+[озвучка:am sechsten] Sechsten
+[озвучка:am siebten] Siebten
+[озвучка:am achten] Achten
+[озвучка:am neunten] Neunten
+[озвучка:am zehnten] Zehnten
+[озвучка:am elften] Elften
+[озвучка:am zwölften] Zwölften
+[озвучка:am dreizehnten] Dreizehnten
+
+[озвучка:am ersten Januar] Januar
+[озвучка:am zweiten Februar] Februar
+[озвучка:am dritten März] März
+[озвучка:am vierten April] April
+[озвучкa:am fünften Mai] Mai
+[озвучка:am sechsten Juni] Juni
+[озвучка:am siebten Juli] Juli
+[озвучка:am achten August] August
+[озвучка:am neunten September] September
+[озвучка:am zehnten Oktober] Oktober
+[озвучка:am elften November] November
+[озвучка:am zwölften Dezember] Dezember
+
+… ну и так далее. Нам всего лишь надо запомнить слова [озвучка:ersten] ersten и [озвучка:zweiten] zweiten. Далее мы просто добавляем к уже знакомым числительным простые три буквы –ten:
+
+[озвучка:am ersten Mai] • Am ersten Mai
+[озвучка:am zweiten April] • Am zweiten April
+[озвучка:am dritten Juli] • Am dritten Juli
+
+Правда, чуть сложнее становится со второго десятка. Там мы уже должны добавлять -sten:
+
+[озвучка:am zwanzigsten] • Am zwanzigsten
+[озвучка:am einundzwanzigsten] • Am einundzwanzigsten
+[озвучка:am zweiundzwanzigsten] • Am zweiundzwanzigsten
+[озвучка:am dreiundzwanzigsten] • Am dreiundzwanzigsten
+[озвучка:am achtundzwanzigsten] • Am achtundzwanzigsten
+
+Таким образом, фраза «У меня день рождения 21 июля» по-немецки будет звучать так: [озвучка:Ich habe Geburtstag am 21 Juli] Ich habe Geburtstag am 21. Juli.
+
+________________________________
+
+Обратить внимание здесь следует на два момента.
+
+1. Слово Geburtstag можно употреблять без артикля. Сложно объяснить почему. Просто так сложилось, что некоторые слова немцы привыкли использовать вовсе без артикля. С другой стороны, вы уже должны автоматически определить, что здесь у нас Аккузатив. Таким образом, фраза Я праздную сегодня свой день рождения будет звучать так: [озвучка:Ich feiere heute meinen Geburtstag] Ich feiere heute meinen Geburtstag.
+
+2. Второе важное замечание – если мы пишем порядковое числительное цифрой, мы обязаны поставить после него точку. Это то самое –ten или –sten.
+
+________________________________
+
+Еще несколько примеров с порядковыми числительными:
+
+[озвучка:Der erste Tag] • Der erste Tag.
+[озвучка:Das erste Auto] • Das erste Auto.
+[озвучка:Die erste Frau] • Die erste Frau.
+[озвучка:Mein erster Tag] • Mein erster Tag.
+[озвучка:Mein erstes Auto] • Mein erstes Auto.
+[озвучкa:Meine erste Frau] • Meine erste Frau.
+
+________________________________
+
+Задания к уроку:
+
+Упражнение 1: Перевести предложения (цифры пишем словами).
+
+1. У меня день рождения первого января.
+2. У тебя день рождения второго февраля.
+3. У него день рождения третьего апреля.
+4. У нее день рождения четвертого марта.
+5. У нас день рождения пятого января.
+6. У вас день рождения шестого мая.
+7. У них день рождения седьмого июня.
+8. У меня день рождения восьмого июля.
+9. У тебя день рождения девятого августа.
+10. У него день рождения десятого сентября.
+
+________________________________
+
+Упражнение 2: Перевести предложения (цифры пишем словами).
+
+1. Одиннадцатого октября.
+2. Двенадцатого ноября.
+3. Тринадцатого декабря.
+4. Семнадцатого января.
+5. Двадцатого февраля.
+6. Двадцать второго апреля.
+7. Тридцатого мая.
+8. Тридцать первого мая.
+9. Двадцать седьмого августа.
+10. Двадцать третьего ноября.
+11. Третьего апреля.
+12. Пятого июля.
+13. Первого августа.
+14. Седьмого декабря.
+
+________________________________
+
+Упражнение 3: Ответить на вопросы (цифры с точкой).
+
+1. Wann hast du Geburtstag?
+2. Wann hat dein Vater Geburtstag?
+3. Wann hat deine Mutter Geburtstag?
+4. Wann hat deine Schwester Geburtstag?
+5. Wann hat dein Bruder Geburtstag?
+6. Wann hat dein bester Freund Geburtstag?
+7. Wann hat deine beste Freundin Geburtstag?
+
+________________________________
+
+Упражнение 4: Перевести предложения.
+
+1. Это моя первая учительница.
+2. Это его третья жена.
+3. Это ее второй муж.
+4. Это твоя первая машина.
+5. Это его третья работа.
+6. Это мой третий сын.
+7. Это его вторая дочь.
+8. Это ее вторая квартира.
+9. Мой второй брат хороший.
+10. Моя первая машина дешевая.
+11. Моя вторая квартира хорошая.
+12. Его первый дом небольшой.
+13. Твоя первая квартира большая.
+14. Его первая подружка красивая.
+
+________________________________
+
+🎉 ENDE DES SECHZEHNTEN UNTERRICHTS
