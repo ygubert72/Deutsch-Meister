@@ -5,15 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Немецкий тренажер — Deutsch Meister</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Иконка для вкладки (опционально) -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇩🇪</text></svg>">
 </head>
 <body>
     <div class="app-container">
-        <!-- ЛЕВАЯ ПАНЕЛЬ (100% как в вашей программе) -->
+        <!-- ЛЕВАЯ ПАНЕЛЬ -->
         <div class="sidebar" id="sidebar">
             <div class="sidebar-content">
-                <!-- КУРС ГРАММАТИКИ (заголовок-кнопка) -->
+                <!-- КУРС ГРАММАТИКИ (раскрывающийся список уроков) -->
                 <div class="section-header">
                     <button class="section-toggle-btn" id="lessonsToggleBtn">КУРС ГРАММАТИКИ ▶</button>
                 </div>
@@ -21,7 +20,7 @@
                     <div id="lessonsGrid" class="lessons-grid"></div>
                 </div>
 
-                <!-- ТРЕНАЖЁР -->
+                <!-- ТРЕНАЖЁР (уровни A1-C1) -->
                 <div class="section-title">ТРЕНАЖЁР</div>
                 <div class="levels-buttons" id="levelsButtons">
                     <button data-level="A1" class="level-btn">A1</button>
@@ -36,11 +35,11 @@
                 <button class="mode-btn" id="cardsModeBtn">КАРТОЧКИ</button>
                 <button class="mode-btn" id="quizModeBtn">ТЕСТ</button>
                 <button class="mode-btn" id="sentencesModeBtn">ФРАЗЫ</button>
-                <!-- КНОПКИ "УРОКИ" В ЛЕВОМ МЕНЮ БОЛЬШЕТ НЕТ — УБРАНО, КАК В ВАШЕЙ ПРОГРАММЕ -->
+                <button class="mode-btn" id="lessonsModeBtn">УРОКИ</button>
             </div>
         </div>
 
-        <!-- ПРАВАЯ ПАНЕЛЬ (основная область) -->
+        <!-- ПРАВАЯ ПАНЕЛЬ -->
         <div class="main-panel">
             <div class="top-bar">
                 <div class="counter-label" id="counterLabel">Загрузка данных...</div>
