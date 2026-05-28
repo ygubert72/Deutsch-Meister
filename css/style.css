@@ -8,16 +8,19 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 .section-title { font-size: 14px; font-weight: bold; color: #1A1A1A; margin: 20px 0 10px 0; letter-spacing: 0.5px; }
 .section-title:first-of-type { margin-top: 0; }
 
-/* Кнопки */
-.btn { width: 100%; padding: 10px 12px; margin: 5px 0; background: #E8F0FE; border: 2px solid #E0E0E0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; transition: all 0.2s; font-family: inherit; }
-.btn.active { background: #3B6FE0; color: white; border-color: #3B6FE0; }
+/* ОБЪЕМНЫЕ КНОПКИ ЛЕВОГО МЕНЮ (как в десктопе) */
+.btn { width: 100%; padding: 10px 12px; margin: 5px 0; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; font-family: inherit; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.05s linear; }
+.btn:active { transform: translateY(1px); box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+.btn.active { background: #3B6FE0; color: white; border-color: #2B5BC7; box-shadow: 0 2px 4px rgba(59,111,224,0.3); }
+
 .btn-level { width: 60px; margin: 4px; padding: 8px 0; }
 
 .levels-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin: 10px 0; }
 
 /* Сетка уроков */
 .lessons-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 12px; }
-.lesson-grid-btn { padding: 10px; background: #E8F0FE; border: 1px solid #E0E0E0; border-radius: 6px; cursor: pointer; font-weight: 500; text-align: center; transition: all 0.2s; }
+.lesson-grid-btn { padding: 10px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 6px; cursor: pointer; font-weight: 500; text-align: center; transition: all 0.05s linear; box-shadow: 0 2px 3px rgba(0,0,0,0.1); }
+.lesson-grid-btn:active { transform: translateY(1px); box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
 .lesson-grid-btn:hover { background: #d0e2fc; }
 
 /* ПРАВАЯ ПАНЕЛЬ */
@@ -46,15 +49,21 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 .lesson-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; }
 .lesson-title { font-size: 28px; font-weight: bold; color: #1A1A1A; }
 .lesson-mode { display: flex; gap: 12px; justify-content: center; margin-bottom: 20px; }
-.lesson-mode-btn { padding: 8px 24px; font-size: 14px; font-weight: bold; border: none; border-radius: 40px; cursor: pointer; background: #E8F0FE; color: #1A1A1A; transition: all 0.2s; }
-.lesson-mode-btn.active { background: #3B6FE0; color: white; }
+.lesson-mode-btn { padding: 8px 24px; font-size: 14px; font-weight: bold; border: 2px solid #D0D0D0; border-radius: 40px; cursor: pointer; background: #E8F0FE; color: #1A1A1A; transition: all 0.05s linear; box-shadow: 0 2px 3px rgba(0,0,0,0.1); }
+.lesson-mode-btn:active { transform: translateY(1px); box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+.lesson-mode-btn.active { background: #3B6FE0; color: white; border-color: #2B5BC7; }
 .lesson-text { background: #FFFFFF; border-radius: 20px; padding: 25px; line-height: 1.6; max-height: 65vh; overflow-y: auto; font-size: 15px; }
-.speak-btn-inline { background: #3B6FE0; color: white; border: none; border-radius: 20px; padding: 4px 12px; margin: 0 4px; cursor: pointer; font-size: 12px; }
+
+/* Кнопки озвучки в теории - ТОЛЬКО ИКОНКА, БЕЗ ДУБЛИРОВАНИЯ СЛОВА */
+.speak-btn-inline { background: #3B6FE0; color: white; border: none; border-radius: 20px; padding: 4px 8px; margin: 0 4px; cursor: pointer; font-size: 12px; min-width: 36px; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+.speak-btn-inline:active { transform: translateY(1px); }
 
 /* ОБЩИЕ */
 .btn-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 20px 0; }
-.ctrl-btn { padding: 8px 16px; background: #E8F0FE; border: 1px solid #CCCCCC; border-radius: 8px; cursor: pointer; font-weight: bold; }
-.dir-btn { background: #3B6FE0; color: white; padding: 6px 12px; border: none; border-radius: 6px; cursor: pointer; margin-bottom: 15px; font-weight: bold; }
+.ctrl-btn { padding: 8px 16px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 3px rgba(0,0,0,0.1); transition: all 0.05s linear; }
+.ctrl-btn:active { transform: translateY(1px); box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+.dir-btn { background: #3B6FE0; color: white; padding: 6px 12px; border: none; border-radius: 6px; cursor: pointer; margin-bottom: 15px; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+.dir-btn:active { transform: translateY(1px); box-shadow: 0 1px 2px rgba(0,0,0,0.2); }
 .hint { font-size: 12px; color: #888888; text-align: center; margin-top: 20px; }
 
 @media (max-width: 700px) { .sidebar { width: 260px; } .quiz-grid { grid-template-columns: 1fr; } .card-word { font-size: 26px; } }
