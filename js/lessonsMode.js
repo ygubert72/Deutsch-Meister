@@ -38,6 +38,15 @@ let blinkTimer = null;
 let practiceHintIndex = 0;
 let practiceHintWords = [];
 
+// Функция для capitalize существительных (первая буква заглавная)
+function capitalizeGerman(word) {
+    if (!word || word.length === 0) return word;
+    if (/[a-zA-ZäöüßÄÖÜ]/.test(word[0])) {
+        return word[0].toUpperCase() + word.slice(1).toLowerCase();
+    }
+    return word;
+}
+
 function normalizeText(text) {
     return text.toLowerCase().replace(/[^\w\s-]/g, '').trim();
 }
@@ -105,7 +114,8 @@ function renderLessons() {
     function showHint() {
         if (!practiceHintWords.length) return;
         if (practiceHintIndex >= practiceHintWords.length) return;
-        const currentHint = practiceHintWords.slice(0, practiceHintIndex + 1).join(' ');
+        const currentHint = practiceHintWords.slice(0, practiceHintIndex + 1)
+            .map(word => capitalizeGerman(word)).join(' ');
         const hintDiv = document.getElementById('practice_hint_dynamic');
         if (hintDiv) hintDiv.textContent = '💡 ' + currentHint;
         practiceHintIndex++;
@@ -160,18 +170,20 @@ function renderLessons() {
                 if (currentExerciseState.active[word]) {
                     btn.style.display = 'inline-block';
                     btn.disabled = false;
+                    btn.textContent = capitalizeGerman(word);
                 } else {
                     btn.style.display = 'none';
                     btn.disabled = true;
                 }
             });
-            selectedDiv.textContent = currentExerciseState.selected.join(' ');
+            selectedDiv.textContent = currentExerciseState.selected.map(w => capitalizeGerman(w)).join(' ');
         }
         
         let buttonsHtml = '';
         currentExerciseState.available.forEach(word => {
             const safeWord = word.replace(/"/g, '&quot;');
-            buttonsHtml += `<button class="word-btn" data-word="${safeWord}" style="display: inline-block;">${word}</button>`;
+            const displayWord = capitalizeGerman(word);
+            buttonsHtml += `<button class="word-btn" data-word="${safeWord}" style="display: inline-block;">${displayWord}</button>`;
         });
         
         container.innerHTML = `
@@ -198,7 +210,7 @@ function renderLessons() {
                     
                     <div class="btn-group">
                         <button class="ctrl-btn" id="practice_prev_dynamic">◀ НАЗАД</button>
-                        <button class="ctrl-btn" id="practice_next_dynamic">ВПЕРЁД ▶</button>
+                        <button class="ctrl-btn" id="practice_next_dynamic">ВПЕРЕД ▶</button>
                     </div>
                     
                     <div id="practice_counter_dynamic" class="hint" style="margin-top:10px;">Упражнение ${index + 1} из ${total}</div>
@@ -212,7 +224,7 @@ function renderLessons() {
             btn.onclick = () => {
                 if (currentExerciseState.active[word]) {
                     currentExerciseState.active[word] = false;
-                    currentExerciseState.selected.push(word);
+                    currentExerciseState.selected.push(capitalizeGerman(word));
                     refreshDisplay();
                 }
             };
@@ -221,7 +233,7 @@ function renderLessons() {
         document.getElementById('practice_undo_dynamic').onclick = () => {
             if (currentExerciseState.selected.length) {
                 const last = currentExerciseState.selected.pop();
-                currentExerciseState.active[last] = true;
+                currentExerciseState.active[last.toLowerCase()] = true;
                 refreshDisplay();
             }
         };
