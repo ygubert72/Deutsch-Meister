@@ -7,6 +7,23 @@ let sentencesActive = {};
 let sentencesHintIndex = 0;
 let sentencesHintWords = [];
 
+// Функция для capitalize существительных (первая буква заглавная)
+function capitalizeGerman(word) {
+    if (!word || word.length === 0) return word;
+    // Проверяем, начинается ли слово с буквы (не цифра, не знак)
+    if (/[a-zA-ZäöüßÄÖÜ]/.test(word[0])) {
+        return word[0].toUpperCase() + word.slice(1).toLowerCase();
+    }
+    return word;
+}
+
+// Функция для обработки всего предложения
+function capitalizeSentence(sentence) {
+    if (!sentence) return sentence;
+    // Разбиваем на слова, каждое слово капитализируем
+    return sentence.split(' ').map(word => capitalizeGerman(word)).join(' ');
+}
+
 function renderSentences() {
     sentencesList = getUnstudiedSentences();
     sentencesIndex = 0;
@@ -53,24 +70,28 @@ function renderSentences() {
             if (sentencesActive[word]) {
                 const btn = document.createElement('button');
                 btn.className = 'word-btn';
-                btn.textContent = word;
+                // Отображаем слово с большой буквы
+                btn.textContent = capitalizeGerman(word);
                 btn.onclick = () => {
                     if (sentencesActive[word]) {
                         sentencesActive[word] = false;
-                        sentencesSelected.push(word);
+                        // Добавляем слово с большой буквы
+                        sentencesSelected.push(capitalizeGerman(word));
                         updateSentenceDisplay();
                     }
                 };
                 container.appendChild(btn);
             }
         });
-        resultEl.textContent = sentencesSelected.join(' ');
+        // Отображаем результат с большой буквы для каждого слова
+        resultEl.textContent = sentencesSelected.map(w => capitalizeGerman(w)).join(' ');
     }
     
     function showHint() {
         if (!sentencesHintWords.length) return;
         if (sentencesHintIndex >= sentencesHintWords.length) return;
-        const currentHint = sentencesHintWords.slice(0, sentencesHintIndex + 1).join(' ');
+        const currentHint = sentencesHintWords.slice(0, sentencesHintIndex + 1)
+            .map(word => capitalizeGerman(word)).join(' ');
         const hintLabel = document.getElementById('sentHintLabel');
         if (hintLabel) hintLabel.textContent = '💡 ' + currentHint;
         sentencesHintIndex++;
@@ -148,7 +169,7 @@ function renderSentences() {
     document.getElementById('sentUndoBtn').onclick = () => {
         if (sentencesSelected.length) {
             const last = sentencesSelected.pop();
-            sentencesActive[last] = true;
+            sentencesActive[last.toLowerCase()] = true;
             updateSentenceDisplay();
         }
     };
