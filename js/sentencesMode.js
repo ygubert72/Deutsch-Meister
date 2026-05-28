@@ -23,6 +23,8 @@ function renderSentences() {
                 <button class="ctrl-btn" id="sentCheckBtn">ПРОВЕРИТЬ</button>
                 <button class="ctrl-btn" id="sentHintBtn">ПОДСКАЗКА</button>
                 <button class="ctrl-btn" id="sentSpeakBtn">🔊</button>
+            </div>
+            <div class="btn-group">
                 <button class="ctrl-btn" id="sentStudyBtn">В ИЗУЧЕНО</button>
                 <button class="ctrl-btn" id="sentUnstudyBtn">ВЕРНУТЬ</button>
                 <button class="ctrl-btn" id="sentResetAllBtn">ВЕРНУТЬ ВСЕ</button>
