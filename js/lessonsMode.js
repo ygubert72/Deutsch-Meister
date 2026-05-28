@@ -24,6 +24,8 @@ function buildLessonsList() {
     document.querySelectorAll('[data-lesson]').forEach(btn => {
         btn.onclick = () => {
             currentLesson = parseInt(btn.dataset.lesson);
+            // ВАЖНО: при смене урока переключаемся на режим ТЕОРИИ
+            lessonMode = 'theory';
             if (currentMode === 'lessons') renderLessons();
             else { setMode('lessons'); renderLessons(); }
         };
@@ -114,7 +116,6 @@ function renderLessons() {
             const distractors = getDistractors(distractorsCount, correctTokens);
             allTokens.push(...distractors);
         }
-        // ПЕРЕМЕШИВАЕМ ТОЛЬКО ОДИН РАЗ - при создании упражнения
         for (let i = allTokens.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [allTokens[i], allTokens[j]] = [allTokens[j], allTokens[i]];
@@ -130,7 +131,6 @@ function renderLessons() {
         };
         allTokens.forEach(w => { currentExerciseState.active[w] = true; });
         
-        // Функция обновления (без перерисовки - просто скрываем/показываем кнопки)
         function refreshDisplay() {
             const wordsDiv = document.getElementById('practice_words_dynamic');
             const selectedDiv = document.getElementById('practice_selected_dynamic');
@@ -151,7 +151,6 @@ function renderLessons() {
             selectedDiv.textContent = currentExerciseState.selected.join(' ');
         }
         
-        // Создаем HTML с фиксированным порядком кнопок
         let buttonsHtml = '';
         currentExerciseState.available.forEach(word => {
             const safeWord = word.replace(/"/g, '&quot;');
@@ -176,7 +175,6 @@ function renderLessons() {
             </div>
         `;
         
-        // Привязываем обработчики к кнопкам-словам
         const wordButtons = document.querySelectorAll('#practice_words_dynamic .word-btn');
         wordButtons.forEach(btn => {
             const word = btn.getAttribute('data-word');
@@ -189,7 +187,6 @@ function renderLessons() {
             };
         });
         
-        // Кнопка "ВЕРНУТЬ СЛОВО"
         document.getElementById('practice_undo_dynamic').onclick = () => {
             if (currentExerciseState.selected.length) {
                 const last = currentExerciseState.selected.pop();
@@ -198,7 +195,6 @@ function renderLessons() {
             }
         };
         
-        // Кнопка "СБРОСИТЬ ВСЁ"
         document.getElementById('practice_reset_dynamic').onclick = () => {
             currentExerciseState.selected = [];
             currentExerciseState.available.forEach(w => { currentExerciseState.active[w] = true; });
@@ -207,7 +203,6 @@ function renderLessons() {
             if (msgDiv) msgDiv.remove();
         };
         
-        // Кнопка "ПРОВЕРИТЬ" с анимацией
         document.getElementById('practice_check_dynamic').onclick = () => {
             const user = normalizeText(currentExerciseState.selected.join(' '));
             const resultDiv = document.getElementById('practice_selected_dynamic');
@@ -216,13 +211,11 @@ function renderLessons() {
             if (oldMsg) oldMsg.remove();
             
             if (user === currentExerciseState.answer) {
-                // Зеленое мигание
                 resultDiv.style.transition = 'background-color 0.2s';
                 resultDiv.style.backgroundColor = '#C8E6C9';
                 if (blinkTimer) clearTimeout(blinkTimer);
                 blinkTimer = setTimeout(() => {
                     resultDiv.style.backgroundColor = '#FFFFFF';
-                    // Переход к следующему упражнению
                     if (currentExerciseIndex + 1 < lessonExercises.length) {
                         currentExerciseIndex++;
                         showPracticeExercise(lessonExercises[currentExerciseIndex], currentExerciseIndex, lessonExercises.length);
@@ -239,7 +232,6 @@ function renderLessons() {
                     }
                 }, 400);
             } else {
-                // Красное мигание и сброс
                 resultDiv.style.transition = 'background-color 0.2s';
                 resultDiv.style.backgroundColor = '#FFCDD2';
                 if (blinkTimer) clearTimeout(blinkTimer);
@@ -267,7 +259,6 @@ function renderLessons() {
             content = content.replace(/\n/g, '<br>');
             container.innerHTML = `<div>${content}</div>`;
         } else {
-            // Практика
             const practiceText = practiceCache[currentLesson] || '';
             if (!practiceText.trim()) {
                 container.innerHTML = '<div style="text-align:center;padding:40px;">✨ В этом уроке нет упражнений ✨</div>';
