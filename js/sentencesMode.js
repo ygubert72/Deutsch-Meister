@@ -14,16 +14,25 @@ function renderSentences() {
     document.getElementById('content').innerHTML = `
         <div style="text-align: center;">
             <button class="dir-btn" id="sentDirBtn">${AppConfig.sentence_lang_from === 'ru' ? 'Ru → De' : 'De → Ru'}</button>
+            
             <div class="sent-question" id="sentQuestion"></div>
+            
             <div class="sent-result" id="sentResult"></div>
+            
             <div class="words-container" id="sentWordsContainer"></div>
+            
             <div class="btn-group">
                 <button class="ctrl-btn" id="sentUndoBtn">ВЕРНУТЬ СЛОВО</button>
                 <button class="ctrl-btn" id="sentResetBtn">СБРОСИТЬ ВСЁ</button>
-                <button class="ctrl-btn" id="sentCheckBtn">ПРОВЕРИТЬ</button>
-                <button class="ctrl-btn" id="sentHintBtn">ПОДСКАЗКА</button>
+                <button class="ctrl-btn check-btn" id="sentCheckBtn">ПРОВЕРИТЬ</button>
                 <button class="ctrl-btn" id="sentSpeakBtn">🔊</button>
             </div>
+            
+            <div class="hint-area">
+                <button class="ctrl-btn" id="sentHintBtn">ПОДСКАЗКА</button>
+                <div class="hint-label" id="sentHintLabel"></div>
+            </div>
+            
             <div class="btn-group">
                 <button class="ctrl-btn" id="sentStudyBtn">В ИЗУЧЕНО</button>
                 <button class="ctrl-btn" id="sentUnstudyBtn">ВЕРНУТЬ</button>
@@ -31,7 +40,6 @@ function renderSentences() {
                 <button class="ctrl-btn" id="sentPrevBtn">◀ НАЗАД</button>
                 <button class="ctrl-btn" id="sentNextBtn">ВПЕРЕД ▶</button>
             </div>
-            <div id="sentHintLabel" class="hint" style="margin-top:10px; color:#3B6FE0; font-weight:bold;"></div>
         </div>
     `;
     
@@ -60,21 +68,11 @@ function renderSentences() {
     }
     
     function showHint() {
-        console.log("showHint вызвана"); // Для отладки
-        if (!sentencesHintWords.length) {
-            console.log("Нет слов для подсказки");
-            return;
-        }
-        if (sentencesHintIndex >= sentencesHintWords.length) {
-            console.log("Подсказка закончилась");
-            return;
-        }
+        if (!sentencesHintWords.length) return;
+        if (sentencesHintIndex >= sentencesHintWords.length) return;
         const currentHint = sentencesHintWords.slice(0, sentencesHintIndex + 1).join(' ');
         const hintLabel = document.getElementById('sentHintLabel');
-        if (hintLabel) {
-            hintLabel.textContent = '💡 ' + currentHint;
-            console.log("Подсказка:", currentHint);
-        }
+        if (hintLabel) hintLabel.textContent = '💡 ' + currentHint;
         sentencesHintIndex++;
     }
     
@@ -107,7 +105,7 @@ function renderSentences() {
         
         sentencesHintWords = sentencesHintWords.map(w => w.replace(/[.,!?;:]/g, ''));
         
-        document.getElementById('sentQuestion').innerHTML = `Составьте предложение:<br><br><strong style="font-size:22px;">${question}</strong>`;
+        document.getElementById('sentQuestion').innerHTML = `Составьте предложение:<br><br><strong>${question}</strong>`;
         
         const allWords = wordsDB[AppConfig.currentLevel] || [];
         let distractorPool = [];
@@ -198,16 +196,9 @@ function renderSentences() {
         }
     };
     
-    // ПРИВЯЗКА КНОПКИ ПОДСКАЗКИ
-    const hintBtn = document.getElementById('sentHintBtn');
-    if (hintBtn) {
-        hintBtn.onclick = () => {
-            console.log("Кнопка ПОДСКАЗКА нажата");
-            showHint();
-        };
-    } else {
-        console.error("Кнопка sentHintBtn не найдена!");
-    }
+    document.getElementById('sentHintBtn').onclick = () => {
+        showHint();
+    };
     
     document.getElementById('sentSpeakBtn').onclick = () => {
         if (sentencesCurrent) speak(sentencesCurrent.de);
