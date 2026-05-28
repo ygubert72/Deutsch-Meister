@@ -161,22 +161,3 @@ ________________________________
 ________________________________
 
 🎉 ENDE DES FÜNFTEN UNTERRICHTS
-
-
-
-=== ÜBUNGEN ===
-
-F: Ты ешь много
-A: Du isst viel.
-
-F: A: Du läufst langsam.
-A: Du isst viel.
-
-F: A: Du läufst langsam.
-A: Du isst viel.
-
-F: A: Du läufst langsam.
-A: Du isst viel.
-
-F: A: Du läufst langsam.
-A: Du isst viel.
