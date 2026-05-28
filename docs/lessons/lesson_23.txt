@@ -129,33 +129,3 @@ ________________________________
 
 🎉 ENDE DES DREIUNDZWANZIGSTEN UNTERRICHTS
 
-
-
-=== ÜBUNGEN ===
-
-F: Завтра мы едем в Германию
-A: Wir fahren nach Deutschland.
-
-F: Мы покупаем дом
-A: Morgen fahren wir nach Deutschland.
-
-F: Через неделю мы покупаем дом
-A: Wir kaufen das Haus.
-
-F: Мы покупаем дом
-A: Wir fahren nach Deutschland.
-
-F: Через неделю мы покупаем дом
-A: Morgen fahren wir nach Deutschland.
-
-F: Мы покупаем дом
-A: Wir fahren nach Deutschland.
-
-F: Через неделю мы покупаем дом
-A: Morgen fahren wir nach Deutschland.
-
-F: Мы покупаем дом
-A: Wir kaufen das Haus.
-
-F: Через неделю мы покупаем дом
-A: Wir fahren nach Deutschland.
