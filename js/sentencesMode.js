@@ -53,7 +53,7 @@ function renderSentences() {
             if (sentencesActive[word]) {
                 const btn = document.createElement('button');
                 btn.className = 'word-btn';
-                // Используем оригинальное слово (с большой буквы, если это существительное)
+                // Оригинальное слово (регистр не меняем)
                 btn.textContent = word;
                 btn.onclick = () => {
                     if (sentencesActive[word]) {
@@ -71,6 +71,7 @@ function renderSentences() {
     function showHint() {
         if (!sentencesHintWords.length) return;
         if (sentencesHintIndex >= sentencesHintWords.length) return;
+        // Оригинальные слова, регистр не меняем
         const currentHint = sentencesHintWords.slice(0, sentencesHintIndex + 1).join(' ');
         const hintLabel = document.getElementById('sentHintLabel');
         if (hintLabel) hintLabel.textContent = '💡 ' + currentHint;
@@ -96,6 +97,7 @@ function renderSentences() {
         let question, correctTokens;
         if (AppConfig.sentence_lang_from === 'ru') {
             question = sentencesCurrent.ru;
+            // НЕ МЕНЯЕМ РЕГИСТР — берем как есть
             correctTokens = sentencesCurrent.de.split(/\s+/);
             sentencesHintWords = sentencesCurrent.de.split(/\s+/);
         } else {
@@ -104,6 +106,7 @@ function renderSentences() {
             sentencesHintWords = sentencesCurrent.ru.split(/\s+/);
         }
         
+        // Только удаляем знаки препинания, регистр не трогаем
         sentencesHintWords = sentencesHintWords.map(w => w.replace(/[.,!?;:]/g, ''));
         
         document.getElementById('sentQuestion').innerHTML = `Составьте предложение:<br><br><strong>${question}</strong>`;
@@ -111,11 +114,14 @@ function renderSentences() {
         const allWords = wordsDB[AppConfig.currentLevel] || [];
         let distractorPool = [];
         if (AppConfig.sentence_lang_from === 'ru') {
+            // Берем оригинальные немецкие слова, регистр не меняем
             distractorPool = allWords.map(w => w.de);
         } else {
+            // Берем оригинальные русские слова, регистр не меняем
             distractorPool = allWords.map(w => w.ru);
         }
         
+        // Только удаляем знаки препинания, регистр не трогаем
         correctTokens = correctTokens.map(t => t.replace(/[.,!?;:]/g, ''));
         distractorPool = distractorPool.map(d => d.replace(/[.,!?;:]/g, ''));
         
@@ -169,6 +175,7 @@ function renderSentences() {
             return;
         }
         
+        // Для сравнения НОРМАЛИЗУЕМ (приводим к нижнему регистру и убираем знаки)
         let correctAnswer;
         if (AppConfig.sentence_lang_from === 'ru') {
             correctAnswer = sentencesCurrent.de.toLowerCase().replace(/[.,!?;:]/g, '');
