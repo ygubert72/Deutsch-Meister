@@ -197,8 +197,8 @@ function renderLessons() {
                     </div>
                     
                     <div class="btn-group">
-                        <button class="ctrl-btn" id="practice_prev_dynamic">◀ ПРЕДЫДУЩЕЕ</button>
-                        <button class="ctrl-btn" id="practice_next_dynamic">СЛЕДУЮЩЕЕ ▶</button>
+                        <button class="ctrl-btn" id="practice_prev_dynamic">◀ НАЗАД</button>
+                        <button class="ctrl-btn" id="practice_next_dynamic">ВПЕРЁД ▶</button>
                     </div>
                     
                     <div id="practice_counter_dynamic" class="hint" style="margin-top:10px;">Упражнение ${index + 1} из ${total}</div>
