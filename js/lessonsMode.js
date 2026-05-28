@@ -108,7 +108,7 @@ function renderLessons() {
         if (practiceHintIndex >= practiceHintWords.length) return;
         const currentHint = practiceHintWords.slice(0, practiceHintIndex + 1).join(' ');
         const hintDiv = document.getElementById('practice_hint_dynamic');
-        if (hintDiv) hintDiv.textContent = currentHint;
+        if (hintDiv) hintDiv.textContent = '💡 ' + currentHint;
         practiceHintIndex++;
     }
     
@@ -189,6 +189,8 @@ function renderLessons() {
                         <button class="ctrl-btn" id="practice_reset_dynamic">СБРОСИТЬ ВСЁ</button>
                         <button class="ctrl-btn" id="practice_check_dynamic" style="background:#3B6FE0;color:white;">ПРОВЕРИТЬ</button>
                         <button class="ctrl-btn" id="practice_hint_dynamic_btn">ПОДСКАЗАТЬ</button>
+                        <button class="ctrl-btn" id="practice_prev_dynamic">◀ ПРЕДЫДУЩЕЕ</button>
+                        <button class="ctrl-btn" id="practice_next_dynamic">СЛЕДУЮЩЕЕ ▶</button>
                     </div>
                     <div id="practice_counter_dynamic" class="hint" style="margin-top:10px;">Упражнение ${index + 1} из ${total}</div>
                     <div id="practice_hint_dynamic" class="hint" style="margin-top:10px; color:#3B6FE0; font-weight:bold;"></div>
@@ -221,16 +223,11 @@ function renderLessons() {
             currentExerciseState.available.forEach(w => { currentExerciseState.active[w] = true; });
             refreshDisplay();
             resetHint();
-            const msgDiv = document.getElementById('practice_msg_dynamic');
-            if (msgDiv) msgDiv.remove();
         };
         
         document.getElementById('practice_check_dynamic').onclick = () => {
             const user = normalizeText(currentExerciseState.selected.join(' '));
             const resultDiv = document.getElementById('practice_selected_dynamic');
-            
-            const oldMsg = document.getElementById('practice_msg_dynamic');
-            if (oldMsg) oldMsg.remove();
             
             if (user === currentExerciseState.answer) {
                 resultDiv.style.transition = 'background-color 0.2s';
@@ -269,6 +266,20 @@ function renderLessons() {
         
         document.getElementById('practice_hint_dynamic_btn').onclick = () => {
             showHint();
+        };
+        
+        document.getElementById('practice_prev_dynamic').onclick = () => {
+            if (currentExerciseIndex > 0) {
+                currentExerciseIndex--;
+                showPracticeExercise(lessonExercises[currentExerciseIndex], currentExerciseIndex, lessonExercises.length);
+            }
+        };
+        
+        document.getElementById('practice_next_dynamic').onclick = () => {
+            if (currentExerciseIndex + 1 < lessonExercises.length) {
+                currentExerciseIndex++;
+                showPracticeExercise(lessonExercises[currentExerciseIndex], currentExerciseIndex, lessonExercises.length);
+            }
         };
         
         refreshDisplay();
