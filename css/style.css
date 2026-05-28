@@ -39,11 +39,12 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 .quiz-opt.correct { background: #C8E6C9; border-color: #4CAF50; }
 .quiz-opt.wrong { background: #FFCDD2; border-color: #F44336; }
 
-/* ФРАЗЫ И ПРАКТИКА */
-.sent-question { text-align: center; font-size: 20px; margin: 15px 0; padding: 20px; background: #EEF4FF; border-radius: 16px; }
-.sent-result { background: #FFFFFF; border: 2px solid #E0E0E0; border-radius: 16px; padding: 18px; margin: 15px 0; text-align: center; font-weight: bold; font-size: 18px; min-height: 80px; }
-.words-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 25px 0; }
-.word-btn { padding: 12px 20px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: pointer; font-size: 15px; transition: all 0.05s linear; box-shadow: 0 3px 4px rgba(0,0,0,0.1); }
+/* ФРАЗЫ И ПРАКТИКА - ОБЩИЕ СТИЛИ */
+.sent-question { text-align: center; font-size: 20px; margin: 10px 0; padding: 15px; background: #EEF4FF; border-radius: 16px; }
+.sent-question strong { font-size: 22px; }
+.sent-result, .practice-selected-area { background: #FFFFFF; border: 2px solid #E0E0E0; border-radius: 16px; padding: 16px; margin: 10px 0; text-align: center; font-weight: bold; font-size: 18px; min-height: 70px; }
+.words-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 15px 0; }
+.word-btn { padding: 10px 18px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: pointer; font-size: 14px; transition: all 0.05s linear; box-shadow: 0 3px 4px rgba(0,0,0,0.1); }
 .word-btn:active { transform: translateY(2px); box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
 
 /* УРОКИ */
@@ -61,29 +62,19 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 .speak-btn-inline:active { transform: translateY(2px); box-shadow: 0 1px 1px rgba(0,0,0,0.2); }
 
 /* ОБЩИЕ КНОПКИ УПРАВЛЕНИЯ */
-.btn-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 15px 0; }
+.btn-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 12px 0; }
 .ctrl-btn { padding: 8px 16px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 13px; box-shadow: 0 3px 4px rgba(0,0,0,0.1); transition: all 0.05s linear; }
 .ctrl-btn:active { transform: translateY(2px); box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+
+/* СИНЯЯ КНОПКА ПРОВЕРИТЬ */
+.check-btn { background: #3B6FE0 !important; color: white !important; border-color: #2B5BC7 !important; }
 
 /* Кнопка переключения направления */
 .dir-btn { background: #3B6FE0; color: white; padding: 8px 16px; border: none; border-radius: 8px; cursor: pointer; margin-bottom: 15px; font-weight: bold; font-size: 14px; box-shadow: 0 3px 5px rgba(0,0,0,0.2); transition: all 0.05s linear; }
 .dir-btn:active { transform: translateY(2px); box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
 
-.hint { font-size: 12px; color: #888888; text-align: center; margin-top: 20px; }
+/* ПОДСКАЗКИ - белое поле с серой рамкой */
+.hint-area { display: flex; align-items: center; gap: 12px; margin: 12px 0; flex-wrap: wrap; justify-content: center; }
+.hint-label { background: #FFFFFF; border: 2px solid #E0E0E0; border-radius: 12px; padding: 10px 16px; flex: 1; min-width: 200px; font-size: 14px; color: #3B6FE0; font-weight: bold; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; }
 
-/* ====== СТИЛИ ДЛЯ ПОДСКАЗОК (ВАЖНО!) ====== */
-#sentHintLabel, #practice_hint_dynamic {
-    display: block !important;
-    visibility: visible !important;
-    min-height: 40px;
-    padding: 8px 12px;
-    background: #EEF4FF;
-    border-radius: 12px;
-    margin-top: 10px;
-    font-size: 14px;
-    color: #3B6FE0;
-    font-weight: bold;
-    text-align: center;
-}
-
-@media (max-width: 700px) { .sidebar { width: 260px; } .quiz-grid { grid-template-columns: 1fr; } .card-word { font-size: 26px; } .word-btn { padding: 8px 16px; font-size: 13px; } }
+@media (max-width: 700px) { .sidebar { width: 260px; } .quiz-grid { grid-template-columns: 1fr; } .card-word { font-size: 26px; } .word-btn { padding: 8px 14px; font-size: 13px; } .hint-label { min-width: 150px; } }
