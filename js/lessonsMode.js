@@ -103,7 +103,6 @@ function renderLessons() {
     }
     
     function showHint() {
-        console.log("showHint (practice) вызвана");
         if (!practiceHintWords.length) return;
         if (practiceHintIndex >= practiceHintWords.length) return;
         const currentHint = practiceHintWords.slice(0, practiceHintIndex + 1).join(' ');
@@ -179,22 +178,30 @@ function renderLessons() {
             <div style="max-width:700px;margin:0 auto;">
                 <div style="background:white;border-radius:16px;padding:20px;margin-bottom:20px;">
                     <div style="font-size:18px;font-weight:bold;margin-bottom:15px;">📝 ${exercise.question}</div>
+                    
+                    <div class="practice-selected-area" id="practice_selected_dynamic"></div>
+                    
                     <div class="words-container" id="practice_words_dynamic">
                         ${buttonsHtml}
                     </div>
-                    <div class="sent-result" id="practice_selected_dynamic" style="min-height:60px; margin:15px 0;"></div>
+                    
                     <div class="btn-group" style="margin-top:15px;">
                         <button class="ctrl-btn" id="practice_undo_dynamic">ВЕРНУТЬ СЛОВО</button>
                         <button class="ctrl-btn" id="practice_reset_dynamic">СБРОСИТЬ ВСЁ</button>
-                        <button class="ctrl-btn" id="practice_check_dynamic" style="background:#3B6FE0;color:white;">ПРОВЕРИТЬ</button>
-                        <button class="ctrl-btn" id="practice_hint_dynamic_btn">ПОДСКАЗАТЬ</button>
+                        <button class="ctrl-btn check-btn" id="practice_check_dynamic">ПРОВЕРИТЬ</button>
                     </div>
+                    
+                    <div class="hint-area">
+                        <button class="ctrl-btn" id="practice_hint_dynamic_btn">ПОДСКАЗАТЬ</button>
+                        <div class="hint-label" id="practice_hint_dynamic"></div>
+                    </div>
+                    
                     <div class="btn-group">
                         <button class="ctrl-btn" id="practice_prev_dynamic">◀ ПРЕДЫДУЩЕЕ</button>
                         <button class="ctrl-btn" id="practice_next_dynamic">СЛЕДУЮЩЕЕ ▶</button>
                     </div>
+                    
                     <div id="practice_counter_dynamic" class="hint" style="margin-top:10px;">Упражнение ${index + 1} из ${total}</div>
-                    <div id="practice_hint_dynamic" class="hint" style="margin-top:10px; color:#3B6FE0; font-weight:bold;"></div>
                 </div>
             </div>
         `;
@@ -265,15 +272,9 @@ function renderLessons() {
             }
         };
         
-        const hintBtn = document.getElementById('practice_hint_dynamic_btn');
-        if (hintBtn) {
-            hintBtn.onclick = () => {
-                console.log("Кнопка ПОДСКАЗАТЬ нажата");
-                showHint();
-            };
-        } else {
-            console.error("Кнопка practice_hint_dynamic_btn не найдена!");
-        }
+        document.getElementById('practice_hint_dynamic_btn').onclick = () => {
+            showHint();
+        };
         
         document.getElementById('practice_prev_dynamic').onclick = () => {
             if (currentExerciseIndex > 0) {
