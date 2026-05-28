@@ -23,8 +23,6 @@ function renderSentences() {
                 <button class="ctrl-btn" id="sentCheckBtn">ПРОВЕРИТЬ</button>
                 <button class="ctrl-btn" id="sentHintBtn">ПОДСКАЗКА</button>
                 <button class="ctrl-btn" id="sentSpeakBtn">🔊</button>
-            </div>
-            <div class="btn-group">
                 <button class="ctrl-btn" id="sentStudyBtn">В ИЗУЧЕНО</button>
                 <button class="ctrl-btn" id="sentUnstudyBtn">ВЕРНУТЬ</button>
                 <button class="ctrl-btn" id="sentResetAllBtn">ВЕРНУТЬ ВСЕ</button>
@@ -67,10 +65,13 @@ function renderSentences() {
         sentencesHintIndex++;
     }
     
-    function showCurrentSentence() {
-        // Сброс подсказки при загрузке новой фразы
+    function resetHint() {
         sentencesHintIndex = 0;
         document.getElementById('sentHintLabel').textContent = '';
+    }
+    
+    function showCurrentSentence() {
+        resetHint();
         
         if (!sentencesList.length) {
             document.getElementById('sentQuestion').innerHTML = "Все фразы изучены!<br><br>Верните фразы из 'Изучено' или<br>выберите другой уровень";
@@ -90,7 +91,6 @@ function renderSentences() {
             sentencesHintWords = sentencesCurrent.ru.toLowerCase().split(/\s+/);
         }
         
-        // Очищаем знаки препинания для подсказки
         sentencesHintWords = sentencesHintWords.map(w => w.replace(/[.,!?;:]/g, ''));
         
         document.getElementById('sentQuestion').innerHTML = `Составьте предложение:<br><br><strong style="font-size:22px;">${question}</strong>`;
@@ -145,9 +145,7 @@ function renderSentences() {
         sentencesSelected = [];
         sentencesAvailable.forEach(w => { sentencesActive[w] = true; });
         updateSentenceDisplay();
-        // Сброс подсказки
-        sentencesHintIndex = 0;
-        document.getElementById('sentHintLabel').textContent = '';
+        resetHint();
     };
     
     document.getElementById('sentCheckBtn').onclick = () => {
@@ -181,9 +179,7 @@ function renderSentences() {
                 sentencesSelected = [];
                 sentencesAvailable.forEach(w => { sentencesActive[w] = true; });
                 updateSentenceDisplay();
-                // Сброс подсказки при ошибке
-                sentencesHintIndex = 0;
-                document.getElementById('sentHintLabel').textContent = '';
+                resetHint();
             }, 500);
         }
     };
