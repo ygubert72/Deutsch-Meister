@@ -60,11 +60,21 @@ function renderSentences() {
     }
     
     function showHint() {
-        if (!sentencesHintWords.length) return;
-        if (sentencesHintIndex >= sentencesHintWords.length) return;
+        console.log("showHint вызвана"); // Для отладки
+        if (!sentencesHintWords.length) {
+            console.log("Нет слов для подсказки");
+            return;
+        }
+        if (sentencesHintIndex >= sentencesHintWords.length) {
+            console.log("Подсказка закончилась");
+            return;
+        }
         const currentHint = sentencesHintWords.slice(0, sentencesHintIndex + 1).join(' ');
         const hintLabel = document.getElementById('sentHintLabel');
-        if (hintLabel) hintLabel.textContent = '💡 ' + currentHint;
+        if (hintLabel) {
+            hintLabel.textContent = '💡 ' + currentHint;
+            console.log("Подсказка:", currentHint);
+        }
         sentencesHintIndex++;
     }
     
@@ -188,9 +198,16 @@ function renderSentences() {
         }
     };
     
-    document.getElementById('sentHintBtn').onclick = () => {
-        showHint();
-    };
+    // ПРИВЯЗКА КНОПКИ ПОДСКАЗКИ
+    const hintBtn = document.getElementById('sentHintBtn');
+    if (hintBtn) {
+        hintBtn.onclick = () => {
+            console.log("Кнопка ПОДСКАЗКА нажата");
+            showHint();
+        };
+    } else {
+        console.error("Кнопка sentHintBtn не найдена!");
+    }
     
     document.getElementById('sentSpeakBtn').onclick = () => {
         if (sentencesCurrent) speak(sentencesCurrent.de);
