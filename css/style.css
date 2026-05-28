@@ -8,20 +8,18 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 .section-title { font-size: 14px; font-weight: bold; color: #1A1A1A; margin: 20px 0 10px 0; letter-spacing: 0.5px; }
 .section-title:first-of-type { margin-top: 0; }
 
-/* Кнопки левого меню */
 .btn { width: 100%; padding: 10px 12px; margin: 5px 0; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; font-family: inherit; box-shadow: 0 3px 4px rgba(0,0,0,0.1); transition: all 0.05s linear; }
 .btn:active { transform: translateY(2px); box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
 .btn.active { background: #3B6FE0; color: white; border-color: #2B5BC7; box-shadow: 0 3px 4px rgba(59,111,224,0.3); }
+
 .btn-level { width: 60px; margin: 4px; padding: 8px 0; }
 .levels-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin: 10px 0; }
 
-/* Сетка уроков */
 .lessons-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 12px; }
 .lesson-grid-btn { padding: 10px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 6px; cursor: pointer; font-weight: 500; text-align: center; transition: all 0.05s linear; box-shadow: 0 3px 3px rgba(0,0,0,0.1); }
 .lesson-grid-btn:active { transform: translateY(2px); box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
 .lesson-grid-btn:hover { background: #d0e2fc; }
 
-/* ПРАВАЯ ПАНЕЛЬ */
 .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
 .top-bar { padding: 8px 20px; background: #F8F8F8; border-bottom: 1px solid #E0E0E0; font-size: 12px; color: #888888; }
 .content { flex: 1; overflow-y: auto; padding: 15px; }
@@ -39,19 +37,19 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 .quiz-opt.wrong { background: #FFCDD2; border-color: #F44336; }
 
 /* ФРАЗЫ И ПРАКТИКА - ОБЩИЕ СТИЛИ */
-.sent-question { text-align: center; font-size: 18px; margin: 8px 0; padding: 12px; background: #EEF4FF; border-radius: 16px; }
+.sent-question { text-align: center; font-size: 18px; margin: 8px 0 12px 0; padding: 12px; background: #EEF4FF; border-radius: 16px; }
 .sent-question strong { font-size: 20px; }
 .sent-result, .practice-selected-area { background: #FFFFFF; border: 2px solid #E0E0E0; border-radius: 16px; padding: 12px; margin: 8px 0; text-align: center; font-weight: bold; font-size: 18px; min-height: 60px; }
 
-/* Слова для составления - ровно 2 строки по 6 кнопок */
-.words-container { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin: 12px 0; justify-items: center; align-items: center; }
+/* Слова для составления - одинаковые отступы в Фразах и Практике */
+.words-container { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin: 8px 0; justify-items: center; align-items: center; }
 .word-btn { padding: 8px 12px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: pointer; font-size: 13px; transition: all 0.05s linear; box-shadow: 0 3px 4px rgba(0,0,0,0.1); text-align: center; white-space: nowrap; }
 .word-btn:active { transform: translateY(2px); box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
 
 /* УРОКИ */
-.lesson-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; }
+.lesson-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; }
 .lesson-title { font-size: 24px; font-weight: bold; color: #1A1A1A; }
-.lesson-mode { display: flex; gap: 12px; justify-content: center; margin-bottom: 12px; }
+.lesson-mode { display: flex; gap: 12px; justify-content: center; margin-bottom: 8px; }
 .lesson-mode-btn { padding: 6px 20px; font-size: 14px; font-weight: bold; border: 2px solid #D0D0D0; border-radius: 40px; cursor: pointer; background: #E8F0FE; color: #1A1A1A; transition: all 0.05s linear; box-shadow: 0 3px 4px rgba(0,0,0,0.1); }
 .lesson-mode-btn:active { transform: translateY(2px); box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
 .lesson-mode-btn.active { background: #3B6FE0; color: white; border-color: #2B5BC7; }
@@ -70,7 +68,6 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 /* Синяя кнопка ПРОВЕРИТЬ */
 .check-btn { background: #3B6FE0 !important; color: white !important; border-color: #2B5BC7 !important; }
 
-/* Кнопка переключения направления */
 .dir-btn { background: #3B6FE0; color: white; padding: 6px 14px; border: none; border-radius: 8px; cursor: pointer; margin-bottom: 10px; font-weight: bold; font-size: 13px; box-shadow: 0 3px 5px rgba(0,0,0,0.2); transition: all 0.05s linear; }
 .dir-btn:active { transform: translateY(2px); box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
 
@@ -80,6 +77,13 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 
 .hint { font-size: 11px; color: #888888; text-align: center; margin-top: 8px; }
 
+/* Отступы для режима Практика - увеличен отступ между словами и кнопками */
+.practice-selected-area { margin-bottom: 12px; }
+#practice_words_dynamic { margin-bottom: 16px; }
+
+/* Отступы для режима Фразы - увеличен отступ между словами и кнопками */
+#sentWordsContainer { margin-bottom: 16px; }
+
 @media (max-width: 700px) { 
     .sidebar { width: 260px; } 
     .quiz-grid { grid-template-columns: 1fr; } 
@@ -87,4 +91,6 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     .words-container { grid-template-columns: repeat(4, 1fr); gap: 6px; }
     .word-btn { white-space: normal; font-size: 11px; padding: 6px 8px; }
     .hint-label { min-width: 120px; }
+    .lesson-header { margin-bottom: 4px; }
+    .lesson-mode { margin-bottom: 4px; }
 }
