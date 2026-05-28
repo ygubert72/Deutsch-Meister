@@ -36,9 +36,16 @@ function setLevel(level) {
         else btn.classList.remove('active');
     });
     
-    if (currentMode === 'cards') renderCards();
-    else if (currentMode === 'quiz') renderQuiz();
-    else if (currentMode === 'sentences') renderSentences();
+    // Если мы в режиме уроков - переключаемся на карточки
+    if (currentMode === 'lessons') {
+        setMode('cards');
+    } else if (currentMode === 'cards') {
+        renderCards();
+    } else if (currentMode === 'quiz') {
+        renderQuiz();
+    } else if (currentMode === 'sentences') {
+        renderSentences();
+    }
     updateCounter();
     saveProgress();
 }
