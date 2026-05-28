@@ -36,6 +36,28 @@ let currentExerciseIndex = 0;
 let currentExerciseState = null;
 let blinkTimer = null;
 
+function normalizeText(text) {
+    return text.toLowerCase().replace(/[^\w\s-]/g, '').trim();
+}
+
+function getDistractors(count, excludeTokens) {
+    const allWords = wordsDB[AppConfig.currentLevel] || [];
+    let allTokens = [];
+    allWords.forEach(w => {
+        const tokens = w.de.split(/\s+/);
+        tokens.forEach(t => allTokens.push(t.toLowerCase().replace(/[.,!?;:]/g, '')));
+    });
+    const basic = ['der','die','das','den','dem','des','ein','eine','und','oder','aber','sehr','gut','nicht','auch'];
+    allTokens.push(...basic);
+    const excludeSet = new Set(excludeTokens.map(t => t.toLowerCase()));
+    const available = [...new Set(allTokens.filter(t => !excludeSet.has(t) && t.length > 1))];
+    for (let i = available.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [available[i], available[j]] = [available[j], available[i]];
+    }
+    return available.slice(0, count);
+}
+
 function renderLessons() {
     document.getElementById('content').innerHTML = `
         <div class="lesson-header">
@@ -53,7 +75,6 @@ function renderLessons() {
     const practiceBtn = document.getElementById('practiceBtn');
     if (currentLesson === 1 || currentLesson === 2) {
         if (practiceBtn) practiceBtn.style.display = 'none';
-        // Если практика скрыта и был режим practice, переключаем на theory
         if (lessonMode === 'practice') {
             lessonMode = 'theory';
         }
@@ -80,28 +101,6 @@ function renderLessons() {
         };
     }
     
-    function normalizeText(text) {
-        return text.toLowerCase().replace(/[^\w\s-]/g, '').trim();
-    }
-    
-    function getDistractors(count, excludeTokens) {
-        const allWords = wordsDB[AppConfig.currentLevel] || [];
-        let allTokens = [];
-        allWords.forEach(w => {
-            const tokens = w.de.split(/\s+/);
-            tokens.forEach(t => allTokens.push(t.toLowerCase().replace(/[.,!?;:]/g, '')));
-        });
-        const basic = ['der','die','das','den','dem','des','ein','eine','und','oder','aber','sehr','gut','nicht','auch'];
-        allTokens.push(...basic);
-        const excludeSet = new Set(excludeTokens.map(t => t.toLowerCase()));
-        const available = [...new Set(allTokens.filter(t => !excludeSet.has(t) && t.length > 1))];
-        for (let i = available.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [available[i], available[j]] = [available[j], available[i]];
-        }
-        return available.slice(0, count);
-    }
-    
     function showPracticeExercise(exercise, index, total) {
         const container = document.getElementById('lessonContent');
         if (!container) return;
@@ -115,6 +114,7 @@ function renderLessons() {
             const distractors = getDistractors(distractorsCount, correctTokens);
             allTokens.push(...distractors);
         }
+        // ПЕРЕМЕШИВАЕМ ТОЛЬКО ОДИН РАЗ - при создании упражнения
         for (let i = allTokens.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [allTokens[i], allTokens[j]] = [allTokens[j], allTokens[i]];
@@ -130,34 +130,41 @@ function renderLessons() {
         };
         allTokens.forEach(w => { currentExerciseState.active[w] = true; });
         
+        // Функция обновления (без перерисовки - просто скрываем/показываем кнопки)
         function refreshDisplay() {
             const wordsDiv = document.getElementById('practice_words_dynamic');
             const selectedDiv = document.getElementById('practice_selected_dynamic');
             if (!wordsDiv) return;
-            wordsDiv.innerHTML = '';
-            currentExerciseState.available.forEach(word => {
+            
+            const existingButtons = wordsDiv.querySelectorAll('.word-btn');
+            existingButtons.forEach(btn => {
+                const word = btn.getAttribute('data-word');
                 if (currentExerciseState.active[word]) {
-                    const btn = document.createElement('button');
-                    btn.className = 'word-btn';
-                    btn.textContent = word;
-                    btn.onclick = () => {
-                        if (currentExerciseState.active[word]) {
-                            currentExerciseState.active[word] = false;
-                            currentExerciseState.selected.push(word);
-                            refreshDisplay();
-                        }
-                    };
-                    wordsDiv.appendChild(btn);
+                    btn.style.display = 'inline-block';
+                    btn.disabled = false;
+                } else {
+                    btn.style.display = 'none';
+                    btn.disabled = true;
                 }
             });
+            
             selectedDiv.textContent = currentExerciseState.selected.join(' ');
         }
+        
+        // Создаем HTML с фиксированным порядком кнопок
+        let buttonsHtml = '';
+        currentExerciseState.available.forEach(word => {
+            const safeWord = word.replace(/"/g, '&quot;');
+            buttonsHtml += `<button class="word-btn" data-word="${safeWord}" style="display: inline-block;">${word}</button>`;
+        });
         
         container.innerHTML = `
             <div style="max-width:700px;margin:0 auto;">
                 <div style="background:white;border-radius:16px;padding:20px;margin-bottom:20px;">
                     <div style="font-size:18px;font-weight:bold;margin-bottom:15px;">📝 ${exercise.question}</div>
-                    <div class="words-container" id="practice_words_dynamic"></div>
+                    <div class="words-container" id="practice_words_dynamic">
+                        ${buttonsHtml}
+                    </div>
                     <div class="sent-result" id="practice_selected_dynamic" style="min-height:60px;"></div>
                     <div class="btn-group" style="margin-top:15px;">
                         <button class="ctrl-btn" id="practice_undo_dynamic">ВЕРНУТЬ СЛОВО</button>
@@ -169,7 +176,18 @@ function renderLessons() {
             </div>
         `;
         
-        refreshDisplay();
+        // Привязываем обработчики к кнопкам-словам
+        const wordButtons = document.querySelectorAll('#practice_words_dynamic .word-btn');
+        wordButtons.forEach(btn => {
+            const word = btn.getAttribute('data-word');
+            btn.onclick = () => {
+                if (currentExerciseState.active[word]) {
+                    currentExerciseState.active[word] = false;
+                    currentExerciseState.selected.push(word);
+                    refreshDisplay();
+                }
+            };
+        });
         
         // Кнопка "ВЕРНУТЬ СЛОВО"
         document.getElementById('practice_undo_dynamic').onclick = () => {
@@ -194,7 +212,6 @@ function renderLessons() {
             const user = normalizeText(currentExerciseState.selected.join(' '));
             const resultDiv = document.getElementById('practice_selected_dynamic');
             
-            // Удаляем старое сообщение, если есть
             const oldMsg = document.getElementById('practice_msg_dynamic');
             if (oldMsg) oldMsg.remove();
             
@@ -210,7 +227,6 @@ function renderLessons() {
                         currentExerciseIndex++;
                         showPracticeExercise(lessonExercises[currentExerciseIndex], currentExerciseIndex, lessonExercises.length);
                     } else {
-                        // Все упражнения выполнены
                         const container = document.getElementById('lessonContent');
                         if (container) {
                             container.innerHTML = `
@@ -229,13 +245,14 @@ function renderLessons() {
                 if (blinkTimer) clearTimeout(blinkTimer);
                 blinkTimer = setTimeout(() => {
                     resultDiv.style.backgroundColor = '#FFFFFF';
-                    // Сброс текущего упражнения
                     currentExerciseState.selected = [];
                     currentExerciseState.available.forEach(w => { currentExerciseState.active[w] = true; });
                     refreshDisplay();
                 }, 400);
             }
         };
+        
+        refreshDisplay();
     }
     
     function showLessonContent() {
