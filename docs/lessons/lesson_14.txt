@@ -151,33 +151,3 @@ ________________________________
 
 🎉 ENDE DES VIERZEHNTEN UNTERRICHTS
 
-
-
-=== ÜBUNGEN ===
-
-F: В понедельник я учу немецкий
-A: Am Montag lerne ich Deutsch
-
-F: A: Am Morgen zeige ich dem Bruder das Haus
-A: Am Montag lerne ich Deutsch
-
-F: A: Im Januar kaufen wir das Haus
-A: Am Morgen zeige ich dem Bruder das Haus
-
-F: A: Am Morgen zeige ich dem Bruder das Haus
-A: Am Montag lerne ich Deutsch
-
-F: A: Im Januar kaufen wir das Haus
-A: Am Montag lerne ich Deutsch
-
-F: A: Am Morgen zeige ich dem Bruder das Haus
-A: Am Montag lerne ich Deutsch
-
-F: A: Im Januar kaufen wir das Haus
-A: Am Montag lerne ich Deutsch
-
-F: A: Am Morgen zeige ich dem Bruder das Haus
-A: Am Morgen zeige ich dem Bruder das Haus
-
-F: A: Im Januar kaufen wir das Haus
-A: Am Montag lerne ich Deutsch
