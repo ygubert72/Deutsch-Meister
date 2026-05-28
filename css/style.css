@@ -78,6 +78,8 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     margin-bottom: 16px;
 }
 
+.lesson-text div div div:first-child { text-align: center !important; }
+
 @media (max-width: 700px) { 
     .sidebar { width: 260px; } 
     .quiz-grid { grid-template-columns: 1fr; } 
