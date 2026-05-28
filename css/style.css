@@ -71,7 +71,7 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 
 /* Отступы между словами и кнопками */
 #practice_words_dynamic { margin-bottom: 30px; }
-#sentWordsContainer { margin-bottom: 30px; }
+#sentWordsContainer { margin-bottom: 40px; }
 
 /* Отступ между словами и кнопками в Фразах (как в Практике) */
 #sentWordsContainer {
