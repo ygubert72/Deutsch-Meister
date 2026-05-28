@@ -24,7 +24,6 @@ function buildLessonsList() {
     document.querySelectorAll('[data-lesson]').forEach(btn => {
         btn.onclick = () => {
             currentLesson = parseInt(btn.dataset.lesson);
-            // ВАЖНО: при смене урока переключаемся на режим ТЕОРИИ
             lessonMode = 'theory';
             if (currentMode === 'lessons') renderLessons();
             else { setMode('lessons'); renderLessons(); }
@@ -37,6 +36,8 @@ let lessonExercises = [];
 let currentExerciseIndex = 0;
 let currentExerciseState = null;
 let blinkTimer = null;
+let practiceHintIndex = 0;
+let practiceHintWords = [];
 
 function normalizeText(text) {
     return text.toLowerCase().replace(/[^\w\s-]/g, '').trim();
@@ -73,7 +74,6 @@ function renderLessons() {
         <div id="lessonContent" class="lesson-text"></div>
     `;
     
-    // Скрываем кнопку "ПРАКТИКА" для уроков 1 и 2
     const practiceBtn = document.getElementById('practiceBtn');
     if (currentLesson === 1 || currentLesson === 2) {
         if (practiceBtn) practiceBtn.style.display = 'none';
@@ -103,7 +103,21 @@ function renderLessons() {
         };
     }
     
+    function showHint() {
+        if (!practiceHintWords.length) return;
+        if (practiceHintIndex >= practiceHintWords.length) return;
+        const currentHint = practiceHintWords.slice(0, practiceHintIndex + 1).join(' ');
+        const hintDiv = document.getElementById('practice_hint_dynamic');
+        if (hintDiv) hintDiv.textContent = currentHint;
+        practiceHintIndex++;
+    }
+    
     function showPracticeExercise(exercise, index, total) {
+        // Сброс подсказки при загрузке нового упражнения
+        practiceHintIndex = 0;
+        practiceHintWords = exercise.answer_tokens || exercise.answer.split(/\s+/);
+        practiceHintWords = practiceHintWords.map(w => w.replace(/[.,!?;:]/g, ''));
+        
         const container = document.getElementById('lessonContent');
         if (!container) return;
         
@@ -169,8 +183,10 @@ function renderLessons() {
                         <button class="ctrl-btn" id="practice_undo_dynamic">ВЕРНУТЬ СЛОВО</button>
                         <button class="ctrl-btn" id="practice_reset_dynamic">СБРОСИТЬ ВСЁ</button>
                         <button class="ctrl-btn" id="practice_check_dynamic" style="background:#3B6FE0;color:white;">ПРОВЕРИТЬ</button>
+                        <button class="ctrl-btn" id="practice_hint_dynamic_btn">ПОДСКАЗАТЬ</button>
                     </div>
                     <div id="practice_counter_dynamic" class="hint" style="margin-top:10px;">Упражнение ${index + 1} из ${total}</div>
+                    <div id="practice_hint_dynamic" class="hint" style="margin-top:10px; color:#3B6FE0; font-weight:bold;"></div>
                 </div>
             </div>
         `;
@@ -199,6 +215,10 @@ function renderLessons() {
             currentExerciseState.selected = [];
             currentExerciseState.available.forEach(w => { currentExerciseState.active[w] = true; });
             refreshDisplay();
+            // Сброс подсказки
+            practiceHintIndex = 0;
+            const hintDiv = document.getElementById('practice_hint_dynamic');
+            if (hintDiv) hintDiv.textContent = '';
             const msgDiv = document.getElementById('practice_msg_dynamic');
             if (msgDiv) msgDiv.remove();
         };
@@ -240,8 +260,16 @@ function renderLessons() {
                     currentExerciseState.selected = [];
                     currentExerciseState.available.forEach(w => { currentExerciseState.active[w] = true; });
                     refreshDisplay();
+                    // Сброс подсказки при ошибке
+                    practiceHintIndex = 0;
+                    const hintDiv = document.getElementById('practice_hint_dynamic');
+                    if (hintDiv) hintDiv.textContent = '';
                 }, 400);
             }
+        };
+        
+        document.getElementById('practice_hint_dynamic_btn').onclick = () => {
+            showHint();
         };
         
         refreshDisplay();
