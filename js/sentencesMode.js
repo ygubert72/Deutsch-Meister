@@ -69,7 +69,9 @@ function renderSentences() {
             question = sentencesCurrent.de;
             correctTokens = sentencesCurrent.ru.toLowerCase().split(/\s+/);
         }
-        document.getElementById('sentQuestion').textContent = `Составьте предложение:\n\n${question}`;
+        
+        // Отображаем в две строки: "Составьте предложение:" на первой, само предложение на второй
+        document.getElementById('sentQuestion').innerHTML = `Составьте предложение:<br><br><strong style="font-size:22px;">${question}</strong>`;
         
         const allWords = wordsDB[AppConfig.currentLevel] || [];
         let distractorPool = [];
