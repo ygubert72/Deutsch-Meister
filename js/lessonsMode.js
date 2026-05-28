@@ -103,6 +103,7 @@ function renderLessons() {
     }
     
     function showHint() {
+        console.log("showHint (practice) вызвана");
         if (!practiceHintWords.length) return;
         if (practiceHintIndex >= practiceHintWords.length) return;
         const currentHint = practiceHintWords.slice(0, practiceHintIndex + 1).join(' ');
@@ -264,9 +265,15 @@ function renderLessons() {
             }
         };
         
-        document.getElementById('practice_hint_dynamic_btn').onclick = () => {
-            showHint();
-        };
+        const hintBtn = document.getElementById('practice_hint_dynamic_btn');
+        if (hintBtn) {
+            hintBtn.onclick = () => {
+                console.log("Кнопка ПОДСКАЗАТЬ нажата");
+                showHint();
+            };
+        } else {
+            console.error("Кнопка practice_hint_dynamic_btn не найдена!");
+        }
         
         document.getElementById('practice_prev_dynamic').onclick = () => {
             if (currentExerciseIndex > 0) {
