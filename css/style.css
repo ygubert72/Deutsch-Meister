@@ -87,4 +87,21 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     .words-container { flex-wrap: wrap; gap: 6px; }
     .word-btn { white-space: normal; font-size: 11px; padding: 6px 12px; }
     .hint-label { min-width: 120px; }
+
+    /* Мобильная версия */
+@media (max-width: 768px) {
+    .app { flex-direction: column; }
+    .sidebar { width: 100%; max-height: 40%; border-right: none; border-bottom: 1px solid #E0E0E0; }
+    .main { width: 100%; }
+    .content { padding: 10px; }
+    .words-container { grid-template-columns: repeat(3, auto); gap: 6px; }
+    .word-btn { font-size: 11px; padding: 6px 10px; white-space: normal; }
+    .btn-group { gap: 6px; }
+    .ctrl-btn { padding: 5px 10px; font-size: 10px; }
+    .sent-question strong { font-size: 16px; }
+    .sent-result, .practice-selected-area { font-size: 14px; min-height: 50px; }
+    .hint-label { min-width: 150px; font-size: 11px; }
+    .lesson-title { font-size: 18px; }
+    .lesson-mode-btn { padding: 4px 12px; font-size: 12px; }
+}
 }
