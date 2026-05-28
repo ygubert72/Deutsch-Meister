@@ -70,8 +70,8 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 .practice-selected-area { background: #FFFFFF; border: 2px solid #E0E0E0; border-radius: 16px; padding: 12px; margin: 8px 0; text-align: center; font-weight: bold; font-size: 18px; min-height: 60px; }
 
 /* Отступы между словами и кнопками */
-#practice_words_dynamic { margin-bottom: 24px; }
-#sentWordsContainer { margin-bottom: 24px; }
+#practice_words_dynamic { margin-bottom: 30px; }
+#sentWordsContainer { margin-bottom: 30px; }
 
 /* Отступ между словами и кнопками в Фразах (как в Практике) */
 #sentWordsContainer {
