@@ -7,23 +7,6 @@ let sentencesActive = {};
 let sentencesHintIndex = 0;
 let sentencesHintWords = [];
 
-// Функция для capitalize существительных (первая буква заглавная)
-function capitalizeGerman(word) {
-    if (!word || word.length === 0) return word;
-    // Проверяем, начинается ли слово с буквы (не цифра, не знак)
-    if (/[a-zA-ZäöüßÄÖÜ]/.test(word[0])) {
-        return word[0].toUpperCase() + word.slice(1).toLowerCase();
-    }
-    return word;
-}
-
-// Функция для обработки всего предложения
-function capitalizeSentence(sentence) {
-    if (!sentence) return sentence;
-    // Разбиваем на слова, каждое слово капитализируем
-    return sentence.split(' ').map(word => capitalizeGerman(word)).join(' ');
-}
-
 function renderSentences() {
     sentencesList = getUnstudiedSentences();
     sentencesIndex = 0;
@@ -70,28 +53,25 @@ function renderSentences() {
             if (sentencesActive[word]) {
                 const btn = document.createElement('button');
                 btn.className = 'word-btn';
-                // Отображаем слово с большой буквы
-                btn.textContent = capitalizeGerman(word);
+                // Используем оригинальное слово (с большой буквы, если это существительное)
+                btn.textContent = word;
                 btn.onclick = () => {
                     if (sentencesActive[word]) {
                         sentencesActive[word] = false;
-                        // Добавляем слово с большой буквы
-                        sentencesSelected.push(capitalizeGerman(word));
+                        sentencesSelected.push(word);
                         updateSentenceDisplay();
                     }
                 };
                 container.appendChild(btn);
             }
         });
-        // Отображаем результат с большой буквы для каждого слова
-        resultEl.textContent = sentencesSelected.map(w => capitalizeGerman(w)).join(' ');
+        resultEl.textContent = sentencesSelected.join(' ');
     }
     
     function showHint() {
         if (!sentencesHintWords.length) return;
         if (sentencesHintIndex >= sentencesHintWords.length) return;
-        const currentHint = sentencesHintWords.slice(0, sentencesHintIndex + 1)
-            .map(word => capitalizeGerman(word)).join(' ');
+        const currentHint = sentencesHintWords.slice(0, sentencesHintIndex + 1).join(' ');
         const hintLabel = document.getElementById('sentHintLabel');
         if (hintLabel) hintLabel.textContent = '💡 ' + currentHint;
         sentencesHintIndex++;
@@ -116,12 +96,12 @@ function renderSentences() {
         let question, correctTokens;
         if (AppConfig.sentence_lang_from === 'ru') {
             question = sentencesCurrent.ru;
-            correctTokens = sentencesCurrent.de.toLowerCase().split(/\s+/);
-            sentencesHintWords = sentencesCurrent.de.toLowerCase().split(/\s+/);
+            correctTokens = sentencesCurrent.de.split(/\s+/);
+            sentencesHintWords = sentencesCurrent.de.split(/\s+/);
         } else {
             question = sentencesCurrent.de;
-            correctTokens = sentencesCurrent.ru.toLowerCase().split(/\s+/);
-            sentencesHintWords = sentencesCurrent.ru.toLowerCase().split(/\s+/);
+            correctTokens = sentencesCurrent.ru.split(/\s+/);
+            sentencesHintWords = sentencesCurrent.ru.split(/\s+/);
         }
         
         sentencesHintWords = sentencesHintWords.map(w => w.replace(/[.,!?;:]/g, ''));
@@ -131,9 +111,9 @@ function renderSentences() {
         const allWords = wordsDB[AppConfig.currentLevel] || [];
         let distractorPool = [];
         if (AppConfig.sentence_lang_from === 'ru') {
-            distractorPool = allWords.map(w => w.de.toLowerCase());
+            distractorPool = allWords.map(w => w.de);
         } else {
-            distractorPool = allWords.map(w => w.ru.toLowerCase());
+            distractorPool = allWords.map(w => w.ru);
         }
         
         correctTokens = correctTokens.map(t => t.replace(/[.,!?;:]/g, ''));
@@ -169,7 +149,7 @@ function renderSentences() {
     document.getElementById('sentUndoBtn').onclick = () => {
         if (sentencesSelected.length) {
             const last = sentencesSelected.pop();
-            sentencesActive[last.toLowerCase()] = true;
+            sentencesActive[last] = true;
             updateSentenceDisplay();
         }
     };
