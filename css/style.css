@@ -41,37 +41,19 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 .sent-question strong { font-size: 20px; }
 .sent-result, .practice-selected-area { background: #FFFFFF; border: 2px solid #E0E0E0; border-radius: 16px; padding: 12px; margin: 8px 0; text-align: center; font-weight: bold; font-size: 18px; min-height: 60px; }
 
-/* Отступ для поля ввода в Практике */
-.practice-selected-area {
-    margin-bottom: 12px;
-}
-
-/* Слова для составления - одинаковые отступы в Фразах и Практике */
+/* Слова для составления - всегда 2 строки по 6 кнопок */
 .words-container { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin: 8px 0; justify-items: center; align-items: center; }
-
-/* === ОТСТУПЫ ПО ПУНКТАМ === */
-/* Пункт 1: Уменьшен отступ между кнопками Теория/Практика и предложением */
-.lesson-header {
-    margin-bottom: 4px;
-}
-.lesson-mode {
-    margin-bottom: 8px;
-}
-
-/* Пункт 2: Увеличен отступ между словами и кнопками в Практике */
-#practice_words_dynamic {
-    margin-bottom: 20px;
-}
-
-/* Пункт 3 и 4: В режиме Фразы — такие же отступы */
-#sentWordsContainer {
-    margin-bottom: 20px;
-}
-
 .word-btn { padding: 8px 12px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: pointer; font-size: 13px; transition: all 0.05s linear; box-shadow: 0 3px 4px rgba(0,0,0,0.1); text-align: center; white-space: nowrap; }
 .word-btn:active { transform: translateY(2px); box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
 
 /* УРОКИ */
+.lesson-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; flex-wrap: wrap; }
+.lesson-title { font-size: 24px; font-weight: bold; color: #1A1A1A; }
+.lesson-mode { display: flex; gap: 12px; justify-content: center; margin-bottom: 8px; }
+.lesson-mode-btn { padding: 6px 20px; font-size: 14px; font-weight: bold; border: 2px solid #D0D0D0; border-radius: 40px; cursor: pointer; background: #E8F0FE; color: #1A1A1A; transition: all 0.05s linear; box-shadow: 0 3px 4px rgba(0,0,0,0.1); }
+.lesson-mode-btn:active { transform: translateY(2px); box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+.lesson-mode-btn.active { background: #3B6FE0; color: white; border-color: #2B5BC7; }
+
 .lesson-text { background: #FFFFFF; border-radius: 20px; padding: 20px; line-height: 1.5; max-height: 65vh; overflow-y: auto; font-size: 14px; }
 
 /* Кнопки озвучки в теории */
@@ -94,6 +76,17 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 .hint-label { background: #FFFFFF; border: 2px solid #E0E0E0; border-radius: 12px; padding: 8px 16px; flex: 1; min-width: 200px; font-size: 13px; color: #3B6FE0; font-weight: bold; text-align: center; min-height: 42px; display: flex; align-items: center; justify-content: center; }
 
 .hint { font-size: 11px; color: #888888; text-align: center; margin-top: 8px; }
+
+/* === СПЕЦИАЛЬНЫЕ ОТСТУПЫ === */
+/* Отступ между словами и кнопками в Практике */
+#practice_words_dynamic {
+    margin-bottom: 16px;
+}
+
+/* Отступ между словами и кнопками в Фразах */
+#sentWordsContainer {
+    margin-bottom: 16px;
+}
 
 @media (max-width: 700px) { 
     .sidebar { width: 260px; } 
