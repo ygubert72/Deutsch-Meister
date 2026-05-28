@@ -38,15 +38,7 @@ let blinkTimer = null;
 let practiceHintIndex = 0;
 let practiceHintWords = [];
 
-// Функция для capitalize существительных (первая буква заглавная)
-function capitalizeGerman(word) {
-    if (!word || word.length === 0) return word;
-    if (/[a-zA-ZäöüßÄÖÜ]/.test(word[0])) {
-        return word[0].toUpperCase() + word.slice(1).toLowerCase();
-    }
-    return word;
-}
-
+// Функция для нормализации (только для сравнения, НЕ для отображения)
 function normalizeText(text) {
     return text.toLowerCase().replace(/[^\w\s-]/g, '').trim();
 }
@@ -56,12 +48,12 @@ function getDistractors(count, excludeTokens) {
     let allTokens = [];
     allWords.forEach(w => {
         const tokens = w.de.split(/\s+/);
-        tokens.forEach(t => allTokens.push(t.toLowerCase().replace(/[.,!?;:]/g, '')));
+        tokens.forEach(t => allTokens.push(t));
     });
     const basic = ['der','die','das','den','dem','des','ein','eine','und','oder','aber','sehr','gut','nicht','auch'];
     allTokens.push(...basic);
     const excludeSet = new Set(excludeTokens.map(t => t.toLowerCase()));
-    const available = [...new Set(allTokens.filter(t => !excludeSet.has(t) && t.length > 1))];
+    const available = [...new Set(allTokens.filter(t => !excludeSet.has(t.toLowerCase()) && t.length > 1))];
     for (let i = available.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [available[i], available[j]] = [available[j], available[i]];
@@ -114,8 +106,8 @@ function renderLessons() {
     function showHint() {
         if (!practiceHintWords.length) return;
         if (practiceHintIndex >= practiceHintWords.length) return;
-        const currentHint = practiceHintWords.slice(0, practiceHintIndex + 1)
-            .map(word => capitalizeGerman(word)).join(' ');
+        // Оригинальные слова, регистр не меняем
+        const currentHint = practiceHintWords.slice(0, practiceHintIndex + 1).join(' ');
         const hintDiv = document.getElementById('practice_hint_dynamic');
         if (hintDiv) hintDiv.textContent = '💡 ' + currentHint;
         practiceHintIndex++;
@@ -129,6 +121,7 @@ function renderLessons() {
     
     function showPracticeExercise(exercise, index, total) {
         resetHint();
+        // Оригинальные слова, регистр не меняем
         practiceHintWords = exercise.answer_tokens || exercise.answer.split(/\s+/);
         practiceHintWords = practiceHintWords.map(w => w.replace(/[.,!?;:]/g, ''));
         
@@ -170,20 +163,21 @@ function renderLessons() {
                 if (currentExerciseState.active[word]) {
                     btn.style.display = 'inline-block';
                     btn.disabled = false;
-                    btn.textContent = capitalizeGerman(word);
+                    // Оригинальное слово, регистр не меняем
+                    btn.textContent = word;
                 } else {
                     btn.style.display = 'none';
                     btn.disabled = true;
                 }
             });
-            selectedDiv.textContent = currentExerciseState.selected.map(w => capitalizeGerman(w)).join(' ');
+            // Оригинальные слова, регистр не меняем
+            selectedDiv.textContent = currentExerciseState.selected.join(' ');
         }
         
         let buttonsHtml = '';
         currentExerciseState.available.forEach(word => {
             const safeWord = word.replace(/"/g, '&quot;');
-            const displayWord = capitalizeGerman(word);
-            buttonsHtml += `<button class="word-btn" data-word="${safeWord}" style="display: inline-block;">${displayWord}</button>`;
+            buttonsHtml += `<button class="word-btn" data-word="${safeWord}" style="display: inline-block;">${word}</button>`;
         });
         
         container.innerHTML = `
@@ -224,7 +218,7 @@ function renderLessons() {
             btn.onclick = () => {
                 if (currentExerciseState.active[word]) {
                     currentExerciseState.active[word] = false;
-                    currentExerciseState.selected.push(capitalizeGerman(word));
+                    currentExerciseState.selected.push(word);
                     refreshDisplay();
                 }
             };
@@ -233,7 +227,7 @@ function renderLessons() {
         document.getElementById('practice_undo_dynamic').onclick = () => {
             if (currentExerciseState.selected.length) {
                 const last = currentExerciseState.selected.pop();
-                currentExerciseState.active[last.toLowerCase()] = true;
+                currentExerciseState.active[last] = true;
                 refreshDisplay();
             }
         };
