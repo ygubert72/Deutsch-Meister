@@ -112,9 +112,14 @@ function renderLessons() {
         practiceHintIndex++;
     }
     
-    function showPracticeExercise(exercise, index, total) {
-        // Сброс подсказки при загрузке нового упражнения
+    function resetHint() {
         practiceHintIndex = 0;
+        const hintDiv = document.getElementById('practice_hint_dynamic');
+        if (hintDiv) hintDiv.textContent = '';
+    }
+    
+    function showPracticeExercise(exercise, index, total) {
+        resetHint();
         practiceHintWords = exercise.answer_tokens || exercise.answer.split(/\s+/);
         practiceHintWords = practiceHintWords.map(w => w.replace(/[.,!?;:]/g, ''));
         
@@ -178,7 +183,7 @@ function renderLessons() {
                     <div class="words-container" id="practice_words_dynamic">
                         ${buttonsHtml}
                     </div>
-                    <div class="sent-result" id="practice_selected_dynamic" style="min-height:60px;"></div>
+                    <div class="sent-result" id="practice_selected_dynamic" style="min-height:60px; margin:15px 0;"></div>
                     <div class="btn-group" style="margin-top:15px;">
                         <button class="ctrl-btn" id="practice_undo_dynamic">ВЕРНУТЬ СЛОВО</button>
                         <button class="ctrl-btn" id="practice_reset_dynamic">СБРОСИТЬ ВСЁ</button>
@@ -215,10 +220,7 @@ function renderLessons() {
             currentExerciseState.selected = [];
             currentExerciseState.available.forEach(w => { currentExerciseState.active[w] = true; });
             refreshDisplay();
-            // Сброс подсказки
-            practiceHintIndex = 0;
-            const hintDiv = document.getElementById('practice_hint_dynamic');
-            if (hintDiv) hintDiv.textContent = '';
+            resetHint();
             const msgDiv = document.getElementById('practice_msg_dynamic');
             if (msgDiv) msgDiv.remove();
         };
@@ -260,10 +262,7 @@ function renderLessons() {
                     currentExerciseState.selected = [];
                     currentExerciseState.available.forEach(w => { currentExerciseState.active[w] = true; });
                     refreshDisplay();
-                    // Сброс подсказки при ошибке
-                    practiceHintIndex = 0;
-                    const hintDiv = document.getElementById('practice_hint_dynamic');
-                    if (hintDiv) hintDiv.textContent = '';
+                    resetHint();
                 }, 400);
             }
         };
