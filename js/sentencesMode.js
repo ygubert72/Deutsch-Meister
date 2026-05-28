@@ -61,7 +61,7 @@ function renderSentences() {
         if (!sentencesHintWords.length) return;
         if (sentencesHintIndex >= sentencesHintWords.length) return;
         const currentHint = sentencesHintWords.slice(0, sentencesHintIndex + 1).join(' ');
-        document.getElementById('sentHintLabel').textContent = currentHint;
+        document.getElementById('sentHintLabel').textContent = '💡 ' + currentHint;
         sentencesHintIndex++;
     }
     
