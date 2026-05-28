@@ -4,6 +4,8 @@ let sentencesCurrent = null;
 let sentencesSelected = [];
 let sentencesAvailable = [];
 let sentencesActive = {};
+let sentencesHintIndex = 0;
+let sentencesHintWords = [];
 
 function renderSentences() {
     sentencesList = getUnstudiedSentences();
@@ -19,13 +21,17 @@ function renderSentences() {
                 <button class="ctrl-btn" id="sentUndoBtn">ВЕРНУТЬ СЛОВО</button>
                 <button class="ctrl-btn" id="sentResetBtn">СБРОСИТЬ ВСЁ</button>
                 <button class="ctrl-btn" id="sentCheckBtn">ПРОВЕРИТЬ</button>
+                <button class="ctrl-btn" id="sentHintBtn">ПОДСКАЗКА</button>
                 <button class="ctrl-btn" id="sentSpeakBtn">🔊</button>
+            </div>
+            <div class="btn-group">
                 <button class="ctrl-btn" id="sentStudyBtn">В ИЗУЧЕНО</button>
                 <button class="ctrl-btn" id="sentUnstudyBtn">ВЕРНУТЬ</button>
                 <button class="ctrl-btn" id="sentResetAllBtn">ВЕРНУТЬ ВСЕ</button>
                 <button class="ctrl-btn" id="sentPrevBtn">◀ НАЗАД</button>
                 <button class="ctrl-btn" id="sentNextBtn">ВПЕРЕД ▶</button>
             </div>
+            <div id="sentHintLabel" class="hint" style="margin-top:10px; color:#3B6FE0; font-weight:bold;"></div>
         </div>
     `;
     
@@ -53,9 +59,21 @@ function renderSentences() {
         resultEl.textContent = sentencesSelected.join(' ');
     }
     
+    function showHint() {
+        if (!sentencesHintWords.length) return;
+        if (sentencesHintIndex >= sentencesHintWords.length) return;
+        const currentHint = sentencesHintWords.slice(0, sentencesHintIndex + 1).join(' ');
+        document.getElementById('sentHintLabel').textContent = currentHint;
+        sentencesHintIndex++;
+    }
+    
     function showCurrentSentence() {
+        // Сброс подсказки при загрузке новой фразы
+        sentencesHintIndex = 0;
+        document.getElementById('sentHintLabel').textContent = '';
+        
         if (!sentencesList.length) {
-            document.getElementById('sentQuestion').textContent = "Все фразы изучены!\n\nВерните фразы из 'Изучено' или\nвыберите другой уровень";
+            document.getElementById('sentQuestion').innerHTML = "Все фразы изучены!<br><br>Верните фразы из 'Изучено' или<br>выберите другой уровень";
             return;
         }
         if (sentencesIndex >= sentencesList.length) sentencesIndex = 0;
@@ -65,12 +83,16 @@ function renderSentences() {
         if (AppConfig.sentence_lang_from === 'ru') {
             question = sentencesCurrent.ru;
             correctTokens = sentencesCurrent.de.toLowerCase().split(/\s+/);
+            sentencesHintWords = sentencesCurrent.de.toLowerCase().split(/\s+/);
         } else {
             question = sentencesCurrent.de;
             correctTokens = sentencesCurrent.ru.toLowerCase().split(/\s+/);
+            sentencesHintWords = sentencesCurrent.ru.toLowerCase().split(/\s+/);
         }
         
-        // Отображаем в две строки: "Составьте предложение:" на первой, само предложение на второй
+        // Очищаем знаки препинания для подсказки
+        sentencesHintWords = sentencesHintWords.map(w => w.replace(/[.,!?;:]/g, ''));
+        
         document.getElementById('sentQuestion').innerHTML = `Составьте предложение:<br><br><strong style="font-size:22px;">${question}</strong>`;
         
         const allWords = wordsDB[AppConfig.currentLevel] || [];
@@ -123,6 +145,9 @@ function renderSentences() {
         sentencesSelected = [];
         sentencesAvailable.forEach(w => { sentencesActive[w] = true; });
         updateSentenceDisplay();
+        // Сброс подсказки
+        sentencesHintIndex = 0;
+        document.getElementById('sentHintLabel').textContent = '';
     };
     
     document.getElementById('sentCheckBtn').onclick = () => {
@@ -156,8 +181,15 @@ function renderSentences() {
                 sentencesSelected = [];
                 sentencesAvailable.forEach(w => { sentencesActive[w] = true; });
                 updateSentenceDisplay();
+                // Сброс подсказки при ошибке
+                sentencesHintIndex = 0;
+                document.getElementById('sentHintLabel').textContent = '';
             }, 500);
         }
+    };
+    
+    document.getElementById('sentHintBtn').onclick = () => {
+        showHint();
     };
     
     document.getElementById('sentSpeakBtn').onclick = () => {
