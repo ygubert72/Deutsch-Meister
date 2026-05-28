@@ -299,7 +299,7 @@ function renderLessons() {
         
         if (lessonMode === 'theory') {
             let content = lessonsCache[currentLesson] || `=== УРОК ${currentLesson} ===\n\nСодержание урока пока не добавлено.`;
-            content = content.replace(/\[озвучка:([^\]]+)\]/g, (match, word) => {
+            content = content.replace(/\[озвучк[аa]:([^\]]+)\]/g, (match, word) => {
                 return `<button class="speak-btn-inline" onclick="speak('${word.replace(/'/g, "\\'")}')">🔊</button>`;
             });
             content = content.replace(/\n/g, '<br>');
