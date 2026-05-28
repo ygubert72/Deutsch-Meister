@@ -189,6 +189,8 @@ function renderLessons() {
                         <button class="ctrl-btn" id="practice_reset_dynamic">СБРОСИТЬ ВСЁ</button>
                         <button class="ctrl-btn" id="practice_check_dynamic" style="background:#3B6FE0;color:white;">ПРОВЕРИТЬ</button>
                         <button class="ctrl-btn" id="practice_hint_dynamic_btn">ПОДСКАЗАТЬ</button>
+                    </div>
+                    <div class="btn-group">
                         <button class="ctrl-btn" id="practice_prev_dynamic">◀ ПРЕДЫДУЩЕЕ</button>
                         <button class="ctrl-btn" id="practice_next_dynamic">СЛЕДУЮЩЕЕ ▶</button>
                     </div>
