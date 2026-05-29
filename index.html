@@ -9,16 +9,16 @@
 </head>
 <body>
 <div class="app">
-    <!-- Панель пользователя -->
-    <div class="user-panel">
-        <button id="loginBtn" onclick="showLoginModal()">🔐 Войти</button>
-        <div id="userInfo" style="display: none;"></div>
-    </div>
-
     <div class="sidebar">
         <div class="sidebar-content">
+            <!-- Кнопка входа (такого же размера и цвета, как "КУРС ГРАММАТИКИ") -->
+            <button id="loginBtn" onclick="window.showLoginModal && window.showLoginModal()" class="btn" style="margin-bottom: 10px;">🔐 Войти</button>
+            
             <button class="btn" id="toggleLessonsBtn">КУРС ГРАММАТИКИ ▶</button>
             <div id="lessonsPanel" style="display: none; margin-top: 10px;"></div>
+            
+            <!-- Информация о пользователе (будет показана после входа) -->
+            <div id="userInfo" style="display: none; margin: 10px 0; padding: 8px; background: #E8F0FE; border-radius: 8px; text-align: center; font-size: 12px;"></div>
             
             <div class="section-title">ТРЕНАЖЁР</div>
             <div class="levels-container" id="levelsContainer">
