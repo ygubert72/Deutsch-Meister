@@ -1,7 +1,3 @@
-<div class="user-panel">
-    <button id="loginBtn" onclick="showLoginModal()">🔐 Войти</button>
-    <div id="userInfo" style="display:none;"></div>
-</div>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -13,6 +9,12 @@
 </head>
 <body>
 <div class="app">
+    <!-- Панель пользователя -->
+    <div class="user-panel">
+        <button id="loginBtn" onclick="showLoginModal()">🔐 Войти</button>
+        <div id="userInfo" style="display: none;"></div>
+    </div>
+
     <div class="sidebar">
         <div class="sidebar-content">
             <button class="btn" id="toggleLessonsBtn">КУРС ГРАММАТИКИ ▶</button>
@@ -47,5 +49,6 @@
 <script src="js/sentencesMode.js"></script>
 <script src="js/lessonsMode.js"></script>
 <script src="js/app.js"></script>
+<script type="module" src="js/auth.js"></script>
 </body>
 </html>
