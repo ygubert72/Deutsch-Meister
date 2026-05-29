@@ -53,7 +53,6 @@ function renderSentences() {
             if (sentencesActive[word]) {
                 const btn = document.createElement('button');
                 btn.className = 'word-btn';
-                // Оригинальное слово (регистр не меняем)
                 btn.textContent = word;
                 btn.onclick = () => {
                     if (sentencesActive[word]) {
@@ -71,7 +70,6 @@ function renderSentences() {
     function showHint() {
         if (!sentencesHintWords.length) return;
         if (sentencesHintIndex >= sentencesHintWords.length) return;
-        // Оригинальные слова, регистр не меняем
         const currentHint = sentencesHintWords.slice(0, sentencesHintIndex + 1).join(' ');
         const hintLabel = document.getElementById('sentHintLabel');
         if (hintLabel) hintLabel.textContent = '💡 ' + currentHint;
@@ -88,7 +86,11 @@ function renderSentences() {
         resetHint();
         
         if (!sentencesList.length) {
-            document.getElementById('sentQuestion').innerHTML = "Все фразы изучены!<br><br>Верните фразы из 'Изучено' или<br>выберите другой уровень";
+            document.getElementById('sentQuestion').innerHTML = "🎉 Все фразы изучены!<br><br>Верните фразы из 'Изучено' или<br>выберите другой уровень";
+            const container = document.getElementById('sentWordsContainer');
+            if (container) container.innerHTML = '';
+            const result = document.getElementById('sentResult');
+            if (result) result.textContent = '';
             return;
         }
         if (sentencesIndex >= sentencesList.length) sentencesIndex = 0;
@@ -97,7 +99,6 @@ function renderSentences() {
         let question, correctTokens;
         if (AppConfig.sentence_lang_from === 'ru') {
             question = sentencesCurrent.ru;
-            // НЕ МЕНЯЕМ РЕГИСТР — берем как есть
             correctTokens = sentencesCurrent.de.split(/\s+/);
             sentencesHintWords = sentencesCurrent.de.split(/\s+/);
         } else {
@@ -106,7 +107,6 @@ function renderSentences() {
             sentencesHintWords = sentencesCurrent.ru.split(/\s+/);
         }
         
-        // Только удаляем знаки препинания, регистр не трогаем
         sentencesHintWords = sentencesHintWords.map(w => w.replace(/[.,!?;:]/g, ''));
         
         document.getElementById('sentQuestion').innerHTML = `Составьте предложение:<br><br><strong>${question}</strong>`;
@@ -114,25 +114,21 @@ function renderSentences() {
         const allWords = wordsDB[AppConfig.currentLevel] || [];
         let distractorPool = [];
         if (AppConfig.sentence_lang_from === 'ru') {
-            // Берем оригинальные немецкие слова, регистр не меняем
             distractorPool = allWords.map(w => w.de);
         } else {
-            // Берем оригинальные русские слова, регистр не меняем
             distractorPool = allWords.map(w => w.ru);
         }
         
-        // Только удаляем знаки препинания, регистр не трогаем
         correctTokens = correctTokens.map(t => t.replace(/[.,!?;:]/g, ''));
         distractorPool = distractorPool.map(d => d.replace(/[.,!?;:]/g, ''));
         
         let available = [...correctTokens];
         const needed = 12 - available.length;
         if (needed > 0) {
-            const candidates = distractorPool.filter(d => !available.includes(d) && d.length > 1);
-            for (let i = 0; i < needed && i < candidates.length; i++) {
-                available.push(candidates[i]);
-            }
+            const distractors = getDistractorsForSentences(needed, correctTokens);
+            available.push(...distractors);
         }
+        
         for (let i = available.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [available[i], available[j]] = [available[j], available[i]];
@@ -175,7 +171,6 @@ function renderSentences() {
             return;
         }
         
-        // Для сравнения НОРМАЛИЗУЕМ (приводим к нижнему регистру и убираем знаки)
         let correctAnswer;
         if (AppConfig.sentence_lang_from === 'ru') {
             correctAnswer = sentencesCurrent.de.toLowerCase().replace(/[.,!?;:]/g, '');
