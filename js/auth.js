@@ -22,7 +22,7 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 // Показать модальное окно входа
-function showLoginModal() {
+window.showLoginModal = function() {
     let modal = document.getElementById('authModal');
     if (!modal) {
         createModal();
@@ -33,15 +33,15 @@ function showLoginModal() {
 
 function createModal() {
     const modalHtml = `
-        <div id="authModal" class="modal" style="display:none;">
-            <div class="modal-content">
+        <div id="authModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:1000;">
+            <div style="background:white; padding:30px; border-radius:20px; max-width:400px; width:90%;">
                 <h3>Вход / Регистрация</h3>
-                <input type="text" id="loginEmail" placeholder="Email" />
-                <input type="password" id="loginPassword" placeholder="Пароль" />
-                <div class="modal-buttons">
-                    <button id="doLogin">Войти</button>
-                    <button id="doRegister">Регистрация</button>
-                    <button id="closeModal">Отмена</button>
+                <input type="text" id="loginEmail" placeholder="Email" style="width:100%; padding:10px; margin:10px 0; border:1px solid #ddd; border-radius:8px;" />
+                <input type="password" id="loginPassword" placeholder="Пароль" style="width:100%; padding:10px; margin:10px 0; border:1px solid #ddd; border-radius:8px;" />
+                <div style="display:flex; gap:10px; margin-top:20px;">
+                    <button id="doLogin" style="flex:1; padding:10px; background:#3B6FE0; color:white; border:none; border-radius:8px; cursor:pointer;">Войти</button>
+                    <button id="doRegister" style="flex:1; padding:10px; background:#4CAF50; color:white; border:none; border-radius:8px; cursor:pointer;">Регистрация</button>
+                    <button id="closeModal" style="flex:1; padding:10px; background:#999; color:white; border:none; border-radius:8px; cursor:pointer;">Отмена</button>
                 </div>
             </div>
         </div>
@@ -72,6 +72,10 @@ async function login() {
 async function register() {
     const email = document.getElementById('loginEmail').value;
     const password = document.getElementById('loginPassword').value;
+    if (password.length < 6) {
+        alert('Пароль должен быть не менее 6 символов');
+        return;
+    }
     try {
         await createUserWithEmailAndPassword(auth, email, password);
         hideLoginModal();
@@ -93,7 +97,7 @@ onAuthStateChanged(auth, async (user) => {
         if (loginBtn) loginBtn.style.display = 'none';
         if (userInfo) {
             userInfo.style.display = 'flex';
-            userInfo.innerHTML = `👤 ${user.email} <button id="logoutBtn">Выйти</button>`;
+            userInfo.innerHTML = `👤 ${user.email} <button id="logoutBtn" style="margin-left:10px; padding:4px 12px; background:#f44336; color:white; border:none; border-radius:16px; cursor:pointer;">Выйти</button>`;
             document.getElementById('logoutBtn')?.addEventListener('click', logout);
         }
         await loadUserProgress();
@@ -113,14 +117,14 @@ async function loadUserProgress() {
         const data = userDoc.data();
         if (data.wordsProgress) wordsProgress = data.wordsProgress;
         if (data.sentencesProgress) sentencesProgress = data.sentencesProgress;
-        updateCounter();
-        if (currentMode === 'cards') renderCards();
-        else if (currentMode === 'quiz') renderQuiz();
-        else if (currentMode === 'sentences') renderSentences();
+        if (typeof updateCounter === 'function') updateCounter();
+        if (typeof renderCards === 'function') renderCards();
+        else if (typeof renderQuiz === 'function') renderQuiz();
+        else if (typeof renderSentences === 'function') renderSentences();
     }
 }
 
-async function saveUserProgress() {
+async function saveUserProgressToFirebase() {
     if (!currentUser) return;
     await setDoc(doc(db, 'users', currentUser.uid), {
         wordsProgress: wordsProgress,
@@ -129,5 +133,4 @@ async function saveUserProgress() {
     }, { merge: true });
 }
 
-window.saveUserProgress = saveUserProgress;
-window.showLoginModal = showLoginModal;
+window.saveUserProgressToFirebase = saveUserProgressToFirebase;
