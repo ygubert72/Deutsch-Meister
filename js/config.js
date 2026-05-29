@@ -22,8 +22,9 @@ let practiceCache = {};
 let wordsProgress = {};
 let sentencesProgress = {};
 
-// Функция сохранения
+// Функция сохранения (локально + Firebase)
 function saveProgress() {
+    // Сохраняем в localStorage
     localStorage.setItem('dm_words_progress', JSON.stringify(wordsProgress));
     localStorage.setItem('dm_sentences_progress', JSON.stringify(sentencesProgress));
     localStorage.setItem('dm_config', JSON.stringify({
@@ -32,6 +33,11 @@ function saveProgress() {
         quiz_direction: AppConfig.quiz_direction,
         sentence_lang_from: AppConfig.sentence_lang_from
     }));
+    
+    // Сохраняем в Firebase (если пользователь залогинен)
+    if (window.saveUserProgressToFirebase) {
+        window.saveUserProgressToFirebase();
+    }
 }
 
 // Функция загрузки
