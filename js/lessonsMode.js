@@ -145,8 +145,7 @@ function renderLessons() {
             active: {},
             answer: normalizeText(exercise.answer),
             question: exercise.question,
-            index: index,
-            germanAnswer: exercise.answer  // сохраняем немецкий ответ для озвучки
+            index: index
         };
         allTokens.forEach(w => { currentExerciseState.active[w] = true; });
         
@@ -191,7 +190,7 @@ function renderLessons() {
                         <button class="ctrl-btn" id="practice_undo_dynamic">ВЕРНУТЬ СЛОВО</button>
                         <button class="ctrl-btn" id="practice_reset_dynamic">СБРОСИТЬ ВСЁ</button>
                         <button class="ctrl-btn check-btn" id="practice_check_dynamic">ПРОВЕРИТЬ</button>
-                        <button class="speak-btn-inline" id="practiceSpeakBtn" style="background:transparent; border:2px solid #D0D0D0; box-shadow:0 3px 4px rgba(0,0,0,0.1);">🔊</button>
+                        <button class="ctrl-btn" id="practiceSpeakBtn" style="background:#E8F0FE; border:2px solid #D0D0D0;">🔊</button>
                     </div>
                     
                     <div class="hint-area">
@@ -209,14 +208,18 @@ function renderLessons() {
             </div>
         `;
         
-        // Обработчик для кнопки озвучки - озвучиваем НЕМЕЦКИЙ ответ (как в режиме Фразы)
+        // ========== ОЗВУЧКА (как в режиме Фразы) ==========
         const speakBtn = document.getElementById('practiceSpeakBtn');
         if (speakBtn && exercise.answer) {
             speakBtn.onclick = (e) => {
                 e.stopPropagation();
-                speak(exercise.answer);  // озвучиваем немецкий ответ
+                let germanText = exercise.answer;
+                // Убираем только пунктуацию в конце строки
+                germanText = germanText.replace(/[.,!?;:]+$/, '');
+                speak(germanText);
             };
         }
+        // =================================================
         
         const wordButtons = document.querySelectorAll('#practice_words_dynamic .word-btn');
         wordButtons.forEach(btn => {
