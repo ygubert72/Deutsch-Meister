@@ -38,7 +38,6 @@ let blinkTimer = null;
 let practiceHintIndex = 0;
 let practiceHintWords = [];
 
-// Функция для нормализации (только для сравнения, НЕ для отображения)
 function normalizeText(text) {
     return text.toLowerCase().replace(/[^\w\s-]/g, '').trim();
 }
@@ -106,7 +105,6 @@ function renderLessons() {
     function showHint() {
         if (!practiceHintWords.length) return;
         if (practiceHintIndex >= practiceHintWords.length) return;
-        // Оригинальные слова, регистр не меняем
         const currentHint = practiceHintWords.slice(0, practiceHintIndex + 1).join(' ');
         const hintDiv = document.getElementById('practice_hint_dynamic');
         if (hintDiv) hintDiv.textContent = '💡 ' + currentHint;
@@ -121,7 +119,6 @@ function renderLessons() {
     
     function showPracticeExercise(exercise, index, total) {
         resetHint();
-        // Оригинальные слова, регистр не меняем
         practiceHintWords = exercise.answer_tokens || exercise.answer.split(/\s+/);
         practiceHintWords = practiceHintWords.map(w => w.replace(/[.,!?;:]/g, ''));
         
@@ -163,14 +160,12 @@ function renderLessons() {
                 if (currentExerciseState.active[word]) {
                     btn.style.display = 'inline-block';
                     btn.disabled = false;
-                    // Оригинальное слово, регистр не меняем
                     btn.textContent = word;
                 } else {
                     btn.style.display = 'none';
                     btn.disabled = true;
                 }
             });
-            // Оригинальные слова, регистр не меняем
             selectedDiv.textContent = currentExerciseState.selected.join(' ');
         }
         
@@ -195,6 +190,7 @@ function renderLessons() {
                         <button class="ctrl-btn" id="practice_undo_dynamic">ВЕРНУТЬ СЛОВО</button>
                         <button class="ctrl-btn" id="practice_reset_dynamic">СБРОСИТЬ ВСЁ</button>
                         <button class="ctrl-btn check-btn" id="practice_check_dynamic">ПРОВЕРИТЬ</button>
+                        <button class="ctrl-btn" id="practiceSpeakBtn" style="background:#3B6FE0;color:white;">🔊</button>
                     </div>
                     
                     <div class="hint-area">
@@ -211,6 +207,15 @@ function renderLessons() {
                 </div>
             </div>
         `;
+        
+        // Обработчик для кнопки озвучки (справа от кнопки ПРОВЕРИТЬ)
+        const speakBtn = document.getElementById('practiceSpeakBtn');
+        if (speakBtn && exercise.question) {
+            speakBtn.onclick = (e) => {
+                e.stopPropagation();
+                speak(exercise.question);
+            };
+        }
         
         const wordButtons = document.querySelectorAll('#practice_words_dynamic .word-btn');
         wordButtons.forEach(btn => {
