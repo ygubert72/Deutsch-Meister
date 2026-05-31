@@ -86,6 +86,7 @@ function toggleLessons() {
 
 async function init() {
     loadProgress();
+    loadGrammarProgress();  // ДОБАВЛЕНО
     await loadWords();
     await loadSentences();
     await loadLessonsAndPractice();
