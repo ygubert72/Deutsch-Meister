@@ -2,17 +2,13 @@
   {
     "lesson": 1,
     "title": "Определённые артикли: der, die, das",
-    "theory": "<h3>📌 Определённые артикли в немецком языке</h3><p>В немецком языке все существительные имеют род. Род определяется артиклем:</p><ul><li><strong>der</strong> — мужской род (Maskulinum)</li><li><strong>die</strong> — женский род (Femininum)</li><li><strong>das</strong> — средний род (Neutrum)</li></ul><p>Артикль всегда ставится перед существительным и изменяется по падежам. На уровне A1 мы учим правильное определение рода.</p><p><strong>Совет:</strong> Всегда учите существительные вместе с артиклем! Не просто 'Tisch', а 'der Tisch'.</p>",
+    "theory": "<h3>📌 Определённые артикли в немецком языке</h3><p>В немецком языке все существительные имеют род. Род определяется артиклем:</p><ul><li><strong>der</strong> — мужской род (Maskulinum)</li><li><strong>die</strong> — женский род (Femininum)</li><li><strong>das</strong> — средний род (Neutrum)</li></ul><p>Артикль всегда ставится перед существительным.</p><p><strong>Совет:</strong> Всегда учите существительные вместе с артиклем! Не просто 'Tisch', а 'der Tisch'.</p>",
     "examples": [
       {"de": "der Mann", "ru": "мужчина"},
       {"de": "die Frau", "ru": "женщина"},
       {"de": "das Kind", "ru": "ребёнок"},
       {"de": "der Vater", "ru": "отец"},
-      {"de": "die Mutter", "ru": "мать"},
-      {"de": "das Buch", "ru": "книга"},
-      {"de": "der Hund", "ru": "собака"},
-      {"de": "die Katze", "ru": "кошка"},
-      {"de": "das Haus", "ru": "дом"}
+      {"de": "die Mutter", "ru": "мать"}
     ],
     "exercises": [
       {
@@ -29,16 +25,6 @@
         "question": "Какой артикль у слова 'Kind' (ребёнок)?",
         "answer": "das",
         "hint": "Средний род, ребёнок"
-      },
-      {
-        "question": "Вставь артикль: ___ Vater",
-        "answer": "der",
-        "hint": "Отец — мужской род"
-      },
-      {
-        "question": "Вставь артикль: ___ Mutter",
-        "answer": "die",
-        "hint": "Мать — женский род"
       }
     ]
   },
@@ -49,10 +35,7 @@
     "examples": [
       {"de": "ein Mann", "ru": "какой-то мужчина"},
       {"de": "eine Frau", "ru": "какая-то женщина"},
-      {"de": "ein Kind", "ru": "какой-то ребёнок"},
-      {"de": "ein Vater", "ru": "какой-то отец"},
-      {"de": "eine Mutter", "ru": "какая-то мать"},
-      {"de": "ein Buch", "ru": "какая-то книга"}
+      {"de": "ein Kind", "ru": "какой-то ребёнок"}
     ],
     "exercises": [
       {
@@ -69,31 +52,19 @@
         "question": "Вставь артикль: Das ist ___ Kind.",
         "answer": "ein",
         "hint": "Kind — средний род → ein"
-      },
-      {
-        "question": "Вставь артикль: Das ist ___ Mutter.",
-        "answer": "eine",
-        "hint": "Mutter — женский род → eine"
-      },
-      {
-        "question": "Вставь артикль: Das ist ___ Vater.",
-        "answer": "ein",
-        "hint": "Vater — мужской род → ein"
       }
     ]
   },
   {
     "lesson": 3,
-    "title": "Личные местоимения и глагол sein (быть)",
-    "theory": "<h3>📌 Личные местоимения</h3><p>Личные местоимения заменяют существительные:</p><table style='width:100%; border-collapse:collapse;'><tr><th style='border:1px solid #ddd; padding:8px;'>Русский</th><th style='border:1px solid #ddd; padding:8px;'>Немецкий</th></td><tr><td style='border:1px solid #ddd; padding:8px;'>я</td><td style='border:1px solid #ddd; padding:8px;'><strong>ich</strong></td></tr><tr><td style='border:1px solid #ddd; padding:8px;'>ты</td><td style='border:1px solid #ddd; padding:8px;'><strong>du</strong></td></tr><tr><td style='border:1px solid #ddd; padding:8px;'>он</td><td style='border:1px solid #ddd; padding:8px;'><strong>er</strong></td></tr><tr><td style='border:1px solid #ddd; padding:8px;'>она</td><td style='border:1px solid #ddd; padding:8px;'><strong>sie</strong></td></tr></tr><td style='border:1px solid #ddd; padding:8px;'>оно</td><td style='border:1px solid #ddd; padding:8px;'><strong>es</strong></td></tr><tr><td style='border:1px solid #ddd; padding:8px;'>мы</td><td style='border:1px solid #ddd; padding:8px;'><strong>wir</strong></td></tr><tr><td style='border:1px solid #ddd; padding:8px;'>вы</td><td style='border:1px solid #ddd; padding:8px;'><strong>ihr</strong></td></tr><tr><td style='border:1px solid #ddd; padding:8px;'>они / Вы</td><td style='border:1px solid #ddd; padding:8px;'><strong>sie / Sie</strong></td></tr></table><h3>📌 Глагол sein (быть)</h3><p>Спряжение глагола sein (быть) в настоящем времени:</p><table style='width:100%; border-collapse:collapse;'><tr><th style='border:1px solid #ddd; padding:8px;'>ich</th><td style='border:1px solid #ddd; padding:8px;'><strong>bin</strong></td><td style='border:1px solid #ddd; padding:8px;'>я есть</td></tr><tr><th style='border:1px solid #ddd; padding:8px;'>du</th><td style='border:1px solid #ddd; padding:8px;'><strong>bist</strong></td><td style='border:1px solid #ddd; padding:8px;'>ты есть</td></tr><tr><th style='border:1px solid #ddd; padding:8px;'>er/sie/es</th><td style='border:1px solid #ddd; padding:8px;'><strong>ist</strong></td><td style='border:1px solid #ddd; padding:8px;'>он/она/оно есть</td></tr><tr><th style='border:1px solid #ddd; padding:8px;'>wir</th><td style='border:1px solid #ddd; padding:8px;'><strong>sind</strong></td><td style='border:1px solid #ddd; padding:8px;'>мы есть</td></tr><tr><th style='border:1px solid #ddd; padding:8px;'>ihr</th><td style='border:1px solid #ddd; padding:8px;'><strong>seid</strong></td><td style='border:1px solid #ddd; padding:8px;'>вы есть</td></tr><tr><th style='border:1px solid #ddd; padding:8px;'>sie/Sie</th><td style='border:1px solid #ddd; padding:8px;'><strong>sind</strong></td><td style='border:1px solid #ddd; padding:8px;'>они/Вы есть</td></tr></table>",
+    "title": "Личные местоимения и глагол sein",
+    "theory": "<h3>📌 Личные местоимения</h3><p>Личные местоимения заменяют существительные:</p><ul><li><strong>ich</strong> — я</li><li><strong>du</strong> — ты</li><li><strong>er</strong> — он</li><li><strong>sie</strong> — она</li><li><strong>es</strong> — оно</li><li><strong>wir</strong> — мы</li><li><strong>ihr</strong> — вы</li><li><strong>sie</strong> — они</li><li><strong>Sie</strong> — Вы (вежливая форма)</li></ul><h3>📌 Глагол sein (быть)</h3><p>Спряжение глагола sein в настоящем времени:</p><ul><li>ich <strong>bin</strong> — я есть</li><li>du <strong>bist</strong> — ты есть</li><li>er/sie/es <strong>ist</strong> — он/она/оно есть</li><li>wir <strong>sind</strong> — мы есть</li><li>ihr <strong>seid</strong> — вы есть</li><li>sie/Sie <strong>sind</strong> — они/Вы есть</li></ul>",
     "examples": [
       {"de": "Ich bin ein Mann.", "ru": "Я мужчина."},
       {"de": "Du bist eine Frau.", "ru": "Ты женщина."},
       {"de": "Er ist der Vater.", "ru": "Он отец."},
       {"de": "Sie ist die Mutter.", "ru": "Она мать."},
-      {"de": "Das Kind ist klein.", "ru": "Ребёнок маленький."},
-      {"de": "Wir sind gut.", "ru": "Мы хорошие."},
-      {"de": "Ihr seid groß.", "ru": "Вы большие."}
+      {"de": "Das Kind ist klein.", "ru": "Ребёнок маленький."}
     ],
     "exercises": [
       {
@@ -110,11 +81,6 @@
         "question": "Спрягай глагол 'sein' для 'er': Er ___",
         "answer": "ist",
         "hint": "Он есть → ist"
-      },
-      {
-        "question": "Спрягай глагол 'sein' для 'wir': Wir ___",
-        "answer": "sind",
-        "hint": "Мы есть → sind"
       },
       {
         "question": "Переведи на немецкий: 'Я мужчина.'",
