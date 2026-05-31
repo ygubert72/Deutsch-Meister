@@ -7,7 +7,7 @@ const AppConfig = {
 };
 
 // Глобальные состояния
-let currentMode = 'cards';
+let currentMode = 'grammar';  // ← ИЗМЕНЕНО: 'cards' → 'grammar'
 let lessonsExpanded = false;
 let currentLesson = 1;
 let lessonMode = 'theory';
@@ -38,6 +38,7 @@ function saveProgress() {
     }
 }
 
+// Функция загрузки
 function loadProgress() {
     try {
         const wp = localStorage.getItem('dm_words_progress');
@@ -60,6 +61,7 @@ function loadProgress() {
     });
 }
 
+// Озвучка (глобальная)
 function speak(text) {
     if (!text || !window.speechSynthesis) return;
     const clean = text.replace(/[^\w\s\-äöüßÄÖÜ]/g, '');
