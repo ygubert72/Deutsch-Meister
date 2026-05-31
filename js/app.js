@@ -54,8 +54,9 @@ function setLevel(level) {
         else btn.classList.remove('active');
     });
     
+    // Обновляем отображение в зависимости от текущего режима
     if (currentMode === 'lessons') {
-        setMode('cards');
+        renderLessons();
     } else if (currentMode === 'cards') {
         renderCards();
     } else if (currentMode === 'quiz') {
@@ -111,15 +112,16 @@ async function init() {
     });
     document.getElementById('toggleLessonsBtn').onclick = toggleLessons;
     
+    // Активируем кнопку текущего уровня
     document.querySelectorAll('[data-level]').forEach(btn => {
         if (btn.dataset.level === AppConfig.currentLevel) btn.classList.add('active');
         else btn.classList.remove('active');
     });
     
-    // Убираем мигание: сначала показываем заглушку "Загрузка..."
-    document.getElementById('content').innerHTML = '<div style="text-align:center;padding:40px;">📚 Загрузка грамматики...</div>';
+    // Показываем заглушку загрузки
+    document.getElementById('content').innerHTML = '<div style="text-align:center;padding:40px;">📚 Загрузка грамматики A1...</div>';
     
-    // Открываем грамматику (без предварительного открытия карточек)
+    // Открываем грамматику
     setMode('grammar');
     
     console.log('init: завершено, открыта грамматика');
