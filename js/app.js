@@ -3,6 +3,9 @@ let grammarProgress = { A1: [], A2: [], B1: [], B2: [], C1: [] };
 let currentGrammarLesson = null;
 let currentGrammarMode = 'theory';
 
+// Флаг, что загрузка завершена
+let grammarDataLoaded = false;
+
 function updateCounter() {
     const el = document.getElementById('counter');
     if (!el) return;
@@ -106,7 +109,7 @@ async function init() {
         else btn.classList.remove('active');
     });
     
-    // Прямо открываем грамматику, без скачков
+    // Открываем грамматику только после полной загрузки всех данных
     setMode('grammar');
 }
 
