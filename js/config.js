@@ -30,7 +30,9 @@ function saveProgress() {
         show_language: AppConfig.show_language,
         quiz_direction: AppConfig.quiz_direction,
         sentence_lang_from: AppConfig.sentence_lang_from,
-        last_mode: currentMode
+        last_mode: currentMode,
+        last_grammar_lesson: window.currentGrammarLesson !== undefined ? window.currentGrammarLesson : null,
+        last_grammar_mode: window.currentGrammarMode !== undefined ? window.currentGrammarMode : 'theory'
     }));
     
     if (window.saveUserProgressToFirebase) {
@@ -52,6 +54,12 @@ function loadProgress() {
             AppConfig.quiz_direction = parsed.quiz_direction || 'de_to_ru';
             AppConfig.sentence_lang_from = parsed.sentence_lang_from || 'ru';
             currentMode = parsed.last_mode || 'grammar';
+            if (parsed.last_grammar_lesson !== undefined && parsed.last_grammar_lesson !== null) {
+                window.currentGrammarLesson = parsed.last_grammar_lesson;
+            }
+            if (parsed.last_grammar_mode !== undefined) {
+                window.currentGrammarMode = parsed.last_grammar_mode;
+            }
         }
     } catch(e) {}
     
