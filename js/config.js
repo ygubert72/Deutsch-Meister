@@ -7,7 +7,7 @@ const AppConfig = {
 };
 
 // Глобальные состояния
-let currentMode = 'grammar';
+let currentMode = 'cards';
 let lessonsExpanded = false;
 let currentLesson = 1;
 let lessonMode = 'theory';
@@ -24,7 +24,6 @@ let sentencesProgress = {};
 
 // Функция сохранения (локально + Firebase)
 function saveProgress() {
-    // Сохраняем в localStorage
     localStorage.setItem('dm_words_progress', JSON.stringify(wordsProgress));
     localStorage.setItem('dm_sentences_progress', JSON.stringify(sentencesProgress));
     localStorage.setItem('dm_config', JSON.stringify({
@@ -34,13 +33,11 @@ function saveProgress() {
         sentence_lang_from: AppConfig.sentence_lang_from
     }));
     
-    // Сохраняем в Firebase (если пользователь залогинен)
     if (window.saveUserProgressToFirebase) {
         window.saveUserProgressToFirebase();
     }
 }
 
-// Функция загрузки
 function loadProgress() {
     try {
         const wp = localStorage.getItem('dm_words_progress');
@@ -63,7 +60,6 @@ function loadProgress() {
     });
 }
 
-// Озвучка (глобальная)
 function speak(text) {
     if (!text || !window.speechSynthesis) return;
     const clean = text.replace(/[^\w\s\-äöüßÄÖÜ]/g, '');
