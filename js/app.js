@@ -110,7 +110,6 @@ async function init() {
         else btn.classList.remove('active');
     });
     
-    // Открываем сохранённый режим
     setMode(currentMode);
     
     console.log('init: завершено');
