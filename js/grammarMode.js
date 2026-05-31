@@ -2,11 +2,17 @@
 // grammarMode.js - Режим ГРАММАТИКА (РАБОЧАЯ ВЕРСИЯ)
 // ============================================================
 
+let grammarDB = { A1: [], A2: [], B1: [], B2: [], C1: [] };
+let grammarProgress = { A1: [], A2: [], B1: [], B2: [], C1: [] };
+let currentGrammarLesson = null;
+let currentGrammarMode = 'theory';
+window.currentGrammarLesson = null;
+window.currentGrammarMode = 'theory';
+
 let grammarExercises = [];
 let currentGrammarExerciseIndex = 0;
 let grammarBlinkTimer = null;
 
-// Загрузка грамматики из JSON файлов
 async function loadGrammarData() {
     console.log('loadGrammarData: началась загрузка');
     const levels = ['A1', 'A2', 'B1', 'B2', 'C1'];
@@ -43,12 +49,10 @@ async function loadGrammarData() {
     saveProgress();
 }
 
-// Сохранение прогресса
 function saveGrammarProgress() {
     localStorage.setItem('dm_grammar_progress', JSON.stringify(grammarProgress));
 }
 
-// Загрузка прогресса
 function loadGrammarProgress() {
     try {
         const gp = localStorage.getItem('dm_grammar_progress');
@@ -60,7 +64,6 @@ function loadGrammarProgress() {
     });
 }
 
-// Отметить урок как пройденный
 function markGrammarLessonCompleted(lessonIndex) {
     const level = AppConfig.currentLevel;
     if (!grammarProgress[level]) grammarProgress[level] = [];
@@ -70,13 +73,11 @@ function markGrammarLessonCompleted(lessonIndex) {
     updateCounter();
 }
 
-// Проверить, пройден ли урок
 function isGrammarLessonCompleted(lessonIndex) {
     const level = AppConfig.currentLevel;
     return grammarProgress[level]?.[lessonIndex]?.completed === true;
 }
 
-// ГЛАВНАЯ ФУНКЦИЯ ОТРИСОВКИ
 function renderGrammar() {
     console.log('renderGrammar: начата');
     const level = AppConfig.currentLevel;
@@ -90,6 +91,19 @@ function renderGrammar() {
                 <div style="font-size: 14px; margin-top: 20px;">Попробуйте обновить страницу (F5)</div>
             </div>
         `;
+        return;
+    }
+    
+    const savedLesson = window.currentGrammarLesson;
+    const savedMode = window.currentGrammarMode;
+    
+    if (savedLesson !== null && savedLesson !== undefined && lessons[savedLesson]) {
+        console.log('Восстанавливаю урок грамматики:', savedLesson);
+        currentGrammarLesson = savedLesson;
+        currentGrammarMode = savedMode || 'theory';
+        window.currentGrammarLesson = savedLesson;
+        window.currentGrammarMode = savedMode || 'theory';
+        renderGrammarLesson(savedLesson);
         return;
     }
     
@@ -118,19 +132,20 @@ function renderGrammar() {
     
     document.getElementById('content').innerHTML = html;
     
-    // НАЗНАЧАЕМ ОБРАБОТЧИКИ - ИСПРАВЛЕННАЯ ВЕРСИЯ
     const buttons = document.querySelectorAll('[data-lesson-index]');
     console.log('Найдено кнопок уроков:', buttons.length);
     
     for (let i = 0; i < buttons.length; i++) {
         const btn = buttons[i];
         const lessonIdx = parseInt(btn.getAttribute('data-lesson-index'));
-        console.log('Кнопка', i, 'индекс урока:', lessonIdx);
         
         btn.onclick = (function(idx) {
             return function() {
                 console.log('КЛИК по уроку с индексом:', idx);
                 currentGrammarLesson = idx;
+                currentGrammarMode = 'theory';
+                window.currentGrammarLesson = idx;
+                window.currentGrammarMode = 'theory';
                 renderGrammarLesson(idx);
             };
         })(lessonIdx);
@@ -139,12 +154,14 @@ function renderGrammar() {
     updateCounter();
 }
 
-// Отрисовка конкретного урока
 function renderGrammarLesson(lessonIdx) {
-    console.log('renderGrammarLesson: открытие урока', lessonIdx, 'тип:', typeof lessonIdx);
+    console.log('renderGrammarLesson: открытие урока', lessonIdx);
     const level = AppConfig.currentLevel;
     
-    // Проверка на NaN
+    currentGrammarLesson = lessonIdx;
+    window.currentGrammarLesson = lessonIdx;
+    saveProgress();
+    
     if (isNaN(lessonIdx)) {
         console.error('Ошибка: lessonIdx = NaN');
         document.getElementById('content').innerHTML = '<div style="text-align:center;padding:40px;">Ошибка: индекс урока не определён</div>';
@@ -154,7 +171,7 @@ function renderGrammarLesson(lessonIdx) {
     const lesson = grammarDB[level][lessonIdx];
     
     if (!lesson) {
-        console.error('Урок не найден! lessonIdx=', lessonIdx, 'grammarDB[level]=', grammarDB[level]);
+        console.error('Урок не найден!');
         document.getElementById('content').innerHTML = '<div style="text-align:center;padding:40px;">Ошибка: урок не найден</div>';
         return;
     }
@@ -171,33 +188,44 @@ function renderGrammarLesson(lessonIdx) {
                 <div>Уровень ${level}</div>
             </div>
             <div class="lesson-mode" id="grammarModeContainer">
-                <button id="grammarTheoryBtn" class="lesson-mode-btn active" style="cursor: pointer;">ТЕОРИЯ</button>
-                <button id="grammarPracticeBtn" class="lesson-mode-btn" style="cursor: pointer;">УПРАЖНЕНИЯ</button>
+                <button id="grammarTheoryBtn" class="lesson-mode-btn ${currentGrammarMode === 'theory' ? 'active' : ''}" style="cursor: pointer;">ТЕОРИЯ</button>
+                <button id="grammarPracticeBtn" class="lesson-mode-btn ${currentGrammarMode === 'practice' ? 'active' : ''}" style="cursor: pointer;">УПРАЖНЕНИЯ</button>
             </div>
             <div id="grammarContent" class="lesson-text"></div>
         </div>
     `;
     
-    document.getElementById('backToGrammarList').onclick = () => renderGrammar();
+    document.getElementById('backToGrammarList').onclick = () => {
+        currentGrammarLesson = null;
+        window.currentGrammarLesson = null;
+        renderGrammar();
+    };
     
     document.getElementById('grammarTheoryBtn').onclick = () => {
         currentGrammarMode = 'theory';
+        window.currentGrammarMode = 'theory';
         document.getElementById('grammarTheoryBtn').classList.add('active');
         document.getElementById('grammarPracticeBtn').classList.remove('active');
         showGrammarTheory(lesson);
+        saveProgress();
     };
     
     document.getElementById('grammarPracticeBtn').onclick = () => {
         currentGrammarMode = 'practice';
+        window.currentGrammarMode = 'practice';
         document.getElementById('grammarPracticeBtn').classList.add('active');
         document.getElementById('grammarTheoryBtn').classList.remove('active');
         showGrammarPractice(lesson, lessonIdx);
+        saveProgress();
     };
     
-    showGrammarTheory(lesson);
+    if (currentGrammarMode === 'theory') {
+        showGrammarTheory(lesson);
+    } else {
+        showGrammarPractice(lesson, lessonIdx);
+    }
 }
 
-// Отображение теории
 function showGrammarTheory(lesson) {
     const container = document.getElementById('grammarContent');
     if (!container) return;
@@ -235,10 +263,13 @@ function showGrammarTheory(lesson) {
     `;
 }
 
-// Отображение практики
 function showGrammarPractice(lesson, lessonIdx) {
-    grammarExercises = lesson.exercises || [];
-    currentGrammarExerciseIndex = 0;
+    if (!grammarExercises.length || grammarExercises !== (lesson.exercises || [])) {
+        grammarExercises = lesson.exercises || [];
+        if (typeof currentGrammarExerciseIndex === 'undefined' || currentGrammarExerciseIndex >= grammarExercises.length) {
+            currentGrammarExerciseIndex = 0;
+        }
+    }
     
     if (!grammarExercises.length) {
         document.getElementById('grammarContent').innerHTML = `
@@ -250,7 +281,11 @@ function showGrammarPractice(lesson, lessonIdx) {
         return;
     }
     
-    showGrammarExercise(grammarExercises[0], lesson, lessonIdx);
+    if (currentGrammarExerciseIndex >= grammarExercises.length) {
+        currentGrammarExerciseIndex = 0;
+    }
+    
+    showGrammarExercise(grammarExercises[currentGrammarExerciseIndex], lesson, lessonIdx);
 }
 
 function showGrammarExercise(exercise, lesson, lessonIdx) {
