@@ -208,18 +208,15 @@ function renderLessons() {
             </div>
         `;
         
-        // ========== ОЗВУЧКА (как в режиме Фразы) ==========
         const speakBtn = document.getElementById('practiceSpeakBtn');
         if (speakBtn && exercise.answer) {
             speakBtn.onclick = (e) => {
                 e.stopPropagation();
                 let germanText = exercise.answer;
-                // Убираем только пунктуацию в конце строки
                 germanText = germanText.replace(/[.,!?;:]+$/, '');
                 speak(germanText);
             };
         }
-        // =================================================
         
         const wordButtons = document.querySelectorAll('#practice_words_dynamic .word-btn');
         wordButtons.forEach(btn => {
