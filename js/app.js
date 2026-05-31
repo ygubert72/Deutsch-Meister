@@ -3,9 +3,6 @@ let grammarProgress = { A1: [], A2: [], B1: [], B2: [], C1: [] };
 let currentGrammarLesson = null;
 let currentGrammarMode = 'theory';
 
-// Флаг, что загрузка завершена
-let grammarDataLoaded = false;
-
 function updateCounter() {
     const el = document.getElementById('counter');
     if (!el) return;
@@ -87,12 +84,22 @@ function toggleLessons() {
 }
 
 async function init() {
+    console.log('init: начало загрузки');
+    
     loadProgress();
     loadGrammarProgress();
+    
     await loadWords();
+    console.log('init: слова загружены');
+    
     await loadSentences();
+    console.log('init: фразы загружены');
+    
     await loadLessonsAndPractice();
+    console.log('init: уроки загружены');
+    
     await loadGrammarData();
+    console.log('init: грамматика загружена');
     
     buildLessonsList();
     
@@ -109,8 +116,13 @@ async function init() {
         else btn.classList.remove('active');
     });
     
-    // Открываем грамматику только после полной загрузки всех данных
+    // Убираем мигание: сначала показываем заглушку "Загрузка..."
+    document.getElementById('content').innerHTML = '<div style="text-align:center;padding:40px;">📚 Загрузка грамматики...</div>';
+    
+    // Открываем грамматику (без предварительного открытия карточек)
     setMode('grammar');
+    
+    console.log('init: завершено, открыта грамматика');
 }
 
 init();
