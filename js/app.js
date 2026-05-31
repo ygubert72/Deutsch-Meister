@@ -101,12 +101,14 @@ async function init() {
     });
     document.getElementById('toggleLessonsBtn').onclick = toggleLessons;
     
-    document.querySelectorAll('[data-level]').forEach(btn => {
+        document.querySelectorAll('[data-level]').forEach(btn => {
         if (btn.dataset.level === AppConfig.currentLevel) btn.classList.add('active');
         else btn.classList.remove('active');
     });
     
-    setMode('cards');
+    setMode('grammar');
 }
+
+init();
 
 init();
