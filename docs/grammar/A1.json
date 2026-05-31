@@ -69,7 +69,46 @@
       {"question": "12. Переведи на немецкий: 'Это не женщина.'", "answer": "das ist keine frau", "hint": "Das ist keine Frau."},
       {"question": "13. Переведи на немецкий: 'Это не ребёнок.'", "answer": "das ist kein kind", "hint": "Das ist kein Kind."},
       {"question": "14. Переведи на немецкий: 'У неё есть кошка.'", "answer": "sie hat eine katze", "hint": "Sie hat eine Katze."},
-      {"question": "15. Переведи на немецкий: 'Что это? Это книга.'", "answer": "was ist das das ist ein buch", "hint": "Was ist das? Das ist ein Buch."}
+      {"question": "15. Переведи на немецкий: 'Что это? Это книга.'", "answer": "was ist das das ist ein buch", "hint": "Was ist das? Das ist ein Buch."},
+    ,
+  {
+    "lesson": 4,
+    "title": "Глагол haben (иметь) и отрицание kein/keine",
+    "theory": "<h3>📌 Глагол haben (иметь, обладать)</h3><p>Глагол <strong>haben</strong> — второй по важности глагол в немецком языке (после sein). Он означает 'иметь', 'обладать', 'у меня есть'.</p><p><strong>Спряжение haben в настоящем времени (Präsens):</strong></p><table style='width:100%; border-collapse:collapse; margin:15px 0;'><tr style='background:#3B6FE0; color:white;'><th style='padding:10px; border:1px solid #ddd;'>Местоимение</th><th style='padding:10px; border:1px solid #ddd;'>Форма глагола</th><th style='padding:10px; border:1px solid #ddd;'>Перевод</th></tr><tr><td style='padding:8px; border:1px solid #ddd;'>ich</td><td style='padding:8px; border:1px solid #ddd;'><strong>habe</strong></td><td style='padding:8px; border:1px solid #ddd;'>я имею</td></tr><tr><td style='padding:8px; border:1px solid #ddd;'>du</td><td style='padding:8px; border:1px solid #ddd;'><strong>hast</strong></td><td style='padding:8px; border:1px solid #ddd;'>ты имеешь</td></tr><tr><td style='padding:8px; border:1px solid #ddd;'>er/sie/es</td><td style='padding:8px; border:1px solid #ddd;'><strong>hat</strong></td><td style='padding:8px; border:1px solid #ddd;'>он/она/оно имеет</td></tr><tr><td style='padding:8px; border:1px solid #ddd;'>wir</td><td style='padding:8px; border:1px solid #ddd;'><strong>haben</strong></td><td style='padding:8px; border:1px solid #ddd;'>мы имеем</td></tr><tr><td style='padding:8px; border:1px solid #ddd;'>ihr</td><td style='padding:8px; border:1px solid #ddd;'><strong>habt</strong></td><td style='padding:8px; border:1px solid #ddd;'>вы имеете</td></tr><tr><td style='padding:8px; border:1px solid #ddd;'>sie/Sie</td><td style='padding:8px; border:1px solid #ddd;'><strong>haben</strong></td><td style='padding:8px; border:1px solid #ddd;'>они/Вы имеют</td></tr></table><br><h3>📌 Когда используется haben?</h3><p><strong>1. Для указания принадлежности (у меня есть...):</strong><br>Ich <strong>habe</strong> einen Bruder. (У меня есть брат.)<br>Sie <strong>hat</strong> eine Schwester. (У неё есть сестра.)</p><p><strong>2. Для описания физических состояний:</strong><br>Ich <strong>habe</strong> Hunger. (Я голоден. Букв.: Я имею голод.)<br>Er <strong>hat</strong> Durst. (Он хочет пить. Букв.: Он имеет жажду.)<br>Wir <strong>haben</strong> Zeit. (У нас есть время.)</p><p><strong>3. Для образования прошедшего времени Perfekt:</strong><br>Ich <strong>habe</strong> gemacht. (Я сделал.) — об этом в уроке 12.</p><br><h3>📌 Отрицание kein / keine</h3><p>В немецком языке есть два способа сказать 'нет' перед существительным:</p><ul><li><strong>kein</strong> — для существительных мужского и среднего рода (ein → kein)</li><li><strong>keine</strong> — для существительных женского рода и множественного числа (eine → keine)</li></ul><p><strong>Сравните:</strong></p><table style='width:100%; border-collapse:collapse; margin:15px 0;'><tr style='background:#3B6FE0; color:white;'><th style='padding:10px; border:1px solid #ddd;'>Утверждение</th><th style='padding:10px; border:1px solid #ddd;'>Отрицание</th></tr><tr><td style='padding:8px; border:1px solid #ddd;'>Das ist <strong>ein</strong> Mann.</td><td style='padding:8px; border:1px solid #ddd;'>Das ist <strong>kein</strong> Mann.</td></tr><tr><td style='padding:8px; border:1px solid #ddd;'>Das ist <strong>eine</strong> Frau.</td><td style='padding:8px; border:1px solid #ddd;'>Das ist <strong>keine</strong> Frau.</td></tr><tr><td style='padding:8px; border:1px solid #ddd;'>Das ist <strong>ein</strong> Kind.</td><td style='padding:8px; border:1px solid #ddd;'>Das ist <strong>kein</strong> Kind.</td></tr><tr><td style='padding:8px; border:1px solid #ddd;'>Das sind Bücher.</td><td style='padding:8px; border:1px solid #ddd;'>Das sind <strong>keine</strong> Bücher.</td></tr></table><br><h3>📌 Разница между nicht и kein</h3><p><strong>kein/keine</strong> используется ТОЛЬКО перед существительными и заменяет неопределённый артикль или нулевой артикль.</p><p><strong>nicht</strong> используется во всех остальных случаях (перед глаголами, прилагательными, наречиями, определёнными артиклями).</p><p>Примеры с nicht:<br>Ich bin <strong>nicht</strong> müde. (Я не устал.)<br>Das ist <strong>nicht</strong> der Mann. (Это не тот мужчина.)</p><br><h3>📌 Винительный падеж (Akkusativ) с haben</h3><p>После глагола <strong>haben</strong> существительное стоит в винительном падеже (Akkusativ). В винительном падеже:</p><ul><li>der → den (Ich habe <strong>den</strong> Mann.)</li><li>ein → einen (Ich habe <strong>einen</strong> Mann.)</li><li>kein → keinen (Ich habe <strong>keinen</strong> Mann.)</li><li>die → die (не меняется)</li><li>eine → eine (не меняется)</li><li>keine → keine (не меняется)</li><li>das → das (не меняется)</li><li>ein → ein (не меняется)</li><li>kein → kein (не меняется)</li></ul><p><strong>Запомните:</strong> Изменения касаются ТОЛЬКО мужского рода (der/ein/kein)!</p>",
+    "examples": [
+      {"de": "Ich habe einen Vater.", "ru": "У меня есть отец."},
+      {"de": "Sie hat eine Mutter.", "ru": "У неё есть мать."},
+      {"de": "Das Kind hat ein Buch.", "ru": "У ребёнка есть книга."},
+      {"de": "Wir haben einen Hund.", "ru": "У нас есть собака."},
+      {"de": "Ihr habt eine Katze.", "ru": "У вас есть кошка."},
+      {"de": "Sie haben Zeit.", "ru": "У них есть время."},
+      {"de": "Ich habe Hunger.", "ru": "Я голоден."},
+      {"de": "Er hat Durst.", "ru": "Он хочет пить."},
+      {"de": "Das ist kein Mann.", "ru": "Это не мужчина."},
+      {"de": "Das ist keine Frau.", "ru": "Это не женщина."},
+      {"de": "Das ist kein Kind.", "ru": "Это не ребёнок."},
+      {"de": "Ich habe keinen Hund.", "ru": "У меня нет собаки."},
+      {"de": "Sie hat keine Katze.", "ru": "У неё нет кошки."},
+      {"de": "Ich bin nicht müde.", "ru": "Я не устал (отрицание с nicht)."}
+    ],
+    "exercises": [
+      {"question": "1. Вставь правильную форму haben: Ich ___ einen Vater.", "answer": "habe", "hint": "ich → habe"},
+      {"question": "2. Вставь правильную форму haben: Du ___ eine Mutter.", "answer": "hast", "hint": "du → hast"},
+      {"question": "3. Вставь правильную форму haben: Er ___ einen Hund.", "answer": "hat", "hint": "er → hat"},
+      {"question": "4. Вставь правильную форму haben: Wir ___ eine Katze.", "answer": "haben", "hint": "wir → haben"},
+      {"question": "5. Вставь правильную форму haben: Ihr ___ ein Buch.", "answer": "habt", "hint": "ihr → habt"},
+      {"question": "6. Вставь правильную форму haben: Sie (они) ___ Zeit.", "answer": "haben", "hint": "sie (они) → haben"},
+      {"question": "7. Переведи на немецкий: 'У меня есть собака.'", "answer": "ich habe einen hund", "hint": "Ich habe einen Hund."},
+      {"question": "8. Переведи на немецкий: 'У неё есть кошка.'", "answer": "sie hat eine katze", "hint": "Sie hat eine Katze."},
+      {"question": "9. Переведи на немецкий: 'Я голоден.'", "answer": "ich habe hunger", "hint": "Ich habe Hunger."},
+      {"question": "10. Вставь kein/keine: Das ist ___ Mann.", "answer": "kein", "hint": "Mann — мужской род → kein"},
+      {"question": "11. Вставь kein/keine: Das ist ___ Frau.", "answer": "keine", "hint": "Frau — женский род → keine"},
+      {"question": "12. Вставь kein/keine: Das ist ___ Kind.", "answer": "kein", "hint": "Kind — средний род → kein"},
+      {"question": "13. Вставь kein/keine в винительном падеже: Ich habe ___ Hund.", "answer": "keinen", "hint": "kein в Akkusativ для мужского рода → keinen"},
+      {"question": "14. Вставь kein/keine в винительном падеже: Sie hat ___ Katze.", "answer": "keine", "hint": "keine в Akkusativ не меняется"},
+      {"question": "15. Переведи на немецкий: 'У меня нет времени.'", "answer": "ich habe keine zeit", "hint": "Ich habe keine Zeit."}
     ]
+  }
+]
   }
 ]
