@@ -87,17 +87,6 @@ function renderGrammar() {
     const level = AppConfig.currentLevel;
     const lessons = grammarDB[level];
     
-    // ========== НОВОЕ: Восстановление последнего урока ==========
-    const savedLesson = localStorage.getItem('dm_last_grammar_lesson');
-    const savedLevel = localStorage.getItem('dm_last_grammar_level');
-    if (savedLesson !== null && savedLevel === level && lessons && lessons[parseInt(savedLesson)]) {
-        const lessonIdx = parseInt(savedLesson);
-        console.log('Восстанавливаю урок:', lessonIdx);
-        renderGrammarLesson(lessonIdx);
-        return;
-    }
-    // ============================================================
-    
     if (!lessons || lessons.length === 0) {
         document.getElementById('content').innerHTML = `
             <div style="text-align: center; padding: 40px;">
@@ -134,18 +123,19 @@ function renderGrammar() {
     
     document.getElementById('content').innerHTML = html;
     
+    // НАЗНАЧАЕМ ОБРАБОТЧИКИ - ИСПРАВЛЕННАЯ ВЕРСИЯ
     const buttons = document.querySelectorAll('[data-lesson-index]');
     console.log('Найдено кнопок уроков:', buttons.length);
     
     for (let i = 0; i < buttons.length; i++) {
         const btn = buttons[i];
         const lessonIdx = parseInt(btn.getAttribute('data-lesson-index'));
+        console.log('Кнопка', i, 'индекс урока:', lessonIdx);
         
         btn.onclick = (function(idx) {
             return function() {
                 console.log('КЛИК по уроку с индексом:', idx);
                 currentGrammarLesson = idx;
-                currentGrammarMode = 'theory';
                 renderGrammarLesson(idx);
             };
         })(lessonIdx);
@@ -158,11 +148,6 @@ function renderGrammar() {
 function renderGrammarLesson(lessonIdx) {
     console.log('renderGrammarLesson: открытие урока', lessonIdx, 'тип:', typeof lessonIdx);
     const level = AppConfig.currentLevel;
-    
-    // ========== НОВОЕ: Сохраняем последний урок ==========
-    localStorage.setItem('dm_last_grammar_lesson', lessonIdx);
-    localStorage.setItem('dm_last_grammar_level', level);
-    // ====================================================
     
     // Проверка на NaN
     if (isNaN(lessonIdx)) {
