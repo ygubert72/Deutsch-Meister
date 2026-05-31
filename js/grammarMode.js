@@ -172,7 +172,7 @@ function renderGrammarLesson(lessonIdx) {
             </div>
             <div class="lesson-mode" id="grammarModeContainer">
                 <button id="grammarTheoryBtn" class="lesson-mode-btn active" style="cursor: pointer;">ТЕОРИЯ</button>
-                <button id="grammarPracticeBtn" class="lesson-mode-btn" style="cursor: pointer;">ПРАКТИКА</button>
+                <button id="grammarPracticeBtn" class="lesson-mode-btn" style="cursor: pointer;">УПРАЖНЕНИЯ</button>
             </div>
             <div id="grammarContent" class="lesson-text"></div>
         </div>
