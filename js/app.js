@@ -28,8 +28,6 @@ function updateCounter() {
         } else {
             el.textContent = `ГРАММАТИКА ${level} | Загрузка...`;
         }
-    } else {
-        el.textContent = `УРОКИ | Урок ${currentLesson}`;
     }
 }
 
@@ -48,24 +46,28 @@ function setMode(mode) {
 }
 
 function setLevel(level) {
+    // Сохраняем выбранный уровень
     AppConfig.currentLevel = level;
+    
+    // Обновляем активную кнопку уровня
     document.querySelectorAll('[data-level]').forEach(btn => {
         if (btn.dataset.level === level) btn.classList.add('active');
         else btn.classList.remove('active');
     });
     
-    // Обновляем отображение в зависимости от текущего режима
-    if (currentMode === 'lessons') {
-        renderLessons();
-    } else if (currentMode === 'cards') {
+    // Просто перерисовываем текущий режим с новым уровнем
+    if (currentMode === 'cards') {
         renderCards();
     } else if (currentMode === 'quiz') {
         renderQuiz();
     } else if (currentMode === 'sentences') {
         renderSentences();
+    } else if (currentMode === 'lessons') {
+        renderLessons();
     } else if (currentMode === 'grammar') {
         renderGrammar();
     }
+    
     updateCounter();
     saveProgress();
 }
@@ -117,9 +119,6 @@ async function init() {
         if (btn.dataset.level === AppConfig.currentLevel) btn.classList.add('active');
         else btn.classList.remove('active');
     });
-    
-    // Показываем заглушку загрузки
-    document.getElementById('content').innerHTML = '<div style="text-align:center;padding:40px;">📚 Загрузка грамматики A1...</div>';
     
     // Открываем грамматику
     setMode('grammar');
