@@ -80,6 +80,20 @@ function toggleLessons() {
     saveProgress();
 }
 
+function restoreLessonsPanel() {
+    const panel = document.getElementById('lessonsPanel');
+    const btn = document.getElementById('toggleLessonsBtn');
+    if (!panel || !btn) return;
+    
+    if (lessonsExpanded) {
+        panel.style.display = 'block';
+        btn.textContent = 'УРОКИ ▼';
+    } else {
+        panel.style.display = 'none';
+        btn.textContent = 'УРОКИ ▶';
+    }
+}
+
 async function init() {
     console.log('init: начало загрузки');
     
@@ -93,15 +107,7 @@ async function init() {
     
     buildLessonsList();
     
-    // Восстанавливаем состояние меню уроков
-    if (lessonsExpanded) {
-        document.getElementById('lessonsPanel').style.display = 'block';
-        document.getElementById('toggleLessonsBtn').textContent = 'УРОКИ ▼';
-    } else {
-        document.getElementById('lessonsPanel').style.display = 'none';
-        document.getElementById('toggleLessonsBtn').textContent = 'УРОКИ ▶';
-    }
-    
+    // Восстанавливаем кнопки режимов и уровней
     document.querySelectorAll('.mode-btn').forEach(btn => {
         btn.onclick = () => setMode(btn.dataset.mode);
     });
@@ -115,6 +121,10 @@ async function init() {
         else btn.classList.remove('active');
     });
     
+    // Восстанавливаем состояние панели уроков ДО того, как откроем режим
+    restoreLessonsPanel();
+    
+    // Открываем сохранённый режим
     setMode(currentMode);
     
     console.log('init: завершено');
