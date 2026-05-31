@@ -7,9 +7,14 @@
     <link rel="icon" type="image/svg+xml" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/de.svg">
     <link rel="stylesheet" href="css/style.css">
     <style>
-        /* Скрываем контент до полной загрузки */
-        .app { opacity: 0; transition: opacity 0.15s ease; }
-        .app.loaded { opacity: 1; }
+        /* Скрываем всё приложение до загрузки */
+        .app {
+            opacity: 0;
+            transition: opacity 0.1s ease;
+        }
+        .app.loaded {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -19,7 +24,7 @@
             <button id="loginBtn" onclick="window.showLoginModal && window.showLoginModal()" class="btn" style="margin-bottom: 10px;">🔐 Войти</button>
             
             <button class="btn" id="toggleLessonsBtn">УРОКИ ▶</button>
-            <div id="lessonsPanel" style="display: none; margin-top: 10px;"></div>
+            <div id="lessonsPanel" style="margin-top: 10px;"></div>
             
             <div id="userInfo" style="display: none; margin: 10px 0; padding: 8px; background: #E8F0FE; border-radius: 8px; text-align: center; font-size: 12px;"></div>
             
@@ -57,7 +62,7 @@
 <script type="module" src="js/auth.js"></script>
 
 <script>
-    // Показываем приложение только после полной загрузки
+    // Показываем приложение после загрузки
     window.addEventListener('load', function() {
         document.querySelector('.app').classList.add('loaded');
     });
