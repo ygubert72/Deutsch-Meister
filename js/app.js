@@ -1,4 +1,3 @@
-// Глобальные переменные для грамматики
 let grammarDB = { A1: [], A2: [], B1: [], B2: [], C1: [] };
 let grammarProgress = { A1: [], A2: [], B1: [], B2: [], C1: [] };
 let currentGrammarLesson = null;
@@ -107,10 +106,7 @@ async function init() {
         else btn.classList.remove('active');
     });
     
-    // Ждём 0.5 секунды после загрузки грамматики, затем открываем Грамматику
-    setTimeout(() => {
-        setMode('grammar');
-    }, 500);
+    setMode('cards');
 }
 
 init();
