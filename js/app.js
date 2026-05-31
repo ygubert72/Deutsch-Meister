@@ -55,7 +55,7 @@ function setLevel(level) {
     });
     
     if (currentMode === 'lessons') {
-        setMode('grammar');
+        setMode('cards');
     } else if (currentMode === 'cards') {
         renderCards();
     } else if (currentMode === 'quiz') {
@@ -101,14 +101,19 @@ async function init() {
     });
     document.getElementById('toggleLessonsBtn').onclick = toggleLessons;
     
-        document.querySelectorAll('[data-level]').forEach(btn => {
+    document.querySelectorAll('[data-level]').forEach(btn => {
         if (btn.dataset.level === AppConfig.currentLevel) btn.classList.add('active');
         else btn.classList.remove('active');
     });
     
-    setMode('grammar');
+    // Сначала загружаем карточки (они точно работают)
+    setMode('cards');
+    
+    // Через 1 секунду переключаем на грамматику
+    setTimeout(() => {
+        setMode('grammar');
+        console.log('✅ Переключено на ГРАММАТИКУ');
+    }, 1000);
 }
-
-init();
 
 init();
