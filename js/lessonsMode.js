@@ -25,6 +25,7 @@ function buildLessonsList() {
         btn.onclick = () => {
             currentLesson = parseInt(btn.dataset.lesson);
             lessonMode = 'theory';
+            saveProgress();
             if (currentMode === 'lessons') renderLessons();
             else { setMode('lessons'); renderLessons(); }
         };
