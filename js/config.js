@@ -1,13 +1,13 @@
 // Глобальные настройки (аналог config.json)
 const AppConfig = {
-    currentLevel: 'A2',
+    currentLevel: 'A1',
     show_language: 'de',
     quiz_direction: 'de_to_ru',
     sentence_lang_from: 'ru'
 };
 
 // Глобальные состояния
-let currentMode = 'cards';
+let currentMode = 'grammar';  // ← ИЗМЕНЕНО: 'cards' → 'grammar'
 let lessonsExpanded = false;
 let currentLesson = 1;
 let lessonMode = 'theory';
@@ -50,7 +50,7 @@ function loadProgress() {
         const cfg = localStorage.getItem('dm_config');
         if (cfg) {
             const parsed = JSON.parse(cfg);
-            AppConfig.currentLevel = parsed.last_level || 'A2';
+            AppConfig.currentLevel = parsed.last_level || 'A1';
             AppConfig.show_language = parsed.show_language || 'de';
             AppConfig.quiz_direction = parsed.quiz_direction || 'de_to_ru';
             AppConfig.sentence_lang_from = parsed.sentence_lang_from || 'ru';
