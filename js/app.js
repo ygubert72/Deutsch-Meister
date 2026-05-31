@@ -79,14 +79,14 @@ function toggleLessons() {
         lessonsExpanded = false;
     } else {
         panel.style.display = 'block';
-        btn.textContent = 'КУРС ГРАММАТИКИ ▼';
+        btn.textContent = 'УРОКИ ▼';
         lessonsExpanded = true;
     }
 }
 
 async function init() {
     loadProgress();
-    loadGrammarProgress();  // ДОБАВЛЕНО
+    loadGrammarProgress();
     await loadWords();
     await loadSentences();
     await loadLessonsAndPractice();
