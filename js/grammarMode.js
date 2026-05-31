@@ -11,7 +11,6 @@ let grammarExercises = [];
 let currentGrammarExerciseIndex = 0;
 let grammarBlinkTimer = null;
 
-// Загрузка грамматики из JSON файлов
 async function loadGrammarData() {
     console.log('loadGrammarData: началась загрузка');
     const levels = ['A1', 'A2', 'B1', 'B2', 'C1'];
@@ -48,12 +47,10 @@ async function loadGrammarData() {
     saveProgress();
 }
 
-// Сохранение прогресса
 function saveGrammarProgress() {
     localStorage.setItem('dm_grammar_progress', JSON.stringify(grammarProgress));
 }
 
-// Загрузка прогресса
 function loadGrammarProgress() {
     try {
         const gp = localStorage.getItem('dm_grammar_progress');
@@ -65,7 +62,6 @@ function loadGrammarProgress() {
     });
 }
 
-// Отметить урок как пройденный
 function markGrammarLessonCompleted(lessonIndex) {
     const level = AppConfig.currentLevel;
     if (!grammarProgress[level]) grammarProgress[level] = [];
@@ -75,19 +71,16 @@ function markGrammarLessonCompleted(lessonIndex) {
     updateCounter();
 }
 
-// Проверить, пройден ли урок
 function isGrammarLessonCompleted(lessonIndex) {
     const level = AppConfig.currentLevel;
     return grammarProgress[level]?.[lessonIndex]?.completed === true;
 }
 
-// ГЛАВНАЯ ФУНКЦИЯ ОТРИСОВКИ
 function renderGrammar() {
     console.log('renderGrammar: начата');
     const level = AppConfig.currentLevel;
     const lessons = grammarDB[level];
     
-    // Восстановление последнего урока
     const savedLesson = localStorage.getItem('dm_last_grammar_lesson');
     const savedLevel = localStorage.getItem('dm_last_grammar_level');
     if (savedLesson !== null && savedLevel === level && lessons && lessons[parseInt(savedLesson)]) {
@@ -153,12 +146,10 @@ function renderGrammar() {
     updateCounter();
 }
 
-// Отрисовка конкретного урока
 function renderGrammarLesson(lessonIdx) {
     console.log('renderGrammarLesson: открытие урока', lessonIdx, 'тип:', typeof lessonIdx);
     const level = AppConfig.currentLevel;
     
-    // Сохраняем последний урок
     localStorage.setItem('dm_last_grammar_lesson', lessonIdx);
     localStorage.setItem('dm_last_grammar_level', level);
     
@@ -218,7 +209,6 @@ function renderGrammarLesson(lessonIdx) {
     showGrammarTheory(lesson);
 }
 
-// Отображение теории
 function showGrammarTheory(lesson) {
     const container = document.getElementById('grammarContent');
     if (!container) return;
@@ -256,7 +246,6 @@ function showGrammarTheory(lesson) {
     `;
 }
 
-// Отображение практики
 function showGrammarPractice(lesson, lessonIdx) {
     grammarExercises = lesson.exercises || [];
     currentGrammarExerciseIndex = 0;
