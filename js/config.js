@@ -7,7 +7,7 @@ const AppConfig = {
 };
 
 // Глобальные состояния
-let currentMode = 'grammar';  // ← ИЗМЕНЕНО: 'cards' → 'grammar'
+let currentMode = 'grammar';
 let lessonsExpanded = false;
 let currentLesson = 1;
 let lessonMode = 'theory';
