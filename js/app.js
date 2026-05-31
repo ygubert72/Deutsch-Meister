@@ -30,7 +30,7 @@ function updateCounter() {
             el.textContent = `ГРАММАТИКА ${level} | Загрузка...`;
         }
     } else {
-        el.textContent = `КУРС ГРАММАТИКИ | Урок ${currentLesson}`;
+        el.textContent = `УРОКИ | Урок ${currentLesson}`;
     }
 }
 
