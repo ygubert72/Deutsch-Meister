@@ -1,7 +1,8 @@
 // ============================================================
-// grammarMode.js - Режим ГРАММАТИКА (РАБОЧАЯ ВЕРСИЯ)
+// grammarMode.js - Режим ГРАММАТИКА
 // ============================================================
 
+// Объявляем ВСЕ переменные ПЕРЕД их использованием
 let grammarDB = { A1: [], A2: [], B1: [], B2: [], C1: [] };
 let grammarProgress = { A1: [], A2: [], B1: [], B2: [], C1: [] };
 let currentGrammarLesson = null;
@@ -13,6 +14,7 @@ let grammarExercises = [];
 let currentGrammarExerciseIndex = 0;
 let grammarBlinkTimer = null;
 
+// Загрузка грамматики из JSON файлов
 async function loadGrammarData() {
     console.log('loadGrammarData: началась загрузка');
     const levels = ['A1', 'A2', 'B1', 'B2', 'C1'];
@@ -49,10 +51,12 @@ async function loadGrammarData() {
     saveProgress();
 }
 
+// Сохранение прогресса
 function saveGrammarProgress() {
     localStorage.setItem('dm_grammar_progress', JSON.stringify(grammarProgress));
 }
 
+// Загрузка прогресса
 function loadGrammarProgress() {
     try {
         const gp = localStorage.getItem('dm_grammar_progress');
@@ -64,6 +68,7 @@ function loadGrammarProgress() {
     });
 }
 
+// Отметить урок как пройденный
 function markGrammarLessonCompleted(lessonIndex) {
     const level = AppConfig.currentLevel;
     if (!grammarProgress[level]) grammarProgress[level] = [];
@@ -73,11 +78,13 @@ function markGrammarLessonCompleted(lessonIndex) {
     updateCounter();
 }
 
+// Проверить, пройден ли урок
 function isGrammarLessonCompleted(lessonIndex) {
     const level = AppConfig.currentLevel;
     return grammarProgress[level]?.[lessonIndex]?.completed === true;
 }
 
+// ГЛАВНАЯ ФУНКЦИЯ ОТРИСОВКИ
 function renderGrammar() {
     console.log('renderGrammar: начата, уровень:', AppConfig.currentLevel);
     const level = AppConfig.currentLevel;
@@ -97,23 +104,20 @@ function renderGrammar() {
     const savedLesson = window.currentGrammarLesson;
     const savedMode = window.currentGrammarMode;
     
-    // Проверяем, нужно ли восстановить урок (и что урок существует на текущем уровне)
     if (savedLesson !== null && savedLesson !== undefined && lessons[savedLesson]) {
         console.log('Восстанавливаю урок грамматики:', savedLesson, 'на уровне', level);
         currentGrammarLesson = savedLesson;
         currentGrammarMode = savedMode || 'theory';
         window.currentGrammarLesson = savedLesson;
         window.currentGrammarMode = savedMode || 'theory';
-        // Небольшая задержка для корректной отрисовки
         setTimeout(() => {
             renderGrammarLesson(savedLesson);
         }, 50);
         return;
     }
     
-    // Сброс сохранённого урока если его нет на текущем уровне
     if (savedLesson !== null) {
-        console.log('Сохранённый урок не найден на уровне', level, ', показываю список');
+        console.log('Сохранённый урок не найден на уровне', level);
         window.currentGrammarLesson = null;
         currentGrammarLesson = null;
     }
@@ -165,6 +169,7 @@ function renderGrammar() {
     updateCounter();
 }
 
+// Отрисовка конкретного урока
 function renderGrammarLesson(lessonIdx) {
     console.log('renderGrammarLesson: открытие урока', lessonIdx);
     const level = AppConfig.currentLevel;
@@ -237,6 +242,7 @@ function renderGrammarLesson(lessonIdx) {
     }
 }
 
+// Отображение теории
 function showGrammarTheory(lesson) {
     const container = document.getElementById('grammarContent');
     if (!container) return;
@@ -274,12 +280,12 @@ function showGrammarTheory(lesson) {
     `;
 }
 
+// Отображение практики
 function showGrammarPractice(lesson, lessonIdx) {
-    if (!grammarExercises.length || grammarExercises !== (lesson.exercises || [])) {
+    // Сбрасываем упражнения только если это новый урок
+    if (grammarExercises !== (lesson.exercises || [])) {
         grammarExercises = lesson.exercises || [];
-        if (typeof currentGrammarExerciseIndex === 'undefined' || currentGrammarExerciseIndex >= grammarExercises.length) {
-            currentGrammarExerciseIndex = 0;
-        }
+        currentGrammarExerciseIndex = 0;
     }
     
     if (!grammarExercises.length) {
