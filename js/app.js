@@ -1,76 +1,116 @@
-// Глобальные настройки (аналог config.json)
-const AppConfig = {
-    currentLevel: 'A1',
-    show_language: 'de',
-    quiz_direction: 'de_to_ru',
-    sentence_lang_from: 'ru'
-};
+// Глобальные переменные для грамматики
+let grammarDB = { A1: [], A2: [], B1: [], B2: [], C1: [] };
+let grammarProgress = { A1: [], A2: [], B1: [], B2: [], C1: [] };
+let currentGrammarLesson = null;
+let currentGrammarMode = 'theory';
 
-// Глобальные состояния
-let currentMode = 'grammar';
-let lessonsExpanded = false;
-let currentLesson = 1;
-let lessonMode = 'theory';
-
-// БД
-let wordsDB = { A1: [], A2: [], B1: [], B2: [], C1: [] };
-let sentencesDB = { A1: [], A2: [], B1: [], B2: [], C1: [] };
-let lessonsCache = {};
-let practiceCache = {};
-
-// Прогресс
-let wordsProgress = {};
-let sentencesProgress = {};
-
-// Функция сохранения (локально + Firebase)
-function saveProgress() {
-    // Сохраняем в localStorage
-    localStorage.setItem('dm_words_progress', JSON.stringify(wordsProgress));
-    localStorage.setItem('dm_sentences_progress', JSON.stringify(sentencesProgress));
-    localStorage.setItem('dm_config', JSON.stringify({
-        last_level: AppConfig.currentLevel,
-        show_language: AppConfig.show_language,
-        quiz_direction: AppConfig.quiz_direction,
-        sentence_lang_from: AppConfig.sentence_lang_from
-    }));
+function updateCounter() {
+    const el = document.getElementById('counter');
+    if (!el) return;
     
-    // Сохраняем в Firebase (если пользователь залогинен)
-    if (window.saveUserProgressToFirebase) {
-        window.saveUserProgressToFirebase();
+    if (currentMode === 'cards' || currentMode === 'quiz') {
+        const total = wordsDB[AppConfig.currentLevel]?.length || 0;
+        const unstudied = getUnstudiedWords().length;
+        const studied = total - unstudied;
+        el.textContent = `Всего: ${total} | Учим: ${unstudied} | Выучено: ${studied}`;
+    } else if (currentMode === 'sentences') {
+        const total = sentencesDB[AppConfig.currentLevel]?.length || 0;
+        let completed = sentencesProgress[AppConfig.currentLevel]?.filter(p => p?.studied === true).length || 0;
+        el.textContent = `Всего фраз: ${total} | Выучено: ${completed}`;
+    } else if (currentMode === 'lessons') {
+        el.textContent = `УРОКИ | Урок ${currentLesson}`;
+    } else if (currentMode === 'grammar') {
+        const level = AppConfig.currentLevel;
+        const grammarData = grammarDB[level];
+        if (grammarData && grammarData.length) {
+            const totalLessons = grammarData.length;
+            const completed = grammarProgress[level]?.filter(p => p?.completed === true).length || 0;
+            el.textContent = `ГРАММАТИКА ${level} | Пройдено: ${completed} из ${totalLessons} уроков`;
+        } else {
+            el.textContent = `ГРАММАТИКА ${level} | Загрузка...`;
+        }
+    } else {
+        el.textContent = `УРОКИ | Урок ${currentLesson}`;
     }
 }
 
-// Функция загрузки
-function loadProgress() {
-    try {
-        const wp = localStorage.getItem('dm_words_progress');
-        if (wp) wordsProgress = JSON.parse(wp);
-        const sp = localStorage.getItem('dm_sentences_progress');
-        if (sp) sentencesProgress = JSON.parse(sp);
-        const cfg = localStorage.getItem('dm_config');
-        if (cfg) {
-            const parsed = JSON.parse(cfg);
-            AppConfig.currentLevel = parsed.last_level || 'A1';
-            AppConfig.show_language = parsed.show_language || 'de';
-            AppConfig.quiz_direction = parsed.quiz_direction || 'de_to_ru';
-            AppConfig.sentence_lang_from = parsed.sentence_lang_from || 'ru';
-        }
-    } catch(e) {}
-    
-    ['A1','A2','B1','B2','C1'].forEach(lvl => {
-        if (!wordsProgress[lvl]) wordsProgress[lvl] = [];
-        if (!sentencesProgress[lvl]) sentencesProgress[lvl] = [];
+function setMode(mode) {
+    currentMode = mode;
+    document.querySelectorAll('.mode-btn').forEach(btn => {
+        if (btn.dataset.mode === mode) btn.classList.add('active');
+        else btn.classList.remove('active');
     });
+    
+    if (mode === 'cards') renderCards();
+    else if (mode === 'quiz') renderQuiz();
+    else if (mode === 'sentences') renderSentences();
+    else if (mode === 'lessons') renderLessons();
+    else if (mode === 'grammar') renderGrammar();
 }
 
-// Озвучка (глобальная)
-function speak(text) {
-    if (!text || !window.speechSynthesis) return;
-    const clean = text.replace(/[^\w\s\-äöüßÄÖÜ]/g, '');
-    if (!clean.trim()) return;
-    const utterance = new SpeechSynthesisUtterance(clean);
-    utterance.lang = 'de-DE';
-    utterance.rate = 0.9;
-    window.speechSynthesis.cancel();
-    window.speechSynthesis.speak(utterance);
+function setLevel(level) {
+    AppConfig.currentLevel = level;
+    document.querySelectorAll('[data-level]').forEach(btn => {
+        if (btn.dataset.level === level) btn.classList.add('active');
+        else btn.classList.remove('active');
+    });
+    
+    if (currentMode === 'lessons') {
+        setMode('cards');
+    } else if (currentMode === 'cards') {
+        renderCards();
+    } else if (currentMode === 'quiz') {
+        renderQuiz();
+    } else if (currentMode === 'sentences') {
+        renderSentences();
+    } else if (currentMode === 'grammar') {
+        renderGrammar();
+    }
+    updateCounter();
+    saveProgress();
 }
+
+function toggleLessons() {
+    const panel = document.getElementById('lessonsPanel');
+    const btn = document.getElementById('toggleLessonsBtn');
+    if (lessonsExpanded) {
+        panel.style.display = 'none';
+        btn.textContent = 'УРОКИ ▶';
+        lessonsExpanded = false;
+    } else {
+        panel.style.display = 'block';
+        btn.textContent = 'УРОКИ ▼';
+        lessonsExpanded = true;
+    }
+}
+
+async function init() {
+    loadProgress();
+    loadGrammarProgress();
+    await loadWords();
+    await loadSentences();
+    await loadLessonsAndPractice();
+    await loadGrammarData();
+    
+    buildLessonsList();
+    
+    document.querySelectorAll('.mode-btn').forEach(btn => {
+        btn.onclick = () => setMode(btn.dataset.mode);
+    });
+    document.querySelectorAll('[data-level]').forEach(btn => {
+        btn.onclick = () => setLevel(btn.dataset.level);
+    });
+    document.getElementById('toggleLessonsBtn').onclick = toggleLessons;
+    
+    document.querySelectorAll('[data-level]').forEach(btn => {
+        if (btn.dataset.level === AppConfig.currentLevel) btn.classList.add('active');
+        else btn.classList.remove('active');
+    });
+    
+    // Ждём 0.5 секунды после загрузки грамматики, затем открываем Грамматику
+    setTimeout(() => {
+        setMode('grammar');
+    }, 500);
+}
+
+init();
