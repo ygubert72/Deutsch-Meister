@@ -75,7 +75,7 @@ function toggleLessons() {
     const btn = document.getElementById('toggleLessonsBtn');
     if (lessonsExpanded) {
         panel.style.display = 'none';
-        btn.textContent = 'КУРС ГРАММАТИКИ ▶';
+        btn.textContent = 'УРОКИ ▶';
         lessonsExpanded = false;
     } else {
         panel.style.display = 'block';
