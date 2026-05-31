@@ -123,7 +123,7 @@ async function init() {
     restoreLessonsPanel();
     setMode(currentMode);
     
-    console.log('init: завершено');
+    console.log('init: завершено, currentLesson =', currentLesson);
 }
 
 init();
