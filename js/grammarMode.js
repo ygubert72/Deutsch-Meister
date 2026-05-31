@@ -87,24 +87,16 @@ function renderGrammar() {
     const level = AppConfig.currentLevel;
     const lessons = grammarDB[level];
     
-    // ========== ВОССТАНОВЛЕНИЕ ПОСЛЕДНЕГО УРОКА ==========
+    // ========== НОВОЕ: Восстановление последнего урока ==========
     const savedLesson = localStorage.getItem('dm_last_grammar_lesson');
     const savedLevel = localStorage.getItem('dm_last_grammar_level');
-    const savedMode = localStorage.getItem('dm_last_grammar_mode');
-    
     if (savedLesson !== null && savedLevel === level && lessons && lessons[parseInt(savedLesson)]) {
         const lessonIdx = parseInt(savedLesson);
-        console.log('Восстанавливаю урок грамматики:', lessonIdx, 'режим:', savedMode);
-        currentGrammarLesson = lessonIdx;
-        currentGrammarMode = savedMode || 'theory';
-        // Очищаем сохранение, чтобы при выходе из урока не зациклиться
-        localStorage.removeItem('dm_last_grammar_lesson');
-        localStorage.removeItem('dm_last_grammar_level');
-        localStorage.removeItem('dm_last_grammar_mode');
+        console.log('Восстанавливаю урок:', lessonIdx);
         renderGrammarLesson(lessonIdx);
         return;
     }
-    // ====================================================
+    // ============================================================
     
     if (!lessons || lessons.length === 0) {
         document.getElementById('content').innerHTML = `
@@ -167,11 +159,10 @@ function renderGrammarLesson(lessonIdx) {
     console.log('renderGrammarLesson: открытие урока', lessonIdx, 'тип:', typeof lessonIdx);
     const level = AppConfig.currentLevel;
     
-    // ========== СОХРАНЯЕМ ПОСЛЕДНИЙ УРОК ==========
+    // ========== НОВОЕ: Сохраняем последний урок ==========
     localStorage.setItem('dm_last_grammar_lesson', lessonIdx);
     localStorage.setItem('dm_last_grammar_level', level);
-    localStorage.setItem('dm_last_grammar_mode', currentGrammarMode);
-    // ==============================================
+    // ====================================================
     
     // Проверка на NaN
     if (isNaN(lessonIdx)) {
@@ -207,17 +198,10 @@ function renderGrammarLesson(lessonIdx) {
         </div>
     `;
     
-    document.getElementById('backToGrammarList').onclick = () => {
-        // Очищаем сохранение при выходе из урока
-        localStorage.removeItem('dm_last_grammar_lesson');
-        localStorage.removeItem('dm_last_grammar_level');
-        localStorage.removeItem('dm_last_grammar_mode');
-        renderGrammar();
-    };
+    document.getElementById('backToGrammarList').onclick = () => renderGrammar();
     
     document.getElementById('grammarTheoryBtn').onclick = () => {
         currentGrammarMode = 'theory';
-        localStorage.setItem('dm_last_grammar_mode', 'theory');
         document.getElementById('grammarTheoryBtn').classList.add('active');
         document.getElementById('grammarPracticeBtn').classList.remove('active');
         showGrammarTheory(lesson);
@@ -225,7 +209,6 @@ function renderGrammarLesson(lessonIdx) {
     
     document.getElementById('grammarPracticeBtn').onclick = () => {
         currentGrammarMode = 'practice';
-        localStorage.setItem('dm_last_grammar_mode', 'practice');
         document.getElementById('grammarPracticeBtn').classList.add('active');
         document.getElementById('grammarTheoryBtn').classList.remove('active');
         showGrammarPractice(lesson, lessonIdx);
