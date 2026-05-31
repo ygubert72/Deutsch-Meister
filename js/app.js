@@ -44,6 +44,7 @@ function setMode(mode) {
     else if (mode === 'lessons') renderLessons();
     else if (mode === 'grammar') renderGrammar();
     
+    // Сохраняем режим после каждого переключения
     saveProgress();
 }
 
@@ -54,6 +55,7 @@ function setLevel(level) {
         else btn.classList.remove('active');
     });
     
+    // Перерисовываем текущий режим с новым уровнем
     if (currentMode === 'cards') {
         renderCards();
     } else if (currentMode === 'quiz') {
@@ -105,11 +107,14 @@ async function init() {
     });
     document.getElementById('toggleLessonsBtn').onclick = toggleLessons;
     
+    // Активируем кнопку сохранённого уровня
     document.querySelectorAll('[data-level]').forEach(btn => {
         if (btn.dataset.level === AppConfig.currentLevel) btn.classList.add('active');
         else btn.classList.remove('active');
     });
     
+    // Открываем сохранённый режим (из loadProgress)
+    console.log('init: открываю сохранённый режим:', currentMode);
     setMode(currentMode);
     
     console.log('init: завершено');
