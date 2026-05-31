@@ -1,3 +1,9 @@
+// Глобальные переменные для грамматики
+let grammarDB = { A1: [], A2: [], B1: [], B2: [], C1: [] };
+let grammarProgress = { A1: [], A2: [], B1: [], B2: [], C1: [] };
+let currentGrammarLesson = null;
+let currentGrammarMode = 'theory';
+
 function updateCounter() {
     const el = document.getElementById('counter');
     if (!el) return;
@@ -11,6 +17,18 @@ function updateCounter() {
         const total = sentencesDB[AppConfig.currentLevel]?.length || 0;
         let completed = sentencesProgress[AppConfig.currentLevel]?.filter(p => p?.studied === true).length || 0;
         el.textContent = `Всего фраз: ${total} | Выучено: ${completed}`;
+    } else if (currentMode === 'lessons') {
+        el.textContent = `КУРС ГРАММАТИКИ | Урок ${currentLesson}`;
+    } else if (currentMode === 'grammar') {
+        const level = AppConfig.currentLevel;
+        const grammarData = grammarDB[level];
+        if (grammarData && grammarData.length) {
+            const totalLessons = grammarData.length;
+            const completed = grammarProgress[level]?.filter(p => p?.completed === true).length || 0;
+            el.textContent = `ГРАММАТИКА ${level} | Пройдено: ${completed} из ${totalLessons} уроков`;
+        } else {
+            el.textContent = `ГРАММАТИКА ${level} | Загрузка...`;
+        }
     } else {
         el.textContent = `КУРС ГРАММАТИКИ | Урок ${currentLesson}`;
     }
@@ -27,6 +45,7 @@ function setMode(mode) {
     else if (mode === 'quiz') renderQuiz();
     else if (mode === 'sentences') renderSentences();
     else if (mode === 'lessons') renderLessons();
+    else if (mode === 'grammar') renderGrammar();
 }
 
 function setLevel(level) {
@@ -36,7 +55,6 @@ function setLevel(level) {
         else btn.classList.remove('active');
     });
     
-    // Если мы в режиме уроков - переключаемся на карточки
     if (currentMode === 'lessons') {
         setMode('cards');
     } else if (currentMode === 'cards') {
@@ -45,6 +63,8 @@ function setLevel(level) {
         renderQuiz();
     } else if (currentMode === 'sentences') {
         renderSentences();
+    } else if (currentMode === 'grammar') {
+        renderGrammar();
     }
     updateCounter();
     saveProgress();
@@ -69,6 +89,7 @@ async function init() {
     await loadWords();
     await loadSentences();
     await loadLessonsAndPractice();
+    await loadGrammarData();
     
     buildLessonsList();
     
@@ -80,7 +101,6 @@ async function init() {
     });
     document.getElementById('toggleLessonsBtn').onclick = toggleLessons;
     
-    // Восстанавливаем активный уровень из настроек
     document.querySelectorAll('[data-level]').forEach(btn => {
         if (btn.dataset.level === AppConfig.currentLevel) btn.classList.add('active');
         else btn.classList.remove('active');
