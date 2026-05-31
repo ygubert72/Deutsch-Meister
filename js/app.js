@@ -55,7 +55,7 @@ function setLevel(level) {
     });
     
     if (currentMode === 'lessons') {
-        setMode('cards');
+        setMode('grammar');
     } else if (currentMode === 'cards') {
         renderCards();
     } else if (currentMode === 'quiz') {
