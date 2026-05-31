@@ -62,6 +62,9 @@ function getDistractors(count, excludeTokens) {
 }
 
 function renderLessons() {
+    // Убеждаемся что currentLesson загружен из localStorage
+    console.log('renderLessons: открываю урок', currentLesson);
+    
     document.getElementById('content').innerHTML = `
         <div class="lesson-header">
             <div class="lesson-title">📖 УРОК ${currentLesson}</div>
