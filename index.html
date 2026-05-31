@@ -6,6 +6,11 @@
     <title>Немецкий тренажер v1.3</title>
     <link rel="icon" type="image/svg+xml" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/de.svg">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Скрываем контент до полной загрузки */
+        .app { opacity: 0; transition: opacity 0.15s ease; }
+        .app.loaded { opacity: 1; }
+    </style>
 </head>
 <body>
 <div class="app">
@@ -36,7 +41,7 @@
     </div>
     <div class="main">
         <div class="top-bar"><span id="counter">Загрузка...</span></div>
-        <div class="content" id="content" style="opacity: 0; transition: opacity 0.2s;"></div>
+        <div class="content" id="content"></div>
     </div>
 </div>
 
@@ -52,11 +57,9 @@
 <script type="module" src="js/auth.js"></script>
 
 <script>
+    // Показываем приложение только после полной загрузки
     window.addEventListener('load', function() {
-        setTimeout(function() {
-            const content = document.getElementById('content');
-            if (content) content.style.opacity = '1';
-        }, 100);
+        document.querySelector('.app').classList.add('loaded');
     });
 </script>
 </body>
