@@ -1,5 +1,5 @@
 // ============================================================
-// grammarMode.js - Режим ГРАММАТИКА (ИСПРАВЛЕННАЯ ВЕРСИЯ)
+// grammarMode.js - Режим ГРАММАТИКА (РАБОЧАЯ ВЕРСИЯ)
 // ============================================================
 
 let grammarExercises = [];
@@ -13,7 +13,6 @@ async function loadGrammarData() {
     
     for (const level of levels) {
         try {
-            // Пробуем разные пути
             let url = `docs/grammar/${level}.json`;
             let resp = await fetch(url);
             
@@ -108,7 +107,7 @@ function renderGrammar() {
         const isCompleted = isGrammarLessonCompleted(i);
         const completedIcon = isCompleted ? '✅' : '📘';
         html += `
-            <button class="lesson-grid-btn grammar-lesson-btn" data-lesson-index="${i}" style="display: flex; justify-content: space-between; align-items: center; padding: 15px; cursor: pointer;">
+            <button class="lesson-grid-btn" data-lesson-index="${i}" style="display: flex; justify-content: space-between; align-items: center; padding: 15px; cursor: pointer;">
                 <span>${completedIcon} Урок ${lesson.lesson}: ${lesson.title}</span>
                 <span style="font-size: 12px; color: #3B6FE0;">Начать →</span>
             </button>
@@ -119,33 +118,48 @@ function renderGrammar() {
     
     document.getElementById('content').innerHTML = html;
     
-    // НАЗНАЧАЕМ ОБРАБОТЧИКИ
-    const buttons = document.querySelectorAll('.grammar-lesson-btn');
+    // НАЗНАЧАЕМ ОБРАБОТЧИКИ - ИСПРАВЛЕННАЯ ВЕРСИЯ
+    const buttons = document.querySelectorAll('[data-lesson-index]');
     console.log('Найдено кнопок уроков:', buttons.length);
     
-    buttons.forEach(btn => {
-        btn.onclick = (function() {
-            const lessonIdx = parseInt(btn.getAttribute('data-lesson-index'));
-            console.log('Клик по уроку с индексом:', lessonIdx);
-            currentGrammarLesson = lessonIdx;
-            renderGrammarLesson(lessonIdx);
-        });
-    });
+    for (let i = 0; i < buttons.length; i++) {
+        const btn = buttons[i];
+        const lessonIdx = parseInt(btn.getAttribute('data-lesson-index'));
+        console.log('Кнопка', i, 'индекс урока:', lessonIdx);
+        
+        btn.onclick = (function(idx) {
+            return function() {
+                console.log('КЛИК по уроку с индексом:', idx);
+                currentGrammarLesson = idx;
+                renderGrammarLesson(idx);
+            };
+        })(lessonIdx);
+    }
     
     updateCounter();
 }
 
 // Отрисовка конкретного урока
 function renderGrammarLesson(lessonIdx) {
-    console.log('renderGrammarLesson: открытие урока', lessonIdx);
+    console.log('renderGrammarLesson: открытие урока', lessonIdx, 'тип:', typeof lessonIdx);
     const level = AppConfig.currentLevel;
+    
+    // Проверка на NaN
+    if (isNaN(lessonIdx)) {
+        console.error('Ошибка: lessonIdx = NaN');
+        document.getElementById('content').innerHTML = '<div style="text-align:center;padding:40px;">Ошибка: индекс урока не определён</div>';
+        return;
+    }
+    
     const lesson = grammarDB[level][lessonIdx];
     
     if (!lesson) {
-        console.error('Урок не найден!');
+        console.error('Урок не найден! lessonIdx=', lessonIdx, 'grammarDB[level]=', grammarDB[level]);
         document.getElementById('content').innerHTML = '<div style="text-align:center;padding:40px;">Ошибка: урок не найден</div>';
         return;
     }
+    
+    console.log('Урок найден:', lesson.title);
     
     document.getElementById('content').innerHTML = `
         <div style="max-width: 800px; margin: 0 auto;">
