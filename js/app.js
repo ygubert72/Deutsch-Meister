@@ -77,6 +77,7 @@ function toggleLessons() {
         btn.textContent = 'УРОКИ ▼';
         lessonsExpanded = true;
     }
+    saveProgress();
 }
 
 async function init() {
@@ -91,6 +92,15 @@ async function init() {
     await loadGrammarData();
     
     buildLessonsList();
+    
+    // Восстанавливаем состояние меню уроков
+    if (lessonsExpanded) {
+        document.getElementById('lessonsPanel').style.display = 'block';
+        document.getElementById('toggleLessonsBtn').textContent = 'УРОКИ ▼';
+    } else {
+        document.getElementById('lessonsPanel').style.display = 'none';
+        document.getElementById('toggleLessonsBtn').textContent = 'УРОКИ ▶';
+    }
     
     document.querySelectorAll('.mode-btn').forEach(btn => {
         btn.onclick = () => setMode(btn.dataset.mode);
