@@ -2,16 +2,53 @@
   {
     "lesson": 1,
     "title": "Определённые артикли: der, die, das",
-    "theory": "<h3>Что такое артикль?</h3><p>Артикль стоит перед существительным. В немецком три рода: der (мужской), die (женский), das (средний).</p>",
+    "theory": "<h3>📌 Определённые артикли в немецком языке</h3><p>В немецком языке все существительные имеют род. Род определяется артиклем:</p><ul><li><strong>der</strong> — мужской род (Maskulinum)</li><li><strong>die</strong> — женский род (Femininum)</li><li><strong>das</strong> — средний род (Neutrum)</li></ul><p>Артикль всегда ставится перед существительным.</p><p><strong>Совет:</strong> Всегда учите существительные вместе с артиклем! Не просто 'Tisch', а 'der Tisch'.</p>",
     "examples": [
       {"de": "der Mann", "ru": "мужчина"},
       {"de": "die Frau", "ru": "женщина"},
-      {"de": "das Kind", "ru": "ребёнок"}
+      {"de": "das Kind", "ru": "ребёнок"},
+      {"de": "der Vater", "ru": "отец"},
+      {"de": "die Mutter", "ru": "мать"}
     ],
     "exercises": [
-      {"question": "Артикль у Mann?", "answer": "der", "hint": "мужчина"},
-      {"question": "Артикль у Frau?", "answer": "die", "hint": "женщина"},
-      {"question": "Артикль у Kind?", "answer": "das", "hint": "ребёнок"}
+      {"question": "Какой артикль у слова 'Mann' (мужчина)?", "answer": "der", "hint": "Мужской род"},
+      {"question": "Какой артикль у слова 'Frau' (женщина)?", "answer": "die", "hint": "Женский род"},
+      {"question": "Какой артикль у слова 'Kind' (ребёнок)?", "answer": "das", "hint": "Средний род"},
+      {"question": "Вставь артикль: ___ Vater", "answer": "der", "hint": "Отец — мужской род"},
+      {"question": "Вставь артикль: ___ Mutter", "answer": "die", "hint": "Мать — женский род"}
+    ]
+  },
+  {
+    "lesson": 2,
+    "title": "Неопределённые артикли: ein, eine",
+    "theory": "<h3>📌 Неопределённые артикли</h3><p>Неопределённый артикль используется, когда мы говорим о предмете впервые или о неопределённом предмете.</p><ul><li><strong>ein</strong> — для мужского и среднего рода (der → ein, das → ein)</li><li><strong>eine</strong> — для женского рода (die → eine)</li></ul><p><strong>Важно:</strong> Неопределённого артикля во множественном числе НЕТ!</p><p>Пример: <em>Das ist ein Mann. Das ist eine Frau. Das ist ein Kind.</em></p>",
+    "examples": [
+      {"de": "ein Mann", "ru": "какой-то мужчина"},
+      {"de": "eine Frau", "ru": "какая-то женщина"},
+      {"de": "ein Kind", "ru": "какой-то ребёнок"}
+    ],
+    "exercises": [
+      {"question": "Вставь артикль: Das ist ___ Mann.", "answer": "ein", "hint": "Mann — мужской род → ein"},
+      {"question": "Вставь артикль: Das ist ___ Frau.", "answer": "eine", "hint": "Frau — женский род → eine"},
+      {"question": "Вставь артикль: Das ist ___ Kind.", "answer": "ein", "hint": "Kind — средний род → ein"}
+    ]
+  },
+  {
+    "lesson": 3,
+    "title": "Личные местоимения и глагол sein",
+    "theory": "<h3>📌 Личные местоимения</h3><ul><li><strong>ich</strong> — я</li><li><strong>du</strong> — ты</li><li><strong>er</strong> — он</li><li><strong>sie</strong> — она</li><li><strong>es</strong> — оно</li><li><strong>wir</strong> — мы</li><li><strong>ihr</strong> — вы</li><li><strong>sie</strong> — они</li><li><strong>Sie</strong> — Вы (вежливая форма)</li></ul><h3>📌 Глагол sein (быть)</h3><ul><li>ich <strong>bin</strong> — я есть</li><li>du <strong>bist</strong> — ты есть</li><li>er/sie/es <strong>ist</strong> — он/она/оно есть</li><li>wir <strong>sind</strong> — мы есть</li><li>ihr <strong>seid</strong> — вы есть</li><li>sie/Sie <strong>sind</strong> — они/Вы есть</li></ul>",
+    "examples": [
+      {"de": "Ich bin ein Mann.", "ru": "Я мужчина."},
+      {"de": "Du bist eine Frau.", "ru": "Ты женщина."},
+      {"de": "Er ist der Vater.", "ru": "Он отец."},
+      {"de": "Sie ist die Mutter.", "ru": "Она мать."},
+      {"de": "Das Kind ist klein.", "ru": "Ребёнок маленький."}
+    ],
+    "exercises": [
+      {"question": "Спрягай 'sein' для 'ich': Ich ___", "answer": "bin", "hint": "я есть → bin"},
+      {"question": "Спрягай 'sein' для 'du': Du ___", "answer": "bist", "hint": "ты есть → bist"},
+      {"question": "Спрягай 'sein' для 'er': Er ___", "answer": "ist", "hint": "он есть → ist"},
+      {"question": "Переведи на немецкий: 'Я мужчина.'", "answer": "ich bin ein mann", "hint": "Ich bin ein Mann."}
     ]
   }
 ]
