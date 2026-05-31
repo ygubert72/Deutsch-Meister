@@ -2,51 +2,16 @@
   {
     "lesson": 1,
     "title": "Определённые артикли: der, die, das",
-    "theory": "<h3>📌 Что такое артикль?</h3><p>Артикль — это служебное слово, которое стоит перед существительным. В немецком языке артикль указывает на род, число и падеж существительного.</p><p>В русском языке артиклей нет, поэтому это новая концепция для русскоговорящих.</p><br><h3>📌 Три рода в немецком языке</h3><p>Все немецкие существительные относятся к одному из трёх родов:</p><ul><li><strong>der</strong> — мужской род (Maskulinum)</li><li><strong>die</strong> — женский род (Femininum)</li><li><strong>das</strong> — средний род (Neutrum)</li></ul><p><strong>Важно!</strong> Род в немецком часто НЕ совпадает с русским! Нельзя переводить род из русского!</p><br><h3>📌 Примеры</h3><ul><li>der Mann — мужчина</li><li>die Frau — женщина</li><li>das Kind — ребёнок</li><li>der Vater — отец</li><li>die Mutter — мать</li><li>das Haus — дом</li></ul><br><h3>📌 Как запоминать?</h3><p>Всегда учи слово вместе с артиклем: НЕ 'Tisch', а 'der Tisch'.</p>",
+    "theory": "<h3>Что такое артикль?</h3><p>Артикль стоит перед существительным. В немецком три рода: der (мужской), die (женский), das (средний).</p>",
     "examples": [
       {"de": "der Mann", "ru": "мужчина"},
       {"de": "die Frau", "ru": "женщина"},
-      {"de": "das Kind", "ru": "ребёнок"},
-      {"de": "der Vater", "ru": "отец"},
-      {"de": "die Mutter", "ru": "мать"},
-      {"de": "das Haus", "ru": "дом"}
+      {"de": "das Kind", "ru": "ребёнок"}
     ],
     "exercises": [
-      {"question": "1. Какой артикль у Mann?", "answer": "der", "hint": "мужчина → der"},
-      {"question": "2. Какой артикль у Frau?", "answer": "die", "hint": "женщина → die"},
-      {"question": "3. Какой артикль у Kind?", "answer": "das", "hint": "ребёнок → das"},
-      {"question": "4. Какой артикль у Vater?", "answer": "der", "hint": "отец → der"},
-      {"question": "5. Какой артикль у Mutter?", "answer": "die", "hint": "мать → die"},
-      {"question": "6. Какой артикль у Haus?", "answer": "das", "hint": "дом → das"},
-      {"question": "7. Вставь артикль: ___ Mann ist groß.", "answer": "der", "hint": "мужчина большой"},
-      {"question": "8. Вставь артикль: ___ Frau ist schön.", "answer": "die", "hint": "женщина красивая"},
-      {"question": "9. Вставь артикль: ___ Kind ist klein.", "answer": "das", "hint": "ребёнок маленький"},
-      {"question": "10. Вставь артикль: ___ Buch ist neu.", "answer": "das", "hint": "книга новая"},
-        ,
-  {
-    "lesson": 2,
-    "title": "Неопределённые артикли: ein, eine",
-    "theory": "<h3>📌 Что такое неопределённый артикль?</h3><p>Неопределённый артикль используется, когда мы говорим о предмете в первый раз или о неопределённом предмете.</p><ul><li><strong>ein</strong> — для мужского и среднего рода (der → ein, das → ein)</li><li><strong>eine</strong> — для женского рода (die → eine)</li></ul><p><strong>Важно!</strong> Во множественном числе неопределённого артикля НЕТ!</p><br><h3>📌 Примеры</h3><ul><li>Das ist ein Mann.</li><li>Das ist eine Frau.</li><li>Das ist ein Kind.</li></ul><br><h3>📌 Отрицание: kein/keine</h3><ul><li>kein — для мужского и среднего рода</li><li>keine — для женского рода</li></ul>",
-    "examples": [
-      {"de": "Das ist ein Mann.", "ru": "Это какой-то мужчина."},
-      {"de": "Das ist eine Frau.", "ru": "Это какая-то женщина."},
-      {"de": "Das ist ein Kind.", "ru": "Это какой-то ребёнок."},
-      {"de": "Das ist kein Mann.", "ru": "Это не мужчина."},
-      {"de": "Das ist keine Frau.", "ru": "Это не женщина."}
-    ],
-    "exercises": [
-      {"question": "1. Вставь артикль: Das ist ___ Mann.", "answer": "ein", "hint": "Mann → ein"},
-      {"question": "2. Вставь артикль: Das ist ___ Frau.", "answer": "eine", "hint": "Frau → eine"},
-      {"question": "3. Вставь артикль: Das ist ___ Kind.", "answer": "ein", "hint": "Kind → ein"},
-      {"question": "4. Вставь kein/keine: Das ist ___ Mann.", "answer": "kein", "hint": "не мужчина → kein"},
-      {"question": "5. Вставь kein/keine: Das ist ___ Frau.", "answer": "keine", "hint": "не женщина → keine"},
-      {"question": "6. Вставь артикль в Akkusativ: Ich habe ___ Hund.", "answer": "einen", "hint": "ein → einen (вин. падеж)"},
-      {"question": "7. Вставь артикль в Akkusativ: Sie hat ___ Katze.", "answer": "eine", "hint": "eine не меняется"},
-      {"question": "8. Переведи: 'Это мужчина.'", "answer": "das ist ein mann", "hint": "Das ist ein Mann."},
-      {"question": "9. Переведи: 'У меня есть собака.'", "answer": "ich habe einen hund", "hint": "Ich habe einen Hund."},
-      {"question": "10. Переведи: 'Это не женщина.'", "answer": "das ist keine frau", "hint": "Das ist keine Frau."}
-    ]
-  }
+      {"question": "Артикль у Mann?", "answer": "der", "hint": "мужчина"},
+      {"question": "Артикль у Frau?", "answer": "die", "hint": "женщина"},
+      {"question": "Артикль у Kind?", "answer": "das", "hint": "ребёнок"}
     ]
   }
 ]
