@@ -1,4 +1,4 @@
-// Глобальные настройки (аналог config.json)
+// Глобальные настройки
 const AppConfig = {
     currentLevel: 'A1',
     show_language: 'de',
@@ -7,7 +7,7 @@ const AppConfig = {
 };
 
 // Глобальные состояния
-let currentMode = 'grammar';  // ← ИЗМЕНЕНО: 'cards' → 'grammar'
+let currentMode = 'grammar';
 let lessonsExpanded = false;
 let currentLesson = 1;
 let lessonMode = 'theory';
@@ -22,7 +22,6 @@ let practiceCache = {};
 let wordsProgress = {};
 let sentencesProgress = {};
 
-// Функция сохранения (локально + Firebase)
 function saveProgress() {
     localStorage.setItem('dm_words_progress', JSON.stringify(wordsProgress));
     localStorage.setItem('dm_sentences_progress', JSON.stringify(sentencesProgress));
@@ -30,7 +29,8 @@ function saveProgress() {
         last_level: AppConfig.currentLevel,
         show_language: AppConfig.show_language,
         quiz_direction: AppConfig.quiz_direction,
-        sentence_lang_from: AppConfig.sentence_lang_from
+        sentence_lang_from: AppConfig.sentence_lang_from,
+        last_mode: currentMode
     }));
     
     if (window.saveUserProgressToFirebase) {
@@ -38,7 +38,6 @@ function saveProgress() {
     }
 }
 
-// Функция загрузки
 function loadProgress() {
     try {
         const wp = localStorage.getItem('dm_words_progress');
@@ -52,6 +51,7 @@ function loadProgress() {
             AppConfig.show_language = parsed.show_language || 'de';
             AppConfig.quiz_direction = parsed.quiz_direction || 'de_to_ru';
             AppConfig.sentence_lang_from = parsed.sentence_lang_from || 'ru';
+            currentMode = parsed.last_mode || 'grammar';
         }
     } catch(e) {}
     
@@ -61,7 +61,6 @@ function loadProgress() {
     });
 }
 
-// Озвучка (глобальная)
 function speak(text) {
     if (!text || !window.speechSynthesis) return;
     const clean = text.replace(/[^\w\s\-äöüßÄÖÜ]/g, '');
