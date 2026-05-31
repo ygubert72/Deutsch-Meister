@@ -221,7 +221,7 @@ function showGrammarTheory(lesson) {
         exercisesHtml = `
             <div style="margin-top: 20px; padding: 15px; background: #FFF3E0; border-radius: 12px;">
                 <h4>✍️ Упражнения для самопроверки:</h4>
-                <div style="font-size: 14px; color: #666;">Перейдите в режим "ПРАКТИКА" для выполнения заданий</div>
+                <div style="font-size: 14px; color: #666;">Перейдите в режим "УПРАЖНЕНИЯ" для выполнения заданий</div>
             </div>
         `;
     }
