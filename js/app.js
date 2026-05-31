@@ -107,7 +107,6 @@ async function init() {
     
     buildLessonsList();
     
-    // Восстанавливаем кнопки режимов и уровней
     document.querySelectorAll('.mode-btn').forEach(btn => {
         btn.onclick = () => setMode(btn.dataset.mode);
     });
@@ -121,10 +120,7 @@ async function init() {
         else btn.classList.remove('active');
     });
     
-    // Восстанавливаем состояние панели уроков ДО того, как откроем режим
     restoreLessonsPanel();
-    
-    // Открываем сохранённый режим
     setMode(currentMode);
     
     console.log('init: завершено');
