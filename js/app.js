@@ -18,7 +18,7 @@ function updateCounter() {
         let completed = sentencesProgress[AppConfig.currentLevel]?.filter(p => p?.studied === true).length || 0;
         el.textContent = `Всего фраз: ${total} | Выучено: ${completed}`;
     } else if (currentMode === 'lessons') {
-        el.textContent = `КУРС ГРАММАТИКИ | Урок ${currentLesson}`;
+        el.textContent = `УРОКИ | Урок ${currentLesson}`;
     } else if (currentMode === 'grammar') {
         const level = AppConfig.currentLevel;
         const grammarData = grammarDB[level];
