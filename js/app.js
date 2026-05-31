@@ -1,5 +1,7 @@
 let grammarDB = { A1: [], A2: [], B1: [], B2: [], C1: [] };
 let grammarProgress = { A1: [], A2: [], B1: [], B2: [], C1: [] };
+let currentGrammarLesson = null;
+let currentGrammarMode = 'theory';
 
 function updateCounter() {
     const el = document.getElementById('counter');
@@ -83,7 +85,7 @@ function toggleLessons() {
 }
 
 async function init() {
-    console.log('init: начало');
+    console.log('init: начало загрузки');
     
     loadProgress();
     loadGrammarProgress();
@@ -108,6 +110,7 @@ async function init() {
         else btn.classList.remove('active');
     });
     
+    // Открываем сохранённый режим
     setMode(currentMode);
     
     console.log('init: завершено');
