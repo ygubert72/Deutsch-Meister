@@ -79,7 +79,7 @@ function isGrammarLessonCompleted(lessonIndex) {
 }
 
 function renderGrammar() {
-    console.log('renderGrammar: начата');
+    console.log('renderGrammar: начата, уровень:', AppConfig.currentLevel);
     const level = AppConfig.currentLevel;
     const lessons = grammarDB[level];
     
@@ -97,14 +97,25 @@ function renderGrammar() {
     const savedLesson = window.currentGrammarLesson;
     const savedMode = window.currentGrammarMode;
     
+    // Проверяем, нужно ли восстановить урок (и что урок существует на текущем уровне)
     if (savedLesson !== null && savedLesson !== undefined && lessons[savedLesson]) {
-        console.log('Восстанавливаю урок грамматики:', savedLesson);
+        console.log('Восстанавливаю урок грамматики:', savedLesson, 'на уровне', level);
         currentGrammarLesson = savedLesson;
         currentGrammarMode = savedMode || 'theory';
         window.currentGrammarLesson = savedLesson;
         window.currentGrammarMode = savedMode || 'theory';
-        renderGrammarLesson(savedLesson);
+        // Небольшая задержка для корректной отрисовки
+        setTimeout(() => {
+            renderGrammarLesson(savedLesson);
+        }, 50);
         return;
+    }
+    
+    // Сброс сохранённого урока если его нет на текущем уровне
+    if (savedLesson !== null) {
+        console.log('Сохранённый урок не найден на уровне', level, ', показываю список');
+        window.currentGrammarLesson = null;
+        currentGrammarLesson = null;
     }
     
     let html = `
