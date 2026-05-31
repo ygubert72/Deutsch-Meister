@@ -2,191 +2,56 @@
   {
     "lesson": 1,
     "title": "Определённые артикли: der, die, das",
-    "theory": "<h3>📌 Определённые артикли в немецком языке</h3><p>В немецком языке все существительные имеют род. Род определяется артиклем:</p><ul><li><strong>der</strong> — мужской род (Maskulinum)</li><li><strong>die</strong> — женский род (Femininum)</li><li><strong>das</strong> — средний род (Neutrum)</li></ul><p>Артикль всегда ставится перед существительным.</p><p><strong>Совет:</strong> Всегда учите существительные вместе с артиклем! Не просто 'Tisch', а 'der Tisch'.</p>",
+    "theory": "<h3>📌 Что такое артикль?</h3><p>Артикль — это маленькое слово, которое стоит перед существительным. В немецком языке артикль даёт информацию о роде, числе и падеже существительного.</p><p>В русском языке артиклей нет, поэтому русскоговорящим ученикам это понятие нужно осваивать с нуля.</p><br><h3>📌 Три рода в немецком языке</h3><p>В немецком языке все существительные относятся к одному из трёх родов:</p><ul><li><strong>der</strong> (Maskulinum) — мужской род</li><li><strong>die</strong> (Femininum) — женский род</li><li><strong>das</strong> (Neutrum) — средний род</li></ul><p>Род существительного в немецком языке часто НЕ совпадает с русским языком!</p><p>Например: 'девочка' в русском — женский род, а в немецком 'das Mädchen' — средний род!</p><br><h3>📌 Как определить род?</h3><p>Есть некоторые подсказки, но лучше всего — просто заучивать существительные ВМЕСТЕ с артиклем.</p><p><strong>Подсказки по родам:</strong></p><ul><li><strong>der</strong> (мужской): мужчины, животные-самцы, дни недели, месяцы, времена года, марки машин</li><li><strong>die</strong> (женский): женщины, животные-самки, названия деревьев и цветов, большинство существительных на -e, -heit, -keit, -ung, -schaft</li><li><strong>das</strong> (средний): дети, молодые животные, существительные на -chen, -lein, большинство существительных на -nis</li></ul><br><h3>📌 Правило: всегда учи артикль вместе со словом!</h3><p>Не заучивай просто 'Tisch', а 'der Tisch'. Не 'Katze', а 'die Katze'. Только так ты сможешь правильно строить предложения в немецком языке.</p>",
     "examples": [
-      {"de": "der Mann", "ru": "мужчина"},
-      {"de": "die Frau", "ru": "женщина"},
-      {"de": "das Kind", "ru": "ребёнок"},
-      {"de": "der Vater", "ru": "отец"},
-      {"de": "die Mutter", "ru": "мать"}
+      {"de": "der Mann", "ru": "мужчина (мужской род)"},
+      {"de": "die Frau", "ru": "женщина (женский род)"},
+      {"de": "das Kind", "ru": "ребёнок (средний род)"},
+      {"de": "der Vater", "ru": "отец (мужской род)"},
+      {"de": "die Mutter", "ru": "мать (женский род)"},
+      {"de": "das Haus", "ru": "дом (средний род)"},
+      {"de": "der Hund", "ru": "собака (мужской род — несовпадение с русским!)"},
+      {"de": "die Katze", "ru": "кошка (женский род)"},
+      {"de": "das Buch", "ru": "книга (средний род — несовпадение с русским!)"}
     ],
     "exercises": [
-      {"question": "Какой артикль у слова 'Mann' (мужчина)?", "answer": "der", "hint": "Мужской род"},
-      {"question": "Какой артикль у слова 'Frau' (женщина)?", "answer": "die", "hint": "Женский род"},
-      {"question": "Какой артикль у слова 'Kind' (ребёнок)?", "answer": "das", "hint": "Средний род"},
-      {"question": "Вставь артикль: ___ Vater", "answer": "der", "hint": "Отец — мужской род"},
-      {"question": "Вставь артикль: ___ Mutter", "answer": "die", "hint": "Мать — женский род"}
+      {"question": "Какой артикль у слова 'Mann' (мужчина)?", "answer": "der", "hint": "Мужской род, мужчина → der"},
+      {"question": "Какой артикль у слова 'Frau' (женщина)?", "answer": "die", "hint": "Женский род, женщина → die"},
+      {"question": "Какой артикль у слова 'Kind' (ребёнок)?", "answer": "das", "hint": "Средний род, ребёнок → das"},
+      {"question": "Какой артикль у слова 'Vater' (отец)?", "answer": "der", "hint": "Мужской род, отец → der"},
+      {"question": "Какой артикль у слова 'Mutter' (мать)?", "answer": "die", "hint": "Женский род, мать → die"},
+      {"question": "Какой артикль у слова 'Hund' (собака)?", "answer": "der", "hint": "В немецком 'собака' — мужского рода"},
+      {"question": "Какой артикль у слова 'Katze' (кошка)?", "answer": "die", "hint": "Женский род → die"},
+      {"question": "Какой артикль у слова 'Buch' (книга)?", "answer": "das", "hint": "В немецком 'книга' — среднего рода"},
+      {"question": "Вставь артикль: Ich sehe ___ Mann.", "answer": "den", "hint": "Винительный падеж (Akkusativ): der → den"},
+      {"question": "Вставь артикль: Das ist ___ Buch.", "answer": "das", "hint": "Именительный падеж: das Buch"}
     ]
   },
   {
     "lesson": 2,
     "title": "Неопределённые артикли: ein, eine",
-    "theory": "<h3>📌 Неопределённые артикли</h3><p>Неопределённый артикль используется, когда мы говорим о предмете впервые или о неопределённом предмете.</p><ul><li><strong>ein</strong> — для мужского и среднего рода (der → ein, das → ein)</li><li><strong>eine</strong> — для женского рода (die → eine)</li></ul><p><strong>Важно:</strong> Неопределённого артикля во множественном числе НЕТ!</p><p>Пример: <em>Das ist ein Mann. Das ist eine Frau. Das ist ein Kind.</em></p>",
+    "theory": "<h3>📌 Что такое неопределённый артикль?</h3><p>Неопределённый артикль (ein, eine) используется, когда мы говорим о предмете:</p><ul><li>в первый раз (слушатель ещё не знает о нём)</li><li>как о неопределённом ('какой-то', 'один из многих')</li><li>как о представителе класса предметов</li></ul><br><h3>📌 Формы неопределённого артикля</h3><ul><li><strong>ein</strong> — для мужского рода (der → ein)</li><li><strong>ein</strong> — для среднего рода (das → ein)</li><li><strong>eine</strong> — для женского рода (die → eine)</li></ul><p><strong>Важно!</strong> Во множественном числе неопределённого артикля НЕТ! Вместо него используется нулевой артикль.</p><br><h3>📌 Сравнение определённого и неопределённого артикля</h3><p><strong>Определённый (der, die, das):</strong> 'Дай мне КНИГУ' (конкретную, которую мы знаем)</p><p><strong>Неопределённый (ein, eine):</strong> 'Дай мне КАКУЮ-НИБУДЬ книгу' (любую, неважно какую)</p><br><h3>📌 Примеры</h3><p>Das ist <strong>ein</strong> Mann. — Это КАКОЙ-ТО мужчина (мы не знаем его).<br>Der Mann ist groß. — ЭТОТ мужчина высокий (мы уже о нём говорили).</p>",
     "examples": [
-      {"de": "ein Mann", "ru": "какой-то мужчина"},
-      {"de": "eine Frau", "ru": "какая-то женщина"},
-      {"de": "ein Kind", "ru": "какой-то ребёнок"}
+      {"de": "Das ist ein Mann.", "ru": "Это какой-то мужчина."},
+      {"de": "Das ist eine Frau.", "ru": "Это какая-то женщина."},
+      {"de": "Das ist ein Kind.", "ru": "Это какой-то ребёнок."},
+      {"de": "Das ist ein Vater.", "ru": "Это какой-то отец."},
+      {"de": "Das ist eine Mutter.", "ru": "Это какая-то мать."},
+      {"de": "Ich habe ein Buch.", "ru": "У меня есть какая-то книга."},
+      {"de": "Sie hat eine Katze.", "ru": "У неё есть какая-то кошка."},
+      {"de": "Er hat einen Hund.", "ru": "У него есть какая-то собака (винительный падеж!)."}
     ],
     "exercises": [
       {"question": "Вставь артикль: Das ist ___ Mann.", "answer": "ein", "hint": "Mann — мужской род → ein"},
       {"question": "Вставь артикль: Das ist ___ Frau.", "answer": "eine", "hint": "Frau — женский род → eine"},
-      {"question": "Вставь артикль: Das ist ___ Kind.", "answer": "ein", "hint": "Kind — средний род → ein"}
-    ]
-  },
-  {
-    "lesson": 3,
-    "title": "Личные местоимения и глагол sein",
-    "theory": "<h3>📌 Личные местоимения</h3><ul><li><strong>ich</strong> — я</li><li><strong>du</strong> — ты</li><li><strong>er</strong> — он</li><li><strong>sie</strong> — она</li><li><strong>es</strong> — оно</li><li><strong>wir</strong> — мы</li><li><strong>ihr</strong> — вы</li><li><strong>sie</strong> — они</li><li><strong>Sie</strong> — Вы (вежливая форма)</li></ul><h3>📌 Глагол sein (быть)</h3><ul><li>ich <strong>bin</strong> — я есть</li><li>du <strong>bist</strong> — ты есть</li><li>er/sie/es <strong>ist</strong> — он/она/оно есть</li><li>wir <strong>sind</strong> — мы есть</li><li>ihr <strong>seid</strong> — вы есть</li><li>sie/Sie <strong>sind</strong> — они/Вы есть</li></ul>",
-    "examples": [
-      {"de": "Ich bin ein Mann.", "ru": "Я мужчина."},
-      {"de": "Du bist eine Frau.", "ru": "Ты женщина."},
-      {"de": "Er ist der Vater.", "ru": "Он отец."},
-      {"de": "Sie ist die Mutter.", "ru": "Она мать."},
-      {"de": "Das Kind ist klein.", "ru": "Ребёнок маленький."}
-    ],
-    "exercises": [
-      {"question": "Спрягай 'sein' для 'ich': Ich ___", "answer": "bin", "hint": "я есть → bin"},
-      {"question": "Спрягай 'sein' для 'du': Du ___", "answer": "bist", "hint": "ты есть → bist"},
-      {"question": "Спрягай 'sein' для 'er': Er ___", "answer": "ist", "hint": "он есть → ist"},
-      {"question": "Переведи на немецкий: 'Я мужчина.'", "answer": "ich bin ein mann", "hint": "Ich bin ein Mann."}
-    ]
-  },
-  {
-    "lesson": 4,
-    "title": "Глагол haben и отрицание kein/keine",
-    "theory": "<h3>📌 Глагол haben (иметь)</h3><ul><li>ich <strong>habe</strong> — я имею</li><li>du <strong>hast</strong> — ты имеешь</li><li>er/sie/es <strong>hat</strong> — он/она/оно имеет</li><li>wir <strong>haben</strong> — мы имеем</li><li>ihr <strong>habt</strong> — вы имеете</li><li>sie/Sie <strong>haben</strong> — они/Вы имеют</li></ul><h3>📌 Отрицание kein/keine</h3><p><strong>kein</strong> используется перед существительными мужского и среднего рода, <strong>keine</strong> — перед женским родом и множественным числом.</p>",
-    "examples": [
-      {"de": "Ich habe einen Vater.", "ru": "У меня есть отец."},
-      {"de": "Sie hat eine Mutter.", "ru": "У неё есть мать."},
-      {"de": "Das Kind hat kein Buch.", "ru": "У ребёнка нет книги."},
-      {"de": "Ich habe keine Zeit.", "ru": "У меня нет времени."}
-    ],
-    "exercises": [
-      {"question": "Спрягай 'haben' для 'ich': Ich ___", "answer": "habe", "hint": "я имею → habe"},
-      {"question": "Спрягай 'haben' для 'er': Er ___", "answer": "hat", "hint": "он имеет → hat"},
-      {"question": "Скажи 'нет книги' (Buch, средний род)", "answer": "kein buch", "hint": "kein Buch"}
-    ]
-  },
-  {
-    "lesson": 5,
-    "title": "Правильные глаголы в Präsens",
-    "theory": "<h3>📌 Спряжение правильных глаголов</h3><p>Окончания правильных глаголов в настоящем времени:</p><ul><li>ich: <strong>-e</strong> (ich mache)</li><li>du: <strong>-st</strong> (du machst)</li><li>er/sie/es: <strong>-t</strong> (er macht)</li><li>wir: <strong>-en</strong> (wir machen)</li><li>ihr: <strong>-t</strong> (ihr macht)</li><li>sie/Sie: <strong>-en</strong> (sie machen)</li></ul>",
-    "examples": [
-      {"de": "Ich mache.", "ru": "Я делаю."},
-      {"de": "Du gehst.", "ru": "Ты идёшь."},
-      {"de": "Er wohnt in Berlin.", "ru": "Он живёт в Берлине."},
-      {"de": "Wir kommen aus Russland.", "ru": "Мы из России."}
-    ],
-    "exercises": [
-      {"question": "Спрягай 'machen' для 'ich': Ich ___", "answer": "mache", "hint": "я делаю → mache"},
-      {"question": "Спрягай 'gehen' для 'du': Du ___", "answer": "gehst", "hint": "ты идёшь → gehst"},
-      {"question": "Спрягай 'wohnen' для 'er': Er ___", "answer": "wohnt", "hint": "он живёт → wohnt"}
-    ]
-  },
-  {
-    "lesson": 6,
-    "title": "Глаголы с корневой гласной e → i / ie",
-    "theory": "<h3>📌 Глаголы с изменением корневой гласной e → i / ie</h3><p>У некоторых глаголов гласная e в корне меняется на i или ie в формах du и er/sie/es.</p><ul><li>sehen (смотреть): du siehst, er sieht</li><li>lesen (читать): du liest, er liest</li><li>sprechen (говорить): du sprichst, er spricht</li><li>helfen (помогать): du hilfst, er hilft</li><li>essen (есть): du isst, er isst</li></ul>",
-    "examples": [
-      {"de": "Er sieht das Kind.", "ru": "Он видит ребёнка."},
-      {"de": "Sie liest ein Buch.", "ru": "Она читает книгу."},
-      {"de": "Er spricht Deutsch.", "ru": "Он говорит по-немецки."},
-      {"de": "Sie hilft der Mutter.", "ru": "Она помогает маме."},
-      {"de": "Das Kind isst.", "ru": "Ребёнок ест."}
-    ],
-    "exercises": [
-      {"question": "Спрягай 'sehen' для 'er': Er ___", "answer": "sieht", "hint": "он видит → sieht"},
-      {"question": "Спрягай 'lesen' для 'du': Du ___", "answer": "liest", "hint": "ты читаешь → liest"},
-      {"question": "Спрягай 'sprechen' для 'er': Er ___", "answer": "spricht", "hint": "он говорит → spricht"}
-    ]
-  },
-  {
-    "lesson": 7,
-    "title": "Глаголы с корневой гласной a → ä",
-    "theory": "<h3>📌 Глаголы с изменением корневой гласной a → ä</h3><p>У некоторых глаголов гласная a в корне меняется на ä в формах du и er/sie/es.</p><ul><li>fahren (ехать): du fährst, er fährt</li><li>schlafen (спать): du schläfst, er schläft</li><li>tragen (носить): du trägst, er trägt</li><li>waschen (мыть): du wäschst, er wäscht</li><li>fallen (падать): du fällst, er fällt</li></ul>",
-    "examples": [
-      {"de": "Der Vater fährt.", "ru": "Отец едет."},
-      {"de": "Das Kind schläft.", "ru": "Ребёнок спит."},
-      {"de": "Sie trägt das Buch.", "ru": "Она носит книгу."},
-      {"de": "Er wäscht das Kind.", "ru": "Он моет ребёнка."}
-    ],
-    "exercises": [
-      {"question": "Спрягай 'fahren' для 'er': Er ___", "answer": "fährt", "hint": "он едет → fährt"},
-      {"question": "Спрягай 'schlafen' для 'du': Du ___", "answer": "schläfst", "hint": "ты спишь → schläfst"},
-      {"question": "Спрягай 'tragen' для 'sie': Sie ___", "answer": "trägt", "hint": "она носит → trägt"}
-    ]
-  },
-  {
-    "lesson": 8,
-    "title": "Порядок слов: глагол на 2-м месте",
-    "theory": "<h3>📌 Порядок слов в немецком предложении</h3><p>В повествовательном предложении глагол всегда стоит на втором месте!</p><p><strong>Схема:</strong> Подлежащее — ГЛАГОЛ — ...</p><p>Если предложение начинается с обстоятельства (сегодня, завтра и т.д.), то подлежащее и глагол меняются местами (инверсия).</p>",
-    "examples": [
-      {"de": "Ich komme aus Berlin.", "ru": "Я из Берлина."},
-      {"de": "Heute komme ich.", "ru": "Сегодня приезжаю я."},
-      {"de": "Das Kind ist klein.", "ru": "Ребёнок маленький."}
-    ],
-    "exercises": [
-      {"question": "Поставь глагол на 2-е место: 'Ich aus Berlin komme' →", "answer": "ich komme aus berlin", "hint": "Глагол на втором месте"},
-      {"question": "Сделай инверсию с 'heute': 'Ich komme heute' →", "answer": "heute komme ich", "hint": "Heute komme ich"}
-    ]
-  },
-  {
-    "lesson": 9,
-    "title": "Вопросительные предложения (W-Fragen)",
-    "theory": "<h3>📌 Вопросительные слова (W-Fragen)</h3><ul><li><strong>Wer?</strong> — Кто?</li><li><strong>Was?</strong> — Что?</li><li><strong>Wo?</strong> — Где?</li><li><strong>Wohin?</strong> — Куда?</li><li><strong>Woher?</strong> — Откуда?</li><li><strong>Wie?</strong> — Как?</li></ul><p>Вопрос без вопросительного слова (Ja/Nein-Frage) начинается с глагола.</p>",
-    "examples": [
-      {"de": "Wo wohnst du?", "ru": "Где ты живёшь?"},
-      {"de": "Kommst du aus Berlin?", "ru": "Ты из Берлина?"},
-      {"de": "Wie heißt du?", "ru": "Как тебя зовут?"}
-    ],
-    "exercises": [
-      {"question": "Спроси 'Где ты живёшь?' по-немецки", "answer": "wo wohnst du", "hint": "Wo wohnst du?"},
-      {"question": "Спроси 'Ты из Берлина?' (Ja/Nein)", "answer": "kommst du aus berlin", "hint": "Kommst du aus Berlin?"}
-    ]
-  },
-  {
-    "lesson": 10,
-    "title": "Предлоги с Dativ",
-    "theory": "<h3>📌 Предлоги, которые всегда требуют Dativ</h3><ul><li><strong>aus</strong> — из</li><li><strong>bei</strong> — у, при</li><li><strong>mit</strong> — с</li><li><strong>nach</strong> — после, в (с городами)</li><li><strong>von</strong> — от</li><li><strong>zu</strong> — к</li><li><strong>gegenüber</strong> — напротив</li></ul>",
-    "examples": [
-      {"de": "Ich komme aus Russland.", "ru": "Я из России."},
-      {"de": "Er wohnt bei seiner Mutter.", "ru": "Он живёт у своей мамы."},
-      {"de": "Ich gehe mit dem Kind.", "ru": "Я иду с ребёнком."},
-      {"de": "Wir fahren nach Berlin.", "ru": "Мы едем в Берлин."}
-    ],
-    "exercises": [
-      {"question": "Вставь предлог: 'Ich komme ___ Russland.'", "answer": "aus", "hint": "из → aus"},
-      {"question": "Вставь предлог: 'Ich gehe ___ dem Kind.'", "answer": "mit", "hint": "с → mit"}
-    ]
-  },
-  {
-    "lesson": 11,
-    "title": "Предлоги с Akkusativ",
-    "theory": "<h3>📌 Предлоги, которые всегда требуют Akkusativ</h3><ul><li><strong>durch</strong> — через, сквозь</li><li><strong>für</strong> — для</li><li><strong>gegen</strong> — против</li><li><strong>ohne</strong> — без</li><li><strong>um</strong> — вокруг, в (о времени)</li></ul>",
-    "examples": [
-      {"de": "Das Geschenk ist für die Mutter.", "ru": "Подарок для мамы."},
-      {"de": "Er geht durch den Park.", "ru": "Он идёт через парк."},
-      {"de": "Ich komme ohne das Kind.", "ru": "Я прихожу без ребёнка."}
-    ],
-    "exercises": [
-      {"question": "Вставь предлог: 'Das ist ___ die Mutter.'", "answer": "für", "hint": "для → für"},
-      {"question": "Вставь предлог: 'Er geht ___ den Park.'", "answer": "durch", "hint": "через → durch"}
-    ]
-  },
-  {
-    "lesson": 12,
-    "title": "Perfekt (прошедшее разговорное время)",
-    "theory": "<h3>📌 Perfekt — прошедшее разговорное время</h3><p>Образуется с помощью вспомогательных глаголов <strong>haben</strong> или <strong>sein</strong> и <strong>Partizip II</strong> (причастия прошедшего времени).</p><p><strong>Partizip II правильных глаголов:</strong> ge + основа + t (gemacht)</p><p><strong>С sein спрягаются:</strong> глаголы движения (gehen, kommen, fahren) и изменения состояния (aufwachen, einschlafen).</p>",
-    "examples": [
-      {"de": "Ich habe gemacht.", "ru": "Я сделал."},
-      {"de": "Er ist gegangen.", "ru": "Он ушёл."},
-      {"de": "Sie ist gekommen.", "ru": "Она пришла."},
-      {"de": "Wir haben gesehen.", "ru": "Мы видели."}
-    ],
-    "exercises": [
-      {"question": "Образуй Partizip II от 'machen'", "answer": "gemacht", "hint": "ge + mach + t"},
-      {"question": "Образуй Perfekt для 'gehen' (он ушёл)", "answer": "er ist gegangen", "hint": "Er ist gegangen."},
-      {"question": "Образуй Perfekt для 'sehen' (я видел)", "answer": "ich habe gesehen", "hint": "Ich habe gesehen."}
+      {"question": "Вставь артикль: Das ist ___ Kind.", "answer": "ein", "hint": "Kind — средний род → ein"},
+      {"question": "Вставь артикль: Das ist ___ Mutter.", "answer": "eine", "hint": "Mutter — женский род → eine"},
+      {"question": "Вставь артикль: Das ist ___ Vater.", "answer": "ein", "hint": "Vater — мужской род → ein"},
+      {"question": "Вставь артикль: Das ist ___ Buch.", "answer": "ein", "hint": "Buch — средний род → ein"},
+      {"question": "Вставь артикль в винительном падеже: Ich habe ___ Hund.", "answer": "einen", "hint": "ein в Akkusativ → einen"},
+      {"question": "Вставь артикль в винительном падеже: Sie hat ___ Katze.", "answer": "eine", "hint": "eine в Akkusativ остаётся eine"},
+      {"question": "Переведи на немецкий: 'Это мужчина.'", "answer": "das ist ein mann", "hint": "Das ist ein Mann."},
+      {"question": "Переведи на немецкий: 'У меня есть собака.'", "answer": "ich habe einen hund", "hint": "Ich habe einen Hund."}
     ]
   }
 ]
