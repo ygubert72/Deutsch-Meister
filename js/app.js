@@ -106,14 +106,8 @@ async function init() {
         else btn.classList.remove('active');
     });
     
-    // Сначала загружаем карточки (они точно работают)
-    setMode('cards');
-    
-    // Через 1 секунду переключаем на грамматику
-    setTimeout(() => {
-        setMode('grammar');
-        console.log('✅ Переключено на ГРАММАТИКУ');
-    }, 1000);
+    // Прямо открываем грамматику, без скачков
+    setMode('grammar');
 }
 
 init();
