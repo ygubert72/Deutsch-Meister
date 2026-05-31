@@ -2,11 +2,6 @@
 // grammarMode.js - Режим ГРАММАТИКА (РАБОЧАЯ ВЕРСИЯ)
 // ============================================================
 
-let grammarDB = { A1: [], A2: [], B1: [], B2: [], C1: [] };
-let grammarProgress = { A1: [], A2: [], B1: [], B2: [], C1: [] };
-let currentGrammarLesson = null;
-let currentGrammarMode = 'theory';
-
 let grammarExercises = [];
 let currentGrammarExerciseIndex = 0;
 let grammarBlinkTimer = null;
