@@ -7,7 +7,7 @@ const AppConfig = {
 };
 
 // Глобальные состояния
-let currentMode = 'cards';
+let currentMode = 'grammar';
 let lessonsExpanded = false;
 let currentLesson = 1;
 let lessonMode = 'theory';
@@ -51,7 +51,7 @@ function loadProgress() {
             AppConfig.show_language = parsed.show_language || 'de';
             AppConfig.quiz_direction = parsed.quiz_direction || 'de_to_ru';
             AppConfig.sentence_lang_from = parsed.sentence_lang_from || 'ru';
-            currentMode = parsed.last_mode || 'cards';
+            currentMode = parsed.last_mode || 'grammar';
         }
     } catch(e) {}
     
