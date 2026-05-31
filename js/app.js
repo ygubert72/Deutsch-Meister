@@ -43,20 +43,38 @@ function setMode(mode) {
 }
 
 function setLevel(level) {
+    // Меняем уровень
     AppConfig.currentLevel = level;
+    
+    // Обновляем активные кнопки уровней
     document.querySelectorAll('[data-level]').forEach(btn => {
         if (btn.dataset.level === level) btn.classList.add('active');
         else btn.classList.remove('active');
     });
     
+    // ========== НОВОЕ: Если мы в режиме Уроки, переключаемся на Грамматику ==========
+    if (currentMode === 'lessons') {
+        // Переключаем режим на грамматику
+        currentMode = 'grammar';
+        // Обновляем активные кнопки режимов
+        document.querySelectorAll('.mode-btn').forEach(btn => {
+            if (btn.dataset.mode === 'grammar') btn.classList.add('active');
+            else btn.classList.remove('active');
+        });
+        // Открываем грамматику выбранного уровня
+        renderGrammar();
+        saveProgress();
+        return;
+    }
+    // ============================================================================
+    
+    // Для остальных режимов просто перерисовываем текущий режим с новым уровнем
     if (currentMode === 'cards') {
         renderCards();
     } else if (currentMode === 'quiz') {
         renderQuiz();
     } else if (currentMode === 'sentences') {
         renderSentences();
-    } else if (currentMode === 'lessons') {
-        renderLessons();
     } else if (currentMode === 'grammar') {
         renderGrammar();
     }
