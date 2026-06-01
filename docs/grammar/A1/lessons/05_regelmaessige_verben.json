@@ -1,1 +1,127 @@
-
+{
+  "lesson": 5,
+  "title": "Правильные глаголы в настоящем времени (Präsens)",
+  "level": "A1",
+  "theory": "<h3>📌 Что такое правильные глаголы?</h3>\n\n<p>В немецком языке глаголы делятся на <strong>правильные</strong> (слабые) и <strong>неправильные</strong> (сильные).</p>\n\n<p><strong>Правильные глаголы</strong> спрягаются по <strong>одному шаблону</strong> — нужно просто добавить нужное окончание к основе глагола.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 ГЛАВНОЕ ПРАВИЛО:</strong><br>\n  Глагол в немецком предложении всегда стоит на <strong>втором месте</strong>!\n</div>\n\n<h3>📌 Как найти основу глагола?</h3>\n\n<p>Возьми глагол в инфинитиве (начальной форме) и отбрось окончание <strong>-en</strong> или <strong>-n</strong>.</p>\n\n<ul>\n  <li>machen (делать) → основа: <strong>mach-</strong></li>\n  <li>lernen (учить) → основа: <strong>lern-</strong></li>\n  <li>wohnen (жить) → основа: <strong>wohn-</strong></li>\n  <li>arbeiten (работать) → основа: <strong>arbeit-</strong></li>\n</ul>\n\n<h3>📌 Таблица окончаний правильных глаголов</h3>\n\n<table border=\"1\" cellpadding=\"12\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Местоимение</th>\n    <th>Окончание</th>\n    <th>machen (делать)</th>\n    <th>Перевод</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>ich</td><td>-e</td><td>ich mache</td><td>я делаю</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>du</td><td>-st</td><td>du machst</td><td>ты делаешь</td>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>er/sie/es</td><td>-t</td><td>er macht</td><td>он делает</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>wir</td><td>-en</td><td>wir machen</td><td>мы делаем</td>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>ihr</td><td>-t</td><td>ihr macht</td><td>вы делаете</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>sie/Sie</td><td>-en</td><td>sie machen</td><td>они/Вы делают</td>\n   </tr>\n</table>\n\n<h3>📌 Примеры правильных глаголов</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Инфинитив</th>\n    <th>Основа</th>\n    <th>ich</th>\n    <th>du</th>\n    <th>er/sie/es</th>\n    <th>Перевод</th>\n    </tr>\n  <tr><td>machen</td><td>mach-</td><td>mache</td><td>machst</td><td>macht</td><td>делать</td></tr>\n  <tr style=\"background: #F5F5F5;\"><td>lernen</td><td>lern-</td><td>lerne</td><td>lernst</td><td>lernt</td><td>учить</td></tr>\n  <tr><td>wohnen</td><td>wohn-</td><td>wohne</td><td>wohnst</td><td>wohnt</td><td>жить</td></tr>\n  <tr style=\"background: #F5F5F5;\"><td>spielen</td><td>spiel-</td><td>spiele</td><td>spielst</td><td>spielt</td><td>играть</td></tr>\n  <tr><td>gehen</td><td>geh-</td><td>gehe</td><td>gehst</td><td>geht</td><td>идти</td></tr>\n  <tr style=\"background: #F5F5F5;\"><td>kommen</td><td>komm-</td><td>komme</td><td>kommst</td><td>kommt</td><td>приходить</td></tr>\n  <tr><td>sagen</td><td>sag-</td><td>sage</td><td>sagst</td><td>sagt</td><td>говорить</td></tr>\n  <tr style=\"background: #F5F5F5;\"><td>fragen</td><td>frag-</td><td>frage</td><td>fragst</td><td>fragt</td><td>спрашивать</td></tr>\n  <tr><td>hören</td><td>hör-</td><td>höre</td><td>hörst</td><td>hört</td><td>слушать</td></tr>\n</table>\n\n<h3>📌 Особенности: глаголы на -t, -d, -tm, -dm, -ffn</h3>\n\n<p>Если основа глагола оканчивается на <strong>-t, -d, -tm, -dm, -chn, -ffn</strong>, то между основой и окончанием добавляется <strong>-e-</strong> для удобства произношения.</p>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Глагол</th>\n    <th>Основа</th>\n    <th>du</th>\n    <th>er/sie/es</th>\n    <th>ihr</th>\n    <th>Перевод</th>\n    </tr>\n  <tr><td>arbeiten</td><td>arbeit-</td><td>arbeit<strong>e</strong>st</td><td>arbeit<strong>e</strong>t</td><td>arbeit<strong>e</strong>t</td><td>работать</td></tr>\n  <tr style=\"background: #F5F5F5;\"><td>antworten</td><td>antwort-</td><td>antwort<strong>e</strong>st</td><td>antwort<strong>e</strong>t</td><td>antwort<strong>e</strong>t</td><td>отвечать</td></tr>\n  <tr><td>öffnen</td><td>öffn-</td><td>öffn<strong>e</strong>st</td><td>öffn<strong>e</strong>t</td><td>öffn<strong>e</strong>t</td><td>открывать</td></tr>\n</table>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ТИПИЧНЫЕ ОШИБКИ:</strong><br>\n  ❌ Ich <strong>machen</strong> — нельзя! Нужно спрягать: ich mache<br>\n  ❌ Du <strong>mache</strong> — неправильное окончание: du mach<strong>st</strong><br>\n  ❌ Er <strong>machst</strong> — неправильное окончание: er mach<strong>t</strong>\n</div>\n\n<h3>📌 Порядок слов в предложении</h3>\n\n<p><strong>Повествовательное предложение:</strong> Подлежащее → ГЛАГОЛ → ...</p>\n<p>Ich <strong>lerne</strong> Deutsch. (Я учу немецкий.)</p>\n\n<p><strong>Вопрос без вопросительного слова:</strong> ГЛАГОЛ → подлежащее → ...</p>\n<p><strong>Lernst</strong> du Deutsch? (Ты учишь немецкий?)</p>\n\n<p><strong>Отрицание:</strong> nicht ставится ПОСЛЕ глагола.</p>\n<p>Ich lerne <strong>nicht</strong> Deutsch. (Я не учу немецкий.)</p>\n\n<h3>📌 Важные правильные глаголы для A1</h3>\n\n<ul>\n  <li><strong>machen</strong> — делать</li>\n  <li><strong>lernen</strong> — учить(ся)</li>\n  <li><strong>wohnen</strong> — жить (в месте)</li>\n  <li><strong>leben</strong> — жить</li>\n  <li><strong>arbeiten</strong> — работать</li>\n  <li><strong>spielen</strong> — играть</li>\n  <li><strong>gehen</strong> — идти</li>\n  <li><strong>kommen</strong> — приходить</li>\n  <li><strong>sagen</strong> — говорить, сказать</li>\n  <li><strong>fragen</strong> — спрашивать</li>\n  <li><strong>antworten</strong> — отвечать</li>\n  <li><strong>hören</strong> — слушать</li>\n  <li><strong>kaufen</strong> — покупать</li>\n  <li><strong>verkaufen</strong> — продавать</li>\n  <li><strong>zahlen</strong> — платить</li>\n</ul>\n\n<h3>📖 Пошаговый алгоритм спряжения</h3>\n\n<ol>\n  <li>Возьми глагол в инфинитиве (например, <strong>lernen</strong>)</li>\n  <li>Отбрось окончание <strong>-en</strong> → основа <strong>lern-</strong></li>\n  <li>Посмотри на местоимение (ich, du, er...)</li>\n  <li>Добавь нужное окончание: -e, -st, -t, -en, -t, -en</li>\n  <li>Проверь, не оканчивается ли основа на -t, -d (тогда добавится -e-)</li>\n  <li>Поставь глагол на второе место в предложении</li>\n</ol>\n\n<h3>📌 Запоминалка окончаний</h3>\n\n<p><strong>Ich -e, du -st, er -t, wir -en, ihr -t, sie -en</strong></p>\n<p>Повторяй как стишок: «Их -э, ду -ст, эр -т, вир -эн, ир -т, зи -эн»</p>\n\n<h3>📌 Итог урока</h3>\n\n<ul>\n  <li>Правильные глаголы спрягаются по единому шаблону</li>\n  <li>Окончания: -e, -st, -t, -en, -t, -en</li>\n  <li>Глаголы на -t, -d требуют соединительного -e-</li>\n  <li>Глагол всегда на втором месте в предложении</li>\n  <li>Вопрос начинается с глагола</li>\n</ul>",
+  "examples": [
+    {"de": "Ich mache meine Hausaufgaben.", "ru": "Я делаю свою домашнюю работу."},
+    {"de": "Du lernst Deutsch.", "ru": "Ты учишь немецкий."},
+    {"de": "Er wohnt in Berlin.", "ru": "Он живёт в Берлине."},
+    {"de": "Wir spielen Fußball.", "ru": "Мы играем в футбол."},
+    {"de": "Ihr geht nach Hause.", "ru": "Вы идёте домой."},
+    {"de": "Sie kommen aus Russland.", "ru": "Они из России."},
+    {"de": "Ich arbeite im Büro.", "ru": "Я работаю в офисе."},
+    {"de": "Hörst du Musik?", "ru": "Ты слушаешь музыку?"},
+    {"de": "Was machst du?", "ru": "Что ты делаешь?"},
+    {"de": "Ich lerne nicht genug.", "ru": "Я учу недостаточно."}
+  ],
+  "exercises": [
+    {
+      "type": "fill",
+      "question": "Спрягайте глагол 'machen' (делать):",
+      "sentence": "Ich ___",
+      "answer": "mache",
+      "hint": "ich + -e = mache"
+    },
+    {
+      "type": "fill",
+      "question": "Спрягайте глагол 'machen':",
+      "sentence": "Du ___",
+      "answer": "machst",
+      "hint": "du + -st = machst"
+    },
+    {
+      "type": "fill",
+      "question": "Спрягайте глагол 'machen':",
+      "sentence": "Er ___",
+      "answer": "macht",
+      "hint": "er + -t = macht"
+    },
+    {
+      "type": "fill",
+      "question": "Спрягайте глагол 'lernen' (учить):",
+      "sentence": "Wir ___ Deutsch.",
+      "answer": "lernen",
+      "hint": "wir + -en = lernen"
+    },
+    {
+      "type": "fill",
+      "question": "Спрягайте глагол 'wohnen' (жить):",
+      "sentence": "Wo ___ du?",
+      "answer": "wohnst",
+      "hint": "du + -st = wohnst, вопрос начинается с глагола"
+    },
+    {
+      "type": "fill",
+      "question": "Спрягайте глагол 'arbeiten' (работать, основа на -t):",
+      "sentence": "Er ___ in der Firma.",
+      "answer": "arbeitet",
+      "hint": "Основа arbeit- + -t → arbeitet"
+    },
+    {
+      "type": "fill",
+      "question": "Спрягайте глагол 'antworten' (отвечать, основа на -t):",
+      "sentence": "Du ___ schnell.",
+      "answer": "antwortest",
+      "hint": "Основа antwort- + -st → antwortest"
+    },
+    {
+      "type": "fill",
+      "question": "Спрягайте глагол 'gehen' (идти):",
+      "sentence": "Ihr ___ ins Kino.",
+      "answer": "geht",
+      "hint": "ihr + -t = geht"
+    },
+    {
+      "type": "fill",
+      "question": "Спрягайте глагол 'kommen' (приходить):",
+      "sentence": "Sie (она) ___ aus Berlin.",
+      "answer": "kommt",
+      "hint": "sie (она) + -t = kommt"
+    },
+    {
+      "type": "choice",
+      "question": "Выберите правильную форму:",
+      "sentence": "Ich ___ Deutsch.",
+      "options": ["lernen", "lernst", "lerne", "lernt"],
+      "answer": "lerne",
+      "hint": "ich + -e = lerne"
+    },
+    {
+      "type": "choice",
+      "question": "Выберите правильную форму:",
+      "sentence": "___ du Englisch?",
+      "options": ["Sprichst", "Sprechen", "Sprich", "Sprecht"],
+      "answer": "Sprichst",
+      "hint": "du + -st, вопрос начинается с глагола"
+    },
+    {
+      "type": "transform",
+      "question": "Переделайте в вопрос:",
+      "sentence": "Du machst die Aufgabe.",
+      "answer": "Machst du die Aufgabe",
+      "hint": "Глагол на первое место"
+    },
+    {
+      "type": "transform",
+      "question": "Переделайте в отрицание (mit 'nicht'):",
+      "sentence": "Ich lerne Deutsch.",
+      "answer": "Ich lerne nicht Deutsch",
+      "hint": "nicht после глагола"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Я делаю уроки.",
+      "answer": "ich mache die hausaufgaben",
+      "hint": "Ich mache die Hausaufgaben."
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Ты работаешь?",
+      "answer": "arbeitest du",
+      "hint": "Arbeitest du?"
+    }
+  ]
+}
