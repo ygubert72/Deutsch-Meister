@@ -3,6 +3,7 @@
   "title": "Грамматика немецкого языка. Уровень A1",
   "description": "Для начинающих. Полный курс грамматики с нуля.",
   "lessons": [
-    "lessons/01_artikel.json"
+    "lessons/01_artikel.json",
+    "lessons/02_ein_kein.json"
   ]
 }
