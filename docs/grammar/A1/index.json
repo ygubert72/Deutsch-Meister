@@ -1,1 +1,19 @@
-
+{
+  "level": "A1",
+  "title": "Грамматика немецкого языка. Уровень A1",
+  "description": "Для начинающих. Полный курс грамматики с нуля.",
+  "lessons": [
+    "lessons/01_artikel.json",
+    "lessons/02_ein_kein.json",
+    "lessons/03_pronomen_sein.json",
+    "lessons/04_haben_akkusativ.json",
+    "lessons/05_regelmaessige_verben.json",
+    "lessons/06_e_zu_i_ie.json",
+    "lessons/07_a_zu_ae.json",
+    "lessons/08_word_order.json",
+    "lessons/09_w_fragen.json",
+    "lessons/10_dativ_prepositions.json",
+    "lessons/11_akkusativ_prepositions.json",
+    "lessons/12_perfekt.json"
+  ]
+}
