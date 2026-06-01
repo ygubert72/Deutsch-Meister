@@ -1,1 +1,118 @@
-
+{
+  "lesson": 9,
+  "title": "Вопросительные предложения. W-Fragen",
+  "level": "A1",
+  "theory": "<h3>📌 Что такое W-Fragen?</h3>\n\n<p>W-Fragen — это вопросы, которые начинаются с <strong>вопросительного слова</strong>. В немецком языке все вопросительные слова начинаются с буквы <strong>W</strong>.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 ГЛАВНОЕ ПРАВИЛО:</strong><br>\n  W-Wort → ГЛАГОЛ → подлежащее → остальные слова\n</div>\n\n<h3>📌 Таблица вопросительных слов</h3>\n\n<table border=\"1\" cellpadding=\"12\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>W-Wort</th>\n    <th>Перевод</th>\n    <th>Вопрос</th>\n    <th>Перевод</th>\n    <th>Ответ</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>Wer?</strong></td>\n    <td><strong>Кто?</strong></td>\n    <td>Wer ist das?</td>\n    <td>Кто это?</td>\n    <td>Das ist Anna.</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>Was?</strong></td>\n    <td><strong>Что?</strong></td>\n    <td>Was ist das?</td>\n    <td>Что это?</td>\n    <td>Das ist ein Buch.</td>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>Wie?</strong></td>\n    <td><strong>Как?</strong></td>\n    <td>Wie heißt du?</td>\n    <td>Как тебя зовут?</td>\n    <td>Ich heiße Anna.</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>Wo?</strong></td>\n    <td><strong>Где?</strong></td>\n    <td>Wo wohnst du?</td>\n    <td>Где ты живёшь?</td>\n    <td>Ich wohne in Berlin.</td>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>Wohin?</strong></td>\n    <td><strong>Куда?</strong></td>\n    <td>Wohin gehst du?</td>\n    <td>Куда ты идёшь?</td>\n    <td>Ich gehe nach Hause.</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>Woher?</strong></td>\n    <td><strong>Откуда?</strong></td>\n    <td>Woher kommst du?</td>\n    <td>Откуда ты?</td>\n    <td>Ich komme aus Russland.</td>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>Wann?</strong></td>\n    <td><strong>Когда?</strong></td>\n    <td>Wann kommst du?</td>\n    <td>Когда ты придёшь?</td>\n    <td>Ich komme morgen.</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>Warum?</strong></td>\n    <td><strong>Почему?</strong></td>\n    <td>Warum lernst du Deutsch?</td>\n    <td>Почему ты учишь немецкий?</td>\n    <td>Weil es interessant ist.</td>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>Wieso?</strong></td>\n    <td><strong>Почему? (разг.)</strong></td>\n    <td>Wieso bist du müde?</td>\n    <td>Почему ты устал?</td>\n    <td>Ich habe wenig geschlafen.</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>Weshalb?</strong></td>\n    <td><strong>По какой причине?</strong></td>\n    <td>Weshalb kommst du nicht?</td>\n    <td>Почему ты не приходишь?</td>\n    <td>Ich bin krank.</td>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>Wie viel?</strong></td>\n    <td><strong>Сколько? (неисчисл.)</strong></td>\n    <td>Wie viel Geld hast du?</td>\n    <td>Сколько у тебя денег?</td>\n    <td>Ich habe 10 Euro.</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>Wie viele?</strong></td>\n    <td><strong>Сколько? (исчисл.)</strong></td>\n    <td>Wie viele Bücher hast du?</td>\n    <td>Сколько у тебя книг?</td>\n    <td>Ich habe 5 Bücher.</td>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>Wie lange?</strong></td>\n    <td><strong>Как долго?</strong></td>\n    <td>Wie lange lernst du Deutsch?</td>\n    <td>Как долго ты учишь немецкий?</td>\n    <td>Seit einem Jahr.</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>Wie oft?</strong></td>\n    <td><strong>Как часто?</strong></td>\n    <td>Wie oft gehst du ins Kino?</td>\n    <td>Как часто ты ходишь в кино?</td>\n    <td>Einmal pro Woche.</td>\n   </tr>\n  </table>\n\n<h3>📌 Структура W-Frage</h3>\n\n<p><strong>W-Wort + глагол + подлежащее + остальные слова + ?</strong></p>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>W-Wort</th>\n    <th>Глагол</th>\n    <th>Подлежащее</th>\n    <th>Остальное</th>\n    <th>Перевод</th>\n    </tr>\n  <tr><td style=\"font-weight: bold;\">Wo</td><td>wohnst</td><td>du</td><td>?</td><td>Где ты живёшь?</td>\n  </tr>\n  <tr style=\"background: #F5F5F5;\"><td style=\"font-weight: bold;\">Was</td><td>machst</td><td>du</td><td>?</td><td>Что ты делаешь?</td>\n  </tr>\n  <tr style=\"background: #E3F2FD;\"><td style=\"font-weight: bold;\">Wie</td><td>heißt</td><td>du</td><td>?</td><td>Как тебя зовут?</td>\n  </tr>\n  <tr style=\"background: #F5F5F5;\"><td style=\"font-weight: bold;\">Wohin</td><td>gehst</td><td>du</td><td>?</td><td>Куда ты идёшь?</td>\n  </tr>\n  <tr style=\"background: #E3F2FD;\"><td style=\"font-weight: bold;\">Woher</td><td>kommst</td><td>du</td><td>?</td><td>Откуда ты?</td>\n  </tr>\n</table>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ТИПИЧНЫЕ ОШИБКИ:</strong><br>\n  ❌ Du wohnst wo? — Неправильный порядок слов!<br>\n  ✅ <strong>Wo wohnst du?</strong> — W-Wort на первом месте!<br>\n  <br>\n  ❌ Wie du heißt? — Неправильно!<br>\n  ✅ <strong>Wie heißt du?</strong>\n</div>\n\n<h3>📌 W-Fragen vs Ja/Nein-Fragen</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Тип</th>\n    <th>Начало</th>\n    <th>Ответ</th>\n    <th>Пример</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>W-Frage</strong></td>\n    <td>W-Wort + глагол</td>\n    <td>Полный ответ (не Ja/Nein)</td>\n    <td>Wo wohnst du? — Ich wohne in Berlin.</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>Ja/Nein-Frage</strong></td>\n    <td>Глагол</td>\n    <td>Ja или Nein</td>\n    <td>Kommst du? — Ja, ich komme.</td>\n   </tr>\n  </table>\n\n<h3>📌 Примеры диалогов с W-Fragen</h3>\n\n<ul>\n  <li><strong>Wer</strong> ist das? — Das ist mein Bruder.</li>\n  <li><strong>Was</strong> machst du heute? — Ich lerne Deutsch.</li>\n  <li><strong>Wie</strong> geht es dir? — Danke, gut!</li>\n  <li><strong>Wo</strong> ist der Bahnhof? — Dort rechts.</li>\n  <li><strong>Wohin</strong> fährst du im Urlaub? — Nach Spanien.</li>\n  <li><strong>Woher</strong> kennst du ihn? — Aus der Schule.</li>\n  <li><strong>Wann</strong> beginnt der Film? — Um 20 Uhr.</li>\n  <li><strong>Warum</strong> lernst du Deutsch? — Weil ich in Deutschland arbeiten möchte.</li>\n  <li><strong>Wie viel</strong> kostet das? — 10 Euro.</li>\n  <li><strong>Wie viele</strong> Geschwister hast du? — Zwei Brüder.</li>\n</ul>\n\n<h3>📌 Итог урока</h3>\n\n<ul>\n  <li>W-Fragen начинаются с вопросительного слова (все на W)</li>\n  <li>Порядок слов: W-Wort → ГЛАГОЛ → подлежащее</li>\n  <li>На W-Frage нельзя ответить просто Ja/Nein</li>\n  <li>Запомни 10 главных W-Fragen для A1</li>\n</ul>",
+  "examples": [
+    {"de": "Wer ist das?", "ru": "Кто это?"},
+    {"de": "Was ist das?", "ru": "Что это?"},
+    {"de": "Wie heißt du?", "ru": "Как тебя зовут?"},
+    {"de": "Wo wohnst du?", "ru": "Где ты живёшь?"},
+    {"de": "Wohin gehst du?", "ru": "Куда ты идёшь?"},
+    {"de": "Woher kommst du?", "ru": "Откуда ты?"},
+    {"de": "Wann kommst du?", "ru": "Когда ты придёшь?"},
+    {"de": "Warum lernst du Deutsch?", "ru": "Почему ты учишь немецкий?"}
+  ],
+  "exercises": [
+    {
+      "type": "fill",
+      "question": "Вставьте вопросительное слово:",
+      "sentence": "___ ist das? (кто)",
+      "answer": "Wer",
+      "hint": "кто → Wer"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте вопросительное слово:",
+      "sentence": "___ heißt du? (как)",
+      "answer": "Wie",
+      "hint": "как → Wie"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте вопросительное слово:",
+      "sentence": "___ wohnst du? (где)",
+      "answer": "Wo",
+      "hint": "где → Wo"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте вопросительное слово:",
+      "sentence": "___ kommst du? (откуда)",
+      "answer": "Woher",
+      "hint": "откуда → Woher"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте вопросительное слово:",
+      "sentence": "___ gehst du? (куда)",
+      "answer": "Wohin",
+      "hint": "куда → Wohin"
+    },
+    {
+      "type": "fill",
+      "question": "Составьте вопрос:",
+      "sentence": "___ (думаешь) du?",
+      "answer": "Was denkst",
+      "hint": "Was + denkst + du"
+    },
+    {
+      "type": "fill",
+      "question": "Составьте вопрос:",
+      "sentence": "___ (ты живёшь) du?",
+      "answer": "Wo wohnst",
+      "hint": "Wo + wohnst + du"
+    },
+    {
+      "type": "choice",
+      "question": "Выберите правильный вопрос:",
+      "sentence": "Как тебя зовут?",
+      "options": ["Wie du heißt?", "Wie heißt du?", "Heißt du wie?", "Du heißt wie?"],
+      "answer": "Wie heißt du",
+      "hint": "Wie + heißt + du"
+    },
+    {
+      "type": "choice",
+      "question": "Выберите правильный вопрос:",
+      "sentence": "Где ты живёшь?",
+      "options": ["Wo du wohnst?", "Wohnst du wo?", "Wo wohnst du?", "Du wohnst wo?"],
+      "answer": "Wo wohnst du",
+      "hint": "Wo + wohnst + du"
+    },
+    {
+      "type": "transform",
+      "question": "Переделайте в W-Frage с 'Woher':",
+      "sentence": "Du kommst aus Russland.",
+      "answer": "Woher kommst du",
+      "hint": "Woher + kommst + du"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Что ты делаешь?",
+      "answer": "was machst du",
+      "hint": "Was + machst + du"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Сколько это стоит?",
+      "answer": "wie viel kostet das",
+      "hint": "Wie viel + kostet + das"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Когда ты придёшь?",
+      "answer": "wann kommst du",
+      "hint": "Wann + kommst + du"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Почему ты учишь немецкий?",
+      "answer": "warum lernst du deutsch",
+      "hint": "Warum + lernst + du + Deutsch"
+    }
+  ]
+}
