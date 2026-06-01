@@ -1,1 +1,71 @@
-
+{
+  "lesson": 12,
+  "title": "Perfekt — прошедшее разговорное время",
+  "level": "A1",
+  "theory": "<h3>📌 Что такое Perfekt?</h3>\n\n<p>Perfekt — это <strong>прошедшее время</strong>, которое используется в <strong>разговорной речи</strong>. В письменной речи (книги, новости) используется Präteritum, но в жизни немцы говорят в Perfekt.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 ГЛАВНОЕ ПРАВИЛО:</strong><br>\n  Perfekt = вспомогательный глагол (haben/sein) + Partizip II\n</div>\n\n<h3>📌 Как образуется Partizizip II (причастие II)</h3>\n\n<p><strong>1. Правильные глаголы (слабые):</strong> ge + основа + t</p>\n<ul>\n  <li>machen → ge + mach + t = <strong>gemacht</strong></li>\n  <li>lernen → ge + lern + t = <strong>gelernt</strong></li>\n  <li>fragen → ge + frag + t = <strong>gefragt</strong></li>\n</ul>\n\n<p><strong>2. Неправильные глаголы (сильные):</strong> особые формы (нужно запомнить)</p>\n<ul>\n  <li>sehen → <strong>gesehen</strong></li>\n  <li>lesen → <strong>gelesen</strong></li>\n  <li>fahren → <strong>gefahren</strong></li>\n  <li>schlafen → <strong>geschlafen</strong></li>\n  <li>helfen → <strong>geholfen</strong></li>\n  <li>sprechen → <strong>gesprochen</strong></li>\n</ul>\n\n<p><strong>3. Глаголы на -ieren:</strong> без ge-</p>\n<ul>\n  <li>studieren → <strong>studiert</strong></li>\n  <li>informieren → <strong>informiert</strong></li>\n</ul>\n\n<p><strong>4. С отделяемыми приставками:</strong> ge между приставкой и корнем</p>\n<ul>\n  <li>aufmachen → <strong>aufgemacht</strong></li>\n  <li>zumachen → <strong>zugemacht</strong></li>\n</ul>\n\n<p><strong>5. С неотделяемыми приставками (be-, ge-, er-, ver-, zer-, ent-, emp-):</strong> без ge-</p>\n<ul>\n  <li>bekommen → <strong>bekommen</strong></li>\n  <li>erzählen → <strong>erzählt</strong></li>\n  <li>verstehen → <strong>verstanden</strong></li>\n</ul>\n\n<h3>📌 Вспомогательные глаголы: haben или sein?</h3>\n\n<p><strong>haben</strong> — для большинства глаголов:</p>\n<ul>\n  <li>Ich habe gemacht.</li>\n  <li>Du hast gelernt.</li>\n  <li>Wir haben gesehen.</li>\n</ul>\n\n<p><strong>sein</strong> — для глаголов:</p>\n<ul>\n  <li><strong>движения:</strong> gehen, kommen, fahren, laufen, fliegen, reisen</li>\n  <li><strong>изменения состояния:</strong> aufwachen, einschlafen, sterben, werden</li>\n  <li><strong>исключения:</strong> sein, bleiben, passieren</li>\n</ul>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Глагол</th>\n    <th>Partizip II</th>\n    <th>Вспом. глагол</th>\n    <th>Пример</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\"><td>gehen</td><td>gegangen</td><td>sein</td><td>Ich bin gegangen.</td> </tr>\n  <tr style=\"background: #F5F5F5;\"><td>kommen</td><td>gekommen</td><td>sein</td><td>Er ist gekommen.</td> </tr>\n  <tr style=\"background: #E3F2FD;\"><td>fahren</td><td>gefahren</td><td>sein</td><td>Wir sind gefahren.</td> </tr>\n  <tr style=\"background: #F5F5F5;\"><td>schlafen</td><td>geschlafen</td><td>haben</td><td>Ich habe geschlafen.</td> </tr>\n  <tr style=\"background: #E3F2FD;\"><td>arbeiten</td><td>gearbeitet</td><td>haben</td><td>Sie hat gearbeitet.</td> </tr>\n  <tr style=\"background: #F5F5F5;\"><td>sehen</td><td>gesehen</td><td>haben</td><td>Wir haben gesehen.</td> </tr>\n  </table>\n\n<div class=\"info-box\" style=\"background: #FFF9C4; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>💡 ЗАПОМИНАЛКА ДЛЯ sein:</strong><br>\n  «Беги, лети, плыви, иди —<br>\n  Ты с sein в Perfekt, учти!<br>\n  Оставайся, будь, умри —<br>\n  С sein всегда, поверь мне, ты!»\n</div>\n\n<h3>📌 Порядок слов в Perfekt</h3>\n\n<p>Вспомогательный глагол (haben/sein) — на 2-м месте, Partizip II — в конце предложения.</p>\n\n<ul>\n  <li>Ich <strong>habe</strong> das Buch <strong>gelesen</strong>.</li>\n  <li>Er <strong>ist</strong> nach Berlin <strong>gefahren</strong>.</li>\n  <li><strong>Hast</strong> du die Hausaufgaben <strong>gemacht</strong>?</li>\n</ul>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ТИПИЧНЫЕ ОШИБКИ:</strong><br>\n  ❌ Ich <strong>gemacht habe</strong> — неправильный порядок!<br>\n  ✅ Ich <strong>habe gemacht</strong>.<br>\n  <br>\n  ❌ Ich <strong>bin machen</strong> — неправильно!<br>\n  ✅ Ich <strong>habe gemacht</strong> или Ich <strong>bin gegangen</strong>.\n</div>\n\n<h3>📌 Итог урока</h3>\n\n<ul>\n  <li>Perfekt = вспомогательный глагол (haben/sein) + Partizip II</li>\n  <li>Правильные глаголы: ge + основа + t</li>\n  <li>Неправильные: особые формы (учи!)</li>\n  <li>sein — для глаголов движения и изменения состояния</li>\n  <li>Порядок слов: вспомогательный на 2-м месте, Partizip II в конце</li>\n</ul>",
+  "examples": [
+    {"de": "Ich habe das Buch gelesen.", "ru": "Я прочитал книгу."},
+    {"de": "Er ist nach Berlin gefahren.", "ru": "Он поехал в Берлин."},
+    {"de": "Wir haben Fußball gespielt.", "ru": "Мы поиграли в футбол."},
+    {"de": "Sie ist um 8 Uhr aufgewacht.", "ru": "Она проснулась в 8 часов."},
+    {"de": "Hast du die Hausaufgaben gemacht?", "ru": "Ты сделал домашнее задание?"}
+  ],
+  "exercises": [
+    {
+      "type": "fill",
+      "question": "Образуйте Partizip II от 'machen':",
+      "sentence": "machen → ___",
+      "answer": "gemacht",
+      "hint": "ge + mach + t = gemacht"
+    },
+    {
+      "type": "fill",
+      "question": "Образуйте Partizip II от 'lernen':",
+      "sentence": "lernen → ___",
+      "answer": "gelernt",
+      "hint": "ge + lern + t = gelernt"
+    },
+    {
+      "type": "fill",
+      "question": "Образуйте Partizip II от 'sehen':",
+      "sentence": "sehen → ___",
+      "answer": "gesehen",
+      "hint": "неправильный глагол → gesehen"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте haben/sein:",
+      "sentence": "Ich ___ das Buch gelesen.",
+      "answer": "habe",
+      "hint": "lesen → haben"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте haben/sein:",
+      "sentence": "Er ___ nach Berlin gefahren.",
+      "answer": "ist",
+      "hint": "движение → sein"
+    },
+    {
+      "type": "fill",
+      "question": "Составьте Perfekt:",
+      "sentence": "Ich / machen / die Aufgabe",
+      "answer": "ich habe die aufgabe gemacht",
+      "hint": "habe + gemacht в конце"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (Perfekt):",
+      "sentence": "Я прочитал книгу.",
+      "answer": "ich habe das buch gelesen",
+      "hint": "habe + gelesen"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (Perfekt):",
+      "sentence": "Он поехал в Берлин.",
+      "answer": "er ist nach berlin gefahren",
+      "hint": "движение → ist + gefahren"
+    }
+  ]
+}
