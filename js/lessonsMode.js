@@ -24,7 +24,7 @@ function buildLessonsList() {
     document.querySelectorAll('[data-lesson]').forEach(btn => {
         btn.onclick = () => {
             currentLesson = parseInt(btn.dataset.lesson);
-            lessonMode = 'theory';
+            lessonMode = 'theory';  // По умолчанию при выборе нового урока открываем теорию
             saveProgress();
             if (currentMode === 'lessons') renderLessons();
             else { setMode('lessons'); renderLessons(); }
@@ -62,8 +62,7 @@ function getDistractors(count, excludeTokens) {
 }
 
 function renderLessons() {
-    // Убеждаемся что currentLesson загружен из localStorage
-    console.log('renderLessons: открываю урок', currentLesson);
+    console.log('renderLessons: открываю урок', currentLesson, 'режим:', lessonMode);
     
     document.getElementById('content').innerHTML = `
         <div class="lesson-header">
@@ -71,40 +70,75 @@ function renderLessons() {
             <div>Урок ${currentLesson} из 50</div>
         </div>
         <div class="lesson-mode" id="lessonModeContainer">
-            <button id="theoryBtn" class="lesson-mode-btn active">ТЕОРИЯ</button>
+            <button id="theoryBtn" class="lesson-mode-btn">ТЕОРИЯ</button>
             <button id="practiceBtn" class="lesson-mode-btn">ПРАКТИКА</button>
         </div>
         <div id="lessonContent" class="lesson-text"></div>
     `;
     
+    // Скрываем кнопку практики для уроков 1 и 2, если нет контента
     const practiceBtn = document.getElementById('practiceBtn');
-    if (currentLesson === 1 || currentLesson === 2) {
+    const isDemoLesson = (currentLesson === 1 || currentLesson === 2);
+    
+    if (isDemoLesson) {
         if (practiceBtn) practiceBtn.style.display = 'none';
+        // Если пытались открыть практику на демо-уроке — принудительно переключаем на теорию
         if (lessonMode === 'practice') {
             lessonMode = 'theory';
+            saveProgress();
         }
     } else {
         if (practiceBtn) practiceBtn.style.display = 'block';
     }
     
+    // Обработчик кнопки ТЕОРИЯ
     document.getElementById('theoryBtn').onclick = () => {
         if (blinkTimer) clearTimeout(blinkTimer);
         lessonMode = 'theory';
+        saveProgress();  // ← ДОБАВЛЕНО: сохраняем режим
         document.getElementById('theoryBtn').classList.add('active');
         const pBtn = document.getElementById('practiceBtn');
         if (pBtn) pBtn.classList.remove('active');
         showLessonContent();
     };
     
+    // Обработчик кнопки ПРАКТИКА
     if (practiceBtn) {
         practiceBtn.onclick = () => {
             if (blinkTimer) clearTimeout(blinkTimer);
             lessonMode = 'practice';
+            saveProgress();  // ← ДОБАВЛЕНО: сохраняем режим
             practiceBtn.classList.add('active');
             document.getElementById('theoryBtn').classList.remove('active');
             showLessonContent();
         };
     }
+    
+    // ========== ВОССТАНОВЛЕНИЕ РЕЖИМА ПОСЛЕ ПЕРЕЗАГРУЗКИ ==========
+    const theoryBtn = document.getElementById('theoryBtn');
+    const practiceBtnElem = document.getElementById('practiceBtn');
+    
+    if (lessonMode === 'practice' && !isDemoLesson && practiceBtnElem) {
+        // Восстанавливаем активный режим ПРАКТИКА
+        theoryBtn.classList.remove('active');
+        practiceBtnElem.classList.add('active');
+        showLessonContent();
+    } else {
+        // По умолчанию или для демо-уроков — ТЕОРИЯ
+        theoryBtn.classList.add('active');
+        if (practiceBtnElem) practiceBtnElem.classList.remove('active');
+        if (isDemoLesson || lessonMode !== 'practice') {
+            // Если был сохранён practice, но урок демо — всё равно покажем теорию
+            if (isDemoLesson && lessonMode === 'practice') {
+                lessonMode = 'theory';
+                saveProgress();
+            }
+            showLessonContent();
+        } else {
+            showLessonContent();
+        }
+    }
+    // ==============================================================
     
     function showHint() {
         if (!practiceHintWords.length) return;
