@@ -10,7 +10,7 @@ const AppConfig = {
 let currentMode = 'grammar';
 let lessonsExpanded = false;
 let currentLesson = 1;
-let lessonMode = 'theory';
+let lessonMode = 'theory';   // ← ДОБАВЛЕНО: теория/практика
 
 // БД
 let wordsDB = { A1: [], A2: [], B1: [], B2: [], C1: [] };
@@ -32,7 +32,8 @@ function saveProgress() {
         sentence_lang_from: AppConfig.sentence_lang_from,
         last_mode: currentMode,
         lessons_expanded: lessonsExpanded,
-        current_lesson: currentLesson
+        current_lesson: currentLesson,
+        lesson_mode: lessonMode          // ← ДОБАВЛЕНО
     }));
     
     if (window.saveUserProgressToFirebase) {
@@ -56,6 +57,7 @@ function loadProgress() {
             currentMode = parsed.last_mode || 'grammar';
             lessonsExpanded = parsed.lessons_expanded || false;
             currentLesson = parsed.current_lesson || 1;
+            lessonMode = parsed.lesson_mode || 'theory';  // ← ДОБАВЛЕНО
         }
     } catch(e) {}
     
