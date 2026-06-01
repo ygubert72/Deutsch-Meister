@@ -389,13 +389,35 @@ function showGrammarExercise(exercise, lessonIdx) {
         }
     }
     
+    // ========== ОЗВУЧКА С ПОДСТАНОВКОЙ ПРАВИЛЬНОГО ОТВЕТА ==========
     const speakBtn = document.getElementById('grammarSpeakBtn');
     if (speakBtn) {
         speakBtn.onclick = () => {
-            let textToSpeak = exercise.sentence || exercise.question || '';
-            const germanMatch = textToSpeak.match(/[A-ZÄÖÜ][a-zäöüß]+/);
-            if (germanMatch) textToSpeak = germanMatch[0];
-            speak(textToSpeak);
+            let textToSpeak = '';
+            
+            // Для fill: подставляем правильный ответ вместо ___
+            if (exercise.sentence && exercise.answer) {
+                textToSpeak = exercise.sentence.replace(/_{3,}/g, exercise.answer);
+                textToSpeak = textToSpeak.replace(/\s+/g, ' ').trim();
+            } 
+            // Для choice, transform, order: озвучиваем правильный ответ
+            else if (exercise.answer) {
+                textToSpeak = exercise.answer;
+            } 
+            // Если ничего нет, озвучиваем предложение
+            else if (exercise.sentence) {
+                textToSpeak = exercise.sentence;
+            }
+            
+            // Убираем подчёркивания, если вдруг остались
+            textToSpeak = textToSpeak.replace(/_{3,}/g, '');
+            textToSpeak = textToSpeak.replace(/\s+/g, ' ').trim();
+            
+            if (textToSpeak) {
+                speak(textToSpeak);
+            } else {
+                speak(exercise.hint || 'Пожалуйста, введите ответ');
+            }
         };
     }
     
