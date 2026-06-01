@@ -2,126 +2,30 @@
   "lesson": 4,
   "title": "Глагол haben (иметь) и винительный падеж (Akkusativ)",
   "level": "A1",
-  "theory": "<h3>📌 Глагол haben — второй по важности глагол</h3>\n\n<p>После глагола <strong>sein</strong> (быть) самым важным глаголом в немецком языке является <strong>haben</strong> (иметь).</p>\n\n<p>Он используется для выражения принадлежности и во многих устойчивых выражениях.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🔑 ВАЖНО:</strong> В русском языке мы часто говорим «у меня есть», а в немецком — «я имею». Местоимение + haben.\n</div>\n\n<h3>📌 Спряжение глагола haben</h3>\n\n<table border=\"1\" cellpadding=\"12\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Местоимение</th>\n    <th>Форма haben</th>\n    <th>Пример</th>\n    <th>Перевод</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>ich</td><td style=\"font-size: 20px; font-weight: bold; color: #1565C0;\">habe</td><td>Ich habe einen Bruder.</td><td>У меня есть брат.</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>du</td><td style=\"font-size: 20px; font-weight: bold; color: #1565C0;\">hast</td><td>Du hast eine Schwester.</td><td>У тебя есть сестра.</td>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>er/sie/es</td><td style=\"font-size: 20px; font-weight: bold; color: #1565C0;\">hat</td><td>Er hat ein Auto.</td><td>У него есть машина.</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>wir</td><td style=\"font-size: 20px; font-weight: bold; color: #1565C0;\">haben</td><td>Wir haben Zeit.</td><td>У нас есть время.</td>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>ihr</td><td style=\"font-size: 20px; font-weight: bold; color: #1565C0;\">habt</td><td>Ihr habt Recht.</td><td>Вы правы.</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>sie/Sie</td><td style=\"font-size: 20px; font-weight: bold; color: #1565C0;\">haben</td><td>Sie haben Glück.</td><td>У них/Вас есть удача.</td>\n   </tr>\n</table>\n\n<h3>📌 Винительный падеж (Akkusativ) — кого? что?</h3>\n\n<p>После глагола <strong>haben</strong> всегда используется <strong>винительный падеж (Akkusativ)</strong>.</p>\n\n<p>В Akkusativ изменяется ТОЛЬКО мужской род!</p>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Род</th>\n    <th>Nominativ (кто? что?)</th>\n    <th>Akkusativ (кого? что?)</th>\n    <th>Пример с haben</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Мужской</td><td>der</td><td style=\"font-weight: bold; color: #1565C0;\">den</td><td>Ich habe <strong>den</strong> Hund.</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Женский</td><td>die</td><td>die (не меняется)</td><td>Ich habe die Katze.</td>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Средний</td><td>das</td><td>das (не меняется)</td><td>Ich habe das Kind.</td>\n   </tr>\n</table>\n\n<h3>📌 Изменение артиклей в Akkusativ</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Артикль</th>\n    <th>Nominativ</th>\n    <th>Akkusativ</th>\n    <th>Пример</th>\n    </tr>\n  <tr><td>Определённый (м.р.)</td><td>der</td><td style=\"color: #1565C0;\">den</td><td>Ich habe <strong>den</strong> Tisch.</td></tr>\n  <tr><td>Неопределённый (м.р.)</td><td>ein</td><td style=\"color: #1565C0;\">einen</td><td>Ich habe <strong>einen</strong> Tisch.</td></tr>\n  <tr><td>Отрицательный (м.р.)</td><td>kein</td><td style=\"color: #1565C0;\">keinen</td><td>Ich habe <strong>keinen</strong> Tisch.</td></tr>\n  <tr><td>Женский род</td><td>die/eine/keine</td><td>die/eine/keine</td><td>Ich habe die/eine/keine Lampe.</td></tr>\n  <tr><td>Средний род</td><td>das/ein/kein</td><td>das/ein/kein</td><td>Ich habe das/ein/kein Buch.</td></tr>\n</table>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ТИПИЧНЫЕ ОШИБКИ:</strong><br>\n  ❌ Ich habe <strong>der</strong> Hund.<br>\n  ✅ Ich habe <strong>den</strong> Hund.<br>\n  <br>\n  ❌ Ich habe <strong>ein</strong> Hund.<br>\n  ✅ Ich habe <strong>einen</strong> Hund.\n</div>\n\n<h3>📌 Устойчивые выражения с haben</h3>\n\n<ul>\n  <li><strong>Hunger haben</strong> — быть голодным (Ich habe Hunger.)</li>\n  <li><strong>Durst haben</strong> — хотеть пить (Ich habe Durst.)</li>\n  <li><strong>Angst haben</strong> — бояться (Ich habe Angst.)</li>\n  <li><strong>Zeit haben</strong> — иметь время (Hast du Zeit?)</li>\n  <li><strong>Recht haben</strong> — быть правым (Du hast Recht.)</li>\n  <li><strong>Glück haben</strong> — иметь удачу (Er hat Glück.)</li>\n  <li><strong>Fieber haben</strong> — иметь температуру (Das Kind hat Fieber.)</li>\n</ul>\n\n<h3>📌 Вопросы и отрицание с haben</h3>\n\n<p><strong>Вопрос:</strong> Hast du einen Bruder? — Ja, ich habe einen Bruder. / Nein, ich habe keinen Bruder.</p>\n\n<p><strong>Отрицание:</strong> Используем <strong>kein/keine/keinen</strong> (отрицательный артикль).</p>\n\n<ul>\n  <li>Ich habe <strong>keinen</strong> Hund. (У меня нет собаки.)</li>\n  <li>Ich habe <strong>keine</strong> Katze. (У меня нет кошки.)</li>\n  <li>Ich habe <strong>kein</strong> Auto. (У меня нет машины.)</li>\n</ul>\n\n<h3>📖 Пошаговый алгоритм</h3>\n\n<ol>\n  <li>Определи подлежащее (кто имеет?) → выбери форму haben (habe, hast, hat, haben, habt)</li>\n  <li>Определи предмет (что имеется?)</li>\n  <li>Определи род предмета (мужской, женский, средний)</li>\n  <li>Если предмет мужского рода → измени артикль: der → den, ein → einen, kein → keinen</li>\n  <li>Если женский или средний род — артикль не меняется</li>\n</ol>\n\n<h3>📌 Итог урока</h3>\n\n<ul>\n  <li><strong>haben</strong> = иметь (ich habe, du hast, er hat...)</li>\n  <li>После haben всегда Akkusativ</li>\n  <li>В Akkusativ меняется только мужской род: der → den, ein → einen, kein → keinen</li>\n  <li>Запомни устойчивые выражения: Hunger, Durst, Angst, Zeit, Recht, Glück</li>\n</ul>",
+  "theory": "<h3>📌 Глагол haben — второй по важности глагол</h3>\n\n<p>После глагола <strong>sein</strong> (быть) самым важным глаголом в немецком языке является <strong>haben</strong> (иметь).</p>\n\n<p>Он используется для выражения принадлежности и во многих устойчивых выражениях.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🔑 ВАЖНО:</strong> В русском языке мы часто говорим «у меня есть», а в немецком — «я имею». Местоимение + haben.\n</div>\n\n<h3>📌 Спряжение глагола haben</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Местоимение</th>\n    <th>Форма haben</th>\n    <th>Пример</th>\n    <th>Перевод</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\"><td>ich</td><td style=\"font-weight: bold;\">habe</td><td>Ich habe einen Bruder.</td><td>У меня есть брат.</td></tr>\n  <tr style=\"background: #F5F5F5;\"><td>du</td><td style=\"font-weight: bold;\">hast</td><td>Du hast eine Schwester.</td><td>У тебя есть сестра.</td></tr>\n  <tr style=\"background: #E3F2FD;\"><td>er/sie/es</td><td style=\"font-weight: bold;\">hat</td><td>Er hat ein Auto.</td><td>У него есть машина.</td></tr>\n  <tr style=\"background: #F5F5F5;\"><td>wir</td><td style=\"font-weight: bold;\">haben</td><td>Wir haben Zeit.</td><td>У нас есть время.</td></tr>\n  <tr style=\"background: #E3F2FD;\"><td>ihr</td><td style=\"font-weight: bold;\">habt</td><td>Ihr habt Recht.</td><td>Вы правы.</td></tr>\n  <tr style=\"background: #F5F5F5;\"><td>sie/Sie</td><td style=\"font-weight: bold;\">haben</td><td>Sie haben Glück.</td><td>У них/Вас есть удача.</td></tr>\n</table>\n\n<h3>📌 Винительный падеж (Akkusativ) — кого? что?</h3>\n\n<p>После глагола <strong>haben</strong> всегда используется <strong>винительный падеж (Akkusativ)</strong>.</p>\n\n<p>В Akkusativ изменяется ТОЛЬКО мужской род!</p>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Род</th>\n    <th>Nominativ</th>\n    <th>Akkusativ</th>\n    <th>Пример с haben</th>\n    <tr>\n  <tr style=\"background: #E3F2FD;\"><td>Мужской</td><td>der</td><td style=\"font-weight: bold;\">den</td><td>Ich habe <strong>den</strong> Hund.</td></tr>\n  <tr style=\"background: #F5F5F5;\"><td>Женский</td><td>die</td><td>die</td><td>Ich habe die Katze.</td></tr>\n  <tr style=\"background: #E3F2FD;\"><td>Средний</td><td>das</td><td>das</td><td>Ich habe das Kind.</td></tr>\n</table>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ТИПИЧНЫЕ ОШИБКИ:</strong><br>\n  ❌ Ich habe <strong>der</strong> Hund.<br>\n  ✅ Ich habe <strong>den</strong> Hund.<br>\n  ❌ Ich habe <strong>ein</strong> Hund.<br>\n  ✅ Ich habe <strong>einen</strong> Hund.\n</div>\n\n<h3>📌 Устойчивые выражения с haben</h3>\n\n<table border=\"1\" cellpadding=\"8\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Выражение</th>\n    <th>Перевод</th>\n    <th>Пример</th>\n    </tr>\n  <tr><td>Hunger haben</td><td>быть голодным</td><td>Ich habe Hunger.</td></tr>\n  <tr style=\"background: #F5F5F5;\"><td>Durst haben</td><td>хотеть пить</td><td>Hast du Durst?</td></tr>\n  <tr><td>Angst haben</td><td>бояться</td><td>Das Kind hat Angst.</td></tr>\n  <tr style=\"background: #F5F5F5;\"><td>Zeit haben</td><td>иметь время</td><td>Wir haben keine Zeit.</td></tr>\n  <tr><td>Recht haben</td><td>быть правым</td><td>Du hast Recht.</td></tr>\n  <tr style=\"background: #F5F5F5;\"><td>Glück haben</td><td>иметь удачу</td><td>Er hat Glück.</td></tr>\n  <tr><td>Fieber haben</td><td>иметь температуру</td><td>Das Kind hat Fieber.</td></tr>\n  <tr style=\"background: #F5F5F5;\"><td>Lust haben</td><td>иметь желание</td><td>Ich habe keine Lust.</td></tr>\n  <tr><td>Eile haben</td><td>спешить</td><td>Wir haben Eile.</td></tr>\n  <tr style=\"background: #F5F5F5;\"><td>Fragen haben</td><td>иметь вопросы</td><td>Hast du Fragen?</td></tr>\n</table>\n\n<h3>📌 Итог урока</h3>\n\n<ul>\n  <li><strong>haben</strong> = иметь (ich habe, du hast, er hat...)</li>\n  <li>После haben всегда Akkusativ</li>\n  <li>В Akkusativ меняется только мужской род: der → den, ein → einen, kein → keinen</li>\n  <li>Запомни устойчивые выражения: Hunger, Durst, Angst, Zeit, Recht, Glück</li>\n</ul>",
   "examples": [
     {"de": "Ich habe einen Bruder.", "ru": "У меня есть брат."},
     {"de": "Du hast eine Schwester.", "ru": "У тебя есть сестра."},
     {"de": "Er hat ein Auto.", "ru": "У него есть машина."},
     {"de": "Wir haben Zeit.", "ru": "У нас есть время."},
-    {"de": "Ihr habt Recht.", "ru": "Вы правы."},
     {"de": "Ich habe Hunger.", "ru": "Я голоден."},
     {"de": "Hast du Durst?", "ru": "Ты хочешь пить?"},
     {"de": "Ich habe keinen Hund.", "ru": "У меня нет собаки."},
-    {"de": "Sie hat keine Katze.", "ru": "У неё нет кошки."},
-    {"de": "Das Kind hat Fieber.", "ru": "У ребёнка температура."}
+    {"de": "Das Kind hat Fieber.", "ru": "У ребёнка температура."},
+    {"de": "Du hast Recht.", "ru": "Ты прав."},
+    {"de": "Er hat Glück.", "ru": "Ему везёт."}
   ],
   "exercises": [
-    {
-      "type": "fill",
-      "question": "Вставьте правильную форму haben:",
-      "sentence": "Ich ___ einen Bruder.",
-      "answer": "habe",
-      "hint": "ich → habe"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте правильную форму haben:",
-      "sentence": "Du ___ eine Schwester.",
-      "answer": "hast",
-      "hint": "du → hast"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте правильную форму haben:",
-      "sentence": "Er ___ ein Auto.",
-      "answer": "hat",
-      "hint": "er → hat"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте правильную форму haben:",
-      "sentence": "Wir ___ Zeit.",
-      "answer": "haben",
-      "hint": "wir → haben"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте правильную форму haben (Akkusativ):",
-      "sentence": "Ich habe ___ Hund.",
-      "answer": "einen",
-      "hint": "Hund — мужской род, Akkusativ → einen"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте правильную форму haben (Akkusativ):",
-      "sentence": "Ich habe ___ Katze.",
-      "answer": "eine",
-      "hint": "Katze — женский род, Akkusativ → eine"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте отрицание (kein/keine/keinen):",
-      "sentence": "Ich habe ___ Hund.",
-      "answer": "keinen",
-      "hint": "Hund — мужской род, Akkusativ → keinen"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте отрицание (kein/keine/keinen):",
-      "sentence": "Ich habe ___ Katze.",
-      "answer": "keine",
-      "hint": "Katze — женский род, Akkusativ → keine"
-    },
-    {
-      "type": "choice",
-      "question": "Выберите правильную форму:",
-      "sentence": "___ du einen Bruder?",
-      "options": ["Habe", "Hast", "Hat", "Habt"],
-      "answer": "Hast",
-      "hint": "du → hast, вопрос начинается с глагола"
-    },
-    {
-      "type": "choice",
-      "question": "Выберите правильный Akkusativ:",
-      "sentence": "Ich habe ___ Tisch gekauft.",
-      "options": ["der", "den", "dem", "des"],
-      "answer": "den",
-      "hint": "Tisch — мужской род, Akkusativ → den"
-    },
-    {
-      "type": "transform",
-      "question": "Переделайте в отрицание (kein/keine/keinen):",
-      "sentence": "Ich habe einen Hund.",
-      "answer": "Ich habe keinen Hund",
-      "hint": "einen → keinen"
-    },
-    {
-      "type": "fill",
-      "question": "Переведите на немецкий:",
-      "sentence": "У меня есть брат.",
-      "answer": "ich habe einen bruder",
-      "hint": "Ich habe einen Bruder."
-    },
-    {
-      "type": "fill",
-      "question": "Переведите на немецкий:",
-      "sentence": "У тебя есть время?",
-      "answer": "hast du zeit",
-      "hint": "Hast du Zeit?"
-    },
-    {
-      "type": "fill",
-      "question": "Переведите на немецкий:",
-      "sentence": "Я голоден.",
-      "answer": "ich habe hunger",
-      "hint": "Ich habe Hunger."
-    },
-    {
-      "type": "fill",
-      "question": "Переведите на немецкий:",
-      "sentence": "Он прав.",
-      "answer": "er hat recht",
-      "hint": "Er hat Recht."
-    }
+    {"type": "fill", "question": "Вставьте правильную форму haben:", "sentence": "Ich ___ einen Bruder.", "answer": "habe", "hint": "ich → habe"},
+    {"type": "fill", "question": "Вставьте правильную форму haben:", "sentence": "Du ___ eine Schwester.", "answer": "hast", "hint": "du → hast"},
+    {"type": "fill", "question": "Вставьте правильную форму haben:", "sentence": "Er ___ ein Auto.", "answer": "hat", "hint": "er → hat"},
+    {"type": "fill", "question": "Вставьте правильную форму haben:", "sentence": "Wir ___ Zeit.", "answer": "haben", "hint": "wir → haben"},
+    {"type": "fill", "question": "Вставьте Akkusativ:", "sentence": "Ich habe ___ Hund.", "answer": "einen", "hint": "Hund — мужской род → einen"},
+    {"type": "fill", "question": "Вставьте Akkusativ:", "sentence": "Ich habe ___ Katze.", "answer": "eine", "hint": "Katze — женский род → eine"},
+    {"type": "fill", "question": "Вставьте отрицание:", "sentence": "Ich habe ___ Hund.", "answer": "keinen", "hint": "Hund — мужской род → keinen"},
+    {"type": "choice", "question": "Выберите правильную форму:", "sentence": "___ du einen Bruder?", "options": ["Habe", "Hast", "Hat", "Habt"], "answer": "Hast", "hint": "du → hast"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "У меня есть брат.", "answer": "ich habe einen bruder", "hint": "Ich habe einen Bruder."},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Я голоден.", "answer": "ich habe hunger", "hint": "Ich habe Hunger."},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Ты прав.", "answer": "du hast recht", "hint": "Du hast Recht."}
   ]
 }
