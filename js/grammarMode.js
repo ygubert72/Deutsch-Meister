@@ -21,7 +21,6 @@ async function loadGrammarData() {
         grammarDB[level] = [];
         
         try {
-            // Загружаем индексный файл
             const indexUrl = `docs/grammar/${level}/index.json`;
             const indexResp = await fetch(indexUrl);
             
@@ -33,7 +32,6 @@ async function loadGrammarData() {
             const index = await indexResp.json();
             console.log(`📚 Загружаю ${level}: ${index.lessons.length} уроков`);
             
-            // Загружаем каждый урок
             for (const lessonPath of index.lessons) {
                 const lessonUrl = `docs/grammar/${level}/${lessonPath}`;
                 const lessonResp = await fetch(lessonUrl);
@@ -47,7 +45,6 @@ async function loadGrammarData() {
                 }
             }
             
-            // Инициализируем прогресс
             if (!grammarProgress[level]) {
                 grammarProgress[level] = [];
                 for (let i = 0; i < grammarDB[level].length; i++) {
@@ -100,7 +97,6 @@ function renderGrammar() {
     const level = AppConfig.currentLevel;
     const lessons = grammarDB[level];
     
-    // Проверяем сохранённый урок
     const savedLesson = localStorage.getItem('dm_last_grammar_lesson');
     const savedLevel = localStorage.getItem('dm_last_grammar_level');
     if (savedLesson !== null && savedLevel === level && lessons && lessons[parseInt(savedLesson)]) {
@@ -146,7 +142,6 @@ function renderGrammar() {
     
     document.getElementById('content').innerHTML = html;
     
-    // Назначаем обработчики
     const buttons = document.querySelectorAll('[data-lesson-index]');
     for (const btn of buttons) {
         const lessonIdx = parseInt(btn.getAttribute('data-lesson-index'));
@@ -223,10 +218,11 @@ function showGrammarTheory() {
     if (grammarLessonData.examples && grammarLessonData.examples.length) {
         examplesHtml = '<div style="margin-top: 20px;"><h4>📝 Примеры с озвучкой:</h4><ul style="list-style: none; padding: 0;">';
         for (const ex of grammarLessonData.examples) {
+            const safeText = ex.de.replace(/'/g, "\\'");
             examplesHtml += `
                 <li style="background: #E8F0FE; margin: 8px 0; padding: 10px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
                     <span><strong>${ex.de}</strong> — ${ex.ru}</span>
-                    <button class="speak-btn-inline" onclick="speak('${ex.de.replace(/'/g, "\\'")}')">🔊</button>
+                    <button class="speak-btn-inline" onclick="speak('${safeText}')">🔊</button>
                 </li>
             `;
         }
@@ -241,7 +237,7 @@ function showGrammarTheory() {
     `;
 }
 
-// ========== УПРАЖНЕНИЯ НОВОГО ТИПА ==========
+// ========== УПРАЖНЕНИЯ ==========
 function showGrammarPractice(lessonIdx) {
     const lesson = grammarDB[AppConfig.currentLevel][lessonIdx];
     grammarExercises = lesson.exercises || [];
@@ -275,12 +271,10 @@ function showGrammarExercise(exercise, lessonIdx) {
             </div>
     `;
     
-    // Вопрос
     if (exercise.question) {
         html += `<div style="font-size: 16px; color: #666; margin-bottom: 10px;">${exercise.question}</div>`;
     }
     
-    // В зависимости от типа упражнения
     switch (exercise.type) {
         case 'fill':
             html += `
@@ -289,7 +283,7 @@ function showGrammarExercise(exercise, lessonIdx) {
                 </div>
                 <div style="margin: 20px 0;">
                     <input type="text" id="grammarAnswerInput" 
-                        style="width: 100%; padding: 14px; font-size: 16px; border: 2px solid #D0D0D0; border-radius: 12px; text-align: center;"
+                        style="width: 100%; padding: 14px; font-size: 16px; border: 2px solid #D0D0D0; border-radius: 12px; text-align: center; transition: all 0.2s ease;"
                         placeholder="Введите ответ..." 
                         autocomplete="off">
                 </div>
@@ -313,7 +307,7 @@ function showGrammarExercise(exercise, lessonIdx) {
                 </div>
                 <div style="margin: 20px 0;">
                     <input type="text" id="grammarAnswerInput" 
-                        style="width: 100%; padding: 14px; font-size: 16px; border: 2px solid #D0D0D0; border-radius: 12px; text-align: center;"
+                        style="width: 100%; padding: 14px; font-size: 16px; border: 2px solid #D0D0D0; border-radius: 12px; text-align: center; transition: all 0.2s ease;"
                         placeholder="Введите преобразованное предложение..." 
                         autocomplete="off">
                 </div>
@@ -328,7 +322,7 @@ function showGrammarExercise(exercise, lessonIdx) {
                 </div>
                 <div style="margin: 20px 0;">
                     <input type="text" id="grammarAnswerInput" 
-                        style="width: 100%; padding: 14px; font-size: 16px; border: 2px solid #D0D0D0; border-radius: 12px; text-align: center;"
+                        style="width: 100%; padding: 14px; font-size: 16px; border: 2px solid #D0D0D0; border-radius: 12px; text-align: center; transition: all 0.2s ease;"
                         placeholder="Введите правильный порядок слов..." 
                         autocomplete="off">
                 </div>
@@ -336,7 +330,6 @@ function showGrammarExercise(exercise, lessonIdx) {
             break;
     }
     
-    // Кнопки управления
     html += `
         <div class="btn-group" style="margin-top: 15px;">
             <button class="ctrl-btn check-btn" id="grammarCheckBtn" style="cursor: pointer; background: #3B6FE0; color: white;">ПРОВЕРИТЬ</button>
@@ -360,81 +353,121 @@ function showGrammarExercise(exercise, lessonIdx) {
     
     container.innerHTML = html;
     
-    // Назначаем обработчики в зависимости от типа
-    if (exercise.type === 'choice') {
-        const options = document.querySelectorAll('.quiz-opt');
-        options.forEach(opt => {
-            opt.onclick = () => {
-                const userAnswer = opt.getAttribute('data-value');
-                checkGrammarAnswer(userAnswer, exercise, lessonIdx);
-            };
-        });
-    } else {
+    // Обработчики для input (Enter)
+    if (exercise.type === 'fill' || exercise.type === 'transform' || exercise.type === 'order') {
         const input = document.getElementById('grammarAnswerInput');
         if (input) {
             input.focus();
             input.onkeypress = (e) => {
                 if (e.key === 'Enter') {
-                    document.getElementById('grammarCheckBtn').click();
+                    const userAnswer = input.value.trim().toLowerCase();
+                    checkGrammarAnswer(userAnswer, exercise, lessonIdx);
                 }
             };
         }
-        
-        document.getElementById('grammarCheckBtn').onclick = () => {
-            const userAnswer = document.getElementById('grammarAnswerInput').value.trim().toLowerCase();
-            checkGrammarAnswer(userAnswer, exercise, lessonIdx);
+    }
+    
+    // Обработчики для choice
+    if (exercise.type === 'choice') {
+        const options = document.querySelectorAll('.quiz-opt');
+        options.forEach(opt => {
+            opt.onclick = () => {
+                const userAnswer = opt.getAttribute('data-value').toLowerCase();
+                checkGrammarAnswer(userAnswer, exercise, lessonIdx);
+            };
+        });
+    } else {
+        const checkBtn = document.getElementById('grammarCheckBtn');
+        if (checkBtn) {
+            checkBtn.onclick = () => {
+                const input = document.getElementById('grammarAnswerInput');
+                if (input) {
+                    const userAnswer = input.value.trim().toLowerCase();
+                    checkGrammarAnswer(userAnswer, exercise, lessonIdx);
+                }
+            };
+        }
+    }
+    
+    const speakBtn = document.getElementById('grammarSpeakBtn');
+    if (speakBtn) {
+        speakBtn.onclick = () => {
+            let textToSpeak = exercise.sentence || exercise.question || '';
+            const germanMatch = textToSpeak.match(/[A-ZÄÖÜ][a-zäöüß]+/);
+            if (germanMatch) textToSpeak = germanMatch[0];
+            speak(textToSpeak);
         };
     }
     
-    document.getElementById('grammarSpeakBtn').onclick = () => {
-        let textToSpeak = exercise.sentence || exercise.question || '';
-        const germanMatch = textToSpeak.match(/[A-ZÄÖÜ][a-zäöüß]+/);
-        if (germanMatch) textToSpeak = germanMatch[0];
-        speak(textToSpeak);
-    };
+    const hintBtn = document.getElementById('grammarHintBtn');
+    if (hintBtn) {
+        hintBtn.onclick = () => {
+            const hintLabel = document.getElementById('grammarHintLabel');
+            hintLabel.innerHTML = `💡 ${exercise.hint || 'Попробуйте ещё раз! Подсказки нет.'}`;
+            setTimeout(() => { hintLabel.innerHTML = ''; }, 4000);
+        };
+    }
     
-    document.getElementById('grammarHintBtn').onclick = () => {
-        const hintLabel = document.getElementById('grammarHintLabel');
-        hintLabel.innerHTML = `💡 ${exercise.hint || 'Попробуйте ещё раз! Подсказки нет.'}`;
-        setTimeout(() => { hintLabel.innerHTML = ''; }, 4000);
-    };
+    const prevBtn = document.getElementById('grammarPrevBtn');
+    if (prevBtn) {
+        prevBtn.onclick = () => {
+            if (currentGrammarExerciseIndex > 0) {
+                currentGrammarExerciseIndex--;
+                showGrammarExercise(grammarExercises[currentGrammarExerciseIndex], lessonIdx);
+            }
+        };
+    }
     
-    document.getElementById('grammarPrevBtn').onclick = () => {
-        if (currentGrammarExerciseIndex > 0) {
-            currentGrammarExerciseIndex--;
-            showGrammarExercise(grammarExercises[currentGrammarExerciseIndex], lessonIdx);
-        }
-    };
-    
-    document.getElementById('grammarNextBtn').onclick = () => {
-        if (currentGrammarExerciseIndex + 1 < grammarExercises.length) {
-            currentGrammarExerciseIndex++;
-            showGrammarExercise(grammarExercises[currentGrammarExerciseIndex], lessonIdx);
-        }
-    };
+    const nextBtn = document.getElementById('grammarNextBtn');
+    if (nextBtn) {
+        nextBtn.onclick = () => {
+            if (currentGrammarExerciseIndex + 1 < grammarExercises.length) {
+                currentGrammarExerciseIndex++;
+                showGrammarExercise(grammarExercises[currentGrammarExerciseIndex], lessonIdx);
+            }
+        };
+    }
 }
 
+// ========== ПРОВЕРКА ОТВЕТА С МИГАНИЕМ ==========
 function checkGrammarAnswer(userAnswer, exercise, lessonIdx) {
-    const resultDiv = document.getElementById('grammarContent');
     const correctAnswer = exercise.answer.toLowerCase();
+    const input = document.getElementById('grammarAnswerInput');
     
     if (userAnswer === correctAnswer) {
-        // ПРАВИЛЬНО
+        // ПРАВИЛЬНО - зелёное мигание
+        if (input) {
+            input.style.transition = 'background-color 0.2s';
+            input.style.backgroundColor = '#C8E6C9';
+            input.style.borderColor = '#4CAF50';
+        } else {
+            const btns = document.querySelectorAll('.quiz-opt');
+            btns.forEach(btn => {
+                if (btn.getAttribute('data-value').toLowerCase() === userAnswer) {
+                    btn.style.backgroundColor = '#C8E6C9';
+                    btn.style.borderColor = '#4CAF50';
+                }
+            });
+        }
+        
         if (grammarBlinkTimer) clearTimeout(grammarBlinkTimer);
-        
-        // Показываем зелёный фон
-        const checkBtn = document.getElementById('grammarCheckBtn');
-        if (checkBtn) checkBtn.style.background = '#4CAF50';
-        
         grammarBlinkTimer = setTimeout(() => {
-            if (checkBtn) checkBtn.style.background = '#3B6FE0';
+            if (input) {
+                input.style.backgroundColor = '';
+                input.style.borderColor = '#D0D0D0';
+                input.value = '';
+            } else {
+                const btns = document.querySelectorAll('.quiz-opt');
+                btns.forEach(btn => {
+                    btn.style.backgroundColor = '';
+                    btn.style.borderColor = '#D0D0D0';
+                });
+            }
             
-            // Переход к следующему упражнению
             if (currentGrammarExerciseIndex + 1 < grammarExercises.length) {
                 currentGrammarExerciseIndex++;
                 showGrammarExercise(grammarExercises[currentGrammarExerciseIndex], lessonIdx);
             } else {
-                // Все упражнения выполнены
                 if (!isGrammarLessonCompleted(lessonIdx)) {
                     markGrammarLessonCompleted(lessonIdx);
                 }
@@ -445,31 +478,38 @@ function checkGrammarAnswer(userAnswer, exercise, lessonIdx) {
                         <div style="text-align: center; padding: 40px;">
                             <div style="font-size: 64px; margin-bottom: 20px;">🎉</div>
                             <div style="font-size: 24px; margin-bottom: 20px;">Поздравляем!</div>
-                            <div style="font-size: 16px; margin-bottom: 20px;">Вы успешно завершили все упражнения урока!</div>
+                            <div style="font-size: 16px; margin-bottom: 20px;">Вы успешно завершили все упражнения урока "${grammarLessonData.title}"</div>
                             <button class="ctrl-btn" id="backToGrammarFromComplete" style="cursor: pointer;">ВЕРНУТЬСЯ К СПИСКУ УРОКОВ</button>
                         </div>
                     `;
                     document.getElementById('backToGrammarFromComplete').onclick = () => renderGrammar();
                 }
             }
-        }, 600);
+        }, 500);
     } else {
-        // НЕПРАВИЛЬНО
-        const input = document.getElementById('grammarAnswerInput');
+        // НЕПРАВИЛЬНО - красное мигание
         if (input) {
+            input.style.transition = 'background-color 0.2s';
+            input.style.backgroundColor = '#FFCDD2';
             input.style.borderColor = '#F44336';
+            
+            if (grammarBlinkTimer) clearTimeout(grammarBlinkTimer);
             grammarBlinkTimer = setTimeout(() => {
+                input.style.backgroundColor = '';
                 input.style.borderColor = '#D0D0D0';
                 input.value = '';
                 input.focus();
-            }, 800);
+            }, 500);
         } else {
-            // Для choice типа
-            const options = document.querySelectorAll('.quiz-opt');
-            options.forEach(opt => {
-                if (opt.getAttribute('data-value') === userAnswer) {
-                    opt.style.background = '#FFCDD2';
-                    setTimeout(() => { opt.style.background = ''; }, 500);
+            const btns = document.querySelectorAll('.quiz-opt');
+            btns.forEach(btn => {
+                if (btn.getAttribute('data-value').toLowerCase() === userAnswer) {
+                    btn.style.backgroundColor = '#FFCDD2';
+                    btn.style.borderColor = '#F44336';
+                    setTimeout(() => {
+                        btn.style.backgroundColor = '';
+                        btn.style.borderColor = '#D0D0D0';
+                    }, 500);
                 }
             });
         }
