@@ -1,0 +1,127 @@
+{
+  "lesson": 13,
+  "title": "Модальные глаголы: können, müssen, wollen, möchten",
+  "level": "A1",
+  "theory": "<h3>📌 Что такое модальные глаголы?</h3>\n\n<p>Модальные глаголы выражают <strong>отношение к действию</strong>: возможность, необходимость, желание.</p>\n\n<p>В русском языке им соответствуют слова: <strong>могу, должен, хочу</strong>.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 ГЛАВНОЕ ПРАВИЛО:</strong><br>\n  Модальный глагол стоит на <strong>2-м месте</strong>, а основной глагол — в <strong>конце предложения в инфинитиве</strong>!<br>\n  📌 Ich <strong>kann</strong> gut Deutsch <strong>sprechen</strong>.\n</div>\n\n<h3>📌 Спряжение модальных глаголов</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th></th>\n    <th>können<br>(мочь)</th>\n    <th>müssen<br>(должен)</th>\n    <th>wollen<br>(хотеть)</th>\n    <th>möchten<br>(хотел бы)</th>\n    </td>\n  <tr style=\"background: #E3F2FD;\">\n    <td>ich</th>\n    <td>kann</th>\n    <td>muss</th>\n    <td>will</th>\n    <td>möchte</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>du</th>\n    <td>kannst</th>\n    <td>musst</th>\n    <td>willst</th>\n    <td>möchtest</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>er/sie/es</th>\n    <td>kann</th>\n    <td>muss</th>\n    <td>will</th>\n    <td>möchte</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>wir</th>\n    <td>können</th>\n    <td>müssen</th>\n    <td>wollen</th>\n    <td>möchten</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>ihr</th>\n    <td>könnt</th>\n    <td>müsst</th>\n    <td>wollt</th>\n    <td>möchtet</th>\n   </td>\n  <tr style=\"background: #F5F5F5;\">\n    <td>sie/Sie</th>\n    <td>können</th>\n    <td>müssen</th>\n    <td>wollen</th>\n    <td>möchten</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td style=\"font-weight: bold;\">Значение</td>\n    <td>мочь, уметь</td>\n    <td>должен, вынужден</td>\n    <td>хотеть (сильно)</td>\n    <td>хотел бы (вежливо)</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td style=\"font-weight: bold;\">Пример</td>\n    <td>Ich kann schwimmen.</td>\n    <td>Ich muss lernen.</td>\n    <td>Ich will nach Berlin.</td>\n    <td>Ich möchte Kaffee.</td>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td style=\"font-weight: bold;\">Перевод</td>\n    <td>Я умею плавать.</td>\n    <td>Я должен учиться.</td>\n    <td>Я хочу в Берлин.</td>\n    <td>Я хотел бы кофе.</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td style=\"font-weight: bold;\">Отрицание</td>\n    <td>nicht können</td>\n    <td>nicht müssen</td>\n    <td>nicht wollen</td>\n    <td>nicht möchten</td>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td style=\"font-weight: bold;\">Пример отриц.</td>\n    <td>Ich kann nicht kommen.</td>\n    <td>Du musst nicht gehen.</td>\n    <td>Er will nicht essen.</td>\n    <td>Ich möchte nicht.</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td style=\"font-weight: bold;\">Вопрос</td>\n    <td>Kannst du helfen?</td>\n    <td>Musst du arbeiten?</td>\n    <td>Willst du kommen?</td>\n    <td>Möchtest du trinken?</td>\n   </tr>\n  </table>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ВАЖНЫЕ ОСОБЕННОСТИ:</strong><br>\n  • <strong>können</strong> — меняет корень: kann, kannst, kann... (umlaut исчезает)<br>\n  • <strong>müssen</strong> — меняет корень: muss, musst, muss... (umlaut исчезает)<br>\n  • <strong>wollen</strong> — меняет корень: will, willst, will...<br>\n  • <strong>möchten</strong> — это форма Konjunktiv II от mögen, используется только в Präsens\n</div>\n\n<h3>📌 Порядок слов с модальными глаголами</h3>\n\n<p><strong>Повествование:</strong> подлежащее → модальный глагол → ... → инфинитив в конце</p>\n<ul><li>Ich <strong>kann</strong> gut Deutsch <strong>sprechen</strong>.</li></ul>\n\n<p><strong>Вопрос:</strong> модальный глагол → подлежащее → ... → инфинитив в конце</p>\n<ul><li><strong>Kannst</strong> du gut Deutsch <strong>sprechen</strong>?</li></ul>\n\n<p><strong>Отрицание:</strong> nicht ставится перед инфинитивом</p>\n<ul><li>Ich kann <strong>nicht</strong> kommen.</li></ul>\n\n<h3>📌 Итог урока</h3>\n\n<ul>\n<li><strong>können</strong> — возможность/умение (ich kann, du kannst)</li>\n<li><strong>müssen</strong> — необходимость/долженствование (ich muss, du musst)</li>\n<li><strong>wollen</strong> — сильное желание (ich will, du willst)</li>\n<li><strong>möchten</strong> — вежливое желание (ich möchte, du möchtest)</li>\n<li>Основной глагол стоит в конце предложения в инфинитиве</li>\n</ul>",
+  "examples": [
+    {"de": "Ich kann gut Deutsch sprechen.", "ru": "Я умею хорошо говорить по-немецки."},
+    {"de": "Kannst du mir helfen?", "ru": "Ты можешь мне помочь?"},
+    {"de": "Er kann nicht kommen.", "ru": "Он не может прийти."},
+    {"de": "Ich muss heute lernen.", "ru": "Я должен сегодня учиться."},
+    {"de": "Musst du schon gehen?", "ru": "Ты уже должен идти?"},
+    {"de": "Wir müssen nicht früh aufstehen.", "ru": "Нам не нужно рано вставать."},
+    {"de": "Ich will nach Berlin fahren.", "ru": "Я хочу поехать в Берлин."},
+    {"de": "Was willst du essen?", "ru": "Что ты хочешь есть?"},
+    {"de": "Ich möchte einen Kaffee.", "ru": "Я хотел бы кофе."},
+    {"de": "Möchtest du ins Kino gehen?", "ru": "Ты хотел бы пойти в кино?"}
+  ],
+  "exercises": [
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму 'können':",
+      "sentence": "Ich ___ gut Deutsch sprechen.",
+      "answer": "kann",
+      "hint": "ich + können = kann"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму 'können':",
+      "sentence": "___ du mir helfen?",
+      "answer": "Kannst",
+      "hint": "du + können = kannst, вопрос начинается с глагола"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму 'müssen':",
+      "sentence": "Ich ___ heute lernen.",
+      "answer": "muss",
+      "hint": "ich + müssen = muss"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму 'müssen':",
+      "sentence": "___ du schon gehen?",
+      "answer": "Musst",
+      "hint": "du + müssen = musst"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму 'wollen':",
+      "sentence": "Ich ___ nach Berlin fahren.",
+      "answer": "will",
+      "hint": "ich + wollen = will"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму 'wollen':",
+      "sentence": "Was ___ du essen?",
+      "answer": "willst",
+      "hint": "du + wollen = willst"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму 'möchten':",
+      "sentence": "Ich ___ einen Kaffee.",
+      "answer": "möchte",
+      "hint": "ich + möchte = möchte"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму 'möchten':",
+      "sentence": "___ du ins Kino gehen?",
+      "answer": "Möchtest",
+      "hint": "du + möchte = möchtest"
+    },
+    {
+      "type": "choice",
+      "question": "Выберите правильный модальный глагол:",
+      "sentence": "Er ___ sehr gut singen. (умение)",
+      "options": ["muss", "kann", "will", "möchte"],
+      "answer": "kann",
+      "hint": "умение → können"
+    },
+    {
+      "type": "choice",
+      "question": "Выберите правильный модальный глагол:",
+      "sentence": "Ich ___ einen Tee, bitte. (вежливая просьба)",
+      "options": ["muss", "kann", "will", "möchte"],
+      "answer": "möchte",
+      "hint": "вежливое желание → möchte"
+    },
+    {
+      "type": "transform",
+      "question": "Поставьте инфинитив в конец предложения:",
+      "sentence": "Ich kann gut Deutsch sprechen.",
+      "answer": "Ich kann gut Deutsch sprechen",
+      "hint": "всё правильно, sprechen уже в конце"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Я умею плавать.",
+      "answer": "ich kann schwimmen",
+      "hint": "können + schwimmen"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Ты должен учиться.",
+      "answer": "du musst lernen",
+      "hint": "müssen + lernen"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Я хочу пить.",
+      "answer": "ich will trinken",
+      "hint": "wollen + trinken"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Я хотел бы кофе.",
+      "answer": "ich möchte einen kaffee",
+      "hint": "möchten + Kaffee (без инфинитива)"
+    }
+  ]
+}
