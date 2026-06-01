@@ -1,1 +1,93 @@
-
+{
+  "lesson": 10,
+  "title": "Предлоги с Dativ (aus, bei, mit, nach, von, zu, seit)",
+  "level": "A1",
+  "theory": "<h3>📌 Что такое предлоги с Dativ?</h3>\n\n<p>В немецком языке есть предлоги, после которых существительное и местоимение всегда стоят в <strong>Dativ (дательный падеж)</strong>.</p>\n\n<p>Их нужно <strong>выучить наизусть</strong> — они не меняются в зависимости от движения или места.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 ЗАПОМИНАЛКА (с немецким акцентом):</strong><br>\n  Aus, bei, mit, nach, von, zu —<br>\n  Dativ, das ist klar für dich, du!<br>\n  (А еще: seit, außer, gegenüber)\n</div>\n\n<h3>📌 Таблица предлогов с Dativ</h3>\n\n<table border=\"1\" cellpadding=\"12\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Предлог</th>\n    <th>Перевод</th>\n    <th>Пример</th>\n    <th>Перевод</th>\n    </table>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>aus</strong></td>\n    <td><strong>из</strong> (страна, город, материал)</td>\n    <td>Ich komme aus Russland.</td>\n    <td>Я из России.</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>bei</strong></td>\n    <td><strong>у, при, рядом с</strong> (человек, место)</td>\n    <td>Ich wohne bei meiner Mutter.</td>\n    <td>Я живу у моей мамы.</td>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>mit</strong></td>\n    <td><strong>с</strong> (совместно)</td>\n    <td>Ich gehe mit dem Hund spazieren.</td>\n    <td>Я иду с собакой гулять.</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>nach</strong></td>\n    <td><strong>в</strong> (страна, город без артикля, направление)</td>\n    <td>Ich fliege nach Berlin.</td>\n    <td>Я лечу в Берлин.</td>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>von</strong></td>\n    <td><strong>от</strong> (исходная точка, принадлежность)</td>\n    <td>Das Geschenk ist von meinem Bruder.</td>\n    <td>Подарок от моего брата.</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>zu</strong></td>\n    <td><strong>к</strong> (направление к человеку/месту)</td>\n    <td>Ich gehe zu meinem Freund.</td>\n    <td>Я иду к моему другу.</td>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>seit</strong></td>\n    <td><strong>с (какого-то времени)</strong></td>\n    <td>Ich lerne seit einem Jahr Deutsch.</td>\n    <td>Я учу немецкий с года.</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>außer</strong></td>\n    <td><strong>кроме</strong></td>\n    <td>Außer mir ist niemand da.</td>\n    <td>Кроме меня никого нет.</td>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>gegenüber</strong></td>\n    <td><strong>напротив</strong></td>\n    <td>Er wohnt mir gegenüber.</td>\n    <td>Он живёт напротив меня.</td>\n   </tr>\n  </table>\n\n<h3>📌 Изменение артиклей в Dativ</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Nominativ</th>\n    <th>Dativ</th>\n    <th>Пример с предлогом</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\"><td>der (муж.)</td><td><strong>dem</strong></td><td>mit dem Hund</td> </tr>\n  <tr style=\"background: #F5F5F5;\"><td>die (жен.)</td><td><strong>der</strong></td><td>mit der Frau</td> </tr>\n  <tr style=\"background: #E3F2FD;\"><td>das (ср.)</td><td><strong>dem</strong></td><td>mit dem Kind</td> </tr>\n  <tr style=\"background: #F5F5F5;\"><td>die (мн.)</td><td><strong>den</strong> + n</td><td>mit den Kindern</td> </tr>\n  </table>\n\n<h3>📌 Изменение неопределённых и притяжательных местоимений в Dativ</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Nominativ</th>\n    <th>Dativ</th>\n    <th>Пример</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\"><td>ein</td><td><strong>einem</strong></td><td>mit einem Hund</td> </tr>\n  <tr style=\"background: #F5F5F5;\"><td>eine</td><td><strong>einer</strong></td><td>mit einer Frau</td> </tr>\n  <tr style=\"background: #E3F2FD;\"><td>mein</td><td><strong>meinem</strong></td><td>mit meinem Hund</td> </tr>\n  <tr style=\"background: #F5F5F5;\"><td>dein</td><td><strong>deinem</strong></td><td>mit deinem Hund</td> </tr>\n  <tr style=\"background: #E3F2FD;\"><td>sein</td><td><strong>seinem</strong></td><td>mit seinem Hund</td> </tr>\n  <tr style=\"background: #F5F5F5;\"><td>kein</td><td><strong>keinem</strong></td><td>mit keinem Hund</td> </tr>\n  </table>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ТИПИЧНЫЕ ОШИБКИ:</strong><br>\n  ❌ Ich gehe <strong>mit der Hund</strong> — неправильно!<br>\n  ✅ Ich gehe <strong>mit dem Hund</strong>.<br>\n  <br>\n  ❌ Ich komme <strong>aus die Türkei</strong> — неправильно!<br>\n  ✅ Ich komme <strong>aus der Türkei</strong>.\n</div>\n\n<h3>📌 Примеры использования</h3>\n\n<ul>\n  <li>Ich komme <strong>aus der Schweiz</strong>. — Я из Швейцарии.</li>\n  <li>Er wohnt <strong>bei seinen Eltern</strong>. — Он живёт у своих родителей.</li>\n  <li>Wir fahren <strong>mit dem Zug</strong>. — Мы едем на поезде.</li>\n  <li>Sie fliegt <strong>nach Deutschland</strong>. — Она летит в Германию.</li>\n  <li>Das ist <strong>von meinem Vater</strong>. — Это от моего отца.</li>\n  <li>Ich gehe <strong>zu meinem Arzt</strong>. — Я иду к моему врачу.</li>\n  <li><strong>Seit einem Monat</strong> lerne ich Deutsch. — Я учу немецкий с месяца.</li>\n</ul>\n\n<h3>📌 Итог урока</h3>\n\n<ul>\n  <li>Предлоги: aus, bei, mit, nach, von, zu, seit, außer, gegenüber — всегда с Dativ</li>\n  <li>der → dem, die → der, das → dem, die (мн.) → den + n</li>\n  <li>Запомни запоминалку в начале урока!</li>\n</ul>",
+  "examples": [
+    {"de": "Ich komme aus Russland.", "ru": "Я из России."},
+    {"de": "Er wohnt bei seiner Mutter.", "ru": "Он живёт у своей мамы."},
+    {"de": "Ich gehe mit dem Hund.", "ru": "Я иду с собакой."},
+    {"de": "Wir fahren nach Berlin.", "ru": "Мы едем в Берлин."},
+    {"de": "Das Geschenk ist von meinem Bruder.", "ru": "Подарок от моего брата."},
+    {"de": "Ich gehe zu meinem Freund.", "ru": "Я иду к своему другу."}
+  ],
+  "exercises": [
+    {
+      "type": "fill",
+      "question": "Вставьте предлог (aus/bei/mit/nach/von/zu):",
+      "sentence": "Ich komme ___ Russland.",
+      "answer": "aus",
+      "hint": "из → aus"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте предлог:",
+      "sentence": "Er wohnt ___ seiner Mutter.",
+      "answer": "bei",
+      "hint": "у (кого-то) → bei"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте предлог:",
+      "sentence": "Ich gehe ___ dem Hund.",
+      "answer": "mit",
+      "hint": "с → mit"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте предлог:",
+      "sentence": "Wir fahren ___ Berlin.",
+      "answer": "nach",
+      "hint": "в (город без артикля) → nach"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте предлог:",
+      "sentence": "Das Geschenk ist ___ meinem Bruder.",
+      "answer": "von",
+      "hint": "от → von"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте предлог:",
+      "sentence": "Ich gehe ___ meinem Freund.",
+      "answer": "zu",
+      "hint": "к → zu"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте Dativ:",
+      "sentence": "Ich gehe mit ___ Hund. (der)",
+      "answer": "dem",
+      "hint": "der Hund → dem Hund"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте Dativ:",
+      "sentence": "Ich komme aus ___ Türkei. (die)",
+      "answer": "der",
+      "hint": "die Türkei → der Türkei"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте Dativ:",
+      "sentence": "Er wohnt bei ___ Kind. (das)",
+      "answer": "dem",
+      "hint": "das Kind → dem Kind"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Я из Берлина.",
+      "answer": "ich komme aus berlin",
+      "hint": "aus + Berlin"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Я иду с другом.",
+      "answer": "ich gehe mit dem freund",
+      "hint": "mit + dem Freund"
+    }
+  ]
+}
