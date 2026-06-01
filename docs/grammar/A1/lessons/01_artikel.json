@@ -2,14 +2,19 @@
   "lesson": 1,
   "title": "Определённые артикли: der, die, das",
   "level": "A1",
-  "theory": "<h3>📌 Что такое артикль?</h3>\n\n<p>В русском языке мы говорим: <strong>«стол»</strong>, <strong>«книга»</strong>, <strong>«окно»</strong>. Род виден по окончанию.</p>\n\n<p>В немецком языке перед каждым существительным стоит <strong>маленькое слово-помощник</strong> — артикль. Он показывает род, число и падеж существительного.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🔑 Золотое правило A1:</strong> Никогда не учи немецкие слова без артикля! Не «Tisch», а <strong>«der Tisch»</strong>. Не «Frau», а <strong>«die Frau»</strong>.\n</div>\n\n<h4>🎯 Три артикля — три рода:</h4>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Артикль</th>\n    <th>Род (по-немецки)</th>\n    <th>Род (по-русски)</th>\n    <th>Пример</th>\n   </tr>\n   <tr>\n    <td><strong style=\"color: #2B5BC7;\">der</strong></td>\n    <td>Maskulinum</td>\n    <td>мужской род</td>\n    <td>der Mann (мужчина)</td>\n   </tr>\n   <tr>\n    <td><strong style=\"color: #C2185B;\">die</strong></td>\n    <td>Femininum</td>\n    <td>женский род</td>\n    <td>die Frau (женщина)</td>\n   </tr>\n   <tr>\n    <td><strong style=\"color: #2E7D32;\">das</strong></td>\n    <td>Neutrum</td>\n    <td>средний род</td>\n    <td>das Kind (ребёнок)</td>\n   </tr>\n </table>\n\n<h4>⚠️ Ловушка для русскоговорящих:</h4>\n\n<p>Род в немецком языке <strong>ЧАСТО НЕ СОВПАДАЕТ</strong> с русским! Не переводи род из родного языка!</p>\n\n<ul>\n  <li>«девочка» (она) → <strong>das Mädchen</strong> (средний род!)</li>\n  <li>«солнце» (оно) → <strong>die Sonne</strong> (женский род!)</li>\n</ul>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 4px solid #F44336;\">\n  <strong>❌ Нельзя:</strong> думать «солнце — оно → das Sonne».<br>\n  <strong>✅ Нужно:</strong> учить «die Sonne» как единое целое.\n</div>",
+  "theory": "<h3>📌 Что такое артикль?</h3>\n\n<p>В русском языке мы говорим: <strong>«стол»</strong>, <strong>«книга»</strong>, <strong>«окно»</strong>. Род мы понимаем по окончанию слова: стол (он, мужской), книга (она, женский), окно (оно, средний).</p>\n\n<p>В немецком языке перед каждым существительным стоит <strong>маленькое слово-помощник</strong> — <strong>артикль</strong>. Он показывает род, число и падеж существительного.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🔑 ЗОЛОТОЕ ПРАВИЛО A1:</strong><br>\n  Никогда не учи немецкие слова без артикля!<br>\n  ❌ Не «Tisch»<br>\n  ✅ <strong>«der Tisch»</strong><br>\n  ❌ Не «Frau»<br>\n  ✅ <strong>«die Frau»</strong>\n</div>\n\n<h3>🎯 Три артикля — три рода</h3>\n\n<table border=\"1\" cellpadding=\"12\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0; font-size: 16px;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Артикль</th>\n    <th>Цвет</th>\n    <th>Род (по-немецки)</th>\n    <th>Род (по-русски)</th>\n    <th>Пример</th>\n   </tr>\n    <tr style=\"background: #E3F2FD;\">\n      <td style=\"font-size: 24px; font-weight: bold; color: #1565C0;\">der</td>\n      <td>🔵 синий</td>\n      <td>Maskulinum</td>\n      <td>мужской род</td>\n      <td>der Mann (мужчина)</td>\n    </tr>\n    <tr style=\"background: #FCE4EC;\">\n      <td style=\"font-size: 24px; font-weight: bold; color: #C2185B;\">die</td>\n      <td>🔴 красный</td>\n      <td>Femininum</td>\n      <td>женский род</td>\n      <td>die Frau (женщина)</td>\n    </tr>\n    <tr style=\"background: #E8F5E9;\">\n      <td style=\"font-size: 24px; font-weight: bold; color: #2E7D32;\">das</td>\n      <td>🟢 зелёный</td>\n      <td>Neutrum</td>\n      <td>средний род</td>\n      <td>das Kind (ребёнок)</td>\n    </tr>\n  </table>\n\n<h3>⚠️ ГЛАВНАЯ ЛОВУШКА ДЛЯ РУССКОГОВОРЯЩИХ</h3>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <p style=\"font-weight: bold; margin: 0 0 10px 0;\">❌ ЧТО НЕЛЬЗЯ ДЕЛАТЬ:</p>\n  <p>Нельзя переводить род из русского языка в немецкий! Он почти никогда не совпадает!</p>\n  \n  <p style=\"font-weight: bold; margin: 15px 0 10px 0;\">❌ ОШИБКИ НОВИЧКОВ:</p>\n  <ul>\n    <li>«девочка» (она, женский род в русском) → ❌ die Mädchen → ✅ <strong>das Mädchen</strong> (средний род!)</li>\n    <li>«солнце» (оно, средний род в русском) → ❌ das Sonne → ✅ <strong>die Sonne</strong> (женский род!)</li>\n    <li>«машина» (она, женский род) → ❌ die Wagen → ✅ <strong>der Wagen</strong> (мужской род!)</li>\n  </ul>\n  \n  <p style=\"font-weight: bold; margin: 15px 0 10px 0;\">✅ ЧТО НУЖНО ДЕЛАТЬ:</p>\n  <p>Учить слово вместе с артиклем как единое целое: «der Tisch», «die Frau», «das Kind».</p>\n</div>\n\n<h3>🔍 Как определить род? (полезные подсказки)</h3>\n\n<p>Есть <strong>примерные правила</strong> (работают в 70-80% случаев, но есть исключения):</p>\n\n<h4 style=\"color: #1565C0;\">📌 Мужской род → der</h4>\n<ul>\n  <li>мужчины и мальчики: <strong>der Mann</strong>, <strong>der Junge</strong>, <strong>der Vater</strong></li>\n  <li>профессии (мужские): <strong>der Arzt</strong>, <strong>der Lehrer</strong>, <strong>der Verkäufer</strong></li>\n  <li>дни недели: <strong>der Montag</strong>, <strong>der Dienstag</strong>, <strong>der Freitag</strong></li>\n  <li>месяцы: <strong>der Januar</strong>, <strong>der Februar</strong>, <strong>der Dezember</strong></li>\n  <li>времена года: <strong>der Frühling</strong>, <strong>der Sommer</strong>, <strong>der Herbst</strong>, <strong>der Winter</strong></li>\n  <li>автомобили: <strong>der BMW</strong>, <strong>der Mercedes</strong>, <strong>der VW</strong></li>\n  <li>напитки на -el, -en: <strong>der Kaffee</strong>, <strong>der Tee</strong>, <strong>der Wein</strong></li>\n</ul>\n\n<h4 style=\"color: #C2185B;\">📌 Женский род → die</h4>\n<ul>\n  <li>женщины и девочки: <strong>die Frau</strong>, <strong>die Mutter</strong>, <strong>die Tochter</strong>, <strong>die Schwester</strong></li>\n  <li>профессии (женские) с окончанием -in: <strong>die Ärztin</strong>, <strong>die Lehrerin</strong></li>\n  <li>цветы и деревья: <strong>die Rose</strong>, <strong>die Tulpe</strong>, <strong>die Eiche</strong>, <strong>die Birke</strong></li>\n  <li>числа: <strong>die Eins</strong>, <strong>die Zwei</strong>, <strong>die Million</strong></li>\n  <li>мотоциклы и самолёты: <strong>die BMW</strong> (мотоцикл), <strong>die Boeing</strong></li>\n  <li>существительные на -heit, -keit, -ung, -schaft, -tion: <strong>die Freiheit</strong>, <strong>die Möglichkeit</strong>, <strong>die Wohnung</strong>, <strong>die Freundschaft</strong>, <strong>die Information</strong></li>\n</ul>\n\n<h4 style=\"color: #2E7D32;\">📌 Средний род → das</h4>\n<ul>\n  <li>дети и детёныши: <strong>das Kind</strong>, <strong>das Baby</strong>, <strong>das Kalb</strong> (телёнок)</li>\n  <li>уменьшительные формы (-chen, -lein): <strong>das Mädchen</strong>, <strong>das Brötchen</strong> (булочка), <strong>das Fräulein</strong> (барышня)</li>\n  <li>металлы и химические элементы: <strong>das Gold</strong>, <strong>das Silber</strong>, <strong>das Eisen</strong>, <strong>das Wasserstoff</strong></li>\n  <li>глаголы в роли существительных: <strong>das Essen</strong> (еда), <strong>das Trinken</strong> (питьё), <strong>das Lernen</strong> (учёба)</li>\n  <li>прилагательные в роли существительных: <strong>das Gute</strong> (хорошее), <strong>das Böse</strong> (злое)</li>\n  <li>существительные на -chen, -lein, -um, -ment: <strong>das Zentrum</strong>, <strong>das Dokument</strong>, <strong>das Museum</strong></li>\n</ul>\n\n<h3>📖 Пошаговый алгоритм для запоминания</h3>\n\n<ol style=\"margin: 15px 0; line-height: 1.8;\">\n  <li><strong>Увидел новое слово</strong> — сразу посмотри в словаре артикль</li>\n  <li><strong>Повтори вслух 5 раз</strong>: «der Tisch, der Tisch, der Tisch, der Tisch, der Tisch»</li>\n  <li><strong>Запиши в тетрадь цветом</strong>: мужской — 🔵 синий, женский — 🔴 красный, средний — 🟢 зелёный</li>\n  <li><strong>Составь простое предложение</strong>: «Der Tisch ist neu.»</li>\n  <li><strong>Повторяй перед сном</strong> каждый день 10 слов с артиклями</li>\n</ol>\n\n<h3>🎮 Мнемотехника (как легко запомнить)</h3>\n\n<ul>\n  <li><strong>der (синий, квадрат)</strong> — представляй синего человечка-мужчину</li>\n  <li><strong>die (красный, круг)</strong> — представляй красное платье или женскую фигуру</li>\n  <li><strong>das (зелёный, треугольник)</strong> — представляй зелёную детскую игрушку</li>\n</ul>\n\n<p>Когда учишь слово — представляй этот образ: der Tisch — синий квадратный стол, die Lampe — красная круглая лампа, das Buch — зелёная треугольная книга.</p>\n\n<h3>📌 Итог урока</h3>\n\n<ul>\n  <li>Артикль — обязательный спутник существительного</li>\n  <li>Три артикля = три рода: der (м.), die (ж.), das (ср.)</li>\n  <li>Род в немецком часто не совпадает с русским</li>\n  <li>Учи слово вместе с артиклем как единое целое</li>\n  <li>Используй цвета и образы для запоминания</li>\n</ul>",
   "examples": [
     {"de": "der Mann", "ru": "мужчина"},
     {"de": "die Frau", "ru": "женщина"},
     {"de": "das Kind", "ru": "ребёнок"},
     {"de": "der Vater", "ru": "отец"},
     {"de": "die Mutter", "ru": "мать"},
-    {"de": "das Haus", "ru": "дом"}
+    {"de": "das Haus", "ru": "дом"},
+    {"de": "der Tisch", "ru": "стол"},
+    {"de": "die Blume", "ru": "цветок"},
+    {"de": "das Buch", "ru": "книга"},
+    {"de": "der Hund", "ru": "собака"},
+    {"de": "die Katze", "ru": "кошка"}
   ],
   "exercises": [
     {
@@ -17,37 +22,108 @@
       "question": "Вставьте правильный артикль:",
       "sentence": "___ Mann ist groß.",
       "answer": "der",
-      "hint": "Mann — мужской род → der"
+      "hint": "Mann (мужчина) — мужской род → der"
     },
     {
       "type": "fill",
       "question": "Вставьте правильный артикль:",
       "sentence": "___ Frau ist schön.",
       "answer": "die",
-      "hint": "Frau — женский род → die"
+      "hint": "Frau (женщина) — женский род → die"
     },
     {
       "type": "fill",
       "question": "Вставьте правильный артикль:",
       "sentence": "___ Kind ist klein.",
       "answer": "das",
-      "hint": "Kind — средний род → das"
+      "hint": "Kind (ребёнок) — средний род → das"
     },
     {
-      "type": "choice",
-      "question": "Выберите артикль для 'Haus':",
-      "sentence": "",
-      "options": ["der", "die", "das"],
+      "type": "fill",
+      "question": "Вставьте правильный артикль:",
+      "sentence": "___ Vater ist alt.",
+      "answer": "der",
+      "hint": "Vater (отец) — мужской род → der"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильный артикль:",
+      "sentence": "___ Mutter ist jung.",
+      "answer": "die",
+      "hint": "Mutter (мать) — женский род → die"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильный артикль:",
+      "sentence": "___ Haus ist neu.",
       "answer": "das",
-      "hint": "Haus — средний род → das"
+      "hint": "Haus (дом) — средний род → das"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильный артикль:",
+      "sentence": "___ Tisch ist rund.",
+      "answer": "der",
+      "hint": "Tisch (стол) — мужской род → der"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильный артикль:",
+      "sentence": "___ Blume ist rot.",
+      "answer": "die",
+      "hint": "Blume (цветок) — женский род → die"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильный артикль:",
+      "sentence": "___ Buch ist interessant.",
+      "answer": "das",
+      "hint": "Buch (книга) — средний род → das"
     },
     {
       "type": "choice",
-      "question": "Выберите артикль для 'Tisch':",
-      "sentence": "",
+      "question": "Выберите правильный артикль:",
+      "sentence": "___ Hund ist treu.",
       "options": ["der", "die", "das"],
       "answer": "der",
-      "hint": "Tisch — мужской род → der"
+      "hint": "Hund (собака) — мужской род → der"
+    },
+    {
+      "type": "choice",
+      "question": "Выберите правильный артикль:",
+      "sentence": "___ Katze schläft.",
+      "options": ["der", "die", "das"],
+      "answer": "die",
+      "hint": "Katze (кошка) — женский род → die"
+    },
+    {
+      "type": "choice",
+      "question": "Выберите правильный артикль:",
+      "sentence": "___ Auto ist schnell.",
+      "options": ["der", "die", "das"],
+      "answer": "das",
+      "hint": "Auto (машина) — средний род → das"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (с артиклем):",
+      "sentence": "мужчина",
+      "answer": "der Mann",
+      "hint": "мужчина → der Mann"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (с артиклем):",
+      "sentence": "женщина",
+      "answer": "die Frau",
+      "hint": "женщина → die Frau"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (с артиклем):",
+      "sentence": "ребёнок",
+      "answer": "das Kind",
+      "hint": "ребёнок → das Kind"
     }
   ]
 }
