@@ -1,5 +1,5 @@
 // ============================================================
-// grammarMode.js - Новая версия с поддержкой отдельных файлов уроков
+// grammarMode.js - Полная версия с поддержкой отдельных файлов уроков
 // ============================================================
 
 let grammarDB = { A1: [], A2: [], B1: [], B2: [], C1: [] };
@@ -131,9 +131,8 @@ function renderGrammar() {
         const isCompleted = isGrammarLessonCompleted(i);
         const completedIcon = isCompleted ? '✅' : '📘';
         html += `
-            <button class="lesson-grid-btn" data-lesson-index="${i}" style="display: flex; justify-content: space-between; align-items: center; padding: 15px; cursor: pointer;">
+            <button class="lesson-grid-btn" data-lesson-index="${i}" style="display: flex; justify-content: space-between; align-items: center; padding: 15px; cursor: pointer; text-align: left;">
                 <span>${completedIcon} Урок ${lesson.lesson}: ${lesson.title}</span>
-                <span style="font-size: 12px; color: #3B6FE0;">Начать →</span>
             </button>
         `;
     }
@@ -395,21 +394,15 @@ function showGrammarExercise(exercise, lessonIdx) {
         speakBtn.onclick = () => {
             let textToSpeak = '';
             
-            // Для fill: подставляем правильный ответ вместо ___
             if (exercise.sentence && exercise.answer) {
                 textToSpeak = exercise.sentence.replace(/_{3,}/g, exercise.answer);
                 textToSpeak = textToSpeak.replace(/\s+/g, ' ').trim();
-            } 
-            // Для choice, transform, order: озвучиваем правильный ответ
-            else if (exercise.answer) {
+            } else if (exercise.answer) {
                 textToSpeak = exercise.answer;
-            } 
-            // Если ничего нет, озвучиваем предложение
-            else if (exercise.sentence) {
+            } else if (exercise.sentence) {
                 textToSpeak = exercise.sentence;
             }
             
-            // Убираем подчёркивания, если вдруг остались
             textToSpeak = textToSpeak.replace(/_{3,}/g, '');
             textToSpeak = textToSpeak.replace(/\s+/g, ' ').trim();
             
@@ -457,7 +450,6 @@ function checkGrammarAnswer(userAnswer, exercise, lessonIdx) {
     const input = document.getElementById('grammarAnswerInput');
     
     if (userAnswer === correctAnswer) {
-        // ПРАВИЛЬНО - зелёное мигание
         if (input) {
             input.style.transition = 'background-color 0.2s';
             input.style.backgroundColor = '#C8E6C9';
@@ -509,7 +501,6 @@ function checkGrammarAnswer(userAnswer, exercise, lessonIdx) {
             }
         }, 500);
     } else {
-        // НЕПРАВИЛЬНО - красное мигание
         if (input) {
             input.style.transition = 'background-color 0.2s';
             input.style.backgroundColor = '#FFCDD2';
