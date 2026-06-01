@@ -1,1 +1,127 @@
-
+{
+  "lesson": 6,
+  "title": "Сильные глаголы с изменением корневой гласной e → i / ie",
+  "level": "A1",
+  "theory": "<h3>📌 Что такое сильные глаголы?</h3>\n\n<p>В немецком языке есть глаголы, которые при спряжении <strong>меняют корневую гласную</strong> в формах <strong>du</strong> и <strong>er/sie/es</strong>.</p>\n\n<p>В прошлом уроке мы выучили правильные глаголы (они не меняют корень). Теперь изучаем <strong>сильные глаголы</strong> — их нужно запомнить!</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 ГЛАВНОЕ ПРАВИЛО:</strong><br>\n  Изменение происходит <strong>ТОЛЬКО</strong> в формах <strong>du</strong> и <strong>er/sie/es</strong>!<br>\n  Формы ich, wir, ihr, sie/Sie <strong>НЕ МЕНЯЮТСЯ!</strong>\n</div>\n\n<h3>📌 Изменение e → i</h3>\n\n<p>Гласная <strong>e</strong> в корне меняется на <strong>i</strong>.</p>\n\n<table border=\"1\" cellpadding=\"12\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Инфинитив</th>\n    <th>Перевод</th>\n    <th>du</th>\n    <th>er/sie/es</th>\n    <th>Особенность</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>helfen</strong></td><td style=\"font-weight: bold;\">помогать</td>\n    <td>hilfst</td>\n    <td>hilft</td>\n    <td>e → i</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>sprechen</strong></td><td style=\"font-weight: bold;\">говорить</td>\n    <td>sprichst</td>\n    <td>spricht</td>\n    <td>e → i</td>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>essen</strong> (esse, isst)</td>\n    <td><strong>есть</strong></td>\n    <td>isst</td>\n    <td>isst</td>\n    <td>e → i (du и er одинаковы)</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>treffen</strong></td>\n    <td><strong>встречать</strong></td>\n    <td>triffst</td>\n    <td>trifft</td>\n    <td>e → i</td>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>nehmen</strong> (nehme, nimmst, nimmt)</td>\n    <td><strong>брать</strong></td>\n    <td>nimmst</td>\n    <td>nimmt</td>\n    <td>e → i + потеря h</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>geben</strong></td>\n    <td><strong>давать</strong></td>\n    <td>gibst</td>\n    <td>gibt</td>\n    <td>e → i</td>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>vergessen</strong></td>\n    <td><strong>забывать</strong></td>\n    <td>vergisst</td>\n    <td>vergisst</td>\n    <td>e → i</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>werden</strong></td>\n    <td><strong>становиться</strong></td>\n    <td>wirst</td>\n    <td>wird</td>\n    <td>e → i + потеря d</td>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>sterben</strong></td>\n    <td><strong>умирать</strong></td>\n    <td>stirbst</td>\n    <td>stirbt</td>\n    <td>e → i</td>\n   </tr>\n  </table>\n\n<h3>📌 Изменение e → ie</h3>\n\n<p>Гласная <strong>e</strong> в корне меняется на <strong>ie</strong>.</p>\n\n<table border=\"1\" cellpadding=\"12\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Инфинитив</th>\n    <th>Перевод</th>\n    <th>du</th>\n    <th>er/sie/es</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>sehen</strong></td>\n    <td><strong>видеть</strong></td>\n    <td>siehst</td>\n    <td>sieht</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>lesen</strong> (lese, liest)</td>\n    <td><strong>читать</strong></td>\n    <td>liest</td>\n    <td>liest</td>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>befehlen</strong></td>\n    <td><strong>приказывать</strong></td>\n    <td>befiehlst</td>\n    <td>befiehlt</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>empfehlen</strong></td>\n    <td><strong>рекомендовать</strong></td>\n    <td>empfiehlst</td>\n    <td>empfiehlt</td>\n   </tr>\n  </table>\n\n<h3>📌 Полное спряжение на примере глаголов</h3>\n\n<p><strong>helfen (помогать) — e → i</strong></p>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\"><th>ich helfe</th><th>wir helfen</th></tr>\n  <tr><td style=\"font-weight: bold; color: #1565C0;\">du <strong>hilfst</strong></td><td>ihr helft</td></tr>\n  <tr><td style=\"font-weight: bold; color: #1565C0;\">er/sie/es <strong>hilft</strong></td><td>sie/Sie helfen</td></tr>\n</table>\n\n<p><strong>sehen (видеть) — e → ie</strong></p>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\"><th>ich sehe</th><th>wir sehen</th></tr>\n  <tr><td style=\"font-weight: bold; color: #1565C0;\">du <strong>siehst</strong></td><td>ihr seht</td></tr>\n  <tr><td style=\"font-weight: bold; color: #1565C0;\">er/sie/es <strong>sieht</strong></td><td>sie/Sie sehen</td></tr>\n</table>\n\n<p><strong>essen (есть) — e → i (особый случай)</strong></p>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\"><th>ich esse</th><th>wir essen</th></tr>\n  <tr><td style=\"font-weight: bold; color: #1565C0;\">du <strong>isst</strong></td><td>ihr esst</td></tr>\n  <tr><td style=\"font-weight: bold; color: #1565C0;\">er/sie/es <strong>isst</strong></td><td>sie/Sie essen</td></tr>\n</table>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ТИПИЧНЫЕ ОШИБКИ:</strong><br>\n  ❌ Er <strong>helft</strong> — неправильно! Правильно: er <strong>hilft</strong><br>\n  ❌ Du <strong>sieht</strong> — неправильно! Правильно: du <strong>siehst</strong><br>\n  ❌ Ich <strong>iesse</strong> — неправильно! Правильно: ich <strong>esse</strong><br>\n  <br>\n  <strong>✅ ЗАПОМНИ:</strong> Изменяется ТОЛЬКО du и er/sie/es!\n</div>\n\n<h3>📌 Сравнение правильных и сильных глаголов</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Лицо</th>\n    <th>Правильный (lernen)</th>\n    <th>Сильный (helfen)</th>\n    <th>Сильный (sehen)</th>\n   </tr>\n  <tr><td>ich</td><td>lerne</td><td>helfe</td><td>sehe</td></tr>\n  <tr style=\"background: #F5F5F5;\"><td>du</td><td>lernst</td><td style=\"color: #1565C0;\"><strong>hilfst</strong></td><td style=\"color: #1565C0;\"><strong>siehst</strong></td></tr>\n  <tr><td>er/sie/es</td><td>lernt</td><td style=\"color: #1565C0;\"><strong>hilft</strong></td><td style=\"color: #1565C0;\"><strong>sieht</strong></td></tr>\n  <tr style=\"background: #F5F5F5;\"><td>wir</td><td>lernen</td><td>helfen</td><td>sehen</td></tr>\n  <tr><td>ihr</td><td>lernt</td><td>helft</td><td>seht</td></tr>\n  <tr style=\"background: #F5F5F5;\"><td>sie/Sie</td><td>lernen</td><td>helfen</td><td>sehen</td></tr>\n</table>\n\n<h3>📌 Важные сильные глаголы для A1</h3>\n\n<ul>\n  <li><strong>helfen</strong> (hilft) — помогать</li>\n  <li><strong>sprechen</strong> (spricht) — говорить</li>\n  <li><strong>essen</strong> (isst) — есть</li>\n  <li><strong>treffen</strong> (trifft) — встречать</li>\n  <li><strong>nehmen</strong> (nimmt) — брать</li>\n  <li><strong>geben</strong> (gibt) — давать</li>\n  <li><strong>vergessen</strong> (vergisst) — забывать</li>\n  <li><strong>werden</strong> (wird) — становиться</li>\n  <li><strong>sehen</strong> (sieht) — видеть</li>\n  <li><strong>lesen</strong> (liest) — читать</li>\n</ul>\n\n<h3>📖 Пошаговый алгоритм</h3>\n\n<ol>\n  <li>Определи, какой глагол нужно спрягать</li>\n  <li>Если это правильный глагол — добавляй стандартные окончания</li>\n  <li>Если это сильный глагол (из списка) — запомни, что он меняет корень</li>\n  <li>Для форм <strong>du</strong> и <strong>er/sie/es</strong> измени гласную: e → i или e → ie</li>\n  <li>Остальные формы спрягаются как правильные</li>\n  <li>Проверь себя по таблице</li>\n</ol>\n\n<h3>📌 Запоминалка</h3>\n\n<p>«<strong>Hilfst du</strong> mir? — <strong>Ja, ich helfe</strong> dir.»<br>\n«<strong>Siehst du</strong> den Hund? — <strong>Ja, ich sehe</strong> ihn.»<br>\n«<strong>Isst du</strong> gerne Pizza? — <strong>Ja, ich esse</strong> gerne Pizza.»</p>\n\n<p>Повторяй эти фразы вслух — они помогут запомнить изменения!</p>\n\n<h3>📌 Итог урока</h3>\n\n<ul>\n  <li>Сильные глаголы меняют корневую гласную в du и er/sie/es</li>\n  <li>Изменения: e → i (helfen) или e → ie (sehen)</li>\n  <li>Формы ich, wir, ihr, sie/Sie НЕ меняются</li>\n  <li>Эти глаголы нужно заучить — они очень частотные</li>\n  <li>Учи глагол с примером: «essen — du isst — er isst»</li>\n</ul>",
+  "examples": [
+    {"de": "Ich helfe meiner Mutter.", "ru": "Я помогаю своей маме."},
+    {"de": "Du hilfst dem Kind.", "ru": "Ты помогаешь ребёнку."},
+    {"de": "Er spricht Deutsch.", "ru": "Он говорит по-немецки."},
+    {"de": "Sie isst einen Apfel.", "ru": "Она ест яблоко."},
+    {"de": "Wir treffen uns um 10 Uhr.", "ru": "Мы встречаемся в 10 часов."},
+    {"de": "Ihr nehmt das Buch.", "ru": "Вы берёте книгу."},
+    {"de": "Er gibt mir Geld.", "ru": "Он даёт мне деньги."},
+    {"de": "Sie sieht den Film.", "ru": "Она смотрит фильм."},
+    {"de": "Du liest ein Buch.", "ru": "Ты читаешь книгу."},
+    {"de": "Er wird Lehrer.", "ru": "Он становится учителем."}
+  ],
+  "exercises": [
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму глагола 'helfen':",
+      "sentence": "Er ___ seiner Mutter.",
+      "answer": "hilft",
+      "hint": "er + helfen = hilft (e → i)"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму глагола 'helfen':",
+      "sentence": "Du ___ dem Kind.",
+      "answer": "hilfst",
+      "hint": "du + helfen = hilfst (e → i)"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму глагола 'sprechen':",
+      "sentence": "Er ___ Deutsch.",
+      "answer": "spricht",
+      "hint": "er + sprechen = spricht (e → i)"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму глагола 'sprechen':",
+      "sentence": "Du ___ zu laut.",
+      "answer": "sprichst",
+      "hint": "du + sprechen = sprichst (e → i)"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму глагола 'essen':",
+      "sentence": "Er ___ einen Apfel.",
+      "answer": "isst",
+      "hint": "er + essen = isst (e → i)"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму глагола 'sehen':",
+      "sentence": "Sie ___ den Film.",
+      "answer": "sieht",
+      "hint": "sie + sehen = sieht (e → ie)"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму глагола 'sehen':",
+      "sentence": "Du ___ den Hund.",
+      "answer": "siehst",
+      "hint": "du + sehen = siehst (e → ie)"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму глагола 'lesen':",
+      "sentence": "Er ___ ein Buch.",
+      "answer": "liest",
+      "hint": "er + lesen = liest (e → ie)"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму глагола 'geben':",
+      "sentence": "Er ___ mir Geld.",
+      "answer": "gibt",
+      "hint": "er + geben = gibt (e → i)"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму глагола 'nehmen':",
+      "sentence": "Er ___ das Buch.",
+      "answer": "nimmt",
+      "hint": "er + nehmen = nimmt (e → i, h пропадает)"
+    },
+    {
+      "type": "choice",
+      "question": "Выберите правильную форму:",
+      "sentence": "___ du mir?",
+      "options": ["Helfst", "Hilfst", "Helft", "Hilft"],
+      "answer": "Hilfst",
+      "hint": "du + helfen = hilfst"
+    },
+    {
+      "type": "choice",
+      "question": "Выберите правильную форму:",
+      "sentence": "Er ___ gut Deutsch.",
+      "options": ["sprecht", "spricht", "sprecht", "sprichst"],
+      "answer": "spricht",
+      "hint": "er + sprechen = spricht"
+    },
+    {
+      "type": "transform",
+      "question": "Переделайте предложение, заменив 'ich' на 'er':",
+      "sentence": "Ich esse einen Apfel.",
+      "answer": "Er isst einen Apfel",
+      "hint": "er + essen = isst"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Он видит собаку.",
+      "answer": "er sieht den hund",
+      "hint": "sehen + er = sieht, Hund (муж. род) → den Hund"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Ты помогаешь?",
+      "answer": "hilfst du",
+      "hint": "du + helfen = hilfst, вопрос начинается с глагола"
+    }
+  ]
+}
