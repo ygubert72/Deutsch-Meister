@@ -1,50 +1,68 @@
 // ============================================================
-// grammarMode.js - Режим ГРАММАТИКА (РАБОЧАЯ ВЕРСИЯ)
+// grammarMode.js - Новая версия с поддержкой отдельных файлов уроков
 // ============================================================
 
 let grammarDB = { A1: [], A2: [], B1: [], B2: [], C1: [] };
 let grammarProgress = { A1: [], A2: [], B1: [], B2: [], C1: [] };
 let currentGrammarLesson = null;
 let currentGrammarMode = 'theory';
+let grammarLessonData = null;
 
 let grammarExercises = [];
 let currentGrammarExerciseIndex = 0;
 let grammarBlinkTimer = null;
 
+// ========== ЗАГРУЗКА ГРАММАТИКИ ==========
 async function loadGrammarData() {
-    console.log('loadGrammarData: началась загрузка');
+    console.log('loadGrammarData: загрузка грамматики по новой структуре');
     const levels = ['A1', 'A2', 'B1', 'B2', 'C1'];
     
     for (const level of levels) {
+        grammarDB[level] = [];
+        
         try {
-            let url = `docs/grammar/${level}.json`;
-            let resp = await fetch(url);
+            // Загружаем индексный файл
+            const indexUrl = `docs/grammar/${level}/index.json`;
+            const indexResp = await fetch(indexUrl);
             
-            if (!resp.ok) {
-                url = `/Deutsch-Meister/docs/grammar/${level}.json`;
-                resp = await fetch(url);
+            if (!indexResp.ok) {
+                console.log(`⚠️ Грамматика для уровня ${level} не найдена`);
+                continue;
             }
             
-            if (resp.ok) {
-                grammarDB[level] = await resp.json();
-                console.log(`✅ Загружен ${level}: ${grammarDB[level].length} уроков`);
+            const index = await indexResp.json();
+            console.log(`📚 Загружаю ${level}: ${index.lessons.length} уроков`);
+            
+            // Загружаем каждый урок
+            for (const lessonPath of index.lessons) {
+                const lessonUrl = `docs/grammar/${level}/${lessonPath}`;
+                const lessonResp = await fetch(lessonUrl);
                 
-                if (!grammarProgress[level]) {
-                    grammarProgress[level] = [];
-                    for (let i = 0; i < grammarDB[level].length; i++) {
-                        grammarProgress[level][i] = { completed: false };
-                    }
+                if (lessonResp.ok) {
+                    const lessonData = await lessonResp.json();
+                    grammarDB[level].push(lessonData);
+                    console.log(`  ✅ Урок ${lessonData.lesson}: ${lessonData.title}`);
+                } else {
+                    console.log(`  ❌ Ошибка загрузки: ${lessonPath}`);
                 }
-            } else {
-                console.log(`❌ Не найден ${level}`);
-                grammarDB[level] = [];
             }
-        } catch(e) { 
-            console.error(`Ошибка ${level}:`, e);
-            grammarDB[level] = []; 
+            
+            // Инициализируем прогресс
+            if (!grammarProgress[level]) {
+                grammarProgress[level] = [];
+                for (let i = 0; i < grammarDB[level].length; i++) {
+                    grammarProgress[level][i] = { completed: false };
+                }
+            }
+            
+        } catch(e) {
+            console.error(`Ошибка загрузки ${level}:`, e);
+            grammarDB[level] = [];
         }
     }
-    saveProgress();
+    
+    saveGrammarProgress();
+    console.log('loadGrammarData: завершено', grammarDB);
 }
 
 function saveGrammarProgress() {
@@ -76,11 +94,13 @@ function isGrammarLessonCompleted(lessonIndex) {
     return grammarProgress[level]?.[lessonIndex]?.completed === true;
 }
 
+// ========== ОТОБРАЖЕНИЕ СПИСКА УРОКОВ ==========
 function renderGrammar() {
-    console.log('renderGrammar: начата');
+    console.log('renderGrammar: начат');
     const level = AppConfig.currentLevel;
     const lessons = grammarDB[level];
     
+    // Проверяем сохранённый урок
     const savedLesson = localStorage.getItem('dm_last_grammar_lesson');
     const savedLevel = localStorage.getItem('dm_last_grammar_level');
     if (savedLesson !== null && savedLevel === level && lessons && lessons[parseInt(savedLesson)]) {
@@ -126,51 +146,37 @@ function renderGrammar() {
     
     document.getElementById('content').innerHTML = html;
     
+    // Назначаем обработчики
     const buttons = document.querySelectorAll('[data-lesson-index]');
-    console.log('Найдено кнопок уроков:', buttons.length);
-    
-    for (let i = 0; i < buttons.length; i++) {
-        const btn = buttons[i];
+    for (const btn of buttons) {
         const lessonIdx = parseInt(btn.getAttribute('data-lesson-index'));
-        
-        btn.onclick = (function(idx) {
-            return function() {
-                console.log('КЛИК по уроку с индексом:', idx);
-                currentGrammarLesson = idx;
-                currentGrammarMode = 'theory';
-                renderGrammarLesson(idx);
-            };
-        })(lessonIdx);
+        btn.onclick = () => {
+            console.log('КЛИК по уроку:', lessonIdx);
+            renderGrammarLesson(lessonIdx);
+        };
     }
     
     updateCounter();
 }
 
+// ========== ОТОБРАЖЕНИЕ ОТДЕЛЬНОГО УРОКА ==========
 function renderGrammarLesson(lessonIdx) {
-    console.log('renderGrammarLesson: открытие урока', lessonIdx, 'тип:', typeof lessonIdx);
+    console.log('renderGrammarLesson: открытие урока', lessonIdx);
     const level = AppConfig.currentLevel;
     
     localStorage.setItem('dm_last_grammar_lesson', lessonIdx);
     localStorage.setItem('dm_last_grammar_level', level);
     
-    if (isNaN(lessonIdx)) {
-        console.error('Ошибка: lessonIdx = NaN');
-        document.getElementById('content').innerHTML = '<div style="text-align:center;padding:40px;">Ошибка: индекс урока не определён</div>';
-        return;
-    }
-    
     const lesson = grammarDB[level][lessonIdx];
+    grammarLessonData = lesson;
     
     if (!lesson) {
-        console.error('Урок не найден! lessonIdx=', lessonIdx, 'grammarDB[level]=', grammarDB[level]);
         document.getElementById('content').innerHTML = '<div style="text-align:center;padding:40px;">Ошибка: урок не найден</div>';
         return;
     }
     
-    console.log('Урок найден:', lesson.title);
-    
     document.getElementById('content').innerHTML = `
-        <div style="max-width: 800px; margin: 0 auto;">
+        <div style="max-width: 900px; margin: 0 auto;">
             <div style="margin-bottom: 10px;">
                 <button class="ctrl-btn" id="backToGrammarList" style="cursor: pointer;">← К СПИСКУ УРОКОВ</button>
             </div>
@@ -196,27 +202,27 @@ function renderGrammarLesson(lessonIdx) {
         currentGrammarMode = 'theory';
         document.getElementById('grammarTheoryBtn').classList.add('active');
         document.getElementById('grammarPracticeBtn').classList.remove('active');
-        showGrammarTheory(lesson);
+        showGrammarTheory();
     };
     
     document.getElementById('grammarPracticeBtn').onclick = () => {
         currentGrammarMode = 'practice';
         document.getElementById('grammarPracticeBtn').classList.add('active');
         document.getElementById('grammarTheoryBtn').classList.remove('active');
-        showGrammarPractice(lesson, lessonIdx);
+        showGrammarPractice(lessonIdx);
     };
     
-    showGrammarTheory(lesson);
+    showGrammarTheory();
 }
 
-function showGrammarTheory(lesson) {
+function showGrammarTheory() {
     const container = document.getElementById('grammarContent');
-    if (!container) return;
+    if (!container || !grammarLessonData) return;
     
     let examplesHtml = '';
-    if (lesson.examples && lesson.examples.length) {
-        examplesHtml = '<div style="margin-top: 20px;"><h4>📝 Примеры:</h4><ul style="list-style: none; padding: 0;">';
-        for (const ex of lesson.examples) {
+    if (grammarLessonData.examples && grammarLessonData.examples.length) {
+        examplesHtml = '<div style="margin-top: 20px;"><h4>📝 Примеры с озвучкой:</h4><ul style="list-style: none; padding: 0;">';
+        for (const ex of grammarLessonData.examples) {
             examplesHtml += `
                 <li style="background: #E8F0FE; margin: 8px 0; padding: 10px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
                     <span><strong>${ex.de}</strong> — ${ex.ru}</span>
@@ -227,156 +233,245 @@ function showGrammarTheory(lesson) {
         examplesHtml += '</ul></div>';
     }
     
-    let exercisesHtml = '';
-    if (lesson.exercises && lesson.exercises.length) {
-        exercisesHtml = `
-            <div style="margin-top: 20px; padding: 15px; background: #FFF3E0; border-radius: 12px;">
-                <h4>✍️ Упражнения для самопроверки:</h4>
-                <div style="font-size: 14px; color: #666;">Перейдите в режим "УПРАЖНЕНИЯ" для выполнения заданий</div>
-            </div>
-        `;
-    }
-    
     container.innerHTML = `
-        <div style="background: white; border-radius: 16px; padding: 20px;">
-            ${lesson.theory}
+        <div style="background: white; border-radius: 16px; padding: 25px; line-height: 1.6;">
+            ${grammarLessonData.theory}
             ${examplesHtml}
-            ${exercisesHtml}
         </div>
     `;
 }
 
-function showGrammarPractice(lesson, lessonIdx) {
+// ========== УПРАЖНЕНИЯ НОВОГО ТИПА ==========
+function showGrammarPractice(lessonIdx) {
+    const lesson = grammarDB[AppConfig.currentLevel][lessonIdx];
     grammarExercises = lesson.exercises || [];
     currentGrammarExerciseIndex = 0;
     
     if (!grammarExercises.length) {
         document.getElementById('grammarContent').innerHTML = `
             <div style="text-align: center; padding: 40px;">
-                <div style="font-size: 24px;">✨</div>
-                <div>В этом уроке пока нет упражнений</div>
+                <div style="font-size: 48px;">✨</div>
+                <div style="font-size: 18px; margin-top: 20px;">В этом уроке пока нет упражнений</div>
             </div>
         `;
         return;
     }
     
-    showGrammarExercise(grammarExercises[0], lesson, lessonIdx);
+    showGrammarExercise(grammarExercises[0], lessonIdx);
 }
 
-function showGrammarExercise(exercise, lesson, lessonIdx) {
+function showGrammarExercise(exercise, lessonIdx) {
     const container = document.getElementById('grammarContent');
     if (!container) return;
     
-    container.innerHTML = `
-        <div style="background: white; border-radius: 16px; padding: 20px;">
-            <div style="font-size: 18px; font-weight: bold; margin-bottom: 20px; text-align: center;">
-                📝 ${exercise.question}
+    const total = grammarExercises.length;
+    const current = currentGrammarExerciseIndex + 1;
+    
+    let html = `
+        <div style="background: white; border-radius: 16px; padding: 25px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 14px; color: #666;">
+                <span>📋 Упражнение ${current} из ${total}</span>
+                <span>⭐ Уровень ${AppConfig.currentLevel}</span>
             </div>
-            
-            <div id="grammarAnswerArea" style="margin: 20px 0;">
-                <input type="text" id="grammarAnswerInput" 
-                    style="width: 100%; padding: 12px; font-size: 16px; border: 2px solid #D0D0D0; border-radius: 12px; text-align: center;"
-                    placeholder="Введите ответ..." 
-                    autocomplete="off">
-            </div>
-            
-            <div class="btn-group" style="margin-top: 15px;">
-                <button class="ctrl-btn" id="grammarCheckBtn" style="cursor: pointer;">ПРОВЕРИТЬ</button>
-                <button class="ctrl-btn" id="grammarSpeakBtn" style="background:#E8F0FE; border:2px solid #D0D0D0; cursor: pointer;">🔊</button>
-            </div>
-            
-            <div class="hint-area">
-                <button class="ctrl-btn" id="grammarHintBtn" style="cursor: pointer;">ПОДСКАЗКА</button>
-                <div class="hint-label" id="grammarHintLabel"></div>
-            </div>
-            
-            <div class="btn-group" style="margin-top: 15px;">
-                <button class="ctrl-btn" id="grammarPrevBtn" style="cursor: pointer;">◀ НАЗАД</button>
-                <button class="ctrl-btn" id="grammarNextBtn" style="cursor: pointer;">ВПЕРЕД ▶</button>
-            </div>
-            
-            <div id="grammarCounter" style="margin-top: 10px; text-align: center; font-size: 12px; color: #666;">
-                Упражнение ${currentGrammarExerciseIndex + 1} из ${grammarExercises.length}
-            </div>
-        </div>
     `;
     
-    const input = document.getElementById('grammarAnswerInput');
-    if (input) input.focus();
+    // Вопрос
+    if (exercise.question) {
+        html += `<div style="font-size: 16px; color: #666; margin-bottom: 10px;">${exercise.question}</div>`;
+    }
     
-    const correctAnswer = exercise.answer.toLowerCase();
+    // В зависимости от типа упражнения
+    switch (exercise.type) {
+        case 'fill':
+            html += `
+                <div style="font-size: 20px; font-weight: 500; margin: 20px 0; text-align: center; background: #F5F5F5; padding: 20px; border-radius: 12px;">
+                    ${exercise.sentence}
+                </div>
+                <div style="margin: 20px 0;">
+                    <input type="text" id="grammarAnswerInput" 
+                        style="width: 100%; padding: 14px; font-size: 16px; border: 2px solid #D0D0D0; border-radius: 12px; text-align: center;"
+                        placeholder="Введите ответ..." 
+                        autocomplete="off">
+                </div>
+            `;
+            break;
+            
+        case 'choice':
+            let optionsHtml = '<div class="quiz-grid" style="margin: 20px 0;">';
+            for (let opt of exercise.options) {
+                optionsHtml += `<button class="quiz-opt" data-value="${opt}">${opt}</button>`;
+            }
+            optionsHtml += '</div>';
+            html += `<div style="font-size: 18px; font-weight: 500; margin: 20px 0; text-align: center;">${exercise.sentence}</div>${optionsHtml}`;
+            break;
+            
+        case 'transform':
+            html += `
+                <div style="background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 20px 0; text-align: center;">
+                    <div style="font-size: 14px; color: #666;">Исходное предложение:</div>
+                    <div style="font-size: 18px; font-weight: 500;">${exercise.sentence}</div>
+                </div>
+                <div style="margin: 20px 0;">
+                    <input type="text" id="grammarAnswerInput" 
+                        style="width: 100%; padding: 14px; font-size: 16px; border: 2px solid #D0D0D0; border-radius: 12px; text-align: center;"
+                        placeholder="Введите преобразованное предложение..." 
+                        autocomplete="off">
+                </div>
+            `;
+            break;
+            
+        case 'order':
+            html += `
+                <div style="font-size: 16px; margin: 20px 0;">Поставьте слова в правильном порядке:</div>
+                <div style="background: #F5F5F5; padding: 15px; border-radius: 12px; margin: 10px 0; text-align: center; font-size: 18px;">
+                    ${exercise.words.join(' · ')}
+                </div>
+                <div style="margin: 20px 0;">
+                    <input type="text" id="grammarAnswerInput" 
+                        style="width: 100%; padding: 14px; font-size: 16px; border: 2px solid #D0D0D0; border-radius: 12px; text-align: center;"
+                        placeholder="Введите правильный порядок слов..." 
+                        autocomplete="off">
+                </div>
+            `;
+            break;
+    }
     
-    document.getElementById('grammarCheckBtn').onclick = () => {
-        const userAnswer = input.value.trim().toLowerCase();
-        const resultDiv = document.getElementById('grammarAnswerArea');
+    // Кнопки управления
+    html += `
+        <div class="btn-group" style="margin-top: 15px;">
+            <button class="ctrl-btn check-btn" id="grammarCheckBtn" style="cursor: pointer; background: #3B6FE0; color: white;">ПРОВЕРИТЬ</button>
+            <button class="ctrl-btn" id="grammarSpeakBtn" style="cursor: pointer;">🔊 ОЗВУЧИТЬ</button>
+        </div>
         
-        if (userAnswer === correctAnswer) {
-            resultDiv.style.backgroundColor = '#C8E6C9';
-            if (grammarBlinkTimer) clearTimeout(grammarBlinkTimer);
-            grammarBlinkTimer = setTimeout(() => {
-                resultDiv.style.backgroundColor = 'transparent';
-                
-                if (currentGrammarExerciseIndex + 1 < grammarExercises.length) {
-                    currentGrammarExerciseIndex++;
-                    showGrammarExercise(grammarExercises[currentGrammarExerciseIndex], lesson, lessonIdx);
-                } else {
-                    if (!isGrammarLessonCompleted(lessonIdx)) {
-                        markGrammarLessonCompleted(lessonIdx);
-                    }
-                    container.innerHTML = `
-                        <div style="text-align: center; padding: 40px;">
-                            <div style="font-size: 48px; margin-bottom: 20px;">🎉</div>
-                            <div style="font-size: 24px; margin-bottom: 20px;">Поздравляем!</div>
-                            <div style="font-size: 16px; margin-bottom: 20px;">Вы успешно завершили урок "${lesson.title}"</div>
-                            <button class="ctrl-btn" id="backToGrammarFromComplete" style="cursor: pointer;">ВЕРНУТЬСЯ К СПИСКУ УРОКОВ</button>
-                        </div>
-                    `;
-                    document.getElementById('backToGrammarFromComplete').onclick = () => renderGrammar();
+        <div class="hint-area" style="margin-top: 15px;">
+            <button class="ctrl-btn" id="grammarHintBtn" style="cursor: pointer;">💡 ПОДСКАЗКА</button>
+            <div class="hint-label" id="grammarHintLabel" style="min-height: 45px;"></div>
+        </div>
+        
+        <div class="btn-group" style="margin-top: 15px;">
+            <button class="ctrl-btn" id="grammarPrevBtn" style="cursor: pointer;">◀ НАЗАД</button>
+            <button class="ctrl-btn" id="grammarNextBtn" style="cursor: pointer;">ВПЕРЕД ▶</button>
+        </div>
+        
+        <div id="grammarCounter" style="margin-top: 15px; text-align: center; font-size: 12px; color: #888;">
+            Прогресс: ${current} из ${total}
+        </div>
+    </div>`;
+    
+    container.innerHTML = html;
+    
+    // Назначаем обработчики в зависимости от типа
+    if (exercise.type === 'choice') {
+        const options = document.querySelectorAll('.quiz-opt');
+        options.forEach(opt => {
+            opt.onclick = () => {
+                const userAnswer = opt.getAttribute('data-value');
+                checkGrammarAnswer(userAnswer, exercise, lessonIdx);
+            };
+        });
+    } else {
+        const input = document.getElementById('grammarAnswerInput');
+        if (input) {
+            input.focus();
+            input.onkeypress = (e) => {
+                if (e.key === 'Enter') {
+                    document.getElementById('grammarCheckBtn').click();
                 }
-            }, 600);
-        } else {
-            resultDiv.style.backgroundColor = '#FFCDD2';
-            if (grammarBlinkTimer) clearTimeout(grammarBlinkTimer);
-            grammarBlinkTimer = setTimeout(() => {
-                resultDiv.style.backgroundColor = 'transparent';
-                input.value = '';
-                input.focus();
-            }, 500);
+            };
         }
-    };
+        
+        document.getElementById('grammarCheckBtn').onclick = () => {
+            const userAnswer = document.getElementById('grammarAnswerInput').value.trim().toLowerCase();
+            checkGrammarAnswer(userAnswer, exercise, lessonIdx);
+        };
+    }
     
     document.getElementById('grammarSpeakBtn').onclick = () => {
-        let textToSpeak = exercise.question;
-        const germanMatch = exercise.question.match(/[A-ZÄÖÜ][a-zäöüß]+/);
+        let textToSpeak = exercise.sentence || exercise.question || '';
+        const germanMatch = textToSpeak.match(/[A-ZÄÖÜ][a-zäöüß]+/);
         if (germanMatch) textToSpeak = germanMatch[0];
         speak(textToSpeak);
     };
     
     document.getElementById('grammarHintBtn').onclick = () => {
         const hintLabel = document.getElementById('grammarHintLabel');
-        hintLabel.textContent = '💡 ' + (exercise.hint || correctAnswer);
-        setTimeout(() => { hintLabel.textContent = ''; }, 3000);
+        hintLabel.innerHTML = `💡 ${exercise.hint || 'Попробуйте ещё раз! Подсказки нет.'}`;
+        setTimeout(() => { hintLabel.innerHTML = ''; }, 4000);
     };
     
     document.getElementById('grammarPrevBtn').onclick = () => {
         if (currentGrammarExerciseIndex > 0) {
             currentGrammarExerciseIndex--;
-            showGrammarExercise(grammarExercises[currentGrammarExerciseIndex], lesson, lessonIdx);
+            showGrammarExercise(grammarExercises[currentGrammarExerciseIndex], lessonIdx);
         }
     };
     
     document.getElementById('grammarNextBtn').onclick = () => {
         if (currentGrammarExerciseIndex + 1 < grammarExercises.length) {
             currentGrammarExerciseIndex++;
-            showGrammarExercise(grammarExercises[currentGrammarExerciseIndex], lesson, lessonIdx);
+            showGrammarExercise(grammarExercises[currentGrammarExerciseIndex], lessonIdx);
         }
     };
+}
+
+function checkGrammarAnswer(userAnswer, exercise, lessonIdx) {
+    const resultDiv = document.getElementById('grammarContent');
+    const correctAnswer = exercise.answer.toLowerCase();
     
-    if (input) {
-        input.onkeypress = (e) => {
-            if (e.key === 'Enter') {
-                document.getElementById('grammarCheckBtn').click();
+    if (userAnswer === correctAnswer) {
+        // ПРАВИЛЬНО
+        if (grammarBlinkTimer) clearTimeout(grammarBlinkTimer);
+        
+        // Показываем зелёный фон
+        const checkBtn = document.getElementById('grammarCheckBtn');
+        if (checkBtn) checkBtn.style.background = '#4CAF50';
+        
+        grammarBlinkTimer = setTimeout(() => {
+            if (checkBtn) checkBtn.style.background = '#3B6FE0';
+            
+            // Переход к следующему упражнению
+            if (currentGrammarExerciseIndex + 1 < grammarExercises.length) {
+                currentGrammarExerciseIndex++;
+                showGrammarExercise(grammarExercises[currentGrammarExerciseIndex], lessonIdx);
+            } else {
+                // Все упражнения выполнены
+                if (!isGrammarLessonCompleted(lessonIdx)) {
+                    markGrammarLessonCompleted(lessonIdx);
+                }
+                
+                const container = document.getElementById('grammarContent');
+                if (container) {
+                    container.innerHTML = `
+                        <div style="text-align: center; padding: 40px;">
+                            <div style="font-size: 64px; margin-bottom: 20px;">🎉</div>
+                            <div style="font-size: 24px; margin-bottom: 20px;">Поздравляем!</div>
+                            <div style="font-size: 16px; margin-bottom: 20px;">Вы успешно завершили все упражнения урока!</div>
+                            <button class="ctrl-btn" id="backToGrammarFromComplete" style="cursor: pointer;">ВЕРНУТЬСЯ К СПИСКУ УРОКОВ</button>
+                        </div>
+                    `;
+                    document.getElementById('backToGrammarFromComplete').onclick = () => renderGrammar();
+                }
             }
-        };
+        }, 600);
+    } else {
+        // НЕПРАВИЛЬНО
+        const input = document.getElementById('grammarAnswerInput');
+        if (input) {
+            input.style.borderColor = '#F44336';
+            grammarBlinkTimer = setTimeout(() => {
+                input.style.borderColor = '#D0D0D0';
+                input.value = '';
+                input.focus();
+            }, 800);
+        } else {
+            // Для choice типа
+            const options = document.querySelectorAll('.quiz-opt');
+            options.forEach(opt => {
+                if (opt.getAttribute('data-value') === userAnswer) {
+                    opt.style.background = '#FFCDD2';
+                    setTimeout(() => { opt.style.background = ''; }, 500);
+                }
+            });
+        }
     }
 }
