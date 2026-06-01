@@ -1,1 +1,72 @@
-
+{
+  "lesson": 11,
+  "title": "Предлоги с Akkusativ (durch, für, gegen, ohne, um, bis)",
+  "level": "A1",
+  "theory": "<h3>📌 Что такое предлоги с Akkusativ?</h3>\n\n<p>В немецком языке есть группа предлогов, после которых существительное и местоимение всегда стоят в <strong>Akkusativ (винительный падеж)</strong>.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 ЗАПОМИНАЛКА:</strong><br>\n  Durch, für, gegen, ohne, um —<br>\n  Akkusativ, das ist nicht dumm!<br>\n  (А еще: bis, entlang)\n</div>\n\n<h3>📌 Таблица предлогов с Akkusativ</h3>\n\n<table border=\"1\" cellpadding=\"12\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Предлог</th>\n    <th>Перевод</th>\n    <th>Пример</th>\n    <th>Перевод</th>\n    </table>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>durch</strong></td>\n    <td><strong>через, сквозь</strong></td>\n    <td>Wir gehen durch den Park.</td>\n    <td>Мы идём через парк.</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>für</strong></td>\n    <td><strong>для, за (время)</strong></td>\n    <td>Das Geschenk ist für dich.</td>\n    <td>Подарок для тебя.</td>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>gegen</strong></td>\n    <td><strong>против, около (время)</strong></td>\n    <td>Ich bin gegen den Krieg.</td>\n    <td>Я против войны.</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>ohne</strong></td>\n    <td><strong>без</strong></td>\n    <td>Ich komme ohne meinen Bruder.</td>\n    <td>Я прихожу без моего брата.</td>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>um</strong></td>\n    <td><strong>в (время), вокруг</strong></td>\n    <td>Um 10 Uhr gehe ich schlafen.</td>\n    <td>В 10 часов я иду спать.</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>bis</strong></td>\n    <td><strong>до</strong></td>\n    <td>Bis morgen!</td>\n    <td>До завтра!</td>\n   </tr>\n  </table>\n\n<h3>📌 Изменение артиклей в Akkusativ (напоминание)</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Nominativ</th>\n    <th>Akkusativ</th>\n    <th>Пример с предлогом</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\"><td>der (муж.)</td><td><strong>den</strong></td><td>für den Hund</td> </tr>\n  <tr style=\"background: #F5F5F5;\"><td>die (жен.)</td><td><strong>die</strong></td><td>für die Frau</td> </tr>\n  <tr style=\"background: #E3F2FD;\"><td>das (ср.)</td><td><strong>das</strong></td><td>für das Kind</td> </tr>\n  <tr style=\"background: #F5F5F5;\"><td>die (мн.)</td><td><strong>die</strong></td><td>für die Kinder</td> </tr>\n  </table>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ТИПИЧНЫЕ ОШИБКИ:</strong><br>\n  ❌ Das Geschenk ist <strong>für der Mann</strong> — неправильно!<br>\n  ✅ Das Geschenk ist <strong>für den Mann</strong>.<br>\n  <br>\n  ❌ Ich gehe <strong>ohne der Hund</strong> — неправильно!<br>\n  ✅ Ich gehe <strong>ohne den Hund</strong>.\n</div>\n\n<h3>📌 Примеры использования</h3>\n\n<ul>\n  <li>Wir laufen <strong>durch den Wald</strong>. — Мы бежим через лес.</li>\n  <li>Das ist <strong>für dich</strong>. — Это для тебя.</li>\n  <li>Er ist <strong>gegen den Plan</strong>. — Он против плана.</li>\n  <li>Ich trinke Kaffee <strong>ohne Zucker</strong>. — Я пью кофе без сахара.</li>\n  <li><strong>Um 8 Uhr</strong> stehe ich auf. — В 8 часов я встаю.</li>\n  <li><strong>Bis gleich!</strong> — До скорого!</li>\n</ul>\n\n<h3>📌 Итог урока</h3>\n\n<ul>\n  <li>Предлоги: durch, für, gegen, ohne, um, bis — всегда с Akkusativ</li>\n  <li>Мужской род меняется: der → den, ein → einen, kein → keinen</li>\n  <li>Запомни запоминалку в начале урока!</li>\n</ul>",
+  "examples": [
+    {"de": "Wir gehen durch den Park.", "ru": "Мы идём через парк."},
+    {"de": "Das Geschenk ist für dich.", "ru": "Подарок для тебя."},
+    {"de": "Ich bin gegen den Krieg.", "ru": "Я против войны."},
+    {"de": "Ich komme ohne meinen Bruder.", "ru": "Я прихожу без моего брата."},
+    {"de": "Um 10 Uhr gehe ich schlafen.", "ru": "В 10 часов я иду спать."},
+    {"de": "Bis morgen!", "ru": "До завтра!"}
+  ],
+  "exercises": [
+    {
+      "type": "fill",
+      "question": "Вставьте предлог:",
+      "sentence": "Wir gehen ___ den Park.",
+      "answer": "durch",
+      "hint": "через → durch"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте предлог:",
+      "sentence": "Das Geschenk ist ___ dich.",
+      "answer": "für",
+      "hint": "для → für"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте предлог:",
+      "sentence": "Ich bin ___ den Krieg.",
+      "answer": "gegen",
+      "hint": "против → gegen"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте предлог:",
+      "sentence": "Ich komme ___ meinen Bruder.",
+      "answer": "ohne",
+      "hint": "без → ohne"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте предлог:",
+      "sentence": "___ 10 Uhr gehe ich schlafen.",
+      "answer": "Um",
+      "hint": "в (время) → um"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте Akkusativ:",
+      "sentence": "Das ist für ___ Hund. (der)",
+      "answer": "den",
+      "hint": "der Hund → den Hund"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Я против войны.",
+      "answer": "ich bin gegen den krieg",
+      "hint": "gegen + den Krieg"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Это для тебя.",
+      "answer": "das ist für dich",
+      "hint": "für + dich"
+    }
+  ]
+}
