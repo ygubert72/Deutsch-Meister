@@ -1,1 +1,145 @@
-
+[
+  {
+    "lesson": 1,
+    "title": "Präteritum — Прошедшее время (глаголы haben, sein, modal)",
+    "theory": "<h3>📘 Präteritum (Imperfekt) — Прошедшее повествовательное время</h3>\n\n<p>В немецком языке есть два основных прошедших времени: <strong>Perfekt</strong> (разговорное) и <strong>Präteritum</strong> (письменное, повествовательное). На уровне A2 важно знать формы Präteritum для самых частотных глаголов: <strong>haben, sein</strong> и <strong>модальных глаголов</strong> (können, müssen, dürfen, sollen, wollen, mögen).</p>\n\n<h4>📌 Спряжение haben в Präteritum:</h4>\n<table border='1' cellpadding='8' style='border-collapse: collapse; width: 100%; margin: 10px 0;'>\n<tr><th>Лицо</th><th>Форма</th><th>Пример</th></tr>\n<tr><td>ich</td><td>hatte</td><td>Ich hatte einen Hund.</td></tr>\n<tr><td>du</td><td>hattest</td><td>Du hattest Zeit.</td></tr>\n<tr><td>er/sie/es</td><td>hatte</td><td>Er hatte keine Ahnung.</td></tr>\n<tr><td>wir</td><td>hatten</td><td>Wir hatten Glück.</td></tr>\n<tr><td>ihr</td><td>hattet</td><td>Ihr hattet Recht.</td></tr>\n<tr><td>sie/Sie</td><td>hatten</td><td>Sie hatten Pech.</td></tr>\n</table>\n\n<h4>📌 Спряжение sein в Präteritum:</h4>\n<table border='1' cellpadding='8' style='border-collapse: collapse; width: 100%; margin: 10px 0;'>\n<tr><th>Лицо</th><th>Форма</th><th>Пример</th></tr>\n<tr><td>ich</td><td>war</td><td>Ich war in Berlin.</td></tr>\n<tr><td>du</td><td>warst</td><td>Du warst müde.</td></tr>\n<tr><td>er/sie/es</td><td>war</td><td>Es war schön.</td></tr>\n<tr><td>wir</td><td>waren</td><td>Wir waren glücklich.</td></tr>\n<tr><td>ihr</td><td>wart</td><td>Ihr wart laut.</td></tr>\n<tr><td>sie/Sie</td><td>waren</td><td>Sie waren da.</td></tr>\n</table>\n\n<h4>📌 Модальные глаголы в Präteritum:</h4>\n<p>Модальные глаголы теряют умлаут и получают суффикс -te (кроме sollen).</p>\n<table border='1' cellpadding='8' style='border-collapse: collapse; width: 100%; margin: 10px 0;'>\n<tr><th>Глагол</th><th>ich</th><th>du</th><th>er/sie/es</th><th>wir</th><th>ihr</th><th>sie/Sie</th></tr>\n<tr><td>können</td><td>konnte</td><td>konntest</td><td>konnte</td><td>konnten</td><td>konntet</td><td>konnten</td></tr>\n<tr><td>müssen</td><td>musste</td><td>musstest</td><td>musste</td><td>mussten</td><td>musstet</td><td>mussten</td></tr>\n<tr><td>dürfen</td><td>durfte</td><td>durftest</td><td>durfte</td><td>durften</td><td>durftet</td><td>durften</td></tr>\n<tr><td>wollen</td><td>wollte</td><td>wolltest</td><td>wollte</td><td>wollten</td><td>wolltet</td><td>wollten</td></tr>\n<tr><td>sollen</td><td>sollte</td><td>solltest</td><td>sollte</td><td>sollten</td><td>solltet</td><td>sollten</td></tr>\n<tr><td>mögen</td><td>mochte</td><td>mochtest</td><td>mochte</td><td>mochten</td><td>mochtet</td><td>mochten</td></tr>\n</table>",
+    "examples": [
+      {"de": "Ich hatte einen Bruder.", "ru": "У меня был брат."},
+      {"de": "Wir waren im Kino.", "ru": "Мы были в кино."},
+      {"de": "Er konnte Deutsch sprechen.", "ru": "Он мог говорить по-немецки."},
+      {"de": "Sie musste nach Hause gehen.", "ru": "Она должна была идти домой."},
+      {"de": "Ich wollte nicht kommen.", "ru": "Я не хотел приходить."}
+    ],
+    "exercises": [
+      {"question": "Ich ___ (haben) einen Traum.", "answer": "hatte", "hint": "Форма для ich от haben в Präteritum"},
+      {"question": "Du ___ (sein) sehr nett.", "answer": "warst", "hint": "Форма для du от sein"},
+      {"question": "Er ___ (können) gut singen.", "answer": "konnte", "hint": "Форма для er от können"},
+      {"question": "Wir ___ (müssen) früh aufstehen.", "answer": "mussten", "hint": "Форма для wir от müssen"},
+      {"question": "Ihr ___ (wollen) ins Kino gehen.", "answer": "wolltet", "hint": "Форма для ihr от wollen"},
+      {"question": "Sie ___ (dürfen) nicht rauchen.", "answer": "durften", "hint": "Форма для sie (они) от dürfen"},
+      {"question": "Es ___ (sein) kalt gestern.", "answer": "war", "hint": "Форма для es от sein"},
+      {"question": "Ich ___ (mögen) Schokolade als Kind.", "answer": "mochte", "hint": "Форма для ich от mögen"},
+      {"question": "Du ___ (sollen) mehr lernen.", "answer": "solltest", "hint": "Форма для du от sollen"},
+      {"question": "Wir ___ (haben) viel Arbeit.", "answer": "hatten", "hint": "Форма для wir от haben"},
+      {"question": "Gestern ___ (sein) ein schöner Tag.", "answer": "war", "hint": "Форма для er/es/sie от sein"},
+      {"question": "Meine Eltern ___ (können) mir nicht helfen.", "answer": "konnten", "hint": "Форма для sie (они) от können"},
+      {"question": "___ (haben) du einen guten Tag?", "answer": "Hattest", "hint": "Форма для du от haben, с заглавной буквы"},
+      {"question": "Wir ___ (dürfen) nicht zu spät kommen.", "answer": "durften", "hint": "Форма для wir от dürfen"},
+      {"question": "Ich ___ (wollen) Arzt werden.", "answer": "wollte", "hint": "Форма для ich от wollen"}
+    ]
+  },
+  {
+    "lesson": 2,
+    "title": "Nebensätze mit weil, dass, ob — Придаточные предложения",
+    "theory": "<h3>📘 Придаточные предложения в немецком языке</h3>\n\n<p>В немецком языке придаточные предложения имеют <strong>особый порядок слов</strong>: спрягаемая часть глагола уходит в <strong>конец предложения</strong>.</p>\n\n<h4>📌 Союз WEIL (потому что) — причина</h4>\n<p><em>Ich bleibe zu Hause, weil es regnet.</em> — Я остаюсь дома, потому что идёт дождь.</p>\n<p>Глагол 'regnet' стоит в конце придаточного предложения.</p>\n\n<h4>📌 Союз DASS (что) — придаточное дополнительное</h4>\n<p><em>Ich weiß, dass du Recht hast.</em> — Я знаю, что ты прав.</p>\n<p>Глагол 'hast' — в конце.</p>\n\n<h4>📌 Союз OB (ли) — косвенный вопрос</h4>\n<p><em>Ich frage mich, ob er kommt.</em> — Я спрашиваю себя, придёт ли он.</p>\n\n<h4>📌 Правила построения:</h4>\n<ul>\n<li>В главном предложении — обычный порядок слов (глагол на втором месте).</li>\n<li>Придаточное предложение начинается с союза (weil, dass, ob).</li>\n<li>Спрягаемый глагол — в <strong>конце</strong> придаточного предложения.</li>\n<li>Между главным и придаточным ставится запятая.</li>\n</ul>\n\n<h4>📌 Примеры:</h4>\n<p><strong>weil:</strong> Ich lerne Deutsch, weil ich in Deutschland arbeiten möchte.</p>\n<p><strong>dass:</strong> Er sagt, dass er müde ist.</p>\n<p><strong>ob:</strong> Ich weiß nicht, ob sie kommt.</p>",
+    "examples": [
+      {"de": "Ich bleibe zu Hause, weil es regnet.", "ru": "Я остаюсь дома, потому что идёт дождь."},
+      {"de": "Ich weiß, dass du recht hast.", "ru": "Я знаю, что ты прав."},
+      {"de": "Ich frage mich, ob er kommt.", "ru": "Я спрашиваю себя, придёт ли он."},
+      {"de": "Er lernt, weil er klug ist.", "ru": "Он учится, потому что он умный."}
+    ],
+    "exercises": [
+      {"question": "Ich bleibe zu Hause, ___ es regnet.", "answer": "weil", "hint": "Союз 'потому что'"},
+      {"question": "Ich weiß, ___ du recht hast.", "answer": "dass", "hint": "Союз 'что'"},
+      {"question": "Ich frage mich, ___ sie morgen kommt.", "answer": "ob", "hint": "Союз 'ли'"},
+      {"question": "Er kommt nicht, ___ er krank ist.", "answer": "weil", "hint": "Союз 'потому что'"},
+      {"question": "Sie sagt, ___ sie Deutsch lernt.", "answer": "dass", "hint": "Союз 'что'"},
+      {"question": "Weißt du, ___ er schon da ist?", "answer": "ob", "hint": "Союз 'ли'"},
+      {"question": "Ich gehe ins Kino, ___ ich frei habe.", "answer": "weil", "hint": "Союз 'потому что'"},
+      {"question": "Es ist wichtig, ___ du regelmäßig lernst.", "answer": "dass", "hint": "Союз 'что'"},
+      {"question": "Ich bin mir nicht sicher, ___ das richtig ist.", "answer": "ob", "hint": "Союз 'ли'"},
+      {"question": "Sie ist glücklich, ___ sie ihren Traumjob gefunden hat.", "answer": "weil", "hint": "Союз 'потому что'"},
+      {"question": "Ich denke, ___ er bald kommt.", "answer": "dass", "hint": "Союз 'что'"},
+      {"question": "Kannst du mir sagen, ___ der Zug pünktlich ist?", "answer": "ob", "hint": "Союз 'ли'"},
+      {"question": "Wir lernen, ___ wir gute Noten bekommen wollen.", "answer": "weil", "hint": "Союз 'потому что'"},
+      {"question": "Hast du gehört, ___ sie umzieht?", "answer": "dass", "hint": "Союз 'что'"},
+      {"question": "Ich frage mich, ___ du mich verstehst.", "answer": "ob", "hint": "Союз 'ли'"}
+    ]
+  },
+  {
+    "lesson": 3,
+    "title": "Deklination der Adjektive — Склонение прилагательных",
+    "theory": "<h3>📘 Склонение прилагательных в немецком языке</h3>\n\n<p>Прилагательные в немецком языке склоняются, если стоят <strong>перед существительным</strong>. Окончание зависит от:</p>\n<ul>\n<li>рода, числа и падежа существительного</li>\n<li>типа артикля (определённый, неопределённый, нулевой)</li>\n</ul>\n\n<h4>📌 1. С определённым артиклем (der, die, das, die (мн.ч.))</h4>\n<p>Окончание <strong>-e</strong> в Nominativ (кроме мн.ч. → -en) и <strong>-en</strong> во всех остальных падежах.</p>\n<table border='1' cellpadding='6' style='border-collapse: collapse; width: 100%;'>\n<tr><th>Падеж</th><th>Муж. род</th><th>Жен. род</th><th>Ср. род</th><th>Множ. ч.</th></tr>\n<tr><td>Nom.</td><td>der <strong>gute</strong> Mann</td><td>die <strong>gute</strong> Frau</td><td>das <strong>gute</strong> Kind</td><td>die <strong>guten</strong> Leute</td></tr>\n<tr><td>Akk.</td><td>den <strong>guten</strong> Mann</td><td>die <strong>gute</strong> Frau</td><td>das <strong>gute</strong> Kind</td><td>die <strong>guten</strong> Leute</td></tr>\n<tr><td>Dat.</td><td>dem <strong>guten</strong> Mann</td><td>der <strong>guten</strong> Frau</td><td>dem <strong>guten</td><td>den <strong>guten</strong> Leuten</td></tr>\n</table>\n\n<h4>📌 2. С неопределённым артиклем (ein, eine, ein)</h4>\n<p>Окончание <strong>-er, -e, -es</strong> в Nominativ (как у артикля), в остальных падежах — <strong>-en</strong>.</p>\n<table border='1' cellpadding='6' style='border-collapse: collapse; width: 100%;'>\n<tr><th>Падеж</th><th>Муж. род</th><th>Жен. род</th><th>Ср. род</th></tr>\n<tr><td>Nom.</td><td>ein <strong>guter</strong> Mann</td><td>eine <strong>gute</strong> Frau</td><td>ein <strong>gutes</strong> Kind</td></tr>\n<tr><td>Akk.</td><td>einen <strong>guten</strong> Mann</td><td>eine <strong>gute</strong> Frau</td><td>ein <strong>gutes</strong> Kind</td></tr>\n<tr><td>Dat.</td><td>einem <strong>guten</strong> Mann</td><td>einer <strong>guten</strong> Frau</td><td>einem <strong>guten</strong> Kind</td></tr>\n</table>\n\n<h4>📌 3. Без артикля (нулевой артикль)</h4>\n<p>Прилагательное берёт на себя окончание артикля.</p>\n<p><em>guter Wein, gute Milch, gutes Brot</em></p>",
+    "examples": [
+      {"de": "der große Hund", "ru": "большая собака"},
+      {"de": "eine schöne Blume", "ru": "красивый цветок"},
+      {"de": "kaltes Wasser", "ru": "холодная вода"},
+      {"de": "mit freundlichen Grüßen", "ru": "с дружескими пожеланиями"}
+    ],
+    "exercises": [
+      {"question": "der ___ (groß) Mann", "answer": "große", "hint": "С определённым артиклем, Nom., муж. род → -e"},
+      {"question": "ein ___ (klein) Kind", "answer": "kleines", "hint": "С неопр. артиклем, Nom., ср. род → -es"},
+      {"question": "die ___ (schön) Frau", "answer": "schöne", "hint": "С определённым артиклем, Nom., жен. род → -e"},
+      {"question": "mit ___ (freundlich) Grüßen", "answer": "freundlichen", "hint": "Без артикля, Dat., мн. ч. → -en"},
+      {"question": "ein ___ (interessant) Buch", "answer": "interessantes", "hint": "Неопр. артикль, Nom., ср. род → -es"},
+      {"question": "den ___ (alt) Mann", "answer": "alten", "hint": "Опр. артикль, Akk., муж. род → -en"},
+      {"question": "___ (gut) Wein", "answer": "Guter", "hint": "Без артикля, Nom., муж. род → -er, с заглавной"},
+      {"question": "einer ___ (jung) Frau", "answer": "jungen", "hint": "Неопр. артикль, Dat., жен. род → -en"},
+      {"question": "das ___ (neu) Auto", "answer": "neue", "hint": "Опр. артикль, Nom., ср. род → -e"},
+      {"question": "mit ___ (laut) Stimme", "answer": "lauter", "hint": "Неопр. артикль (подразумевается), Dat., жен. род → -er"},
+      {"question": "ein ___ (billig) Hotel", "answer": "billiges", "hint": "Неопр. артикль, Nom., ср. род → -es"},
+      {"question": "die ___ (erwachsen) Kinder", "answer": "erwachsenen", "hint": "Опр. артикль, Nom., мн. ч. → -en"},
+      {"question": "___ (frisch) Brot", "answer": "Frisches", "hint": "Без артикля, Nom., ср. род → -es, с заглавной"},
+      {"question": "ein ___ (teuer) Geschenk", "answer": "teures", "hint": "Неопр. артикль, Nom., ср. род → -es"},
+      {"question": "dem ___ (nett) Nachbarn", "answer": "netten", "hint": "Опр. артикль, Dat., муж. род → -en"}
+    ]
+  },
+  {
+    "lesson": 4,
+    "title": "Temporale Präpositionen: seit, vor, nach, für, bis, ab",
+    "theory": "<h3>📘 Временные предлоги в немецком языке</h3>\n\n<h4>📌 SEIT — с (какого-то момента времени до настоящего)</h4>\n<p>Используется с <strong>Dativ</strong>. Отвечает на вопрос <em>seit wann?</em> (с каких пор?)</p>\n<p><em>Ich lerne Deutsch <strong>seit</strong> einem Jahr.</em> — Я учу немецкий с года.</p>\n\n<h4>📌 VOR — назад (от текущего момента), до (события)</h4>\n<p>С <strong>Dativ</strong>. <em>vor einer Woche</em> — неделю назад. <em>vor dem Essen</em> — до еды.</p>\n\n<h4>📌 NACH — после, через</h4>\n<p>С <strong>Dativ</strong>. <em>nach dem Unterricht</em> — после урока. <em>nach einer Stunde</em> — через час.</p>\n\n<h4>📌 FÜR — на (промежуток времени в будущем)</h4>\n<p>С <strong>Akkusativ</strong>. <em>für zwei Tage</em> — на два дня.</p>\n\n<h4>📌 BIS — до (временной предел)</h4>\n<p>С <strong>Akkusativ</strong>. <em>bis morgen</em> — до завтра. Часто с <em>bis zu</em> + Dat.</p>\n\n<h4>📌 AB — начиная с (будущее время)</h4>\n<p>С <strong>Dativ</strong>. <em>ab nächster Woche</em> — со следующей недели.</p>\n\n<h4>📌 Таблица предлогов:</h4>\n<table border='1' cellpadding='8' style='border-collapse: collapse;'>\n<tr><th>Предлог</th><th>Падеж</th><th>Значение</th><th>Пример</th></tr>\n<tr><td>seit</td><td>Dativ</td><td>с (какого-то момента)</td><td>seit Montag</td></tr>\n<tr><td>vor</td><td>Dativ</td><td>назад, до</td><td>vor zwei Tagen</td></tr>\n<tr><td>nach</td><td>Dativ</td><td>после, через</td><td>nach der Arbeit</td></tr>\n<tr><td>für</td><td>Akkusativ</td><td>на (срок)</td><td>für eine Woche</td></tr>\n<tr><td>bis</td><td>Akkusativ</td><td>до</td><td>bis Freitag</td></tr>\n<tr><td>ab</td><td>Dativ</td><td>начиная с</td><td>ab morgen</td></tr>\n</table>",
+    "examples": [
+      {"de": "Ich wohne hier seit 2020.", "ru": "Я живу здесь с 2020 года."},
+      {"de": "Er kam vor einer Stunde.", "ru": "Он пришёл час назад."},
+      {"de": "Nach dem Essen gehe ich schlafen.", "ru": "После еды я иду спать."},
+      {"de": "Wir fahren für drei Tage nach Paris.", "ru": "Мы едем в Париж на три дня."},
+      {"de": "Bis morgen muss ich das machen.", "ru": "До завтра я должен это сделать."},
+      {"de": "Ab nächster Woche habe ich Urlaub.", "ru": "Со следующей недели у меня отпуск."}
+    ],
+    "exercises": [
+      {"question": "Ich lerne Deutsch ___ einem Jahr.", "answer": "seit", "hint": "Предлог 'с' (какого-то момента) + Dativ"},
+      {"question": "Er ist ___ einer Stunde gekommen.", "answer": "vor", "hint": "Предлог 'назад' + Dativ"},
+      {"question": "___ dem Unterricht gehe ich nach Hause.", "answer": "Nach", "hint": "Предлог 'после' + Dativ, с заглавной"},
+      {"question": "Wir bleiben ___ drei Tage in Berlin.", "answer": "für", "hint": "Предлог 'на' (срок) + Akkusativ"},
+      {"question": "___ morgen muss ich die Arbeit erledigen.", "answer": "Bis", "hint": "Предлог 'до' + Akkusativ, с заглавной"},
+      {"question": "___ nächster Woche bin ich im Urlaub.", "answer": "Ab", "hint": "Предлог 'начиная с' + Dativ, с заглавной"},
+      {"question": "Ich habe ihn ___ einer Woche nicht gesehen.", "answer": "seit", "hint": "Предлог 'с' (промежуток времени до сих пор)"},
+      {"question": "___ dem Frühstück putze ich mir die Zähne.", "answer": "Nach", "hint": "Предлог 'после' + Dativ, с заглавной"},
+      {"question": "Das Treffen ist ___ 18 Uhr.", "answer": "bis", "hint": "Предлог 'до' (временной предел)"},
+      {"question": "___ einer Woche fahren wir nach Österreich.", "answer": "Ab", "hint": "Предлог 'начиная с' (будущее)"},
+      {"question": "Ich bleibe zu Hause ___ zwei Tagen.", "answer": "für", "hint": "Предлог 'на' (срок) + Akkusativ"},
+      {"question": "___ dem Essen soll man sich die Hände waschen.", "answer": "Vor", "hint": "Предлог 'перед'/'до' + Dativ, с заглавной"},
+      {"question": "Ich arbeite hier ___ fünf Jahren.", "answer": "seit", "hint": "Предлог 'с' (непрерывный период)"},
+      {"question": "___ einer Stunde beginnt der Film.", "answer": "In", "hint": "Предлог 'через' + Dativ (внимание: in, а не nach для будущего)"},
+      {"question": "Die Party geht ___ 2 Uhr nachts.", "answer": "bis", "hint": "Предлог 'до' (временной предел)"}
+    ]
+  },
+  {
+    "lesson": 5,
+    "title": "Komparativ und Superlativ — Сравнительная и превосходная степень",
+    "theory": "<h3>📘 Степени сравнения прилагательных и наречий</h3>\n\n<h4>📌 Положительная степень (Positiv):</h4>\n<p><em>schnell, groß, gut, gern</em> — быстрый, большой, хороший, охотно</p>\n\n<h4>📌 Сравнительная степень (Komparativ):</h4>\n<p>Обычно образуется с помощью <strong>-er</strong>. Прилагательные с a, o, u часто получают умлаут (ä, ö, ü).</p>\n<p><em>schnell → schneller (быстрее), groß → größer (больше), gut → besser (лучше), gern → lieber (охотнее)</em></p>\n\n<h4>📌 Превосходная степень (Superlativ):</h4>\n<p>Две формы:</p>\n<ul>\n<li><strong>am + -sten</strong> — обстоятельство (<em>am schnellsten</em> — быстрее всего)</li>\n<li><strong>der/die/das + -ste</strong> — определение (<em>der schnellste Läufer</em> — самый быстрый бегун)</li>\n</ul>\n<p><em>groß → am größten, der/die/das größte</em></p>\n\n<h4>📌 Исключения:</h4>\n<table border='1' cellpadding='6' style='border-collapse: collapse;'>\n<tr><th>Positiv</th><th>Komparativ</th><th>Superlativ</th><th>Перевод</th></tr>\n<tr><td>gut</td><td>besser</td><td>am besten / der beste</td><td>хороший → лучше → самый лучший</td></tr>\n<tr><td>gern</td><td>lieber</td><td>am liebsten</td><td>охотно → охотнее → охотнее всего</td></tr>\n<tr><td>viel</td><td>mehr</td><td>am meisten</td><td>много → больше → больше всего</td></tr>\n<tr><td>hoch</td><td>höher</td><td>am höchsten</td><td>высокий → выше → самый высокий</td></tr>\n</table>\n\n<h4>📌 Примеры в предложениях:</h4>\n<p><em>Mein Bruder ist <strong>älter</strong> als ich.</em> — Мой брат старше меня.</p>\n<p><em>Das ist das <strong>beste</strong> Restaurant der Stadt.</em> — Это лучший ресторан города.</p>\n<p><em>Sie läuft <strong>am schnellsten</strong>.</em> — Она бегает быстрее всех.</p>",
+    "examples": [
+      {"de": "Mein Hund ist schneller als deiner.", "ru": "Моя собака быстрее, чем твоя."},
+      {"de": "Das ist das größte Haus hier.", "ru": "Это самый большой дом здесь."},
+      {"de": "Sie kocht am besten in der Familie.", "ru": "Она готовит лучше всех в семье."},
+      {"de": "Ich trinke lieber Tee als Kaffee.", "ru": "Я пью чай охотнее, чем кофе."}
+    ],
+    "exercises": [
+      {"question": "Mein Auto ist ___ (schnell) als deins.", "answer": "schneller", "hint": "Сравнительная степень: schnell → ? + als"},
+      {"question": "Das ist das ___ (groß) Haus in der Stadt.", "answer": "größte", "hint": "Превосходная степень как определение, ср. род"},
+      {"question": "Sie singt ___ (gut) als ich.", "answer": "besser", "hint": "Исключение: gut → ?"},
+      {"question": "Er läuft ___ (schnell) im Team.", "answer": "am schnellsten", "hint": "Превосходная степень как обстоятельство"},
+      {"question": "Dieser Berg ist ___ (hoch) als jener.", "answer": "höher", "hint": "Исключение: hoch → ? с умлаутом"},
+      {"question": "Das ist die ___ (schön) Blume im Garten.", "answer": "schönste", "hint": "Превосходная степень, жен. род"},
+      {"question": "Ich mag Schokolade ___ (gern) als Kuchen.", "answer": "lieber", "hint": "Исключение: gern → ?"},
+      {"question": "Er hat ___ (viel) Geld als ich.", "answer": "mehr", "hint": "Исключение: viel → ?"},
+      {"question": "Das war der ___ (schlecht) Film aller Zeiten.", "answer": "schlechteste", "hint": "Превосходная степень от schlecht, муж. род"},
+      {"question": "Sie arbeitet ___ (fleißig) von allen.", "answer": "am fleißigsten", "hint": "Превосходная степень от fleißig"},
+      {"question": "Meine Wohnung ist ___ (klein) als deine.", "answer": "kleiner", "hint": "Сравнительная степень: klein → ? + als"},
+      {"question": "Das ist der ___ (teuer) Wagen im Showroom.", "answer": "teuerste", "hint": "teuer → teurer → teuerste (без e перед r)"},
+      {"question": "Ich fahre ___ (gern) mit dem Zug als mit dem Bus.", "answer": "lieber", "hint": "Исключение: gern → ?"},
+      {"question": "Sie ist ___ (jung) im Kurs.", "answer": "die jüngste", "hint": "Превосходная степень, жен. род, с умлаутом"},
+      {"question": "Heute ist es ___ (warm) als gestern.", "answer": "wärmer", "hint": "warm → wärmer (умлаут в сравнительной степени)"}
+    ]
+  }
+]
