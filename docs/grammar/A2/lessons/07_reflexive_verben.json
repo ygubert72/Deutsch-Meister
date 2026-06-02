@@ -1,24 +1,129 @@
 {
   "lesson": 7,
-  "title": "Возвратные глаголы (sich)",
+  "title": "Возвратные глаголы (Reflexive Verben)",
   "level": "A2",
-  "theory": "<h3>📌 Что такое возвратные глаголы?</h3>\n<p>Возвратные глаголы употребляются с возвратным местоимением <strong>sich</strong>. В русском языке им соответствуют глаголы с частицей <strong>-ся</strong> (мыться, одеваться).</p>\n\n<table border='1' cellpadding='10' style='border-collapse:collapse;width:100%;margin:15px 0;'>\n  <tr style='background:#3B6FE0;color:white'><th>Местоимение</th><th>Возвратное местоимение</th><th>Пример</th></tr>\n  <tr><td>ich</td><td><strong>mich</strong></td><td>Ich wasche mich.</td></tr>\n  <tr><td>du</td><td><strong>dich</strong></td><td>Du wäschst dich.</td></tr>\n  <tr><td>er/sie/es</td><td><strong>sich</strong></td><td>Er wäscht sich.</td></tr>\n  <tr><td>wir</td><td><strong>uns</strong></td><td>Wir waschen uns.</td></tr>\n  <tr><td>ihr</td><td><strong>euch</strong></td><td>Ihr wascht euch.</td></tr>\n  <tr><td>sie/Sie</td><td><strong>sich</strong></td><td>Sie waschen sich.</td></tr>\n</table>\n\n<h3>📌 Важные возвратные глаголы A2</h3>\n<ul>\n<li><strong>sich interessieren für</strong> — интересоваться</li>\n<li><strong>sich freuen auf/über</strong> — радоваться</li>\n<li><strong>sich erinnern an</strong> — вспоминать</li>\n<li><strong>sich kümmern um</strong> — заботиться</li>\n<li><strong>sich treffen</strong> — встречаться</li>\n<li><strong>sich fühlen</strong> — чувствовать себя</li>\n</ul>",
+  "theory": "<h3>📌 Что такое возвратные глаголы?</h3>\n\n<p>Возвратные глаголы употребляются с возвратным местоимением <strong>sich</strong>. В русском языке им соответствуют глаголы с частицей <strong>-ся</strong> (мыться, одеваться, интересоваться).</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 ФОРМУЛА:</strong><br>\n  подлежащее + возвратное местоимение + глагол\n</div>\n\n<h3>📌 Спряжение возвратных глаголов (на примере 'sich waschen' — мыться)</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Местоимение</th>\n    <th>Возвратное местоимение</th>\n    <th>Глагол</th>\n    <th>Пример</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>ich</th>\n    <td><strong>mich</strong></th>\n    <td>wasche</th>\n    <td>Ich wasche <strong>mich</strong>.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>du</th>\n    <td><strong>dich</strong></th>\n    <td>wäschst</th>\n    <td>Du wäschst <strong>dich</strong>.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>er/sie/es</th>\n    <td><strong>sich</strong></th>\n    <td>wäscht</th>\n    <td>Er wäscht <strong>sich</strong>.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>wir</th>\n    <td><strong>uns</strong></th>\n    <td>waschen</th>\n    <td>Wir waschen <strong>uns</strong>.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>ihr</th>\n    <td><strong>euch</strong></th>\n    <td>wascht</th>\n    <td>Ihr wascht <strong>euch</strong>.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>sie/Sie</th>\n    <td><strong>sich</strong></th>\n    <td>waschen</th>\n    <td>Sie waschen <strong>sich</strong>.</th>\n   </td>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"4\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    ich → mich, du → dich, er/sie/es → sich, wir → uns, ihr → euch, sie → sich</th>\n  </tr>\n\n<h3>📌 Важные возвратные глаголы A2</h3>\n\n<ul>\n<li><strong>sich interessieren für</strong> — интересоваться чем-либо (Akkusativ)</li>\n<li><strong>sich freuen auf/über</strong> — радоваться (auf — будущее, über — настоящее)</li>\n<li><strong>sich erinnern an</strong> — вспоминать о чём-либо (Akkusativ)</li>\n<li><strong>sich kümmern um</strong> — заботиться о ком-либо (Akkusativ)</li>\n<li><strong>sich treffen</strong> — встречаться</li>\n<li><strong>sich fühlen</strong> — чувствовать себя</li>\n<li><strong>sich setzen</strong> — садиться</li>\n<li><strong>sich entschuldigen</strong> — извиняться</li>\n<li><strong>sich anziehen</strong> — одеваться</li>\n<li><strong>sich ausziehen</strong> — раздеваться</li>\n<li><strong>sich duschen</strong> — принимать душ</li>\n<li><strong>sich beeilen</strong> — торопиться</li>\n<li><strong>sich unterhalten</strong> — беседовать</li>\n</ul>\n\n<h3>📌 Примеры с предлогами</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Глагол</th>\n    <th>Предлог</th>\n    <th>Пример</th>\n    <th>Перевод</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>sich interessieren</th>\n    <td><strong>für</strong> + Akk.</th>\n    <td>Ich interessiere <strong>mich für</strong> Musik.</th>\n    <td>Я интересуюсь музыкой.</th>\n   </td>\n  <tr style=\"background: #F5F5F5;\">\n    <td>sich freuen</th>\n    <td><strong>auf</strong> + Akk. (будущее)<br><strong>über</strong> + Akk. (настоящее)</th>\n    <td>Ich freue <strong>mich auf</strong> den Urlaub.<br>Ich freue <strong>mich über</strong> das Geschenk.</th>\n    <td>Я радуюсь отпуску.<br>Я рад подарку.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>sich erinnern</th>\n    <td><strong>an</strong> + Akk.</th>\n    <td>Ich erinnere <strong>mich an</strong> meine Kindheit.</th>\n    <td>Я вспоминаю своё детство.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>sich kümmern</th>\n    <td><strong>um</strong> + Akk.</th>\n    <td>Sie kümmert <strong>sich um</strong> ihre Mutter.</th>\n    <td>Она заботится о своей маме.</th>\n   </tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"4\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    interessieren für, freuen auf/über, erinnern an, kümmern um</th>\n  </tr>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ТИПИЧНЫЕ ОШИБКИ:</strong><br>\n  ❌ Ich wasche <strong>sich</strong>.<br>\n  ✅ Ich wasche <strong>mich</strong>.<br>\n  <br>\n  ❌ Er interessiert <strong>mich</strong> für Sport.<br>\n  ✅ Er interessiert <strong>sich</strong> für Sport.\n</div>\n\n<h3>📌 Порядок слов</h3>\n\n<p>Возвратное местоимение обычно стоит после спрягаемого глагола и после подлежащего.</p>\n<ul>\n<li>Ich interessiere <strong>mich</strong> für Musik.</li>\n<li>Er wäscht <strong>sich</strong> die Hände.</li>\n<li>Wir treffen <strong>uns</strong> um 10 Uhr.</li>\n</ul>\n\n<h3>📖 Пошаговый алгоритм</h3>\n<ol>\n<li>Определи, нужен ли возвратный глагол (соответствует русскому -ся)</li>\n<li>Выбери правильное возвратное местоимение (mich, dich, sich, uns, euch)</li>\n<li>Поставь его после глагола</li>\n<li>Если глагол требует предлога, добавь его после местоимения</li>\n</ol>\n\n<h3>📌 Итог урока</h3>\n<ul>\n<li>Возвратные глаголы требуют местоимения: mich, dich, sich, uns, euch, sich</li>\n<li>Частотные глаголы: sich waschen, sich anziehen, sich interessieren, sich freuen</li>\n<li>Предлоги: für, auf, über, an, um</li>\n<li>Порядок слов: подлежащее → глагол → возвратное местоимение → ...</li>\n</ul>",
   "examples": [
     {"de": "Ich wasche mich.", "ru": "Я моюсь."},
+    {"de": "Du wäschst dich.", "ru": "Ты моешься."},
+    {"de": "Er wäscht sich.", "ru": "Он моется."},
+    {"de": "Wir waschen uns.", "ru": "Мы моемся."},
+    {"de": "Ihr wascht euch.", "ru": "Вы моетесь."},
+    {"de": "Sie waschen sich.", "ru": "Они моются."},
     {"de": "Er interessiert sich für Sport.", "ru": "Он интересуется спортом."},
-    {"de": "Wir freuen uns auf den Urlaub.", "ru": "Мы радуемся отпуску."},
-    {"de": "Ich erinnere mich an meine Kindheit.", "ru": "Я вспоминаю своё детство."}
+    {"de": "Wir freuen uns auf den Urlaub.", "ru": "Мы радуемся отпуску (будущему)."},
+    {"de": "Sie freut sich über das Geschenk.", "ru": "Она рада подарку (настоящему)."},
+    {"de": "Ich erinnere mich an meine Kindheit.", "ru": "Я вспоминаю своё детство."},
+    {"de": "Sie kümmert sich um ihre Mutter.", "ru": "Она заботится о своей маме."},
+    {"de": "Wir treffen uns um 10 Uhr.", "ru": "Мы встречаемся в 10 часов."}
   ],
   "exercises": [
-    {"type": "fill", "question": "Вставьте возвратное местоимение:", "sentence": "Ich wasche ___ (mich/dich/sich).", "answer": "mich", "hint": "ich → mich"},
-    {"type": "fill", "question": "Вставьте возвратное местоимение:", "sentence": "Du wäschst ___ (dich/sich).", "answer": "dich", "hint": "du → dich"},
-    {"type": "fill", "question": "Вставьте возвратное местоимение:", "sentence": "Er wäscht ___ (mich/sich).", "answer": "sich", "hint": "er → sich"},
-    {"type": "fill", "question": "Вставьте возвратное местоимение:", "sentence": "Wir waschen ___ (uns/euch).", "answer": "uns", "hint": "wir → uns"},
-    {"type": "fill", "question": "Вставьте возвратное местоимение:", "sentence": "Ihr wascht ___ (euch/uns).", "answer": "euch", "hint": "ihr → euch"},
-    {"type": "fill", "question": "Вставьте правильную форму:", "sentence": "Sie interessiert ___ für Musik.", "answer": "sich", "hint": "sie (она) → sich"},
-    {"type": "fill", "question": "Вставьте правильную форму:", "sentence": "Ich freue ___ auf den Sommer.", "answer": "mich", "hint": "ich → mich"},
-    {"type": "choice", "question": "Выберите правильную форму:", "sentence": "Er erinnert ___ an seine Kindheit.", "options": ["mich", "dich", "sich", "uns"], "answer": "sich", "hint": "er → sich"},
-    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Я моюсь.", "answer": "ich wasche mich", "hint": "waschen + mich"},
-    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Он интересуется спортом.", "answer": "er interessiert sich für sport", "hint": "sich interessieren für"}
+    {
+      "type": "fill",
+      "question": "Вставьте правильное возвратное местоимение:",
+      "sentence": "Ich wasche ___ (mich/dich/sich).",
+      "answer": "mich",
+      "hint": "ich → mich"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильное возвратное местоимение:",
+      "sentence": "Du wäschst ___ (dich/sich).",
+      "answer": "dich",
+      "hint": "du → dich"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильное возвратное местоимение:",
+      "sentence": "Er wäscht ___ (mich/sich).",
+      "answer": "sich",
+      "hint": "er → sich"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильное возвратное местоимение:",
+      "sentence": "Wir waschen ___ (uns/euch).",
+      "answer": "uns",
+      "hint": "wir → uns"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильное возвратное местоимение:",
+      "sentence": "Ihr wascht ___ (euch/uns).",
+      "answer": "euch",
+      "hint": "ihr → euch"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму:",
+      "sentence": "Sie interessiert ___ für Musik.",
+      "answer": "sich",
+      "hint": "sie (она) → sich"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму:",
+      "sentence": "Ich freue ___ auf den Sommer.",
+      "answer": "mich",
+      "hint": "ich → mich"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму:",
+      "sentence": "Wir freuen ___ über das Geschenk.",
+      "answer": "uns",
+      "hint": "wir → uns"
+    },
+    {
+      "type": "choice",
+      "question": "Выберите правильное возвратное местоимение:",
+      "sentence": "Er erinnert ___ an seine Kindheit.",
+      "options": ["mich", "dich", "sich", "uns"],
+      "answer": "sich",
+      "hint": "er → sich"
+    },
+    {
+      "type": "choice",
+      "question": "Выберите правильное возвратное местоимение:",
+      "sentence": "Sie kümmert ___ um ihre Eltern.",
+      "options": ["mich", "dich", "sich", "euch"],
+      "answer": "sich",
+      "hint": "sie (она) → sich"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Я моюсь.",
+      "answer": "ich wasche mich",
+      "hint": "waschen + mich"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Он интересуется спортом.",
+      "answer": "er interessiert sich für sport",
+      "hint": "sich interessieren für"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Мы встречаемся в 8 часов.",
+      "answer": "wir treffen uns um 8 uhr",
+      "hint": "sich treffen + um"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Она заботится о своей маме.",
+      "answer": "sie kümmert sich um ihre mutter",
+      "hint": "sich kümmern um"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Я чувствую себя хорошо.",
+      "answer": "ich fühle mich gut",
+      "hint": "sich fühlen"
+    }
   ]
 }
