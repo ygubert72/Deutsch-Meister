@@ -2,19 +2,88 @@
   "lesson": 12,
   "title": "Придаточные цели: um...zu, damit",
   "level": "A2",
-  "theory": "<h3>📌 Как выразить цель?</h3>\n\n<div class='info-box' style='background:#E8F0FE;padding:15px;border-radius:12px;margin:15px 0;'>\n  <strong>🎯 ПРАВИЛО:</strong><br>\n  • <strong>um...zu + Infinitiv</strong> — когда подлежащее <strong>совпадает</strong><br>\n  • <strong>damit</strong> — когда подлежащее <strong>разное</strong>\n</div>\n\n<h3>📌 um...zu + Infinitiv</h3>\n<p>Используется, когда подлежащее главного и придаточного предложения <strong>одинаковое</strong>.</p>\n<p><em>Ich lerne Deutsch, <strong>um in Deutschland zu arbeiten</strong>.</em><br>(Я учу немецкий, чтобы работать в Германии)</p>\n\n<h3>📌 damit</h3>\n<p>Используется, когда подлежащее <strong>разное</strong>. Глагол идёт в конец.</p>\n<p><em>Ich lerne Deutsch, <strong>damit mein Kind mir helfen kann</strong>.</em><br>(Я учу немецкий, чтобы мой ребёнок мог мне помочь)</p>",
+  "theory": "<h3>📌 Что такое придаточные цели?</h3>\n\n<p>Придаточные цели отвечают на вопрос <strong>Wozu?</strong> (зачем?, с какой целью?) или <strong>Zu welchem Zweck?</strong> Они показывают, для чего совершается действие.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 ГЛАВНОЕ ПРАВИЛО:</strong><br>\n  <strong>um...zu + Infinitiv</strong> — когда подлежащее <strong>совпадает</strong><br>\n  <strong>damit</strong> — когда подлежащее <strong>разное</strong>\n</div>\n\n<h3>📌 1. um...zu + Infinitiv</h3>\n\n<p>Используется, когда подлежащее главного и придаточного предложения <strong>одинаковое</strong>. В придаточном нет подлежащего, а глагол стоит в конце в форме Infinitiv.</p>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Главное предложение</th>\n    <th>um...zu + Infinitiv</th>\n    <th>Перевод</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Ich lerne Deutsch,</th>\n    <td><strong>um in Deutschland zu arbeiten</strong>.</th>\n    <td>Я учу немецкий, чтобы работать в Германии.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Ich spare Geld,</th>\n    <td><strong>um ein Auto zu kaufen</strong>.</th>\n    <td>Я коплю деньги, чтобы купить машину.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Er geht zum Arzt,</th>\n    <td><strong>um sich untersuchen zu lassen</strong>.</th>\n    <td>Он идёт к врачу, чтобы обследоваться.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Sie lernt viel,</th>\n    <td><strong>um die Prüfung zu bestehen</strong>.</th>\n    <td>Она много учится, чтобы сдать экзамен.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Wir fahren früh los,</th>\n    <td><strong>um den Stau zu vermeiden</strong>.</th>\n    <td>Мы выезжаем рано, чтобы избежать пробки.</th>\n   </tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"3\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    um...zu = подлежащее совпадает → Infinitiv в конце!</th>\n  </tr>\n\n<h3>📌 2. damit</h3>\n\n<p>Используется, когда подлежащее <strong>разное</strong>. В придаточном с 'damit' есть своё подлежащее, а глагол уходит в конец.</p>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Главное предложение</th>\n    <th>Придаточное с damit</th>\n    <th>Перевод</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Ich lerne Deutsch,</th>\n    <td><strong>damit mein Kind mir helfen kann</strong>.</th>\n    <td>Я учу немецкий, чтобы мой ребёнок мог мне помочь.</th>\n   </td>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Ich gebe dir Geld,</th>\n    <td><strong>damit du ein Auto kaufen kannst</strong>.</th>\n    <td>Я даю тебе деньги, чтобы ты купил машину.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Er spricht langsam,</th>\n    <td><strong>damit ich ihn verstehe</strong>.</th>\n    <td>Он говорит медленно, чтобы я его понял.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Sie erklärt die Regel zweimal,</th>\n    <td><strong>damit alle sie verstehen</strong>.</th>\n    <td>Она объясняет правило дважды, чтобы все его поняли.</th>\n   </td>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Wir schreiben es auf,</th>\n    <td><strong>damit wir es nicht vergessen</strong>.</th>\n    <td>Мы записываем это, чтобы не забыть.</th>\n   </tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"3\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    damit = подлежащее разное → глагол в конце!</th>\n  </tr>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ТИПИЧНЫЕ ОШИБКИ:</strong><br>\n  ❌ Ich lerne Deutsch, <strong>für um in Deutschland zu arbeiten</strong>.<br>\n  ✅ Ich lerne Deutsch, <strong>um in Deutschland zu arbeiten</strong>.<br>\n  <br>\n  ❌ Ich gebe dir Geld, <strong>um du ein Auto kaufst</strong>.<br>\n  ✅ Ich gebe dir Geld, <strong>damit du ein Auto kaufst</strong>.\n</div>\n\n<h3>📌 Сравнение um...zu и damit</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>um...zu</th>\n    <th>damit</th>\n  </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>подлежащее совпадает</th>\n    <td>подлежащее разное</th>\n   </td>\n  <tr style=\"background: #F5F5F5;\">\n    做了нет отдельного подлежащего</th>\n    <td>есть отдельное подлежащее</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Infinitiv в конце</th>\n    <td>глагол в конце (спрягаемый)</th>\n   </td>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Ich lerne Deutsch, um in Deutschland zu arbeiten.</th>\n    <td>Ich lerne Deutsch, damit mein Kind mir helfen kann.</th>\n   </tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"2\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    Одинаковое лицо → um...zu, разное → damit</th>\n  </tr>\n\n<h3>📌 Особые случаи: zu + Infinitiv без um</h3>\n\n<p>Некоторые глаголы требуют <strong>zu + Infinitiv</strong> без um (это тема B1, но уже встречается на A2):</p>\n<ul>\n<li>Ich versuche, <strong>zu kommen</strong>. — Я пытаюсь прийти.</li>\n<li>Er vergisst, <strong>anzurufen</strong>. — Он забывает позвонить.</li>\n<li>Sie beginnt, <strong>zu weinen</strong>. — Она начинает плакать.</li>\n</ul>\n\n<h3>📖 Пошаговый алгоритм</h3>\n<ol>\n<li>Определи, нужно ли выразить цель (зачем?)</li>\n<li>Сравни подлежащие в главном и придаточном предложениях</li>\n<li>Если подлежащее одинаковое → используй <strong>um...zu + Infinitiv</strong></li>\n<li>Если подлежащее разное → используй <strong>damit</strong></li>\n<li>В damit-придаточном поставь глагол в конец</li>\n</ol>\n\n<h3>📌 Итог урока</h3>\n<ul>\n<li><strong>um...zu + Infinitiv</strong> — подлежащее совпадает</li>\n<li><strong>damit</strong> — подлежащее разное, глагол в конце</li>\n<li>Оба варианта отвечают на вопрос Wozu? (зачем?)</li>\n<li>Запятая перед um...zu и damit обязательна</li>\n</ul>",
   "examples": [
     {"de": "Ich lerne Deutsch, um in Deutschland zu arbeiten.", "ru": "Я учу немецкий, чтобы работать в Германии."},
     {"de": "Ich lerne Deutsch, damit mein Kind mir helfen kann.", "ru": "Я учу немецкий, чтобы мой ребёнок мог мне помочь."},
-    {"de": "Er spricht langsam, damit ich ihn verstehe.", "ru": "Он говорит медленно, чтобы я его понял."}
+    {"de": "Er geht zum Arzt, um sich untersuchen zu lassen.", "ru": "Он идёт к врачу, чтобы обследоваться."},
+    {"de": "Er spricht langsam, damit ich ihn verstehe.", "ru": "Он говорит медленно, чтобы я его понял."},
+    {"de": "Ich spare Geld, um ein Auto zu kaufen.", "ru": "Я коплю деньги, чтобы купить машину."},
+    {"de": "Ich gebe dir Geld, damit du ein Auto kaufen kannst.", "ru": "Я даю тебе деньги, чтобы ты купил машину."},
+    {"de": "Wir fahren früh los, um den Stau zu vermeiden.", "ru": "Мы выезжаем рано, чтобы избежать пробки."}
   ],
   "exercises": [
-    {"type": "fill", "question": "Вставьте um...zu или damit:", "sentence": "Ich lerne Deutsch, ___ in Deutschland zu arbeiten.", "answer": "um", "hint": "подлежащее совпадает → um...zu"},
-    {"type": "fill", "question": "Вставьте um...zu или damit:", "sentence": "Ich lerne Deutsch, ___ mein Kind mir helfen kann.", "answer": "damit", "hint": "подлежащее разное → damit"},
-    {"type": "fill", "question": "Вставьте um...zu или damit:", "sentence": "Er spricht langsam, ___ ich ihn verstehe.", "answer": "damit", "hint": "подлежащее разное → damit"},
-    {"type": "fill", "question": "Вставьте um...zu или damit:", "sentence": "Ich spare Geld, ___ ein Auto zu kaufen.", "answer": "um", "hint": "подлежащее совпадает → um...zu"},
-    {"type": "choice", "question": "Выберите правильный союз:", "sentence": "Sie lernt viel, ___ die Prüfung zu bestehen.", "options": ["um", "damit"], "answer": "um", "hint": "подлежащее совпадает → um...zu"},
-    {"type": "choice", "question": "Выберите правильный союз:", "sentence": "Sie erklärt die Regel zweimal, ___ alle sie verstehen.", "options": ["um", "damit"], "answer": "damit", "hint": "подлежащее разное → damit"},
-    {"type": "fill", "question": "Переведите на немецкий (um...zu):", "sentence": "Я учу немецкий, чтобы работать в Германии.", "answer": "ich lerne deutsch um in deutschland zu arbeiten", "hint": "um...zu + Infinitiv"}
+    {
+      "type": "fill",
+      "question": "Вставьте 'um' oder 'damit':",
+      "sentence": "Ich lerne Deutsch, ___ in Deutschland zu arbeiten.",
+      "answer": "um",
+      "hint": "подлежащее совпадает → um...zu"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте 'um' oder 'damit':",
+      "sentence": "Ich lerne Deutsch, ___ mein Kind mir helfen kann.",
+      "answer": "damit",
+      "hint": "подлежащее разное → damit"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте 'um' oder 'damit':",
+      "sentence": "Er geht zum Arzt, ___ sich untersuchen zu lassen.",
+      "answer": "um",
+      "hint": "подлежащее совпадает → um...zu"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте 'um' oder 'damit':",
+      "sentence": "Er spricht langsam, ___ ich ihn verstehe.",
+      "answer": "damit",
+      "hint": "подлежащее разное → damit"
+    },
+    {
+      "type": "choice",
+      "question": "Выберите правильный вариант:",
+      "sentence": "Sie lernt viel, ___ die Prüfung zu bestehen.",
+      "options": ["um", "damit"],
+      "answer": "um",
+      "hint": "подлежащее совпадает (sie lernt, sie besteht) → um"
+    },
+    {
+      "type": "choice",
+      "question": "Выберите правильный вариант:",
+      "sentence": "Sie erklärt die Regel zweimal, ___ alle sie verstehen.",
+      "options": ["um", "damit"],
+      "answer": "damit",
+      "hint": "подлежащее разное (sie erklärt, alle verstehen) → damit"
+    },
+    {
+      "type": "transform",
+      "question": "Переделайте предложение с 'um...zu':",
+      "sentence": "Ich lerne Deutsch. Ich will in Deutschland arbeiten.",
+      "answer": "Ich lerne Deutsch, um in Deutschland zu arbeiten",
+      "hint": "подлежащее совпадает → um...zu"
+    },
+    {
+      "type": "transform",
+      "question": "Переделайте предложение с 'damit':",
+      "sentence": "Ich lerne Deutsch. Mein Kind soll mir helfen können.",
+      "answer": "Ich lerne Deutsch, damit mein Kind mir helfen kann",
+      "hint": "подлежащее разное → damit"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (um...zu):",
+      "sentence": "Я коплю деньги, чтобы купить машину.",
+      "answer": "ich spare geld um ein auto zu kaufen",
+      "hint": "um...zu + Infinitiv"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (damit):",
+      "sentence": "Я даю тебе деньги, чтобы ты купил машину.",
+      "answer": "ich gebe dir geld damit du ein auto kaufst",
+      "hint": "damit + глагол в конце"
+    }
   ]
 }
