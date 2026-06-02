@@ -1,1 +1,19 @@
-
+{
+  "level": "B2",
+  "title": "Грамматика немецкого языка. Уровень B2",
+  "description": "Продвинутый уровень. Свободное владение грамматикой.",
+  "lessons": [
+    "lessons/01_konjunktiv_ii_vergangenheit.json",
+    "lessons/02_kausale_nebensaetze.json",
+    "lessons/03_konsekutive_nebensaetze.json",
+    "lessons/04_konzessive_nebensaetze.json",
+    "lessons/05_modal_nebensaetze.json",
+    "lessons/06_adversative_nebensaetze.json",
+    "lessons/07_nominalisierung.json",
+    "lessons/08_partizipialattribute.json",
+    "lessons/09_zu_infinitiv_saetze.json",
+    "lessons/10_doppelkonjunktionen.json",
+    "lessons/11_pruefungstraining.json",
+    "lessons/12_textproduktion.json"
+  ]
+}
