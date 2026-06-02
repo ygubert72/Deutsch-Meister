@@ -1,0 +1,14 @@
+{
+  "lesson": 11,
+  "title": "Finalsätze — придаточные цели (um...zu, damit)",
+  "level": "B1",
+  "theory": "<h3>📌 Когда что использовать?</h3>\n<p><strong>um...zu + Infinitiv</strong> — когда подлежащее <strong>совпадает</strong><br>\n<strong>damit</strong> — когда подлежащее <strong>разное</strong></p>\n\n<h3>📌 Примеры</h3>\n<p>Ich lerne Deutsch, <strong>um in Deutschland zu arbeiten</strong>.<br>\nIch lerne Deutsch, <strong>damit mein Kind mir helfen kann</strong>.</p>\n\n<h3>📌 В B1 также встречается:</h3>\n<p><strong>zu + Infinitiv</strong> без um (после bestimmte Verben):<br>\nIch versuche, <strong>zu kommen</strong>. — Я пытаюсь прийти.</p>",
+  "examples": [
+    {"de": "Ich lerne Deutsch, um in Deutschland zu arbeiten.", "ru": "Я учу немецкий, чтобы работать в Германии."},
+    {"de": "Ich lerne Deutsch, damit mein Kind mir helfen kann.", "ru": "Я учу немецкий, чтобы мой ребёнок мог мне помочь."}
+  ],
+  "exercises": [
+    {"type": "fill", "question": "Вставьте um...zu или damit:", "sentence": "Ich lerne Deutsch, ___ in Deutschland zu arbeiten.", "answer": "um", "hint": "подлежащее совпадает → um...zu"},
+    {"type": "fill", "question": "Вставьте um...zu или damit:", "sentence": "Ich lerne Deutsch, ___ mein Kind mir helfen kann.", "answer": "damit", "hint": "подлежащее разное → damit"}
+  ]
+}
