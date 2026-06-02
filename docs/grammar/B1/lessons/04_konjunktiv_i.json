@@ -1,0 +1,16 @@
+{
+  "lesson": 4,
+  "title": "Konjunktiv I — косвенная речь",
+  "level": "B1",
+  "theory": "<h3>📌 Что такое Konjunktiv I?</h3>\n<p>Konjunktiv I используется для передачи <strong>косвенной речи</strong> (чужих слов).</p>\n<p>В новостях, репортажах, официальных заявлениях.</p>\n\n<div class='info-box' style='background:#E8F0FE;padding:15px;border-radius:12px;margin:15px 0;'>\n  <strong>🎯 ФОРМУЛА:</strong> глагол в Konjunktiv I = основа + e (кроме sein)\n</div>\n\n<h3>📌 Спряжение в Konjunktiv I</h3>\n<table border='1' cellpadding='8' style='border-collapse:collapse;width:100%;margin:15px 0;'>\n  <tr style='background:#3B6FE0;color:white'><th></th><th>haben</th><th>sein</th><th>kommen</th></tr>\n  <tr><td>ich</td><td>habe</td><td>sei</td><td>komme</td></tr>\n  <tr style='background:#E3F2FD;'><td>du</td><td>habest</td><td>seist</td><td>kommest</td></tr>\n  <tr><td>er/sie/es</td><td>habe</td><td>sei</td><td>komme</td></tr>\n  <tr style='background:#E3F2FD;'><td>wir</td><td>haben</td><td>seien</td><td>kommen</td></tr>\n  <tr><td>ihr</td><td>habet</td><td>seiet</td><td>kommet</td></td>\n  <tr style='background:#E3F2FD;'><td>sie/Sie</td><td>haben</td><td>seien</td><td>kommen</td></tr>\n</table>\n\n<h3>📌 Примеры косвенной речи</h3>\n<p>Прямая речь: Er sagt: „Ich <strong>komme</strong>.“<br>\nКосвенная речь: Er sagt, dass er <strong>komme</strong>.</p>",
+  "examples": [
+    {"de": "Er sagt, dass er komme.", "ru": "Он говорит, что (он) придёт."},
+    {"de": "Sie sagt, dass sie keine Zeit habe.", "ru": "Она говорит, что у неё нет времени."},
+    {"de": "Er sagt, dass er krank sei.", "ru": "Он говорит, что (он) болен."}
+  ],
+  "exercises": [
+    {"type": "transform", "question": "Прямая речь → косвенная:", "sentence": "Er sagt: „Ich komme.“", "answer": "Er sagt, dass er komme", "hint": "komme (Konjunktiv I)"},
+    {"type": "fill", "question": "Вставьте Konjunktiv I:", "sentence": "Sie sagt, dass sie keine Zeit ___ (haben).", "answer": "habe", "hint": "sie → habe"},
+    {"type": "fill", "question": "Вставьте Konjunktiv I:", "sentence": "Er sagt, dass er krank ___ (sein).", "answer": "sei", "hint": "er → sei"}
+  ]
+}
