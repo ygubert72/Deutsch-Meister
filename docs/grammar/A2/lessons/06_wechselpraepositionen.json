@@ -1,0 +1,22 @@
+{
+  "lesson": 6,
+  "title": "Предлоги с Dativ и Akkusativ (Wechselpräpositionen)",
+  "level": "A2",
+  "theory": "<h3>📌 Что такое Wechselpräpositionen?</h3>\n<p>Это предлоги, которые могут требовать <strong>Dativ</strong> или <strong>Akkusativ</strong> в зависимости от смысла.</p>\n\n<div class='info-box' style='background:#E8F0FE;padding:15px;border-radius:12px;margin:15px 0;'>\n  <strong>🎯 ПРАВИЛО:</strong><br>\n  📍 <strong>WO?</strong> (место) → Dativ<br>\n  🏃 <strong>WOHIN?</strong> (направление) → Akkusativ\n</div>\n\n<h3>📌 Список предлогов</h3>\n<p><strong>in, an, auf, unter, über, neben, zwischen, vor, hinter</strong></p>\n\n<h3>📌 Примеры</h3>\n<ul>\n<li>Ich bin <strong>in der</strong> Schule. (WO? → Dativ)</li>\n<li>Ich gehe <strong>in die</strong> Schule. (WOHIN? → Akkusativ)</li>\n<li>Das Buch liegt <strong>auf dem</strong> Tisch. (WO? → Dativ)</li>\n<li>Ich lege das Buch <strong>auf den</strong> Tisch. (WOHIN? → Akkusativ)</li>\n</ul>\n\n<h3>📌 Запоминалка</h3>\n<p><strong>WO?</strong> → Dativ (место)<br><strong>WOHIN?</strong> → Akkusativ (движение)</p>",
+  "examples": [
+    {"de": "Ich bin in der Schule.", "ru": "Я в школе."},
+    {"de": "Ich gehe in die Schule.", "ru": "Я иду в школу."},
+    {"de": "Das Buch liegt auf dem Tisch.", "ru": "Книга лежит на столе."},
+    {"de": "Ich lege das Buch auf den Tisch.", "ru": "Я кладу книгу на стол."}
+  ],
+  "exercises": [
+    {"type": "fill", "question": "Вставьте правильный падеж (WO? oder WOHIN?):", "sentence": "Ich bin ___ Schule. (in/die)", "answer": "in der", "hint": "WO? → Dativ, die Schule → in der"},
+    {"type": "fill", "question": "Вставьте правильный падеж:", "sentence": "Ich gehe ___ Schule. (in/die)", "answer": "in die", "hint": "WOHIN? → Akkusativ, die Schule → in die"},
+    {"type": "fill", "question": "Вставьте правильный падеж:", "sentence": "Das Buch liegt ___ Tisch. (auf/dem)", "answer": "auf dem", "hint": "WO? → Dativ, der Tisch → auf dem"},
+    {"type": "fill", "question": "Вставьте правильный падеж:", "sentence": "Ich lege das Buch ___ Tisch. (auf/den)", "answer": "auf den", "hint": "WOHIN? → Akkusativ, der Tisch → auf den"},
+    {"type": "choice", "question": "WO? oder WOHIN?:", "sentence": "Ich hänge das Bild an ___ Wand.", "options": ["der", "die"], "answer": "die", "hint": "WOHIN? → Akkusativ"},
+    {"type": "choice", "question": "WO? oder WOHIN?:", "sentence": "Das Bild hängt an ___ Wand.", "options": ["der", "die"], "answer": "der", "hint": "WO? → Dativ"},
+    {"type": "fill", "question": "Переведите на немецкий (WOHIN?):", "sentence": "Я иду в кино.", "answer": "ich gehe ins kino", "hint": "in + das Kino = ins, WOHIN?"},
+    {"type": "fill", "question": "Переведите на немецкий (WO?):", "sentence": "Я в кино.", "answer": "ich bin im kino", "hint": "in + dem Kino = im, WO?"}
+  ]
+}
