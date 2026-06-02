@@ -2,14 +2,86 @@
   "lesson": 7,
   "title": "Relativsätze — придаточные определительные",
   "level": "B1",
-  "theory": "<h3>📌 Что это?</h3>\n<p>Придаточные предложения, которые описывают существительное из главного предложения.</p>\n<p><strong>Относительное местоимение = артикль + e/en/em/es</strong></p>\n\n<h3>📌 Таблица относительных местоимений</h3>\n<table border='1' cellpadding='8' style='border-collapse:collapse;width:100%;margin:15px 0;'>\n  <tr style='background:#3B6FE0;color:white'><th>Падеж</th><th>Муж.</th><th>Жен.</th><th>Ср.</th><th>Мн.</th></tr>\n  <tr><td>Nom</td><td>der</td><td>die</td><td>das</td><td>die</td></tr>\n  <tr style='background:#E3F2FD;'><td>Akk</td><td>den</td><td>die</td><td>das</td><td>die</td></tr>\n  <tr><td>Dat</td><td>dem</td><td>der</td><td>dem</td><td>denen</td></td>\n</table>\n\n<h3>📌 Примеры</h3>\n<p>Der Mann, <strong>der</strong> dort steht, ist mein Bruder.<br>\nDie Frau, <strong>die</strong> ich sehe, ist meine Lehrerin.<br>\nDas Buch, <strong>das</strong> auf dem Tisch liegt, ist neu.</p>",
+  "theory": "<h3>📌 Что такое Relativsätze?</h3>\n\n<p>Придаточные определительные (Relativsätze) описывают существительное из главного предложения. Они отвечают на вопрос <strong>Welcher? Welche? Welches?</strong> (Какой? Какая? Какое?).</p>\n\n<p>В русском языке им соответствуют придаточные с союзом <strong>который, которая, которое</strong>.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 ФОРМУЛА:</strong><br>\n  <strong>Относительное местоимение = артикль (der, die, das, die) + падежное окончание</strong><br>\n  В придаточном предложении <strong>глагол уходит в конец</strong>!\n</div>\n\n<h3>📌 Таблица относительных местоимений</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Падеж</th>\n    <th>Муж. род</th>\n    <th>Жен. род</th>\n    <th>Ср. род</th>\n    <th>Мн. ч.</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>Nominativ</strong></th>\n    <td>der</th>\n    <td>die</th>\n    <td>das</th>\n    <td>die</th>\n   </td>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>Akkusativ</strong></th>\n    <td>den</th>\n    <td>die</th>\n    <td>das</th>\n    <td>die</th>\n   </td>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>Dativ</strong></th>\n    <td>dem</th>\n    <td>der</th>\n    <td>dem</th>\n    <td>denen</th>\n   </td>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>Genitiv</strong></th>\n    <td>dessen</th>\n    <td>deren</th>\n    <td>dessen</th>\n    <td>deren</th>\n   </tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"5\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    Nom: der, die, das, die<br>\n    Akk: den, die, das, die<br>\n    Dat: dem, der, dem, denen<br>\n    Gen: dessen, deren, dessen, deren\n   th>\n  </tr>\n\n<h3>📌 Примеры Relativsätze</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Относительное местоимение</th>\n    <th>Пример</th>\n    <th>Перевод</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>der (Nom.)</th>\n    <td>Der Mann, <strong>der</strong> dort steht, ist mein Bruder.</th>\n    <td>Мужчина, который там стоит, мой брат.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>die (Nom.)</th>\n    <td>Die Frau, <strong>die</strong> dort sitzt, ist meine Lehrerin.</th>\n    <td>Женщина, которая там сидит, моя учительница.</th>\n   </td>\n  <tr style=\"background: #E3F2FD;\">\n    <td>den (Akk.)</th>\n    <td>Der Mann, <strong>den</strong> ich sehe, ist mein Bruder.</th>\n    <td>Мужчина, которого я вижу, мой брат.</th>\n   </td>\n  <tr style=\"background: #F5F5F5;\">\n    <td>dem (Dat.)</th>\n    <td>Der Mann, <strong>dem</strong> ich helfe, ist mein Bruder.</th>\n    <td>Мужчина, которому я помогаю, мой брат.</th>\n   </td>\n  <tr style=\"background: #E3F2FD;\">\n    <td>dessen (Gen.)</th>\n    <td>Der Mann, <strong>dessen</strong> Auto ich fahre, ist mein Bruder.</th>\n    <td>Мужчина, чью машину я вожу, мой брат.</th>\n   </tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"3\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    Относительное местоимение стоит в начале придаточного предложения, глагол — в конце!\n   th>\n  </table>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ТИПИЧНЫЕ ОШИБКИ:</strong><br>\n  ❌ Der Mann, <strong>er</strong> dort steht, ist mein Bruder.<br>\n  ✅ Der Mann, <strong>der</strong> dort steht, ist mein Bruder.<br>\n  <br>\n  ❌ Der Mann, <strong>den</strong> ich helfe, ist mein Bruder.<br>\n  ✅ Der Mann, <strong>dem</strong> ich helfe, ist mein Bruder.\n</div>\n\n<h3>📌 Порядок слов в Relativsatz</h3>\n\n<p>1. Относительное местоимение (der, die, das, den, dem...)<br>\n2. Остальные слова<br>\n3. <strong>Глагол в конце</strong></p>\n\n<ul>\n<li>Das ist das Buch, <strong>das ich gelesen habe</strong>.</li>\n<li>Sie ist die Frau, <strong>die mir geholfen hat</strong>.</li>\n<li>Das ist der Mann, <strong>dessen Hund weggelaufen ist</strong>.</li>\n</ul>\n\n<h3>📖 Пошаговый алгоритм</h3>\n<ol>\n<li>Найди существительное в главном предложении, которое нужно описать</li>\n<li>Определи его род (der, die, das, die)</li>\n<li>Определи падеж относительного местоимения (какую роль оно играет в придаточном)</li>\n<li>Выбери правильную форму из таблицы</li>\n<li>Поставь глагол в конец придаточного</li>\n</ol>\n\n<h3>📌 Итог урока</h3>\n<ul>\n<li>Relativsätze описывают существительное (какой? которая? которое?)</li>\n<li>Относительные местоимения = der, die, das, die + окончания падежей</li>\n<li>В придаточном глагол в конце</li>\n<li>Genitiv: dessen (м., ср.), deren (ж., мн.)</li>\n</ul>",
   "examples": [
     {"de": "Der Mann, der dort steht, ist mein Bruder.", "ru": "Мужчина, который там стоит, мой брат."},
-    {"de": "Die Frau, die ich sehe, ist meine Lehrerin.", "ru": "Женщина, которую я вижу, моя учительница."}
+    {"de": "Die Frau, die dort sitzt, ist meine Lehrerin.", "ru": "Женщина, которая там сидит, моя учительница."},
+    {"de": "Der Mann, den ich sehe, ist mein Bruder.", "ru": "Мужчина, которого я вижу, мой брат."},
+    {"de": "Der Mann, dem ich helfe, ist mein Bruder.", "ru": "Мужчина, которому я помогаю, мой брат."},
+    {"de": "Das ist das Buch, das ich gelesen habe.", "ru": "Это книга, которую я прочитал."},
+    {"de": "Sie ist die Frau, die mir geholfen hat.", "ru": "Она женщина, которая мне помогла."}
   ],
   "exercises": [
-    {"type": "fill", "question": "Вставьте Relativpronomen:", "sentence": "Der Mann, ___ dort steht, ist mein Bruder.", "answer": "der", "hint": "муж. род, Nom → der"},
-    {"type": "fill", "question": "Вставьте Relativpronomen:", "sentence": "Die Frau, ___ ich sehe, ist meine Lehrerin.", "answer": "die", "hint": "жен. род, Akk → die (не меняется)"},
-    {"type": "fill", "question": "Вставьте Relativpronomen:", "sentence": "Das ist das Buch, ___ ich gelesen habe.", "answer": "das", "hint": "ср. род, Akk → das"}
+    {
+      "type": "fill",
+      "question": "Вставьте правильное относительное местоимение (Nom.):",
+      "sentence": "Der Mann, ___ dort steht, ist mein Bruder.",
+      "answer": "der",
+      "hint": "муж. род, Nom. → der"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильное относительное местоимение (Nom.):",
+      "sentence": "Die Frau, ___ dort sitzt, ist meine Lehrerin.",
+      "answer": "die",
+      "hint": "жен. род, Nom. → die"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильное относительное местоимение (Akk.):",
+      "sentence": "Der Mann, ___ ich sehe, ist mein Bruder.",
+      "answer": "den",
+      "hint": "муж. род, Akk. → den"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильное относительное местоимение (Dat.):",
+      "sentence": "Der Mann, ___ ich helfe, ist mein Bruder.",
+      "answer": "dem",
+      "hint": "муж. род, Dat. → dem"
+    },
+    {
+      "type": "choice",
+      "question": "Выберите правильное относительное местоимение:",
+      "sentence": "Das ist das Buch, ___ ich gelesen habe.",
+      "options": ["der", "die", "das", "den"],
+      "answer": "das",
+      "hint": "ср. род, Akk. → das"
+    },
+    {
+      "type": "transform",
+      "question": "Соедините предложения с помощью Relativsatz:",
+      "sentence": "Der Mann ist mein Bruder. Er steht dort.",
+      "answer": "Der Mann, der dort steht, ist mein Bruder",
+      "hint": "der + глагол в конце"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Мужчина, который там стоит, мой брат.",
+      "answer": "der mann der dort steht ist mein bruder",
+      "hint": "der + steht в конце"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Это книга, которую я прочитал.",
+      "answer": "das ist das buch das ich gelesen habe",
+      "hint": "das + habe в конце"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (Dativ):",
+      "sentence": "Мужчина, которому я помогаю, мой брат.",
+      "answer": "der mann dem ich helfe ist mein bruder",
+      "hint": "dem + helfe в конце"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (Genitiv):",
+      "sentence": "Мужчина, чью машину я вожу, мой брат.",
+      "answer": "der mann dessen auto ich fahre ist mein bruder",
+      "hint": "dessen + fahre в конце"
+    }
   ]
 }
