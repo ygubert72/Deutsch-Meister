@@ -1,0 +1,20 @@
+{
+  "lesson": 12,
+  "title": "Придаточные цели: um...zu, damit",
+  "level": "A2",
+  "theory": "<h3>📌 Как выразить цель?</h3>\n\n<div class='info-box' style='background:#E8F0FE;padding:15px;border-radius:12px;margin:15px 0;'>\n  <strong>🎯 ПРАВИЛО:</strong><br>\n  • <strong>um...zu + Infinitiv</strong> — когда подлежащее <strong>совпадает</strong><br>\n  • <strong>damit</strong> — когда подлежащее <strong>разное</strong>\n</div>\n\n<h3>📌 um...zu + Infinitiv</h3>\n<p>Используется, когда подлежащее главного и придаточного предложения <strong>одинаковое</strong>.</p>\n<p><em>Ich lerne Deutsch, <strong>um in Deutschland zu arbeiten</strong>.</em><br>(Я учу немецкий, чтобы работать в Германии)</p>\n\n<h3>📌 damit</h3>\n<p>Используется, когда подлежащее <strong>разное</strong>. Глагол идёт в конец.</p>\n<p><em>Ich lerne Deutsch, <strong>damit mein Kind mir helfen kann</strong>.</em><br>(Я учу немецкий, чтобы мой ребёнок мог мне помочь)</p>",
+  "examples": [
+    {"de": "Ich lerne Deutsch, um in Deutschland zu arbeiten.", "ru": "Я учу немецкий, чтобы работать в Германии."},
+    {"de": "Ich lerne Deutsch, damit mein Kind mir helfen kann.", "ru": "Я учу немецкий, чтобы мой ребёнок мог мне помочь."},
+    {"de": "Er spricht langsam, damit ich ihn verstehe.", "ru": "Он говорит медленно, чтобы я его понял."}
+  ],
+  "exercises": [
+    {"type": "fill", "question": "Вставьте um...zu или damit:", "sentence": "Ich lerne Deutsch, ___ in Deutschland zu arbeiten.", "answer": "um", "hint": "подлежащее совпадает → um...zu"},
+    {"type": "fill", "question": "Вставьте um...zu или damit:", "sentence": "Ich lerne Deutsch, ___ mein Kind mir helfen kann.", "answer": "damit", "hint": "подлежащее разное → damit"},
+    {"type": "fill", "question": "Вставьте um...zu или damit:", "sentence": "Er spricht langsam, ___ ich ihn verstehe.", "answer": "damit", "hint": "подлежащее разное → damit"},
+    {"type": "fill", "question": "Вставьте um...zu или damit:", "sentence": "Ich spare Geld, ___ ein Auto zu kaufen.", "answer": "um", "hint": "подлежащее совпадает → um...zu"},
+    {"type": "choice", "question": "Выберите правильный союз:", "sentence": "Sie lernt viel, ___ die Prüfung zu bestehen.", "options": ["um", "damit"], "answer": "um", "hint": "подлежащее совпадает → um...zu"},
+    {"type": "choice", "question": "Выберите правильный союз:", "sentence": "Sie erklärt die Regel zweimal, ___ alle sie verstehen.", "options": ["um", "damit"], "answer": "damit", "hint": "подлежащее разное → damit"},
+    {"type": "fill", "question": "Переведите на немецкий (um...zu):", "sentence": "Я учу немецкий, чтобы работать в Германии.", "answer": "ich lerne deutsch um in deutschland zu arbeiten", "hint": "um...zu + Infinitiv"}
+  ]
+}
