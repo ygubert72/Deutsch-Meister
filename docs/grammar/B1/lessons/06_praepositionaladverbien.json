@@ -1,0 +1,16 @@
+{
+  "lesson": 6,
+  "title": "Präpositionaladverbien (darüber, darauf, dazu...)",
+  "level": "B1",
+  "theory": "<h3>📌 Что это?</h3>\n<p>Слова, заменяющие сочетание <strong>предлог + местоимение</strong>.</p>\n<p><strong>da + предлог</strong> — для вещей/ситуаций<br>\n<strong>wo + предлог</strong> — для вопросов</p>\n\n<h3>📌 Таблица</h3>\n<table border='1' cellpadding='8' style='border-collapse:collapse;width:100%;margin:15px 0;'>\n  <tr style='background:#3B6FE0;color:white'><th>Предлог</th><th>da-форма</th><th>wo-форма</th><th>Пример</th></tr>\n  <tr><td>auf</td><td>darauf</td><td>worauf</td><td>Ich warte darauf. / Worauf wartest du?</td></tr>\n  <tr style='background:#E3F2FD;'><td>an</td><td>daran</td><td>woran</td><td>Ich denke daran. / Woran denkst du?</td></tr>\n  <tr><td>über</td><td>darüber</td><td>worüber</td><td>Ich freue mich darüber. / Worüber freust du dich?</td></tr>\n  <tr style='background:#E3F2FD;'><td>mit</td><td>damit</td><td>womit</td><td>Ich beschäftige mich damit. / Womit beschäftigst du dich?</td></tr>\n  <tr><td>für</td><td>dafür</td><td>wofür</td><td>Ich interessiere mich dafür. / Wofür interessierst du dich?</td></td>\n</table>\n\n<h3>📌 Важно!</h3>\n<p>Используется ТОЛЬКО для вещей и ситуаций. Для людей используй <strong>mit ihm, auf sie</strong> и т.д.</p>",
+  "examples": [
+    {"de": "Ich warte darauf.", "ru": "Я жду этого."},
+    {"de": "Worauf wartest du?", "ru": "Чего ты ждёшь?"},
+    {"de": "Ich freue mich darüber.", "ru": "Я радуюсь этому."}
+  ],
+  "exercises": [
+    {"type": "fill", "question": "Вставьте da-форму:", "sentence": "Ich warte ___. (auf)", "answer": "darauf", "hint": "auf → darauf"},
+    {"type": "fill", "question": "Вставьте wo-форму:", "sentence": "___ wartest du? (auf)", "answer": "Worauf", "hint": "auf → worauf"},
+    {"type": "fill", "question": "Вставьте da-форму:", "sentence": "Ich denke ___. (an)", "answer": "daran", "hint": "an → daran"}
+  ]
+}
