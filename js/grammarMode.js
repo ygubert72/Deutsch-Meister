@@ -170,13 +170,17 @@ function renderGrammarLesson(lessonIdx) {
     }
     
     const lessons = grammarDB[level];
+    const isFirstLesson = (lessonIdx === 0);
     const isLastLesson = (lessonIdx + 1 >= lessons.length);
     
     document.getElementById('content').innerHTML = `
         <div style="max-width: 900px; margin: 0 auto;">
             <div style="margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
                 <button class="ctrl-btn" id="backToGrammarList" style="cursor: pointer; background: #3B6FE0; color: white;">← К СПИСКУ УРОКОВ</button>
-                ${!isLastLesson ? '<button class="ctrl-btn" id="nextLessonBtn" style="cursor: pointer; background: #3B6FE0; color: white;">СЛЕДУЮЩИЙ УРОК →</button>' : ''}
+                <div style="display: flex; gap: 10px;">
+                    ${!isFirstLesson ? '<button class="ctrl-btn" id="prevLessonBtn" style="cursor: pointer; background: #3B6FE0; color: white;">← ПРЕДЫДУЩИЙ УРОК</button>' : ''}
+                    ${!isLastLesson ? '<button class="ctrl-btn" id="nextLessonBtn" style="cursor: pointer; background: #3B6FE0; color: white;">СЛЕДУЮЩИЙ УРОК →</button>' : ''}
+                </div>
             </div>
             <div class="lesson-header">
                 <div class="lesson-title">📖 Урок ${lesson.lesson}: ${lesson.title}</div>
@@ -195,6 +199,14 @@ function renderGrammarLesson(lessonIdx) {
         localStorage.removeItem('dm_last_grammar_level');
         renderGrammar();
     };
+    
+    // Кнопка "Предыдущий урок"
+    const prevLessonBtn = document.getElementById('prevLessonBtn');
+    if (prevLessonBtn && !isFirstLesson) {
+        prevLessonBtn.onclick = () => {
+            renderGrammarLesson(lessonIdx - 1);
+        };
+    }
     
     // Кнопка "Следующий урок"
     const nextLessonBtn = document.getElementById('nextLessonBtn');
