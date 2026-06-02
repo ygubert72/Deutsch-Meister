@@ -1,0 +1,15 @@
+{
+  "lesson": 7,
+  "title": "Relativsätze — придаточные определительные",
+  "level": "B1",
+  "theory": "<h3>📌 Что это?</h3>\n<p>Придаточные предложения, которые описывают существительное из главного предложения.</p>\n<p><strong>Относительное местоимение = артикль + e/en/em/es</strong></p>\n\n<h3>📌 Таблица относительных местоимений</h3>\n<table border='1' cellpadding='8' style='border-collapse:collapse;width:100%;margin:15px 0;'>\n  <tr style='background:#3B6FE0;color:white'><th>Падеж</th><th>Муж.</th><th>Жен.</th><th>Ср.</th><th>Мн.</th></tr>\n  <tr><td>Nom</td><td>der</td><td>die</td><td>das</td><td>die</td></tr>\n  <tr style='background:#E3F2FD;'><td>Akk</td><td>den</td><td>die</td><td>das</td><td>die</td></tr>\n  <tr><td>Dat</td><td>dem</td><td>der</td><td>dem</td><td>denen</td></td>\n</table>\n\n<h3>📌 Примеры</h3>\n<p>Der Mann, <strong>der</strong> dort steht, ist mein Bruder.<br>\nDie Frau, <strong>die</strong> ich sehe, ist meine Lehrerin.<br>\nDas Buch, <strong>das</strong> auf dem Tisch liegt, ist neu.</p>",
+  "examples": [
+    {"de": "Der Mann, der dort steht, ist mein Bruder.", "ru": "Мужчина, который там стоит, мой брат."},
+    {"de": "Die Frau, die ich sehe, ist meine Lehrerin.", "ru": "Женщина, которую я вижу, моя учительница."}
+  ],
+  "exercises": [
+    {"type": "fill", "question": "Вставьте Relativpronomen:", "sentence": "Der Mann, ___ dort steht, ist mein Bruder.", "answer": "der", "hint": "муж. род, Nom → der"},
+    {"type": "fill", "question": "Вставьте Relativpronomen:", "sentence": "Die Frau, ___ ich sehe, ist meine Lehrerin.", "answer": "die", "hint": "жен. род, Akk → die (не меняется)"},
+    {"type": "fill", "question": "Вставьте Relativpronomen:", "sentence": "Das ist das Buch, ___ ich gelesen habe.", "answer": "das", "hint": "ср. род, Akk → das"}
+  ]
+}
