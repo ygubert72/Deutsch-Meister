@@ -2,24 +2,89 @@
   "lesson": 1,
   "title": "Passiv — страдательный залог (Präsens)",
   "level": "B1",
-  "theory": "<h3>📌 Что такое Passiv?</h3>\n<p>Aktiv: <strong>Ich lese</strong> das Buch. (кто-то делает действие)<br>Passiv: Das Buch <strong>wird gelesen</strong>. (действие совершается над предметом)</p>\n\n<div class='info-box' style='background:#E8F0FE;padding:15px;border-radius:12px;margin:15px 0;'>\n  <strong>🎯 ФОРМУЛА PASSIV:</strong><br>\n  <strong>werden + Partizip II</strong>\n</div>\n\n<h3>📌 Спряжение werden в Präsens</h3>\n<table border='1' cellpadding='8' style='border-collapse:collapse;width:100%;margin:15px 0;'>\n  <tr style='background:#3B6FE0;color:white'><th></th><th>werden</th><th>Passiv Beispiel</th><tr>\n  <tr style='background:#E3F2FD;'><td>ich</td><td>werde</td><td>Ich werde gefragt.</td></tr>\n  <tr><td>du</td><td>wirst</td><td>Du wirst gefragt.</td></tr>\n  <tr style='background:#E3F2FD;'><td>er/sie/es</td><td>wird</td><td>Er wird gefragt.</td></tr>\n  <tr><td>wir</td><td>werden</td><td>Wir werden gefragt.</td></tr>\n  <tr style='background:#E3F2FD;'><td>ihr</td><td>werdet</td><td>Ihr werdet gefragt.</td></tr>\n  <tr><td>sie/Sie</td><td>werden</td><td>Sie werden gefragt.</td></tr>\n</table>\n\n<h3>📌 Passiv с модальными глаголами</h3>\n<p><strong>können/müssen/sollen + Partizip II + werden</strong><br>\nDas Buch <strong>kann gelesen werden</strong>. — Книгу можно прочитать.<br>\nDie Arbeit <strong>muss gemacht werden</strong>. — Работа должна быть сделана.</p>\n\n<h3>📌 Агенс (кто делает действие)</h3>\n<p><strong>von + Dativ</strong> — для людей (von mir, von dem Schüler)<br>\n<strong>durch + Akkusativ</strong> — для средств/причин (durch den Wind)</p>\n\n<h3>📌 Примеры</h3>\n<ul>\n<li>Das Buch <strong>wird gelesen</strong>. — Книгу читают.</li>\n<li>Die Hausaufgaben <strong>werden gemacht</strong>. — Домашнюю работу делают.</li>\n<li>Hier <strong>wird Deutsch gesprochen</strong>. — Здесь говорят по-немецки.</li>\n<li>Die Tür <strong>wird vom Lehrer geschlossen</strong>. — Дверь закрывается учителем.</li>\n</ul>",
+  "theory": "<h3>📌 Что такое Passiv?</h3>\n\n<p>В немецком языке есть два залога:</p>\n<ul>\n<li><strong>Aktiv</strong> — кто-то делает что-то (Ich lese ein Buch.)</li>\n<li><strong>Passiv</strong> — что-то делают с кем-то (Das Buch wird gelesen.)</li>\n</ul>\n\n<p>Passiv используется, когда <strong>действие важнее, чем тот, кто его совершает</strong>. Например, в инструкциях, рецептах, новостях, официальных документах.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 ФОРМУЛА PASSIV (PRÄSENS):</strong><br>\n  <strong>werden + Partizip II</strong><br>\n  Пример: Das Buch <strong>wird</strong> gelesen. — Книгу читают.\n</div>\n\n<h3>📌 Спряжение werden в Präsens</h3>\n\n<p>Вспомогательный глагол <strong>werden</strong> спрягается и ставится на 2-е место, а Partizip II уходит в конец предложения.</p>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Местоимение</th>\n    <th>werden</th>\n    <th>Passiv (fragen)</th>\n    <th>Перевод</th>\n    <tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>ich</th>\n    <td>werde</th>\n    <td>Ich werde gefragt.</th>\n    <td>Меня спрашивают.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>du</th>\n    <td>wirst</th>\n    <td>Du wirst gefragt.</th>\n    <td>Тебя спрашивают.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>er/sie/es</th>\n    <td>wird</th>\n    <td>Er wird gefragt.</th>\n    <td>Его спрашивают.</th>\n   </td>\n  <tr style=\"background: #F5F5F5;\">\n    <td>wir</th>\n    <td>werden</th>\n    <td>Wir werden gefragt.</th>\n    <td>Нас спрашивают.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>ihr</th>\n    <td>werdet</th>\n    <td>Ihr werdet gefragt.</th>\n    <td>Вас спрашивают.</th>\n   <tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>sie/Sie</th>\n    <td>werden</th>\n    <td>Sie werden gefragt.</th>\n    <td>Их/Вас спрашивают.</th>\n   </tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"4\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    werde, wirst, wird, werden, werdet, werden</th>\n  </tr>\n\n<h3>📌 Как образуется Partizip II для Passiv</h3>\n\n<ul>\n<li><strong>Правильные глаголы:</strong> ge + основа + t (machen → gemacht)</li>\n<li><strong>Неправильные глаголы:</strong> особые формы (lesen → gelesen, sehen → gesehen)</li>\n<li><strong>Глаголы на -ieren:</strong> без ge- (studieren → studiert)</li>\n<li><strong>С отделяемыми приставками:</strong> ge между приставкой и корнем (aufmachen → aufgemacht)</li>\n</ul>\n\n<h3>📌 Passiv с агенсом (кто/что делает действие)</h3>\n\n<p>Если важно указать, кто или что совершает действие, используется <strong>von + Dativ</strong> (для людей) или <strong>durch + Akkusativ</strong> (для средств/причин).</p>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Агенс</th>\n    <th>Предлог</th>\n    <th>Падеж</th>\n    <th>Пример</th>\n    <th>Перевод</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>человек / организация</th>\n    <td><strong>von</strong></th>\n    <td>Dativ</th>\n    <td>Das Buch wird <strong>von mir</strong> gelesen.</th>\n    <td>Книга читается мной.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>средство / причина</th>\n    <td><strong>durch</strong></th>\n    <td>Akkusativ</th>\n    <td>Der Baum wurde <strong>durch den Wind</strong> umgeweht.</th>\n    <td>Дерево было повалено ветром.</th>\n   <tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"5\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    von + Dativ (человек), durch + Akkusativ (средство)</th>\n  </tr>\n\n<h3>📌 Passiv без агенса</h3>\n\n<p>Если автор действия не важен или неизвестен, агенс опускается:</p>\n<ul>\n<li>Hier <strong>wird Deutsch gesprochen</strong>. — Здесь говорят по-немецки.</li>\n<li>Im Werk <strong>wird gearbeitet</strong>. — На заводе работают.</li>\n<li>Das Fenster <strong>wird geöffnet</strong>. — Окно открывается.</li>\n</ul>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ТИПИЧНЫЕ ОШИБКИ:</strong><br>\n  ❌ Das Buch <strong>ist</strong> gelesen. (это Zustandspassiv, тема B1.2)<br>\n  ✅ Das Buch <strong>wird</strong> gelesen.<br>\n  <br>\n  ❌ Das Buch wird <strong>von dem</strong> Schüler gelesen.<br>\n  ✅ Das Buch wird <strong>vom</strong> Schüler gelesen. (von + dem = vom)\n</div>\n\n<h3>📖 Пошаговый алгоритм</h3>\n<ol>\n<li>Определи, можно ли заменить Aktiv на Passiv</li>\n<li>Найди объект действия (винительный падеж в Aktiv) → сделай его подлежащим в Passiv</li>\n<li>Поставь werden в нужное лицо и число</li>\n<li>Добавь Partizip II основного глагола в конец</li>\n<li>При необходимости добавь агенс с von (человек) или durch (средство)</li>\n</ol>\n\n<h3>📌 Итог урока</h3>\n<ul>\n<li>Passiv (Präsens) = werden + Partizip II</li>\n<li>werden спрягается и стоит на 2-м месте</li>\n<li>Partizip II — в конце предложения</li>\n<li>Агенс: von + Dativ (человек), durch + Akkusativ (средство)</li>\n<li>Без агенса, если автор не важен</li>\n</ul>",
   "examples": [
     {"de": "Das Buch wird gelesen.", "ru": "Книгу читают."},
     {"de": "Die Arbeit wird gemacht.", "ru": "Работа делается."},
-    {"de": "Die Fenster werden geputzt.", "ru": "Окна моют."},
-    {"de": "Das Buch kann gelesen werden.", "ru": "Книгу можно прочитать."},
-    {"de": "Die Arbeit muss gemacht werden.", "ru": "Работа должна быть сделана."}
+    {"de": "Hier wird Deutsch gesprochen.", "ru": "Здесь говорят по-немецки."},
+    {"de": "Das Buch wird von mir gelesen.", "ru": "Книга читается мной."},
+    {"de": "Das Fenster wird durch den Wind geöffnet.", "ru": "Окно открывается ветром."},
+    {"de": "Im Werk wird gearbeitet.", "ru": "На заводе работают."},
+    {"de": "Der Brief wird geschrieben.", "ru": "Письмо пишется."},
+    {"de": "Die Hausaufgaben werden gemacht.", "ru": "Домашняя работа делается."},
+    {"de": "Das Essen wird gekocht.", "ru": "Еда готовится."},
+    {"de": "Der Film wird gezeigt.", "ru": "Фильм показывают."}
   ],
   "exercises": [
-    {"type": "fill", "question": "Вставьте werden в правильной форме:", "sentence": "Das Buch ___ gelesen.", "answer": "wird", "hint": "das Buch (3 л. ед. ч.) → wird"},
-    {"type": "fill", "question": "Вставьте werden:", "sentence": "Die Fenster ___ geputzt.", "answer": "werden", "hint": "die Fenster (мн. ч.) → werden"},
-    {"type": "fill", "question": "Образуйте Passiv:", "sentence": "machen → gemacht werden → Die Arbeit ___", "answer": "wird gemacht", "hint": "Passiv: werden + Partizip II"},
-    {"type": "choice", "question": "Выберите правильную форму:", "sentence": "Hier ___ Deutsch gesprochen.", "options": ["wird", "werden", "wirst", "werdet"], "answer": "wird", "hint": "Deutsch (ед. ч.) → wird"},
-    {"type": "fill", "question": "Passiv с модальным глаголом:", "sentence": "Das Buch ___ gelesen werden. (können)", "answer": "kann", "hint": "Passiv с können: kann + Partizip II + werden"},
-    {"type": "transform", "question": "Переделайте из Aktiv в Passiv:", "sentence": "Der Schüler macht die Hausaufgaben.", "answer": "Die Hausaufgaben werden gemacht", "hint": "Объект становится подлежащим, werden + Partizip II"},
-    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Книгу читают.", "answer": "das buch wird gelesen", "hint": "das Buch + wird + gelesen"},
-    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Здесь говорят по-немецки.", "answer": "hier wird deutsch gesprochen", "hint": "wird + Deutsch gesprochen"},
-    {"type": "fill", "question": "Переведите на немецкий (с модальным глаголом):", "sentence": "Книгу можно прочитать.", "answer": "das buch kann gelesen werden", "hint": "kann + gelesen + werden"},
-    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Работа должна быть сделана.", "answer": "die arbeit muss gemacht werden", "hint": "muss + gemacht + werden"}
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму werden:",
+      "sentence": "Das Buch ___ gelesen.",
+      "answer": "wird",
+      "hint": "ед. ч. → wird"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму werden:",
+      "sentence": "Die Hausaufgaben ___ gemacht.",
+      "answer": "werden",
+      "hint": "мн. ч. → werden"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму werden:",
+      "sentence": "Ich ___ gefragt.",
+      "answer": "werde",
+      "hint": "ich → werde"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму werden:",
+      "sentence": "Du ___ eingeladen.",
+      "answer": "wirst",
+      "hint": "du → wirst"
+    },
+    {
+      "type": "transform",
+      "question": "Переделайте из Aktiv в Passiv:",
+      "sentence": "Der Schüler macht die Hausaufgaben.",
+      "answer": "Die Hausaufgaben werden gemacht",
+      "hint": "объект (die Hausaufgaben) → подлежащее, werden + Partizip II"
+    },
+    {
+      "type": "transform",
+      "question": "Переделайте из Aktiv в Passiv:",
+      "sentence": "Ich lese das Buch.",
+      "answer": "Das Buch wird gelesen",
+      "hint": "объект (das Buch) → подлежащее, wird + gelesen"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Книгу читают.",
+      "answer": "das buch wird gelesen",
+      "hint": "wird + gelesen"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Здесь говорят по-немецки.",
+      "answer": "hier wird deutsch gesprochen",
+      "hint": "wird + Deutsch gesprochen"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (с агенсом):",
+      "sentence": "Книга читается мной.",
+      "answer": "das buch wird von mir gelesen",
+      "hint": "von + mir"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (с агенсом):",
+      "sentence": "Дом строится архитектором.",
+      "answer": "das haus wird vom architekten gebaut",
+      "hint": "von + dem Architekten = vom Architekten"
+    }
   ]
 }
