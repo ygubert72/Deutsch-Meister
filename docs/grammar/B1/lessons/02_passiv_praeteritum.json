@@ -2,17 +2,89 @@
   "lesson": 2,
   "title": "Passiv — страдательный залог (Präteritum)",
   "level": "B1",
-  "theory": "<h3>📌 Passiv в прошедшем времени</h3>\n<p>Passiv в Präteritum = <strong>wurde + Partizip II</strong></p>\n<p>wurde — это форма Präteritum от werden.</p>\n\n<h3>📌 Спряжение wurde</h3>\n<table border='1' cellpadding='8' style='border-collapse:collapse;width:100%;margin:15px 0;'>\n  <tr style='background:#3B6FE0;color:white'><th></th><th>wurde</th><th>Passiv Пример</th></tr>\n  <tr style='background:#E3F2FD;'><td>ich</td><td>wurde</td><td>Ich wurde gefragt.</td></tr>\n  <tr><td>du</td><td>wurdest</td><td>Du wurdest gefragt.</td></tr>\n  <tr style='background:#E3F2FD;'><td>er/sie/es</td><td>wurde</td><td>Er wurde gefragt.</td></td>\n  <tr><td>wir</td><td>wurden</td><td>Wir wurden gefragt.</td></td>\n  <tr style='background:#E3F2FD;'><td>ihr</td><td>wurdet</td><td>Ihr wurdet gefragt.</td></tr>\n  <tr><td>sie/Sie</td><td>wurden</td><td>Sie wurden gefragt.</td></tr>\n</table>\n\n<h3>📌 Сравнение Präsens и Präteritum</h3>\n<p>Präsens: Das Buch <strong>wird</strong> gelesen. — Книгу читают.<br>\nPräteritum: Das Buch <strong>wurde</strong> gelesen. — Книгу читали.</p>",
+  "theory": "<h3>📌 Passiv в прошедшем времени</h3>\n\n<p>Passiv в Präteritum используется, когда действие в страдательном залоге произошло в прошлом. Формула: <strong>wurde + Partizip II</strong>.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 ФОРМУЛА PASSIV (PRÄTERITUM):</strong><br>\n  <strong>wurde + Partizip II</strong><br>\n  Пример: Das Buch <strong>wurde</strong> gelesen. — Книгу читали.\n</div>\n\n<p><strong>wurde</strong> — это форма Präteritum от глагола <strong>werden</strong>.</p>\n\n<h3>📌 Спряжение wurde в Präteritum</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Местоимение</th>\n    <th>Präteritum von werden</th>\n    <th>Passiv (fragen)</th>\n    <th>Перевод</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>ich</th>\n    <td>wurde</th>\n    <td>Ich wurde gefragt.</th>\n    <td>Меня спросили.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>du</th>\n    <td>wurdest</th>\n    <td>Du wurdest gefragt.</th>\n    <td>Тебя спросили.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>er/sie/es</th>\n    <td>wurde</th>\n    <td>Er wurde gefragt.</th>\n    <td>Его спросили.</th>\n   </td>\n  <tr style=\"background: #F5F5F5;\">\n    <td>wir</th>\n    <td>wurden</th>\n    <td>Wir wurden gefragt.</th>\n    <td>Нас спросили.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>ihr</th>\n    <td>wurdet</th>\n    <td>Ihr wurdet gefragt.</th>\n    <td>Вас спросили.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>sie/Sie</th>\n    <td>wurden</th>\n    <td>Sie wurden gefragt.</th>\n    <td>Их/Вас спросили.</th>\n   <tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"4\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    wurde, wurdest, wurde, wurden, wurdet, wurden</th>\n  </tr>\n\n<h3>📌 Сравнение Präsens и Präteritum Passiv</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Время</th>\n    <th>Формула</th>\n    <th>Пример</th>\n    <th>Перевод</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Präsens Passiv</th>\n    <td>wird + Partizip II</th>\n    <td>Das Buch wird gelesen.</th>\n    <td>Книгу читают.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Präteritum Passiv</th>\n    <td>wurde + Partizip II</th>\n    <td>Das Buch wurde gelesen.</th>\n    <td>Книгу читали.</th>\n   </td>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"4\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    wird → настоящее, wurde → прошедшее</th>\n  </td>\n\n<h3>📌 Примеры с агенсом (von/durch)</h3>\n\n<ul>\n<li>Das Buch <strong>wurde von mir</strong> gelesen. — Книга была прочитана мной.</li>\n<li>Der Baum <strong>wurde durch den Wind</strong> umgeweht. — Дерево было повалено ветром.</li>\n<li>Die Häuser <strong>wurden vom Sturm</strong> zerstört. — Дома были разрушены бурей.</li>\n</ul>\n\n<h3>📌 Passiv в Präteritum без агенса</h3>\n\n<ul>\n<li>Gestern <strong>wurde</strong> viel gearbeitet. — Вчера много работали.</li>\n<li>Im 19. Jahrhundert <strong>wurde</strong> die Dampfmaschine erfunden. — В 19 веке была изобретена паровая машина.</li>\n<li>Das Fenster <strong>wurde</strong> geöffnet. — Окно было открыто.</li>\n</ul>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ТИПИЧНЫЕ ОШИБКИ:</strong><br>\n  ❌ Das Buch <strong>ist</strong> gelesen <strong>geworden</strong>. (это Perfekt Passiv, тема B1.3)<br>\n  ✅ Das Buch <strong>wurde</strong> gelesen.<br>\n  <br>\n  ❌ Das Buch <strong>wurde</strong> von <strong>dem</strong> Schüler gelesen.<br>\n  ✅ Das Buch <strong>wurde vom</strong> Schüler gelesen.\n</div>\n\n<h3>📖 Пошаговый алгоритм</h3>\n<ol>\n<li>Определи, действие происходит в прошлом</li>\n<li>Используй wurde/wurdest/wurden/wurdet (Präteritum от werden)</li>\n<li>Добавь Partizip II основного глагола в конец</li>\n<li>При необходимости добавь агенс с von (человек) или durch (средство)</li>\n</ol>\n\n<h3>📌 Итог урока</h3>\n<ul>\n<li>Passiv (Präteritum) = wurde + Partizip II</li>\n<li>wurde — форма Präteritum от werden</li>\n<li>Для настоящего: wird, для прошедшего: wurde</li>\n<li>Агенс: von + Dativ, durch + Akkusativ</li>\n</ul>",
   "examples": [
     {"de": "Das Buch wurde gelesen.", "ru": "Книгу читали."},
     {"de": "Die Arbeit wurde gemacht.", "ru": "Работа была сделана."},
-    {"de": "Das Buch konnte gelesen werden.", "ru": "Книгу можно было прочитать."}
+    {"de": "Das Buch wurde von mir gelesen.", "ru": "Книга была прочитана мной."},
+    {"de": "Gestern wurde viel gearbeitet.", "ru": "Вчера много работали."},
+    {"de": "Die Häuser wurden vom Sturm zerstört.", "ru": "Дома были разрушены бурей."},
+    {"de": "Der Brief wurde geschrieben.", "ru": "Письмо было написано."},
+    {"de": "Die Fenster wurden geputzt.", "ru": "Окна были вымыты."},
+    {"de": "Das Essen wurde gekocht.", "ru": "Еда была приготовлена."},
+    {"de": "Der Film wurde gezeigt.", "ru": "Фильм показывали."},
+    {"de": "Die Tür wurde geöffnet.", "ru": "Дверь была открыта."}
   ],
   "exercises": [
-    {"type": "fill", "question": "Вставьте wurde/wurden:", "sentence": "Das Buch ___ gelesen.", "answer": "wurde", "hint": "ед. ч. → wurde"},
-    {"type": "fill", "question": "Вставьте wurde/wurden:", "sentence": "Die Fenster ___ geputzt.", "answer": "wurden", "hint": "мн. ч. → wurden"},
-    {"type": "fill", "question": "Passiv с модальным:", "sentence": "Das Buch ___ gelesen werden. (können)", "answer": "konnte", "hint": "Präteritum von können → konnte"},
-    {"type": "transform", "question": "Präsens → Präteritum:", "sentence": "Das Buch wird gelesen.", "answer": "Das Buch wurde gelesen", "hint": "wird → wurde"},
-    {"type": "fill", "question": "Переведите:", "sentence": "Книгу читали.", "answer": "das buch wurde gelesen", "hint": "wurde + gelesen"}
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму wurde/wurden:",
+      "sentence": "Das Buch ___ gelesen.",
+      "answer": "wurde",
+      "hint": "ед. ч. → wurde"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму wurde/wurden:",
+      "sentence": "Die Hausaufgaben ___ gemacht.",
+      "answer": "wurden",
+      "hint": "мн. ч. → wurden"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму:",
+      "sentence": "Ich ___ gefragt.",
+      "answer": "wurde",
+      "hint": "ich → wurde"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму:",
+      "sentence": "Du ___ eingeladen.",
+      "answer": "wurdest",
+      "hint": "du → wurdest"
+    },
+    {
+      "type": "transform",
+      "question": "Переделайте из Aktiv в Passiv Präteritum:",
+      "sentence": "Der Schüler machte die Hausaufgaben.",
+      "answer": "Die Hausaufgaben wurden gemacht",
+      "hint": "wurden + Partizip II"
+    },
+    {
+      "type": "transform",
+      "question": "Переделайте из Präsens Passiv в Präteritum Passiv:",
+      "sentence": "Das Buch wird gelesen.",
+      "answer": "Das Buch wurde gelesen",
+      "hint": "wird → wurde"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Книгу читали.",
+      "answer": "das buch wurde gelesen",
+      "hint": "wurde + gelesen"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (с агенсом):",
+      "sentence": "Книга была прочитана мной.",
+      "answer": "das buch wurde von mir gelesen",
+      "hint": "wurde + von mir"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Вчера много работали.",
+      "answer": "gestern wurde viel gearbeitet",
+      "hint": "wurde + gearbeitet"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Дом был построен архитектором.",
+      "answer": "das haus wurde vom architekten gebaut",
+      "hint": "wurde + von + dem = vom"
+    }
   ]
 }
