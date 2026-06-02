@@ -3,6 +3,17 @@
   "title": "Грамматика немецкого языка. Уровень A2",
   "description": "Для продолжающих. Базовый курс грамматики.",
   "lessons": [
-    "lessons/01_praeteritum.json"
+    "lessons/01_praeteritum.json",
+    "lessons/02_nebensaetze_weil_dass_ob.json",
+    "lessons/03_adjektivdeklination.json",
+    "lessons/04_temporale_praepositionen.json",
+    "lessons/05_komparativ_superlativ.json",
+    "lessons/06_wechselpraepositionen.json",
+    "lessons/07_reflexive_verben.json",
+    "lessons/08_temporale_nebensaetze.json",
+    "lessons/09_plusquamperfekt.json",
+    "lessons/10_konjunktiv_ii.json",
+    "lessons/11_genitiv.json",
+    "lessons/12_um_zu_damit.json"
   ]
 }
