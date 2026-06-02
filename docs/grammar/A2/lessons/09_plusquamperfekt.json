@@ -1,0 +1,18 @@
+{
+  "lesson": 9,
+  "title": "Plusquamperfekt — предпрошедшее время",
+  "level": "A2",
+  "theory": "<h3>📌 Что такое Plusquamperfekt?</h3>\n<p>Plusquamperfekt используется, когда нужно показать, что одно действие произошло <strong>раньше другого</strong> в прошлом.</p>\n\n<div class='info-box' style='background:#E8F0FE;padding:15px;border-radius:12px;margin:15px 0;'>\n  <strong>🎯 ОБРАЗОВАНИЕ:</strong><br>\n  <strong>haben/sein в Präteritum + Partizip II</strong>\n</div>\n\n<p>В русском языке часто переводится 'уже сделал', 'раньше сделал'.</p>\n\n<table border='1' cellpadding='8' style='border-collapse:collapse;width:100%;margin:15px 0;'>\n  <tr style='background:#3B6FE0;color:white'><th>Глагол</th><th>Plusquamperfekt</th><th>Пример</th></tr>\n  <tr><td>haben (Prät.) + Partizip II</th>\n  <td>ich hatte gemacht</th>\n  <td>Ich hatte die Arbeit gemacht.</th>\n  </tr>\n  <tr><td>sein (Prät.) + Partizip II</th>\n  <td>ich war gegangen</th>\n  <td>Ich war nach Hause gegangen.</th>\n  </tr>\n</table>\n\n<h3>📌 Когда использовать?</h3>\n<p>В паре с Präteritum или Perfekt:</p>\n<p><em>Nachdem ich die Hausaufgaben <strong>gemacht hatte</strong>, ging ich ins Kino.</em><br>(После того как я СДЕЛАЛ домашнее задание, я пошёл в кино)</p>\n\n<h3>📌 Часто употребляется с:</h3>\n<ul>\n<li><strong>nachdem</strong> (после того как)</li>\n<li><strong>als</strong> (когда)</li>\n<li><strong>bevor</strong> (перед тем как)</li>\n</ul>",
+  "examples": [
+    {"de": "Nachdem ich gegessen hatte, ging ich schlafen.", "ru": "После того как я поел, я пошёл спать."},
+    {"de": "Bevor er kam, hatte ich schon angerufen.", "ru": "Перед тем как он пришёл, я уже позвонил."},
+    {"de": "Ich war müde, weil ich viel gearbeitet hatte.", "ru": "Я был уставшим, потому что много работал."}
+  ],
+  "exercises": [
+    {"type": "fill", "question": "Образуйте Plusquamperfekt:", "sentence": "nachdem ich ___ (essen)", "answer": "gegessen hatte", "hint": "haben в Präteritum + Partizip II"},
+    {"type": "fill", "question": "Образуйте Plusquamperfekt:", "sentence": "bevor er ___ (kommen)", "answer": "gekommen war", "hint": "sein в Präteritum + Partizip II"},
+    {"type": "fill", "question": "Вставьте правильную форму:", "sentence": "Nachdem ich ___ (gehen), schlief ich.", "answer": "gegangen war", "hint": "gegangen + war"},
+    {"type": "choice", "question": "Выберите правильную форму:", "sentence": "Ich ___ die Arbeit schon gemacht, als du kamst.", "options": ["habe", "hatte", "bin", "war"], "answer": "hatte", "hint": "Plusquamperfekt: hatte gemacht"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Я уже поел, когда он пришёл.", "answer": "ich hatte schon gegessen als er kam", "hint": "hatte gegessen + als"}
+  ]
+}
