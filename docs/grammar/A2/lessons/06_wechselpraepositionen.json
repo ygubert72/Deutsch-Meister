@@ -2,21 +2,124 @@
   "lesson": 6,
   "title": "Предлоги с Dativ и Akkusativ (Wechselpräpositionen)",
   "level": "A2",
-  "theory": "<h3>📌 Что такое Wechselpräpositionen?</h3>\n<p>Это предлоги, которые могут требовать <strong>Dativ</strong> или <strong>Akkusativ</strong> в зависимости от смысла.</p>\n\n<div class='info-box' style='background:#E8F0FE;padding:15px;border-radius:12px;margin:15px 0;'>\n  <strong>🎯 ПРАВИЛО:</strong><br>\n  📍 <strong>WO?</strong> (место) → Dativ<br>\n  🏃 <strong>WOHIN?</strong> (направление) → Akkusativ\n</div>\n\n<h3>📌 Список предлогов</h3>\n<p><strong>in, an, auf, unter, über, neben, zwischen, vor, hinter</strong></p>\n\n<h3>📌 Примеры</h3>\n<ul>\n<li>Ich bin <strong>in der</strong> Schule. (WO? → Dativ)</li>\n<li>Ich gehe <strong>in die</strong> Schule. (WOHIN? → Akkusativ)</li>\n<li>Das Buch liegt <strong>auf dem</strong> Tisch. (WO? → Dativ)</li>\n<li>Ich lege das Buch <strong>auf den</strong> Tisch. (WOHIN? → Akkusativ)</li>\n</ul>\n\n<h3>📌 Запоминалка</h3>\n<p><strong>WO?</strong> → Dativ (место)<br><strong>WOHIN?</strong> → Akkusativ (движение)</p>",
+  "theory": "<h3>📌 Что такое Wechselpräpositionen?</h3>\n\n<p>Wechselpräpositionen — это предлоги, которые могут требовать <strong>Dativ</strong> или <strong>Akkusativ</strong> в зависимости от смысла.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 ЗОЛОТОЕ ПРАВИЛО:</strong><br>\n  🏠 <strong>WO?</strong> (где?) → <strong>Dativ</strong> (место, положение)<br>\n  🏃 <strong>WOHIN?</strong> (куда?) → <strong>Akkusativ</strong> (движение, направление)\n</div>\n\n<h3>📌 Список Wechselpräpositionen</h3>\n\n<p><strong>in, an, auf, unter, über, neben, zwischen, vor, hinter</strong></p>\n\n<h3>📌 Примеры с Dativ (WO? — место)</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Предлог</th>\n    <th>Dativ</th>\n    <th>Пример</th>\n    <th>Перевод</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>in</th>\n    <td>in + dem = im</th>\n    <td>Ich bin <strong>im</strong> Kino.</th>\n    <td>Я в кино.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>auf</th>\n    <td>auf + dem = auf dem</th>\n    <td>Das Buch liegt <strong>auf dem</strong> Tisch.</th>\n    <td>Книга лежит на столе.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>unter</th>\n    <td>unter + dem = unter dem</th>\n    <td>Die Katze ist <strong>unter dem</strong> Bett.</th>\n    <td>Кошка под кроватью.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>neben</th>\n    <td>neben + dem = neben dem</th>\n    <td>Er steht <strong>neben dem</strong> Fenster.</th>\n    <td>Он стоит рядом с окном.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>zwischen</th>\n    <td>zwischen + den = zwischen den</th>\n    <td>Ich sitze <strong>zwischen den</strong> Stühlen.</th>\n    <td>Я сижу между стульями.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>vor</th>\n    <td>vor + dem = vor dem</th>\n    <td>Das Auto steht <strong>vor dem</strong> Haus.</th>\n    <td>Машина стоит перед домом.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>hinter</th>\n    <td>hinter + dem = hinter dem</th>\n    <td>Der Garten ist <strong>hinter dem</strong> Haus.</th>\n    <td>Сад за домом.</th>\n   </tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"4\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    WO? → Dativ (место)</th>\n  </tr>\n\n<h3>📌 Примеры с Akkusativ (WOHIN? — направление)</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Предлог</th>\n    <th>Akkusativ</th>\n    <th>Пример</th>\n    <th>Перевод</th>\n    </table>\n  <tr style=\"background: #E3F2FD;\">\n    <td>in</th>\n    <td>in + das = ins</th>\n    <td>Ich gehe <strong>ins</strong> Kino.</th>\n    <td>Я иду в кино.</th>\n   </td>\n  <tr style=\"background: #F5F5F5;\">\n    <td>auf</th>\n    <td>auf + den = auf den</th>\n    <td>Ich lege das Buch <strong>auf den</strong> Tisch.</th>\n    <td>Я кладу книгу на стол.</th>\n   </td>\n  <tr style=\"background: #E3F2FD;\">\n    <td>unter</th>\n    <td>unter + das = unters</th>\n    <td>Die Katze springt <strong>unters</strong> Bett.</th>\n    <td>Кошка прыгает под кровать.</th>\n   </td>\n  <tr style=\"background: #F5F5F5;\">\n    <td>neben</th>\n    <td>neben + das = nebens</th>\n    <td>Er stellt den Tisch <strong>nebens</strong> Fenster.</th>\n    <td>Он ставит стол рядом с окном.</th>\n   </td>\n  <tr style=\"background: #E3F2FD;\">\n    <td>zwischen</th>\n    <td>zwischen + die = zwischen die</th>\n    <td>Ich setze mich <strong>zwischen die</strong> Stühle.</th>\n    <td>Я сажусь между стульями.</th>\n   </td>\n  <tr style=\"background: #F5F5F5;\">\n    <td>vor</th>\n    <td>vor + das = vors</th>\n    <td>Er fährt <strong>vors</strong> Haus.</th>\n    <td>Он подъезжает к дому.</th>\n   </td>\n  <tr style=\"background: #E3F2FD;\">\n    <td>hinter</th>\n    <td>hinter + das = hinters</th>\n    <td>Er geht <strong>hinters</strong> Haus.</th>\n    <td>Он идёт за дом.</th>\n   </td>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"4\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    WOHIN? → Akkusativ (направление)</th>\n  <table>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ТИПИЧНЫЕ ОШИБКИ:</strong><br>\n  ❌ Ich bin <strong>in die</strong> Schule. (место! нужно Dativ)<br>\n  ✅ Ich bin <strong>in der</strong> Schule.<br>\n  <br>\n  ❌ Ich gehe <strong>in der</strong> Schule. (движение! нужно Akkusativ)<br>\n  ✅ Ich gehe <strong>in die</strong> Schule.\n</div>\n\n<h3>📌 Слияние предлогов с артиклями</h3>\n\n<p>В разговорной речи многие предлоги сливаются с артиклями:</p>\n<ul>\n<li>in + das = <strong>ins</strong> (WOHIN?)</li>\n<li>in + dem = <strong>im</strong> (WO?)</li>\n<li>an + dem = <strong>am</strong></li>\n<li>an + das = <strong>ans</strong></li>\n<li>auf + das = <strong>aufs</strong></li>\n<li>von + dem = <strong>vom</strong></li>\n<li>zu + dem = <strong>zum</strong></li>\n<li>zu + der = <strong>zur</strong></li>\n<li>bei + dem = <strong>beim</strong></li>\n</ul>\n\n<h3>📖 Пошаговый алгоритм</h3>\n<ol>\n<li>Определи, что ты хочешь сказать: место (WO?) или направление (WOHIN?)</li>\n<li>Если WO? → используй Dativ</li>\n<li>Если WOHIN? → используй Akkusativ</li>\n<li>Выбери правильный предлог и артикль</li>\n<li>При возможности используй слияние (im, ins, am, ans, zum, zur...)</li>\n</ol>\n\n<h3>📌 Итог урока</h3>\n<ul>\n<li>WO? (где?) → Dativ</li>\n<li>WOHIN? (куда?) → Akkusativ</li>\n<li>Предлоги: in, an, auf, unter, über, neben, zwischen, vor, hinter</li>\n<li>Запомни слияния: im, ins, am, ans, zum, zur, beim</li>\n</ul>",
   "examples": [
-    {"de": "Ich bin in der Schule.", "ru": "Я в школе."},
-    {"de": "Ich gehe in die Schule.", "ru": "Я иду в школу."},
-    {"de": "Das Buch liegt auf dem Tisch.", "ru": "Книга лежит на столе."},
-    {"de": "Ich lege das Buch auf den Tisch.", "ru": "Я кладу книгу на стол."}
+    {"de": "Ich bin in der Schule.", "ru": "Я в школе. (WO? → Dativ)"},
+    {"de": "Ich gehe in die Schule.", "ru": "Я иду в школу. (WOHIN? → Akkusativ)"},
+    {"de": "Das Buch liegt auf dem Tisch.", "ru": "Книга лежит на столе. (WO? → Dativ)"},
+    {"de": "Ich lege das Buch auf den Tisch.", "ru": "Я кладу книгу на стол. (WOHIN? → Akkusativ)"},
+    {"de": "Die Katze ist unter dem Bett.", "ru": "Кошка под кроватью. (WO? → Dativ)"},
+    {"de": "Die Katze springt unter das Bett.", "ru": "Кошка прыгает под кровать. (WOHIN? → Akkusativ)"},
+    {"de": "Ich sitze neben dem Fenster.", "ru": "Я сижу рядом с окном. (WO? → Dativ)"},
+    {"de": "Ich setze mich neben das Fenster.", "ru": "Я сажусь рядом с окном. (WOHIN? → Akkusativ)"}
   ],
   "exercises": [
-    {"type": "fill", "question": "Вставьте правильный падеж (WO? oder WOHIN?):", "sentence": "Ich bin ___ Schule. (in/die)", "answer": "in der", "hint": "WO? → Dativ, die Schule → in der"},
-    {"type": "fill", "question": "Вставьте правильный падеж:", "sentence": "Ich gehe ___ Schule. (in/die)", "answer": "in die", "hint": "WOHIN? → Akkusativ, die Schule → in die"},
-    {"type": "fill", "question": "Вставьте правильный падеж:", "sentence": "Das Buch liegt ___ Tisch. (auf/dem)", "answer": "auf dem", "hint": "WO? → Dativ, der Tisch → auf dem"},
-    {"type": "fill", "question": "Вставьте правильный падеж:", "sentence": "Ich lege das Buch ___ Tisch. (auf/den)", "answer": "auf den", "hint": "WOHIN? → Akkusativ, der Tisch → auf den"},
-    {"type": "choice", "question": "WO? oder WOHIN?:", "sentence": "Ich hänge das Bild an ___ Wand.", "options": ["der", "die"], "answer": "die", "hint": "WOHIN? → Akkusativ"},
-    {"type": "choice", "question": "WO? oder WOHIN?:", "sentence": "Das Bild hängt an ___ Wand.", "options": ["der", "die"], "answer": "der", "hint": "WO? → Dativ"},
-    {"type": "fill", "question": "Переведите на немецкий (WOHIN?):", "sentence": "Я иду в кино.", "answer": "ich gehe ins kino", "hint": "in + das Kino = ins, WOHIN?"},
-    {"type": "fill", "question": "Переведите на немецкий (WO?):", "sentence": "Я в кино.", "answer": "ich bin im kino", "hint": "in + dem Kino = im, WO?"}
+    {
+      "type": "fill",
+      "question": "Вставьте правильный падеж (WO? или WOHIN?):",
+      "sentence": "Ich bin ___ Schule. (in der / in die)",
+      "answer": "in der",
+      "hint": "WO? → Dativ, die Schule → in der"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильный падеж:",
+      "sentence": "Ich gehe ___ Schule. (in der / in die)",
+      "answer": "in die",
+      "hint": "WOHIN? → Akkusativ, die Schule → in die"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильный падеж:",
+      "sentence": "Das Buch liegt ___ Tisch. (auf dem / auf den)",
+      "answer": "auf dem",
+      "hint": "WO? → Dativ, der Tisch → auf dem"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильный падеж:",
+      "sentence": "Ich lege das Buch ___ Tisch. (auf dem / auf den)",
+      "answer": "auf den",
+      "hint": "WOHIN? → Akkusativ, der Tisch → auf den"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму (со слиянием):",
+      "sentence": "Ich bin ___ Kino. (im / ins)",
+      "answer": "im",
+      "hint": "WO? → im (in + dem)"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму (со слиянием):",
+      "sentence": "Ich gehe ___ Kino. (im / ins)",
+      "answer": "ins",
+      "hint": "WOHIN? → ins (in + das)"
+    },
+    {
+      "type": "choice",
+      "question": "Выберите правильную форму:",
+      "sentence": "Ich hänge das Bild ___ Wand.",
+      "options": ["an der", "an die"],
+      "answer": "an die",
+      "hint": "WOHIN? → Akkusativ, die Wand → an die"
+    },
+    {
+      "type": "choice",
+      "question": "Выберите правильную форму:",
+      "sentence": "Das Bild hängt ___ Wand.",
+      "options": ["an der", "an die"],
+      "answer": "an der",
+      "hint": "WO? → Dativ, die Wand → an der"
+    },
+    {
+      "type": "transform",
+      "question": "Переделайте предложение (WO? → WOHIN?):",
+      "sentence": "Ich bin im Kino.",
+      "answer": "Ich gehe ins Kino",
+      "hint": "im → ins, sein → gehen"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (WOHIN?):",
+      "sentence": "Я иду в кино.",
+      "answer": "ich gehe ins kino",
+      "hint": "ins = in + das"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (WO?):",
+      "sentence": "Я в кино.",
+      "answer": "ich bin im kino",
+      "hint": "im = in + dem"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (WOHIN?):",
+      "sentence": "Я кладу книгу на стол.",
+      "answer": "ich lege das buch auf den tisch",
+      "hint": "auf + den Tisch (Akkusativ)"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (WO?):",
+      "sentence": "Книга лежит на столе.",
+      "answer": "das buch liegt auf dem tisch",
+      "hint": "auf + dem Tisch (Dativ)"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (WOHIN?):",
+      "sentence": "Кошка прыгает под кровать.",
+      "answer": "die katze springt unter das bett",
+      "hint": "unter + das Bett (Akkusativ)"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (WO?):",
+      "sentence": "Кошка под кроватью.",
+      "answer": "die katze ist unter dem bett",
+      "hint": "unter + dem Bett (Dativ)"
+    }
   ]
 }
