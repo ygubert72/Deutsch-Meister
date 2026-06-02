@@ -2,23 +2,124 @@
   "lesson": 4,
   "title": "Временные предлоги: seit, vor, nach, für, bis, ab, in",
   "level": "A2",
-  "theory": "<h3>📌 Предлоги времени</h3>\n\n<table border='1' cellpadding='10' style='border-collapse:collapse;width:100%;margin:15px 0;'>\n  <tr style='background:#3B6FE0;color:white'><th>Предлог</th><th>Падеж</th><th>Значение</th><th>Пример</th></tr>\n  <tr><td><strong>seit</strong></td><td>Dativ</td><td>с (какого-то момента)</td><td>seit Montag</td></tr>\n  <tr><td><strong>vor</strong></td><td>Dativ</td><td>назад, до</td><td>vor zwei Tagen</td></tr>\n  <tr><td><strong>nach</strong></td><td>Dativ</td><td>после, через</td><td>nach der Arbeit</td></tr>\n  <tr><td><strong>für</strong></td><td>Akkusativ</td><td>на (срок)</td><td>für eine Woche</td></tr>\n  <tr><td><strong>bis</strong></td><td>Akkusativ</td><td>до</td><td>bis Freitag</td></tr>\n  <tr><td><strong>ab</strong></td><td>Dativ</td><td>начиная с</td><td>ab morgen</td></tr>\n  <tr><td><strong>in</strong></td><td>Dativ</td><td>через</td><td>in einer Stunde</td></tr>\n</table>\n\n<h3>📌 Примеры</h3>\n<ul>\n<li>Ich wohne hier <strong>seit</strong> 2020.</li>\n<li>Er kam <strong>vor</strong> einer Stunde.</li>\n<li><strong>Nach</strong> dem Essen gehe ich schlafen.</li>\n<li>Wir fahren <strong>für</strong> drei Tage nach Paris.</li>\n<li><strong>Bis</strong> morgen muss ich das machen.</li>\n<li><strong>Ab</strong> nächster Woche habe ich Urlaub.</li>\n<li>Der Film beginnt <strong>in</strong> zehn Minuten.</li>\n</ul>",
+  "theory": "<h3>📌 Что такое временные предлоги?</h3>\n\n<p>Временные предлоги отвечают на вопрос <strong>Wann?</strong> (когда?) или <strong>Wie lange?</strong> (как долго?). Они указывают на время действия.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 ВАЖНО:</strong> Каждый предлог требует определённого падежа (Dativ или Akkusativ)!\n</div>\n\n<h3>📌 Таблица временных предлогов</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Предлог</th>\n    <th>Падеж</th>\n    <th>Значение</th>\n    <th>Вопрос</th>\n    <th>Пример</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>seit</strong></th>\n    <td>Dativ</th>\n    <td>с (какого-то момента)</th>\n    <td>seit wann?</th>\n    <td>seit Montag, seit einem Jahr</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>vor</strong></th>\n    <td>Dativ</th>\n    <td>назад, до</th>\n    <td>vor wann?</th>\n    <td>vor zwei Tagen, vor dem Essen</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>nach</strong></th>\n    <td>Dativ</th>\n    <td>после, через</th>\n    <td>nach wann?</th>\n    <td>nach der Arbeit, nach einer Stunde</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>für</strong></th>\n    <td>Akkusativ</th>\n    <td>на (срок в будущем)</th>\n    <td>für wie lange?</th>\n    <td>für zwei Tage, für eine Woche</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>bis</strong></th>\n    <td>Akkusativ</th>\n    <td>до (временной предел)</th>\n    <td>bis wann?</th>\n    <td>bis morgen, bis Freitag</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>ab</strong></th>\n    <td>Dativ</th>\n    <td>начиная с (будущее)</th>\n    <td>ab wann?</th>\n    <td>ab morgen, ab nächster Woche</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>in</strong></th>\n    <td>Dativ</th>\n    <td>через (о будущем)</th>\n    <td>in wie viel Zeit?</th>\n    <td>in einer Stunde, in drei Tagen</th>\n   </tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"5\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    Dativ: seit, vor, nach, ab, in<br>\n    Akkusativ: für, bis</th>\n  </tr>\n<table>\n\n<h3>📌 Подробнее о каждом предлоге</h3>\n\n<p><strong>seit + Dativ</strong> — действие началось в прошлом и продолжается до сих пор:</p>\n<ul><li>Ich wohne hier <strong>seit 2020</strong>. (Я живу здесь с 2020 года)</li></ul>\n\n<p><strong>vor + Dativ</strong> — действие произошло назад во времени:</p>\n<ul><li>Er kam <strong>vor einer Stunde</strong>. (Он пришёл час назад)</li></ul>\n\n<p><strong>nach + Dativ</strong> — действие происходит после чего-то:</p>\n<ul><li><strong>Nach dem Essen</strong> gehe ich schlafen. (После еды я иду спать)</li></ul>\n\n<p><strong>für + Akkusativ</strong> — действие рассчитано на определённый срок в будущем:</p>\n<ul><li>Wir fahren <strong>für drei Tage</strong> nach Paris. (Мы едем в Париж на три дня)</li></ul>\n\n<p><strong>bis + Akkusativ</strong> — временной предел:</p>\n<ul><li><strong>Bis morgen</strong> muss ich das machen. (До завтра я должен это сделать)</li></ul>\n\n<p><strong>ab + Dativ</strong> — начиная с определённого момента в будущем:</p>\n<ul><li><strong>Ab nächster Woche</strong> habe ich Urlaub. (Со следующей недели у меня отпуск)</li></ul>\n\n<p><strong>in + Dativ</strong> — через какой-то промежуток времени в будущем:</p>\n<ul><li>Der Film beginnt <strong>in zehn Minuten</strong>. (Фильм начинается через десять минут)</li></ul>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ТИПИЧНЫЕ ОШИБКИ:</strong><br>\n  ❌ Ich wohne hier <strong>vor</strong> 2020. (если до сих пор → seit)<br>\n  ✅ Ich wohne hier <strong>seit</strong> 2020.<br>\n  <br>\n  ❌ Der Film beginnt <strong>nach</strong> zehn Minuten.<br>\n  ✅ Der Film beginnt <strong>in</strong> zehn Minuten. (будущее → in)\n</div>\n\n<h3>📖 Пошаговый алгоритм</h3>\n<ol>\n<li>Определи, какое временное отношение нужно выразить (начало, продолжительность, предел)</li>\n<li>Выбери подходящий предлог</li>\n<li>Определи падеж, который требует этот предлог (Dativ или Akkusativ)</li>\n<li>Поставь существительное/числительное в нужный падеж</li>\n</ol>\n\n<h3>📌 Итог урока</h3>\n<ul>\n<li><strong>seit</strong> — с (какого-то момента) → Dativ</li>\n<li><strong>vor</strong> — назад, до → Dativ</li>\n<li><strong>nach</strong> — после → Dativ</li>\n<li><strong>für</strong> — на (срок) → Akkusativ</li>\n<li><strong>bis</strong> — до (предел) → Akkusativ</li>\n<li><strong>ab</strong> — начиная с → Dativ</li>\n<li><strong>in</strong> — через (будущее) → Dativ</li>\n</ul>",
   "examples": [
     {"de": "Ich wohne hier seit 2020.", "ru": "Я живу здесь с 2020 года."},
     {"de": "Er kam vor einer Stunde.", "ru": "Он пришёл час назад."},
     {"de": "Nach dem Essen gehe ich schlafen.", "ru": "После еды я иду спать."},
-    {"de": "Wir fahren für drei Tage nach Paris.", "ru": "Мы едем в Париж на три дня."}
+    {"de": "Wir bleiben für drei Tage in Berlin.", "ru": "Мы остаёмся в Берлине на три дня."},
+    {"de": "Bis morgen muss ich die Arbeit erledigen.", "ru": "До завтра я должен закончить работу."},
+    {"de": "Ab nächster Woche habe ich Urlaub.", "ru": "Со следующей недели у меня отпуск."},
+    {"de": "Der Film beginnt in zehn Minuten.", "ru": "Фильм начинается через десять минут."},
+    {"de": "Ich habe ihn seit einer Woche nicht gesehen.", "ru": "Я не видел его неделю."}
   ],
   "exercises": [
-    {"type": "fill", "question": "Вставьте предлог:", "sentence": "Ich lerne Deutsch ___ einem Jahr.", "answer": "seit", "hint": "с (какого-то момента) → seit"},
-    {"type": "fill", "question": "Вставьте предлог:", "sentence": "Er ist ___ einer Stunde gekommen.", "answer": "vor", "hint": "назад → vor"},
-    {"type": "fill", "question": "Вставьте предлог:", "sentence": "___ dem Unterricht gehe ich nach Hause.", "answer": "Nach", "hint": "после → nach"},
-    {"type": "fill", "question": "Вставьте предлог:", "sentence": "Wir bleiben ___ drei Tage in Berlin.", "answer": "für", "hint": "на (срок) → für"},
-    {"type": "fill", "question": "Вставьте предлог:", "sentence": "___ morgen muss ich die Arbeit erledigen.", "answer": "Bis", "hint": "до → bis"},
-    {"type": "fill", "question": "Вставьте предлог:", "sentence": "___ nächster Woche bin ich im Urlaub.", "answer": "Ab", "hint": "начиная с → ab"},
-    {"type": "fill", "question": "Вставьте предлог:", "sentence": "Der Zug kommt ___ zehn Minuten.", "answer": "in", "hint": "через → in"},
-    {"type": "choice", "question": "Выберите правильный предлог:", "sentence": "Ich habe ihn ___ einer Woche nicht gesehen.", "options": ["seit", "vor", "nach"], "answer": "seit", "hint": "с (промежуток времени) → seit"},
-    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Я живу здесь с 2020 года.", "answer": "ich wohne hier seit 2020", "hint": "seit + 2020"},
-    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Фильм начинается через час.", "answer": "der film beginnt in einer stunde", "hint": "in + einer Stunde"}
+    {
+      "type": "fill",
+      "question": "Вставьте правильный предлог (seit/vor/nach/für/bis/ab/in):",
+      "sentence": "Ich lerne Deutsch ___ einem Jahr.",
+      "answer": "seit",
+      "hint": "с (какого-то момента) → seit"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте предлог:",
+      "sentence": "Er ist ___ einer Stunde gekommen.",
+      "answer": "vor",
+      "hint": "назад → vor"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте предлог:",
+      "sentence": "___ dem Unterricht gehe ich nach Hause.",
+      "answer": "Nach",
+      "hint": "после → nach"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте предлог:",
+      "sentence": "Wir bleiben ___ drei Tage in Berlin.",
+      "answer": "für",
+      "hint": "на (срок) → für"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте предлог:",
+      "sentence": "___ morgen muss ich die Arbeit erledigen.",
+      "answer": "Bis",
+      "hint": "до → bis"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте предлог:",
+      "sentence": "___ nächster Woche bin ich im Urlaub.",
+      "answer": "Ab",
+      "hint": "начиная с → ab"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте предлог:",
+      "sentence": "Der Zug kommt ___ zehn Minuten.",
+      "answer": "in",
+      "hint": "через → in"
+    },
+    {
+      "type": "choice",
+      "question": "Выберите правильный предлог:",
+      "sentence": "Ich habe ihn ___ einer Woche nicht gesehen.",
+      "options": ["seit", "vor", "nach"],
+      "answer": "seit",
+      "hint": "с (промежуток времени) → seit"
+    },
+    {
+      "type": "choice",
+      "question": "Выберите правильный предлог:",
+      "sentence": "___ einer Woche fahre ich nach Berlin.",
+      "options": ["In", "Nach", "Vor"],
+      "answer": "In",
+      "hint": "через (будущее) → in"
+    },
+    {
+      "type": "transform",
+      "question": "Переделайте предложение, используя правильный предлог:",
+      "sentence": "Ich wohne hier. (с 2020 года)",
+      "answer": "Ich wohne hier seit 2020",
+      "hint": "seit + 2020"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Я живу здесь с 2020 года.",
+      "answer": "ich wohne hier seit 2020",
+      "hint": "seit + 2020"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Фильм начинается через час.",
+      "answer": "der film beginnt in einer stunde",
+      "hint": "in + einer Stunde"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Он пришёл час назад.",
+      "answer": "er kam vor einer stunde",
+      "hint": "vor + einer Stunde"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Со следующей недели у меня отпуск.",
+      "answer": "ab nächster woche habe ich urlaub",
+      "hint": "ab + nächster Woche"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "До завтра я должен это сделать.",
+      "answer": "bis morgen muss ich das machen",
+      "hint": "bis + morgen"
+    }
   ]
 }
