@@ -1,0 +1,18 @@
+{
+  "lesson": 2,
+  "title": "Passiv — страдательный залог (Präteritum)",
+  "level": "B1",
+  "theory": "<h3>📌 Passiv в прошедшем времени</h3>\n<p>Passiv в Präteritum = <strong>wurde + Partizip II</strong></p>\n<p>wurde — это форма Präteritum от werden.</p>\n\n<h3>📌 Спряжение wurde</h3>\n<table border='1' cellpadding='8' style='border-collapse:collapse;width:100%;margin:15px 0;'>\n  <tr style='background:#3B6FE0;color:white'><th></th><th>wurde</th><th>Passiv Пример</th></tr>\n  <tr style='background:#E3F2FD;'><td>ich</td><td>wurde</td><td>Ich wurde gefragt.</td></tr>\n  <tr><td>du</td><td>wurdest</td><td>Du wurdest gefragt.</td></tr>\n  <tr style='background:#E3F2FD;'><td>er/sie/es</td><td>wurde</td><td>Er wurde gefragt.</td></td>\n  <tr><td>wir</td><td>wurden</td><td>Wir wurden gefragt.</td></td>\n  <tr style='background:#E3F2FD;'><td>ihr</td><td>wurdet</td><td>Ihr wurdet gefragt.</td></tr>\n  <tr><td>sie/Sie</td><td>wurden</td><td>Sie wurden gefragt.</td></tr>\n</table>\n\n<h3>📌 Сравнение Präsens и Präteritum</h3>\n<p>Präsens: Das Buch <strong>wird</strong> gelesen. — Книгу читают.<br>\nPräteritum: Das Buch <strong>wurde</strong> gelesen. — Книгу читали.</p>",
+  "examples": [
+    {"de": "Das Buch wurde gelesen.", "ru": "Книгу читали."},
+    {"de": "Die Arbeit wurde gemacht.", "ru": "Работа была сделана."},
+    {"de": "Das Buch konnte gelesen werden.", "ru": "Книгу можно было прочитать."}
+  ],
+  "exercises": [
+    {"type": "fill", "question": "Вставьте wurde/wurden:", "sentence": "Das Buch ___ gelesen.", "answer": "wurde", "hint": "ед. ч. → wurde"},
+    {"type": "fill", "question": "Вставьте wurde/wurden:", "sentence": "Die Fenster ___ geputzt.", "answer": "wurden", "hint": "мн. ч. → wurden"},
+    {"type": "fill", "question": "Passiv с модальным:", "sentence": "Das Buch ___ gelesen werden. (können)", "answer": "konnte", "hint": "Präteritum von können → konnte"},
+    {"type": "transform", "question": "Präsens → Präteritum:", "sentence": "Das Buch wird gelesen.", "answer": "Das Buch wurde gelesen", "hint": "wird → wurde"},
+    {"type": "fill", "question": "Переведите:", "sentence": "Книгу читали.", "answer": "das buch wurde gelesen", "hint": "wurde + gelesen"}
+  ]
+}
