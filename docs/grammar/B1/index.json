@@ -1,1 +1,19 @@
-
+{
+  "level": "B1",
+  "title": "Грамматика немецкого языка. Уровень B1",
+  "description": "Средний уровень. Уверенное владение грамматикой.",
+  "lessons": [
+    "lessons/01_passiv_praesens.json",
+    "lessons/02_passiv_praeteritum.json",
+    "lessons/03_passiv_ohne_agens.json",
+    "lessons/04_konjunktiv_i.json",
+    "lessons/05_nomen_verb_verbindungen.json",
+    "lessons/06_praepositionaladverbien.json",
+    "lessons/07_relativsaetze.json",
+    "lessons/08_alle_konnektoren.json",
+    "lessons/09_adjektivdeklination_ohne_artikel.json",
+    "lessons/10_temporale_praepositionen_genitiv.json",
+    "lessons/11_finalsaetze.json",
+    "lessons/12_konditionalsaetze.json"
+  ]
+}
