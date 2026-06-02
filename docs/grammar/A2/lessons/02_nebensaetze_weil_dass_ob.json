@@ -2,22 +2,125 @@
   "lesson": 2,
   "title": "Придаточные предложения: weil, dass, ob",
   "level": "A2",
-  "theory": "<h3>📌 Что такое придаточные предложения?</h3>\n<p>Придаточные предложения — это предложения, которые не могут существовать сами по себе. Они зависят от главного предложения.</p>\n\n<div class='info-box' style='background:#E8F0FE;padding:15px;border-radius:12px;margin:15px 0;'>\n  <strong>🎯 ГЛАВНОЕ ПРАВИЛО:</strong> В придаточном предложении <strong>глагол уходит в конец</strong>!\n</div>\n\n<h3>📌 Союз WEIL (потому что) — причина</h3>\n<p><em>Ich bleibe zu Hause, <strong>weil es regnet</strong>.</em><br>Я остаюсь дома, потому что идёт дождь.</p>\n<p>Глагол 'regnet' стоит в конце придаточного предложения.</p>\n\n<h3>📌 Союз DASS (что) — придаточное дополнительное</h3>\n<p><em>Ich weiß, <strong>dass du Recht hast</strong>.</em><br>Я знаю, что ты прав.</p>\n\n<h3>📌 Союз OB (ли) — косвенный вопрос</h3>\n<p><em>Ich frage mich, <strong>ob er kommt</strong>.</em><br>Я спрашиваю себя, придёт ли он.</p>\n\n<h3>📌 Порядок слов в придаточном предложении</h3>\n<ul>\n<li>В главном предложении — обычный порядок слов (глагол на 2-м месте)</li>\n<li>Придаточное предложение начинается с союза (weil, dass, ob)</li>\n<li>Спрягаемый глагол — в <strong>конце</strong> придаточного предложения</li>\n<li>Между главным и придаточным ставится запятая</li>\n</ul>\n\n<h3>📌 Примеры</h3>\n<ul>\n<li>Ich lerne Deutsch, <strong>weil ich in Deutschland arbeiten möchte</strong>.</li>\n<li>Er sagt, <strong>dass er müde ist</strong>.</li>\n<li>Ich weiß nicht, <strong>ob sie kommt</strong>.</li>\n</ul>",
+  "theory": "<h3>📌 Что такое придаточные предложения?</h3>\n\n<p>Придаточные предложения — это предложения, которые не могут существовать сами по себе. Они зависят от главного предложения и отвечают на вопросы: почему? что? ли?</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 ГЛАВНОЕ ПРАВИЛО:</strong><br>\n  В придаточном предложении <strong>спрягаемый глагол уходит в КОНЕЦ</strong> предложения!\n</div>\n\n<h3>📌 Союз WEIL (потому что) — причина</h3>\n\n<p><strong>weil</strong> отвечает на вопрос <strong>Warum?</strong> (почему?) и объясняет причину.</p>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Главное предложение</th>\n    <th>Придаточное с weil</th>\n    <th>Перевод</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Ich bleibe zu Hause,</th>\n    <td>weil es <strong>regnet</strong>.</th>\n    <td>Я остаюсь дома, потому что идёт дождь.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Ich lerne Deutsch,</th>\n    <td>weil ich in Deutschland arbeiten <strong>möchte</strong>.</th>\n    <td>Я учу немецкий, потому что хочу работать в Германии.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Er kommt nicht,</th>\n    <td>weil er krank <strong>ist</strong>.</th>\n    <td>Он не приходит, потому что он болен.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Wir gehen ins Kino,</th>\n    <td>weil wir Zeit <strong>haben</strong>.</th>\n    <td>Мы идём в кино, потому что у нас есть время.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Sie ist glücklich,</th>\n    <td>weil sie ihren Traumjob <strong>gefunden hat</strong>.</th>\n    </td>Она счастлива, потому что нашла работу мечты.</th>\n   </tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"3\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    weil = потому что → глагол в КОНЕЦ!</th>\n  </tr>\n</table>\n\n<h3>📌 Союз DASS (что) — придаточное дополнительное</h3>\n\n<p><strong>dass</strong> отвечает на вопрос <strong>Was?</strong> (что?) и вводит придаточное дополнительное.</p>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Главное предложение</th>\n    <th>Придаточное с dass</th>\n    <th>Перевод</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Ich weiß,</th>\n    <td>dass du Recht <strong>hast</strong>.</th>\n    <td>Я знаю, что ты прав.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Er sagt,</th>\n    <td>dass er müde <strong>ist</strong>.</th>\n    <td>Он говорит, что он устал.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Ich denke,</th>\n    <td>dass er bald <strong>kommt</strong>.</th>\n    <td>Я думаю, что он скоро придёт.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Hast du gehört,</th>\n    <td>dass sie umzieht?</th>\n    <td>Ты слышал, что она переезжает?</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Es ist wichtig,</th>\n    <td>dass du regelmäßig lernst.</th>\n    <tr>Важно, чтобы ты занимался регулярно.</th>\n   </tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"3\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    dass = что → глагол в КОНЕЦ!</th>\n  </tr>\n</table>\n\n<h3>📌 Союз OB (ли) — косвенный вопрос</h3>\n\n<p><strong>ob</strong> переводится как «ли» и вводит косвенный вопрос (на который нельзя ответить да/нет).</p>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Главное предложение</th>\n    <th>Придаточное с ob</th>\n    <th>Перевод</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Ich frage mich,</th>\n    <td>ob er <strong>kommt</strong>.</th>\n    <td>Я спрашиваю себя, придёт ли он.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Ich weiß nicht,</th>\n    <td>ob sie morgen <strong>kommt</strong>.</th>\n    <td>Я не знаю, придёт ли она завтра.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Kannst du mir sagen,</th>\n    <td>ob der Zug pünktlich <strong>ist</strong>?</th>\n    <td>Ты можешь сказать мне, прибывает ли поезд вовремя?</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Er fragt,</th>\n    <td>ob ich ihm helfen <strong>kann</strong>.</th>\n    <td>Он спрашивает, могу ли я ему помочь.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Ich bin mir nicht sicher,</th>\n    <td>ob das richtig <strong>ist</strong>.</th>\n    <td>Я не уверен, правильно ли это.</th>\n   </tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"3\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    ob = ли → глагол в КОНЕЦ!</th>\n  </tr>\n</table>\n\n<h3>📌 Порядок слов в придаточном предложении</h3>\n\n<ul>\n<li>В главном предложении — обычный порядок слов (глагол на втором месте).</li>\n<li>Придаточное предложение начинается с союза (weil, dass, ob).</li>\n<li><strong>Спрягаемый глагол — в КОНЦЕ придаточного предложения.</strong></li>\n<li>Между главным и придаточным ставится запятая.</li>\n</ul>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ТИПИЧНЫЕ ОШИБКИ РУССКОГОВОРЯЩИХ:</strong><br>\n  ❌ Ich weiß, <strong>dass du hast Recht</strong>.<br>\n  ✅ Ich weiß, <strong>dass du Recht hast</strong>.<br>\n  <br>\n  ❌ Ich bleibe zu Hause, <strong>weil es regnet</strong> (порядок правильный, но иногда путают с denn).<br>\n  ✅ Ich bleibe zu Hause, <strong>denn es regnet</strong> — но здесь denn НЕ отправляет глагол в конец!\n</div>\n\n<h3>📌 Сравнение weil и denn</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Союз</th>\n    <th>Порядок слов</th>\n    <th>Пример</th>\n  </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>weil</strong> (потому что)</th>\n    <td>ГЛАГОЛ В КОНЦЕ</th>\n    <td>Ich bleibe zu Hause, weil es <strong>regnet</strong>.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>denn</strong> (потому что)</th>\n    <td>НЕ меняет порядок (глагол на 2-м)</th>\n    <td>Ich bleibe zu Hause, <strong>denn es regnet</strong>.</th>\n   </tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"3\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    weil → глагол в конец, denn → глагол на 2-м месте</th>\n  </tr>\n</table>\n\n<h3>📖 Пошаговый алгоритм</h3>\n<ol>\n<li>Определи, какой союз нужен: weil (причина), dass (что), ob (ли)</li>\n<li>Напиши главное предложение (глагол на 2-м месте)</li>\n<li>Поставь запятую</li>\n<li>Напиши союз (weil, dass, ob)</li>\n<li>Напиши подлежащее придаточного</li>\n<li>Напиши остальные слова</li>\n<li><strong>Поставь спрягаемый глагол в КОНЕЦ придаточного</strong></li>\n</ol>\n\n<h3>📌 Итог урока</h3>\n<ul>\n<li><strong>weil</strong> — потому что (причина) → глагол в конец</li>\n<li><strong>dass</strong> — что (косвенная речь) → глагол в конец</li>\n<li><strong>ob</strong> — ли (косвенный вопрос) → глагол в конец</li>\n<li>Между главным и придаточным всегда запятая</li>\n<li>В придаточном предложении глагол всегда в конце!</li>\n</ul>",
   "examples": [
     {"de": "Ich bleibe zu Hause, weil es regnet.", "ru": "Я остаюсь дома, потому что идёт дождь."},
+    {"de": "Ich lerne Deutsch, weil ich in Deutschland arbeiten möchte.", "ru": "Я учу немецкий, потому что хочу работать в Германии."},
+    {"de": "Er kommt nicht, weil er krank ist.", "ru": "Он не приходит, потому что он болен."},
     {"de": "Ich weiß, dass du recht hast.", "ru": "Я знаю, что ты прав."},
-    {"de": "Ich frage mich, ob er kommt.", "ru": "Я спрашиваю себя, придёт ли он."}
+    {"de": "Er sagt, dass er müde ist.", "ru": "Он говорит, что он устал."},
+    {"de": "Ich denke, dass er bald kommt.", "ru": "Я думаю, что он скоро придёт."},
+    {"de": "Ich frage mich, ob er kommt.", "ru": "Я спрашиваю себя, придёт ли он."},
+    {"de": "Ich weiß nicht, ob sie morgen kommt.", "ru": "Я не знаю, придёт ли она завтра."},
+    {"de": "Kannst du mir sagen, ob der Zug pünktlich ist?", "ru": "Ты можешь сказать мне, прибывает ли поезд вовремя?"}
   ],
   "exercises": [
-    {"type": "fill", "question": "Вставьте союз:", "sentence": "Ich bleibe zu Hause, ___ es regnet.", "answer": "weil", "hint": "потому что → weil"},
-    {"type": "fill", "question": "Вставьте союз:", "sentence": "Ich weiß, ___ du recht hast.", "answer": "dass", "hint": "что → dass"},
-    {"type": "fill", "question": "Вставьте союз:", "sentence": "Ich frage mich, ___ sie morgen kommt.", "answer": "ob", "hint": "ли → ob"},
-    {"type": "fill", "question": "Поставьте глагол в конец:", "sentence": "Ich bleibe zu Hause, weil es ___ (regnen).", "answer": "regnet", "hint": "глагол в конце"},
-    {"type": "fill", "question": "Поставьте глагол в конец:", "sentence": "Er sagt, dass er müde ___ (sein).", "answer": "ist", "hint": "sein в конце"},
-    {"type": "choice", "question": "Выберите правильный союз:", "sentence": "Ich weiß nicht, ___ er kommt.", "options": ["weil", "dass", "ob"], "answer": "ob", "hint": "ли → ob"},
-    {"type": "choice", "question": "Выберите правильный союз:", "sentence": "Er lernt, ___ er klug ist.", "options": ["weil", "dass", "ob"], "answer": "weil", "hint": "потому что → weil"},
-    {"type": "transform", "question": "Соедините с 'dass':", "sentence": "Du hast Recht. Ich weiß es.", "answer": "Ich weiß, dass du Recht hast", "hint": "глагол в конец"},
-    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Я знаю, что ты прав.", "answer": "ich weiß dass du recht hast", "hint": "Ich weiß, dass du Recht hast."},
-    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Я остаюсь дома, потому что идёт дождь.", "answer": "ich bleibe zu hause weil es regnet", "hint": "Ich bleibe zu Hause, weil es regnet."}
+    {
+      "type": "fill",
+      "question": "Вставьте правильный союз (weil/dass/ob):",
+      "sentence": "Ich bleibe zu Hause, ___ es regnet.",
+      "answer": "weil",
+      "hint": "потому что → weil"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильный союз:",
+      "sentence": "Ich weiß, ___ du recht hast.",
+      "answer": "dass",
+      "hint": "что → dass"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильный союз:",
+      "sentence": "Ich frage mich, ___ er kommt.",
+      "answer": "ob",
+      "hint": "ли → ob"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильный союз:",
+      "sentence": "Er kommt nicht, ___ er krank ist.",
+      "answer": "weil",
+      "hint": "потому что → weil"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильный союз:",
+      "sentence": "Sie sagt, ___ sie Deutsch lernt.",
+      "answer": "dass",
+      "hint": "что → dass"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильный союз:",
+      "sentence": "Weißt du, ___ er schon da ist?",
+      "answer": "ob",
+      "hint": "ли → ob"
+    },
+    {
+      "type": "fill",
+      "question": "Поставьте глагол в правильное место (в конец):",
+      "sentence": "Ich bleibe zu Hause, weil es ___ (regnen).",
+      "answer": "regnet",
+      "hint": "глагол в конце придаточного"
+    },
+    {
+      "type": "fill",
+      "question": "Поставьте глагол в правильное место:",
+      "sentence": "Er sagt, dass er müde ___ (sein).",
+      "answer": "ist",
+      "hint": "sein в конце"
+    },
+    {
+      "type": "fill",
+      "question": "Поставьте глагол в правильное место:",
+      "sentence": "Ich weiß nicht, ob sie ___ (kommen).",
+      "answer": "kommt",
+      "hint": "глагол в конце"
+    },
+    {
+      "type": "choice",
+      "question": "Выберите правильный союз:",
+      "sentence": "Ich lerne Deutsch, ___ ich in Deutschland arbeiten möchte.",
+      "options": ["weil", "dass", "ob"],
+      "answer": "weil",
+      "hint": "причина → weil"
+    },
+    {
+      "type": "choice",
+      "question": "Выберите правильный союз:",
+      "sentence": "Ich denke, ___ er recht hat.",
+      "options": ["weil", "dass", "ob"],
+      "answer": "dass",
+      "hint": "что → dass"
+    },
+    {
+      "type": "transform",
+      "question": "Соедините предложения с помощью 'weil':",
+      "sentence": "Ich bleibe zu Hause. Es regnet.",
+      "answer": "Ich bleibe zu Hause, weil es regnet",
+      "hint": "weil + глагол в конец"
+    },
+    {
+      "type": "transform",
+      "question": "Соедините предложения с помощью 'dass':",
+      "sentence": "Du hast Recht. Ich weiß es.",
+      "answer": "Ich weiß, dass du Recht hast",
+      "hint": "dass + глагол в конец"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Я остаюсь дома, потому что идёт дождь.",
+      "answer": "ich bleibe zu hause weil es regnet",
+      "hint": "weil + глагол regnet в конце"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Я знаю, что ты прав.",
+      "answer": "ich weiß dass du recht hast",
+      "hint": "dass + глагол hast в конце"
+    }
   ]
 }
