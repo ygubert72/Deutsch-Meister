@@ -1,0 +1,25 @@
+{
+  "lesson": 1,
+  "title": "Präteritum — прошедшее повествовательное время",
+  "level": "A2",
+  "theory": "<h3>📌 Что такое Präteritum?</h3>\n<p>Perfekt — для разговоров. Präteritum — для писем, книг, новостей.</p>\n<p><strong>ВАЖНО:</strong> В разговорной речи глаголы <strong>haben, sein</strong> и <strong>модальные</strong> используются в Präteritum!</p>\n\n<h3>📌 Спряжение haben и sein в Präteritum</h3>\n<table border='1' cellpadding='8' style='border-collapse: collapse;'>\n  <tr style='background:#3B6FE0;color:white'><th></th><th>haben</th><th>sein</th></tr>\n  <tr><td>ich</td><td>hatte</td><td>war</td></tr>\n  <tr><td>du</td><td>hattest</td><td>warst</td></tr>\n  <tr><td>er/sie/es</td><td>hatte</td><td>war</td></tr>\n  <tr><td>wir</td><td>hatten</td><td>waren</td></tr>\n  <tr><td>ihr</td><td>hattet</td><td>wart</td></tr>\n  <tr><td>sie/Sie</td><td>hatten</td><td>waren</td></tr>\n</table>\n\n<h3>📌 Модальные глаголы в Präteritum</h3>\n<table border='1' cellpadding='8' style='border-collapse: collapse;'>\n  <tr style='background:#3B6FE0;color:white'><th></th><th>können</th><th>müssen</th><th>wollen</th><th>dürfen</th><th>sollen</th></tr>\n  <tr><td>ich</td><td>konnte</td><td>musste</td><td>wollte</td><td>durfte</td><td>sollte</td></tr>\n  <tr><td>du</td><td>konntest</td><td>musstest</td><td>wolltest</td><td>durftest</td><td>solltest</td></tr>\n  <tr><td>er/sie/es</td><td>konnte</td><td>musste</td><td>wollte</td><td>durfte</td><td>sollte</td></tr>\n  <tr><td>wir</td><td>konnten</td><td>mussten</td><td>wollten</td><td>durften</td><td>sollten</td></tr>\n  <tr><td>ihr</td><td>konntet</td><td>musstet</td><td>wolltet</td><td>durftet</td><td>solltet</td></tr>\n  <tr><td>sie/Sie</td><td>konnten</td><td>mussten</td><td>wollten</td><td>durften</td><td>sollten</td></tr>\n</table>\n\n<h3>📌 Примеры</h3>\n<ul>\n<li>Ich <strong>hatte</strong> einen Hund. — У меня была собака.</li>\n<li>Wir <strong>waren</strong> im Kino. — Мы были в кино.</li>\n<li>Er <strong>konnte</strong> gut singen. — Он умел хорошо петь.</li>\n<li>Ich <strong>musste</strong> früh aufstehen. — Я должен был рано встать.</li>\n</ul>",
+  "examples": [
+    {"de": "Ich hatte einen Bruder.", "ru": "У меня был брат."},
+    {"de": "Wir waren im Kino.", "ru": "Мы были в кино."},
+    {"de": "Er konnte Deutsch sprechen.", "ru": "Он мог говорить по-немецки."},
+    {"de": "Ich musste nach Hause gehen.", "ru": "Я должен был идти домой."},
+    {"de": "Sie wollte nicht kommen.", "ru": "Она не хотела приходить."}
+  ],
+  "exercises": [
+    {"type": "fill", "question": "Вставьте правильную форму:", "sentence": "Ich ___ (haben) einen Traum.", "answer": "hatte", "hint": "ich + haben в Präteritum = hatte"},
+    {"type": "fill", "question": "Вставьте правильную форму:", "sentence": "Du ___ (sein) sehr nett.", "answer": "warst", "hint": "du + sein в Präteritum = warst"},
+    {"type": "fill", "question": "Вставьте правильную форму:", "sentence": "Er ___ (können) gut singen.", "answer": "konnte", "hint": "er + können в Präteritum = konnte"},
+    {"type": "fill", "question": "Вставьте правильную форму:", "sentence": "Wir ___ (müssen) früh aufstehen.", "answer": "mussten", "hint": "wir + müssen в Präteritum = mussten"},
+    {"type": "fill", "question": "Вставьте правильную форму:", "sentence": "Sie (она) ___ (wollen) nach Berlin fahren.", "answer": "wollte", "hint": "sie + wollen в Präteritum = wollte"},
+    {"type": "choice", "question": "Выберите правильную форму:", "sentence": "Gestern ___ ich müde.", "options": ["bin", "war", "habe", "hatte"], "answer": "war", "hint": "sein в Präteritum = war"},
+    {"type": "choice", "question": "Выберите правильную форму:", "sentence": "___ du einen Hund?", "options": ["Hast", "Hattest", "Bist", "Warst"], "answer": "Hattest", "hint": "haben в Präteritum, вопрос = Hattest du?"},
+    {"type": "transform", "question": "Переделайте в Präteritum:", "sentence": "Ich habe einen Hund.", "answer": "Ich hatte einen Hund", "hint": "haben → hatte"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "У меня была собака.", "answer": "ich hatte einen hund", "hint": "haben в Präteritum = hatte"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Мы были в кино.", "answer": "wir waren im kino", "hint": "sein в Präteritum = waren"}
+  ]
+}
