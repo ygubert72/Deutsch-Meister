@@ -2,15 +2,90 @@
   "lesson": 6,
   "title": "Präpositionaladverbien (darüber, darauf, dazu...)",
   "level": "B1",
-  "theory": "<h3>📌 Что это?</h3>\n<p>Слова, заменяющие сочетание <strong>предлог + местоимение</strong>.</p>\n<p><strong>da + предлог</strong> — для вещей/ситуаций<br>\n<strong>wo + предлог</strong> — для вопросов</p>\n\n<h3>📌 Таблица</h3>\n<table border='1' cellpadding='8' style='border-collapse:collapse;width:100%;margin:15px 0;'>\n  <tr style='background:#3B6FE0;color:white'><th>Предлог</th><th>da-форма</th><th>wo-форма</th><th>Пример</th></tr>\n  <tr><td>auf</td><td>darauf</td><td>worauf</td><td>Ich warte darauf. / Worauf wartest du?</td></tr>\n  <tr style='background:#E3F2FD;'><td>an</td><td>daran</td><td>woran</td><td>Ich denke daran. / Woran denkst du?</td></tr>\n  <tr><td>über</td><td>darüber</td><td>worüber</td><td>Ich freue mich darüber. / Worüber freust du dich?</td></tr>\n  <tr style='background:#E3F2FD;'><td>mit</td><td>damit</td><td>womit</td><td>Ich beschäftige mich damit. / Womit beschäftigst du dich?</td></tr>\n  <tr><td>für</td><td>dafür</td><td>wofür</td><td>Ich interessiere mich dafür. / Wofür interessierst du dich?</td></td>\n</table>\n\n<h3>📌 Важно!</h3>\n<p>Используется ТОЛЬКО для вещей и ситуаций. Для людей используй <strong>mit ihm, auf sie</strong> и т.д.</p>",
+  "theory": "<h3>📌 Что такое Präpositionaladverbien?</h3>\n\n<p>Präpositionaladverbien — это слова, которые заменяют сочетание <strong>предлог + местоимение (es, das)</strong>.</p>\n\n<p>Они делают речь более гладкой и естественной. В русском языке им соответствуют слова «об этом», «с этим», «на это» и т.д.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 ФОРМУЛА:</strong><br>\n  <strong>da + предлог</strong> — для вещей/ситуаций (о ком? о чём?)<br>\n  <strong>wo + предлог</strong> — для вопросов (о ком? о чём?)\n</div>\n\n<p><strong>Важно:</strong> Используется ТОЛЬКО для неодушевлённых предметов и абстрактных понятий! Для людей используем <strong>mit ihm, auf sie</strong> и т.д.</p>\n\n<h3>📌 Таблица Präpositionaladverbien</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Предлог</th>\n    <th>da-форма (об этом)</th>\n    <th>wo-форма (о чём?)</th>\n    <th>Пример с da</th>\n    <th>Пример с wo</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>auf</strong></th>\n    <td>darauf</th>\n    <td>worauf</th>\n    <td>Ich warte <strong>darauf</strong>.</th>\n    <td><strong>Worauf</strong> wartest du?</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>an</strong></th>\n    <td>daran</th>\n    <td>woran</th>\n    <td>Ich denke <strong>daran</strong>.</th>\n    <td><strong>Woran</strong> denkst du?</th>\n   </td>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>über</strong></th>\n    <td>darüber</th>\n    <td>worüber</th>\n    <td>Ich freue mich <strong>darüber</strong>.</th>\n    <td><strong>Worüber</strong> freust du dich?</th>\n   </td>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>mit</strong></th>\n    <td>damit</th>\n    <td>womit</th>\n    <td>Ich beschäftige mich <strong>damit</strong>.</th>\n    <td><strong>Womit</strong> beschäftigst du dich?</th>\n   </td>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>für</strong></th>\n    <td>dafür</th>\n    <td>wofür</th>\n    <td>Ich interessiere mich <strong>dafür</strong>.</th>\n    <td><strong>Wofür</strong> interessierst du dich?</th>\n   </td>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>um</strong></th>\n    <td>darum</th>\n    <td>worum</th>\n    <td>Ich kümmere mich <strong>darum</strong>.</th>\n    <td><strong>Worum</strong> kümmerst du dich?</th>\n   </td>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>von</strong></th>\n    <td>davon</th>\n    <td>wovon</th>\n    <td>Ich träume <strong>davon</strong>.</th>\n    <td><strong>Wovon</strong> träumst du?</th>\n   </td>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>nach</strong></th>\n    <td>danach</th>\n    <td>wonach</th>\n    <td>Ich suche <strong>danach</strong>.</th>\n    <td><strong>Wonach</strong> suchst du?</th>\n   </td>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"5\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    da + предлог = об этом (darauf, daran, darüber, damit, dafür, darum, davon, danach)<br>\n    wo + предлог = о чём? (worauf, woran, worüber, womit, wofür, worum, wovon, wonach)\n   th>\n  </table>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ВАЖНЫЕ ИСКЛЮЧЕНИЯ:</strong><br>\n  • Предлоги, начинающиеся с гласной → <strong>wor-</strong> (wo + r + auf = worauf, wo + r + an = woran)<br>\n  • Только для НЕОДУШЕВЛЁННЫХ предметов! Для людей используем <strong>auf ihn, mit ihr</strong>.\n</div>\n\n<h3>📌 Примеры в предложениях</h3>\n\n<ul>\n<li>Ich habe lange <strong>darauf</strong> gewartet. — Я долго этого ждал.</li>\n<li><strong>Worauf</strong> wartest du? — Чего ты ждёшь?</li>\n<li>Ich denke oft <strong>daran</strong>. — Я часто думаю об этом.</li>\n<li><strong>Woran</strong> denkst du? — О чём ты думаешь?</li>\n<li>Wir haben <strong>darüber</strong> gesprochen. — Мы говорили об этом.</li>\n<li><strong>Worüber</strong> habt ihr gesprochen? — О чём вы говорили?</li>\n<li>Ich interessiere mich <strong>dafür</strong>. — Я интересуюсь этим.</li>\n<li><strong>Wofür</strong> interessierst du dich? — Чем ты интересуешься?</li>\n</ul>\n\n<h3>📖 Пошаговый алгоритм</h3>\n<ol>\n<li>Определи предлог, который требуется глаголом (warten auf, denken an, sich freuen über)</li>\n<li>Для утверждения: замени предлог + das/es на <strong>da + предлог</strong> (darauf, daran, darüber)</li>\n<li>Для вопроса: замени на <strong>wo + предлог</strong> (worauf, woran, worüber)</li>\n<li>Если предлог начинается с гласной (auf, an, über), добавляется r: worauf, woran, worüber</li>\n<li>Только для неодушевлённых предметов!</li>\n</ol>\n\n<h3>📌 Итог урока</h3>\n<ul>\n<li>Präpositionaladverbien = da/wo + предлог</li>\n<li>da-форма (утверждение), wo-форма (вопрос)</li>\n<li>Только для неодушевлённых предметов</li>\n<li>С гласной → wor- (worauf, woran, worüber)</li>\n</ul>",
   "examples": [
     {"de": "Ich warte darauf.", "ru": "Я жду этого."},
     {"de": "Worauf wartest du?", "ru": "Чего ты ждёшь?"},
-    {"de": "Ich freue mich darüber.", "ru": "Я радуюсь этому."}
+    {"de": "Ich denke daran.", "ru": "Я думаю об этом."},
+    {"de": "Woran denkst du?", "ru": "О чём ты думаешь?"},
+    {"de": "Ich freue mich darüber.", "ru": "Я радуюсь этому."},
+    {"de": "Worüber freust du dich?", "ru": "Чему ты радуешься?"},
+    {"de": "Ich interessiere mich dafür.", "ru": "Я интересуюсь этим."},
+    {"de": "Wofür interessierst du dich?", "ru": "Чем ты интересуешься?"},
+    {"de": "Ich kümmere mich darum.", "ru": "Я забочусь об этом."},
+    {"de": "Worum kümmerst du dich?", "ru": "О чём ты заботишься?"}
   ],
   "exercises": [
-    {"type": "fill", "question": "Вставьте da-форму:", "sentence": "Ich warte ___. (auf)", "answer": "darauf", "hint": "auf → darauf"},
-    {"type": "fill", "question": "Вставьте wo-форму:", "sentence": "___ wartest du? (auf)", "answer": "Worauf", "hint": "auf → worauf"},
-    {"type": "fill", "question": "Вставьте da-форму:", "sentence": "Ich denke ___. (an)", "answer": "daran", "hint": "an → daran"}
+    {
+      "type": "fill",
+      "question": "Образуйте da-форму от 'auf':",
+      "sentence": "Ich warte ___.",
+      "answer": "darauf",
+      "hint": "auf → darauf"
+    },
+    {
+      "type": "fill",
+      "question": "Образуйте wo-форму от 'auf':",
+      "sentence": "___ wartest du?",
+      "answer": "Worauf",
+      "hint": "auf → worauf"
+    },
+    {
+      "type": "fill",
+      "question": "Образуйте da-форму от 'an':",
+      "sentence": "Ich denke ___.",
+      "answer": "daran",
+      "hint": "an → daran"
+    },
+    {
+      "type": "fill",
+      "question": "Образуйте wo-форму от 'über':",
+      "sentence": "___ freust du dich?",
+      "answer": "Worüber",
+      "hint": "über → worüber"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму:",
+      "sentence": "Ich interessiere mich ___.",
+      "answer": "dafür",
+      "hint": "für → dafür"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму:",
+      "sentence": "___ interessierst du dich?",
+      "answer": "Wofür",
+      "hint": "für → wofür"
+    },
+    {
+      "type": "choice",
+      "question": "Выберите правильную форму:",
+      "sentence": "Ich warte schon lange ___.",
+      "options": ["daran", "darauf", "darüber"],
+      "answer": "darauf",
+      "hint": "warten auf → darauf"
+    },
+    {
+      "type": "transform",
+      "question": "Замените предлог + местоимение на Präpositionaladverb:",
+      "sentence": "Ich warte auf das.",
+      "answer": "Ich warte darauf",
+      "hint": "auf + das → darauf"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Я жду этого.",
+      "answer": "ich warte darauf",
+      "hint": "darauf"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "О чём ты думаешь?",
+      "answer": "woran denkst du",
+      "hint": "Woran denkst du?"
+    }
   ]
 }
