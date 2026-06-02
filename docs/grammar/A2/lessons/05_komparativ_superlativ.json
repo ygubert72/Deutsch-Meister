@@ -1,23 +1,125 @@
 {
   "lesson": 5,
-  "title": "Сравнительная и превосходная степень",
+  "title": "Сравнительная и превосходная степень (Komparativ und Superlativ)",
   "level": "A2",
-  "theory": "<h3>📌 Степени сравнения</h3>\n\n<p><strong>Положительная (Positiv):</strong> schnell, groß, gut</p>\n<p><strong>Сравнительная (Komparativ):</strong> + er, часто с умлаутом: schnell<strong>er</strong>, groß<strong>er</strong>, <strong>besser</strong></p>\n<p><strong>Превосходная (Superlativ):</strong> am + -sten или der/die/das + -ste</p>\n\n<table border='1' cellpadding='10' style='border-collapse:collapse;width:100%;margin:15px 0;'>\n  <tr style='background:#3B6FE0;color:white'><th>Positiv</th><th>Komparativ</th><th>Superlativ</th><th>Перевод</th></tr>\n  <tr><td>schnell</td><td>schneller</td><td>am schnellsten / der schnellste</td><td>быстрый → быстрее → самый быстрый</td></tr>\n  <tr><td>groß</td><td>größer</td><td>am größten / der größte</td><td>большой → больше → самый большой</td></tr>\n  <tr><td>gut</td><td>besser</td><td>am besten / der beste</td><td>хороший → лучше → самый лучший</td></tr>\n  <tr><td>gern</td><td>lieber</td><td>am liebsten</td><td>охотно → охотнее → охотнее всего</td></tr>\n  <tr><td>viel</td><td>mehr</td><td>am meisten</td><td>много → больше → больше всего</td></tr>\n</table>\n\n<h3>📌 Примеры</h3>\n<ul>\n<li>Mein Bruder ist <strong>älter</strong> als ich.</li>\n<li>Das ist das <strong>beste</strong> Restaurant der Stadt.</li>\n<li>Sie läuft <strong>am schnellsten</strong>.</li>\n</ul>",
+  "theory": "<h3>📌 Что такое степени сравнения?</h3>\n\n<p>Степени сравнения используются, чтобы сравнивать предметы или людей:</p>\n<ul>\n<li><strong>Положительная (Positiv):</strong> schnell (быстрый)</li>\n<li><strong>Сравнительная (Komparativ):</strong> schneller (быстрее)</li>\n<li><strong>Превосходная (Superlativ):</strong> am schnellsten / der schnellste (самый быстрый / быстрее всего)</li>\n</ul>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 ГЛАВНОЕ ПРАВИЛО:</strong><br>\n  Komparativ = Positiv + <strong>er</strong><br>\n  Superlativ = am + Positiv + <strong>sten</strong> ИЛИ der/die/das + Positiv + <strong>ste</strong>\n</div>\n\n<h3>📌 Образование сравнительной степени (Komparativ)</h3>\n\n<p>Обычно добавляется окончание <strong>-er</strong>. Прилагательные с корневыми гласными a, o, u часто получают умлаут (ä, ö, ü).</p>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Positiv</th>\n    <th>Komparativ</th>\n    <th>Перевод</th>\n    <th>Умлаут?</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>schnell (быстрый)</th>\n    <td>schneller</th>\n    <td>быстрее</th>\n    <td>нет</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>lang (длинный)</th>\n    <td>länger</th>\n    <td>длиннее</th>\n    <td>a → ä</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>groß (большой)</th>\n    <td>größer</th>\n    <td>больше</th>\n    <td>o → ö</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>klug (умный)</th>\n    <td>klüger</th>\n    <td>умнее</th>\n    <td>u → ü</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>warm (тёплый)</th>\n    <td>wärmer</th>\n    <td>теплее</th>\n    <td>a → ä</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>kalt (холодный)</th>\n    <td>kälter</th>\n    <td>холоднее</th>\n    <td>a → ä</th>\n   </tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"4\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    Односложные прилагательные с a, o, u → умлаут!</th>\n  </tr>\n<table>\n\n<h3>📌 Исключения (неправильные формы)</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Positiv</th>\n    <th>Komparativ</th>\n    <th>Superlativ</th>\n    <th>Перевод</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>gut</th>\n    <td>besser</th>\n    <td>am besten / der beste</th>\n    <td>хороший → лучше → самый лучший</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>gern</th>\n    <td>lieber</th>\n    <td>am liebsten</th>\n    <td>охотно → охотнее → охотнее всего</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>viel</th>\n    <td>mehr</th>\n    <td>am meisten</th>\n    <td>много → больше → больше всего</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>hoch</th>\n    <td>höher</th>\n    <td>am höchsten / der höchste</th>\n    <td>высокий → выше → самый высокий</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>nah</th>\n    <td>näher</th>\n    <td>am nächsten / der nächste</th>\n    <td>близкий → ближе → самый близкий</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>gern</th>\n    <td>lieber</th>\n    <td>am liebsten</th>\n    <td>охотно → охотнее → охотнее всего</th>\n   </tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"4\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    gut → besser, viel → mehr, gern → lieber, hoch → höher</th>\n  </tr>\n\n<h3>📌 Превосходная степень (Superlativ)</h3>\n\n<p>Есть две формы превосходной степени:</p>\n<ul>\n<li><strong>am + -sten</strong> — используется как обстоятельство (как?)</li>\n<li><strong>der/die/das + -ste</strong> — используется как определение (какой?)</li>\n</ul>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Тип</th>\n    <th>Форма</th>\n    <th>Пример</th>\n    <th>Перевод</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>обстоятельство</th>\n    <td>am + -sten</th>\n    <td>Sie läuft <strong>am schnellsten</strong>.</th>\n    <td>Она бегает быстрее всех.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>определение</th>\n    <td>der/die/das + -ste</th>\n    <td>Das ist <strong>der schnellste</strong> Läufer.</th>\n    <td>Это самый быстрый бегун.</th>\n   </tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"4\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    am -sten = как? (наречие)<br>\n    der/die/das -ste = какой? (прилагательное)</th>\n  </tr>\n\n<h3>📌 Сравнение с als</h3>\n\n<p>В сравнительной степени используется союз <strong>als</strong> (чем).</p>\n<ul>\n<li>Mein Hund ist <strong>schneller als</strong> deiner. (Моя собака быстрее, чем твоя.)</li>\n<li>Ich bin <strong>älter als</strong> du. (Я старше тебя.)</li>\n<li>Heute ist es <strong>wärmer als</strong> gestern. (Сегодня теплее, чем вчера.)</li>\n</ul>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ТИПИЧНЫЕ ОШИБКИ:</strong><br>\n  ❌ Ich bin <strong>älter wie</strong> du.<br>\n  ✅ Ich bin <strong>älter als</strong> du.<br>\n  <br>\n  ❌ Das ist der <strong>am schnellste</strong> Läufer.<br>\n  ✅ Das ist <strong>der schnellste</strong> Läufer.\n</div>\n\n<h3>📖 Пошаговый алгоритм</h3>\n<ol>\n<li>Определи, какую степень нужно использовать (сравнение или превосходство)</li>\n<li>Для сравнительной: добавь -er (и умлаут для a, o, u)</li>\n<li>Для превосходной: выбери am + -sten (как?) или der/die/das + -ste (какой?)</li>\n<li>При сравнении используй als</li>\n</ol>\n\n<h3>📌 Итог урока</h3>\n<ul>\n<li>Komparativ = Positiv + er (часто с умлаутом)</li>\n<li>Superlativ = am + -sten ИЛИ der/die/das + -ste</li>\n<li>Исключения: gut → besser, gern → lieber, viel → mehr, hoch → höher</li>\n<li>Сравнение: als (чем)</li>\n</ul>",
   "examples": [
-    {"de": "Mein Hund ist schneller als deiner.", "ru": "Моя собака быстрее, чем твоя."},
-    {"de": "Das ist das größte Haus hier.", "ru": "Это самый большой дом здесь."},
-    {"de": "Sie kocht am besten in der Familie.", "ru": "Она готовит лучше всех в семье."}
+    {"de": "Mein Auto ist schneller als deins.", "ru": "Моя машина быстрее, чем твоя."},
+    {"de": "Das ist das größte Haus in der Stadt.", "ru": "Это самый большой дом в городе."},
+    {"de": "Sie kocht am besten in der Familie.", "ru": "Она готовит лучше всех в семье."},
+    {"de": "Ich trinke lieber Tee als Kaffee.", "ru": "Я пью чай охотнее, чем кофе."},
+    {"de": "Dieser Berg ist höher als jener.", "ru": "Эта гора выше, чем та."},
+    {"de": "Heute ist es wärmer als gestern.", "ru": "Сегодня теплее, чем вчера."},
+    {"de": "Das ist die schönste Blume im Garten.", "ru": "Это самый красивый цветок в саду."},
+    {"de": "Er läuft am schnellsten.", "ru": "Он бегает быстрее всех."}
   ],
   "exercises": [
-    {"type": "fill", "question": "Образуйте сравнительную степень:", "sentence": "schnell → ___", "answer": "schneller", "hint": "-er"},
-    {"type": "fill", "question": "Образуйте сравнительную степень:", "sentence": "groß → ___", "answer": "größer", "hint": "умлаут + -er"},
-    {"type": "fill", "question": "Образуйте превосходную степень:", "sentence": "schnell → am ___", "answer": "schnellsten", "hint": "am + -sten"},
-    {"type": "fill", "question": "Вставьте сравнительную степень:", "sentence": "Mein Auto ist ___ (schnell) als deins.", "answer": "schneller", "hint": "schnell → schneller"},
-    {"type": "fill", "question": "Вставьте превосходную степень:", "sentence": "Das ist das ___ (groß) Haus.", "answer": "größte", "hint": "groß → größte"},
-    {"type": "fill", "question": "Вставьте правильную форму (исключение):", "sentence": "Sie singt ___ (gut) als ich.", "answer": "besser", "hint": "gut → besser"},
-    {"type": "choice", "question": "Выберите правильную форму:", "sentence": "Ich mag Schokolade ___ als Kuchen.", "options": ["gern", "lieber", "am liebsten"], "answer": "lieber", "hint": "gern → lieber в сравнении"},
-    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Моя машина быстрее, чем твоя.", "answer": "mein auto ist schneller als deins", "hint": "schneller als"},
-    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Это самый большой дом.", "answer": "das ist das größte haus", "hint": "der größte"},
-    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Она готовит лучше всех.", "answer": "sie kocht am besten", "hint": "am besten"}
+    {
+      "type": "fill",
+      "question": "Образуйте сравнительную степень:",
+      "sentence": "schnell → ___",
+      "answer": "schneller",
+      "hint": "Positiv + er = schneller"
+    },
+    {
+      "type": "fill",
+      "question": "Образуйте сравнительную степень с умлаутом:",
+      "sentence": "groß → ___",
+      "answer": "größer",
+      "hint": "o → ö + er = größer"
+    },
+    {
+      "type": "fill",
+      "question": "Образуйте сравнительную степень:",
+      "sentence": "warm → ___",
+      "answer": "wärmer",
+      "hint": "a → ä + er = wärmer"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму (исключение):",
+      "sentence": "gut → ___",
+      "answer": "besser",
+      "hint": "gut → besser"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму (исключение):",
+      "sentence": "viel → ___",
+      "answer": "mehr",
+      "hint": "viel → mehr"
+    },
+    {
+      "type": "fill",
+      "question": "Образуйте превосходную степень (am + -sten):",
+      "sentence": "schnell → am ___",
+      "answer": "schnellsten",
+      "hint": "am + schnell + sten"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте сравнительную степень:",
+      "sentence": "Mein Auto ist ___ (schnell) als deins.",
+      "answer": "schneller",
+      "hint": "schnell → schneller"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте превосходную степень:",
+      "sentence": "Das ist das ___ (groß) Haus.",
+      "answer": "größte",
+      "hint": "groß → größte"
+    },
+    {
+      "type": "choice",
+      "question": "Выберите правильную форму:",
+      "sentence": "Sie singt ___ als ich.",
+      "options": ["gut", "besser", "am besten"],
+      "answer": "besser",
+      "hint": "сравнение → besser"
+    },
+    {
+      "type": "choice",
+      "question": "Выберите правильную форму:",
+      "sentence": "Er läuft ___ im Team.",
+      "options": ["schnell", "schneller", "am schnellsten"],
+      "answer": "am schnellsten",
+      "hint": "превосходная степень как обстоятельство → am schnellsten"
+    },
+    {
+      "type": "transform",
+      "question": "Переделайте предложение, используя сравнительную степень:",
+      "sentence": "Mein Hund ist schnell. Dein Hund ist langsam.",
+      "answer": "Mein Hund ist schneller als dein Hund",
+      "hint": "schnell → schneller, чем = als"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Моя машина быстрее, чем твоя.",
+      "answer": "mein auto ist schneller als deins",
+      "hint": "schneller als"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Это самый большой дом.",
+      "answer": "das ist das größte haus",
+      "hint": "der/die/das + -ste"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Она готовит лучше всех.",
+      "answer": "sie kocht am besten",
+      "hint": "am besten"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Я пью чай охотнее, чем кофе.",
+      "answer": "ich trinke lieber tee als kaffee",
+      "hint": "gern → lieber"
+    }
   ]
 }
