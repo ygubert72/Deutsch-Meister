@@ -1,0 +1,16 @@
+{
+  "lesson": 5,
+  "title": "Nomen-Verb-Verbindungen (функциональные глаголы)",
+  "level": "B1",
+  "theory": "<h3>📌 Что это?</h3>\n<p>Сочетания существительного с глаголом, которые вместе имеют значение одного глагола.</p>\n\n<h3>📌 Самые важные</h3>\n<ul>\n<li><strong>Abschied nehmen</strong> — прощаться (sich verabschieden)</li>\n<li><strong>Antwort geben</strong> — отвечать (antworten)</li>\n<li><strong>Bescheid sagen</strong> — сообщать (mitteilen)</li>\n<li><strong>Entscheidung treffen</strong> — решать (entscheiden)</li>\n<li><strong>Einfluss haben</strong> — влиять (beeinflussen)</li>\n<li><strong>Frage stellen</strong> — спрашивать (fragen)</li>\n<li><strong>Rat geben</strong> — советовать (raten)</li>\n<li><strong>Unterricht nehmen</strong> — заниматься (lernen)</li>\n<li><strong>Verantwortung tragen</strong> — отвечать (verantworten)</li>\n<li><strong>Zustimmung finden</strong> — получать согласие</li>\n</ul>",
+  "examples": [
+    {"de": "Er nimmt Abschied.", "ru": "Он прощается."},
+    {"de": "Sie gibt keine Antwort.", "ru": "Она не отвечает."},
+    {"de": "Das hat großen Einfluss.", "ru": "Это имеет большое влияние."}
+  ],
+  "exercises": [
+    {"type": "fill", "question": "Вставьте глагол:", "sentence": "Er ___ Abschied. (nehmen/geben/treffen)", "answer": "nimmt", "hint": "Abschied nehmen"},
+    {"type": "fill", "question": "Вставьте глагол:", "sentence": "Sie ___ keine Antwort. (gibt/stellt/nimmt)", "answer": "gibt", "hint": "Antwort geben"},
+    {"type": "fill", "question": "Переведите:", "sentence": "Он прощается.", "answer": "er nimmt abschied", "hint": "Abschied nehmen"}
+  ]
+}
