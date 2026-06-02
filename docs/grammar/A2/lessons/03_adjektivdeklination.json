@@ -1,0 +1,24 @@
+{
+  "lesson": 3,
+  "title": "Склонение прилагательных",
+  "level": "A2",
+  "theory": "<h3>📌 Что такое склонение прилагательных?</h3>\n<p>Прилагательные в немецком языке меняют окончание, когда стоят <strong>перед существительным</strong>.</p>\n\n<div class='info-box' style='background:#E8F0FE;padding:15px;border-radius:12px;margin:15px 0;'>\n  <strong>🎯 ГЛАВНОЕ ПРАВИЛО:</strong><br>\n  Окончание зависит от:<br>\n  1) рода и падежа существительного<br>\n  2) типа артикля (определённый, неопределённый, нулевой)\n</div>\n\n<h3>📌 С определённым артиклем (der, die, das, die)</h3>\n<p>Окончание <strong>-e</strong> в Nominativ (кроме мн.ч. → -en) и <strong>-en</strong> во всех остальных падежах.</p>\n<table border='1' cellpadding='8' style='border-collapse:collapse;width:100%;margin:10px 0;'>\n  <tr style='background:#3B6FE0;color:white'><th>Падеж</th><th>Муж. род</th><th>Жен. род</th><th>Ср. род</th><th>Множ. ч.</th></tr>\n  <tr><td>Nom.</td><td>der <strong>gute</strong> Mann</td><td>die <strong>gute</strong> Frau</td><td>das <strong>gute</strong> Kind</td><td>die <strong>guten</strong> Leute</td></tr>\n  <tr><td>Akk.</td><td>den <strong>guten</strong> Mann</td><td>die <strong>gute</strong> Frau</td><td>das <strong>gute</strong> Kind</td><td>die <strong>guten</strong> Leute</td></tr>\n  <tr><td>Dat.</td><td>dem <strong>guten</strong> Mann</td><td>der <strong>guten</strong> Frau</td><td>dem <strong>guten</strong> Kind</td><td>den <strong>guten</strong> Leuten</td></tr>\n</table>\n\n<h3>📌 С неопределённым артиклем (ein, eine, ein)</h3>\n<p>Окончание <strong>-er, -e, -es</strong> в Nominativ, в остальных падежах — <strong>-en</strong>.</p>\n\n<h3>📌 Без артикля (нулевой артикль)</h3>\n<p>Прилагательное берёт на себя окончание артикля: <em>guter Wein, gute Milch, gutes Brot</em></p>",
+  "examples": [
+    {"de": "der große Hund", "ru": "большая собака"},
+    {"de": "eine schöne Blume", "ru": "красивый цветок"},
+    {"de": "kaltes Wasser", "ru": "холодная вода"},
+    {"de": "mit freundlichen Grüßen", "ru": "с дружескими пожеланиями"}
+  ],
+  "exercises": [
+    {"type": "fill", "question": "Вставьте окончание:", "sentence": "der ___ (groß) Mann", "answer": "große", "hint": "определённый артикль, Nom. → -e"},
+    {"type": "fill", "question": "Вставьте окончание:", "sentence": "ein ___ (klein) Kind", "answer": "kleines", "hint": "неопр. артикль, Nom., ср. род → -es"},
+    {"type": "fill", "question": "Вставьте окончание:", "sentence": "die ___ (schön) Frau", "answer": "schöne", "hint": "опр. артикль, Nom. → -e"},
+    {"type": "fill", "question": "Вставьте окончание:", "sentence": "mit ___ (freundlich) Grüßen", "answer": "freundlichen", "hint": "Dat., мн. ч. → -en"},
+    {"type": "fill", "question": "Вставьте окончание:", "sentence": "ein ___ (interessant) Buch", "answer": "interessantes", "hint": "неопр. артикль, Nom., ср. род → -es"},
+    {"type": "fill", "question": "Вставьте окончание:", "sentence": "den ___ (alt) Mann", "answer": "alten", "hint": "опр. артикль, Akk. → -en"},
+    {"type": "fill", "question": "Вставьте окончание:", "sentence": "___ (gut) Wein", "answer": "Guter", "hint": "без артикля, Nom., муж. род → -er"},
+    {"type": "choice", "question": "Выберите правильное окончание:", "sentence": "Ich sehe den ___ Hund.", "options": ["groß", "große", "großen"], "answer": "großen", "hint": "Akk., муж. род, опр. артикль → -en"},
+    {"type": "choice", "question": "Выберите правильное окончание:", "sentence": "Das ist ein ___ Buch.", "options": ["gut", "gute", "gutes"], "answer": "gutes", "hint": "ср. род, неопр. артикль → -es"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "хорошее вино", "answer": "guter wein", "hint": "gut + Wein, муж. род → guter Wein"}
+  ]
+}
