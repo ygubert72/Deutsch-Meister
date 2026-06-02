@@ -1,14 +1,86 @@
 {
   "lesson": 8,
-  "title": "Alle Konnektoren — союзы и связки",
+  "title": "Konnektoren — двойные союзы",
   "level": "B1",
-  "theory": "<h3>📌 Союзы без изменения порядка слов</h3>\n<p><strong>und, aber, denn, sondern, oder</strong> — глагол на втором месте.</p>\n<p>Ich lerne Deutsch, <strong>denn</strong> ich will in Deutschland arbeiten.</p>\n\n<h3>📌 Союзы с глаголом в конце</h3>\n<p><strong>weil, dass, ob, wenn, als, während, bevor, nachdem, bis, seitdem, sobald, damit</strong></p>\n<p>Ich bleibe zu Hause, <strong>weil</strong> es regnet.</p>\n\n<h3>📌 Двойные союзы B1</h3>\n<ul>\n<li><strong>zwar...aber</strong> — хотя...но (Zwar ist er jung, aber er ist klug.)</li>\n<li><strong>nicht nur...sondern auch</strong> — не только...но и (Er spricht nicht nur Deutsch, sondern auch Englisch.)</li>\n<li><strong>entweder...oder</strong> — либо...либо (Entweder du kommst, oder ich gehe.)</li>\n<li><strong>weder...noch</strong> — ни...ни (Er spricht weder Deutsch noch Englisch.)</li>\n<li><strong>sowohl...als auch</strong> — как...так и (Er spricht sowohl Deutsch als auch Englisch.)</li>\n</ul>",
+  "theory": "<h3>📌 Что такое двойные союзы?</h3>\n\n<p>Двойные союзы (Doppelkonjunktionen) соединяют два предложения или члена предложения, выражая определённые логические отношения.</p>\n\n<p>На уровне B1 важно знать 5 основных двойных союзов.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 ВАЖНО:</strong><br>\n  В отличие от обычных союзов, двойные союзы могут соединять как целые предложения, так и отдельные члены предложения.\n</div>\n\n<h3>📌 5 главных двойных союзов</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Союз</th>\n    <th>Значение</th>\n    <th>Порядок слов</th>\n    <th>Пример</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>nicht nur...sondern auch</strong></th>\n    <td>не только...но и</th>\n    <td>нормальный порядок</th>\n    <td>Er spricht <strong>nicht nur</strong> Deutsch, <strong>sondern auch</strong> Englisch.</th>\n    </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>zwar...aber</strong></th>\n    <td>хотя...но</th>\n    <td>нормальный порядок</th>\n    <td><strong>Zwar</strong> ist er jung, <strong>aber</strong> er ist klug.</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>entweder...oder</strong></th>\n    <td>либо...либо</th>\n    <td>нормальный порядок</th>\n    <td><strong>Entweder</strong> du kommst, <strong>oder</strong> ich gehe.</th>\n    </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>weder...noch</strong></th>\n    <td>ни...ни</th>\n    <td>нормальный порядок</th>\n    <td>Er spricht <strong>weder</strong> Deutsch <strong>noch</strong> Englisch.</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>sowohl...als auch</strong></th>\n    <td>как...так и</th>\n    <td>нормальный порядок</th>\n    <td>Er spricht <strong>sowohl</strong> Deutsch <strong>als auch</strong> Englisch.</th>\n    </tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"4\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    nicht nur...sondern auch — не только...но и<br>\n    zwar...aber — хотя...но<br>\n    entweder...oder — либо...либо<br>\n    weder...noch — ни...ни<br>\n    sowohl...als auch — как...так и\n    </th>\n   </tr>\n\n<h3>📌 Подробное объяснение каждого союза</h3>\n\n<p><strong>1. nicht nur...sondern auch (не только...но и)</strong></p>\n<ul>\n<li>Употребляется для перечисления двух фактов</li>\n<li>Er ist <strong>nicht nur</strong> intelligent, <strong>sondern auch</strong> fleißig. — Он не только умный, но и старательный.</li>\n</ul>\n\n<p><strong>2. zwar...aber (хотя...но)</strong></p>\n<ul>\n<li>Выражает противоречие или уступку</li>\n<li>Wenn zwar стоит в начале предложения, глагол идёт сразу за ним (инверсия)</li>\n<li><strong>Zwar</strong> ist das Wetter schlecht, <strong>aber</strong> wir gehen spazieren. — Хотя погода плохая, мы идём гулять.</li>\n</ul>\n\n<p><strong>3. entweder...oder (либо...либо)</strong></p>\n<ul>\n<li>Выражает альтернативу (выбор между двумя вариантами)</li>\n<li><strong>Entweder</strong> du hilfst mir, <strong>oder</strong> ich mache es alleine. — Либо ты мне поможешь, либо я сделаю это сам.</li>\n</ul>\n\n<p><strong>4. weder...noch (ни...ни)</strong></p>\n<ul>\n<li>Отрицает оба варианта</li>\n<li>Глагол стоит в утвердительной форме, но значение отрицательное</li>\n<li>Er trinkt <strong>weder</strong> Kaffee <strong>noch</strong> Tee. — Он не пьёт ни кофе, ни чай.</li>\n</ul>\n\n<p><strong>5. sowohl...als auch (как...так и)</strong></p>\n<ul>\n<li>Подчёркивает, что оба варианта верны</li>\n<li>Sie spricht <strong>sowohl</strong> Deutsch <strong>als auch</strong> Französisch. — Она говорит как по-немецки, так и по-французски.</li>\n</ul>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ТИПИЧНЫЕ ОШИБКИ:</strong><br>\n  ❌ Er spricht <strong>nicht nur</strong> Deutsch, <strong>aber auch</strong> Englisch.<br>\n  ✅ Er spricht <strong>nicht nur</strong> Deutsch, <strong>sondern auch</strong> Englisch.<br>\n  <br>\n  ❌ Er spricht <strong>weder</strong> Deutsch <strong>und auch nicht</strong> Englisch.<br>\n  ✅ Er spricht <strong>weder</strong> Deutsch <strong>noch</strong> Englisch.\n</div>\n\n<h3>📖 Пошаговый алгоритм</h3>\n<ol>\n<li>Определи логическое отношение между двумя частями (противопоставление, альтернатива, перечисление)</li>\n<li>Выбери подходящий двойной союз</li>\n<li>Порядок слов в каждом предложении обычно обычный (кроме zwar...aber — после zwar инверсия)</li>\n<li>Если соединяются глаголы, второй идёт в конце</li>\n</ol>\n\n<h3>📌 Итог урока</h3>\n<ul>\n<li><strong>nicht nur...sondern auch</strong> — не только...но и</li>\n<li><strong>zwar...aber</strong> — хотя...но (после zwar инверсия)</li>\n<li><strong>entweder...oder</strong> — либо...либо</li>\n<li><strong>weder...noch</strong> — ни...ни</li>\n<li><strong>sowohl...als auch</strong> — как...так и</li>\n</ul>",
   "examples": [
+    {"de": "Er spricht nicht nur Deutsch, sondern auch Englisch.", "ru": "Он говорит не только по-немецки, но и по-английски."},
     {"de": "Zwar ist er jung, aber er ist klug.", "ru": "Хотя он молод, но он умён."},
-    {"de": "Er spricht nicht nur Deutsch, sondern auch Englisch.", "ru": "Он говорит не только по-немецки, но и по-английски."}
+    {"de": "Entweder du kommst, oder ich gehe.", "ru": "Либо ты придёшь, либо я уйду."},
+    {"de": "Er spricht weder Deutsch noch Englisch.", "ru": "Он не говорит ни по-немецки, ни по-английски."},
+    {"de": "Er spricht sowohl Deutsch als auch Englisch.", "ru": "Он говорит как по-немецки, так и по-английски."}
   ],
   "exercises": [
-    {"type": "fill", "question": "Вставьте двойной союз:", "sentence": "Er spricht ___ Deutsch, ___ auch Englisch. (не только...но и)", "answer": "nicht nur sondern", "hint": "nicht nur...sondern auch"},
-    {"type": "fill", "question": "Вставьте двойной союз:", "sentence": "___ ist er jung, ___ er ist klug. (хотя...но)", "answer": "Zwar aber", "hint": "zwar...aber"}
+    {
+      "type": "fill",
+      "question": "Вставьте правильный двойной союз (nicht nur...sondern auch / zwar...aber):",
+      "sentence": "Er spricht ___ Deutsch, ___ Englisch.",
+      "answer": "nicht nur sondern auch",
+      "hint": "не только...но и → nicht nur...sondern auch"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильный двойной союз:",
+      "sentence": "___ ist er jung, ___ er ist klug.",
+      "answer": "Zwar aber",
+      "hint": "хотя...но → zwar...aber"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильный двойной союз:",
+      "sentence": "___ du kommst, ___ ich gehe.",
+      "answer": "Entweder oder",
+      "hint": "либо...либо → entweder...oder"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильный двойной союз:",
+      "sentence": "Er spricht ___ Deutsch ___ Englisch. (он не говорит ни на одном языке)",
+      "answer": "weder noch",
+      "hint": "ни...ни → weder...noch"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильный двойной союз:",
+      "sentence": "Er spricht ___ Deutsch ___ Englisch. (он говорит на обоих языках)",
+      "answer": "sowohl als auch",
+      "hint": "как...так и → sowohl...als auch"
+    },
+    {
+      "type": "choice",
+      "question": "Выберите правильный союз:",
+      "sentence": "Er ist ___ intelligent, ___ fleißig.",
+      "options": ["nicht nur...sondern auch", "zwar...aber", "entweder...oder"],
+      "answer": "nicht nur sondern auch",
+      "hint": "не только...но и"
+    },
+    {
+      "type": "transform",
+      "question": "Составьте предложение с 'zwar...aber':",
+      "sentence": "Er ist jung. Er ist klug.",
+      "answer": "Zwar ist er jung, aber er ist klug",
+      "hint": "zwar на первом месте, после него глагол"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Он говорит не только по-немецки, но и по-английски.",
+      "answer": "er spricht nicht nur deutsch sondern auch englisch",
+      "hint": "nicht nur...sondern auch"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Он не говорит ни по-немецки, ни по-английски.",
+      "answer": "er spricht weder deutsch noch englisch",
+      "hint": "weder...noch"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Хотя он молод, он умён.",
+      "answer": "zwar ist er jung aber er ist klug",
+      "hint": "zwar...aber"
+    }
   ]
 }
