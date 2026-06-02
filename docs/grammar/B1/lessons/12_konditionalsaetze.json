@@ -2,85 +2,24 @@
   "lesson": 12,
   "title": "Konditionalsätze — условные придаточные (wenn, falls, vorausgesetzt dass)",
   "level": "B1",
-  "theory": "<h3>📌 Что такое условные предложения?</h3>\n\n<p>Условные предложения (Konditionalsätze) выражают условие: если А, то Б. Они отвечают на вопрос <strong>Unter welcher Bedingung?</strong> (При каком условии?).</p>\n\n<p>На уровне B1 нужно знать три типа условных предложений.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 ГЛАВНОЕ ПРАВИЛО:</strong><br>\n  В условном придаточном <strong>глагол уходит в конец</strong>!\n</div>\n\n<h3>📌 Союзы условия</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Союз</th>\n    <th>Значение</th>\n    <th>Когда использовать</th>\n    <th>Пример</th>\n    <tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>wenn</strong></th>\n    <td>если</th>\n    <td>реальное условие (настоящее, будущее)</th>\n    <td>Wenn ich Zeit habe, lerne ich Deutsch.</th>\n   </td>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>falls</strong></th>\n    <td>если (в случае если)</th>\n    <td>более неопределённое условие</th>\n    <td>Falls es regnet, bleiben wir zu Hause.</th>\n   </td>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>vorausgesetzt dass</strong></th>\n    <td>при условии что</th>\n    <td>высокая степень уверенности</th>\n    <td>Ich komme, vorausgesetzt dass ich Zeit habe.</th>\n   </td>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"4\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    wenn = если (обычное условие)<br>\n    falls = если (менее вероятно)<br>\n    vorausgesetzt dass = при условии что\n   </th>\n  </tr>\n\n<h3>📌 Типы условных предложений</h3>\n\n<p><strong>1. Реальное условие (настоящее/будущее) — Indikativ</strong></p>\n<ul>\n<li>Wenn ich Zeit <strong>habe</strong>, <strong>lerne</strong> ich Deutsch.</li>\n<li>Falls es <strong>regnet</strong>, <strong>bleiben</strong> wir zu Hause.</li>\n</ul>\n\n<p><strong>2. Нереальное условие (настоящее/будущее) — Konjunktiv II</strong></p>\n<ul>\n<li>Wenn ich Zeit <strong>hätte</strong>, <strong>würde</strong> ich kommen.</li>\n<li>Falls er <strong>käme</strong>, <strong>würde</strong> ich mich freuen.</li>\n</ul>\n\n<p><strong>3. Нереальное условие (прошлое) — Plusquamperfekt Konjunktiv II</strong></p>\n<ul>\n<li>Wenn ich Zeit <strong>gehabt hätte</strong>, <strong>wäre</strong> ich gekommen.</li>\n<li>Falls er früher <strong>aufgestanden wäre</strong>, <strong>hätte</strong> er den Zug nicht verpasst.</li>\n</ul>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ТИПИЧНЫЕ ОШИБКИ:</strong><br>\n  ❌ Wenn ich Zeit <strong>habe</strong>, <strong>würde</strong> ich kommen.<br>\n  ✅ Wenn ich Zeit <strong>hätte</strong>, <strong>würde</strong> ich kommen.<br>\n  <br>\n  ❌ Wenn ich Zeit <strong>hatte</strong>, <strong>würde</strong> ich kommen.<br>\n  ✅ Wenn ich Zeit <strong>hätte</strong>, <strong>würde</strong> ich kommen.\n</div>\n\n<h3>📌 Порядок слов в условных предложениях</h3>\n\n<p>Придаточное может стоять перед главным или после него:</p>\n<ul>\n<li><strong>Wenn ich Zeit habe</strong>, lerne ich Deutsch. (запятая после придаточного)</li>\n<li>Ich lerne Deutsch, <strong>wenn ich Zeit habe</strong>. (запятая перед придаточным)</li>\n</ul>\n\n<p>В главном предложении глагол стоит на 2-м месте.</p>\n\n<h3>📖 Пошаговый алгоритм</h3>\n<ol>\n<li>Определи тип условия (реальное / нереальное)</li>\n<li>Выбери союз (wenn / falls / vorausgesetzt dass)</li>\n<li>Для реального условия: Indikativ в обеих частях</li>\n<li>Для нереального (настоящее): Konjunktiv II в придаточном, würde + Infinitiv в главном</li>\n<li>Для нереального (прошлое): Plusquamperfekt Konjunktiv II в обеих частях</li>\n<li>Поставь глагол в конец придаточного</li>\n</ol>\n\n<h3>📌 Итог урока</h3>\n<ul>\n<li><strong>wenn</strong> — если (обычное условие)</li>\n<li><strong>falls</strong> — если (менее вероятно)</li>\n<li><strong>vorausgesetzt dass</strong> — при условии что</li>\n<li>В придаточном глагол в конце</li>\n<li>Нереальные условия: Konjunktiv II или würde + Infinitiv</li>\n</ul>",
+  "theory": "<h3>📌 Что такое условные предложения?</h3>\n\n<p>Условные предложения (Konditionalsätze) выражают условие: если А, то Б. Они отвечают на вопрос <strong>Unter welcher Bedingung?</strong> (При каком условии?).</p>\n\n<p>На уровне B1 нужно знать три типа условных предложений и три основных союза.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 ГЛАВНОЕ ПРАВИЛО:</strong><br>\n  В условном придаточном <strong>глагол уходит в конец</strong>!\n</div>\n\n<h3>📌 Союзы условия</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Союз</th>\n    <th>Значение</th>\n    <th>Когда использовать</th>\n    <th>Пример</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>wenn</strong></th>\n    <td>если</th>\n    <td>реальное условие (настоящее, будущее)</th>\n    <td>Wenn ich Zeit habe, lerne ich Deutsch.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>falls</strong></th>\n    <td>если (в случае если)</th>\n    <td>более неопределённое условие</th>\n    <td>Falls es regnet, bleiben wir zu Hause.</th>\n   </td>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>vorausgesetzt dass</strong></th>\n    <td>при условии что</th>\n    <td>высокая степень уверенности</th>\n    <td>Ich komme, vorausgesetzt dass ich Zeit habe.</th>\n   </tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"4\"><strong>💡 ЗАПОМИНАЛКА:</strong> wenn = если (обычное условие) | falls = если (менее вероятно) | vorausgesetzt dass = при условии что</th>\n   </td>\n  <tr style=\"background: #E8F0FE;\">\n    <td colspan=\"4\"><strong>📌 Разница между wenn и falls</strong>\n    <ul>\n    <li><strong>wenn</strong> — условие вероятно или регулярно: Wenn es regnet, wird die Straße nass.</li>\n    <li><strong>falls</strong> — условие менее вероятно или гипотетически: Falls du ihn siehst, sag ihm Bescheid.</li>\n    </ul>\n    </th>\n   </tr>\n  </table>\n\n<h3>📌 Типы условных предложений</h3>\n\n<p><strong>1. Реальное условие (настоящее/будущее) — Indikativ</strong></p>\n<ul>\n<li>Wenn ich Zeit <strong>habe</strong>, <strong>lerne</strong> ich Deutsch.</li>\n<li>Falls es <strong>regnet</strong>, <strong>bleiben</strong> wir zu Hause.</li>\n</ul>\n\n<p><strong>2. Нереальное условие (настоящее/будущее) — Konjunktiv II</strong></p>\n<ul>\n<li>Wenn ich Zeit <strong>hätte</strong>, <strong>würde</strong> ich kommen.</li>\n<li>Falls er <strong>käme</strong>, <strong>würde</strong> ich mich freuen.</li>\n</ul>\n\n<p><strong>3. Нереальное условие (прошлое) — Plusquamperfekt Konjunktiv II</strong></p>\n<ul>\n<li>Wenn ich Zeit <strong>gehabt hätte</strong>, <strong>wäre</strong> ich gekommen.</li>\n<li>Falls er früher <strong>aufgestanden wäre</strong>, <strong>hätte</strong> er den Zug nicht verpasst.</li>\n</ul>\n\n<h3>📌 Таблица типов условных предложений</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Тип</th>\n    <th>Время</th>\n    <th>Придаточное (wenn/falls)</th>\n    <th>Главное предложение</th>\n    <th>Пример</th>\n    </table>\n  <tr style=\"background: #E3F2FD;\">\n    <td>реальное</th>\n    <td>Präsens / Futur</th>\n    <td>Indikativ</th>\n    <td>Indikativ</th>\n    <td>Wenn ich Zeit habe, komme ich.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>нереальное (настоящее)</th>\n    <td>Gegenwart</th>\n    <td>Konjunktiv II</th>\n    <td>würde + Infinitiv / Konjunktiv II</th>\n    <td>Wenn ich Zeit hätte, würde ich kommen.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>нереальное (прошлое)</th>\n    <td>Vergangenheit</th>\n    <td>Plusquamperfekt Konjunktiv II</th>\n    <td>Plusquamperfekt Konjunktiv II / würde + Infinitiv</th>\n    <td>Wenn ich Zeit gehabt hätte, wäre ich gekommen.</th>\n   </tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"5\"><strong>💡 ЗАПОМИНАЛКА:</strong> реальное → Indikativ | нереальное настоящее → Konjunktiv II / würde | нереальное прошлое → Plusquamperfekt Konjunktiv II</th>\n   </tr>\n  </table>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ТИПИЧНЫЕ ОШИБКИ:</strong><br>\n  ❌ Wenn ich Zeit <strong>habe</strong>, <strong>würde</strong> ich kommen.<br>\n  ✅ Wenn ich Zeit <strong>hätte</strong>, <strong>würde</strong> ich kommen.<br>\n  ❌ Wenn ich Zeit <strong>hatte</strong>, <strong>würde</strong> ich kommen.<br>\n  ✅ Wenn ich Zeit <strong>hätte</strong>, <strong>würde</strong> ich kommen.<br>\n  ❌ Wenn ich Zeit <strong>gehabt habe</strong>, <strong>wäre</strong> ich gekommen.<br>\n  ✅ Wenn ich Zeit <strong>gehabt hätte</strong>, <strong>wäre</strong> ich gekommen.\n</div>\n\n<h3>📌 Порядок слов в условных предложениях</h3>\n\n<p>Придаточное может стоять перед главным или после него:</p>\n<ul>\n<li><strong>Wenn ich Zeit habe</strong>, lerne ich Deutsch. (запятая после придаточного)</li>\n<li>Ich lerne Deutsch, <strong>wenn ich Zeit habe</strong>. (запятая перед придаточным)</li>\n</ul>\n\n<p>В главном предложении глагол стоит на 2-м месте.</p>\n\n<h3>📖 Пошаговый алгоритм</h3>\n<ol>\n<li>Определи тип условия (реальное / нереальное)</li>\n<li>Выбери союз (wenn / falls / vorausgesetzt dass)</li>\n<li>Для реального условия: Indikativ в обеих частях</li>\n<li>Для нереального (настоящее): Konjunktiv II в придаточном, würde + Infinitiv в главном</li>\n<li>Для нереального (прошлое): Plusquamperfekt Konjunktiv II в обеих частях</li>\n<li>Поставь глагол в конец придаточного</li>\n<li>Отдели придаточное запятой</li>\n</ol>\n\n<h3>📌 Итог урока</h3>\n<ul>\n<li><strong>wenn</strong> — если (обычное условие)</li>\n<li><strong>falls</strong> — если (менее вероятно)</li>\n<li><strong>vorausgesetzt dass</strong> — при условии что</li>\n<li>В придаточном глагол в конце</li>\n<li>Нереальные условия: Konjunktiv II или würde + Infinitiv</li>\n<li>Нереальные условия в прошлом: Plusquamperfekt Konjunktiv II</li>\n</ul>",
   "examples": [
     {"de": "Wenn ich Zeit habe, lerne ich Deutsch.", "ru": "Если у меня есть время, я учу немецкий."},
     {"de": "Falls es regnet, bleiben wir zu Hause.", "ru": "Если пойдёт дождь, мы останемся дома."},
     {"de": "Ich komme, vorausgesetzt dass ich Zeit habe.", "ru": "Я приду при условии, что у меня есть время."},
     {"de": "Wenn ich Zeit hätte, würde ich kommen.", "ru": "Если бы у меня было время, я бы пришёл."},
-    {"de": "Wenn ich Zeit gehabt hätte, wäre ich gekommen.", "ru": "Если бы у меня было время, я бы пришёл."}
+    {"de": "Wenn ich Zeit gehabt hätte, wäre ich gekommen.", "ru": "Если бы у меня было время, я бы пришёл (раньше)."}
   ],
   "exercises": [
-    {
-      "type": "fill",
-      "question": "Вставьте правильный союз (wenn/falls/vorausgesetzt dass):",
-      "sentence": "___ ich Zeit habe, lerne ich Deutsch.",
-      "answer": "Wenn",
-      "hint": "если → wenn"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте правильный союз:",
-      "sentence": "___ es regnet, bleiben wir zu Hause.",
-      "answer": "Falls",
-      "hint": "если (менее вероятно) → falls"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте правильный союз:",
-      "sentence": "Ich komme, ___ ich Zeit habe.",
-      "answer": "vorausgesetzt dass",
-      "hint": "при условии что → vorausgesetzt dass"
-    },
-    {
-      "type": "fill",
-      "question": "Переделайте в нереальное условие (Konjunktiv II):",
-      "sentence": "Wenn ich Zeit habe, komme ich.",
-      "answer": "Wenn ich Zeit hätte, würde ich kommen",
-      "hint": "hätte + würde + kommen"
-    },
-    {
-      "type": "transform",
-      "question": "Переделайте в нереальное условие (прошлое):",
-      "sentence": "Ich hatte Zeit. Ich kam.",
-      "answer": "Wenn ich Zeit gehabt hätte, wäre ich gekommen",
-      "hint": "Plusquamperfekt Konjunktiv II"
-    },
-    {
-      "type": "choice",
-      "question": "Выберите правильную форму:",
-      "sentence": "Wenn ich du ___, würde ich gehen.",
-      "options": ["bin", "war", "wäre", "würde"],
-      "answer": "wäre",
-      "hint": "нереальное условие: sein → wäre"
-    },
-    {
-      "type": "fill",
-      "question": "Переведите на немецкий:",
-      "sentence": "Если у меня есть время, я учу немецкий.",
-      "answer": "wenn ich zeit habe lerne ich deutsch",
-      "hint": "wenn + глагол в конце"
-    },
-    {
-      "type": "fill",
-      "question": "Переведите на немецкий:",
-      "sentence": "Если бы у меня было время, я бы пришёл.",
-      "answer": "wenn ich zeit hätte würde ich kommen",
-      "hint": "hätte + würde + kommen"
-    },
-    {
-      "type": "fill",
-      "question": "Переведите на немецкий:",
-      "sentence": "При условии, что у меня есть время, я приду.",
-      "answer": "vorausgesetzt dass ich zeit habe komme ich",
-      "hint": "vorausgesetzt dass + глагол в конце"
-    },
-    {
-      "type": "fill",
-      "question": "Переведите на немецкий (нереальное прошлое):",
-      "sentence": "Если бы он встал раньше, он не опоздал бы.",
-      "answer": "wenn er früher aufgestanden wäre hätte er nicht verspätet",
-      "hint": "wäre + aufgestanden, hätte + verspätet"
-    }
+    {"type": "fill", "question": "Вставьте правильный союз (wenn/falls/vorausgesetzt dass):", "sentence": "___ ich Zeit habe, lerne ich Deutsch.", "answer": "Wenn", "hint": "если → wenn"},
+    {"type": "fill", "question": "Вставьте правильный союз:", "sentence": "___ es regnet, bleiben wir zu Hause.", "answer": "Falls", "hint": "если (менее вероятно) → falls"},
+    {"type": "fill", "question": "Вставьте правильный союз:", "sentence": "Ich komme, ___ ich Zeit habe.", "answer": "vorausgesetzt dass", "hint": "при условии что → vorausgesetzt dass"},
+    {"type": "fill", "question": "Переделайте в нереальное условие (Konjunktiv II):", "sentence": "Wenn ich Zeit habe, komme ich.", "answer": "Wenn ich Zeit hätte, würde ich kommen", "hint": "hätte + würde + kommen"},
+    {"type": "transform", "question": "Переделайте в нереальное условие (прошлое):", "sentence": "Ich hatte Zeit. Ich kam.", "answer": "Wenn ich Zeit gehabt hätte, wäre ich gekommen", "hint": "Plusquamperfekt Konjunktiv II"},
+    {"type": "choice", "question": "Выберите правильную форму:", "sentence": "Wenn ich du ___, würde ich gehen.", "options": ["bin", "war", "wäre", "würde"], "answer": "wäre", "hint": "нереальное условие: sein → wäre"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Если у меня есть время, я учу немецкий.", "answer": "wenn ich zeit habe lerne ich deutsch", "hint": "wenn + глагол в конце"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Если бы у меня было время, я бы пришёл.", "answer": "wenn ich zeit hätte würde ich kommen", "hint": "hätte + würde + kommen"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "При условии, что у меня есть время, я приду.", "answer": "vorausgesetzt dass ich zeit habe komme ich", "hint": "vorausgesetzt dass + глагол в конце"},
+    {"type": "fill", "question": "Переведите на немецкий (нереальное прошлое):", "sentence": "Если бы он встал раньше, он не опоздал бы.", "answer": "wenn er früher aufgestanden wäre hätte er nicht verspätet", "hint": "wäre + aufgestanden, hätte + verspätet"}
   ]
 }
