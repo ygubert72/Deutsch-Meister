@@ -1,0 +1,14 @@
+{
+  "lesson": 8,
+  "title": "Alle Konnektoren — союзы и связки",
+  "level": "B1",
+  "theory": "<h3>📌 Союзы без изменения порядка слов</h3>\n<p><strong>und, aber, denn, sondern, oder</strong> — глагол на втором месте.</p>\n<p>Ich lerne Deutsch, <strong>denn</strong> ich will in Deutschland arbeiten.</p>\n\n<h3>📌 Союзы с глаголом в конце</h3>\n<p><strong>weil, dass, ob, wenn, als, während, bevor, nachdem, bis, seitdem, sobald, damit</strong></p>\n<p>Ich bleibe zu Hause, <strong>weil</strong> es regnet.</p>\n\n<h3>📌 Двойные союзы B1</h3>\n<ul>\n<li><strong>zwar...aber</strong> — хотя...но (Zwar ist er jung, aber er ist klug.)</li>\n<li><strong>nicht nur...sondern auch</strong> — не только...но и (Er spricht nicht nur Deutsch, sondern auch Englisch.)</li>\n<li><strong>entweder...oder</strong> — либо...либо (Entweder du kommst, oder ich gehe.)</li>\n<li><strong>weder...noch</strong> — ни...ни (Er spricht weder Deutsch noch Englisch.)</li>\n<li><strong>sowohl...als auch</strong> — как...так и (Er spricht sowohl Deutsch als auch Englisch.)</li>\n</ul>",
+  "examples": [
+    {"de": "Zwar ist er jung, aber er ist klug.", "ru": "Хотя он молод, но он умён."},
+    {"de": "Er spricht nicht nur Deutsch, sondern auch Englisch.", "ru": "Он говорит не только по-немецки, но и по-английски."}
+  ],
+  "exercises": [
+    {"type": "fill", "question": "Вставьте двойной союз:", "sentence": "Er spricht ___ Deutsch, ___ auch Englisch. (не только...но и)", "answer": "nicht nur sondern", "hint": "nicht nur...sondern auch"},
+    {"type": "fill", "question": "Вставьте двойной союз:", "sentence": "___ ist er jung, ___ er ist klug. (хотя...но)", "answer": "Zwar aber", "hint": "zwar...aber"}
+  ]
+}
