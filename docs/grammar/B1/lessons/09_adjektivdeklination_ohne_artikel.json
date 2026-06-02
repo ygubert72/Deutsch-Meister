@@ -1,0 +1,14 @@
+{
+  "lesson": 9,
+  "title": "Adjektivdeklination ohne Artikel (нулевой артикль)",
+  "level": "B1",
+  "theory": "<h3>📌 Когда артикля нет?</h3>\n<p>После nicht, etwas, nichts, viel, wenig, genug, более одного прилагательного, в списках.</p>\n\n<h3>📌 Таблица окончаний (нулевой артикль)</h3>\n<table border='1' cellpadding='8' style='border-collapse:collapse;width:100%;margin:15px 0;'>\n  <tr style='background:#3B6FE0;color:white'><th>Падеж</th><th>Муж.</th><th>Жен.</th><th>Ср.</th><th>Мн.</th></tr>\n  <tr><td>Nom</td><td>-er</td><td>-e</td><td>-es</td><td>-e</td></tr>\n  <tr style='background:#E3F2FD;'><td>Akk</td><td>-en</td><td>-e</td><td>-es</td><td>-e</td></tr>\n  <tr><td>Dat</td><td>-em</td><td>-er</td><td>-em</td><td>-en</td></tr>\n  <tr style='background:#E3F2FD;'><td>Gen</td><td>-en</td><td>-er</td><td>-en</td><td>-er</td></tr>\n</table>\n\n<h3>📌 Примеры</h3>\n<p>Ich trinke <strong>kalten Kaffee</strong>. (Akk, муж.)<br>\nEr ist <strong>guter Mann</strong>. (Nom, муж.)<br>\nDas ist <strong>frisches Brot</strong>. (Nom, ср.)</p>",
+  "examples": [
+    {"de": "Ich trinke kalten Kaffee.", "ru": "Я пью холодный кофе."},
+    {"de": "Er ist guter Mann.", "ru": "Он хороший человек."}
+  ],
+  "exercises": [
+    {"type": "fill", "question": "Вставьте окончание:", "sentence": "Ich trinke kalt___ Kaffee.", "answer": "en", "hint": "муж. род, Akk → -en"},
+    {"type": "fill", "question": "Вставьте окончание:", "sentence": "Er ist gut___ Mann.", "answer": "er", "hint": "муж. род, Nom → -er"}
+  ]
+}
