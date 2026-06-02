@@ -175,7 +175,7 @@ function renderGrammarLesson(lessonIdx) {
     document.getElementById('content').innerHTML = `
         <div style="max-width: 900px; margin: 0 auto;">
             <div style="margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
-                <button class="ctrl-btn" id="backToGrammarList" style="cursor: pointer;">← К СПИСКУ УРОКОВ</button>
+                <button class="ctrl-btn" id="backToGrammarList" style="cursor: pointer; background: #3B6FE0; color: white;">← К СПИСКУ УРОКОВ</button>
                 ${!isLastLesson ? '<button class="ctrl-btn" id="nextLessonBtn" style="cursor: pointer; background: #3B6FE0; color: white;">СЛЕДУЮЩИЙ УРОК →</button>' : ''}
             </div>
             <div class="lesson-header">
