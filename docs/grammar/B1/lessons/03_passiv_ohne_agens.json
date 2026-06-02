@@ -1,16 +1,88 @@
 {
   "lesson": 3,
-  "title": "Passiv без агенса (man, es)",
+  "title": "Passiv с модальными глаголами",
   "level": "B1",
-  "theory": "<h3>📌 Безличный Passiv</h3>\n<p>Когда неважно, кто делает действие, используется Passiv без агенса.</p>\n<p><strong>es wird + Partizip II</strong> или просто <strong>wird + Partizip II</strong></p>\n\n<h3>📌 Примеры</h3>\n<ul>\n<li>Hier <strong>wird Deutsch gesprochen</strong>. — Здесь говорят по-немецки.</li>\n<li>Im Werk <strong>wird gearbeitet</strong>. — На заводе работают.</li>\n<li><strong>Es wird getanzt</strong>. — Танцуют.</li>\n</ul>\n\n<h3>📌 Сравнение с Aktiv (man)</h3>\n<p>Aktiv: <strong>Man spricht</strong> hier Deutsch.<br>\nPassiv: Hier <strong>wird Deutsch gesprochen</strong>.</p>",
+  "theory": "<h3>📌 Passiv с модальными глаголами</h3>\n\n<p>Модальные глаголы (können, müssen, sollen, dürfen, wollen, mögen) могут использоваться в Passiv для выражения возможности, необходимости, разрешения и т.д.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 ФОРМУЛА PASSIV С МОДАЛЬНЫМИ ГЛАГОЛАМИ:</strong><br>\n  <strong>Modalverb + Partizip II + werden</strong><br>\n  Пример: Das Buch <strong>kann gelesen werden</strong>. — Книгу можно прочитать.\n</div>\n\n<h3>📌 Спряжение Passiv с модальными глаголами</h3>\n\n<p>Модальный глагол стоит на 2-м месте (и спрягается), а <strong>Partizip II + werden</strong> — в конце предложения (werden в инфинитиве!).</p>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Модальный глагол</th>\n    <th>Passiv конструкция</th>\n    <th>Пример</th>\n    <th>Перевод</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>können</strong></th>\n    <td>kann + Partizip II + werden</th>\n    <td>Das Buch kann gelesen werden.</th>\n    <td>Книгу можно прочитать.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>müssen</strong></th>\n    <td>muss + Partizip II + werden</th>\n    <td>Die Arbeit muss gemacht werden.</th>\n    <td>Работа должна быть сделана.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>sollen</strong></th>\n    <td>soll + Partizip II + werden</th>\n    <td>Die Tür soll geschlossen werden.</th>\n    <td>Дверь должна быть закрыта.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>dürfen</strong></th>\n    <td>darf + Partizip II + werden</th>\n    <tr>Das darf nicht vergessen werden.</th>\n    <td>Это нельзя забывать.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>wollen</strong></th>\n    <td>will + Partizip II + werden</th>\n    <td>Das will gelernt werden.</th>\n    <td>Это нужно выучить.</th>\n   </tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"4\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    Modalverb + Partizip II + werden — все части в конце! (werden в инфинитиве)</th>\n  </tr>\n\n<h3>📌 Passiv с модальными глаголами в разных временах</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Время</th>\n    <th>Формула</th>\n    <th>Пример</th>\n    <th>Перевод</th>\n    <tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Präsens</th>\n    <td>Modalverb + Partizip II + werden</th>\n    <td>Das Buch kann gelesen werden.</th>\n    <td>Книгу можно прочитать.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Präteritum</th>\n    <td>Modalverb (Prät.) + Partizip II + werden</th>\n    <td>Das Buch konnte gelesen werden.</th>\n    <td>Книгу можно было прочитать.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Perfekt</th>\n    <td>hat + Partizip II + werden + können</th>\n    <td>Das Buch hat gelesen werden können.</th>\n    <td>Книгу можно было прочитать.</th>\n   </tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"4\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    В Perfekt: Hilfsverb + Partizip II + werden + Infinitiv des Modalverbs</th>\n  </tr>\n\n<h3>📌 Примеры Passiv с модальными глаголами</h3>\n\n<ul>\n<li>Die Hausaufgaben <strong>müssen</strong> heute gemacht <strong>werden</strong>. — Домашняя работа должна быть сделана сегодня.</li>\n<li>Das Buch <strong>kann</strong> in der Bibliothek ausgeliehen <strong>werden</strong>. — Книгу можно взять в библиотеке.</li>\n<li>Die Tür <strong>soll</strong> geschlossen <strong>werden</strong>. — Дверь должна быть закрыта.</li>\n<li>Das <strong>darf</strong> nicht vergessen <strong>werden</strong>. — Это нельзя забывать.</li>\n<li>Diese Vokabeln <strong>wollen</strong> gelernt <strong>werden</strong>. — Эти слова нужно выучить.</li>\n</ul>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ТИПИЧНЫЕ ОШИБКИ:</strong><br>\n  ❌ Das Buch kann gelesen <strong>geworden</strong>.<br>\n  ✅ Das Buch kann gelesen <strong>werden</strong>.<br>\n  <br>\n  ❌ Das Buch <strong>könnt</strong> gelesen werden.<br>\n  ✅ Das Buch <strong>kann</strong> gelesen werden.\n</div>\n\n<h3>📖 Пошаговый алгоритм</h3>\n<ol>\n<li>Выбери модальный глагол (können/müssen/sollen/dürfen/wollen)</li>\n<li>Спрягай его по правилам (kann, kann, kann, können, könnt, können)</li>\n<li>Поставь Partizip II основного глагола</li>\n<li>В конце добавь <strong>werden</strong> (в инфинитиве!)</li>\n<li>В Präteritum: модальный глагол в Präteritum (konnte, musste, sollte...)</li>\n</ol>\n\n<h3>📌 Итог урока</h3>\n<ul>\n<li>Passiv с модальными глаголами = Modalverb + Partizip II + werden</li>\n<li>werden стоит в конце в инфинитиве</li>\n<li>Модальный глагол спрягается и стоит на 2-м месте</li>\n<li>В Präteritum: Modalverb в Präteritum (konnte, musste...)</li>\n</ul>",
   "examples": [
-    {"de": "Hier wird Deutsch gesprochen.", "ru": "Здесь говорят по-немецки."},
-    {"de": "Im Werk wird gearbeitet.", "ru": "На заводе работают."},
-    {"de": "Es wird getanzt.", "ru": "Танцуют."}
+    {"de": "Das Buch kann gelesen werden.", "ru": "Книгу можно прочитать."},
+    {"de": "Die Arbeit muss gemacht werden.", "ru": "Работа должна быть сделана."},
+    {"de": "Die Tür soll geschlossen werden.", "ru": "Дверь должна быть закрыта."},
+    {"de": "Das darf nicht vergessen werden.", "ru": "Это нельзя забывать."},
+    {"de": "Das Buch konnte gelesen werden.", "ru": "Книгу можно было прочитать."},
+    {"de": "Die Hausaufgaben müssen heute gemacht werden.", "ru": "Домашняя работа должна быть сделана сегодня."},
+    {"de": "Das Buch kann in der Bibliothek ausgeliehen werden.", "ru": "Книгу можно взять в библиотеке."},
+    {"de": "Diese Vokabeln wollen gelernt werden.", "ru": "Эти слова нужно выучить."}
   ],
   "exercises": [
-    {"type": "transform", "question": "Aktiv (man) → Passiv:", "sentence": "Man spricht hier Deutsch.", "answer": "Hier wird Deutsch gesprochen", "hint": "man fällt weg, wird + Partizip II"},
-    {"type": "transform", "question": "Aktiv (man) → Passiv:", "sentence": "Man arbeitet im Werk.", "answer": "Im Werk wird gearbeitet", "hint": "wird + gearbeitet"},
-    {"type": "fill", "question": "Переведите:", "sentence": "Здесь говорят по-немецки.", "answer": "hier wird deutsch gesprochen", "hint": "wird + Deutsch gesprochen"}
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму модального глагола:",
+      "sentence": "Das Buch ___ gelesen werden. (können)",
+      "answer": "kann",
+      "hint": "Präsens, kann"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму:",
+      "sentence": "Die Arbeit ___ gemacht werden. (müssen)",
+      "answer": "muss",
+      "hint": "muss + gemacht werden"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму:",
+      "sentence": "Die Tür ___ geschlossen werden. (sollen)",
+      "answer": "soll",
+      "hint": "soll + geschlossen werden"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму в Präteritum:",
+      "sentence": "Das Buch ___ gelesen werden. (können, Präteritum)",
+      "answer": "konnte",
+      "hint": "Präteritum von können = konnte"
+    },
+    {
+      "type": "transform",
+      "question": "Переделайте в Passiv с модальным глаголом:",
+      "sentence": "Man kann das Buch lesen.",
+      "answer": "Das Buch kann gelesen werden",
+      "hint": "kann + gelesen werden"
+    },
+    {
+      "type": "transform",
+      "question": "Переделайте в Passiv с модальным глаголом:",
+      "sentence": "Man muss die Arbeit machen.",
+      "answer": "Die Arbeit muss gemacht werden",
+      "hint": "muss + gemacht werden"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Книгу можно прочитать.",
+      "answer": "das buch kann gelesen werden",
+      "hint": "kann + gelesen werden"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Работа должна быть сделана.",
+      "answer": "die arbeit muss gemacht werden",
+      "hint": "muss + gemacht werden"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (Präteritum):",
+      "sentence": "Книгу можно было прочитать.",
+      "answer": "das buch konnte gelesen werden",
+      "hint": "konnte + gelesen werden"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Дверь должна быть закрыта.",
+      "answer": "die tür soll geschlossen werden",
+      "hint": "soll + geschlossen werden"
+    }
   ]
 }
