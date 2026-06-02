@@ -11,7 +11,7 @@
     {"de": "Wenn ich Zeit gehabt hätte, wäre ich gekommen.", "ru": "Если бы у меня было время, я бы пришёл."},
     {"de": "Er wäre beinahe gefallen.", "ru": "Он чуть не упал."},
     {"de": "Wir hätten früher anrufen sollen.", "ru": "Нам следовало бы позвонить раньше."},
-    {"de": "Sie wäre gerne mitgekommen.", "ru": "Она бы с радостью пошла с нами."},
+    {"de": "Sie wäre gerne mitgekommen.", "ru": "Она бы с радостью пошла с нами."}
   ],
   "exercises": [
     {"type": "fill", "question": "Образуйте Konjunktiv II Vergangenheit von 'machen':", "sentence": "Ich ___ die Arbeit gemacht.", "answer": "hätte", "hint": "haben → hätte"},
