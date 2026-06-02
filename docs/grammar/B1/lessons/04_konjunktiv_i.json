@@ -2,15 +2,86 @@
   "lesson": 4,
   "title": "Konjunktiv I — косвенная речь",
   "level": "B1",
-  "theory": "<h3>📌 Что такое Konjunktiv I?</h3>\n<p>Konjunktiv I используется для передачи <strong>косвенной речи</strong> (чужих слов).</p>\n<p>В новостях, репортажах, официальных заявлениях.</p>\n\n<div class='info-box' style='background:#E8F0FE;padding:15px;border-radius:12px;margin:15px 0;'>\n  <strong>🎯 ФОРМУЛА:</strong> глагол в Konjunktiv I = основа + e (кроме sein)\n</div>\n\n<h3>📌 Спряжение в Konjunktiv I</h3>\n<table border='1' cellpadding='8' style='border-collapse:collapse;width:100%;margin:15px 0;'>\n  <tr style='background:#3B6FE0;color:white'><th></th><th>haben</th><th>sein</th><th>kommen</th></tr>\n  <tr><td>ich</td><td>habe</td><td>sei</td><td>komme</td></tr>\n  <tr style='background:#E3F2FD;'><td>du</td><td>habest</td><td>seist</td><td>kommest</td></tr>\n  <tr><td>er/sie/es</td><td>habe</td><td>sei</td><td>komme</td></tr>\n  <tr style='background:#E3F2FD;'><td>wir</td><td>haben</td><td>seien</td><td>kommen</td></tr>\n  <tr><td>ihr</td><td>habet</td><td>seiet</td><td>kommet</td></td>\n  <tr style='background:#E3F2FD;'><td>sie/Sie</td><td>haben</td><td>seien</td><td>kommen</td></tr>\n</table>\n\n<h3>📌 Примеры косвенной речи</h3>\n<p>Прямая речь: Er sagt: „Ich <strong>komme</strong>.“<br>\nКосвенная речь: Er sagt, dass er <strong>komme</strong>.</p>",
+  "theory": "<h3>📌 Что такое Konjunktiv I?</h3>\n\n<p>Konjunktiv I используется для передачи <strong>косвенной речи</strong> (чужих слов). Его часто можно встретить в новостях, репортажах, официальных заявлениях и письменной речи.</p>\n\n<p>В разговорной речи часто заменяется на Konjunktiv II или индикатив, но на B1 важно знать основные формы.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 ГЛАВНОЕ ПРАВИЛО:</strong><br>\n  Konjunktiv I образуется от основы глагола + <strong>e</strong> окончания<br>\n  Исключение: <strong>sein</strong> (ich sei, du seist, er sei...)\n</div>\n\n<h3>📌 Образование Konjunktiv I</h3>\n\n<p>Основа = инфинитив без -en. К основе добавляются окончания:</p>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Местоимение</th>\n    <th>Окончание</th>\n    <th>machen (делать)</th>\n    <th>kommen (приходить)</th>\n    <th>sein (быть)</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>ich</th>\n    <td>-e</th>\n    <td>ich mache</th>\n    <td>ich komme</th>\n    <td>ich <strong>sei</strong></th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>du</th>\n    <td>-est</th>\n    <td>du machest</th>\n    <td>du kommest</th>\n    <td>du <strong>seist</strong></th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>er/sie/es</th>\n    <td>-e</th>\n    <td>er mache</th>\n    <td>er komme</th>\n    <td>er <strong>sei</strong></th>\n   </td>\n  <tr style=\"background: #F5F5F5;\">\n    <td>wir</th>\n    <td>-en</th>\n    <td>wir machen</th>\n    <td>wir kommen</th>\n    <td>wir <strong>seien</strong></th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>ihr</th>\n    <td>-et</th>\n    <td>ihr machet</th>\n    <td>ihr kommet</th>\n    <td>ihr <strong>seiet</strong></th>\n   </td>\n  <tr style=\"background: #F5F5F5;\">\n    <td>sie/Sie</th>\n    <td>-en</th>\n    <td>sie machen</th>\n    <td>sie kommen</th>\n    <td>sie <strong>seien</strong></th>\n   </td>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"5\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    Konjunktiv I = Infinitiv + e (ich gehe, du gehest, er gehe...)<br>\n    sein: ich sei, du seist, er sei, wir seien, ihr seiet, sie seien</th>\n  </tr>\n\n<h3>📌 Когда использовать Konjunktiv I?</h3>\n\n<ul>\n<li><strong>Косвенная речь:</strong> Er sagt, dass er <strong>komme</strong>. (Он говорит, что придёт.)</li>\n<li><strong>Новости и репортажи:</strong> Der Präsident <strong>erklärte</strong>, die Wirtschaft <strong>wachse</strong>. (Президент заявил, что экономика растёт.)</li>\n<li><strong>Письменная речь:</strong> Sie schrieb, dass sie keine Zeit <strong>habe</strong>. (Она написала, что у неё нет времени.)</li>\n</ul>\n\n<h3>📌 Примеры косвенной речи</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Прямая речь</th>\n    <th>Косвенная речь (Konjunktiv I)</th>\n    <th>Перевод</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Er sagt: „Ich <strong>komme</strong>.“</th>\n    <td>Er sagt, dass er <strong>komme</strong>.</th>\n    <td>Он говорит, что (он) придёт.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Sie sagt: „Ich <strong>habe</strong> keine Zeit.“</th>\n    <td>Sie sagt, dass sie keine Zeit <strong>habe</strong>.</th>\n    <td>Она говорит, что у неё нет времени.</th>\n   </table>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Er sagt: „Ich <strong>bin</strong> krank.“</th>\n    <td>Er sagt, dass er krank <strong>sei</strong>.</th>\n    <td>Он говорит, что (он) болен.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Der Chef sagt: „Die Arbeit <strong>wird</strong> gemacht.“</th>\n    <td>Der Chef sagt, dass die Arbeit <strong>werde</strong>.</th>\n    <td>Начальник говорит, что работа будет сделана.</th>\n   </tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"3\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    В новостях: „Der Politiker sagte, die Lage <strong>sei</strong> ernst.“</th>\n  <tr>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ВАЖНО:</strong><br>\n  Если форма Konjunktiv I совпадает с индикативом (например, wir machen, sie machen), используется Konjunktiv II как замена.<br>\n  Пример: Sie sagen, dass sie <strong>kämen</strong> (вместо kommen, т.к. kommen совпадает с индикативом).\n</div>\n\n<h3>📌 Konjunktiv I важных глаголов</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Глагол</th>\n    <th>ich</th>\n    <th>du</th>\n    <th>er/sie/es</th>\n    <th>wir</th>\n    <th>ihr</th>\n    <th>sie</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>haben</th>\n    <td>habe</th>\n    <td>habest</th>\n    <td>habe</th>\n    <td>haben</th>\n    <td>habet</th>\n    <td>haben</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>werden</th>\n    <td>werde</th>\n    <td>werdest</th>\n    <td>werde</th>\n    <td>werden</th>\n    <td>werdet</th>\n    <td>werden</th>\n   </td>\n  <tr style=\"background: #E3F2FD;\">\n    <td>können</th>\n    <td>könne</th>\n    <td>könnest</th>\n    <td>könne</th>\n    <td>können</th>\n    <td>könnet</th>\n    <td>können</th>\n   </td>\n  <tr style=\"background: #F5F5F5;\">\n    <td>müssen</th>\n    <td>müsse</th>\n    <td>müssest</th>\n    <td>müsse</th>\n    <td>müssen</th>\n    <td>müsset</th>\n    <td>müssen</th>\n   </td>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"7\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    В новостях часто: „Er sagte, die Lage <strong>sei</strong> ernst. Die Regierung <strong>habe</strong> Maßnahmen ergriffen.“</th>\n  </tr>\n\n<h3>📖 Пошаговый алгоритм</h3>\n<ol>\n<li>Возьми инфинитив глагола</li>\n<li>Отбрось окончание -en</li>\n<li>Добавь окончание Konjunktiv I (-e, -est, -e, -en, -et, -en)</li>\n<li>Для глагола sein: ich sei, du seist, er sei, wir seien, ihr seiet, sie seien</li>\n<li>Если форма совпадает с индикативом, используй Konjunktiv II</li>\n</ol>\n\n<h3>📌 Итог урока</h3>\n<ul>\n<li>Konjunktiv I = основа + e окончания</li>\n<li>Используется в косвенной речи (новости, репортажи)</li>\n<li>sein: ich sei, du seist, er sei, wir seien, ihr seiet, sie seien</li>\n<li>При совпадении с индикативом → Konjunktiv II</li>\n</ul>",
   "examples": [
     {"de": "Er sagt, dass er komme.", "ru": "Он говорит, что (он) придёт."},
     {"de": "Sie sagt, dass sie keine Zeit habe.", "ru": "Она говорит, что у неё нет времени."},
-    {"de": "Er sagt, dass er krank sei.", "ru": "Он говорит, что (он) болен."}
+    {"de": "Er sagt, dass er krank sei.", "ru": "Он говорит, что (он) болен."},
+    {"de": "Der Präsident sagte, die Wirtschaft wachse.", "ru": "Президент сказал, что экономика растёт."},
+    {"de": "Sie schrieb, dass sie keine Zeit habe.", "ru": "Она написала, что у неё нет времени."},
+    {"de": "Er sagte, dass er morgen komme.", "ru": "Он сказал, что придёт завтра."}
   ],
   "exercises": [
-    {"type": "transform", "question": "Прямая речь → косвенная:", "sentence": "Er sagt: „Ich komme.“", "answer": "Er sagt, dass er komme", "hint": "komme (Konjunktiv I)"},
-    {"type": "fill", "question": "Вставьте Konjunktiv I:", "sentence": "Sie sagt, dass sie keine Zeit ___ (haben).", "answer": "habe", "hint": "sie → habe"},
-    {"type": "fill", "question": "Вставьте Konjunktiv I:", "sentence": "Er sagt, dass er krank ___ (sein).", "answer": "sei", "hint": "er → sei"}
+    {
+      "type": "fill",
+      "question": "Образуйте Konjunktiv I от 'kommen':",
+      "sentence": "er ___",
+      "answer": "komme",
+      "hint": "er + kommen → komme"
+    },
+    {
+      "type": "fill",
+      "question": "Образуйте Konjunktiv I от 'haben':",
+      "sentence": "ich ___",
+      "answer": "habe",
+      "hint": "ich + haben → habe"
+    },
+    {
+      "type": "fill",
+      "question": "Образуйте Konjunktiv I от 'sein':",
+      "sentence": "er ___",
+      "answer": "sei",
+      "hint": "er + sein → sei"
+    },
+    {
+      "type": "fill",
+      "question": "Переделайте в косвенную речь:",
+      "sentence": "Er sagt: „Ich komme.“",
+      "answer": "Er sagt, dass er komme",
+      "hint": "komme (Konjunktiv I)"
+    },
+    {
+      "type": "fill",
+      "question": "Переделайте в косвенную речь:",
+      "sentence": "Sie sagt: „Ich habe keine Zeit.“",
+      "answer": "Sie sagt, dass sie keine Zeit habe",
+      "hint": "habe (Konjunktiv I)"
+    },
+    {
+      "type": "fill",
+      "question": "Переделайте в косвенную речь:",
+      "sentence": "Er sagt: „Ich bin krank.“",
+      "answer": "Er sagt, dass er krank sei",
+      "hint": "sei (Konjunktiv I von sein)"
+    },
+    {
+      "type": "choice",
+      "question": "Выберите правильную форму Konjunktiv I:",
+      "sentence": "Er sagt, dass er ___.",
+      "options": ["kommt", "komme", "käme"],
+      "answer": "komme",
+      "hint": "Konjunktiv I: er komme"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (косвенная речь):",
+      "sentence": "Он говорит, что он болен.",
+      "answer": "er sagt dass er krank sei",
+      "hint": "sei (Konjunktiv I)"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (косвенная речь):",
+      "sentence": "Она говорит, что у неё нет времени.",
+      "answer": "sie sagt dass sie keine zeit habe",
+      "hint": "habe (Konjunktiv I)"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (косвенная речь):",
+      "sentence": "Он говорит, что придёт завтра.",
+      "answer": "er sagt dass er morgen komme",
+      "hint": "komme (Konjunktiv I)"
+    }
   ]
 }
