@@ -2,13 +2,87 @@
   "lesson": 10,
   "title": "Temporale Präpositionen mit Genitiv",
   "level": "B1",
-  "theory": "<h3>📌 Предлоги времени, требующие Genitiv</h3>\n<ul>\n<li><strong>während</strong> — во время (während des Unterrichts)</li>\n<li><strong>wegen</strong> — из-за (wegen des Wetters)</li>\n<li><strong>trotz</strong> — несмотря на (trotz des Regens)</li>\n<li><strong>außerhalb</strong> — вне (außerhalb der Stadt)</li>\n<li><strong>innerhalb</strong> — внутри (innerhalb einer Woche)</li>\n</ul>\n\n<h3>📌 Изменение артиклей в Genitiv</h3>\n<ul>\n<li>der → des + s</li>\n<li>die → der</li>\n<li>das → des + s</li>\n<li>die (мн.) → der</li>\n</ul>",
+  "theory": "<h3>📌 Предлоги времени, требующие Genitiv</h3>\n\n<p>В немецком языке есть группа предлогов, которые всегда требуют родительного падежа (Genitiv). На уровне B1 нужно знать 7 основных предлогов времени с Genitiv.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 ЗАПОМИНАЛКА (в стихах):</strong><br>\n  Während, wegen, trotz —<br>\n  Dafür gibt‘s Genitiv, das ist klar!<br>\n  Außerhalb, innerhalb, anstatt, laut —<br>\n  Auch das der Genitiv braucht!\n</div>\n\n<h3>📌 Таблица предлогов времени с Genitiv</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Предлог</th>\n    <th>Значение</th>\n    <th>Пример</th>\n    <th>Перевод</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>während</strong></th>\n    <td>во время</th>\n    <td>Während <strong>des Unterrichts</strong> ist das Handy aus.</th>\n    <td>Во время урока телефон выключен.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>wegen</strong></th>\n    <td>из-за</th>\n    <td>Wegen <strong>des Wetters</strong> bleiben wir zu Hause.</th>\n    <td>Из-за погоды мы остаёмся дома.</th>\n   <tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>trotz</strong></th>\n    <td>несмотря на</th>\n    <td>Trotz <strong>des Regens</strong> gingen wir spazieren.</th>\n    <td>Несмотря на дождь, мы пошли гулять.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>außerhalb</strong></th>\n    <td>вне, за пределами</th>\n    <td>Außerhalb <strong>der Stadt</strong> ist es ruhig.</th>\n    <td>За городом тихо.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>innerhalb</strong></th>\n    <td>внутри, в пределах</th>\n    <td>Innerhalb <strong>einer Woche</strong> muss ich das machen.</th>\n    <td>В течение недели я должен это сделать.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>anstatt</strong></th>\n    <td>вместо</th>\n    <td>Anstatt <strong>des Hundes</strong> nahm er die Katze.</th>\n    <td>Вместо собаки он взял кошку.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>laut</strong></th>\n    <td>согласно</th>\n    <td>Laut <strong>des Berichts</strong> ist alles in Ordnung.</th>\n    <td>Согласно отчёту, всё в порядке.</th>\n   </tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"4\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    während, wegen, trotz, außerhalb, innerhalb, anstatt, laut → Genitiv!\n   th>\n  </tr>\n\n<h3>📌 Склонение артиклей в Genitiv</h3>\n\n<p>Напоминание: Genitiv изменяет артикли:</p>\n<ul>\n<li>der → <strong>des</strong> + s/es (des Mannes)</li>\n<li>die → <strong>der</strong> (der Frau)</li>\n<li>das → <strong>des</strong> + s/es (des Kindes)</li>\n<li>die (мн.) → <strong>der</strong> (der Kinder)</li>\n</ul>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ТИПИЧНЫЕ ОШИБКИ:</strong><br>\n  ❌ Wegen <strong>dem Wetter</strong> (Dativ вместо Genitiv)<br>\n  ✅ Wegen <strong>des Wetters</strong><br>\n  <br>\n  ❌ Trotz <strong>dem Regen</strong><br>\n  ✅ Trotz <strong>des Regens</strong>\n</div>\n\n<h3>📌 Примеры с разными предлогами</h3>\n\n<ul>\n<li><strong>Während des Films</strong> habe ich geschlafen. — Во время фильма я спал.</li>\n<li><strong>Wegen des Lärms</strong> kann ich nicht schlafen. — Из-за шума я не могу спать.</li>\n<li><strong>Trotz des Verbots</strong> hat er geraucht. — Несмотря на запрет, он курил.</li>\n<li><strong>Außerhalb der Öffnungszeiten</strong> ist das Büro geschlossen. — В нерабочее время офис закрыт.</li>\n<li><strong>Innerhalb von zwei Tagen</strong> muss ich antworten. — В течение двух дней я должен ответить.</li>\n<li><strong>Anstatt des Hundes</strong> nahm er die Katze. — Вместо собаки он взял кошку.</li>\n<li><strong>Laut des Experten</strong> ist das normal. — Согласно эксперту, это нормально.</li>\n</ul>\n\n<h3>📖 Пошаговый алгоритм</h3>\n<ol>\n<li>Определи, какой предлог времени нужно использовать</li>\n<li>Запомни, что он требует Genitiv</li>\n<li>Поставь существительное в Genitiv (des + s/es, der, des + s/es, der)</li>\n<li>При необходимости используй слияние: während + des = während des</li>\n</ol>\n\n<h3>📌 Итог урока</h3>\n<ul>\n<li>Предлоги: während, wegen, trotz, außerhalb, innerhalb, anstatt, laut</li>\n<li>Всегда требуют Genitiv</li>\n<li>В разговорной речи иногда заменяются на Dativ, но на B1 учи правильный вариант</li>\n</ul>",
   "examples": [
+    {"de": "Während des Unterrichts ist das Handy aus.", "ru": "Во время урока телефон выключен."},
     {"de": "Wegen des Wetters bleiben wir zu Hause.", "ru": "Из-за погоды мы остаёмся дома."},
-    {"de": "Während des Unterrichts ist das Handy aus.", "ru": "Во время урока телефон выключен."}
+    {"de": "Trotz des Regens gingen wir spazieren.", "ru": "Несмотря на дождь, мы пошли гулять."},
+    {"de": "Außerhalb der Stadt ist es ruhig.", "ru": "За городом тихо."},
+    {"de": "Innerhalb einer Woche muss ich das machen.", "ru": "В течение недели я должен это сделать."},
+    {"de": "Anstatt des Hundes nahm er die Katze.", "ru": "Вместо собаки он взял кошку."},
+    {"de": "Laut des Berichts ist alles in Ordnung.", "ru": "Согласно отчёту, всё в порядке."}
   ],
   "exercises": [
-    {"type": "fill", "question": "Вставьте предлог:", "sentence": "___ des Wetters bleiben wir zu Hause.", "answer": "Wegen", "hint": "из-за → Wegen"},
-    {"type": "fill", "question": "Вставьте предлог:", "sentence": "___ des Unterrichts ist das Handy aus.", "answer": "Während", "hint": "во время → Während"}
+    {
+      "type": "fill",
+      "question": "Вставьте правильный предлог с Genitiv:",
+      "sentence": "___ des Unterrichts ist das Handy aus.",
+      "answer": "Während",
+      "hint": "во время → Während"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильный предлог:",
+      "sentence": "___ des Wetters bleiben wir zu Hause.",
+      "answer": "Wegen",
+      "hint": "из-за → Wegen"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильный предлог:",
+      "sentence": "___ des Regens gingen wir spazieren.",
+      "answer": "Trotz",
+      "hint": "несмотря на → Trotz"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильный предлог:",
+      "sentence": "___ der Stadt ist es ruhig.",
+      "answer": "Außerhalb",
+      "hint": "вне → Außerhalb"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильный предлог:",
+      "sentence": "___ einer Woche muss ich das machen.",
+      "answer": "Innerhalb",
+      "hint": "в течение → Innerhalb"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильный предлог:",
+      "sentence": "___ des Hundes nahm er die Katze.",
+      "answer": "Anstatt",
+      "hint": "вместо → Anstatt"
+    },
+    {
+      "type": "choice",
+      "question": "Выберите правильный предлог:",
+      "sentence": "___ des schlechten Wetters blieben wir zu Hause.",
+      "options": ["Während", "Wegen", "Trotz"],
+      "answer": "Wegen",
+      "hint": "из-за → Wegen"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Из-за дождя мы остались дома.",
+      "answer": "wegen des regens blieben wir zu hause",
+      "hint": "wegen + Genitiv"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Во время урока телефон выключен.",
+      "answer": "während des unterrichts ist das handy aus",
+      "hint": "während + Genitiv"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Несмотря на дождь, мы пошли гулять.",
+      "answer": "trotz des regens gingen wir spazieren",
+      "hint": "trotz + Genitiv"
+    }
   ]
 }
