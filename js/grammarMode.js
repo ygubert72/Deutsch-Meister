@@ -1,5 +1,5 @@
 // ============================================================
-// grammarMode.js - Полная версия с поддержкой отдельных файлов уроков
+// grammarMode.js - Новая версия с поддержкой отдельных файлов уроков
 // ============================================================
 
 let grammarDB = { A1: [], A2: [], B1: [], B2: [], C1: [] };
@@ -169,10 +169,14 @@ function renderGrammarLesson(lessonIdx) {
         return;
     }
     
+    const lessons = grammarDB[level];
+    const isLastLesson = (lessonIdx + 1 >= lessons.length);
+    
     document.getElementById('content').innerHTML = `
         <div style="max-width: 900px; margin: 0 auto;">
-            <div style="margin-bottom: 10px;">
+            <div style="margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
                 <button class="ctrl-btn" id="backToGrammarList" style="cursor: pointer;">← К СПИСКУ УРОКОВ</button>
+                ${!isLastLesson ? '<button class="ctrl-btn" id="nextLessonBtn" style="cursor: pointer; background: #3B6FE0; color: white;">СЛЕДУЮЩИЙ УРОК →</button>' : ''}
             </div>
             <div class="lesson-header">
                 <div class="lesson-title">📖 Урок ${lesson.lesson}: ${lesson.title}</div>
@@ -191,6 +195,14 @@ function renderGrammarLesson(lessonIdx) {
         localStorage.removeItem('dm_last_grammar_level');
         renderGrammar();
     };
+    
+    // Кнопка "Следующий урок"
+    const nextLessonBtn = document.getElementById('nextLessonBtn');
+    if (nextLessonBtn && !isLastLesson) {
+        nextLessonBtn.onclick = () => {
+            renderGrammarLesson(lessonIdx + 1);
+        };
+    }
     
     document.getElementById('grammarTheoryBtn').onclick = () => {
         currentGrammarMode = 'theory';
@@ -392,19 +404,14 @@ function showGrammarExercise(exercise, lessonIdx) {
     const speakBtn = document.getElementById('grammarSpeakBtn');
     if (speakBtn) {
         speakBtn.onclick = () => {
-            let textToSpeak = '';
+            let textToSpeak = exercise.sentence || exercise.question || '';
             
-            if (exercise.sentence && exercise.answer) {
-                textToSpeak = exercise.sentence.replace(/_{3,}/g, exercise.answer);
-                textToSpeak = textToSpeak.replace(/\s+/g, ' ').trim();
-            } else if (exercise.answer) {
-                textToSpeak = exercise.answer;
-            } else if (exercise.sentence) {
-                textToSpeak = exercise.sentence;
-            }
-            
-            textToSpeak = textToSpeak.replace(/_{3,}/g, '');
+            textToSpeak = textToSpeak.replace(/_{3,}/g, '_____');
             textToSpeak = textToSpeak.replace(/\s+/g, ' ').trim();
+            
+            if (!textToSpeak || textToSpeak === '_____') {
+                textToSpeak = exercise.answer || '';
+            }
             
             if (textToSpeak) {
                 speak(textToSpeak);
