@@ -1,0 +1,16 @@
+{
+  "lesson": 12,
+  "title": "Konditionalsätze — условные придаточные (wenn, falls)",
+  "level": "B1",
+  "theory": "<h3>📌 Что такое условные предложения?</h3>\n<p>Выражают условие: если А, то Б.</p>\n<ul>\n<li><strong>wenn</strong> — если (реальное условие, настоящее/будущее)</li>\n<li><strong>falls</strong> — если (более неопределённое, чем wenn)</li>\n</ul>\n\n<h3>📌 Порядок слов</h3>\n<p>Wenn/Falls + подлежащее + ... + глагол в конце.<br>\n<strong>Wenn</strong> ich Zeit <strong>habe</strong>, lerne ich Deutsch.</p>\n\n<h3>📌 Нереальные условия (Konjunktiv II)</h3>\n<p><strong>Wenn</strong> ich Zeit <strong>hätte</strong>, <strong>würde</strong> ich kommen.<br>\n(Если бы у меня было время, я бы пришёл.)</p>",
+  "examples": [
+    {"de": "Wenn ich Zeit habe, lerne ich Deutsch.", "ru": "Если у меня есть время, я учу немецкий."},
+    {"de": "Falls es regnet, bleiben wir zu Hause.", "ru": "Если пойдёт дождь, мы останемся дома."},
+    {"de": "Wenn ich Zeit hätte, würde ich kommen.", "ru": "Если бы у меня было время, я бы пришёл."}
+  ],
+  "exercises": [
+    {"type": "fill", "question": "Вставьте wenn/falls:", "sentence": "___ ich Zeit habe, lerne ich Deutsch.", "answer": "Wenn", "hint": "реальное условие → wenn"},
+    {"type": "fill", "question": "Вставьте wenn/falls:", "sentence": "___ es regnet, bleiben wir zu Hause.", "answer": "Wenn", "hint": "wenn/falls возможны оба"},
+    {"type": "transform", "question": "Переделайте в нереальное условие (Konjunktiv II):", "sentence": "Wenn ich Zeit habe, komme ich.", "answer": "Wenn ich Zeit hätte, würde ich kommen", "hint": "hätte, würde + kommen"}
+  ]
+}
