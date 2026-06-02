@@ -1,0 +1,16 @@
+{
+  "lesson": 3,
+  "title": "Passiv без агенса (man, es)",
+  "level": "B1",
+  "theory": "<h3>📌 Безличный Passiv</h3>\n<p>Когда неважно, кто делает действие, используется Passiv без агенса.</p>\n<p><strong>es wird + Partizip II</strong> или просто <strong>wird + Partizip II</strong></p>\n\n<h3>📌 Примеры</h3>\n<ul>\n<li>Hier <strong>wird Deutsch gesprochen</strong>. — Здесь говорят по-немецки.</li>\n<li>Im Werk <strong>wird gearbeitet</strong>. — На заводе работают.</li>\n<li><strong>Es wird getanzt</strong>. — Танцуют.</li>\n</ul>\n\n<h3>📌 Сравнение с Aktiv (man)</h3>\n<p>Aktiv: <strong>Man spricht</strong> hier Deutsch.<br>\nPassiv: Hier <strong>wird Deutsch gesprochen</strong>.</p>",
+  "examples": [
+    {"de": "Hier wird Deutsch gesprochen.", "ru": "Здесь говорят по-немецки."},
+    {"de": "Im Werk wird gearbeitet.", "ru": "На заводе работают."},
+    {"de": "Es wird getanzt.", "ru": "Танцуют."}
+  ],
+  "exercises": [
+    {"type": "transform", "question": "Aktiv (man) → Passiv:", "sentence": "Man spricht hier Deutsch.", "answer": "Hier wird Deutsch gesprochen", "hint": "man fällt weg, wird + Partizip II"},
+    {"type": "transform", "question": "Aktiv (man) → Passiv:", "sentence": "Man arbeitet im Werk.", "answer": "Im Werk wird gearbeitet", "hint": "wird + gearbeitet"},
+    {"type": "fill", "question": "Переведите:", "sentence": "Здесь говорят по-немецки.", "answer": "hier wird deutsch gesprochen", "hint": "wird + Deutsch gesprochen"}
+  ]
+}
