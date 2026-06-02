@@ -1,0 +1,25 @@
+{
+  "lesson": 1,
+  "title": "Passiv — страдательный залог (Präsens)",
+  "level": "B1",
+  "theory": "<h3>📌 Что такое Passiv?</h3>\n<p>Aktiv: <strong>Ich lese</strong> das Buch. (кто-то делает действие)<br>Passiv: Das Buch <strong>wird gelesen</strong>. (действие совершается над предметом)</p>\n\n<div class='info-box' style='background:#E8F0FE;padding:15px;border-radius:12px;margin:15px 0;'>\n  <strong>🎯 ФОРМУЛА PASSIV:</strong><br>\n  <strong>werden + Partizip II</strong>\n</div>\n\n<h3>📌 Спряжение werden в Präsens</h3>\n<table border='1' cellpadding='8' style='border-collapse:collapse;width:100%;margin:15px 0;'>\n  <tr style='background:#3B6FE0;color:white'><th></th><th>werden</th><th>Passiv Beispiel</th><tr>\n  <tr style='background:#E3F2FD;'><td>ich</td><td>werde</td><td>Ich werde gefragt.</td></tr>\n  <tr><td>du</td><td>wirst</td><td>Du wirst gefragt.</td></tr>\n  <tr style='background:#E3F2FD;'><td>er/sie/es</td><td>wird</td><td>Er wird gefragt.</td></tr>\n  <tr><td>wir</td><td>werden</td><td>Wir werden gefragt.</td></tr>\n  <tr style='background:#E3F2FD;'><td>ihr</td><td>werdet</td><td>Ihr werdet gefragt.</td></tr>\n  <tr><td>sie/Sie</td><td>werden</td><td>Sie werden gefragt.</td></tr>\n</table>\n\n<h3>📌 Passiv с модальными глаголами</h3>\n<p><strong>können/müssen/sollen + Partizip II + werden</strong><br>\nDas Buch <strong>kann gelesen werden</strong>. — Книгу можно прочитать.<br>\nDie Arbeit <strong>muss gemacht werden</strong>. — Работа должна быть сделана.</p>\n\n<h3>📌 Агенс (кто делает действие)</h3>\n<p><strong>von + Dativ</strong> — для людей (von mir, von dem Schüler)<br>\n<strong>durch + Akkusativ</strong> — для средств/причин (durch den Wind)</p>\n\n<h3>📌 Примеры</h3>\n<ul>\n<li>Das Buch <strong>wird gelesen</strong>. — Книгу читают.</li>\n<li>Die Hausaufgaben <strong>werden gemacht</strong>. — Домашнюю работу делают.</li>\n<li>Hier <strong>wird Deutsch gesprochen</strong>. — Здесь говорят по-немецки.</li>\n<li>Die Tür <strong>wird vom Lehrer geschlossen</strong>. — Дверь закрывается учителем.</li>\n</ul>",
+  "examples": [
+    {"de": "Das Buch wird gelesen.", "ru": "Книгу читают."},
+    {"de": "Die Arbeit wird gemacht.", "ru": "Работа делается."},
+    {"de": "Die Fenster werden geputzt.", "ru": "Окна моют."},
+    {"de": "Das Buch kann gelesen werden.", "ru": "Книгу можно прочитать."},
+    {"de": "Die Arbeit muss gemacht werden.", "ru": "Работа должна быть сделана."}
+  ],
+  "exercises": [
+    {"type": "fill", "question": "Вставьте werden в правильной форме:", "sentence": "Das Buch ___ gelesen.", "answer": "wird", "hint": "das Buch (3 л. ед. ч.) → wird"},
+    {"type": "fill", "question": "Вставьте werden:", "sentence": "Die Fenster ___ geputzt.", "answer": "werden", "hint": "die Fenster (мн. ч.) → werden"},
+    {"type": "fill", "question": "Образуйте Passiv:", "sentence": "machen → gemacht werden → Die Arbeit ___", "answer": "wird gemacht", "hint": "Passiv: werden + Partizip II"},
+    {"type": "choice", "question": "Выберите правильную форму:", "sentence": "Hier ___ Deutsch gesprochen.", "options": ["wird", "werden", "wirst", "werdet"], "answer": "wird", "hint": "Deutsch (ед. ч.) → wird"},
+    {"type": "fill", "question": "Passiv с модальным глаголом:", "sentence": "Das Buch ___ gelesen werden. (können)", "answer": "kann", "hint": "Passiv с können: kann + Partizip II + werden"},
+    {"type": "transform", "question": "Переделайте из Aktiv в Passiv:", "sentence": "Der Schüler macht die Hausaufgaben.", "answer": "Die Hausaufgaben werden gemacht", "hint": "Объект становится подлежащим, werden + Partizip II"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Книгу читают.", "answer": "das buch wird gelesen", "hint": "das Buch + wird + gelesen"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Здесь говорят по-немецки.", "answer": "hier wird deutsch gesprochen", "hint": "wird + Deutsch gesprochen"},
+    {"type": "fill", "question": "Переведите на немецкий (с модальным глаголом):", "sentence": "Книгу можно прочитать.", "answer": "das buch kann gelesen werden", "hint": "kann + gelesen + werden"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Работа должна быть сделана.", "answer": "die arbeit muss gemacht werden", "hint": "muss + gemacht + werden"}
+  ]
+}
