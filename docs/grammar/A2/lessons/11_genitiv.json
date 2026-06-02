@@ -1,0 +1,21 @@
+{
+  "lesson": 11,
+  "title": "Genitiv — родительный падеж",
+  "level": "A2",
+  "theory": "<h3>📌 Что такое Genitiv?</h3>\n<p>Genitiv — родительный падеж, отвечает на вопросы <strong>чей? кого? чего?</strong></p>\n\n<div class='info-box' style='background:#E8F0FE;padding:15px;border-radius:12px;margin:15px 0;'>\n  <strong>🎯 ВАЖНО:</strong> В разговорной речи Genitiv часто заменяют на <strong>von + Dativ</strong>, но в письменной речи он обязателен.\n</div>\n\n<h3>📌 Изменение артиклей в Genitiv</h3>\n\n<table border='1' cellpadding='8' style='border-collapse:collapse;width:100%;margin:15px 0;'>\n  <tr style='background:#3B6FE0;color:white'><th>Nominativ</th><th>Genitiv</th><th>Пример</th></tr>\n  <tr><td>der (муж.)</th>\n    <td><strong>des</strong> + s</th>\n    <td>das Buch des Mannes</th>\n   </tr>\n  <tr><td>die (жен.)</th>\n    <td><strong>der</strong></th>\n    <td>die Tasche der Frau</th>\n   </tr>\n  <tr><td>das (ср.)</th>\n    <td><strong>des</strong> + s</th>\n    <td>das Haus des Kindes</th>\n   </tr>\n  <tr><td>die (мн.)</th>\n    <td><strong>der</strong></th>\n    <td>die Arbeit der Eltern</th>\n   </tr>\n</table>\n\n<h3>📌 Предлоги, требующие Genitiv</h3>\n<ul>\n<li><strong>während</strong> — во время (während des Unterrichts)</li>\n<li><strong>wegen</strong> — из-за (wegen des Wetters)</li>\n<li><strong>trotz</strong> — несмотря на (trotz des Regens)</li>\n<li><strong>außerhalb</strong> — вне (außerhalb der Stadt)</li>\n<li><strong>innerhalb</strong> — внутри (innerhalb einer Woche)</li>\n</ul>",
+  "examples": [
+    {"de": "Das Buch des Mannes.", "ru": "Книга мужчины."},
+    {"de": "Die Tasche der Frau.", "ru": "Сумка женщины."},
+    {"de": "Wegen des Wetters bleiben wir zu Hause.", "ru": "Из-за погоды мы остаёмся дома."},
+    {"de": "Während des Unterrichts ist das Handy aus.", "ru": "Во время урока телефон выключен."}
+  ],
+  "exercises": [
+    {"type": "fill", "question": "Вставьте Genitiv:", "sentence": "Das Buch ___ (der Mann)", "answer": "des Mannes", "hint": "der Mann → des Mannes"},
+    {"type": "fill", "question": "Вставьте Genitiv:", "sentence": "Die Tasche ___ (die Frau)", "answer": "der Frau", "hint": "die Frau → der Frau"},
+    {"type": "fill", "question": "Вставьте Genitiv:", "sentence": "Wegen ___ (das Wetter)", "answer": "des Wetters", "hint": "das Wetter → des Wetters"},
+    {"type": "fill", "question": "Вставьте Genitiv:", "sentence": "Während ___ (der Unterricht)", "answer": "des Unterrichts", "hint": "der Unterricht → des Unterrichts"},
+    {"type": "fill", "question": "Вставьте предлог с Genitiv:", "sentence": "___ des Regens blieben wir zu Hause.", "answer": "Wegen", "hint": "из-за → Wegen"},
+    {"type": "choice", "question": "Выберите правильный артикль:", "sentence": "Die Farbe ___ Autos ist rot.", "options": ["des", "der", "dem"], "answer": "des", "hint": "das Auto → des Autos"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Из-за дождя", "answer": "wegen des regens", "hint": "wegen + Genitiv"}
+  ]
+}
