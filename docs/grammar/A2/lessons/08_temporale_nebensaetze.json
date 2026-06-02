@@ -1,0 +1,24 @@
+{
+  "lesson": 8,
+  "title": "Придаточные времени: wenn, als, während, bevor, nachdem, bis, sobald",
+  "level": "A2",
+  "theory": "<h3>📌 Союзы времени</h3>\n\n<table border='1' cellpadding='8' style='border-collapse:collapse;width:100%;margin:15px 0;'>\n  <tr style='background:#3B6FE0;color:white'><th>Союз</th><th>Значение</th><th>Пример</th></tr>\n  <tr><td><strong>wenn</strong></td><td>когда (многократно, будущее)</td><td>Wenn ich Zeit habe, lerne ich.</td></tr>\n  <tr><td><strong>als</strong></td><td>когда (однократно в прошлом)</td><td>Als ich Kind war, lebte ich in Berlin.</td></tr>\n  <tr><td><strong>während</strong></td><td>в то время как</td><td>Während ich arbeite, schläft die Katze.</td></tr>\n  <tr><td><strong>bevor</strong></td><td>перед тем как</td><td>Bevor ich esse, wasche ich mir die Hände.</td></tr>\n  <tr><td><strong>nachdem</strong></td><td>после того как</td><td>Nachdem ich gegessen habe, gehe ich schlafen.</td></tr>\n  <tr><td><strong>bis</strong></td><td>пока не</td><td>Ich warte, bis er kommt.</td></tr>\n  <tr><td><strong>seitdem</strong></td><td>с тех пор как</td><td>Seitdem ich in Berlin wohne, lerne ich Deutsch.</td></td>\n  <tr><td><strong>sobald</strong></td><td>как только</td><td>Sobald ich ankomme, rufe ich dich an.</td></tr>\n  <tr><td colspan='3'><strong>Важно:</strong> В придаточном предложении глагол идёт в конец!</th></td>\n  <tr><td colspan='3'>wenn — для настоящего/будущего и многократного прошлого<br>als — только для однократного прошлого</th></td>\n  <tr><td colspan='3'>nachdem — часто с Plusquamperfekt</th></td>\n  <tr><td colspan='3'>Пример с bis: Ich bleibe hier, bis du kommst.</th></td>\n  <tr><td colspan='3'>Пример с sobald: Sobald es regnet, gehe ich nach Hause.</th></td>\n  <tr><td colspan='3'>Пример с während: Während du schläfst, arbeite ich.</th></tr>\n  <tr><td colspan='3'>Пример с bevor: Bevor du gehst, ruf mich an.</th></tr>\n  <tr><td colspan='3'>Пример с nachdem: Nachdem er gegessen hatte, ging er schlafen.</th></tr>\n  <tr><td colspan='3'>Пример с seitdem: Seitdem ich hier bin, fühle ich mich wohl.</th></tr>\n  <tr><td colspan='3'>Главное правило: ГЛАГОЛ В КОНЦЕ придаточного предложения!</th></tr>\n  <tr><td colspan='3'>als = прошлое однократное, wenn = всё остальное</th></tr>\n  <tr><td colspan='3'>Практика — ключ к успеху</th></tr>\n  <tr><td colspan='3'>Удачи! 🇩🇪</th></tr>\n  <tr><td colspan='3'>Теперь переходи к упражнениям</th></tr>\n  <tr><td colspan='3'>👇</th></tr>\n  <tr><td colspan='3'>Конец теории</th></tr>\n  </table>",
+  "examples": [
+    {"de": "Wenn ich Zeit habe, lerne ich Deutsch.", "ru": "Когда у меня есть время, я учу немецкий."},
+    {"de": "Als ich Kind war, lebte ich in Berlin.", "ru": "Когда я был ребёнком, я жил в Берлине."},
+    {"de": "Ich warte, bis der Bus kommt.", "ru": "Я жду, пока приедет автобус."},
+    {"de": "Sobald ich ankomme, rufe ich dich an.", "ru": "Как только я приеду, я позвоню тебе."}
+  ],
+  "exercises": [
+    {"type": "fill", "question": "Вставьте союз:", "sentence": "___ ich Zeit habe, lerne ich Deutsch.", "answer": "Wenn", "hint": "когда (многократно) → Wenn"},
+    {"type": "fill", "question": "Вставьте союз:", "sentence": "___ ich Kind war, lebte ich in Berlin.", "answer": "Als", "hint": "когда (однократно в прошлом) → Als"},
+    {"type": "fill", "question": "Вставьте союз:", "sentence": "___ ich arbeite, schläft die Katze.", "answer": "Während", "hint": "в то время как → Während"},
+    {"type": "fill", "question": "Вставьте союз:", "sentence": "___ ich esse, wasche ich mir die Hände.", "answer": "Bevor", "hint": "перед тем как → Bevor"},
+    {"type": "fill", "question": "Вставьте союз:", "sentence": "Ich warte, ___ der Bus kommt.", "answer": "bis", "hint": "пока не → bis"},
+    {"type": "fill", "question": "Вставьте союз:", "sentence": "___ ich ankomme, rufe ich dich an.", "answer": "Sobald", "hint": "как только → Sobald"},
+    {"type": "choice", "question": "Выберите правильный союз:", "sentence": "___ du kommst, bin ich glücklich.", "options": ["Wenn", "Als", "Bevor"], "answer": "Wenn", "hint": "когда (будущее) → Wenn"},
+    {"type": "choice", "question": "Выберите правильный союз:", "sentence": "___ ich ihn sah, war ich überrascht.", "options": ["Wenn", "Als", "Seitdem"], "answer": "Als", "hint": "однократное прошлое → Als"},
+    {"type": "transform", "question": "Соедините с 'während':", "sentence": "Ich arbeite. Die Katze schläft.", "answer": "Während ich arbeite, schläft die Katze", "hint": "während + глагол в конце"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Когда я приду, я позвоню.", "answer": "wenn ich komme rufe ich an", "hint": "wenn + глагол в конце"}
+  ]
+}
