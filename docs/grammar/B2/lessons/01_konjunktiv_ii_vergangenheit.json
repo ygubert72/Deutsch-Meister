@@ -13,7 +13,7 @@
     {"de": "Wir hätten früher anrufen sollen.", "ru": "Нам следовало бы позвонить раньше."},
     {"de": "Sie wäre gerne mitgekommen.", "ru": "Она бы с радостью пошла с нами."}
   ],
-  "exercises":   [
+  "exercises": [
     {"type": "fill", "question": "Образуйте Konjunktiv II Vergangenheit von 'machen':", "sentence": "Ich ___ die Arbeit gemacht.", "answer": "hätte", "hint": "haben → hätte"},
     {"type": "fill", "question": "Образуйте Konjunktiv II Vergangenheit von 'gehen':", "sentence": "Ich ___ nach Hause gegangen.", "answer": "wäre", "hint": "sein → wäre"},
     {"type": "fill", "question": "Образуйте Konjunktiv II Vergangenheit с модальным глаголом:", "sentence": "Ich ___ das machen ___ (können).", "answer": "hätte können", "hint": "hätte + Infinitiv + können"},
