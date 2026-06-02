@@ -2,15 +2,89 @@
   "lesson": 5,
   "title": "Nomen-Verb-Verbindungen (функциональные глаголы)",
   "level": "B1",
-  "theory": "<h3>📌 Что это?</h3>\n<p>Сочетания существительного с глаголом, которые вместе имеют значение одного глагола.</p>\n\n<h3>📌 Самые важные</h3>\n<ul>\n<li><strong>Abschied nehmen</strong> — прощаться (sich verabschieden)</li>\n<li><strong>Antwort geben</strong> — отвечать (antworten)</li>\n<li><strong>Bescheid sagen</strong> — сообщать (mitteilen)</li>\n<li><strong>Entscheidung treffen</strong> — решать (entscheiden)</li>\n<li><strong>Einfluss haben</strong> — влиять (beeinflussen)</li>\n<li><strong>Frage stellen</strong> — спрашивать (fragen)</li>\n<li><strong>Rat geben</strong> — советовать (raten)</li>\n<li><strong>Unterricht nehmen</strong> — заниматься (lernen)</li>\n<li><strong>Verantwortung tragen</strong> — отвечать (verantworten)</li>\n<li><strong>Zustimmung finden</strong> — получать согласие</li>\n</ul>",
+  "theory": "<h3>📌 Что такое Nomen-Verb-Verbindungen?</h3>\n\n<p>Nomen-Verb-Verbindungen — это устойчивые сочетания существительного с глаголом, которые вместе имеют значение одного глагола. Они делают речь более официальной и литературной.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 ПРИМЕР:</strong><br>\n  Вместо <strong>sich verabschieden</strong> можно сказать <strong>Abschied nehmen</strong><br>\n  Вместо <strong>entscheiden</strong> — <strong>eine Entscheidung treffen</strong>\n</div>\n\n<h3>📌 Самые важные Nomen-Verb-Verbindungen für B1</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Verbindung</th>\n    <th>Bedeutung</th>\n    <th>Beispiel</th>\n    <th>Übersetzung</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>Abschied nehmen</strong></th>\n    <td>sich verabschieden</th>\n    <td>Er nimmt Abschied.</th>\n    <td>Он прощается.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>Antwort geben</strong></th>\n    <td>antworten</th>\n    <td>Sie gibt keine Antwort.</th>\n    <td>Она не отвечает.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>Bescheid sagen</strong></th>\n    <td>mitteilen, informieren</th>\n    <td>Sag mir Bescheid!</th>\n    <td>Сообщи мне!</th>\n   </td>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>Entscheidung treffen</strong></th>\n    <td>sich entscheiden</th>\n    <td>Wir treffen eine Entscheidung.</th>\n    <td>Мы принимаем решение.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>Einfluss haben</strong></th>\n    <td>beeinflussen</th>\n    <td>Das hat großen Einfluss.</th>\n    <td>Это имеет большое влияние.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>Frage stellen</strong></th>\n    <td>fragen</th>\n    <td>Er stellt eine Frage.</th>\n    <td>Он задаёт вопрос.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>Rat geben</strong></th>\n    <td>raten</th>\n    <table>Sie gibt ihm einen Rat.</th>\n    <td>Она даёт ему совет.</th>\n   </td>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>Unterricht nehmen</strong></th>\n    <td>lernen</th>\n    <td>Ich nehme Deutschunterricht.</th>\n    <td>Я беру уроки немецкого.</th>\n   </td>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>Verantwortung tragen</strong></th>\n    <td>verantworten</th>\n    <td>Er trägt die Verantwortung.</th>\n    <td>Он несёт ответственность.</th>\n   <tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>Zustimmung finden</strong></th>\n    <td>zugestimmt werden</th>\n    <td>Der Plan findet Zustimmung.</th>\n    <td>План находит одобрение.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>Angst haben</strong></th>\n    <td>sich ängstigen</th>\n    <td>Ich habe Angst.</th>\n    <td>Я боюсь.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>Freude haben</strong></th>\n    <td>sich freuen</th>\n    <td>Ich habe große Freude.</th>\n    <td>Я очень рад.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>Schluss machen</strong></th>\n    <td>beenden</th>\n    <td>Wir machen Schluss.</th>\n    <td>Мы заканчиваем.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>Platz nehmen</strong></th>\n    <td>sich setzen</th>\n    <td>Nehmen Sie bitte Platz.</th>\n    <td>Садитесь, пожалуйста.</th>\n   </tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"4\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    Эти сочетания делают речь более официальной и элегантной.<br>\n    В разговорной речи чаще используют простые глаголы.\n  </tr>\n</table>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ВАЖНО:</strong><br>\n  Существительное всегда пишется с большой буквы и стоит в определённом падеже (чаще всего в Akkusativ).<br>\n  Пример: <strong>eine Entscheidung treffen</strong> (Akkusativ)\n</div>\n\n<h3>📖 Пошаговый алгоритм</h3>\n<ol>\n<li>Вспомни сочетание существительного с глаголом</li>\n<li>Глагол спрягается как обычно</li>\n<li>Существительное стоит в нужном падеже (чаще Akkusativ)</li>\n<li>Всё сочетание имеет значение одного глагола</li>\n</ol>\n\n<h3>📌 Итог урока</h3>\n<ul>\n<li>Nomen-Verb-Verbindungen = устойчивые сочетания (глагол + существительное)</li>\n<li>Делают речь более официальной</li>\n<li>Часто заменяют простые глаголы</li>\n<li>Существительное с большой буквы</li>\n</ul>",
   "examples": [
     {"de": "Er nimmt Abschied.", "ru": "Он прощается."},
     {"de": "Sie gibt keine Antwort.", "ru": "Она не отвечает."},
-    {"de": "Das hat großen Einfluss.", "ru": "Это имеет большое влияние."}
+    {"de": "Sag mir Bescheid!", "ru": "Сообщи мне!"},
+    {"de": "Wir treffen eine Entscheidung.", "ru": "Мы принимаем решение."},
+    {"de": "Das hat großen Einfluss.", "ru": "Это имеет большое влияние."},
+    {"de": "Er stellt eine Frage.", "ru": "Он задаёт вопрос."},
+    {"de": "Sie gibt ihm einen Rat.", "ru": "Она даёт ему совет."},
+    {"de": "Ich nehme Deutschunterricht.", "ru": "Я беру уроки немецкого."},
+    {"de": "Er trägt die Verantwortung.", "ru": "Он несёт ответственность."},
+    {"de": "Nehmen Sie bitte Platz.", "ru": "Садитесь, пожалуйста."}
   ],
   "exercises": [
-    {"type": "fill", "question": "Вставьте глагол:", "sentence": "Er ___ Abschied. (nehmen/geben/treffen)", "answer": "nimmt", "hint": "Abschied nehmen"},
-    {"type": "fill", "question": "Вставьте глагол:", "sentence": "Sie ___ keine Antwort. (gibt/stellt/nimmt)", "answer": "gibt", "hint": "Antwort geben"},
-    {"type": "fill", "question": "Переведите:", "sentence": "Он прощается.", "answer": "er nimmt abschied", "hint": "Abschied nehmen"}
+    {
+      "type": "fill",
+      "question": "Вставьте правильное существительное:",
+      "sentence": "Er nimmt ___ (Abschied/Antwort).",
+      "answer": "Abschied",
+      "hint": "прощаться → Abschied nehmen"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильное существительное:",
+      "sentence": "Sie gibt keine ___ (Antwort/Einfluss).",
+      "answer": "Antwort",
+      "hint": "отвечать → Antwort geben"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильное существительное:",
+      "sentence": "Wir treffen eine ___ (Entscheidung/Frage).",
+      "answer": "Entscheidung",
+      "hint": "решать → eine Entscheidung treffen"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильное существительное:",
+      "sentence": "Er stellt eine ___ (Frage/Entscheidung).",
+      "answer": "Frage",
+      "hint": "спрашивать → eine Frage stellen"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильный глагол:",
+      "sentence": "Er ___ Abschied. (gibt/stellt/nimmt)",
+      "answer": "nimmt",
+      "hint": "Abschied nehmen"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильный глагол:",
+      "sentence": "Sie ___ keine Antwort. (gibt/stellt/nimmt)",
+      "answer": "gibt",
+      "hint": "Antwort geben"
+    },
+    {
+      "type": "transform",
+      "question": "Замените простой глагол на Nomen-Verb-Verbindung:",
+      "sentence": "Er verabschiedet sich.",
+      "answer": "Er nimmt Abschied",
+      "hint": "Abschied nehmen"
+    },
+    {
+      "type": "transform",
+      "question": "Замените простой глагол на Nomen-Verb-Verbindung:",
+      "sentence": "Sie antwortet nicht.",
+      "answer": "Sie gibt keine Antwort",
+      "hint": "Antwort geben"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Он прощается.",
+      "answer": "er nimmt abschied",
+      "hint": "Abschied nehmen"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий:",
+      "sentence": "Мы принимаем решение.",
+      "answer": "wir treffen eine entscheidung",
+      "hint": "eine Entscheidung treffen"
+    }
   ]
 }
