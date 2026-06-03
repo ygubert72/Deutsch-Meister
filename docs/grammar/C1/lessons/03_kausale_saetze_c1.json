@@ -1,58 +1,124 @@
 {
   "lesson": 3,
-  "title": "Kausale Sätze C1: aufgrund + Genitiv, infolge + Genitiv, aufgrund dessen, dass",
+  "title": "Придаточные причины C1: aufgrund + Genitiv, infolge + Genitiv, zumal",
   "level": "C1",
-  "theory": "<h3>📌 Wiederholung: Kausale Sätze (B2)</h3>\n\n<p>Kausale Sätze drücken einen Grund aus. Auf B2 haben Sie gelernt: <strong>weil, da, denn, wegen, aufgrund</strong>.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 AUF C1-KOMMEN DAZU:</strong><br>\n  • aufgrund + Genitiv (formeller als wegen)<br>\n  • infolge + Genitiv (kausal, oft negativ)<br>\n  • aufgrund dessen, dass (mehrteiliger Grund)<br>\n  • aus dem Grund, dass (mehrteiliger Grund)<br>\n  • zumal (besonders weil, zusätzlicher Grund)\n</div>\n\n<h3>📌 aufgrund / infolge + Genitiv (Präpositionen)</h3>\n\n<p>Diese Präpositionen sind formeller als „wegen“.</p>\n\n<ul>\n<li><strong>Aufgrund des schlechten Wetters</strong> blieben wir zu Hause.</li>\n<li><strong>Infolge des Unfalls</strong> war die Straße gesperrt.</li>\n</ul>\n\n<h3>📌 aufgrund dessen, dass / aus dem Grund, dass</h3>\n\n<p>Wenn der Grund ein ganzer Satz ist, verwendet man diese zweiteiligen Konnektoren.</p>\n\n<ul>\n<li>Er wurde ausgezeichnet, <strong>aufgrund dessen, dass</strong> er viel für die Firma geleistet hat.</li>\n<li>Sie bekam den Job, <strong>aus dem Grund, dass</strong> sie die beste Qualifikation hatte.</li>\n</ul>\n\n<h3>📌 zumal („besonders weil“)</h3>\n\n<p>„Zumal“ leitet einen <strong>zusätzlichen, verstärkenden Grund</strong> ein.</p>\n\n<ul>\n<li>Ich gehe nicht zur Party, <strong>zumal</strong> ich müde bin.</li>\n<li>Wir bleiben zu Hause, <strong>zumal</strong> es regnet.</li>\n</ul>",
+  "theory": "<h3>📌 Повторение: Придаточные причины на уровне B2</h3>\n\n<p>Придаточные причины отвечают на вопрос <strong>Warum?</strong> (почему?) и указывают причину действия. На уровне B2 вы изучили: <strong>weil, da, denn, nämlich, wegen, aufgrund</strong>.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 НА УРОВНЕ C1 ДОБАВЛЯЮТСЯ:</strong><br>\n  • aufgrund + Genitiv (более формальный, чем wegen)<br>\n  • infolge + Genitiv (причинно-следственная связь, часто негативная)<br>\n  • aufgrund dessen, dass (многосоставный союз для целого предложения)<br>\n  • aus dem Grund, dass (то же значение)<br>\n  • zumal („тем более что“, дополнительный усиливающий причину)\n</div>\n\n<h3>📌 aufgrund / infolge + Genitiv (предлоги)</h3>\n\n<p>Эти предлоги более формальные, чем „wegen“. Они используются в официальных, деловых и научных текстах.</p>\n\n<table border=\"1\" cellpadding=\"8\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Предлог</th>\n    <th>Значение</th>\n    <th>Пример</th>\n    <th>Перевод</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n     <td><strong>aufgrund + Genitiv</strong></th>\n     <td>из-за, на основании</th>\n     <td><strong>Aufgrund des schlechten Wetters</strong> blieben wir zu Hause.</th>\n     <td>Из-за плохой погоды мы остались дома.</th>\n    </tr>\n  <tr style=\"background: #F5F5F5;\">\n     <td><strong>infolge + Genitiv</strong></th>\n     <td>вследствие (часто негативное)</th>\n     <td><strong>Infolge des Unfalls</strong> war die Straße gesperrt.</th>\n     <td>Вследствие аварии дорога была закрыта.</th>\n    </tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"4\"><strong>💡 ЗАПОМИНАЛКА:</strong> „infolge“ часто используется для отрицательных последствий (авария, кризис, катастрофа).</th>\n    </tr>\n  </table>\n\n<h3>📌 aufgrund dessen, dass / aus dem Grund, dass (многосоставные союзы)</h3>\n\n<p>Когда причина выражается целым предложением, используются эти двухчастные союзы. Они типичны для письменной, формальной речи.</p>\n\n<ul>\n<li>Er wurde ausgezeichnet, <strong>aufgrund dessen, dass</strong> er viel für die Firma geleistet hat. — Он был награждён благодаря тому, что много сделал для фирмы.</li>\n<li>Sie bekam den Job, <strong>aus dem Grund, dass</strong> sie die beste Qualifikation hatte. — Она получила работу по той причине, что у неё была лучшая квалификация.</li>\n<li>Das Konzert fiel aus, <strong>aus dem Grund, dass</strong> der Sänger krank war. — Концерт отменился по той причине, что певец был болен.</li>\n</ul>\n\n<h3>📌 zumal („тем более что“, „особенно потому что“)</h3>\n\n<p>„Zumal“ вводит <strong>дополнительный, усиливающий причину</strong>. Причина часто уже известна, но с помощью „zumal“ она ещё раз подчёркивается. Это слово характерно для уровня C1.</p>\n\n<ul>\n<li>Ich gehe nicht zur Party, <strong>zumal</strong> ich müde bin. — Я не иду на вечеринку, тем более что я устал.</li>\n<li>Wir bleiben zu Hause, <strong>zumal</strong> es regnet. — Мы остаёмся дома, тем более что идёт дождь.</li>\n<li>Er sollte kommen, <strong>zumal</strong> er der Einzige ist, der helfen kann. — Он должен прийти, тем более что он единственный, кто может помочь.</li>\n<li>Ich lehne das Angebot ab, <strong>zumal</strong> die Bedingungen unklar sind. — Я отклоняю предложение, тем более что условия неясны.</li>\n</ul>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ТИПИЧНЫЕ ОШИБКИ:</strong><br>\n  ❌ <strong>Aufgrund</strong> das Wetter war schlecht, blieben wir zu Hause.<br>\n  ✅ <strong>Aufgrund des schlechten Wetters</strong> blieben wir zu Hause.<br>\n  ❌ Ich komme nicht, <strong>weil</strong> ich müde bin, <strong>zumal</strong> ich keine Lust habe.<br>\n  ✅ Ich komme nicht, <strong>zumal</strong> ich müde bin und keine Lust habe.\n</div>\n\n<h3>📌 Сравнение: B2 vs C1</h3>\n\n<table border=\"1\" cellpadding=\"8\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Уровень</th>\n    <th>Конструкция</th>\n    <th>Пример</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n     <td>B2</th>\n     <td>weil, da, denn, wegen, aufgrund</th>\n     <td>Wegen des Regens blieben wir zu Hause.</th>\n    </tr>\n  <tr style=\"background: #F5F5F5;\">\n     <td>C1</th>\n     <td>aufgrund + Genitiv, infolge + Genitiv, aufgrund dessen dass, zumal</th>\n     <td>Infolge des Unfalls war die Straße gesperrt.</th>\n    </tr>\n  </table>\n\n<h3>📖 Пошаговый алгоритм</h3>\n<ol>\n<li>Определи, нужно ли выразить причину.</li>\n<li>Если причина — существительное: используй „aufgrund“ (нейтрально) или „infolge“ (негативно).</li>\n<li>Если причина — целое предложение: используй „aufgrund dessen, dass“ или „aus dem Grund, dass“.</li>\n<li>Если нужно подчеркнуть дополнительную, усиливающую причину: используй „zumal“.</li>\n</ol>\n\n<h3>📌 Итог урока</h3>\n<ul>\n<li><strong>aufgrund + Genitiv</strong> = из-за (более формальный, чем wegen)</li>\n<li><strong>infolge + Genitiv</strong> = вследствие (часто для негативных последствий)</li>\n<li><strong>aufgrund dessen, dass</strong> = благодаря тому, что (многосоставный)</li>\n<li><strong>aus dem Grund, dass</strong> = по той причине, что</li>\n<li><strong>zumal</strong> = тем более что (дополнительная, усиливающая причина)</li>\n</ul>",
   "examples": [
     {"de": "Aufgrund des schlechten Wetters blieben wir zu Hause.", "ru": "Из-за плохой погоды мы остались дома."},
     {"de": "Infolge des Unfalls war die Straße gesperrt.", "ru": "Вследствие аварии дорога была закрыта."},
     {"de": "Er wurde ausgezeichnet, aufgrund dessen, dass er viel für die Firma geleistet hat.", "ru": "Он был награждён благодаря тому, что много сделал для фирмы."},
     {"de": "Sie bekam den Job, aus dem Grund, dass sie die beste Qualifikation hatte.", "ru": "Она получила работу по той причине, что у неё была лучшая квалификация."},
-    {"de": "Ich gehe nicht zur Party, zumal ich müde bin.", "ru": "Я не иду на вечеринку, тем более что я устал."}
+    {"de": "Ich gehe nicht zur Party, zumal ich müde bin.", "ru": "Я не иду на вечеринку, тем более что я устал."},
+    {"de": "Wir bleiben zu Hause, zumal es regnet.", "ru": "Мы остаёмся дома, тем более что идёт дождь."},
+    {"de": "Das Konzert fiel aus, aus dem Grund, dass der Sänger krank war.", "ru": "Концерт отменился по той причине, что певец был болен."}
   ],
   "exercises": [
     {
       "type": "fill",
-      "question": "Setzen Sie 'aufgrund' oder 'infolge' mit dem richtigen Genitiv ein.",
+      "question": "Вставьте 'aufgrund' или 'infolge' с правильным Genitiv.",
       "sentence": "___ des schlechten Wetters blieben wir zu Hause.",
       "answer": "Aufgrund",
-      "hint": "aufgrund + Genitiv (neutral)"
+      "hint": "aufgrund + Genitiv (нейтрально)"
     },
     {
       "type": "fill",
-      "question": "Setzen Sie 'infolge' mit dem richtigen Genitiv ein.",
+      "question": "Вставьте 'infolge' с правильным Genitiv.",
       "sentence": "___ des Unfalls war die Straße gesperrt.",
       "answer": "Infolge",
-      "hint": "infolge + Genitiv (oft negativ)"
+      "hint": "infolge + Genitiv (часто для негативных последствий)"
     },
     {
       "type": "transform",
-      "question": "Ersetzen Sie 'weil' durch 'aufgrund dessen, dass'.",
+      "question": "Замените 'weil' на 'aufgrund dessen, dass'.",
       "sentence": "Er wurde ausgezeichnet, weil er viel geleistet hat.",
       "answer": "Er wurde ausgezeichnet, aufgrund dessen, dass er viel geleistet hat.",
-      "hint": "aufgrund dessen, dass + Nebensatz (Verb am Ende)"
+      "hint": "aufgrund dessen, dass + придаточное (глагол в конце)"
     },
     {
       "type": "fill",
-      "question": "Setzen Sie 'zumal' ein.",
+      "question": "Вставьте 'zumal'.",
       "sentence": "Ich gehe nicht zur Party, ___ ich müde bin.",
       "answer": "zumal",
-      "hint": "zumal = besonders weil"
+      "hint": "zumal = тем более что"
+    },
+    {
+      "type": "transform",
+      "question": "Замените 'weil' на 'aus dem Grund, dass'.",
+      "sentence": "Das Konzert fiel aus, weil der Sänger krank war.",
+      "answer": "Das Konzert fiel aus, aus dem Grund, dass der Sänger krank war.",
+      "hint": "aus dem Grund, dass + придаточное"
     },
     {
       "type": "choice",
-      "question": "Welche Präposition wird oft für negative Folgen verwendet?",
+      "question": "Какой предлог часто используется для отрицательных последствий?",
       "sentence": "___ des Unfalls war die Straße gesperrt.",
       "options": ["Wegen", "Aufgrund", "Infolge", "Trotz"],
       "answer": "Infolge",
-      "hint": "infolge + Genitiv wird oft für negative Ereignisse verwendet."
+      "hint": "infolge + Genitiv часто используется для негативных событий."
     },
     {
       "type": "fill",
-      "question": "Übersetzen Sie ins Deutsche (aufgrund + Genitiv).",
+      "question": "Вставьте правильный падеж после 'aufgrund'.",
+      "sentence": "Aufgrund ___ (das schlechte Wetter) blieben wir zu Hause.",
+      "answer": "des schlechten Wetters",
+      "hint": "aufgrund требует Genitiv"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильный падеж после 'infolge'.",
+      "sentence": "Infolge ___ (der Unfall) war die Straße gesperrt.",
+      "answer": "des Unfalls",
+      "hint": "infolge требует Genitiv"
+    },
+    {
+      "type": "choice",
+      "question": "Что выражает 'zumal'?",
+      "sentence": "'Zumal' drückt aus...",
+      "options": ["einen Gegensatz", "einen zusätzlichen, verstärkenden Grund", "eine Folge", "eine Bedingung"],
+      "answer": "einen zusätzlichen, verstärkenden Grund",
+      "hint": "zumal = тем более что"
+    },
+    {
+      "type": "transform",
+      "question": "Переделайте предложение, используя 'aufgrund'.",
+      "sentence": "Weil das Wetter schlecht war, blieben wir zu Hause.",
+      "answer": "Aufgrund des schlechten Wetters blieben wir zu Hause.",
+      "hint": "aufgrund + Genitiv"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (aufgrund + Genitiv).",
       "sentence": "Из-за плохой погоды мы остались дома.",
       "answer": "aufgrund des schlechten wetter blieben wir zu hause",
       "hint": "aufgrund + Genitiv"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (infolge + Genitiv).",
+      "sentence": "Вследствие аварии дорога была закрыта.",
+      "answer": "infolge des unfalls war die straße gesperrt",
+      "hint": "infolge + Genitiv"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (zumal).",
+      "sentence": "Я не иду на вечеринку, тем более что я устал.",
+      "answer": "ich gehe nicht zur party zumal ich müde bin",
+      "hint": "zumal + придаточное (глагол в конце)"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (aufgrund dessen, dass).",
+      "sentence": "Он был награждён благодаря тому, что много сделал.",
+      "answer": "er wurde ausgezeichnet aufgrund dessen dass er viel gemacht hat",
+      "hint": "aufgrund dessen, dass + придаточное"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (aus dem Grund, dass).",
+      "sentence": "Она получила работу по той причине, что у неё была лучшая квалификация.",
+      "answer": "sie bekam den job aus dem grund dass sie die beste qualifikation hatte",
+      "hint": "aus dem Grund, dass + придаточное"
     }
   ]
 }
