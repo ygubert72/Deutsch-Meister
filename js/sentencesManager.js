@@ -1,262 +1,116 @@
-let sentencesList = [];
-let sentencesIndex = 0;
-let sentencesCurrent = null;
-let sentencesSelected = [];
-let sentencesAvailable = [];
-let sentencesActive = {};
-let sentencesHintIndex = 0;
-let sentencesHintWords = [];
+async function loadSentences() {
+    const levels = ['A1', 'A2', 'B1', 'B2', 'C1'];
+    for (const lvl of levels) {
+        try {
+            const resp = await fetch(`/Deutsch-Meister/docs/sentences/${lvl}.json`);
+            if (resp.ok) sentencesDB[lvl] = await resp.json();
+            else sentencesDB[lvl] = [];
+        } catch(e) { sentencesDB[lvl] = []; }
+    }
+    if (sentencesDB.A1.length === 0) createNormalSentences();
+}
 
-function renderSentences() {
-    sentencesList = getUnstudiedSentences();
-    sentencesIndex = 0;
+function createNormalSentences() {
+    sentencesDB.A1 = [
+        {de:"Hallo!", ru:"Привет!"},
+        {de:"Guten Morgen!", ru:"Доброе утро!"},
+        {de:"Guten Tag!", ru:"Добрый день!"},
+        {de:"Guten Abend!", ru:"Добрый вечер!"},
+        {de:"Gute Nacht!", ru:"Спокойной ночи!"},
+        {de:"Wie geht es dir?", ru:"Как дела?"},
+        {de:"Mir geht es gut.", ru:"У меня всё хорошо."},
+        {de:"Ich heiße Anna.", ru:"Меня зовут Анна."},
+        {de:"Wie heißt du?", ru:"Как тебя зовут?"},
+        {de:"Woher kommst du?", ru:"Откуда ты?"},
+        {de:"Ich komme aus Russland.", ru:"Я из России."},
+        {de:"Das ist mein Buch.", ru:"Это моя книга."},
+        {de:"Die Katze ist süß.", ru:"Кошка милая."},
+        {de:"Der Hund ist laut.", ru:"Собака громкая."},
+        {de:"Wir gehen nach Hause.", ru:"Мы идём домой."},
+        {de:"Es regnet heute.", ru:"Сегодня идёт дождь."},
+        {de:"Die Sonne scheint.", ru:"Солнце светит."},
+        {de:"Ich habe Durst.", ru:"Я хочу пить."},
+        {de:"Ich habe Hunger.", ru:"Я хочу есть."},
+        {de:"Wo ist der Bahnhof?", ru:"Где вокзал?"},
+        {de:"Bitte schön!", ru:"Пожалуйста!"},
+        {de:"Danke schön!", ru:"Большое спасибо!"},
+        {de:"Auf Wiedersehen!", ru:"До свидания!"},
+        {de:"Tschüss!", ru:"Пока!"},
+        {de:"Bis morgen!", ru:"До завтра!"},
+        {de:"Ich liebe Deutsch.", ru:"Я люблю немецкий язык."},
+        {de:"Sprichst du Englisch?", ru:"Ты говоришь по-английски?"},
+        {de:"Ich verstehe nicht.", ru:"Я не понимаю."},
+        {de:"Kannst du mir helfen?", ru:"Ты можешь мне помочь?"},
+        {de:"Ja, natürlich!", ru:"Да, конечно!"}
+    ];
     
-    document.getElementById('content').innerHTML = `
-        <div style="text-align: center;">
-            <button class="dir-btn" id="sentDirBtn">${AppConfig.sentence_lang_from === 'ru' ? 'Ru → De' : 'De → Ru'}</button>
-            
-            <div class="sent-question" id="sentQuestion"></div>
-            
-            <div class="sent-result" id="sentResult"></div>
-            
-            <div class="words-container" id="sentWordsContainer"></div>
-            
-            <div class="btn-group">
-                <button class="ctrl-btn" id="sentUndoBtn">ВЕРНУТЬ СЛОВО</button>
-                <button class="ctrl-btn" id="sentResetBtn">СБРОСИТЬ ВСЁ</button>
-                <button class="ctrl-btn check-btn" id="sentCheckBtn">ПРОВЕРИТЬ</button>
-                <button class="ctrl-btn" id="sentSpeakBtn">🔊</button>
-            </div>
-            
-            <div class="hint-area">
-                <button class="ctrl-btn" id="sentHintBtn">ПОДСКАЗКА</button>
-                <div class="hint-label" id="sentHintLabel"></div>
-            </div>
-            
-            <div class="btn-group">
-                <button class="ctrl-btn" id="sentStudyBtn">В ИЗУЧЕНО</button>
-                <button class="ctrl-btn" id="sentUnstudyBtn">ВЕРНУТЬ</button>
-                <button class="ctrl-btn" id="sentResetAllBtn">ВЕРНУТЬ ВСЕ</button>
-                <button class="ctrl-btn" id="sentPrevBtn">◀ НАЗАД</button>
-                <button class="ctrl-btn" id="sentNextBtn">ВПЕРЕД ▶</button>
-            </div>
-        </div>
-    `;
-    
-    function updateSentenceDisplay() {
-        const container = document.getElementById('sentWordsContainer');
-        const resultEl = document.getElementById('sentResult');
-        if (!container) return;
-        
-        container.innerHTML = '';
-        sentencesAvailable.forEach(word => {
-            if (sentencesActive[word]) {
-                const btn = document.createElement('button');
-                btn.className = 'word-btn';
-                btn.textContent = word;
-                btn.onclick = () => {
-                    if (sentencesActive[word]) {
-                        sentencesActive[word] = false;
-                        sentencesSelected.push(word);
-                        updateSentenceDisplay();
-                    }
-                };
-                container.appendChild(btn);
-            }
-        });
-        resultEl.textContent = sentencesSelected.join(' ');
+    for (let i = 0; i < 20; i++) {
+        if (sentencesDB.A2.length < 20) sentencesDB.A2.push({de:`Satz_A2_${i}`, ru:`Фраза_A2_${i}`});
+        if (sentencesDB.B1.length < 20) sentencesDB.B1.push({de:`Satz_B1_${i}`, ru:`Фраза_B1_${i}`});
+        if (i < 15 && sentencesDB.B2.length < 15) sentencesDB.B2.push({de:`Satz_B2_${i}`, ru:`Фраза_B2_${i}`});
+        if (i < 10 && sentencesDB.C1.length < 10) sentencesDB.C1.push({de:`Satz_C1_${i}`, ru:`Фраза_C1_${i}`});
     }
+}
+
+function getDistractorsForSentences(count, excludeTokens, targetLang = 'de') {
+    const allWords = wordsDB[AppConfig.currentLevel] || [];
+    let allTokens = [];
     
-    function showHint() {
-        if (!sentencesHintWords.length) return;
-        if (sentencesHintIndex >= sentencesHintWords.length) return;
-        const currentHint = sentencesHintWords.slice(0, sentencesHintIndex + 1).join(' ');
-        const hintLabel = document.getElementById('sentHintLabel');
-        if (hintLabel) hintLabel.textContent = '💡 ' + currentHint;
-        sentencesHintIndex++;
-    }
-    
-    function resetHint() {
-        sentencesHintIndex = 0;
-        const hintLabel = document.getElementById('sentHintLabel');
-        if (hintLabel) hintLabel.textContent = '';
-    }
-    
-    function showCurrentSentence() {
-        resetHint();
-        
-        if (!sentencesList.length) {
-            document.getElementById('sentQuestion').innerHTML = "🎉 Все фразы изучены!<br><br>Верните фразы из 'Изучено' или<br>выберите другой уровень";
-            const container = document.getElementById('sentWordsContainer');
-            if (container) container.innerHTML = '';
-            const result = document.getElementById('sentResult');
-            if (result) result.textContent = '';
-            return;
-        }
-        if (sentencesIndex >= sentencesList.length) sentencesIndex = 0;
-        sentencesCurrent = sentencesList[sentencesIndex];
-        
-        let question, correctTokens;
-        let targetLangForDistractors;
-        
-        if (AppConfig.sentence_lang_from === 'ru') {
-            question = sentencesCurrent.ru;
-            correctTokens = sentencesCurrent.de.split(/\s+/);
-            sentencesHintWords = sentencesCurrent.de.split(/\s+/);
-            targetLangForDistractors = 'de';
+    allWords.forEach(w => {
+        let sourceText;
+        if (targetLang === 'de') {
+            sourceText = w.de;
         } else {
-            question = sentencesCurrent.de;
-            correctTokens = sentencesCurrent.ru.split(/\s+/);
-            sentencesHintWords = sentencesCurrent.ru.split(/\s+/);
-            targetLangForDistractors = 'ru';
+            sourceText = w.ru;
         }
-        
-        sentencesHintWords = sentencesHintWords.map(w => w.replace(/[.,!?;:]/g, ''));
-        
-        document.getElementById('sentQuestion').innerHTML = `Составьте предложение:<br><br><strong>${question}</strong>`;
-        
-        correctTokens = correctTokens.map(t => t.replace(/[.,!?;:]/g, ''));
-        
-        let available = [...correctTokens];
-        const needed = 12 - available.length;
-        if (needed > 0) {
-            const distractors = getDistractorsForSentences(needed, correctTokens, targetLangForDistractors);
-            available.push(...distractors);
-        }
-        
-        for (let i = available.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [available[i], available[j]] = [available[j], available[i]];
-        }
-        sentencesAvailable = available.slice(0, 12);
-        sentencesSelected = [];
-        sentencesActive = {};
-        sentencesAvailable.forEach(w => { sentencesActive[w] = true; });
-        
-        updateSentenceDisplay();
+        const tokens = sourceText.split(/\s+/);
+        tokens.forEach(t => allTokens.push(t));
+    });
+    
+    const basic = ['der','die','das','den','dem','des','ein','eine','und','oder','aber','sehr','gut','nicht','auch','man','sich','ist','sind','bin','bist'];
+    const basicRu = ['и','или','но','очень','хорошо','нет','также','себя','есть','ты','я','он','она','оно','мы','вы','они'];
+    if (targetLang === 'ru') {
+        allTokens.push(...basicRu);
+    } else {
+        allTokens.push(...basic);
     }
     
-    document.getElementById('sentDirBtn').onclick = () => {
-        AppConfig.sentence_lang_from = AppConfig.sentence_lang_from === 'ru' ? 'de' : 'ru';
-        showCurrentSentence();
-        document.getElementById('sentDirBtn').textContent = AppConfig.sentence_lang_from === 'ru' ? 'Ru → De' : 'De → Ru';
+    const excludeSet = new Set(excludeTokens.map(t => t.toLowerCase().replace(/[.,!?;:]/g, '')));
+    
+    const available = [...new Set(allTokens.filter(t => {
+        const lower = t.toLowerCase().replace(/[.,!?;:]/g, '');
+        const isNumber = !isNaN(parseFloat(lower)) && isFinite(lower);
+        const isNumberWord = /^(eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|elf|zwölf|hundert|tausend|first|second|third|один|два|три|четыре|пять|шесть|семь|восемь|девять|десять)$/i.test(lower);
+        return !excludeSet.has(lower) && t.length > 1 && !isNumber && !isNumberWord;
+    }))];
+    
+    for (let i = available.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [available[i], available[j]] = [available[j], available[i]];
+    }
+    return available.slice(0, count);
+}
+
+function getUnstudiedSentences() {
+    const sents = sentencesDB[AppConfig.currentLevel] || [];
+    const progress = sentencesProgress[AppConfig.currentLevel] || [];
+    return sents.filter((_, idx) => !progress[idx]?.studied);
+}
+
+function markSentenceAsStudied(sentence) {
+    const sents = sentencesDB[AppConfig.currentLevel];
+    const idx = sents.findIndex(s => s.de === sentence.de && s.ru === sentence.ru);
+    if (idx !== -1) {
+        if (!sentencesProgress[AppConfig.currentLevel]) sentencesProgress[AppConfig.currentLevel] = [];
+        sentencesProgress[AppConfig.currentLevel][idx] = { studied: true };
         saveProgress();
-    };
-    
-    document.getElementById('sentUndoBtn').onclick = () => {
-        if (sentencesSelected.length) {
-            const last = sentencesSelected.pop();
-            sentencesActive[last] = true;
-            updateSentenceDisplay();
-        }
-    };
-    
-    document.getElementById('sentResetBtn').onclick = () => {
-        sentencesSelected = [];
-        sentencesAvailable.forEach(w => { sentencesActive[w] = true; });
-        updateSentenceDisplay();
-        resetHint();
-    };
-    
-    document.getElementById('sentCheckBtn').onclick = () => {
-        if (!sentencesSelected.length) {
-            const result = document.getElementById('sentResult');
-            result.style.backgroundColor = '#FFCDD2';
-            setTimeout(() => result.style.backgroundColor = '#FFFFFF', 500);
-            return;
-        }
-        
-        let correctAnswer;
-        if (AppConfig.sentence_lang_from === 'ru') {
-            correctAnswer = sentencesCurrent.de.toLowerCase().replace(/[.,!?;:]/g, '');
-        } else {
-            correctAnswer = sentencesCurrent.ru.toLowerCase().replace(/[.,!?;:]/g, '');
-        }
-        const userAnswer = sentencesSelected.join(' ').toLowerCase().replace(/[.,!?;:]/g, '');
-        const result = document.getElementById('sentResult');
-        
-        if (userAnswer === correctAnswer) {
-            result.style.backgroundColor = '#C8E6C9';
-            setTimeout(() => {
-                result.style.backgroundColor = '#FFFFFF';
-                sentencesIndex = (sentencesIndex + 1) % sentencesList.length;
-                showCurrentSentence();
-            }, 500);
-        } else {
-            result.style.backgroundColor = '#FFCDD2';
-            setTimeout(() => {
-                result.style.backgroundColor = '#FFFFFF';
-                sentencesSelected = [];
-                sentencesAvailable.forEach(w => { sentencesActive[w] = true; });
-                updateSentenceDisplay();
-                resetHint();
-            }, 500);
-        }
-    };
-    
-    document.getElementById('sentHintBtn').onclick = () => {
-        showHint();
-    };
-    
-    document.getElementById('sentSpeakBtn').onclick = () => {
-        if (sentencesCurrent) speak(sentencesCurrent.de);
-    };
-    
-    document.getElementById('sentStudyBtn').onclick = () => {
-        if (sentencesCurrent) {
-            markSentenceAsStudied(sentencesCurrent);
-            sentencesList = getUnstudiedSentences();
-            sentencesIndex = 0;
-            showCurrentSentence();
-            updateCounter();
-        }
-    };
-    
-    document.getElementById('sentUnstudyBtn').onclick = () => {
-        const completed = sentencesDB[AppConfig.currentLevel].filter((_, idx) => sentencesProgress[AppConfig.currentLevel]?.[idx]?.studied);
-        if (!completed.length) { alert("Нет изученных фраз"); return; }
-        let msg = "Выберите фразу для возврата:\n";
-        completed.forEach((s, i) => msg += `${i+1}. ${s.de} -> ${s.ru}\n`);
-        const n = prompt(msg);
-        if (n) {
-            const idx = parseInt(n) - 1;
-            if (idx >= 0 && idx < completed.length) {
-                const sIdx = sentencesDB[AppConfig.currentLevel].findIndex(s => s.de === completed[idx].de);
-                if (sIdx !== -1) {
-                    if (!sentencesProgress[AppConfig.currentLevel]) sentencesProgress[AppConfig.currentLevel] = [];
-                    sentencesProgress[AppConfig.currentLevel][sIdx] = { studied: false };
-                    saveProgress();
-                    sentencesList = getUnstudiedSentences();
-                    sentencesIndex = 0;
-                    showCurrentSentence();
-                    updateCounter();
-                }
-            }
-        }
-    };
-    
-    document.getElementById('sentResetAllBtn').onclick = () => {
-        resetAllSentences();
-        sentencesList = getUnstudiedSentences();
-        sentencesIndex = 0;
-        showCurrentSentence();
-        updateCounter();
-    };
-    
-    document.getElementById('sentPrevBtn').onclick = () => {
-        if (sentencesList.length && sentencesIndex > 0) {
-            sentencesIndex--;
-            showCurrentSentence();
-        }
-    };
-    
-    document.getElementById('sentNextBtn').onclick = () => {
-        if (sentencesList.length) {
-            sentencesIndex = (sentencesIndex + 1) % sentencesList.length;
-            showCurrentSentence();
-        }
-    };
-    
-    showCurrentSentence();
-    updateCounter();
+    }
+}
+
+function resetAllSentences() {
+    if (!sentencesProgress[AppConfig.currentLevel]) sentencesProgress[AppConfig.currentLevel] = [];
+    for (let i = 0; i < sentencesDB[AppConfig.currentLevel].length; i++) {
+        sentencesProgress[AppConfig.currentLevel][i] = { studied: false };
+    }
+    saveProgress();
 }
