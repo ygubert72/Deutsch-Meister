@@ -1,59 +1,61 @@
 {
-  "lesson": 6,
-  "title": "Je nachdem, ob / insofern als / abgesehen davon, dass (C1-Konnektoren)",
+  "lesson": 5,
+  "title": "Modalverben: Subjektive Bedeutung (Vermutung, Zweifel, Bericht auf C1)",
   "level": "C1",
-  "theory": "<h3>📌 Was sind diese Konnektoren?</h3>\n\n<p>Auf C1-Niveau lernen Sie komplexe, mehrteilige Konnektoren, die in der geschriebenen Sprache sehr häufig vorkommen.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 DIE WICHTIGSTEN C1-KONNEKTOREN:</strong><br>\n  • <strong>je nachdem, ob</strong> — в зависимости от того, ... ли<br>\n  • <strong>insofern als</strong> — постольку, поскольку<br>\n  • <strong>abgesehen davon, dass</strong> — не считая того, что<br>\n  • <strong>inwiefern</strong> — в какой степени<br>\n  • <strong>geschweige denn</strong> — не говоря уже о\n</div>\n\n<h3>📌 je nachdem, ob („abhängig davon, ob“)</h3>\n\n<p>Dieser Konnektor drückt eine <strong>Bedingung aus, die von einer Alternative abhängt</strong>.</p>\n\n<ul>\n<li>Wir entscheiden, <strong>je nachdem, ob</strong> es regnet oder nicht.</li>\n<li>Die Strategie ändert sich, <strong>je nachdem, ob</strong> der Konkurrent reagiert.</li>\n</ul>\n\n<h3>📌 insofern als („in dem Maße, wie“ / „weil“)</h3>\n\n<p>„Insofern als“ drückt einen <strong>begrenzten Grund</strong> oder eine <strong>Einschränkung</strong> aus.</p>\n\n<ul>\n<li>Der Vorschlag ist gut, <strong>insofern als</strong> er kostengünstig ist.</li>\n<li>Er hat recht, <strong>insofern als</strong> er die Fakten kennt.</li>\n</ul>\n\n<h3>📌 abgesehen davon, dass („außer dass“)</h3>\n\n<p>Dieser Konnektor schließt einen <strong>Teil des Gesagten aus</strong> oder schränkt ihn ein.</p>\n\n<ul>\n<li><strong>Abgesehen davon, dass</strong> es teuer ist, ist es auch unpraktisch.</li>\n<li>Das Auto ist gut, <strong>abgesehen davon, dass</strong> es zu viel verbraucht.</li>\n</ul>\n\n<h3>📌 inwiefern („in welchem Maße“)</h3>\n\n<p>„Inwiefern“ ist ein Fragewort und ein Konnektor, der nach dem <strong>Ausmaß oder Grad</strong> fragt.</p>\n\n<ul>\n<li><strong>Inwiefern</strong> ist das relevant?</li>\n</ul>\n\n<h3>📌 geschweige denn („ganz zu schweigen von“)</h3>\n\n<p>„Geschweige denn“ verstärkt eine Aussage: Wenn schon das Erste nicht gilt, dann gilt das Zweite erst recht nicht.</p>\n\n<ul>\n<li>Er kann kein Deutsch, <strong>geschweige denn</strong> Englisch.</li>\n<li>Ich habe keine Zeit, <strong>geschweige denn</strong> Geld für eine Reise.</li>\n</ul>",
+  "theory": "<h3>📌 Wiederholung: Modalverben (B2)</h3>\n\n<p>Modalverben haben nicht nur eine <strong>objektive</strong> Bedeutung (Notwendigkeit, Fähigkeit, Erlaubnis). Auf B2 haben Sie gelernt, dass sie auch <strong>subjektiv</strong> gebraucht werden können (Vermutungen).</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 AUF C1-KOMMEN DAZU:</strong><br>\n  • <strong>soll</strong> — man sagt, dass... (Fremdaussage, Gerücht)<br>\n  • <strong>will</strong> — behauptet, dass... (behauptete Aussage)<br>\n  • <strong>mag</strong> — vielleicht (schwache Vermutung, oft in Argumenten)<br>\n  • <strong>dürfte</strong> — wahrscheinlich (stärker als könnte)<br>\n  • <strong>müsste</strong> — sehr wahrscheinlich (logische Schlussfolgerung)\n</div>\n\n<h3>📌 soll (Fremdaussage, Gerücht)</h3>\n\n<p>„Soll“ drückt aus, dass der Sprecher etwas <strong>nicht selbst bestätigen kann</strong>.</p>\n\n<ul>\n<li>Er <strong>soll</strong> reich sein. (Man sagt, dass er reich ist.)</li>\n<li>Sie <strong>soll</strong> den Wettbewerb gewonnen haben.</li>\n</ul>\n\n<h3>📌 will (behauptete Aussage der Person selbst)</h3>\n\n<p>„Will“ drückt aus, dass <strong>die Person selbst etwas behauptet</strong>, der Sprecher aber Zweifel hat.</p>\n\n<ul>\n<li>Er <strong>will</strong> den Präsidenten persönlich getroffen haben.</li>\n</ul>\n\n<h3>📌 mag (schwache Vermutung, oft in Argumentationen)</h3>\n\n<p>„Mag“ wird auf C1 oft in Diskussionen verwendet, um eine <strong>schwache Vermutung</strong> oder <strong>Einräumung</strong> auszudrücken.</p>\n\n<ul>\n<li>Das <strong>mag</strong> stimmen, aber ich habe meine Zweifel.</li>\n</ul>\n\n<h3>📌 Gewissheitsskala</h3>\n\n<ul>\n<li><strong>mag</strong> — vielleicht (40-50%)</li>\n<li><strong>könnte</strong> — es ist möglich (50-60%)</li>\n<li><strong>dürfte</strong> — wahrscheinlich (70-80%)</li>\n<li><strong>müsste</strong> — sehr wahrscheinlich (80-90%)</li>\n<li><strong>muss</strong> — sicher (95-99%)</li>\n</ul>",
   "examples": [
-    {"de": "Wir entscheiden, je nachdem, ob es regnet oder nicht.", "ru": "Мы решим в зависимости от того, будет дождь или нет."},
-    {"de": "Der Vorschlag ist gut, insofern als er kostengünstig ist.", "ru": "Предложение хорошее постольку, поскольку оно недорогое."},
-    {"de": "Abgesehen davon, dass es teuer ist, ist es auch unpraktisch.", "ru": "Не считая того, что это дорого, это ещё и непрактично."},
-    {"de": "Inwiefern ist das relevant?", "ru": "В какой степени это важно?"},
-    {"de": "Er kann kein Deutsch, geschweige denn Englisch.", "ru": "Он не знает немецкий, не говоря уже об английском."},
-    {"de": "Die Strategie ändert sich, je nachdem, ob der Konkurrent reagiert.", "ru": "Стратегия меняется в зависимости от того, реагирует ли конкурент."}
+    {"de": "Er soll reich sein.", "ru": "Говорят, он богат."},
+    {"de": "Sie will den Präsidenten persönlich getroffen haben.", "ru": "Она утверждает, что лично встречалась с президентом."},
+    {"de": "Das mag stimmen, aber ich habe meine Zweifel.", "ru": "Может, это и правда, но у меня есть сомнения."},
+    {"de": "Das dürfte richtig sein.", "ru": "Это, вероятно, правильно."},
+    {"de": "Er müsste schon zu Hause sein.", "ru": "Он уже должен быть дома."},
+    {"de": "Das muss stimmen.", "ru": "Это, должно быть, верно."},
+    {"de": "Sie soll den Wettbewerb gewonnen haben.", "ru": "Говорят, она выиграла конкурс."}
   ],
   "exercises": [
     {
-      "type": "fill",
-      "question": "Setzen Sie 'je nachdem, ob' ein.",
-      "sentence": "Wir entscheiden, __ es regnet oder nicht.",
-      "answer": "je nachdem ob",
-      "hint": "je nachdem, ob + Entscheidungsfrage"
+      "type": "choice",
+      "question": "Welches Modalverb drückt ein Gerücht oder eine Fremdaussage aus?",
+      "sentence": "Er ___ reich sein. (Man sagt es, aber ich weiß es nicht.)",
+      "options": ["mag", "soll", "will", "muss"],
+      "answer": "soll",
+      "hint": "soll = Fremdaussage"
     },
     {
       "type": "fill",
-      "question": "Setzen Sie 'insofern als' ein.",
-      "sentence": "Der Vorschlag ist gut, ___ er kostengünstig ist.",
-      "answer": "insofern als",
-      "hint": "insofern als + Nebensatz (Verb am Ende)"
+      "question": "Setzen Sie das richtige Modalverb für eine zweifelhafte Selbstaussage ein.",
+      "sentence": "Er ___ den Präsidenten persönlich getroffen haben.",
+      "answer": "will",
+      "hint": "will = eigene, zweifelhafte Behauptung"
     },
     {
       "type": "fill",
-      "question": "Setzen Sie 'abgesehen davon, dass' ein.",
-      "sentence": "___ es teuer ist, ist es auch unpraktisch.",
-      "answer": "Abgesehen davon dass",
-      "hint": "Abgesehen davon, dass + Nebensatz"
+      "question": "Setzen Sie 'mag' ein (schwache Vermutung, Einräumung).",
+      "sentence": "Das ___ stimmen, aber ich habe Zweifel.",
+      "answer": "mag",
+      "hint": "mag = Einräumung in Argumenten"
     },
     {
       "type": "fill",
-      "question": "Setzen Sie 'geschweige denn' ein.",
-      "sentence": "Er kann kein Deutsch, ___ Englisch.",
-      "answer": "geschweige denn",
-      "hint": "geschweige denn + Nomen (nach Negation)"
+      "question": "Setzen Sie 'dürfte' ein (wahrscheinlich).",
+      "sentence": "Das ___ richtig sein.",
+      "answer": "dürfte",
+      "hint": "dürfte = wahrscheinlich (70-80%)"
     },
     {
       "type": "choice",
-      "question": "Welcher Konnektor drückt eine Einschränkung aus („постольку, поскольку“)?",
-      "sentence": "Der Vorschlag ist gut, ___ er kostengünstig ist.",
-      "options": ["je nachdem, ob", "insofern als", "abgesehen davon, dass", "geschweige denn"],
-      "answer": "insofern als",
-      "hint": "insofern als = постольку, поскольку"
+      "question": "Was ist die korrekte Form für die Vergangenheit?",
+      "sentence": "Sie soll den Wettbewerb ___.",
+      "options": ["gewonnen", "gewinnt", "gewonnen haben", "gewinnte"],
+      "answer": "gewonnen haben",
+      "hint": "Modalverb + Infinitiv Perfekt"
     },
     {
       "type": "fill",
-      "question": "Übersetzen Sie ins Deutsche (je nachdem, ob).",
-      "sentence": "Мы решим в зависимости от того, будет дождь или нет.",
-      "answer": "wir entscheiden je nachdem ob es regnet oder nicht",
-      "hint": "je nachdem, ob + Entscheidungsfrage"
+      "question": "Übersetzen Sie ins Deutsche (soll + Vergangenheit).",
+      "sentence": "Говорят, она выиграла конкурс.",
+      "answer": "sie soll den wettbewerb gewonnen haben",
+      "hint": "soll + Infinitiv Perfekt"
     }
   ]
 }
