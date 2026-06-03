@@ -97,35 +97,30 @@ function renderSentences() {
         sentencesCurrent = sentencesList[sentencesIndex];
         
         let question, correctTokens;
+        let targetLangForDistractors;
+        
         if (AppConfig.sentence_lang_from === 'ru') {
             question = sentencesCurrent.ru;
             correctTokens = sentencesCurrent.de.split(/\s+/);
             sentencesHintWords = sentencesCurrent.de.split(/\s+/);
+            targetLangForDistractors = 'de';
         } else {
             question = sentencesCurrent.de;
             correctTokens = sentencesCurrent.ru.split(/\s+/);
             sentencesHintWords = sentencesCurrent.ru.split(/\s+/);
+            targetLangForDistractors = 'ru';
         }
         
         sentencesHintWords = sentencesHintWords.map(w => w.replace(/[.,!?;:]/g, ''));
         
         document.getElementById('sentQuestion').innerHTML = `Составьте предложение:<br><br><strong>${question}</strong>`;
         
-        const allWords = wordsDB[AppConfig.currentLevel] || [];
-        let distractorPool = [];
-        if (AppConfig.sentence_lang_from === 'ru') {
-            distractorPool = allWords.map(w => w.de);
-        } else {
-            distractorPool = allWords.map(w => w.ru);
-        }
-        
         correctTokens = correctTokens.map(t => t.replace(/[.,!?;:]/g, ''));
-        distractorPool = distractorPool.map(d => d.replace(/[.,!?;:]/g, ''));
         
         let available = [...correctTokens];
         const needed = 12 - available.length;
         if (needed > 0) {
-            const distractors = getDistractorsForSentences(needed, correctTokens);
+            const distractors = getDistractorsForSentences(needed, correctTokens, targetLangForDistractors);
             available.push(...distractors);
         }
         
