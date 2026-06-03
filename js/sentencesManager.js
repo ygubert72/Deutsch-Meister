@@ -1,104 +1,54 @@
-async function loadSentences() {
-    const levels = ['A1', 'A2', 'B1', 'B2', 'C1'];
-    for (const lvl of levels) {
-        try {
-            const resp = await fetch(`/Deutsch-Meister/docs/sentences/${lvl}.json`);
-            if (resp.ok) sentencesDB[lvl] = await resp.json();
-            else sentencesDB[lvl] = [];
-        } catch(e) { sentencesDB[lvl] = []; }
+function showCurrentSentence() {
+    resetHint();
+    
+    if (!sentencesList.length) {
+        document.getElementById('sentQuestion').innerHTML = "🎉 Все фразы изучены!<br><br>Верните фразы из 'Изучено' или<br>выберите другой уровень";
+        const container = document.getElementById('sentWordsContainer');
+        if (container) container.innerHTML = '';
+        const result = document.getElementById('sentResult');
+        if (result) result.textContent = '';
+        return;
     }
-    if (sentencesDB.A1.length === 0) createNormalSentences();
-}
-
-function createNormalSentences() {
-    sentencesDB.A1 = [
-        {de:"Hallo!", ru:"Привет!"},
-        {de:"Guten Morgen!", ru:"Доброе утро!"},
-        {de:"Guten Tag!", ru:"Добрый день!"},
-        {de:"Guten Abend!", ru:"Добрый вечер!"},
-        {de:"Gute Nacht!", ru:"Спокойной ночи!"},
-        {de:"Wie geht es dir?", ru:"Как дела?"},
-        {de:"Mir geht es gut.", ru:"У меня всё хорошо."},
-        {de:"Ich heiße Anna.", ru:"Меня зовут Анна."},
-        {de:"Wie heißt du?", ru:"Как тебя зовут?"},
-        {de:"Woher kommst du?", ru:"Откуда ты?"},
-        {de:"Ich komme aus Russland.", ru:"Я из России."},
-        {de:"Das ist mein Buch.", ru:"Это моя книга."},
-        {de:"Die Katze ist süß.", ru:"Кошка милая."},
-        {de:"Der Hund ist laut.", ru:"Собака громкая."},
-        {de:"Wir gehen nach Hause.", ru:"Мы идём домой."},
-        {de:"Es regnet heute.", ru:"Сегодня идёт дождь."},
-        {de:"Die Sonne scheint.", ru:"Солнце светит."},
-        {de:"Ich habe Durst.", ru:"Я хочу пить."},
-        {de:"Ich habe Hunger.", ru:"Я хочу есть."},
-        {de:"Wo ist der Bahnhof?", ru:"Где вокзал?"},
-        {de:"Bitte schön!", ru:"Пожалуйста!"},
-        {de:"Danke schön!", ru:"Большое спасибо!"},
-        {de:"Auf Wiedersehen!", ru:"До свидания!"},
-        {de:"Tschüss!", ru:"Пока!"},
-        {de:"Bis morgen!", ru:"До завтра!"},
-        {de:"Ich liebe Deutsch.", ru:"Я люблю немецкий язык."},
-        {de:"Sprichst du Englisch?", ru:"Ты говоришь по-английски?"},
-        {de:"Ich verstehe nicht.", ru:"Я не понимаю."},
-        {de:"Kannst du mir helfen?", ru:"Ты можешь мне помочь?"},
-        {de:"Ja, natürlich!", ru:"Да, конечно!"}
-    ];
+    if (sentencesIndex >= sentencesList.length) sentencesIndex = 0;
+    sentencesCurrent = sentencesList[sentencesIndex];
     
-    for (let i = 0; i < 20; i++) {
-        if (sentencesDB.A2.length < 20) sentencesDB.A2.push({de:`Satz_A2_${i}`, ru:`Фраза_A2_${i}`});
-        if (sentencesDB.B1.length < 20) sentencesDB.B1.push({de:`Satz_B1_${i}`, ru:`Фраза_B1_${i}`});
-        if (i < 15 && sentencesDB.B2.length < 15) sentencesDB.B2.push({de:`Satz_B2_${i}`, ru:`Фраза_B2_${i}`});
-        if (i < 10 && sentencesDB.C1.length < 10) sentencesDB.C1.push({de:`Satz_C1_${i}`, ru:`Фраза_C1_${i}`});
+    let question, correctTokens;
+    let targetLangForDistractors; // определяем язык для дистракторов
+    
+    if (AppConfig.sentence_lang_from === 'ru') {
+        question = sentencesCurrent.ru;
+        correctTokens = sentencesCurrent.de.split(/\s+/);
+        sentencesHintWords = sentencesCurrent.de.split(/\s+/);
+        targetLangForDistractors = 'de'; // дистракторы на немецком
+    } else {
+        question = sentencesCurrent.de;
+        correctTokens = sentencesCurrent.ru.split(/\s+/);
+        sentencesHintWords = sentencesCurrent.ru.split(/\s+/);
+        targetLangForDistractors = 'ru'; // дистракторы на русском
     }
-}
-
-function getDistractorsForSentences(count, excludeTokens) {
-    const allWords = wordsDB[AppConfig.currentLevel] || [];
-    let allTokens = [];
-    allWords.forEach(w => {
-        const tokens = w.de.split(/\s+/);
-        tokens.forEach(t => allTokens.push(t));
-    });
     
-    const basic = ['der','die','das','den','dem','des','ein','eine','und','oder','aber','sehr','gut','nicht','auch','man','sich','ist','sind','bin','bist'];
-    allTokens.push(...basic);
+    sentencesHintWords = sentencesHintWords.map(w => w.replace(/[.,!?;:]/g, ''));
     
-    const excludeSet = new Set(excludeTokens.map(t => t.toLowerCase().replace(/[.,!?;:]/g, '')));
+    document.getElementById('sentQuestion').innerHTML = `Составьте предложение:<br><br><strong>${question}</strong>`;
     
-    const available = [...new Set(allTokens.filter(t => {
-        const lower = t.toLowerCase().replace(/[.,!?;:]/g, '');
-        const isNumber = !isNaN(parseFloat(lower)) && isFinite(lower);
-        const isNumberWord = /^(eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|elf|zwölf|hundert|tausend|first|second|third)$/i.test(lower);
-        return !excludeSet.has(lower) && t.length > 1 && !isNumber && !isNumberWord;
-    }))];
+    correctTokens = correctTokens.map(t => t.replace(/[.,!?;:]/g, ''));
+    
+    let available = [...correctTokens];
+    const needed = 12 - available.length;
+    if (needed > 0) {
+        // Передаём язык для дистракторов
+        const distractors = getDistractorsForSentences(needed, correctTokens, targetLangForDistractors);
+        available.push(...distractors);
+    }
     
     for (let i = available.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [available[i], available[j]] = [available[j], available[i]];
     }
-    return available.slice(0, count);
-}
-
-function getUnstudiedSentences() {
-    const sents = sentencesDB[AppConfig.currentLevel] || [];
-    const progress = sentencesProgress[AppConfig.currentLevel] || [];
-    return sents.filter((_, idx) => !progress[idx]?.studied);
-}
-
-function markSentenceAsStudied(sentence) {
-    const sents = sentencesDB[AppConfig.currentLevel];
-    const idx = sents.findIndex(s => s.de === sentence.de && s.ru === sentence.ru);
-    if (idx !== -1) {
-        if (!sentencesProgress[AppConfig.currentLevel]) sentencesProgress[AppConfig.currentLevel] = [];
-        sentencesProgress[AppConfig.currentLevel][idx] = { studied: true };
-        saveProgress();
-    }
-}
-
-function resetAllSentences() {
-    if (!sentencesProgress[AppConfig.currentLevel]) sentencesProgress[AppConfig.currentLevel] = [];
-    for (let i = 0; i < sentencesDB[AppConfig.currentLevel].length; i++) {
-        sentencesProgress[AppConfig.currentLevel][i] = { studied: false };
-    }
-    saveProgress();
+    sentencesAvailable = available.slice(0, 12);
+    sentencesSelected = [];
+    sentencesActive = {};
+    sentencesAvailable.forEach(w => { sentencesActive[w] = true; });
+    
+    updateSentenceDisplay();
 }
