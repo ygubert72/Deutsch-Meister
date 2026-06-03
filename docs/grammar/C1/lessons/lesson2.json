@@ -1,0 +1,50 @@
+{
+  "lesson": 2,
+  "title": "Konjunktiv II der Vergangenheit: Irreale Wünsche und Bedingungen",
+  "theory": "<h3>Was drückt der Konjunktiv II der Vergangenheit aus?</h3><p>Der Konjunktiv II der Vergangenheit wird verwendet, um über <strong>irreale (nicht mehr erfüllbare) Wünsche</strong> in der Vergangenheit zu sprechen oder <strong>irreale Bedingungssätze</strong> über die Vergangenheit zu formulieren (hätte ich das gewusst...).</p><h3>Bildung</h3><p><strong>Konjunktiv II von 'haben' oder 'sein' + Partizip II des Vollverbs</strong></p><ul><li>Konjunktiv II von 'haben': <strong>hätte, hättest, hätte, hätten, hättet, hätten</strong></li><li>Konjunktiv II von 'sein': <strong>wäre, wärst, wäre, wären, wärt, wären</strong></li><li>Modalverben: <strong>hätte ... können/müssen/dürfen etc.</strong></li></ul><h3>Verwendung in irreales Wünschen (Vergangenheit)</h3><p>Wünsche, die nicht mehr erfüllt werden können, weil etwas bereits passiert ist oder nicht passiert ist.</p><ul><li><strong>Wenn ich doch früher aufgepasst hätte!</strong> (Aber ich habe nicht aufgepasst.)</li><li><strong>Wäre ich nur geblieben!</strong> (Aber ich bin gegangen.)</li><li><strong>Hätte ich das gewusst!</strong> (Aber ich wusste es nicht.)</li></ul><h3>Verwendung in irrealen Konditionalsätzen (Vergangenheit)</h3><p>Bedingungssätze, die eine Situation in der Vergangenheit beschreiben, die nicht eingetreten ist.</p><ul><li><strong>Wenn ich den Zug nicht verpasst hätte, wäre ich pünktlich gewesen.</strong> (Ich habe den Zug verpasst, also war ich nicht pünktlich.)</li><li><strong>Hätte sie mich angerufen, hätte ich ihr helfen können.</strong> (Sie hat nicht angerufen, also konnte ich nicht helfen.)</li></ul><h3>Besonderheit mit Modalverben</h3><p>Manchmal wird nur das Modalverb im Konjunktiv II konjugiert, während das Vollverb im Infinitiv steht (doppelter Infinitiv).</p><ul><li>Ich <strong>hätte</strong> ihn nicht <strong>sehen können</strong>. (Statt: ... hätte sehen gekonnt)</li></ul>",
+  "examples": [
+    {"de": "Hätte ich doch mehr Zeit gehabt!", "ru": "Если бы у меня только было больше времени!"},
+    {"de": "Wenn er gelernt hätte, wäre er nicht durchgefallen.", "ru": "Если бы он учил, он бы не провалился."},
+    {"de": "Sie wäre gerne mitgekommen, aber sie war krank.", "ru": "Она бы с удовольствием пошла с нами, но была больна."},
+    {"de": "Ich hätte das niemals tun sollen.", "ru": "Мне не следовало этого делать (я сожалею)."},
+    {"de": "Hätten wir früher angefangen, wären wir jetzt fertig.", "ru": "Если бы мы начали раньше, мы бы уже закончили."}
+  ],
+  "exercises": [
+    {
+      "type": "transform",
+      "question": "Bilden Sie irreale Wünsche für die Vergangenheit.",
+      "sentence": "Ich habe den Wecker nicht gehört. (hören sollen)",
+      "answer": "Hätte ich den Wecker doch gehört! / Ich hätte den Wecker hören sollen.",
+      "hint": "Verwenden Sie 'hätte' + Partizip II oder 'hätte ... sollen'."
+    },
+    {
+      "type": "transform",
+      "question": "Bilden Sie irreale Konditionalsätze.",
+      "sentence": "Ich habe kein Ticket gekauft. Ich konnte nicht ins Konzert gehen.",
+      "answer": "Wenn ich ein Ticket gekauft hätte, wäre ich ins Konzert gegangen. / Hätte ich ein Ticket gekauft, wäre ich ins Konzert gegangen.",
+      "hint": "Verwenden Sie 'hätte gekauft' im Nebensatz und 'wäre gegangen' im Hauptsatz."
+    },
+    {
+      "type": "fill",
+      "question": "Setzen Sie den Konjunktiv II der Vergangenheit ein.",
+      "sentence": "Wenn er fleißiger _____ (sein), _____ (haben) er den Job _____ (bekommen).",
+      "answer": "wäre, hätte, bekommen",
+      "hint": "sein -> wäre; haben -> hätte; Partizip II von bekommen -> bekommen (bleibt gleich)."
+    },
+    {
+      "type": "fill",
+      "question": "Setzen Sie das Modalverb im Konjunktiv II der Vergangenheit ein.",
+      "sentence": "Ich _____ (können) ihm nicht _____ (helfen), weil ich selbst keine Zeit hatte.",
+      "answer": "hätte, helfen können",
+      "hint": "Doppelter Infinitiv: Konjunktiv II von 'haben' + Infinitiv des Modalverbs + Infinitiv des Vollverbs."
+    },
+    {
+      "type": "choice",
+      "question": "Wählen Sie die richtige Form.",
+      "sentence": "Er bedauert, dass er so unhöflich war. Er sagt: „_____!“",
+      "options": ["Ich wäre netter gewesen.", "Ich sei netter gewesen.", "Ich wäre netter.", "Hätte ich doch netter gewesen!"],
+      "answer": "Hätte ich doch netter gewesen!",
+      "hint": "Es drückt einen Wunsch für die Vergangenheit aus, der nicht mehr erfüllt werden kann."
+    }
+  ]
+}
