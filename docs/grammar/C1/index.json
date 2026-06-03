@@ -1,4 +1,7 @@
 {
+  "level": "C1",
+  "title": "Грамматика немецкого языка. Уровень C1",
+  "description": "Профессиональный уровень. Сложные грамматические конструкции и нюансы.",
   "lessons": [
     "lessons/01_konjunktiv_i_indirekte_rede.json",
     "lessons/02_konzessive_saetze_c1.json",
