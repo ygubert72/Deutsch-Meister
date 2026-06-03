@@ -1,8 +1,8 @@
 {
   "lesson": 1,
-  "title": "Konjunktiv I: Indirekte Rede (Aussagen Dritter neutral wiedergeben)",
+  "title": "Konjunktiv I: Косвенная речь (передача чужих слов)",
   "level": "C1",
-  "theory": "<h3>📌 Was ist der Konjunktiv I?</h3>\n\n<p>Der Konjunktiv I wird hauptsächlich für die <strong>indirekte Rede</strong> verwendet. Er drückt aus, dass man eine Aussage einer anderen Person wiedergibt, ohne selbst dafür zu garantieren oder sich eine Meinung zu bilden. Man verwendet ihn oft in Zeitungen, Nachrichten oder formellen Berichten.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 HAUPTREGEL:</strong><br>\n  Der Konjunktiv I zeigt <strong>Distanz</strong> des Sprechers zur Aussage. Wenn Konjunktiv I = Indikativ ist, weicht man auf Konjunktiv II oder „würde“ aus.\n</div>\n\n<h3>📌 Bildung des Konjunktiv I</h3>\n\n<p>Der Konjunktiv I wird vom <strong>Präsensstamm</strong> des Verbs gebildet + den speziellen Endungen: <strong>-e, -est, -e, -en, -et, -en</strong>.</p>\n\n<h4>Endungen und Beispiele:</h4>\n<ul>\n<li><strong>ich</strong> mach<strong>e</strong>, geh<strong>e</strong>, hab<strong>e</strong>, sei</li>\n<li><strong>du</strong> mach<strong>est</strong>, geh<strong>est</strong>, hab<strong>est</strong>, seist</li>\n<li><strong>er/sie/es</strong> mach<strong>e</strong>, geh<strong>e</strong>, hab<strong>e</strong>, sei</li>\n<li><strong>wir</strong> mach<strong>en</strong>, geh<strong>en</strong>, hab<strong>en</strong>, seien</li>\n<li><strong>ihr</strong> mach<strong>et</strong>, geh<strong>et</strong>, hab<strong>et</strong>, seiet</li>\n<li><strong>sie/Sie</strong> mach<strong>en</strong>, geh<strong>en</strong>, hab<strong>en</strong>, seien</li>\n</ul>\n\n<h3>📌 Konjunktiv I der Vergangenheit (Perfekt)</h3>\n\n<p>Für die Vergangenheit verwendet man <strong>Konjunktiv I von 'haben' oder 'sein' + Partizip II</strong>.</p>\n\n<ul>\n<li>Er sagt, er <strong>habe</strong> den Film schon <strong>gesehen</strong>.</li>\n<li>Sie meint, sie <strong>sei</strong> gestern <strong>gekommen</strong>.</li>\n</ul>\n\n<h3>📌 Die Ersatzregel: Wenn Konjunktiv I = Indikativ</h3>\n\n<p>Wenn der Konjunktiv I mit der Indikativform identisch ist (z.B. bei 'wir machen' oder 'sie machen'), verwendet man zur Verdeutlichung oft den <strong>Konjunktiv II</strong> oder die Form <strong>'würde' + Infinitiv</strong>.</p>\n\n<h3>📌 Konjunktiv I in der Presse</h3>\n\n<p>In Zeitungen und Nachrichten wird der Konjunktiv I regelmäßig verwendet, um Agenturmeldungen wiederzugeben.</p>\n\n<ul>\n<li>Der Präsident <strong>teilte mit</strong>, die Lage <strong>sei</strong> unter Kontrolle.</li>\n<li>Das Unternehmen <strong>gab bekannt</strong>, man <strong>habe</strong> die Produktion <strong>gesteigert</strong>.</li>\n<li>Die Polizei <strong>berichtet</strong>, der Täter <strong>werde</strong> noch <strong>gesucht</strong>.</li>\n</ul>",
+  "theory": "<h3>📌 Что такое Konjunktiv I?</h3>\n\n<p>Konjunktiv I (сослагательное наклонение 1) используется в немецком языке для <strong>косвенной речи</strong> — передачи чужих слов без оценки говорящего. Это особенно важно в новостях, репортажах и официальных документах.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 ГЛАВНОЕ ПРАВИЛО:</strong><br>\n  Konjunktiv I показывает <strong>дистанцию</strong> говорящего к сказанному. Если форма Konjunktiv I совпадает с индикативом, используется Konjunktiv II или „würde“.\n</div>\n\n<h3>📌 Образование Konjunktiv I</h3>\n\n<p>Konjunktiv I образуется от <strong>основы глагола в Präsens</strong> + специальные окончания: <strong>-e, -est, -e, -en, -et, -en</strong>.</p>\n\n<table border=\"1\" cellpadding=\"8\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Лицо</th>\n    <th>machen (делать)</th>\n    <th>gehen (идти)</th>\n    <th>sein (быть)</th>\n    <th>haben (иметь)</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n     <td>ich</th>\n     <td>mache</th>\n     <td>gehe</th>\n     <td><strong>sei</strong></th>\n     <td>habe</th>\n    </tr>\n  <tr style=\"background: #F5F5F5;\">\n     <td>du</th>\n     <td>machest</th>\n     <td>gehest</th>\n     <td>seist</th>\n     <td>habest</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n     <td>er/sie/es</th>\n     <td>mache</th>\n     <td>gehe</th>\n     <td><strong>sei</strong></th>\n     <td>habe</th>\n    </tr>\n  <tr style=\"background: #F5F5F5;\">\n     <td>wir</th>\n     <td>machen</th>\n     <td>gehen</th>\n     <td>seien</th>\n     <td>haben</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n     <td>ihr</th>\n     <td>machet</th>\n     <td>gehet</th>\n     <td>seiet</th>\n     <td>habet</th>\n    </tr>\n  <tr style=\"background: #F5F5F5;\">\n     <td>sie/Sie</th>\n     <td>machen</th>\n     <td>gehen</th>\n     <td>seien</th>\n     <td>haben</th>\n    </tr>\n  </table>\n\n<h3>📌 Konjunktiv I в разных временах</h3>\n\n<table border=\"1\" cellpadding=\"8\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Время</th>\n    <th>Образование</th>\n    <th>Пример</th>\n    <th>Перевод</th>\n    <tr>\n  <tr style=\"background: #E3F2FD;\">\n     <td>Präsens</th>\n     <td>Konjunktiv I + Infinitiv</th>\n     <td>Er sagt, er <strong>komme</strong>.</th>\n     <td>Он говорит, что (он) приходит.</th>\n    </tr>\n  <tr style=\"background: #F5F5F5;\">\n     <td>Perfekt (прошедшее)</th>\n     <td>Konj.I (haben/sein) + Partizip II</th>\n     <td>Er sagt, er <strong>sei gekommen</strong>.</th>\n     <td>Он говорит, что (он) пришёл.</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n     <td>Futur I (будущее)</th>\n     <td>Konj.I (werden) + Infinitiv</th>\n     <td>Er sagt, er <strong>werde kommen</strong>.</th>\n     <td>Он говорит, что (он) придёт.</th>\n    </tr>\n  <tr style=\"background: #F5F5F5;\">\n     <td>Futur II (будущее заверш.)</th>\n     <td>Konj.I (werden) + Infinitiv Perfekt</th>\n     <td>Er sagt, er <strong>werde gekommen sein</strong>.</th>\n     <td>Он говорит, что (он) уже придёт (будет уже пришедшим).</th>\n    </tr>\n  </table>\n\n<h3>📌 Правило замены: когда Konjunktiv I совпадает с индикативом</h3>\n\n<p>В 1-м лице множественного числа (wir) и 3-м лице множественного числа (sie) формы Konjunktiv I часто совпадают с индикативом. В таких случаях используют <strong>Konjunktiv II</strong> или <strong>würde + Infinitiv</strong>.</p>\n\n<ul>\n<li><strong>Индикатив:</strong> Sie <strong>machen</strong> die Arbeit. (Они делают работу.)</li>\n<li><strong>Konjunktiv I (неоднозначно):</strong> Er sagt, sie <strong>machen</strong> die Arbeit.</li>\n<li><strong>Лучше (Konjunktiv II):</strong> Er sagt, sie <strong>machten</strong> die Arbeit.</li>\n<li><strong>Лучше (würde):</strong> Er sagt, sie <strong>würden</strong> die Arbeit <strong>machen</strong>.</li>\n</ul>\n\n<h3>📌 Konjunktiv I в новостях и СМИ</h3>\n\n<p>В немецких СМИ Konjunktiv I используется постоянно для передачи сообщений информационных агентств, заявлений политиков и т.д.</p>\n\n<ul>\n<li>Der Präsident <strong>teilte mit</strong>, die Lage <strong>sei</strong> unter Kontrolle.</li>\n<li>Das Unternehmen <strong>gab bekannt</strong>, man <strong>habe</strong> die Produktion <strong>gesteigert</strong>.</li>\n<li>Die Polizei <strong>berichtet</strong>, der Täter <strong>werde</strong> noch <strong>gesucht</strong>.</li>\n</ul>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ТИПИЧНЫЕ ОШИБКИ:</strong><br>\n  ❌ Er sagt, er <strong>kommt</strong> (индикатив, а не косвенная речь).<br>\n  ✅ Er sagt, er <strong>komme</strong>.<br>\n  ❌ Sie sagt, sie <strong>ist</strong> krank gewesen.<br>\n  ✅ Sie sagt, sie <strong>sei</strong> krank gewesen.\n</div>\n\n<h3>📖 Пошаговый алгоритм</h3>\n<ol>\n<li>Определи вводный глагол (sagen, berichten, mitteilen и т.д.)</li>\n<li>Поставь глагол в Konjunktiv I (основа Präsens + e/est/e/en/et/en)</li>\n<li>Для прошедшего времени: Konjunktiv I от haben/sein + Partizip II</li>\n<li>Для будущего времени: Konjunktiv I от werden + Infinitiv</li>\n<li>При совпадении с индикативом → замени на Konjunktiv II или „würde“</li>\n</ol>\n\n<h3>📌 Итог урока</h3>\n<ul>\n<li>Konjunktiv I = косвенная речь (нейтральная, дистанцированная)</li>\n<li>Präsens: основа + e/est/e/en/et/en</li>\n<li>Perfekt: Konj.I (haben/sein) + Partizip II</li>\n<li>При совпадении с индикативом → Konjunktiv II или „würde“</li>\n<li>Важно для новостей, репортажей, официальных документов</li>\n</ul>",
   "examples": [
     {"de": "Er sagt, er komme aus Berlin.", "ru": "Он говорит, что он из Берлина."},
     {"de": "Sie berichtet, sie sei krank gewesen.", "ru": "Она сообщает, что была больна."},
@@ -14,46 +14,110 @@
   "exercises": [
     {
       "type": "transform",
-      "question": "Setzen Sie die direkte Rede in die indirekte Rede (Konjunktiv I).",
+      "question": "Переведите прямую речь в косвенную (Konjunktiv I).",
       "sentence": "„Der Film ist sehr spannend.“, sagt er.",
       "answer": "Er sagt, der Film sei sehr spannend.",
-      "hint": "Verwenden Sie 'sei' (Konjunktiv I von 'sein')."
+      "hint": "Используйте 'sei' (Konjunktiv I от 'sein')."
     },
     {
       "type": "transform",
-      "question": "Setzen Sie die direkte Rede in die indirekte Rede (Konjunktiv I).",
+      "question": "Переведите прямую речь в косвенную (Konjunktiv I).",
       "sentence": "„Ich habe meine Hausaufgaben gemacht.“, behauptet sie.",
       "answer": "Sie behauptet, sie habe ihre Hausaufgaben gemacht.",
-      "hint": "Perfekt im Konjunktiv I: Konjunktiv I von 'haben' + Partizip II."
+      "hint": "Перфект в Konjunktiv I: Konjunktiv I от 'haben' + Partizip II."
     },
     {
       "type": "transform",
-      "question": "Setzen Sie die direkte Rede in die indirekte Rede (Konjunktiv I).",
+      "question": "Переведите прямую речь в косвенную (Konjunktiv I).",
       "sentence": "„Wir werden pünktlich sein.“, versprechen sie.",
       "answer": "Sie versprechen, sie werden pünktlich sein.",
-      "hint": "Futur I im Konjunktiv I: Konjunktiv I von 'werden' + Infinitiv."
+      "hint": "Futur I в Konjunktiv I: Konjunktiv I от 'werden' + Infinitiv."
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму Konjunktiv I от 'sein'.",
+      "sentence": "Er sagt, er ___ (sein) Arzt.",
+      "answer": "sei",
+      "hint": "Konjunktiv I от 'sein' для er/sie/es → sei"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму Konjunktiv I от 'haben'.",
+      "sentence": "Sie sagt, sie ___ (haben) keine Zeit.",
+      "answer": "habe",
+      "hint": "Konjunktiv I от 'haben' для er/sie/es → habe"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму Konjunktiv I от 'werden'.",
+      "sentence": "Er meint, es ___ (werden) schon klappen.",
+      "answer": "werde",
+      "hint": "Konjunktiv I от 'werden' для er/sie/es → werde"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте правильную форму Konjunktiv I Perfekt.",
+      "sentence": "Er sagt, er ___ schon ___ (kommen).",
+      "answer": "sei gekommen",
+      "hint": "Konjunktiv I Perfekt: Konj.I от 'sein' + Partizip II"
     },
     {
       "type": "choice",
-      "question": "Was drückt der Konjunktiv I in der indirekten Rede aus?",
-      "sentence": "Der Konjunktiv I signalisiert...",
-      "options": ["Sicherheit des Sprechers", "Distanz des Sprechers zur Aussage", "einen Befehl", "einen Wunsch"],
-      "answer": "Distanz des Sprechers zur Aussage",
-      "hint": "Der Sprecher gibt nur wieder, was ein anderer gesagt hat."
+      "question": "Что выражает Konjunktiv I в косвенной речи?",
+      "sentence": "Konjunktiv I сигнализирует...",
+      "options": ["Уверенность говорящего", "Дистанцию говорящего к высказыванию", "Приказ", "Желание"],
+      "answer": "Дистанцию говорящего к высказыванию",
+      "hint": "Говорящий только передаёт чужие слова."
+    },
+    {
+      "type": "choice",
+      "question": "Что делать, если Konjunktiv I совпадает с индикативом?",
+      "sentence": "Wenn Konjunktiv I = Indikativ ist, verwendet man...",
+      "options": ["Indikativ", "Konjunktiv II oder 'würde'", "Imperativ", "Präteritum"],
+      "answer": "Konjunktiv II oder 'würde'",
+      "hint": "Чтобы избежать неоднозначности."
+    },
+    {
+      "type": "transform",
+      "question": "Замените предложение на более однозначное (Konjunktiv II).",
+      "sentence": "Er sagt, sie machen die Arbeit (Konjunktiv I = Indikativ).",
+      "answer": "Er sagt, sie machten die Arbeit.",
+      "hint": "Konjunktiv II от 'machen' → machten"
     },
     {
       "type": "fill",
-      "question": "Setzen Sie den Konjunktiv I von 'sein' ein.",
-      "sentence": "Er sagt, er ___ (sein) Arzt.",
-      "answer": "sei",
-      "hint": "Konjunktiv I von 'sein' für er/sie/es → sei"
-    },
-    {
-      "type": "fill",
-      "question": "Übersetzen Sie ins Deutsche (indirekte Rede).",
+      "question": "Переведите на немецкий (косвенная речь).",
       "sentence": "Он говорит, что он из Берлина.",
       "answer": "er sagt er sei aus berlin",
-      "hint": "sagen + Konjunktiv I von 'sein' + aus Berlin"
+      "hint": "sagen + Konjunktiv I от 'sein' + aus Berlin"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (косвенная речь, прошедшее время).",
+      "sentence": "Она говорит, что была больна.",
+      "answer": "sie sagt sie sei krank gewesen",
+      "hint": "sagen + Konjunktiv I Perfekt (sei + gewesen)"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (косвенная речь, будущее).",
+      "sentence": "Он считает, что завтра пойдёт дождь.",
+      "answer": "er meint es werde morgen regnen",
+      "hint": "meinen + Konjunktiv I Futur (werde + regnen)"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (газетный стиль).",
+      "sentence": "Президент сообщил, что ситуация под контролем.",
+      "answer": "der präsident teilte mit die lage sei unter kontrolle",
+      "hint": "mitteilen + Konjunktiv I от 'sein'"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (газетный стиль).",
+      "sentence": "Компания объявила, что увеличила производство.",
+      "answer": "das unternehmen gab bekannt man habe die produktion gesteigert",
+      "hint": "bekannt geben + Konjunktiv I Perfekt (habe + gesteigert)"
     }
   ]
 }
