@@ -1,59 +1,124 @@
 {
   "lesson": 2,
-  "title": "Konzessive Sätze C1: ob...auch, so...auch, mag...so, wie...auch",
+  "title": "Придаточные уступки C1: ob...auch, so...auch, mag...so, wie...auch",
   "level": "C1",
-  "theory": "<h3>📌 Wiederholung: Konzessive Sätze (B2)</h3>\n\n<p>Konzessive Sätze drücken einen Gegensatz aus: Das Hauptgeschehen findet <strong>trotz eines Hindernisses</strong> statt. Auf B2 haben Sie gelernt: <strong>obwohl, trotzdem, trotz + Genitiv</strong>.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 AUF C1-KOMMEN DAZU:</strong><br>\n  • ob...auch / auch wenn („selbst wenn“)<br>\n  • so...auch („wie sehr auch“)<br>\n  • mag...so („mag er auch...“)<br>\n  • wie...auch („wie auch immer“)<br>\n  • wo...auch („wo auch immer“)\n</div>\n\n<h3>📌 ob...auch / auch wenn („selbst wenn“)</h3>\n\n<p>Diese Konstruktion betont, dass das Hindernis noch so groß ist – das Hauptereignis findet trotzdem statt.</p>\n\n<ul>\n<li><strong>Ob</strong> es <strong>auch</strong> regnet, ich gehe spazieren.</li>\n<li><strong>Auch wenn</strong> es regnet, ich gehe spazieren.</li>\n</ul>\n\n<h3>📌 so...auch („wie sehr auch“)</h3>\n\n<p>Diese Konstruktion wird mit Adjektiven oder Verben verwendet. Sie bedeutet „egal wie sehr“.</p>\n\n<ul>\n<li><strong>So sehr</strong> ich mich <strong>auch</strong> bemühte, ich schaffte es nicht.</li>\n<li><strong>So gut</strong> er <strong>auch</strong> spielt, er wird nicht gewinnen.</li>\n</ul>\n\n<h3>📌 mag...so („mag er auch...“)</h3>\n\n<p>Diese Konstruktion verwendet das Modalverb „mögen“ im Konjunktiv I. Sie ist sehr formell und gehoben.</p>\n\n<ul>\n<li><strong>Mag</strong> er sich <strong>so</strong> sehr bemühen, er wird es nicht schaffen.</li>\n<li><strong>Mag</strong> das Wetter <strong>so</strong> schlecht sein, wir gehen spazieren.</li>\n</ul>\n\n<h3>📌 wie...auch / wo...auch / was...auch</h3>\n\n<p>Diese Konstruktionen mit Fragewörtern drücken eine vollständige Konzession aus („egal wie/wo/was“).</p>\n\n<ul>\n<li><strong>Wie</strong> du es <strong>auch</strong> versuchst, du wirst scheitern.</li>\n<li><strong>Wo</strong> du <strong>auch</strong> bist, ich werde dich finden.</li>\n<li><strong>Was</strong> du <strong>auch</strong> tust, ich liebe dich.</li>\n</ul>",
+  "theory": "<h3>📌 Повторение: Придаточные уступки на уровне B2</h3>\n\n<p>Придаточные уступки выражают <strong>противопоставление или противоречие</strong>: действие происходит <strong>несмотря на препятствие</strong>. На уровне B2 вы изучили: <strong>obwohl, trotzdem, trotz + Genitiv</strong>.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 НА УРОВНЕ C1 ДОБАВЛЯЮТСЯ:</strong><br>\n  • ob...auch / auch wenn — «даже если» (усиление)<br>\n  • so...auch — «как бы ни» (с прилагательными/наречиями)<br>\n  • mag...so — «как бы ни» (формальный, книжный стиль)<br>\n  • wie...auch / wo...auch / was...auch — «как/где/что бы ни»\n</div>\n\n<h3>📌 ob...auch / auch wenn („даже если“)</h3>\n\n<p>Эта конструкция подчёркивает, что препятствие может быть сколь угодно большим — главное действие всё равно произойдёт. Она сильнее, чем обычное «obwohl».</p>\n\n<ul>\n<li><strong>Ob</strong> es <strong>auch</strong> regnet, ich gehe spazieren. — Даже если идёт дождь, я пойду гулять.</li>\n<li><strong>Auch wenn</strong> es regnet, ich gehe spazieren. — То же значение.</li>\n<li><strong>Ob</strong> er <strong>auch</strong> viel arbeitet, er schafft es nicht. — Даже если он много работает, у него не получается.</li>\n</ul>\n\n<h3>📌 so...auch („как бы ни“)</h3>\n\n<p>Эта конструкция используется с прилагательными или наречиями. Она означает «как бы сильно ни», «несмотря на высокую степень».</p>\n\n<ul>\n<li><strong>So sehr</strong> ich mich <strong>auch</strong> bemühte, ich schaffte es nicht. — Как бы я ни старался, у меня не получилось.</li>\n<li><strong>So gut</strong> er <strong>auch</strong> spielt, er wird nicht gewinnen. — Как бы хорошо он ни играл, он не выиграет.</li>\n<li><strong>So oft</strong> ich es <strong>auch</strong> versuchte, es gelang mir nicht. — Как бы часто я ни пробовал, у меня не получалось.</li>\n<li><strong>So schwierig</strong> die Aufgabe <strong>auch</strong> war, sie löste sie. — Какой бы трудной ни была задача, она её решила.</li>\n</ul>\n\n<h3>📌 mag...so („как бы ни“ — формальный, книжный стиль)</h3>\n\n<p>Эта конструкция использует модальный глагол «mögen» в Konjunktiv I. Она очень формальная и используется в письменной речи, особенно в научных текстах.</p>\n\n<ul>\n<li><strong>Mag</strong> er sich <strong>so</strong> sehr bemühen, er wird es nicht schaffen. — Как бы он ни старался, он не справится.</li>\n<li><strong>Mag</strong> das Wetter <strong>so</strong> schlecht sein, wir gehen spazieren. — Погода может быть сколь угодно плохой, мы пойдём гулять.</li>\n<li><strong>Mag</strong> sie <strong>so</strong> viel arbeiten, sie wird niemals reich. — Пусть она сколь угодно много работает, она никогда не разбогатеет.</li>\n<li><strong>Mag</strong> der Plan <strong>so</strong> gut sein, er hat einen Fehler. — Как бы хорош ни был план, в нём есть ошибка.</li>\n</ul>\n\n<h3>📌 wie...auch / wo...auch / was...auch („как/где/что бы ни“)</h3>\n\n<p>Эти конструкции с вопросительными словами выражают полную уступку («неважно как/где/что»).</p>\n\n<table border=\"1\" cellpadding=\"8\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Конструкция</th>\n    <th>Значение</th>\n    <th>Пример</th>\n    <th>Перевод</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n     <td><strong>wie...auch</strong></th>\n     <td>как бы ни</th>\n     <td><strong>Wie</strong> du es <strong>auch</strong> versuchst, du wirst scheitern.</th>\n     <td>Как бы ты ни пытался, ты потерпишь неудачу.</th>\n    </tr>\n  <tr style=\"background: #F5F5F5;\">\n     <td><strong>wo...auch</strong></th>\n     <td>где бы ни</th>\n     <td><strong>Wo</strong> du <strong>auch</strong> bist, ich werde dich finden.</th>\n     <td>Где бы ты ни был, я найду тебя.</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n     <td><strong>was...auch</strong></th>\n     <td>что бы ни</th>\n     <td><strong>Was</strong> du <strong>auch</strong> tust, ich liebe dich.</th>\n     <td>Что бы ты ни делал, я люблю тебя.</th>\n    </tr>\n  <tr style=\"background: #F5F5F5;\">\n     <td><strong>wer...auch</strong></th>\n     <td>кто бы ни</th>\n     <td><strong>Wer</strong> es <strong>auch</strong> versucht, er wird scheitern.</th>\n     <td>Кто бы ни попытался, он потерпит неудачу.</th>\n    </tr>\n  </table>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ТИПИЧНЫЕ ОШИБКИ:</strong><br>\n  ❌ <strong>So sehr</strong> ich mich bemühte, <strong>aber</strong> ich schaffte es nicht.<br>\n  ✅ <strong>So sehr</strong> ich mich <strong>auch</strong> bemühte, ich schaffte es nicht.<br>\n  ❌ <strong>Mag</strong> er sich bemühen, <strong>aber</strong> er schafft es nicht.<br>\n  ✅ <strong>Mag</strong> er sich <strong>so</strong> sehr bemühen, er wird es nicht schaffen.\n</div>\n\n<h3>📖 Пошаговый алгоритм</h3>\n<ol>\n<li>Определи, нужно ли выразить сильное противопоставление («несмотря ни на что»).</li>\n<li>Для «даже если»: используй «ob...auch» или «auch wenn».</li>\n<li>Для «как бы ни + прилагательное/наречие»: используй «so + Adjektiv/Adverb + auch».</li>\n<li>Для формальных, книжных текстов: используй «mag...so».</li>\n<li>Для «неважно как/где/что/кто»: используй вопросительное слово + ... + auch.</li>\n</ol>\n\n<h3>📌 Итог урока</h3>\n<ul>\n<li><strong>ob...auch / auch wenn</strong> = даже если (усиленное obwohl)</li>\n<li><strong>so...auch</strong> = как бы ни (с прилагательными/наречиями)</li>\n<li><strong>mag...so</strong> = как бы ни (формальный, книжный стиль)</li>\n<li><strong>Fragewort + auch</strong> = неважно какой/где/что/кто</li>\n<li>Эти конструкции — признак высокого уровня C1!</li>\n</ul>",
   "examples": [
     {"de": "Ob es auch regnet, ich gehe spazieren.", "ru": "Даже если идёт дождь, я пойду гулять."},
     {"de": "So sehr ich mich auch bemühte, ich schaffte es nicht.", "ru": "Как бы я ни старался, у меня не получилось."},
     {"de": "Mag er sich so sehr bemühen, er wird es nicht schaffen.", "ru": "Как бы он ни старался, он не справится."},
     {"de": "Wo du auch bist, ich werde dich finden.", "ru": "Где бы ты ни был, я найду тебя."},
     {"de": "Was du auch tust, ich liebe dich.", "ru": "Что бы ты ни делал, я люблю тебя."},
-    {"de": "So gut er auch spielt, er wird nicht gewinnen.", "ru": "Как бы хорошо он ни играл, он не выиграет."}
+    {"de": "Wie du es auch versuchst, du wirst scheitern.", "ru": "Как бы ты ни пытался, ты потерпишь неудачу."},
+    {"de": "So gut er auch spielt, er wird nicht gewinnen.", "ru": "Как бы хорошо он ни играл, он не выиграет."},
+    {"de": "Mag das Wetter so schlecht sein, wir gehen spazieren.", "ru": "Погода может быть сколь угодно плохой, мы пойдём гулять."}
   ],
   "exercises": [
     {
       "type": "transform",
-      "question": "Ersetzen Sie 'auch wenn' durch 'ob...auch'.",
+      "question": "Замените 'auch wenn' на 'ob...auch'.",
       "sentence": "Auch wenn es regnet, ich gehe spazieren.",
       "answer": "Ob es auch regnet, ich gehe spazieren.",
-      "hint": "Ob + Subjekt + auch + Verb..."
+      "hint": "ob + подлежащее + auch + глагол..."
     },
     {
       "type": "fill",
-      "question": "Setzen Sie 'so...auch' ein.",
+      "question": "Вставьте 'so...auch'.",
       "sentence": "___ sehr ich mich ___ bemühte, ich schaffte es nicht.",
       "answer": "So auch",
-      "hint": "so + Adverb + Subjekt + auch + Verb"
+      "hint": "so + наречие + подлежащее + auch + глагол"
     },
     {
       "type": "transform",
-      "question": "Ersetzen Sie 'egal wie sehr' durch 'mag...so'.",
+      "question": "Замените 'egal wie sehr' на 'mag...so'.",
       "sentence": "Egal wie sehr er sich bemüht, er wird es nicht schaffen.",
       "answer": "Mag er sich so sehr bemühen, er wird es nicht schaffen.",
-      "hint": "Mag + Subjekt + sich + so + Adverb + Verb"
+      "hint": "mag + подлежащее + sich + so + наречие + глагол"
     },
     {
       "type": "fill",
-      "question": "Setzen Sie 'wo...auch' ein.",
+      "question": "Вставьте 'wo...auch'.",
       "sentence": "___ du ___ bist, ich werde dich finden.",
       "answer": "Wo auch",
-      "hint": "Wo + Subjekt + auch + Verb"
+      "hint": "wo + подлежащее + auch + глагол"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте 'wie...auch'.",
+      "sentence": "___ du es ___ versuchst, du wirst scheitern.",
+      "answer": "Wie auch",
+      "hint": "wie + подлежащее + es + auch + глагол"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте 'was...auch'.",
+      "sentence": "___ du ___ tust, ich liebe dich.",
+      "answer": "Was auch",
+      "hint": "was + подлежащее + auch + глагол"
+    },
+    {
+      "type": "fill",
+      "question": "Вставьте 'so...auch' с прилагательным.",
+      "sentence": "___ gut er ___ spielt, er wird nicht gewinnen.",
+      "answer": "So auch",
+      "hint": "so + прилагательное + подлежащее + auch + глагол"
     },
     {
       "type": "choice",
-      "question": "Welche Konstruktion ist typisch für C1 (formell, gehoben)?",
+      "question": "Какая конструкция характерна для формального, книжного стиля (C1)?",
       "sentence": "___ er sich so sehr bemühen, er wird es nicht schaffen.",
       "options": ["Obwohl", "Ob...auch", "Mag...so", "Trotz"],
       "answer": "Mag...so",
-      "hint": "mag...so verwendet den Konjunktiv I von 'mögen'."
+      "hint": "mag...so использует Konjunktiv I от 'mögen'."
+    },
+    {
+      "type": "transform",
+      "question": "Переделайте предложение, используя 'so...auch'.",
+      "sentence": "Ich bemühte mich sehr. Ich schaffte es nicht.",
+      "answer": "So sehr ich mich auch bemühte, ich schaffte es nicht.",
+      "hint": "so + sehr + подлежащее + auch + глагол"
+    },
+    {
+      "type": "transform",
+      "question": "Переделайте предложение, используя 'mag...so'.",
+      "sentence": "Egal wie sehr er sich bemüht, er wird scheitern.",
+      "answer": "Mag er sich so sehr bemühen, er wird scheitern.",
+      "hint": "mag + подлежащее + sich + so + наречие + глагол"
     },
     {
       "type": "fill",
-      "question": "Übersetzen Sie ins Deutsche (so...auch).",
+      "question": "Переведите на немецкий (so...auch).",
       "sentence": "Как бы я ни старался, у меня не получилось.",
       "answer": "so sehr ich mich auch bemühte ich schaffte es nicht",
-      "hint": "so + sehr + Subjekt + auch + Verb"
+      "hint": "so + sehr + подлежащее + auch + глагол"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (mag...so).",
+      "sentence": "Как бы он ни старался, он не справится.",
+      "answer": "mag er sich so sehr bemühen er wird es nicht schaffen",
+      "hint": "mag + подлежащее + sich + so + наречие + глагол"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (wo...auch).",
+      "sentence": "Где бы ты ни был, я найду тебя.",
+      "answer": "wo du auch bist ich werde dich finden",
+      "hint": "wo + подлежащее + auch + глагол"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (ob...auch).",
+      "sentence": "Даже если идёт дождь, я пойду гулять.",
+      "answer": "ob es auch regnet ich gehe spazieren",
+      "hint": "ob + подлежащее + auch + глагол"
+    },
+    {
+      "type": "fill",
+      "question": "Переведите на немецкий (wie...auch).",
+      "sentence": "Как бы ты ни старался, ты не выиграешь.",
+      "answer": "wie du dich auch bemühst du wirst nicht gewinnen",
+      "hint": "wie + подлежащее + sich + auch + глагол"
     }
   ]
 }
