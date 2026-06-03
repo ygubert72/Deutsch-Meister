@@ -1,0 +1,49 @@
+{
+  "lesson": 5,
+  "title": "Adjektivdeklination mit vorangehendem Genitivattribut",
+  "theory": "<h3>Die besondere Herausforderung</h3><p>Die Adjektivdeklination ist im Deutschen bereits komplex. Eine zusätzliche Schwierigkeit entsteht, wenn dem Adjektiv ein <strong>Genitivattribut</strong> (z.B. 'des Mannes', 'der Frau', 'der Kinder') vorausgeht. Die Endung des Adjektivs hängt dann nicht nur vom Artikel, sondern auch vom Geschlecht des Genitivattributs ab.</p><h3>Die Grundregel</h3><p>Wenn ein Genitivattribut ohne weiteren Artikel vor einem Adjektiv + Nomen steht, übernimmt das Genitivattribut die Funktion des <strong>Artikelwortes</strong>. Das Adjektiv erhält dann die <strong>starke Endung</strong> (die Endung, die ein Artikel sonst tragen würde).</p><h3>Beispiele für die starke Adjektivdeklination nach Genitivattributen</h3><p>Das Genitivattribut selbst verändert sich nicht. Das folgende Adjektiv bekommt die starke Endung:</p><ul><li>Genitiv Singular Maskulinum/Neutrum (-s): die <strong>schwierigen</strong> Probleme <strong>des Tages</strong> -> <strong>des Tages schwierige</strong> Probleme</li><li>Genitiv Singular Femininum (-r): die <strong>neuen</strong> Ideen <strong>der Chefin</strong> -> <strong>der Chefin neue</strong> Ideen</li><li>Genitiv Plural (-r): die <strong>alten</strong> Spielsachen <strong>der Kinder</strong> -> <strong>der Kinder alte</strong> Spielsachen</li></ul><h3>Wichtige Regel: Der 's'-Genitiv</h3><p>Wenn ein maskulines oder neutrales Nomen im Genitiv die Endung <strong>-s</strong> oder <strong>-es</strong> bekommt, dann erhält das nachfolgende Adjektiv die starke Endung <strong>-en</strong> (außer im Nominativ/Akkusativ Neutrum).</p><ul><li><strong>des Vaters neuer</strong> Wagen (Nom. Sg. mask. -> -er)</li><li><strong>des Lehrers strenger</strong> Blick (Nom. Sg. mask. -> -er)</li><li><strong>des Kindes erstes</strong> Wort (Nom./Akk. Sg. neutr. -> -es)</li></ul><h3>Alternative: Adjektivdeklination nach 'von' + Dativ</h3><p>In der gesprochenen Sprache wird oft der Dativ mit 'von' verwendet ('die Probleme von dem Tag'), um die Genitivkonstruktion zu vermeiden. Dies ist aber weniger elegant und im formellen Schreiben nicht immer angebracht.</p>",
+  "examples": [
+    {"de": "Der Vorschlag des Experten überzeugte alle.", "ru": "Предложение эксперта убедило всех."},
+    {"de": "Die Entscheidung des Richters war endgültig.", "ru": "Решение судьи было окончательным."},
+    {"de": "Ich bewundere die Geduld der Lehrerin.", "ru": "Я восхищаюсь терпением учительницы."},
+    {"de": "Die Sorgen der Eltern sind verständlich.", "ru": "Заботы родителей понятны."},
+    {"de": "Die Lösung des Problems ist komplex.", "ru": "Решение проблемы сложное."}
+  ],
+  "exercises": [
+    {
+      "type": "transform",
+      "question": "Setzen Sie das Genitivattribut vor das Adjektiv.",
+      "sentence": "die Probleme der letzten Wochen (die Lösung)",
+      "answer": "die Lösung der letzten Wochen Probleme",
+      "hint": "Das Genitivattribut 'der letzten Wochen' (Femininum Plural) kommt nach vorne. Das Adjektiv 'letzten' bekommt die starke Endung '-en'."
+    },
+    {
+      "type": "fill",
+      "question": "Ergänzen Sie die richtige Adjektivendung.",
+      "sentence": "_____ (des Kindes / neu) Spielzeug liegt auf dem Boden.",
+      "answer": "Des Kindes neues Spielzeug liegt auf dem Boden.",
+      "hint": "'Spielzeug' ist Neutrum, Nominativ. Nach dem Genitivattribut 'des Kindes' bekommt das Adjektiv 'neu' die starke Endung '-es'."
+    },
+    {
+      "type": "fill",
+      "question": "Ergänzen Sie die richtige Adjektivendung.",
+      "sentence": "Ich habe _____ (der Frau / schön) Tasche gesehen.",
+      "answer": "Ich habe der Frau schöne Tasche gesehen.",
+      "hint": "'Tasche' ist Femininum, Akkusativ. Nach 'der Frau' bekommt 'schön' die Endung '-e'."
+    },
+    {
+      "type": "fill",
+      "question": "Ergänzen Sie die richtige Adjektivendung.",
+      "sentence": "_____ (des Lehrers / streng) Blick schüchterte die Schüler ein.",
+      "answer": "Des Lehrers strenger Blick schüchterte die Schüler ein.",
+      "hint": "'Blick' ist Maskulinum, Nominativ. Nach 'des Lehrers' (mask. Gen. Sg.) bekommt 'streng' die Endung '-er'."
+    },
+    {
+      "type": "choice",
+      "question": "Welche Konstruktion ist korrekt und stilistisch sehr gut für einen formellen Text?",
+      "options": ["Die Probleme von der letzten Woche sind gelöst.", "Die letzten-Woche-Probleme sind gelöst.", "Der letzten Woche Probleme sind gelöst.", "Die Probleme der letzten Woche sind gelöst."],
+      "answer": "Die Probleme der letzten Woche sind gelöst.",
+      "hint": "Der formelle Stil bevorzugt den Genitiv ('der letzten Woche') ohne weitere Artikel."
+    }
+  ]
+}
