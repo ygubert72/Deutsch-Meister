@@ -1,10 +1,10 @@
 {
   "lessons": [
-    "lesson1.json",
-    "lesson2.json",
-    "lesson3.json",
-    "lesson4.json",
-    "lesson5.json",
-    "lesson6.json"
+    "01_konjunktiv_i_indirekte_rede.json",
+    "02_konzessive_saetze_c1.json",
+    "03_kausale_saetze_c1.json",
+    "04_als_ob_als_wenn.json",
+    "05_modalverben_subjektiv_c1.json",
+    "06_je_nachdem_insofern_als.json"
   ]
 }
