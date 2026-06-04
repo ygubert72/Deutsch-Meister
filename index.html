@@ -74,6 +74,21 @@
     window.addEventListener('load', function() {
         document.querySelector('.app').classList.add('loaded');
     });
+    
+    // Фикс прокрутки на телефонах
+    setTimeout(function() {
+        var content = document.querySelector('.content');
+        if (content) {
+            content.style.overflowY = 'auto';
+            content.style.webkitOverflowScrolling = 'touch';
+            content.style.paddingBottom = '50px';
+        }
+        var sidebar = document.querySelector('.sidebar');
+        if (sidebar) {
+            sidebar.style.overflowY = 'auto';
+            sidebar.style.webkitOverflowScrolling = 'touch';
+        }
+    }, 500);
 </script>
 </body>
 </html>
