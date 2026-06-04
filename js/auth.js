@@ -1,4 +1,4 @@
-// auth.js - полная версия с оплатой премиум (без заявок)
+// auth.js - полная версия с оплатой премиум и вспомогательными функциями
 
 let auth = null;
 let db = null;
@@ -88,6 +88,15 @@ window.hasAccessToLevel = function(level) {
     }
     
     return false;
+};
+
+// ========== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ==========
+window.isAuthenticated = function() {
+    return auth !== null && auth.currentUser !== null;
+};
+
+window.getCurrentUser = function() {
+    return auth ? auth.currentUser : null;
 };
 
 // Проверка, заблокирован ли пользователь
@@ -208,7 +217,7 @@ window.logout = async function() {
     location.reload();
 };
 
-// Модальное окно оплаты (улучшенная версия для телефонов)
+// Модальное окно оплаты
 function showPaymentModal() {
     if (!auth.currentUser) {
         alert('Сначала войдите в аккаунт');
