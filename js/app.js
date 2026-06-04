@@ -1,3 +1,5 @@
+// app.js - исправленная версия с правильным обновлением счётчика
+
 function updateCounter() {
     const el = document.getElementById('counter');
     if (!el) return;
@@ -7,20 +9,31 @@ function updateCounter() {
         const unstudied = getUnstudiedWords().length;
         const studied = total - unstudied;
         el.textContent = `Всего: ${total} | Учим: ${unstudied} | Выучено: ${studied}`;
-    } else if (currentMode === 'sentences') {
+    } 
+    else if (currentMode === 'sentences') {
         const total = sentencesDB[AppConfig.currentLevel]?.length || 0;
         let completed = sentencesProgress[AppConfig.currentLevel]?.filter(p => p?.studied === true).length || 0;
         el.textContent = `Всего фраз: ${total} | Выучено: ${completed}`;
-    } else if (currentMode === 'grammar') {
+    } 
+    else if (currentMode === 'grammar') {
         const level = AppConfig.currentLevel;
         const grammarData = grammarDB[level];
-        if (grammarData && grammarData.length) {
+        
+        // Проверяем, загружены ли данные
+        if (grammarData && grammarData.length > 0) {
             const totalLessons = grammarData.length;
             const completed = grammarProgress[level]?.filter(p => p?.completed === true).length || 0;
             el.textContent = `ГРАММАТИКА ${level} | Пройдено: ${completed} из ${totalLessons} уроков`;
-        } else {
-            el.textContent = `ГРАММАТИКА ${level} | Загрузка...`;
+        } 
+        else if (grammarData && grammarData.length === 0) {
+            el.textContent = `ГРАММАТИКА ${level} | Загрузка материалов...`;
         }
+        else {
+            el.textContent = `ГРАММАТИКА ${level} | Выберите урок`;
+        }
+    }
+    else {
+        el.textContent = `Deutsch-Meister`;
     }
 }
 
@@ -37,6 +50,7 @@ function setMode(mode) {
     else if (mode === 'grammar') renderGrammar();
     
     saveProgress();
+    updateCounter(); // Обновляем счётчик после смены режима
 }
 
 function setLevel(level) {
@@ -72,8 +86,17 @@ function loadGrammarProgress() {
                 }
             }
         }
-    } catch(e) {}
+    } catch(e) {
+        console.error('Ошибка загрузки прогресса грамматики:', e);
+    }
 }
+
+// Функция для принудительного обновления счётчика (вызывать после загрузки данных)
+window.forceUpdateCounter = function() {
+    setTimeout(() => {
+        updateCounter();
+    }, 100);
+};
 
 async function init() {
     console.log('init: начало загрузки');
@@ -98,6 +121,11 @@ async function init() {
     });
     
     setMode(currentMode);
+    
+    // Принудительно обновляем счётчик через секунду (на случай медленной загрузки)
+    setTimeout(() => {
+        updateCounter();
+    }, 1000);
     
     console.log('init: завершено');
 }
