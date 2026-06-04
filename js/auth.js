@@ -43,7 +43,7 @@ async function checkIfAdmin(email) {
     if (!email || !db) return;
     
     // Список email админов - укажите здесь свой email
-    const adminEmails = ['your-email@gmail.com']; // ← ЗАМЕНИТЕ НА ВАШ EMAIL
+    const adminEmails = ['ygubert72@gmail.com']; // ← ЗАМЕНИТЕ НА ВАШ EMAIL
     
     if (adminEmails.includes(email)) {
         isAdmin = true;
