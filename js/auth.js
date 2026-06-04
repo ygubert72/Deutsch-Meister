@@ -123,12 +123,11 @@ function updateUI(user) {
     } else {
         loginBtn.style.display = 'block';
         userInfo.style.display = 'block';
-        // Новый формат: две строки, значок 👋
+        // ДВЕ СТРОКИ: значок и текст в одной строке, скобки во второй
         userInfo.innerHTML = `
             <div style="background:#E8F0FE; border-radius:8px; padding:8px; text-align:center;">
-                <div style="font-size:20px; margin-bottom:5px;">👋</div>
-                <div style="font-weight:bold; font-size:13px;">Гостевой режим</div>
-                <div style="font-size:10px; color:#666; margin-top:3px;">прогресс не сохраняется</div>
+                <div style="font-size:14px; font-weight:bold;">👋 Гостевой режим</div>
+                <div style="font-size:11px; color:#666; margin-top:4px;">прогресс не сохраняется</div>
             </div>
         `;
         loginBtn.onclick = () => showLoginModal();
