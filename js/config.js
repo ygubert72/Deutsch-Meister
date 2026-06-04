@@ -16,10 +16,12 @@ let sentencesDB = { A1: [], A2: [], B1: [], B2: [], C1: [] };
 // Прогресс
 let wordsProgress = {};
 let sentencesProgress = {};
+let grammarProgress = { A1: [], A2: [], B1: [], B2: [], C1: [] };
 
 function saveProgress() {
     localStorage.setItem('dm_words_progress', JSON.stringify(wordsProgress));
     localStorage.setItem('dm_sentences_progress', JSON.stringify(sentencesProgress));
+    localStorage.setItem('dm_grammar_progress', JSON.stringify(grammarProgress));
     localStorage.setItem('dm_config', JSON.stringify({
         last_level: AppConfig.currentLevel,
         show_language: AppConfig.show_language,
@@ -39,6 +41,8 @@ function loadProgress() {
         if (wp) wordsProgress = JSON.parse(wp);
         const sp = localStorage.getItem('dm_sentences_progress');
         if (sp) sentencesProgress = JSON.parse(sp);
+        const gp = localStorage.getItem('dm_grammar_progress');
+        if (gp) grammarProgress = JSON.parse(gp);
         const cfg = localStorage.getItem('dm_config');
         if (cfg) {
             const parsed = JSON.parse(cfg);
@@ -53,6 +57,7 @@ function loadProgress() {
     ['A1','A2','B1','B2','C1'].forEach(lvl => {
         if (!wordsProgress[lvl]) wordsProgress[lvl] = [];
         if (!sentencesProgress[lvl]) sentencesProgress[lvl] = [];
+        if (!grammarProgress[lvl]) grammarProgress[lvl] = [];
     });
 }
 
