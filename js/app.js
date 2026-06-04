@@ -54,6 +54,16 @@ function setMode(mode) {
 }
 
 function setLevel(level) {
+    // Проверка доступа к платным уровням
+    if (!window.hasAccessToLevel || !window.hasAccessToLevel(level)) {
+        if (level === 'B1' || level === 'B2' || level === 'C1') {
+            if (confirm(`Уровень ${level} требует премиум-доступа (${SUBSCRIPTION_PRICE} ₽).\n\nХотите получить доступ?`)) {
+                window.showPaymentModal(level);
+            }
+            return;
+        }
+    }
+    
     AppConfig.currentLevel = level;
     
     document.querySelectorAll('[data-level]').forEach(btn => {
