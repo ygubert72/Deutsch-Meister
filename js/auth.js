@@ -123,8 +123,14 @@ function updateUI(user) {
     } else {
         loginBtn.style.display = 'block';
         userInfo.style.display = 'block';
-        // Убрал бежевый фон, оставил только голубой
-        userInfo.innerHTML = `<div style="background:#E8F0FE; border-radius:8px; padding:8px; text-align:center; font-size:12px;">🧸 Гостевой режим (прогресс не сохранится)</div>`;
+        // Новый формат: две строки, значок 👋
+        userInfo.innerHTML = `
+            <div style="background:#E8F0FE; border-radius:8px; padding:8px; text-align:center;">
+                <div style="font-size:20px; margin-bottom:5px;">👋</div>
+                <div style="font-weight:bold; font-size:13px;">Гостевой режим</div>
+                <div style="font-size:10px; color:#666; margin-top:3px;">прогресс не сохраняется</div>
+            </div>
+        `;
         loginBtn.onclick = () => showLoginModal();
     }
 }
