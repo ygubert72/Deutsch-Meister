@@ -1,4 +1,4 @@
-// auth.js - рабочая версия
+// auth.js - полная рабочая версия с сохранением входа
 
 let auth = null;
 let db = null;
@@ -27,11 +27,23 @@ function initFirebase() {
     auth = firebase.auth();
     db = firebase.firestore();
     
+    // Устанавливаем постоянное сохранение сессии (ВАЖНО!)
+    auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+        .then(() => {
+            console.log('✅ Сессия будет сохраняться');
+        })
+        .catch((error) => {
+            console.error('Ошибка настройки сохранения:', error);
+        });
+    
     console.log('Firebase готов');
     
     // Слушатель входа
     auth.onAuthStateChanged((user) => {
         updateUI(user);
+        if (user) {
+            console.log('Пользователь в системе:', user.email);
+        }
     });
 }
 
@@ -61,14 +73,18 @@ function updateUI(user) {
 
 // Функция выхода
 window.logout = async function() {
-    if (auth) await auth.signOut();
+    if (auth) {
+        await auth.signOut();
+    }
     location.reload();
 };
 
 // Модальное окно входа/регистрации
 window.showLoginModal = function() {
-    // Удаляем старое окно
-    if (document.getElementById('authModal')) document.getElementById('authModal').remove();
+    // Удаляем старое окно если есть
+    if (document.getElementById('authModal')) {
+        document.getElementById('authModal').remove();
+    }
     
     const modal = document.createElement('div');
     modal.id = 'authModal';
@@ -101,7 +117,10 @@ window.showLoginModal = function() {
     const actionBtn = document.getElementById('actionBtn');
     const emailInput = document.getElementById('authEmail');
     const passInput = document.getElementById('authPassword');
+    const guestBtn = document.getElementById('guestBtn');
+    const closeBtn = document.getElementById('closeModal');
     
+    // Вкладка Вход
     loginTab.onclick = () => {
         isLogin = true;
         loginTab.style.background = '#3B6FE0';
@@ -111,6 +130,7 @@ window.showLoginModal = function() {
         actionBtn.textContent = 'Войти';
     };
     
+    // Вкладка Регистрация
     registerTab.onclick = () => {
         isLogin = false;
         registerTab.style.background = '#3B6FE0';
@@ -120,6 +140,7 @@ window.showLoginModal = function() {
         actionBtn.textContent = 'Зарегистрироваться';
     };
     
+    // Кнопка действия (Войти / Зарегистрироваться)
     actionBtn.onclick = async () => {
         const email = emailInput.value.trim();
         const password = passInput.value;
@@ -136,11 +157,21 @@ window.showLoginModal = function() {
         
         try {
             if (isLogin) {
+                // Вход
                 await auth.signInWithEmailAndPassword(email, password);
                 alert('Добро пожаловать, ' + email + '!');
                 modal.remove();
             } else {
-                await auth.createUserWithEmailAndPassword(email, password);
+                // Регистрация
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                // Создаём запись пользователя в Firestore
+                if (db) {
+                    await db.collection('users').doc(userCredential.user.uid).set({
+                        email: email,
+                        createdAt: new Date().toISOString(),
+                        subscription: { type: 'free' }
+                    });
+                }
                 alert('Регистрация успешна! Добро пожаловать, ' + email + '!');
                 modal.remove();
             }
@@ -150,41 +181,54 @@ window.showLoginModal = function() {
             else if (error.code === 'auth/email-already-in-use') msg = 'Этот email уже зарегистрирован';
             else if (error.code === 'auth/weak-password') msg = 'Пароль слишком слабый (минимум 6 символов)';
             else if (error.code === 'auth/user-not-found') msg = 'Пользователь не найден';
+            else if (error.code === 'auth/wrong-password') msg = 'Неверный пароль';
+            else if (error.code === 'auth/too-many-requests') msg = 'Слишком много попыток. Попробуйте позже';
             else msg += error.message;
             alert(msg);
         }
     };
     
-    document.getElementById('guestBtn').onclick = () => {
+    // Гостевой режим
+    guestBtn.onclick = () => {
         modal.remove();
-        alert('Гостевой режим');
+        alert('Гостевой режим (прогресс не сохранится)');
     };
     
-    document.getElementById('closeModal').onclick = () => modal.remove();
+    // Закрыть
+    closeBtn.onclick = () => modal.remove();
 };
 
-// Запуск
+// Запуск при загрузке страницы
 window.addEventListener('load', function() {
-    // Загружаем Firebase
-    const script = document.createElement('script');
-    script.src = 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js';
-    script.onload = () => {
-        const authScript = document.createElement('script');
-        authScript.src = 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js';
-        authScript.onload = () => {
-            const firestoreScript = document.createElement('script');
-            firestoreScript.src = 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js';
-            firestoreScript.onload = initFirebase;
-            document.head.appendChild(firestoreScript);
-        };
-        document.head.appendChild(authScript);
-    };
-    document.head.appendChild(script);
+    console.log('Загрузка страницы, инициализация Firebase...');
     
-    // Привязываем кнопку
+    // Привязываем кнопку входа (чтобы была зелёной)
     const loginBtn = document.getElementById('loginBtn');
     if (loginBtn) {
         loginBtn.style.background = '#4CAF50';
         loginBtn.style.color = 'white';
+        loginBtn.innerHTML = '🔐 Войти';
+    }
+    
+    // Загружаем Firebase скрипты
+    if (typeof firebase === 'undefined') {
+        const script = document.createElement('script');
+        script.src = 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js';
+        script.onload = () => {
+            const authScript = document.createElement('script');
+            authScript.src = 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js';
+            authScript.onload = () => {
+                const firestoreScript = document.createElement('script');
+                firestoreScript.src = 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js';
+                firestoreScript.onload = () => {
+                    initFirebase();
+                };
+                document.head.appendChild(firestoreScript);
+            };
+            document.head.appendChild(authScript);
+        };
+        document.head.appendChild(script);
+    } else {
+        initFirebase();
     }
 });
