@@ -91,12 +91,15 @@ function updateUI(user) {
         userInfo.style.display = 'block';
         userInfo.innerHTML = `
             <div style="background:#E8F0FE; border-radius:8px; padding:8px; text-align:center;">
-                <div>👤 ${user.email}</div>
-                <button onclick="logout()" style="margin-top:8px; padding:4px 12px; background:#f44336; color:white; border:none; border-radius:16px; cursor:pointer; width:100%;">🚪 Выйти</button>
+                <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:5px;">
+                    <span style="font-size:20px;">🎓</span>
+                    <span style="word-break:break-all;">${user.email}</span>
+                </div>
+                <button onclick="logout()" style="margin-top:8px; padding:4px 12px; background:#f44336; color:white; border:none; border-radius:16px; cursor:pointer; width:100%; font-size:11px;">🚪 Выйти</button>
             </div>
         `;
         
-        // Добавляем кнопку админа ТОЛЬКО для вашего email
+        // Добавляем кнопку админа для вашего email
         if (user.email === 'ygubert72@gmail.com') {
             let adminBtn = document.getElementById('adminBtn');
             if (!adminBtn) {
@@ -113,7 +116,6 @@ function updateUI(user) {
                 const sidebar = document.querySelector('.sidebar-content');
                 if (sidebar) {
                     sidebar.appendChild(adminBtn);
-                    console.log('✅ Кнопка админа добавлена');
                 }
             }
         }
@@ -121,7 +123,8 @@ function updateUI(user) {
     } else {
         loginBtn.style.display = 'block';
         userInfo.style.display = 'block';
-        userInfo.innerHTML = `<div style="background:#FFF3E0; border-radius:8px; padding:8px; text-align:center; font-size:11px;">🧸 Гостевой режим (прогресс не сохранится)</div>`;
+        // Убрал бежевый фон, оставил только голубой
+        userInfo.innerHTML = `<div style="background:#E8F0FE; border-radius:8px; padding:8px; text-align:center; font-size:12px;">🧸 Гостевой режим (прогресс не сохранится)</div>`;
         loginBtn.onclick = () => showLoginModal();
     }
 }
