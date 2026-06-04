@@ -1,4 +1,4 @@
-// auth.js - полная рабочая версия с сохранением входа
+// auth.js - полная рабочая версия с админ-панелью
 
 let auth = null;
 let db = null;
@@ -27,7 +27,7 @@ function initFirebase() {
     auth = firebase.auth();
     db = firebase.firestore();
     
-    // Устанавливаем постоянное сохранение сессии (ВАЖНО!)
+    // Устанавливаем постоянное сохранение сессии
     auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
         .then(() => {
             console.log('✅ Сессия будет сохраняться');
@@ -63,6 +63,10 @@ function updateUI(user) {
                 <button onclick="logout()" style="margin-top:8px; padding:4px 12px; background:#f44336; color:white; border:none; border-radius:16px; cursor:pointer; width:100%;">🚪 Выйти</button>
             </div>
         `;
+        
+        // Добавляем кнопку админ-панели
+        addAdminButton();
+        
     } else {
         loginBtn.style.display = 'block';
         userInfo.style.display = 'block';
@@ -197,6 +201,132 @@ window.showLoginModal = function() {
     // Закрыть
     closeBtn.onclick = () => modal.remove();
 };
+
+// ========== АДМИН-ПАНЕЛЬ ==========
+
+// Проверка, является ли пользователь админом
+async function isUserAdmin() {
+    if (!auth || !auth.currentUser) return false;
+    
+    try {
+        // ⚠️ ЗАМЕНИТЕ admin@deutsch-meister.com НА ВАШ EMAIL ⚠️
+        const adminEmails = ['admin@deutsch-meister.com']; // ← ВАШ EMAIL СЮДА
+        
+        if (adminEmails.includes(auth.currentUser.email)) {
+            return true;
+        }
+        
+        // Проверка через Firestore
+        if (db) {
+            const adminDoc = await db.collection('admins').doc(auth.currentUser.email.replace(/\./g, '_')).get();
+            return adminDoc.exists;
+        }
+        return false;
+    } catch(e) {
+        console.error('Ошибка проверки админа:', e);
+        return false;
+    }
+}
+
+// Показать админ-панель
+window.showAdminPanel = async function() {
+    const isAdmin = await isUserAdmin();
+    if (!isAdmin) {
+        alert('У вас нет прав администратора');
+        return;
+    }
+    
+    // Получаем список пользователей
+    let users = [];
+    if (db) {
+        const usersSnapshot = await db.collection('users').get();
+        usersSnapshot.forEach(doc => {
+            const data = doc.data();
+            users.push({
+                uid: doc.id,
+                email: data.email || 'Email не указан',
+                createdAt: data.createdAt || 'Неизвестно',
+                subscription: data.subscription?.type || 'free'
+            });
+        });
+    }
+    
+    // Создаём модальное окно админ-панели
+    const modal = document.createElement('div');
+    modal.id = 'adminPanel';
+    modal.innerHTML = `
+        <div style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); display:flex; justify-content:center; align-items:center; z-index:1000000; overflow:auto;">
+            <div style="background:white; border-radius:20px; max-width:800px; width:95%; max-height:90vh; overflow-y:auto; margin:20px;">
+                <div style="padding:20px; border-bottom:1px solid #E0E0E0; display:flex; justify-content:space-between; align-items:center;">
+                    <h2 style="margin:0;">👑 Админ-панель</h2>
+                    <button id="closeAdminPanel" style="background:none; border:none; font-size:28px; cursor:pointer;">&times;</button>
+                </div>
+                <div style="padding:20px;">
+                    <h3>Статистика</h3>
+                    <p>Всего пользователей: <strong>${users.length}</strong></p>
+                    
+                    <h3>Список пользователей</h3>
+                    <div id="usersList">
+                        ${users.map(user => `
+                            <div style="border:1px solid #E0E0E0; border-radius:12px; padding:15px; margin-bottom:10px;">
+                                <div><strong>${user.email}</strong></div>
+                                <div style="font-size:12px; color:#666;">ID: ${user.uid.substring(0, 20)}...</div>
+                                <div style="font-size:12px; color:#666;">Дата регистрации: ${user.createdAt}</div>
+                                <div style="font-size:12px; color:#666;">Подписка: ${user.subscription}</div>
+                                <button onclick="window.deleteUser('${user.uid}')" style="margin-top:10px; padding:5px 15px; background:#f44336; color:white; border:none; border-radius:8px; cursor:pointer;">🗑️ Удалить пользователя</button>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+    
+    document.getElementById('closeAdminPanel').onclick = () => modal.remove();
+    modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
+};
+
+// Функция удаления пользователя
+window.deleteUser = async function(uid) {
+    if (!confirm('Вы уверены, что хотите удалить этого пользователя? Все данные будут потеряны!')) {
+        return;
+    }
+    
+    try {
+        if (db) {
+            await db.collection('users').doc(uid).delete();
+            alert('Пользователь удалён');
+            document.getElementById('adminPanel')?.remove();
+            window.showAdminPanel(); // Обновляем список
+        }
+    } catch(e) {
+        alert('Ошибка при удалении: ' + e.message);
+    }
+};
+
+// Добавляем кнопку админ-панели в интерфейс
+async function addAdminButton() {
+    const isAdmin = await isUserAdmin();
+    if (!isAdmin) return;
+    
+    const sidebar = document.querySelector('.sidebar-content');
+    if (!sidebar) return;
+    
+    // Проверяем, нет ли уже кнопки
+    if (document.getElementById('adminBtn')) return;
+    
+    const adminBtn = document.createElement('button');
+    adminBtn.id = 'adminBtn';
+    adminBtn.className = 'btn';
+    adminBtn.innerHTML = '👑 АДМИН-ПАНЕЛЬ';
+    adminBtn.style.background = '#FF9800';
+    adminBtn.style.color = 'white';
+    adminBtn.style.marginTop = '10px';
+    adminBtn.onclick = () => window.showAdminPanel();
+    
+    sidebar.appendChild(adminBtn);
+}
 
 // Запуск при загрузке страницы
 window.addEventListener('load', function() {
