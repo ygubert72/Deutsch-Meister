@@ -1,4 +1,4 @@
-// auth.js - полная рабочая версия с админ-панелью
+// auth.js - полная рабочая версия с админ-панелью для ygubert72@gmail.com
 
 let auth = null;
 let db = null;
@@ -64,8 +64,27 @@ function updateUI(user) {
             </div>
         `;
         
-        // Добавляем кнопку админ-панели
-        addAdminButton();
+        // Добавляем кнопку админа ТОЛЬКО для вашего email
+        if (user.email === 'ygubert72@gmail.com') {
+            let adminBtn = document.getElementById('adminBtn');
+            if (!adminBtn) {
+                adminBtn = document.createElement('button');
+                adminBtn.id = 'adminBtn';
+                adminBtn.className = 'btn';
+                adminBtn.innerHTML = '👑 АДМИН-ПАНЕЛЬ';
+                adminBtn.style.background = '#FF9800';
+                adminBtn.style.color = 'white';
+                adminBtn.style.marginTop = '10px';
+                adminBtn.style.cursor = 'pointer';
+                adminBtn.onclick = () => window.showAdminPanel();
+                
+                const sidebar = document.querySelector('.sidebar-content');
+                if (sidebar) {
+                    sidebar.appendChild(adminBtn);
+                    console.log('✅ Кнопка админа добавлена');
+                }
+            }
+        }
         
     } else {
         loginBtn.style.display = 'block';
@@ -204,34 +223,10 @@ window.showLoginModal = function() {
 
 // ========== АДМИН-ПАНЕЛЬ ==========
 
-// Проверка, является ли пользователь админом
-async function isUserAdmin() {
-    if (!auth || !auth.currentUser) return false;
-    
-    try {
-        // ⚠️ ЗАМЕНИТЕ admin@deutsch-meister.com НА ВАШ EMAIL ⚠️
-        const adminEmails = ['ygubert@gmail.com']; // ← ВАШ EMAIL СЮДА
-        
-        if (adminEmails.includes(auth.currentUser.email)) {
-            return true;
-        }
-        
-        // Проверка через Firestore
-        if (db) {
-            const adminDoc = await db.collection('admins').doc(auth.currentUser.email.replace(/\./g, '_')).get();
-            return adminDoc.exists;
-        }
-        return false;
-    } catch(e) {
-        console.error('Ошибка проверки админа:', e);
-        return false;
-    }
-}
-
 // Показать админ-панель
 window.showAdminPanel = async function() {
-    const isAdmin = await isUserAdmin();
-    if (!isAdmin) {
+    // Проверяем, что пользователь - админ
+    if (!auth.currentUser || auth.currentUser.email !== 'ygubert72@gmail.com') {
         alert('У вас нет прав администратора');
         return;
     }
@@ -239,16 +234,22 @@ window.showAdminPanel = async function() {
     // Получаем список пользователей
     let users = [];
     if (db) {
-        const usersSnapshot = await db.collection('users').get();
-        usersSnapshot.forEach(doc => {
-            const data = doc.data();
-            users.push({
-                uid: doc.id,
-                email: data.email || 'Email не указан',
-                createdAt: data.createdAt || 'Неизвестно',
-                subscription: data.subscription?.type || 'free'
+        try {
+            const usersSnapshot = await db.collection('users').get();
+            usersSnapshot.forEach(doc => {
+                const data = doc.data();
+                users.push({
+                    uid: doc.id,
+                    email: data.email || 'Email не указан',
+                    createdAt: data.createdAt || 'Неизвестно',
+                    subscription: data.subscription?.type || 'free'
+                });
             });
-        });
+        } catch(e) {
+            console.error('Ошибка получения пользователей:', e);
+            alert('Ошибка получения пользователей: ' + e.message);
+            return;
+        }
     }
     
     // Создаём модальное окно админ-панели
@@ -304,29 +305,6 @@ window.deleteUser = async function(uid) {
         alert('Ошибка при удалении: ' + e.message);
     }
 };
-
-// Добавляем кнопку админ-панели в интерфейс
-async function addAdminButton() {
-    const isAdmin = await isUserAdmin();
-    if (!isAdmin) return;
-    
-    const sidebar = document.querySelector('.sidebar-content');
-    if (!sidebar) return;
-    
-    // Проверяем, нет ли уже кнопки
-    if (document.getElementById('adminBtn')) return;
-    
-    const adminBtn = document.createElement('button');
-    adminBtn.id = 'adminBtn';
-    adminBtn.className = 'btn';
-    adminBtn.innerHTML = '👑 АДМИН-ПАНЕЛЬ';
-    adminBtn.style.background = '#FF9800';
-    adminBtn.style.color = 'white';
-    adminBtn.style.marginTop = '10px';
-    adminBtn.onclick = () => window.showAdminPanel();
-    
-    sidebar.appendChild(adminBtn);
-}
 
 // Запуск при загрузке страницы
 window.addEventListener('load', function() {
