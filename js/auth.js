@@ -1,91 +1,61 @@
-// auth.js - система входа, регистрации и гостевого режима
+// auth.js - система входа и регистрации (без модулей)
 
 let currentUser = null;
 let isGuestMode = false;
-
-// Инициализация Firebase
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { 
-    getAuth, 
-    signInWithEmailAndPassword, 
-    createUserWithEmailAndPassword, 
-    signOut, 
-    onAuthStateChanged,
-    sendPasswordResetEmail
-} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
-import { 
-    getFirestore, 
-    doc, 
-    getDoc, 
-    setDoc, 
-    updateDoc,
-    collection,
-    getDocs,
-    deleteDoc,
-    query,
-    orderBy
-} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
-
-// ИСПРАВЛЕННЫЙ API ключ
-const firebaseConfig = {
-    apiKey: "AIzaSyAUj_2cLQyWvs2JTT7ZL2BYox6krDb3X7I",
-    authDomain: "deutsch-meister-248cf.firebaseapp.com",
-    projectId: "deutsch-meister-248cf",
-    storageBucket: "deutsch-meister-248cf.firebasestorage.app",
-    messagingSenderId: "549700335996",
-    appId: "1:549700335996:web:97ed9e8f91224e34ab0cf9",
-    measurementId: "G-06C9Q76FJY"
-};
-
-let app, auth, db;
+let auth = null;
+let db = null;
 let isAdmin = false;
 
+// Ждём загрузки Firebase скриптов
 function initFirebase() {
-    if (app) return;
-    try {
-        app = initializeApp(firebaseConfig);
-        auth = getAuth(app);
-        db = getFirestore(app);
-        console.log('Firebase инициализирован');
-        
-        onAuthStateChanged(auth, async (user) => {
-            currentUser = user;
-            isGuestMode = false;
-            
-            if (user) {
-                console.log('Пользователь вошёл:', user.email);
-                await checkIfAdmin(user.email);
-                await loadUserProgressFromFirebase();
-            } else if (!isGuestMode) {
-                console.log('Гостевой режим');
-                isGuestMode = true;
-                isAdmin = false;
-            }
-            
-            updateAuthUI();
-            updateAdminButton();
-        });
-    } catch (error) {
-        console.error('Ошибка инициализации Firebase:', error);
-        isGuestMode = true;
-        currentUser = null;
-        updateAuthUI();
+    if (typeof firebase === 'undefined') {
+        console.log('Ждём загрузки Firebase...');
+        setTimeout(initFirebase, 500);
+        return;
     }
+    
+    console.log('Firebase загружен, инициализация...');
+    
+    auth = firebase.auth();
+    db = firebase.firestore();
+    
+    // Настройка слушателя состояния входа
+    auth.onAuthStateChanged(async (user) => {
+        currentUser = user;
+        isGuestMode = false;
+        
+        if (user) {
+            console.log('Пользователь вошёл:', user.email);
+            await checkIfAdmin(user.email);
+            await loadUserProgressFromFirebase();
+        } else if (!isGuestMode) {
+            console.log('Гостевой режим');
+            isGuestMode = true;
+            isAdmin = false;
+        }
+        
+        updateAuthUI();
+        updateAdminButton();
+    });
 }
 
 async function checkIfAdmin(email) {
-    if (!email) return;
+    if (!email || !db) return;
+    
+    // Список email админов - укажите здесь свой email
+    const adminEmails = ['your-email@gmail.com']; // ← ЗАМЕНИТЕ НА ВАШ EMAIL
+    
+    if (adminEmails.includes(email)) {
+        isAdmin = true;
+        return;
+    }
+    
     try {
-        // Список email админов - вы можете добавить свои email
-        const adminEmails = ['admin@deutsch-meister.com', 'your-email@gmail.com'];
-        isAdmin = adminEmails.includes(email);
-        
-        // Или проверка через Firestore (более гибко)
-        const adminDoc = await getDoc(doc(db, 'admins', email.replace(/[.#$]/g, '_')));
-        if (adminDoc.exists()) {
+        const adminDoc = await db.collection('admins').doc(email.replace(/[.#$]/g, '_')).get();
+        if (adminDoc.exists) {
             isAdmin = true;
         }
-    } catch (error) {
+    } catch(error) {
         console.error('Ошибка проверки админа:', error);
         isAdmin = false;
     }
@@ -111,11 +81,6 @@ function updateAdminButton() {
             const loginBtn = document.getElementById('loginBtn');
             if (loginBtn) {
                 loginBtn.insertAdjacentElement('afterend', adminBtn);
-            } else {
-                const levelsContainer = document.querySelector('.levels-container');
-                if (levelsContainer) {
-                    levelsContainer.insertAdjacentElement('afterend', adminBtn);
-                }
             }
         }
     } else if (adminBtn) {
@@ -134,14 +99,12 @@ function updateAuthUI() {
         userInfo.style.display = 'block';
         userInfo.innerHTML = `
             <div style="background:#E8F0FE; border-radius:8px; padding:8px; text-align:center; font-size:12px;">
-                <div style="display:flex; align-items:center; justify-content:center; gap:6px; margin-bottom:8px;">
+                <div style="display:flex; align-items:center; justify-content:center; gap:6px; margin-bottom:8px; flex-wrap:wrap;">
                     <span>👤</span>
                     <span style="word-break:break-all;">${currentUser.email}</span>
                     ${isAdmin ? '<span style="background:#FF9800; color:white; padding:2px 6px; border-radius:10px; font-size:10px;">ADMIN</span>' : ''}
                 </div>
-                <button id="logoutBtn" style="padding:4px 12px; background:#f44336; color:white; border:none; border-radius:16px; cursor:pointer; width:100%; font-size:11px;">
-                    Выйти
-                </button>
+                <button id="logoutBtn" style="padding:4px 12px; background:#f44336; color:white; border:none; border-radius:16px; cursor:pointer; width:100%; font-size:11px;">🚪 Выйти</button>
             </div>
         `;
         const logoutBtn = document.getElementById('logoutBtn');
@@ -155,7 +118,7 @@ function updateAuthUI() {
             userInfo.style.display = 'block';
             userInfo.innerHTML = `
                 <div style="background:#FFF3E0; border-radius:8px; padding:8px; text-align:center; font-size:11px;">
-                    Гостевой режим (прогресс не сохранится)
+                    🧸 Гостевой режим (прогресс не сохранится)
                 </div>
             `;
         }
@@ -163,8 +126,6 @@ function updateAuthUI() {
 }
 
 window.showLoginModal = function() {
-    if (!auth) initFirebase();
-    
     let modal = document.getElementById('authModal');
     if (!modal) {
         createModal();
@@ -178,7 +139,7 @@ function createModal() {
         <div id="authModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:10000;">
             <div style="background:white; padding:25px; border-radius:20px; max-width:380px; width:90%;">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-                    <h3 style="margin:0;">Deutsch-Meister</h3>
+                    <h3 style="margin:0;">🔐 Deutsch-Meister</h3>
                     <button id="closeModalBtn" style="background:none; border:none; font-size:24px; cursor:pointer;">&times;</button>
                 </div>
                 
@@ -201,7 +162,7 @@ function createModal() {
                 </div>
                 
                 <div style="text-align:center; margin-top:15px; padding-top:15px; border-top:1px solid #E0E0E0;">
-                    <button id="continueAsGuest" style="width:100%; padding:10px; background:#F5F5F5; border:2px solid #E0E0E0; border-radius:12px; cursor:pointer;">Продолжить без регистрации</button>
+                    <button id="continueAsGuest" style="width:100%; padding:10px; background:#F5F5F5; border:2px solid #E0E0E0; border-radius:12px; cursor:pointer;">👤 Продолжить без регистрации</button>
                 </div>
             </div>
         </div>
@@ -220,14 +181,14 @@ function createModal() {
     tabLogin.onclick = () => {
         tabLogin.style.color = '#3B6FE0';
         tabRegister.style.color = '#333';
-        authButtons.innerHTML = `<button id="doLogin" style="width:100%; padding:12px; background:#3B6FE0; color:white; border:none; border-radius:12px; cursor:pointer; font-size:16px; font-weight:bold;">Войти</button>`;
+        authButtons.innerHTML = `<button id="doLogin" style="width:100%; padding:12px; background:#3B6FE0; color:white; border:none; border-radius:12px; cursor:pointer;">Войти</button>`;
         document.getElementById('doLogin').onclick = () => login();
     };
     
     tabRegister.onclick = () => {
         tabRegister.style.color = '#3B6FE0';
-        tabLogin.style.color = '#333';
-        authButtons.innerHTML = `<button id="doRegister" style="width:100%; padding:12px; background:#4CAF50; color:white; border:none; border-radius:12px; cursor:pointer; font-size:16px; font-weight:bold;">Зарегистрироваться</button>`;
+        loginBtn.style.color = '#333';
+        authButtons.innerHTML = `<button id="doRegister" style="width:100%; padding:12px; background:#4CAF50; color:white; border:none; border-radius:12px; cursor:pointer;">Зарегистрироваться</button>`;
         document.getElementById('doRegister').onclick = () => register();
     };
     
@@ -265,7 +226,7 @@ async function login() {
     }
     
     try {
-        await signInWithEmailAndPassword(auth, email, password);
+        await auth.signInWithEmailAndPassword(email, password);
         hideLoginModal();
     } catch (error) {
         let message = 'Ошибка входа';
@@ -291,17 +252,17 @@ async function register() {
     }
     
     try {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const userCredential = await auth.createUserWithEmailAndPassword(email, password);
         
         const userDoc = {
-            wordsProgress: wordsProgress || {},
-            sentencesProgress: sentencesProgress || {},
-            grammarProgress: grammarProgress || {},
+            wordsProgress: window.wordsProgress || {},
+            sentencesProgress: window.sentencesProgress || {},
+            grammarProgress: window.grammarProgress || {},
             createdAt: new Date().toISOString(),
             subscription: { type: 'free', expiresAt: null }
         };
         
-        await setDoc(doc(db, 'users', userCredential.user.uid), userDoc);
+        await db.collection('users').doc(userCredential.user.uid).set(userDoc);
         hideLoginModal();
         alert('Регистрация успешна!');
     } catch (error) {
@@ -319,7 +280,7 @@ async function resetPassword() {
         return;
     }
     try {
-        await sendPasswordResetEmail(auth, email);
+        await auth.sendPasswordResetEmail(email);
         alert('Инструкции отправлены на email');
     } catch (error) {
         alert('Ошибка: пользователь не найден');
@@ -331,7 +292,7 @@ async function logout() {
         if (currentUser && !isGuestMode && typeof saveUserProgressToFirebase === 'function') {
             await saveUserProgressToFirebase();
         }
-        await signOut(auth);
+        await auth.signOut();
         isGuestMode = true;
         currentUser = null;
         isAdmin = false;
@@ -348,8 +309,7 @@ async function logout() {
     }
 }
 
-// ============ АДМИН-ПАНЕЛЬ ============
-
+// Админ-панель
 async function showAdminPanel() {
     if (!isAdmin) {
         alert('Нет доступа к админ-панели');
@@ -365,198 +325,128 @@ async function showAdminPanel() {
                     <h2 style="margin:0;">👑 Админ-панель</h2>
                     <button id="closeAdminModal" style="background:none; border:none; font-size:28px; cursor:pointer;">&times;</button>
                 </div>
-                
                 <div style="padding:20px;">
                     <h3>Статистика</h3>
                     <p>Всего пользователей: ${users.length}</p>
-                    
                     <h3>Список пользователей</h3>
-                    <div id="usersList" style="margin-top:15px;"></div>
+                    <div id="usersList"></div>
                 </div>
             </div>
         </div>
     `;
     
     document.body.insertAdjacentHTML('beforeend', modalHtml);
-    
-    document.getElementById('closeAdminModal').onclick = () => {
-        document.getElementById('adminModal').remove();
-    };
+    document.getElementById('closeAdminModal').onclick = () => document.getElementById('adminModal').remove();
     
     const usersList = document.getElementById('usersList');
     usersList.innerHTML = users.map(user => `
-        <div style="border:1px solid #E0E0E0; border-radius:12px; padding:15px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-            <div>
-                <strong>${user.email}</strong><br>
-                <small>ID: ${user.uid.substring(0, 15)}...</small><br>
-                <small>Дата: ${user.createdAt || 'Неизвестно'}</small><br>
-                <small>Подписка: ${user.subscription?.type || 'free'}</small>
-            </div>
-            <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                <button onclick="window.makeAdmin('${user.uid}', '${user.email}')" style="padding:8px 15px; background:#FF9800; color:white; border:none; border-radius:8px; cursor:pointer;">👑 Сделать админом</button>
-                <button onclick="window.deleteUserAccount('${user.uid}')" style="padding:8px 15px; background:#f44336; color:white; border:none; border-radius:8px; cursor:pointer;">🗑️ Удалить</button>
-            </div>
+        <div style="border:1px solid #E0E0E0; border-radius:12px; padding:15px; margin-bottom:10px;">
+            <div><strong>${user.email}</strong></div>
+            <div><small>ID: ${user.uid.substring(0, 15)}...</small></div>
+            <div><small>Подписка: ${user.subscription?.type || 'free'}</small></div>
+            <button onclick="window.deleteUserAccount('${user.uid}')" style="margin-top:10px; padding:5px 15px; background:#f44336; color:white; border:none; border-radius:8px; cursor:pointer;">🗑️ Удалить</button>
         </div>
     `).join('');
 }
 
 async function getAllUsers() {
     if (!db) return [];
-    
     try {
-        const usersSnapshot = await getDocs(collection(db, 'users'));
-        const users = [];
-        
-        for (const docSnap of usersSnapshot) {
-            const userData = docSnap.data();
-            users.push({
-                uid: docSnap.id,
-                email: userData.email || 'Email не указан',
-                createdAt: userData.createdAt,
-                subscription: userData.subscription
-            });
-        }
-        
-        return users;
+        const snapshot = await db.collection('users').get();
+        return snapshot.docs.map(doc => ({ uid: doc.id, ...doc.data() }));
     } catch (error) {
-        console.error('Ошибка получения пользователей:', error);
+        console.error('Ошибка:', error);
         return [];
     }
 }
-
-window.makeAdmin = async function(uid, email) {
-    if (!isAdmin) {
-        alert('Нет прав');
-        return;
-    }
-    
-    try {
-        await setDoc(doc(db, 'admins', email.replace(/[.#$]/g, '_')), {
-            uid: uid,
-            email: email,
-            createdAt: new Date().toISOString()
-        });
-        alert(`Пользователь ${email} теперь админ!`);
-        document.getElementById('adminModal')?.remove();
-        showAdminPanel();
-    } catch (error) {
-        console.error('Ошибка:', error);
-        alert('Ошибка при назначении админа');
-    }
-};
 
 window.deleteUserAccount = async function(uid) {
     if (!isAdmin) {
         alert('Нет прав');
         return;
     }
-    
-    if (!confirm('Вы уверены, что хотите удалить этого пользователя? Все данные будут потеряны!')) {
-        return;
-    }
-    
+    if (!confirm('Удалить пользователя?')) return;
     try {
-        await deleteDoc(doc(db, 'users', uid));
+        await db.collection('users').doc(uid).delete();
         alert('Пользователь удалён');
         document.getElementById('adminModal')?.remove();
         showAdminPanel();
     } catch (error) {
-        console.error('Ошибка:', error);
         alert('Ошибка при удалении');
     }
 };
 
 async function loadUserProgressFromFirebase() {
-    if (!currentUser || isGuestMode) return;
-    
+    if (!currentUser || isGuestMode || !db) return;
     try {
-        const userDoc = await getDoc(doc(db, 'users', currentUser.uid));
-        
-        if (userDoc.exists()) {
+        const userDoc = await db.collection('users').doc(currentUser.uid).get();
+        if (userDoc.exists) {
             const data = userDoc.data();
-            
-            if (data.wordsProgress) {
-                Object.assign(wordsProgress, data.wordsProgress);
+            if (data.wordsProgress && window.wordsProgress) {
+                Object.assign(window.wordsProgress, data.wordsProgress);
             }
-            if (data.sentencesProgress) {
-                Object.assign(sentencesProgress, data.sentencesProgress);
+            if (data.sentencesProgress && window.sentencesProgress) {
+                Object.assign(window.sentencesProgress, data.sentencesProgress);
             }
-            if (data.grammarProgress) {
-                Object.assign(grammarProgress, data.grammarProgress);
-                if (typeof saveGrammarProgress === 'function') saveGrammarProgress();
+            if (data.grammarProgress && window.grammarProgress) {
+                Object.assign(window.grammarProgress, data.grammarProgress);
+                if (typeof window.saveGrammarProgress === 'function') window.saveGrammarProgress();
             }
-            
-            window.userSubscription = data.subscription || { type: 'free', expiresAt: null };
-            
             if (typeof updateCounter === 'function') updateCounter();
             if (typeof renderCards === 'function') renderCards();
             if (typeof renderQuiz === 'function') renderQuiz();
             if (typeof renderSentences === 'function') renderSentences();
             if (typeof renderGrammar === 'function') renderGrammar();
-        } else {
-            await saveUserProgressToFirebase();
         }
     } catch (error) {
-        console.error('Ошибка загрузки прогресса:', error);
+        console.error('Ошибка загрузки:', error);
     }
 }
 
 async function saveUserProgressToFirebase() {
-    if (!currentUser || isGuestMode) return;
-    
+    if (!currentUser || isGuestMode || !db) return;
     try {
-        const userData = {
-            wordsProgress: wordsProgress || {},
-            sentencesProgress: sentencesProgress || {},
-            grammarProgress: grammarProgress || {},
-            lastUpdated: new Date().toISOString(),
-            lastLevel: AppConfig?.currentLevel || 'A1'
-        };
-        
-        await setDoc(doc(db, 'users', currentUser.uid), userData, { merge: true });
+        await db.collection('users').doc(currentUser.uid).set({
+            wordsProgress: window.wordsProgress || {},
+            sentencesProgress: window.sentencesProgress || {},
+            grammarProgress: window.grammarProgress || {},
+            lastUpdated: new Date().toISOString()
+        }, { merge: true });
     } catch (error) {
-        console.error('Ошибка сохранения прогресса:', error);
+        console.error('Ошибка сохранения:', error);
     }
 }
 
-window.checkSubscriptionStatus = function() {
-    if (!currentUser || isGuestMode) {
-        return { isPremium: false, type: 'guest' };
-    }
-    const subscription = window.userSubscription || { type: 'free', expiresAt: null };
-    const isExpired = subscription.expiresAt && new Date(subscription.expiresAt) < new Date();
-    if (subscription.type === 'premium' && !isExpired) {
-        return { isPremium: true, type: 'premium' };
-    }
-    return { isPremium: false, type: 'free' };
-};
-
-window.updateSubscription = async function(subscriptionData) {
-    if (!currentUser || isGuestMode) return false;
-    try {
-        await updateDoc(doc(db, 'users', currentUser.uid), {
-            subscription: subscriptionData,
-            lastUpdated: new Date().toISOString()
-        });
-        window.userSubscription = subscriptionData;
-        return true;
-    } catch (error) {
-        console.error('Ошибка обновления подписки:', error);
-        return false;
-    }
-};
-
-const originalSaveProgress = window.saveProgress || function() {};
-window.saveProgress = function() {
-    originalSaveProgress();
-    if (currentUser && !isGuestMode && typeof saveUserProgressToFirebase === 'function') {
-        saveUserProgressToFirebase();
-    }
-};
-
 window.saveUserProgressToFirebase = saveUserProgressToFirebase;
-window.isGuestMode = () => isGuestMode;
 window.isAuthenticated = () => currentUser !== null && !isGuestMode;
-window.getCurrentUser = () => currentUser;
 
-initFirebase();
+// Запускаем после загрузки страницы
+window.addEventListener('load', function() {
+    // Загружаем Firebase скрипты
+    const firebaseScript = document.createElement('script');
+    firebaseScript.src = 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js';
+    firebaseScript.onload = () => {
+        const firestoreScript = document.createElement('script');
+        firestoreScript.src = 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js';
+        firestoreScript.onload = () => {
+            const authScript = document.createElement('script');
+            authScript.src = 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js';
+            authScript.onload = () => {
+                // Инициализируем Firebase с конфигом
+                const firebaseConfig = {
+                    apiKey: "AIzaSyAUj_2cLQyWvs2JTT7ZL2BYox6krDb3X7I",
+                    authDomain: "deutsch-meister-248cf.firebaseapp.com",
+                    projectId: "deutsch-meister-248cf",
+                    storageBucket: "deutsch-meister-248cf.firebasestorage.app",
+                    messagingSenderId: "549700335996",
+                    appId: "1:549700335996:web:97ed9e8f91224e34ab0cf9"
+                };
+                firebase.initializeApp(firebaseConfig);
+                initFirebase();
+            };
+            document.head.appendChild(authScript);
+        };
+        document.head.appendChild(firestoreScript);
+    };
+    document.head.appendChild(firebaseScript);
+});
