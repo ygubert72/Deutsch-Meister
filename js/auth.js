@@ -1,4 +1,4 @@
-// auth.js - полная версия с заявками на премиум
+// auth.js - полная версия с оплатой премиум (без заявок)
 
 let auth = null;
 let db = null;
@@ -146,7 +146,7 @@ function updateUI(user) {
         const premiumButtonHtml = (user.email !== 'ygubert72@gmail.com') ? `
             <div style="margin-top:8px;">
                 ${!hasPremium 
-                    ? `<button id="premiumPayBtn" style="width:100%; padding:8px; background:linear-gradient(135deg, #FFD700, #FFA500); color:#333; border:none; border-radius:16px; cursor:pointer; font-weight:bold; font-size:12px;">💎 ОПЛАТИТЬ ПРЕМИУМ (${PREMIUM_PRICE}₽)</button>`
+                    ? `<button id="premiumPayBtn" style="width:100%; padding:8px; background:linear-gradient(135deg, #FFD700, #FFA500); color:#333; border:none; border-radius:16px; cursor:pointer; font-weight:bold; font-size:12px;">💎 ОПЛАТИТЬ ПРЕМИУМ</button>`
                     : `<div style="background:#4CAF50; border-radius:16px; padding:8px; text-align:center; color:white; font-weight:bold; font-size:12px;">✅ ПРЕМИУМ АКТИВЕН</div>`
                 }
             </div>
@@ -220,72 +220,42 @@ function showPaymentModal() {
     modal.id = 'paymentModal';
     modal.innerHTML = `
         <div style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); display:flex; justify-content:center; align-items:center; z-index:1000000; overflow:auto;">
-            <div style="background:white; border-radius:20px; max-width:400px; width:90%; padding:25px; text-align:center;">
-                <h2 style="margin:0 0 10px 0;">💎 Премиум доступ</h2>
-                <div style="font-size:14px; color:#666; margin-bottom:20px;">Уровни B1, B2, C1</div>
-                <div style="font-size:36px; color:#3B6FE0; font-weight:bold; margin-bottom:10px;">${PREMIUM_PRICE} ₽</div>
-                <div style="font-size:12px; color:#666; margin-bottom:20px;">Разовый платёж / бессрочный доступ</div>
+            <div style="background:white; border-radius:20px; max-width:400px; width:90%; padding:25px; text-align:center; margin:20px;">
+                <h2 style="margin:0 0 10px 0; font-size:22px;">💎 Премиум доступ</h2>
+                <div style="font-size:13px; color:#666; margin-bottom:15px;">Уровни B1, B2, C1</div>
+                <div style="font-size:32px; color:#3B6FE0; font-weight:bold; margin-bottom:10px;">${PREMIUM_PRICE} ₽</div>
+                <div style="font-size:11px; color:#666; margin-bottom:15px;">Разовый платёж / бессрочный доступ</div>
                 
-                <div style="background:#f5f5f5; border-radius:12px; padding:15px; margin-bottom:20px; text-align:left;">
-                    <div style="margin-bottom:8px;">✅ Все уровни немецкого (A1-C1)</div>
-                    <div style="margin-bottom:8px;">✅ Все уроки грамматики</div>
-                    <div style="margin-bottom:8px;">✅ Тренажёры и тесты</div>
-                    <div>✅ Сохранение прогресса в облаке</div>
+                <div style="background:#f5f5f5; border-radius:12px; padding:12px; margin-bottom:15px; text-align:left;">
+                    <div style="margin-bottom:6px; font-size:13px;">✅ Все уровни немецкого (A1-C1)</div>
+                    <div style="margin-bottom:6px; font-size:13px;">✅ Все уроки грамматики</div>
+                    <div style="margin-bottom:6px; font-size:13px;">✅ Тренажёры и тесты</div>
+                    <div style="font-size:13px;">✅ Сохранение прогресса в облаке</div>
                 </div>
                 
-                <div style="background:#FFF3E0; border-radius:12px; padding:15px; margin-bottom:20px; text-align:center;">
-                    <div style="font-weight:bold; margin-bottom:15px;">📱 Для получения премиум-доступа:</div>
-                    <div style="margin-bottom:10px;">1. Переведите ${PREMIUM_PRICE} ₽</div>
-                    <div style="margin-bottom:10px;">2. Свяжитесь с нами удобным способом:</div>
-                    <div style="margin:10px 0;">
-                        <div style="background:#0088cc; color:white; padding:8px; border-radius:10px; margin:5px 0;">
+                <div style="background:#FFF3E0; border-radius:12px; padding:15px; margin-bottom:15px; text-align:center;">
+                    <div style="font-weight:bold; margin-bottom:12px; font-size:14px;">📱 Свяжитесь с нами любым удобным способом:</div>
+                    <div style="margin:8px 0;">
+                        <div style="background:#0088cc; color:white; padding:10px; border-radius:10px; margin:5px 0; font-size:14px;">
                             📲 Telegram: <strong>${CONTACTS.telegram}</strong>
                         </div>
-                        <div style="background:#EA4335; color:white; padding:8px; border-radius:10px; margin:5px 0;">
+                        <div style="background:#EA4335; color:white; padding:10px; border-radius:10px; margin:5px 0; font-size:14px;">
                             📧 Email: <strong>${CONTACTS.email}</strong>
                         </div>
                     </div>
-                    <div style="font-size:12px; color:#666;">В сообщении укажите ваш email: <strong>${auth.currentUser.email}</strong></div>
+                    <div style="font-size:14px; color:#333; margin-top:12px; padding:8px; background:#fff; border-radius:8px; font-weight:bold;">
+                        📧 В сообщении укажите ваш email: <strong style="color:#3B6FE0;">${auth.currentUser.email}</strong>
+                    </div>
                 </div>
                 
-                <button id="submitRequestBtn" style="width:100%; padding:12px; background:#4CAF50; color:white; border:none; border-radius:12px; cursor:pointer; font-weight:bold; margin-bottom:10px;">📝 Оставить заявку</button>
-                
-                <button id="paymentCloseBtn" style="width:100%; padding:12px; background:#E0E0E0; border:none; border-radius:12px; cursor:pointer;">Закрыть</button>
+                <button id="paymentCloseBtn" style="width:100%; padding:12px; background:#3B6FE0; color:white; border:none; border-radius:12px; cursor:pointer; font-size:14px;">Закрыть</button>
             </div>
         </div>
     `;
     document.body.appendChild(modal);
     
-    // Кнопка отправки заявки
-    document.getElementById('submitRequestBtn').onclick = () => {
-        submitPremiumRequest();
-        modal.remove();
-    };
-    
     document.getElementById('paymentCloseBtn').onclick = () => modal.remove();
     modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
-}
-
-// Отправка заявки на премиум
-async function submitPremiumRequest() {
-    if (!auth.currentUser) return;
-    
-    try {
-        // Сохраняем заявку в Firestore
-        if (db) {
-            await db.collection('premiumRequests').add({
-                userId: auth.currentUser.uid,
-                email: auth.currentUser.email,
-                requestedAt: new Date().toISOString(),
-                status: 'pending'
-            });
-            console.log('✅ Заявка отправлена');
-        }
-        alert(`✅ Заявка отправлена!\n\nМы свяжемся с вами в ближайшее время.\n\nКонтакты для связи:\nTelegram: ${CONTACTS.telegram}\nEmail: ${CONTACTS.email}`);
-    } catch(e) {
-        console.error('Ошибка:', e);
-        alert('Ошибка при отправке заявки. Пожалуйста, свяжитесь с нами напрямую.');
-    }
 }
 
 // ========== АКТИВАЦИЯ ПРЕМИУМА (админ) ==========
@@ -384,26 +354,6 @@ window.showAdminPanel = async function() {
         }
     }
     
-    // Получаем заявки на премиум
-    let requests = [];
-    if (db) {
-        try {
-            const requestsSnapshot = await db.collection('premiumRequests').orderBy('requestedAt', 'desc').get();
-            requestsSnapshot.forEach(doc => {
-                const data = doc.data();
-                requests.push({
-                    id: doc.id,
-                    email: data.email,
-                    userId: data.userId,
-                    requestedAt: data.requestedAt,
-                    status: data.status
-                });
-            });
-        } catch(e) {
-            console.error('Ошибка получения заявок:', e);
-        }
-    }
-    
     const modal = document.createElement('div');
     modal.id = 'adminPanel';
     modal.innerHTML = `
@@ -420,26 +370,6 @@ window.showAdminPanel = async function() {
                         <div style="background:#E8F0FE; padding:10px 20px; border-radius:12px;">Всего: <strong>${users.length}</strong></div>
                         <div style="background:#C8E6C9; padding:10px 20px; border-radius:12px;">Премиум: <strong>${users.filter(u => u.hasPremiumAccess).length}</strong></div>
                         <div style="background:#FFCDD2; padding:10px 20px; border-radius:12px;">Заблокировано: <strong>${users.filter(u => u.blocked).length}</strong></div>
-                        <div style="background:#FFF3E0; padding:10px 20px; border-radius:12px;">Заявок: <strong>${requests.length}</strong></div>
-                    </div>
-                    
-                    <!-- Заявки на премиум -->
-                    <h3>📝 Заявки на премиум</h3>
-                    <div id="requestsList" style="margin-bottom:30px;">
-                        ${requests.length === 0 ? '<div style="text-align:center; padding:20px; color:#999;">Нет новых заявок</div>' : requests.map(req => `
-                            <div style="border:1px solid #E0E0E0; border-radius:12px; padding:12px; margin-bottom:10px; background:#FFF8E1;">
-                                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-                                    <div>
-                                        <strong>${req.email}</strong>
-                                        <div style="font-size:11px; color:#666;">Заявка от: ${new Date(req.requestedAt).toLocaleString()}</div>
-                                    </div>
-                                    <div style="display:flex; gap:8px;">
-                                        <button onclick="window.approveRequestAndActivate('${req.email}')" style="padding:5px 15px; background:#4CAF50; color:white; border:none; border-radius:8px; cursor:pointer;">✅ Активировать премиум</button>
-                                        <button onclick="window.deleteRequest('${req.id}')" style="padding:5px 15px; background:#f44336; color:white; border:none; border-radius:8px; cursor:pointer;">🗑️ Удалить заявку</button>
-                                    </div>
-                                </div>
-                            </div>
-                        `).join('')}
                     </div>
                     
                     <!-- Ручное управление -->
@@ -495,41 +425,6 @@ window.showAdminPanel = async function() {
         else alert('Введите email');
     };
     modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
-};
-
-// Одобрение заявки и активация премиума
-window.approveRequestAndActivate = async function(email) {
-    if (!confirm(`Активировать премиум для ${email} и удалить заявку?`)) return;
-    
-    // Активируем премиум
-    await window.activatePremium(email);
-    
-    // Удаляем все заявки этого пользователя
-    if (db) {
-        try {
-            const requestsSnapshot = await db.collection('premiumRequests').where('email', '==', email).get();
-            requestsSnapshot.forEach(async (doc) => {
-                await doc.ref.delete();
-            });
-        } catch(e) {
-            console.error('Ошибка удаления заявок:', e);
-        }
-    }
-    
-    document.getElementById('adminPanel')?.remove();
-    window.showAdminPanel();
-};
-
-window.deleteRequest = async function(requestId) {
-    if (!confirm('Удалить заявку?')) return;
-    try {
-        await db.collection('premiumRequests').doc(requestId).delete();
-        alert('✅ Заявка удалена');
-        document.getElementById('adminPanel')?.remove();
-        window.showAdminPanel();
-    } catch(e) {
-        alert('Ошибка: ' + e.message);
-    }
 };
 
 window.activatePremiumByUid = async function(uid) {
