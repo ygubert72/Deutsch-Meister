@@ -150,6 +150,22 @@ function renderGrammar() {
     }
     
     updateCounter();
+    
+    // ========== ФИКС ПРОКРУТКИ ДЛЯ ТЕЛЕФОНОВ ==========
+    setTimeout(() => {
+        const lessonsList = document.getElementById('grammarLessonsList');
+        if (lessonsList) {
+            lessonsList.style.maxHeight = 'none';
+            lessonsList.style.overflowY = 'auto';
+            lessonsList.style.paddingBottom = '50px';
+        }
+        const content = document.getElementById('content');
+        if (content) {
+            content.style.paddingBottom = '60px';
+            content.style.overflowY = 'auto';
+            content.style.webkitOverflowScrolling = 'touch';
+        }
+    }, 100);
 }
 
 // ========== ОТОБРАЖЕНИЕ ОТДЕЛЬНОГО УРОКА ==========
@@ -199,7 +215,6 @@ function renderGrammarLesson(lessonIdx) {
         renderGrammar();
     };
     
-    // Кнопка "Предыдущий урок"
     const prevLessonBtn = document.getElementById('prevLessonBtn');
     if (prevLessonBtn && !isFirstLesson) {
         prevLessonBtn.onclick = () => {
@@ -207,7 +222,6 @@ function renderGrammarLesson(lessonIdx) {
         };
     }
     
-    // Кнопка "Следующий урок"
     const nextLessonBtn = document.getElementById('nextLessonBtn');
     if (nextLessonBtn && !isLastLesson) {
         nextLessonBtn.onclick = () => {
@@ -375,7 +389,6 @@ function showGrammarExercise(exercise, lessonIdx) {
     
     container.innerHTML = html;
     
-    // Обработчики для input (Enter)
     if (exercise.type === 'fill' || exercise.type === 'transform' || exercise.type === 'order') {
         const input = document.getElementById('grammarAnswerInput');
         if (input) {
@@ -389,7 +402,6 @@ function showGrammarExercise(exercise, lessonIdx) {
         }
     }
     
-    // Обработчики для choice
     if (exercise.type === 'choice') {
         const options = document.querySelectorAll('.quiz-opt');
         options.forEach(opt => {
@@ -411,19 +423,15 @@ function showGrammarExercise(exercise, lessonIdx) {
         }
     }
     
-    // ========== ОЗВУЧКА С ПОДСТАНОВКОЙ ПРАВИЛЬНОГО ОТВЕТА ==========
     const speakBtn = document.getElementById('grammarSpeakBtn');
     if (speakBtn) {
         speakBtn.onclick = () => {
             let textToSpeak = exercise.sentence || exercise.question || '';
-            
             textToSpeak = textToSpeak.replace(/_{3,}/g, '_____');
             textToSpeak = textToSpeak.replace(/\s+/g, ' ').trim();
-            
             if (!textToSpeak || textToSpeak === '_____') {
                 textToSpeak = exercise.answer || '';
             }
-            
             if (textToSpeak) {
                 speak(textToSpeak);
             } else {
