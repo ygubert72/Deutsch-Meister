@@ -210,7 +210,7 @@ async function isUserAdmin() {
     
     try {
         // ⚠️ ЗАМЕНИТЕ admin@deutsch-meister.com НА ВАШ EMAIL ⚠️
-        const adminEmails = ['admin@deutsch-meister.com']; // ← ВАШ EMAIL СЮДА
+        const adminEmails = ['ygubert@gmail.com']; // ← ВАШ EMAIL СЮДА
         
         if (adminEmails.includes(auth.currentUser.email)) {
             return true;
