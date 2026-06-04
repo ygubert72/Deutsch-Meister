@@ -208,7 +208,7 @@ window.logout = async function() {
     location.reload();
 };
 
-// Модальное окно оплаты
+// Модальное окно оплаты (улучшенная версия для телефонов)
 function showPaymentModal() {
     if (!auth.currentUser) {
         alert('Сначала войдите в аккаунт');
@@ -218,40 +218,42 @@ function showPaymentModal() {
     
     const modal = document.createElement('div');
     modal.id = 'paymentModal';
-    modal.innerHTML = `
-        <div style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); display:flex; justify-content:center; align-items:center; z-index:1000000; overflow:auto;">
-            <div style="background:white; border-radius:20px; max-width:400px; width:90%; padding:25px; text-align:center; margin:20px;">
-                <h2 style="margin:0 0 10px 0; font-size:22px;">💎 Премиум доступ</h2>
-                <div style="font-size:13px; color:#666; margin-bottom:15px;">Уровни B1, B2, C1</div>
-                <div style="font-size:32px; color:#3B6FE0; font-weight:bold; margin-bottom:10px;">${PREMIUM_PRICE} ₽</div>
-                <div style="font-size:11px; color:#666; margin-bottom:15px;">Разовый платёж / бессрочный доступ</div>
-                
-                <div style="background:#f5f5f5; border-radius:12px; padding:12px; margin-bottom:15px; text-align:left;">
-                    <div style="margin-bottom:6px; font-size:13px;">✅ Все уровни немецкого (A1-C1)</div>
-                    <div style="margin-bottom:6px; font-size:13px;">✅ Все уроки грамматики</div>
-                    <div style="margin-bottom:6px; font-size:13px;">✅ Тренажёры и тесты</div>
-                    <div style="font-size:13px;">✅ Сохранение прогресса в облаке</div>
+    modal.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); display:flex; justify-content:center; align-items:center; z-index:1000000; overflow:auto;';
+    
+    const modalContent = document.createElement('div');
+    modalContent.style.cssText = 'background:white; border-radius:20px; max-width:400px; width:90%; padding:25px; text-align:center; margin:20px; max-height:90vh; overflow-y:auto;';
+    modalContent.innerHTML = `
+        <h2 style="margin:0 0 10px 0; font-size:22px;">💎 Премиум доступ</h2>
+        <div style="font-size:13px; color:#666; margin-bottom:15px;">Уровни B1, B2, C1</div>
+        <div style="font-size:32px; color:#3B6FE0; font-weight:bold; margin-bottom:10px;">${PREMIUM_PRICE} ₽</div>
+        <div style="font-size:11px; color:#666; margin-bottom:15px;">Разовый платёж / бессрочный доступ</div>
+        
+        <div style="background:#f5f5f5; border-radius:12px; padding:12px; margin-bottom:15px; text-align:left;">
+            <div style="margin-bottom:6px; font-size:13px;">✅ Все уровни немецкого (A1-C1)</div>
+            <div style="margin-bottom:6px; font-size:13px;">✅ Все уроки грамматики</div>
+            <div style="margin-bottom:6px; font-size:13px;">✅ Тренажёры и тесты</div>
+            <div style="font-size:13px;">✅ Сохранение прогресса в облаке</div>
+        </div>
+        
+        <div style="background:#FFF3E0; border-radius:12px; padding:15px; margin-bottom:15px; text-align:center;">
+            <div style="font-weight:bold; margin-bottom:12px; font-size:14px;">📱 Свяжитесь с нами любым удобным способом:</div>
+            <div style="margin:8px 0;">
+                <div style="background:#0088cc; color:white; padding:10px; border-radius:10px; margin:5px 0; font-size:14px;">
+                    📲 Telegram: <strong>${CONTACTS.telegram}</strong>
                 </div>
-                
-                <div style="background:#FFF3E0; border-radius:12px; padding:15px; margin-bottom:15px; text-align:center;">
-                    <div style="font-weight:bold; margin-bottom:12px; font-size:14px;">📱 Свяжитесь с нами любым удобным способом:</div>
-                    <div style="margin:8px 0;">
-                        <div style="background:#0088cc; color:white; padding:10px; border-radius:10px; margin:5px 0; font-size:14px;">
-                            📲 Telegram: <strong>${CONTACTS.telegram}</strong>
-                        </div>
-                        <div style="background:#EA4335; color:white; padding:10px; border-radius:10px; margin:5px 0; font-size:14px;">
-                            📧 Email: <strong>${CONTACTS.email}</strong>
-                        </div>
-                    </div>
-                    <div style="font-size:14px; color:#333; margin-top:12px; padding:8px; background:#fff; border-radius:8px; font-weight:bold;">
-                        📧 В сообщении укажите ваш email: <strong style="color:#3B6FE0;">${auth.currentUser.email}</strong>
-                    </div>
+                <div style="background:#EA4335; color:white; padding:10px; border-radius:10px; margin:5px 0; font-size:14px;">
+                    📧 Email: <strong>${CONTACTS.email}</strong>
                 </div>
-                
-                <button id="paymentCloseBtn" style="width:100%; padding:12px; background:#3B6FE0; color:white; border:none; border-radius:12px; cursor:pointer; font-size:14px;">Закрыть</button>
+            </div>
+            <div style="font-size:14px; color:#333; margin-top:12px; padding:8px; background:#fff; border-radius:8px; font-weight:bold;">
+                📧 В сообщении укажите ваш email: <strong style="color:#3B6FE0;">${auth.currentUser.email}</strong>
             </div>
         </div>
+        
+        <button id="paymentCloseBtn" style="width:100%; padding:12px; background:#3B6FE0; color:white; border:none; border-radius:12px; cursor:pointer; font-size:14px; font-weight:bold;">Закрыть</button>
     `;
+    
+    modal.appendChild(modalContent);
     document.body.appendChild(modal);
     
     document.getElementById('paymentCloseBtn').onclick = () => modal.remove();
