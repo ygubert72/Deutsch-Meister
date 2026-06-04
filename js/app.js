@@ -56,7 +56,15 @@ function setLevel(level) {
     // Проверка доступа к платным уровням B1, B2, C1
     if (typeof window.hasAccessToLevel !== 'undefined' && !window.hasAccessToLevel(level)) {
         if (level === 'B1' || level === 'B2' || level === 'C1') {
-            alert(`🔒 Уровень ${level} требует премиум-доступа.\n\n💎 Оформите премиум в личном кабинете (кнопка под email).`);
+            // Проверяем, авторизован ли пользователь
+            const isAuthenticated = window.isAuthenticated && window.isAuthenticated();
+            const currentUser = window.getCurrentUser && window.getCurrentUser();
+            
+            if (!isAuthenticated || !currentUser) {
+                alert(`🔒 Уровень ${level} требует премиум-доступа.\n\n📝 Зарегистрируйтесь и оформите премиум в личном кабинете.`);
+            } else {
+                alert(`🔒 Уровень ${level} требует премиум-доступа.\n\n💎 Оформите премиум в личном кабинете (кнопка под email).`);
+            }
             return;
         }
     }
