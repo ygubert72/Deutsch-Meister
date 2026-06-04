@@ -2,91 +2,21 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Deutsch-Meister</title>
     <link rel="icon" type="image/svg+xml" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/de.svg">
     <link rel="stylesheet" href="css/style.css">
     <style>
-        .app {
-            opacity: 0;
-            transition: opacity 0.1s ease;
-        }
-        .app.loaded {
-            opacity: 1;
-        }
-        
-        /* Дополнительные стили для админ-панели и модалок */
-        .logout-btn {
-            transition: all 0.05s linear;
-        }
-        .logout-btn:active {
-            transform: translateY(2px);
-        }
-        
-        @media (max-width: 768px) {
-            .app {
-                flex-direction: column;
-            }
-            .sidebar {
-                width: 100%;
-                max-height: 40%;
-                border-right: none;
-                border-bottom: 1px solid #E0E0E0;
-            }
-            .main {
-                width: 100%;
-            }
-            .content {
-                padding: 10px;
-            }
-            .words-container {
-                grid-template-columns: repeat(3, auto);
-                gap: 6px;
-            }
-            .word-btn {
-                font-size: 11px;
-                padding: 6px 10px;
-                white-space: normal;
-            }
-            .btn-group {
-                gap: 6px;
-            }
-            .ctrl-btn {
-                padding: 5px 10px;
-                font-size: 10px;
-            }
-            .sent-question strong {
-                font-size: 16px;
-            }
-            .sent-result, .practice-selected-area {
-                font-size: 14px;
-                min-height: 50px;
-            }
-            .hint-label {
-                min-width: 150px;
-                font-size: 11px;
-            }
-            .lesson-title {
-                font-size: 18px;
-            }
-            .lesson-mode-btn {
-                padding: 4px 12px;
-                font-size: 12px;
-            }
-        }
+        .app { opacity: 0; transition: opacity 0.1s ease; }
+        .app.loaded { opacity: 1; }
     </style>
 </head>
 <body>
 <div class="app">
     <div class="sidebar">
         <div class="sidebar-content">
-            <button id="loginBtn" onclick="window.showLoginModal && window.showLoginModal()" class="btn" style="margin-bottom: 10px;">🔐 Войти</button>
-            
+            <button id="loginBtn" class="btn" style="margin-bottom: 10px;">🔐 Войти</button>
             <div id="userInfo" style="display: none; margin: 10px 0; padding: 8px; background: #E8F0FE; border-radius: 8px; text-align: center; font-size: 12px;"></div>
-            
             <div class="levels-container" id="levelsContainer">
                 <button data-level="A1" class="btn btn-level">A1</button>
                 <button data-level="A2" class="btn btn-level">A2</button>
@@ -94,7 +24,6 @@
                 <button data-level="B2" class="btn btn-level">B2</button>
                 <button data-level="C1" class="btn btn-level">C1</button>
             </div>
-            
             <button data-mode="grammar" class="btn mode-btn">ГРАММАТИКА</button>
             <button data-mode="cards" class="btn mode-btn">КАРТОЧКИ</button>
             <button data-mode="quiz" class="btn mode-btn">ТЕСТ</button>
