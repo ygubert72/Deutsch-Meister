@@ -1,13 +1,8 @@
-// auth.js - с мастер-паролем и платными уровнями
+// auth.js - полная версия с админ-панелью и переключателем доступа к B1-C1
 
 let auth = null;
 let db = null;
 let currentUserData = null;
-
-// Стоимость подписки (в рублях)
-const SUBSCRIPTION_PRICE = 500;
-// Мастер-пароль для близких (измените на свой)
-const MASTER_PASSWORD = 'deutsch2024'; // ← ЗДЕСЬ ВАШ МАСТЕР-ПАРОЛЬ
 
 // Правильная конфигурация Firebase
 const firebaseConfig = {
@@ -59,6 +54,7 @@ async function loadUserData(uid) {
         const userDoc = await db.collection('users').doc(uid).get();
         if (userDoc.exists) {
             currentUserData = userDoc.data();
+            console.log('📊 Данные пользователя загружены, доступ к B1-C1:', currentUserData.hasPremiumAccess);
         }
     } catch(e) {
         console.error('Ошибка загрузки данных:', e);
@@ -77,18 +73,9 @@ window.hasAccessToLevel = function(level) {
         return true;
     }
     
-    // Проверка мастер-пароля (хранится в sessionStorage)
-    const hasMasterPassword = sessionStorage.getItem('master_password_valid') === 'true';
-    if (hasMasterPassword) {
+    // Проверка наличия доступа к B1-C1 (управляется админом)
+    if (currentUserData && currentUserData.hasPremiumAccess === true) {
         return true;
-    }
-    
-    // Проверка платной подписки
-    if (currentUserData && currentUserData.subscription && currentUserData.subscription.type === 'premium') {
-        const expiresAt = currentUserData.subscription.expiresAt;
-        if (expiresAt && new Date(expiresAt) > new Date()) {
-            return true;
-        }
     }
     
     return false;
@@ -119,9 +106,14 @@ async function addUserToFirestore(user) {
                 email: user.email,
                 createdAt: new Date().toISOString(),
                 subscription: { type: 'free', expiresAt: null },
+                hasPremiumAccess: false,
                 blocked: false
             });
             console.log('✅ Пользователь добавлен в Firestore:', user.email);
+        } else {
+            if (userDoc.data().hasPremiumAccess === undefined) {
+                await db.collection('users').doc(user.uid).update({ hasPremiumAccess: false });
+            }
         }
     } catch(e) {
         console.error('Ошибка добавления пользователя:', e);
@@ -139,9 +131,9 @@ function updateUI(user) {
         loginBtn.style.display = 'none';
         userInfo.style.display = 'block';
         
-        let subscriptionBadge = '';
-        if (currentUserData && currentUserData.subscription?.type === 'premium') {
-            subscriptionBadge = '<span style="background:#4CAF50; color:white; padding:2px 6px; border-radius:10px; font-size:10px; margin-left:5px;">PREMIUM</span>';
+        let premiumBadge = '';
+        if (currentUserData && currentUserData.hasPremiumAccess === true) {
+            premiumBadge = '<span style="background:#4CAF50; color:white; padding:2px 8px; border-radius:10px; font-size:10px; margin-left:8px;">PREMIUM</span>';
         }
         
         userInfo.innerHTML = `
@@ -149,13 +141,13 @@ function updateUI(user) {
                 <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:5px; flex-wrap:wrap;">
                     <span style="font-size:20px;">🎓</span>
                     <span style="word-break:break-all;">${user.email}</span>
-                    ${subscriptionBadge}
+                    ${premiumBadge}
                 </div>
                 <button onclick="logout()" style="margin-top:8px; padding:4px 12px; background:#f44336; color:white; border:none; border-radius:16px; cursor:pointer; width:100%; font-size:11px;">🚪 Выйти</button>
             </div>
         `;
         
-        // Кнопка админа
+        // Кнопка админа для вашего email
         if (user.email === 'ygubert72@gmail.com') {
             let adminBtn = document.getElementById('adminBtn');
             if (!adminBtn) {
@@ -189,127 +181,7 @@ function updateUI(user) {
 // Функция выхода
 window.logout = async function() {
     if (auth) await auth.signOut();
-    sessionStorage.removeItem('master_password_valid');
     location.reload();
-};
-
-// ========== МАСТЕР-ПАРОЛЬ ==========
-window.showMasterPasswordModal = function() {
-    const password = prompt('🔐 Введите мастер-пароль для доступа ко всем уровням:');
-    if (password === MASTER_PASSWORD) {
-        sessionStorage.setItem('master_password_valid', 'true');
-        alert('✅ Мастер-пароль принят! Открыт доступ ко всем уровням.');
-        location.reload();
-    } else if (password) {
-        alert('❌ Неверный мастер-пароль');
-    }
-};
-
-// ========== ПЛАТНАЯ ПОДПИСКА ==========
-window.showPaymentModal = function(level) {
-    if (!auth.currentUser) {
-        alert('Для доступа к уровню ' + level + ' необходимо зарегистрироваться');
-        showLoginModal();
-        return;
-    }
-    
-    const modal = document.createElement('div');
-    modal.id = 'paymentModal';
-    modal.innerHTML = `
-        <div style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); display:flex; justify-content:center; align-items:center; z-index:1000000;">
-            <div style="background:white; border-radius:20px; max-width:400px; width:90%; padding:25px; text-align:center;">
-                <h2 style="margin:0 0 10px 0;">💎 Премиум доступ</h2>
-                <div style="font-size:14px; color:#666; margin-bottom:20px;">Уровни B1, B2, C1</div>
-                <div style="font-size:36px; color:#3B6FE0; font-weight:bold; margin-bottom:10px;">${SUBSCRIPTION_PRICE} ₽</div>
-                <div style="font-size:12px; color:#666; margin-bottom:20px;">Разовый платёж / бессрочный доступ</div>
-                
-                <div style="background:#f5f5f5; border-radius:12px; padding:15px; margin-bottom:20px; text-align:left;">
-                    <div style="margin-bottom:8px;">✅ Все уровни немецкого (A1-C1)</div>
-                    <div style="margin-bottom:8px;">✅ Все уроки грамматики</div>
-                    <div style="margin-bottom:8px;">✅ Тренажёры и тесты</div>
-                    <div>✅ Сохранение прогресса в облаке</div>
-                </div>
-                
-                <button id="paymentConfirmBtn" style="width:100%; padding:14px; background:#4CAF50; color:white; border:none; border-radius:12px; cursor:pointer; font-size:16px; font-weight:bold;">💳 Оплатить ${SUBSCRIPTION_PRICE} ₽</button>
-                
-                <button id="paymentMasterBtn" style="width:100%; margin-top:10px; padding:10px; background:#FF9800; color:white; border:none; border-radius:12px; cursor:pointer;">🔑 Ввести мастер-пароль</button>
-                
-                <button id="paymentCloseBtn" style="width:100%; margin-top:15px; padding:10px; background:#E0E0E0; border:none; border-radius:12px; cursor:pointer;">Отмена</button>
-            </div>
-        </div>
-    `;
-    document.body.appendChild(modal);
-    
-    document.getElementById('paymentConfirmBtn').onclick = () => {
-        modal.remove();
-        showPaymentInstructions(level);
-    };
-    
-    document.getElementById('paymentMasterBtn').onclick = () => {
-        modal.remove();
-        window.showMasterPasswordModal();
-    };
-    
-    document.getElementById('paymentCloseBtn').onclick = () => modal.remove();
-    modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
-};
-
-// Инструкция по оплате
-function showPaymentInstructions(level) {
-    const modal = document.createElement('div');
-    modal.id = 'paymentInstructionsModal';
-    modal.innerHTML = `
-        <div style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); display:flex; justify-content:center; align-items:center; z-index:1000000;">
-            <div style="background:white; border-radius:20px; max-width:400px; width:90%; padding:25px;">
-                <h2 style="margin:0 0 15px 0;">💳 Оплата подписки</h2>
-                <div style="font-size:14px; margin-bottom:15px;">
-                    Для получения доступа переведите ${SUBSCRIPTION_PRICE} ₽ по реквизитам:
-                </div>
-                <div style="background:#f5f5f5; border-radius:12px; padding:15px; margin-bottom:15px;">
-                    <div><strong>📱 По номеру телефона:</strong></div>
-                    <div style="font-size:20px; margin:10px 0;">+7 (XXX) XXX-XX-XX</div>
-                    <div style="font-size:12px; color:#666;">(укажите ваш email в комментарии)</div>
-                </div>
-                <div class="hint" style="font-size:12px; color:#666; margin-bottom:15px;">
-                    После оплаты напишите на почту support@deutsch-meister.com с указанием вашего email. Доступ будет открыт в течение 24 часов.
-                </div>
-                <button id="closeInstructionsBtn" style="width:100%; padding:12px; background:#3B6FE0; color:white; border:none; border-radius:12px; cursor:pointer;">Закрыть</button>
-            </div>
-        </div>
-    `;
-    document.body.appendChild(modal);
-    
-    document.getElementById('closeInstructionsBtn').onclick = () => modal.remove();
-    modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
-}
-
-// Активация подписки (вызывается админом после оплаты)
-window.activatePremium = async function(email) {
-    if (!auth.currentUser || auth.currentUser.email !== 'ygubert72@gmail.com') {
-        alert('Нет прав');
-        return;
-    }
-    
-    try {
-        const usersSnapshot = await db.collection('users').where('email', '==', email).get();
-        if (usersSnapshot.empty) {
-            alert('Пользователь с таким email не найден');
-            return;
-        }
-        
-        const userDoc = usersSnapshot.docs[0];
-        await userDoc.ref.update({
-            subscription: {
-                type: 'premium',
-                expiresAt: null, // null = бессрочно
-                activatedAt: new Date().toISOString()
-            }
-        });
-        
-        alert(`✅ Подписка активирована для ${email}`);
-    } catch(e) {
-        alert('Ошибка: ' + e.message);
-    }
 };
 
 // Модальное окно входа/регистрации
@@ -334,8 +206,6 @@ window.showLoginModal = function() {
                 <input type="password" id="authPassword" placeholder="Пароль (мин. 6 символов)" style="width:100%; padding:12px; margin:10px 0; border:2px solid #E0E0E0; border-radius:10px; box-sizing:border-box;">
                 
                 <button id="actionBtn" style="width:100%; padding:12px; background:#3B6FE0; color:white; border:none; border-radius:10px; cursor:pointer; font-size:16px; font-weight:bold;">Войти</button>
-                
-                <button id="masterPasswordBtn" style="width:100%; margin-top:10px; padding:10px; background:#FF9800; color:white; border:none; border-radius:10px; cursor:pointer;">🔑 Мастер-пароль</button>
                 
                 <button id="guestBtn" style="width:100%; margin-top:10px; padding:10px; background:#F5F5F5; border:2px solid #E0E0E0; border-radius:10px; cursor:pointer;">👤 Продолжить без регистрации</button>
                 
@@ -396,6 +266,7 @@ window.showLoginModal = function() {
                         email: email,
                         createdAt: new Date().toISOString(),
                         subscription: { type: 'free', expiresAt: null },
+                        hasPremiumAccess: false,
                         blocked: false
                     });
                 }
@@ -413,11 +284,6 @@ window.showLoginModal = function() {
             else msg += error.message;
             alert(msg);
         }
-    };
-    
-    document.getElementById('masterPasswordBtn').onclick = () => {
-        modal.remove();
-        window.showMasterPasswordModal();
     };
     
     document.getElementById('guestBtn').onclick = () => {
@@ -445,7 +311,7 @@ window.showAdminPanel = async function() {
                     uid: doc.id,
                     email: data.email || 'Email не указан',
                     createdAt: data.createdAt || 'Неизвестно',
-                    subscription: data.subscription?.type || 'free',
+                    hasPremiumAccess: data.hasPremiumAccess === true,
                     blocked: data.blocked === true
                 });
             });
@@ -468,24 +334,31 @@ window.showAdminPanel = async function() {
                 <div style="padding:20px;">
                     <h3>Статистика</h3>
                     <p>Всего пользователей: <strong>${users.length}</strong></p>
-                    <p>Премиум: <strong>${users.filter(u => u.subscription === 'premium').length}</strong></p>
+                    <p>С доступом к B1-C1: <strong>${users.filter(u => u.hasPremiumAccess).length}</strong></p>
                     <p>Заблокировано: <strong>${users.filter(u => u.blocked).length}</strong></p>
-                    
-                    <h3>Активация премиум-доступа</h3>
-                    <div style="display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap;">
-                        <input type="email" id="premiumEmail" placeholder="Email пользователя" style="flex:1; padding:10px; border:2px solid #E0E0E0; border-radius:8px;">
-                        <button id="activatePremiumBtn" style="padding:10px 20px; background:#4CAF50; color:white; border:none; border-radius:8px; cursor:pointer;">💎 Активировать премиум</button>
-                    </div>
                     
                     <h3>Список пользователей</h3>
                     <div id="usersList">
                         ${users.map(user => `
                             <div style="border:1px solid ${user.blocked ? '#f44336' : '#E0E0E0'}; border-radius:12px; padding:15px; margin-bottom:10px; background:${user.blocked ? '#FFEBEE' : 'white'}">
-                                <div><strong>${user.email}</strong> ${user.subscription === 'premium' ? '<span style="background:#4CAF50; color:white; padding:2px 6px; border-radius:10px; font-size:10px;">PREMIUM</span>' : ''} ${user.blocked ? '<span style="color:#f44336;"> [ЗАБЛОКИРОВАН]</span>' : ''}</div>
-                                <div style="font-size:12px; color:#666;">Дата: ${user.createdAt}</div>
-                                <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
-                                    ${!user.blocked ? `<button onclick="window.blockUser('${user.uid}')" style="padding:5px 15px; background:#FF9800; color:white; border:none; border-radius:8px; cursor:pointer;">🔒 Заблокировать</button>` : `<button onclick="window.unblockUser('${user.uid}')" style="padding:5px 15px; background:#4CAF50; color:white; border:none; border-radius:8px; cursor:pointer;">🔓 Разблокировать</button>`}
-                                    <button onclick="window.deleteUser('${user.uid}')" style="padding:5px 15px; background:#f44336; color:white; border:none; border-radius:8px; cursor:pointer;">🗑️ Удалить</button>
+                                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                                    <div>
+                                        <strong>${user.email}</strong>
+                                        ${user.hasPremiumAccess ? '<span style="background:#4CAF50; color:white; padding:2px 8px; border-radius:10px; font-size:10px; margin-left:8px;">ДОСТУП B1-C1</span>' : '<span style="background:#999; color:white; padding:2px 8px; border-radius:10px; font-size:10px; margin-left:8px;">ТОЛЬКО A1-A2</span>'}
+                                        ${user.blocked ? '<span style="color:#f44336; margin-left:8px;">[ЗАБЛОКИРОВАН]</span>' : ''}
+                                    </div>
+                                    <div style="font-size:11px; color:#666;">Регистрация: ${user.createdAt}</div>
+                                </div>
+                                <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+                                    ${!user.hasPremiumAccess 
+                                        ? `<button onclick="window.togglePremiumAccess('${user.uid}', true)" style="padding:5px 15px; background:#4CAF50; color:white; border:none; border-radius:8px; cursor:pointer;">🔓 Открыть доступ B1-C1</button>`
+                                        : `<button onclick="window.togglePremiumAccess('${user.uid}', false)" style="padding:5px 15px; background:#FF9800; color:white; border:none; border-radius:8px; cursor:pointer;">🔒 Закрыть доступ B1-C1</button>`
+                                    }
+                                    ${!user.blocked 
+                                        ? `<button onclick="window.blockUser('${user.uid}')" style="padding:5px 15px; background:#f44336; color:white; border:none; border-radius:8px; cursor:pointer;">🚫 Заблокировать</button>`
+                                        : `<button onclick="window.unblockUser('${user.uid}')" style="padding:5px 15px; background:#4CAF50; color:white; border:none; border-radius:8px; cursor:pointer;">🔓 Разблокировать</button>`
+                                    }
+                                    <button onclick="window.deleteUser('${user.uid}')" style="padding:5px 15px; background:#555; color:white; border:none; border-radius:8px; cursor:pointer;">🗑️ Удалить</button>
                                 </div>
                             </div>
                         `).join('')}
@@ -497,16 +370,33 @@ window.showAdminPanel = async function() {
     document.body.appendChild(modal);
     
     document.getElementById('closeAdminPanel').onclick = () => modal.remove();
-    document.getElementById('activatePremiumBtn').onclick = () => {
-        const email = document.getElementById('premiumEmail').value;
-        if (email) window.activatePremium(email);
-        else alert('Введите email');
-    };
     modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
 };
 
+// Включение/выключение доступа к уровням B1-C1
+window.togglePremiumAccess = async function(uid, enable) {
+    const action = enable ? 'открыть' : 'закрыть';
+    if (!confirm(`Вы уверены, что хотите ${action} доступ к уровням B1-C1 для этого пользователя?`)) return;
+    
+    try {
+        await db.collection('users').doc(uid).update({ 
+            hasPremiumAccess: enable,
+            subscription: { 
+                type: enable ? 'premium' : 'free',
+                updatedAt: new Date().toISOString()
+            }
+        });
+        alert(`✅ Доступ ${enable ? 'открыт' : 'закрыт'}`);
+        document.getElementById('adminPanel')?.remove();
+        window.showAdminPanel();
+    } catch(e) {
+        alert('Ошибка: ' + e.message);
+    }
+};
+
+// Блокировка пользователя
 window.blockUser = async function(uid) {
-    if (!confirm('Заблокировать пользователя?')) return;
+    if (!confirm('Заблокировать пользователя? Он не сможет войти в аккаунт.')) return;
     try {
         await db.collection('users').doc(uid).update({ blocked: true });
         alert('✅ Пользователь заблокирован');
@@ -515,6 +405,7 @@ window.blockUser = async function(uid) {
     } catch(e) { alert('Ошибка: ' + e.message); }
 };
 
+// Разблокировка пользователя
 window.unblockUser = async function(uid) {
     if (!confirm('Разблокировать пользователя?')) return;
     try {
@@ -525,8 +416,9 @@ window.unblockUser = async function(uid) {
     } catch(e) { alert('Ошибка: ' + e.message); }
 };
 
+// Удаление пользователя
 window.deleteUser = async function(uid) {
-    if (!confirm('Удалить пользователя?')) return;
+    if (!confirm('Вы уверены, что хотите удалить пользователя? Все данные будут потеряны!')) return;
     try {
         await db.collection('users').doc(uid).delete();
         alert('✅ Пользователь удалён');
@@ -535,7 +427,7 @@ window.deleteUser = async function(uid) {
     } catch(e) { alert('Ошибка: ' + e.message); }
 };
 
-// Запуск
+// Запуск при загрузке страницы
 window.addEventListener('load', function() {
     console.log('Загрузка страницы...');
     const loginBtn = document.getElementById('loginBtn');
