@@ -1,4 +1,4 @@
-// auth.js - полная рабочая версия с админ-панелью и сохранением пользователей
+// auth.js - полная версия с админ-панелью (блокировка/разблокировка)
 
 let auth = null;
 let db = null;
@@ -27,26 +27,36 @@ function initFirebase() {
     auth = firebase.auth();
     db = firebase.firestore();
     
-    // Устанавливаем постоянное сохранение сессии
     auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-        .then(() => {
-            console.log('✅ Сессия будет сохраняться');
-        })
-        .catch((error) => {
-            console.error('Ошибка настройки сохранения:', error);
-        });
+        .then(() => console.log('✅ Сессия будет сохраняться'))
+        .catch((error) => console.error('Ошибка настройки сохранения:', error));
     
     console.log('Firebase готов');
     
-    // Слушатель входа
     auth.onAuthStateChanged((user) => {
         updateUI(user);
         if (user) {
             console.log('Пользователь в системе:', user.email);
-            // Добавляем пользователя в Firestore если его там нет
             addUserToFirestore(user);
+            checkIfBlocked(user);
         }
     });
+}
+
+// Проверка, заблокирован ли пользователь
+async function checkIfBlocked(user) {
+    if (!db || !user) return;
+    
+    try {
+        const userDoc = await db.collection('users').doc(user.uid).get();
+        if (userDoc.exists && userDoc.data().blocked === true) {
+            alert('❌ Ваш аккаунт заблокирован. Обратитесь к администратору.');
+            await auth.signOut();
+            location.reload();
+        }
+    } catch(e) {
+        console.error('Ошибка проверки блокировки:', e);
+    }
 }
 
 // Добавление пользователя в Firestore (если ещё не добавлен)
@@ -59,7 +69,8 @@ async function addUserToFirestore(user) {
             await db.collection('users').doc(user.uid).set({
                 email: user.email,
                 createdAt: new Date().toISOString(),
-                subscription: { type: 'free' }
+                subscription: { type: 'free' },
+                blocked: false
             });
             console.log('✅ Пользователь добавлен в Firestore:', user.email);
         }
@@ -117,15 +128,12 @@ function updateUI(user) {
 
 // Функция выхода
 window.logout = async function() {
-    if (auth) {
-        await auth.signOut();
-    }
+    if (auth) await auth.signOut();
     location.reload();
 };
 
 // Модальное окно входа/регистрации
 window.showLoginModal = function() {
-    // Удаляем старое окно если есть
     if (document.getElementById('authModal')) {
         document.getElementById('authModal').remove();
     }
@@ -164,7 +172,6 @@ window.showLoginModal = function() {
     const guestBtn = document.getElementById('guestBtn');
     const closeBtn = document.getElementById('closeModal');
     
-    // Вкладка Вход
     loginTab.onclick = () => {
         isLogin = true;
         loginTab.style.background = '#3B6FE0';
@@ -174,7 +181,6 @@ window.showLoginModal = function() {
         actionBtn.textContent = 'Войти';
     };
     
-    // Вкладка Регистрация
     registerTab.onclick = () => {
         isLogin = false;
         registerTab.style.background = '#3B6FE0';
@@ -184,7 +190,6 @@ window.showLoginModal = function() {
         actionBtn.textContent = 'Зарегистрироваться';
     };
     
-    // Кнопка действия (Войти / Зарегистрироваться)
     actionBtn.onclick = async () => {
         const email = emailInput.value.trim();
         const password = passInput.value;
@@ -201,20 +206,18 @@ window.showLoginModal = function() {
         
         try {
             if (isLogin) {
-                // Вход
                 await auth.signInWithEmailAndPassword(email, password);
                 alert('Добро пожаловать, ' + email + '!');
                 modal.remove();
             } else {
-                // Регистрация
                 const userCredential = await auth.createUserWithEmailAndPassword(email, password);
                 
-                // СОХРАНЯЕМ ПОЛЬЗОВАТЕЛЯ В FIRESTORE
                 if (db) {
                     await db.collection('users').doc(userCredential.user.uid).set({
                         email: email,
                         createdAt: new Date().toISOString(),
-                        subscription: { type: 'free' }
+                        subscription: { type: 'free' },
+                        blocked: false
                     });
                     console.log('✅ Пользователь сохранён в Firestore:', email);
                 }
@@ -235,13 +238,11 @@ window.showLoginModal = function() {
         }
     };
     
-    // Гостевой режим
     guestBtn.onclick = () => {
         modal.remove();
         alert('Гостевой режим (прогресс не сохранится)');
     };
     
-    // Закрыть
     closeBtn.onclick = () => modal.remove();
 };
 
@@ -249,13 +250,11 @@ window.showLoginModal = function() {
 
 // Показать админ-панель
 window.showAdminPanel = async function() {
-    // Проверяем, что пользователь - админ
     if (!auth.currentUser || auth.currentUser.email !== 'ygubert72@gmail.com') {
         alert('У вас нет прав администратора');
         return;
     }
     
-    // Получаем список пользователей
     let users = [];
     if (db) {
         try {
@@ -266,7 +265,8 @@ window.showAdminPanel = async function() {
                     uid: doc.id,
                     email: data.email || 'Email не указан',
                     createdAt: data.createdAt || 'Неизвестно',
-                    subscription: data.subscription?.type || 'free'
+                    subscription: data.subscription?.type || 'free',
+                    blocked: data.blocked === true
                 });
             });
             console.log('📊 Загружено пользователей:', users.length);
@@ -277,12 +277,11 @@ window.showAdminPanel = async function() {
         }
     }
     
-    // Создаём модальное окно админ-панели
     const modal = document.createElement('div');
     modal.id = 'adminPanel';
     modal.innerHTML = `
         <div style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); display:flex; justify-content:center; align-items:center; z-index:1000000; overflow:auto;">
-            <div style="background:white; border-radius:20px; max-width:800px; width:95%; max-height:90vh; overflow-y:auto; margin:20px;">
+            <div style="background:white; border-radius:20px; max-width:900px; width:95%; max-height:90vh; overflow-y:auto; margin:20px;">
                 <div style="padding:20px; border-bottom:1px solid #E0E0E0; display:flex; justify-content:space-between; align-items:center;">
                     <h2 style="margin:0;">👑 Админ-панель</h2>
                     <button id="closeAdminPanel" style="background:none; border:none; font-size:28px; cursor:pointer;">&times;</button>
@@ -290,16 +289,20 @@ window.showAdminPanel = async function() {
                 <div style="padding:20px;">
                     <h3>Статистика</h3>
                     <p>Всего пользователей: <strong>${users.length}</strong></p>
+                    <p>Заблокировано: <strong>${users.filter(u => u.blocked).length}</strong></p>
                     
                     <h3>Список пользователей</h3>
                     <div id="usersList">
                         ${users.map(user => `
-                            <div style="border:1px solid #E0E0E0; border-radius:12px; padding:15px; margin-bottom:10px;">
-                                <div><strong>${user.email}</strong></div>
+                            <div style="border:1px solid ${user.blocked ? '#f44336' : '#E0E0E0'}; border-radius:12px; padding:15px; margin-bottom:10px; background:${user.blocked ? '#FFEBEE' : 'white'}">
+                                <div><strong>${user.email}</strong> ${user.blocked ? '<span style="color:#f44336;"> [ЗАБЛОКИРОВАН]</span>' : ''}</div>
                                 <div style="font-size:12px; color:#666;">ID: ${user.uid.substring(0, 20)}...</div>
                                 <div style="font-size:12px; color:#666;">Дата регистрации: ${user.createdAt}</div>
                                 <div style="font-size:12px; color:#666;">Подписка: ${user.subscription}</div>
-                                <button onclick="window.deleteUser('${user.uid}')" style="margin-top:10px; padding:5px 15px; background:#f44336; color:white; border:none; border-radius:8px; cursor:pointer;">🗑️ Удалить пользователя</button>
+                                <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+                                    ${!user.blocked ? `<button onclick="window.blockUser('${user.uid}')" style="padding:5px 15px; background:#FF9800; color:white; border:none; border-radius:8px; cursor:pointer;">🔒 Заблокировать</button>` : `<button onclick="window.unblockUser('${user.uid}')" style="padding:5px 15px; background:#4CAF50; color:white; border:none; border-radius:8px; cursor:pointer;">🔓 Разблокировать</button>`}
+                                    <button onclick="window.deleteUser('${user.uid}')" style="padding:5px 15px; background:#f44336; color:white; border:none; border-radius:8px; cursor:pointer;">🗑️ Удалить</button>
+                                </div>
                             </div>
                         `).join('')}
                     </div>
@@ -313,19 +316,43 @@ window.showAdminPanel = async function() {
     modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
 };
 
-// Функция удаления пользователя
-window.deleteUser = async function(uid) {
-    if (!confirm('Вы уверены, что хотите удалить этого пользователя? Все данные будут потеряны!')) {
-        return;
-    }
+// Блокировка пользователя
+window.blockUser = async function(uid) {
+    if (!confirm('Заблокировать пользователя? Он не сможет войти в аккаунт.')) return;
     
     try {
-        if (db) {
-            await db.collection('users').doc(uid).delete();
-            alert('Пользователь удалён');
-            document.getElementById('adminPanel')?.remove();
-            window.showAdminPanel(); // Обновляем список
-        }
+        await db.collection('users').doc(uid).update({ blocked: true });
+        alert('✅ Пользователь заблокирован');
+        document.getElementById('adminPanel')?.remove();
+        window.showAdminPanel();
+    } catch(e) {
+        alert('Ошибка при блокировке: ' + e.message);
+    }
+};
+
+// Разблокировка пользователя
+window.unblockUser = async function(uid) {
+    if (!confirm('Разблокировать пользователя?')) return;
+    
+    try {
+        await db.collection('users').doc(uid).update({ blocked: false });
+        alert('✅ Пользователь разблокирован');
+        document.getElementById('adminPanel')?.remove();
+        window.showAdminPanel();
+    } catch(e) {
+        alert('Ошибка при разблокировке: ' + e.message);
+    }
+};
+
+// Удаление пользователя
+window.deleteUser = async function(uid) {
+    if (!confirm('Вы уверены, что хотите удалить пользователя? Все данные будут потеряны!')) return;
+    
+    try {
+        await db.collection('users').doc(uid).delete();
+        alert('✅ Пользователь удалён');
+        document.getElementById('adminPanel')?.remove();
+        window.showAdminPanel();
     } catch(e) {
         alert('Ошибка при удалении: ' + e.message);
     }
@@ -335,7 +362,6 @@ window.deleteUser = async function(uid) {
 window.addEventListener('load', function() {
     console.log('Загрузка страницы, инициализация Firebase...');
     
-    // Привязываем кнопку входа (чтобы была зелёной)
     const loginBtn = document.getElementById('loginBtn');
     if (loginBtn) {
         loginBtn.style.background = '#4CAF50';
@@ -343,7 +369,6 @@ window.addEventListener('load', function() {
         loginBtn.innerHTML = '🔐 Войти';
     }
     
-    // Загружаем Firebase скрипты
     if (typeof firebase === 'undefined') {
         const script = document.createElement('script');
         script.src = 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js';
