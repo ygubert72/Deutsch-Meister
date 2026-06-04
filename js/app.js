@@ -61,6 +61,20 @@ function setLevel(level) {
     saveProgress();
 }
 
+function loadGrammarProgress() {
+    try {
+        const gp = localStorage.getItem('dm_grammar_progress');
+        if (gp) {
+            const parsed = JSON.parse(gp);
+            for (const level in parsed) {
+                if (grammarProgress[level]) {
+                    grammarProgress[level] = parsed[level];
+                }
+            }
+        }
+    } catch(e) {}
+}
+
 async function init() {
     console.log('init: начало загрузки');
     
