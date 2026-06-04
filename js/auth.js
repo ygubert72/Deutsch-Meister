@@ -1,4 +1,4 @@
-// auth.js - полная рабочая версия с админ-панелью для ygubert72@gmail.com
+// auth.js - полная рабочая версия с админ-панелью и сохранением пользователей
 
 let auth = null;
 let db = null;
@@ -43,8 +43,29 @@ function initFirebase() {
         updateUI(user);
         if (user) {
             console.log('Пользователь в системе:', user.email);
+            // Добавляем пользователя в Firestore если его там нет
+            addUserToFirestore(user);
         }
     });
+}
+
+// Добавление пользователя в Firestore (если ещё не добавлен)
+async function addUserToFirestore(user) {
+    if (!db || !user) return;
+    
+    try {
+        const userDoc = await db.collection('users').doc(user.uid).get();
+        if (!userDoc.exists) {
+            await db.collection('users').doc(user.uid).set({
+                email: user.email,
+                createdAt: new Date().toISOString(),
+                subscription: { type: 'free' }
+            });
+            console.log('✅ Пользователь добавлен в Firestore:', user.email);
+        }
+    } catch(e) {
+        console.error('Ошибка добавления пользователя:', e);
+    }
 }
 
 // Обновление интерфейса
@@ -187,14 +208,17 @@ window.showLoginModal = function() {
             } else {
                 // Регистрация
                 const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-                // Создаём запись пользователя в Firestore
+                
+                // СОХРАНЯЕМ ПОЛЬЗОВАТЕЛЯ В FIRESTORE
                 if (db) {
                     await db.collection('users').doc(userCredential.user.uid).set({
                         email: email,
                         createdAt: new Date().toISOString(),
                         subscription: { type: 'free' }
                     });
+                    console.log('✅ Пользователь сохранён в Firestore:', email);
                 }
+                
                 alert('Регистрация успешна! Добро пожаловать, ' + email + '!');
                 modal.remove();
             }
@@ -245,6 +269,7 @@ window.showAdminPanel = async function() {
                     subscription: data.subscription?.type || 'free'
                 });
             });
+            console.log('📊 Загружено пользователей:', users.length);
         } catch(e) {
             console.error('Ошибка получения пользователей:', e);
             alert('Ошибка получения пользователей: ' + e.message);
