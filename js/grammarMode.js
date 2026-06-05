@@ -1,4 +1,4 @@
-// grammarMode.js - полная версия с единым отображением упражнений на голубом фоне
+// grammarMode.js - полная версия с умной озвучкой (замена _____ на answer)
 
 let grammarDB = { A1: [], A2: [], B1: [], B2: [], C1: [] };
 let currentGrammarLesson = null;
@@ -288,6 +288,42 @@ function showGrammarPractice(lessonIdx) {
     showGrammarExercise(grammarExercises[0], lessonIdx);
 }
 
+// Функция для получения чистого текста для озвучки (заменяет _____ на answer)
+function getCleanTextForSpeak(exercise) {
+    // 1. Если есть original_sentence - используем его
+    if (exercise.original_sentence) {
+        return exercise.original_sentence.trim();
+    }
+    
+    // 2. Если есть sentence - заменяем подчёркивания на answer
+    if (exercise.sentence) {
+        let clean = exercise.sentence;
+        // Заменяем _____ или ___ на правильный ответ
+        if (exercise.answer) {
+            clean = clean.replace(/_{3,}/g, exercise.answer);
+        } else {
+            // Если ответа нет - просто убираем подчёркивания
+            clean = clean.replace(/_{3,}/g, '');
+        }
+        clean = clean.replace(/\s+/g, ' ').trim();
+        if (clean.length > 0) {
+            return clean;
+        }
+    }
+    
+    // 3. Если есть question - используем его
+    if (exercise.question) {
+        return exercise.question.trim();
+    }
+    
+    // 4. В крайнем случае - ответ
+    if (exercise.answer) {
+        return exercise.answer.trim();
+    }
+    
+    return '';
+}
+
 function showGrammarExercise(exercise, lessonIdx) {
     const container = document.getElementById('grammarContent');
     if (!container) return;
@@ -308,7 +344,6 @@ function showGrammarExercise(exercise, lessonIdx) {
     }
     
     // Единый формат для всех типов упражнений — голубой фон
-    // Для choice нужно сначала показать вопрос, потом кнопки
     if (exercise.type === 'choice') {
         html += `
             <div style="background: #E8F0FE; padding: 20px; border-radius: 12px; margin: 20px 0; text-align: center; font-size: 18px; font-weight: 500;">
@@ -323,9 +358,7 @@ function showGrammarExercise(exercise, lessonIdx) {
         html += optionsHtml;
     } 
     else if (exercise.type === 'fill' || exercise.type === 'transform' || exercise.type === 'order' || !exercise.type) {
-        // fill, transform, order — все на голубом фоне без лишних надписей
         let sentenceText = exercise.sentence || '';
-        // Если есть исходное предложение для transform, показываем его в голубом блоке
         if (exercise.sentence) {
             html += `
                 <div style="background: #E8F0FE; padding: 20px; border-radius: 12px; margin: 20px 0; text-align: center; font-size: 18px; font-weight: 500;">
@@ -366,6 +399,9 @@ function showGrammarExercise(exercise, lessonIdx) {
     
     container.innerHTML = html;
     
+    // Сохраняем чистый текст для озвучки
+    const cleanTextForSpeak = getCleanTextForSpeak(exercise);
+    
     // Обработчики для полей ввода
     if (exercise.type !== 'choice') {
         const input = document.getElementById('grammarAnswerInput');
@@ -405,18 +441,15 @@ function showGrammarExercise(exercise, lessonIdx) {
         }
     }
     
-    // Кнопка озвучки
+    // ========== КНОПКА ОЗВУЧКИ (исправлена) ==========
     const speakBtn = document.getElementById('grammarSpeakBtn');
     if (speakBtn) {
         speakBtn.onclick = () => {
-            let textToSpeak = exercise.sentence || exercise.question || '';
-            textToSpeak = textToSpeak.replace(/_{3,}/g, '_____');
-            textToSpeak = textToSpeak.replace(/\s+/g, ' ').trim();
-            if (!textToSpeak || textToSpeak === '_____') {
-                textToSpeak = exercise.answer || '';
-            }
-            if (textToSpeak) {
-                speak(textToSpeak);
+            if (cleanTextForSpeak) {
+                console.log('Озвучиваю:', cleanTextForSpeak);
+                speak(cleanTextForSpeak);
+            } else {
+                console.log('Нет текста для озвучки');
             }
         };
     }
