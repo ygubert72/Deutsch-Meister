@@ -43,6 +43,6 @@
     {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Это дом, в котором я вырос.", "answer": "das ist das haus in dem ich aufgewachsen bin", "hint": "in dem + bin в конце"},
     {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Вот человек, с которым я работаю.", "answer": "das ist der mann mit dem ich arbeite", "hint": "mit dem + arbeite в конце"},
     {"type": "transform", "question": "Переведите на немецкий:", "sentence": "У меня есть друг, которого я очень люблю.", "answer": "ich habe einen freund den ich sehr liebe", "hint": "den + liebe в конце"},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Всё, что он сказал, была правда.", "answer": "alles was er gesagt hat war wahrheit", "hint": "was + hat в конце"},
+    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Всё, что он сказал, была правда.", "answer": "alles was er gesagt hat war wahrheit", "hint": "was + hat в конце"}
   ]
 }
