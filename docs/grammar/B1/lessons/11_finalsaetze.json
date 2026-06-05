@@ -41,6 +41,6 @@
     {"type": "transform", "question": "Переведите на немецкий (damit):", "sentence": "Я закрываю окно, чтобы не было холодно.", "answer": "ich mache das fenster zu damit es nicht kalt ist", "hint": "damit + ist в конце"},
     {"type": "transform", "question": "Переведите на немецкий (um...zu):", "sentence": "Я встаю рано, чтобы не опоздать.", "answer": "ich stehe früh auf um nicht zu spät zu kommen", "hint": "um...zu + zu kommen"},
     {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Я решил остаться.", "answer": "ich habe mich entschieden zu bleiben", "hint": "sich entscheiden + zu + bleiben"},
-    {"type": "transform", "question": "Переведите на немецкий (damit):", "sentence": "Я покупаю подарок, чтобы порадовать маму.", "answer": "ich kaufe ein geschenk damit ich meine mutter freue", "hint": "damit + freue в конце"},
+    {"type": "transform", "question": "Переведите на немецкий (damit):", "sentence": "Я покупаю подарок, чтобы порадовать маму.", "answer": "ich kaufe ein geschenk damit ich meine mutter freue", "hint": "damit + freue в конце"}
   ]
 }
