@@ -42,11 +42,5 @@
     {"type": "transform", "question": "Переведите на немецкий (um...zu):", "sentence": "Я встаю рано, чтобы не опоздать.", "answer": "ich stehe früh auf um nicht zu spät zu kommen", "hint": "um...zu + zu kommen"},
     {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Я решил остаться.", "answer": "ich habe mich entschieden zu bleiben", "hint": "sich entscheiden + zu + bleiben"},
     {"type": "transform", "question": "Переведите на немецкий (damit):", "sentence": "Я покупаю подарок, чтобы порадовать маму.", "answer": "ich kaufe ein geschenk damit ich meine mutter freue", "hint": "damit + freue в конце"},
-    {"type": "transform", "question": "Переведите на немецкий (um...zu):", "sentence": "Я звоню, чтобы сказать правду.", "answer": "ich rufe an um die wahrheit zu sagen", "hint": "um...zu + zu sagen"},
-    {"type": "transform", "question": "Переведите на немецкий (damit):", "sentence": "Она готовит ужин, чтобы дети не были голодными.", "answer": "sie kocht das abendessen damit die kinder nicht hungrig sind", "hint": "damit + sind в конце"},
-    {"type": "transform", "question": "Переведите на немецкий (um...zu):", "sentence": "Мы едем в Берлин, чтобы посмотреть достопримечательности.", "answer": "wir fahren nach berlin um die sehenswürdigkeiten zu sehen", "hint": "um...zu + zu sehen"},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Он пытается найти работу.", "answer": "er versucht eine arbeit zu finden", "hint": "versuchen + zu + finden"},
-    {"type": "transform", "question": "Переведите на немецкий (damit):", "sentence": "Я учусь, чтобы получить хорошие оценки.", "answer": "ich lerne damit ich gute noten bekomme", "hint": "damit + bekomme в конце"},
-    {"type": "transform", "question": "Переведите на немецкий (um...zu):", "sentence": "Она много тренируется, чтобы выиграть соревнование.", "answer": "sie trainiert viel um den wettkampf zu gewinnen", "hint": "um...zu + zu gewinnen"}
   ]
 }
