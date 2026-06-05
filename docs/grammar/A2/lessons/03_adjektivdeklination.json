@@ -2,7 +2,7 @@
   "lesson": 3,
   "title": "Склонение прилагательных (Adjektivdeklination)",
   "level": "A2",
-  "theory": "<h3>📌 Что такое склонение прилагательных?</h3>\n\n<p>В немецком языке прилагательные <strong>меняют окончание</strong>, когда стоят <strong>перед существительным</strong>. Окончание зависит от:</p>\n<ul>\n<li>рода, числа и падежа существительного</li>\n<li>типа артикля (определённый, неопределённый, нулевой)</li>\n</ul>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 ГЛАВНОЕ ПРАВИЛО:</strong><br>\n  Если прилагательное стоит после глагола (Das Haus ist groß) — оно НЕ склоняется!<br>\n  Склоняется ТОЛЬКО когда стоит ПЕРЕД существительным (das große Haus).\n</div>\n\n<h3>📌 1. С определённым артиклем (der, die, das, die)</h3>\n\n<p>Окончание <strong>-e</strong> в Nominativ (кроме мн.ч. → -en) и <strong>-en</strong> во всех остальных падежах.</p>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Падеж</th>\n    <th>Муж. род</th>\n    <th>Жен. род</th>\n    <th>Ср. род</th>\n    <th>Множ. ч.</th>\n    </table>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Nom.</th>\n    <td>der <strong>gute</strong> Mann</th>\n    <td>die <strong>gute</strong> Frau</th>\n    <td>das <strong>gute</strong> Kind</th>\n    <td>die <strong>guten</strong> Leute</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Akk.</th>\n    <td>den <strong>guten</strong> Mann</th>\n    <td>die <strong>gute</strong> Frau</th>\n    <td>das <strong>gute</strong> Kind</th>\n    <td>die <strong>guten</strong> Leute</th>\n   </table>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Dat.</th>\n    <td>dem <strong>guten</strong> Mann</th>\n    <td>der <strong>guten</strong> Frau</th>\n    <td>dem <strong>guten</strong> Kind</th>\n    <td>den <strong>guten</strong> Leuten</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Gen.</th>\n    <td>des <strong>guten</strong> Mannes</th>\n    <td>der <strong>guten</strong> Frau</th>\n    <td>des <strong>guten</strong> Kindes</th>\n    <td>der <strong>guten</strong> Leute</th>\n   </tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"5\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    С определённым артиклем: в Nominativ -e, везде -en!</th>\n  </tr>\n<table>\n\n<h3>📌 2. С неопределённым артиклем (ein, eine, ein)</h3>\n\n<p>Окончание <strong>-er, -e, -es</strong> в Nominativ (как у артикля), в остальных падежах — <strong>-en</strong>.</p>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Падеж</th>\n    <th>Муж. род</th>\n    <th>Жен. род</th>\n    <th>Ср. род</th>\n    <th>Множ. ч.</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Nom.</th>\n    <td>ein <strong>guter</strong> Mann</th>\n    <td>eine <strong>gute</strong> Frau</th>\n    <td>ein <strong>gutes</strong> Kind</th>\n    <td>— <strong>gute</strong> Leute</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Akk.</th>\n    <td>einen <strong>guten</strong> Mann</th>\n    <td>eine <strong>gute</strong> Frau</th>\n    <td>ein <strong>gutes</strong> Kind</th>\n    <td>— <strong>gute</strong> Leute</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Dat.</th>\n    <td>einem <strong>guten</strong> Mann</th>\n    <td>einer <strong>guten</strong> Frau</th>\n    <td>einem <strong>guten</strong> Kind</th>\n    <td>— <strong>guten</strong> Leuten</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Gen.</th>\n    <td>eines <strong>guten</strong> Mannes</th>\n    <td>einer <strong>guten</strong> Frau</th>\n    <td>eines <strong>guten</strong> Kindes</th>\n    <td>— <strong>guter</strong> Leute</th>\n   </tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"5\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    С неопределённым артиклем: в Nominativ окончание как у артикля (-er, -e, -es), в остальных -en!</th>\n  </tr>\n<table>\n\n<h3>📌 3. Без артикля (нулевой артикль)</h3>\n\n<p>Прилагательное берёт на себя окончание артикля.</p>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Падеж</th>\n    <th>Муж. род</th>\n    <th>Жен. род</th>\n    <th>Ср. род</th>\n    <th>Множ. ч.</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Nom.</th>\n    <td><strong>guter</strong> Wein</th>\n    <td><strong>gute</strong> Milch</th>\n    <td><strong>gutes</strong> Brot</th>\n    <td><strong>gute</strong> Leute</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Akk.</th>\n    <td><strong>guten</strong> Wein</th>\n    <td><strong>gute</strong> Milch</th>\n    <td><strong>gutes</strong> Brot</th>\n    <td><strong>gute</strong> Leute</th>\n   </td>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Dat.</th>\n    <td><strong>gutem</strong> Wein</th>\n    <td><strong>guter</strong> Milch</th>\n    <td><strong>gutem</strong> Brot</th>\n    <td><strong>guten</strong> Leuten</th>\n   </td>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Gen.</th>\n    <td><strong>guten</strong> Weines</th>\n    <td><strong>guter</strong> Milch</th>\n    <td><strong>guten</strong> Brotes</th>\n    <td><strong>guter</strong> Leute</th>\n   </tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"5\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    Без артикля: прилагательное показывает род (как артикль)!</th>\n  </tr>\n<table>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ТИПИЧНЫЕ ОШИБКИ:</strong><br>\n  ❌ Ich habe <strong>ein gut</strong> Buch.<br>\n  ✅ Ich habe <strong>ein gutes</strong> Buch.<br>\n  <br>\n  ❌ mit <strong>mein gut</strong> Freund<br>\n  ✅ mit <strong>meinem guten</strong> Freund\n</div>\n\n<h3>📖 Пошаговый алгоритм</h3>\n<ol>\n<li>Определи, есть ли артикль перед прилагательным</li>\n<li>Определи род, число и падеж существительного</li>\n<li>Посмотри на тип артикля (определённый, неопределённый, нулевой)</li>\n<li>Выбери окончание по таблице</li>\n</ol>\n\n<h3>📌 Итог урока</h3>\n<ul>\n<li>С определённым артиклем: -e в Nom., -en в остальных</li>\n<li>С неопределённым: в Nom. -er/-e/-es, в остальных -en</li>\n<li>Без артикля: окончания как у артикля (-er, -e, -es, -en, -em)</li>\n<li>Прилагательное после глагола не склоняется: Das Haus ist <strong>groß</strong>.</li>\n</ul>",
+  "theory": "<h3>📌 Что такое склонение прилагательных?</h3><p>В немецком языке прилагательные <strong>меняют окончание</strong>, когда стоят <strong>перед существительным</strong>. Окончание зависит от:</p><ul><li>рода, числа и падежа существительного</li><li>типа артикля (определённый, неопределённый, нулевой)</li></ul><div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\"><strong>🎯 ГЛАВНОЕ ПРАВИЛО:</strong><br>Если прилагательное стоит после глагола (Das Haus ist groß) — оно НЕ склоняется!<br>Склоняется ТОЛЬКО когда стоит ПЕРЕД существительным (das große Haus).</div><h3>📌 Три типа склонения</h3><p>В немецком языке есть три типа склонения прилагательных:</p><ul><li><strong>Слабое склонение</strong> — после определённого артикля (der, die, das, die)</li><li><strong>Сильное склонение</strong> — без артикля</li><li><strong>Смешанное склонение</strong> — после неопределённого артикля (ein, eine, ein) и притяжательных местоимений (mein, dein, sein...)</li></ul><h3>📌 1. Слабое склонение (с определённым артиклем)</h3><p>Окончание <strong>-e</strong> в Nominativ (кроме мн.ч. → -en) и <strong>-en</strong> во всех остальных падежах.</p><table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\"><tr style=\"background: #3B6FE0; color: white;\"><th>Падеж</th><th>Муж. род</th><th>Жен. род</th><th>Ср. род</th><th>Множ. ч.</th></tr><tr style=\"background: #E3F2FD;\"><td>Nom.</th><td>der <strong>gute</strong> Mann</th><td>die <strong>gute</strong> Frau</th><td>das <strong>gute</strong> Kind</th><td>die <strong>guten</strong> Leute</th></tr><tr style=\"background: #F5F5F5;\"><td>Akk.</th><td>den <strong>guten</strong> Mann</th><td>die <strong>gute</strong> Frau</th><td>das <strong>gute</strong> Kind</th><td>die <strong>guten</strong> Leute</th></tr><tr style=\"background: #E3F2FD;\"><td>Dat.</th><td>dem <strong>guten</strong> Mann</th><td>der <strong>guten</strong> Frau</th><td>dem <strong>guten</strong> Kind</th><td>den <strong>guten</strong> Leuten</th></tr><tr style=\"background: #F5F5F5;\"><td>Gen.</th><td>des <strong>guten</strong> Mannes</th><td>der <strong>guten</strong> Frau</th><td>des <strong>guten</strong> Kindes</th><td>der <strong>guten</strong> Leute</th></tr><tr style=\"background: #FFF9C4;\"><td colspan=\"5\"><strong>💡 ЗАПОМИНАЛКА (слабое склонение):</strong><br>С определённым артиклем: в Nominativ -e, везде -en!</th></tr></table><h3>📌 2. Смешанное склонение (с неопределённым артиклем)</h3><p>Окончание <strong>-er, -e, -es</strong> в Nominativ (как у артикля), в остальных падежах — <strong>-en</strong>.</p><table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\"><tr style=\"background: #3B6FE0; color: white;\"><th>Падеж</th><th>Муж. род</th><th>Жен. род</th><th>Ср. род</th></td><tr style=\"background: #E3F2FD;\"><td>Nom.</th><td>ein <strong>guter</strong> Mann</th><td>eine <strong>gute</strong> Frau</th><td>ein <strong>gutes</strong> Kind</th></td><tr style=\"background: #F5F5F5;\"><td>Akk.</th><td>einen <strong>guten</strong> Mann</th><td>eine <strong>gute</strong> Frau</th><td>ein <strong>gutes</strong> Kind</th></tr><tr style=\"background: #E3F2FD;\"><td>Dat.</th><td>einem <strong>guten</strong> Mann</th><td>einer <strong>guten</strong> Frau</th><td>einem <strong>guten</strong> Kind</th></td><tr style=\"background: #F5F5F5;\"><td>Gen.</th><td>eines <strong>guten</strong> Mannes</th><td>einer <strong>guten</strong> Frau</th><td>eines <strong>guten</strong> Kindes</th></tr><tr style=\"background: #FFF9C4;\"><td colspan=\"4\"><strong>💡 ЗАПОМИНАЛКА (смешанное склонение):</strong><br>С неопределённым артиклем: в Nominativ окончание как у артикля (-er, -e, -es), в остальных -en!</th></tr><table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\"><tr style=\"background: #3B6FE0; color: white;\"><th colspan=\"4\">Притяжательные местоимения тоже дают смешанное склонение</th></tr><tr style=\"background: #E3F2FD;\"><td>mein <strong>guter</strong> Freund (мой хороший друг)</th><td>dein <strong>guter</strong> Freund (твой хороший друг)</th><td>sein <strong>guter</strong> Freund (его хороший друг)</th><td>ihr <strong>guter</strong> Freund (её хороший друг)</th></tr></table><h3>📌 3. Сильное склонение (без артикля)</h3><p>Прилагательное берёт на себя окончание артикля.</p><table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\"><tr style=\"background: #3B6FE0; color: white;\"><th>Падеж</th><th>Муж. род</th><th>Жен. род</th><th>Ср. род</th><th>Множ. ч.</th></tr><tr style=\"background: #E3F2FD;\"><td>Nom.</th><td><strong>guter</strong> Wein</th><td><strong>gute</strong> Milch</th><td><strong>gutes</strong> Brot</th><td><strong>gute</strong> Leute</th></tr><tr style=\"background: #F5F5F5;\"><td>Akk.</th><td><strong>guten</strong> Wein</th><td><strong>gute</strong> Milch</th><td><strong>gutes</strong> Brot</th><td><strong>gute</strong> Leute</th></tr><tr style=\"background: #E3F2FD;\"><td>Dat.</th><td><strong>gutem</strong> Wein</th><td><strong>guter</strong> Milch</th><td><strong>gutem</strong> Brot</th><td><strong>guten</strong> Leuten</th></tr><tr style=\"background: #F5F5F5;\"><td>Gen.</th><td><strong>guten</strong> Weines</th><td><strong>guter</strong> Milch</th><td><strong>guten</strong> Brotes</th><td><strong>guter</strong> Leute</th></td><tr style=\"background: #FFF9C4;\"><td colspan=\"5\"><strong>💡 ЗАПОМИНАЛКА (сильное склонение):</strong><br>Без артикля: прилагательное показывает род (как артикль)!</th></tr></table><div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\"><strong>⚠️ ТИПИЧНЫЕ ОШИБКИ:</strong><br>❌ Ich habe <strong>ein gut</strong> Buch.<br>✅ Ich habe <strong>ein gutes</strong> Buch.<br><br>❌ mit <strong>mein gut</strong> Freund<br>✅ mit <strong>meinem guten</strong> Freund</div><h3>📖 Пошаговый алгоритм</h3><ol><li>Определи, есть ли артикль перед прилагательным (или притяжательное местоимение)</li><li>Если артикль определённый (der/die/das/die) → слабое склонение (-e/-en)</li><li>Если артикль неопределённый (ein/eine/ein) или притяжательное местоимение → смешанное склонение</li><li>Если артикля нет → сильное склонение (окончания как у артикля)</li><li>Определи род, число и падеж существительного</li><li>Выбери окончание по таблице</li></ol><h3>📌 Итог урока</h3><ul><li><strong>Слабое склонение:</strong> с определённым артиклем → -e (Nom.), -en (остальные)</li><li><strong>Смешанное склонение:</strong> с ein/mein/dein → в Nom. как артикль (-er/-e/-es), в остальных -en</li><li><strong>Сильное склонение:</strong> без артикля → окончания как у артикля (-er/-e/-es/-en/-em)</li><li>Прилагательное после глагола не склоняется: Das Haus ist <strong>groß</strong>.</li></ul>",
   "examples": [
     {"de": "der große Hund", "ru": "большая собака"},
     {"de": "die schöne Blume", "ru": "красивый цветок"},
@@ -16,112 +16,35 @@
     {"de": "Ich trinke guten Kaffee.", "ru": "Я пью хороший кофе."}
   ],
   "exercises": [
-    {
-      "type": "fill",
-      "question": "Вставьте окончание прилагательного:",
-      "sentence": "der ___ (groß) Hund",
-      "answer": "große",
-      "hint": "определённый артикль, Nom., муж. род → -e"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте окончание:",
-      "sentence": "die ___ (schön) Blume",
-      "answer": "schöne",
-      "hint": "определённый артикль, Nom., жен. род → -e"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте окончание:",
-      "sentence": "ein ___ (interessant) Buch",
-      "answer": "interessantes",
-      "hint": "неопр. артикль, Nom., ср. род → -es"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте окончание:",
-      "sentence": "eine ___ (gut) Frage",
-      "answer": "gute",
-      "hint": "неопр. артикль, Nom., жен. род → -e"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте окончание:",
-      "sentence": "___ (kalt) Wasser",
-      "answer": "kaltes",
-      "hint": "без артикля, Nom., ср. род → -es"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте окончание (Akkusativ):",
-      "sentence": "Ich habe einen ___ (neu) Computer.",
-      "answer": "neuen",
-      "hint": "неопр. артикль, Akk., муж. род → -en"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте окончание (Dativ):",
-      "sentence": "mit ___ (freundlich) Grüßen",
-      "answer": "freundlichen",
-      "hint": "мн. ч., Dativ → -en"
-    },
-    {
-      "type": "choice",
-      "question": "Выберите правильное окончание:",
-      "sentence": "Das ist ein ___ Film.",
-      "options": ["gut", "gute", "guter", "gutes"],
-      "answer": "guter",
-      "hint": "неопр. артикль, Nom., муж. род → -er"
-    },
-    {
-      "type": "choice",
-      "question": "Выберите правильное окончание:",
-      "sentence": "Ich trinke ___ Kaffee.",
-      "options": ["gut", "gute", "guten", "gutes"],
-      "answer": "guten",
-      "hint": "без артикля, Akk., муж. род → -en"
-    },
-    {
-      "type": "transform",
-      "question": "Поставьте прилагательное в правильную форму:",
-      "sentence": "Das Haus ist groß. → das ___ Haus",
-      "answer": "große",
-      "hint": "перед существительным → склоняется, определённый артикль, Nom., ср. род → -e"
-    },
-    {
-      "type": "fill",
-      "question": "Переведите на немецкий:",
-      "sentence": "большая собака",
-      "answer": "der große hund",
-      "hint": "der + groß + Hund"
-    },
-    {
-      "type": "fill",
-      "question": "Переведите на немецкий:",
-      "sentence": "интересная книга",
-      "answer": "ein interessantes buch",
-      "hint": "ein + interessant + Buch"
-    },
-    {
-      "type": "fill",
-      "question": "Переведите на немецкий:",
-      "sentence": "холодная вода",
-      "answer": "kaltes wasser",
-      "hint": "без артикля, kalt + Wasser"
-    },
-    {
-      "type": "fill",
-      "question": "Переведите на немецкий:",
-      "sentence": "У меня новый компьютер.",
-      "answer": "ich habe einen neuen computer",
-      "hint": "einen + neu + Computer"
-    },
-    {
-      "type": "fill",
-      "question": "Переведите на немецкий:",
-      "sentence": "Это хороший фильм.",
-      "answer": "das ist ein guter film",
-      "hint": "ein + gut + Film"
-    }
+    {"type": "fill", "question": "Вставьте окончание (слабое склонение):", "sentence": "der ___ (groß) Hund", "answer": "große", "hint": "определённый артикль, Nom., муж. род → -e"},
+    {"type": "fill", "question": "Вставьте окончание (слабое):", "sentence": "die ___ (schön) Blume", "answer": "schöne", "hint": "определённый артикль, Nom., жен. род → -e"},
+    {"type": "fill", "question": "Вставьте окончание (слабое, Akk.):", "sentence": "den ___ (gut) Mann", "answer": "guten", "hint": "определённый артикль, Akk., муж. род → -en"},
+    {"type": "fill", "question": "Вставьте окончание (смешанное):", "sentence": "ein ___ (interessant) Buch", "answer": "interessantes", "hint": "неопр. артикль, Nom., ср. род → -es"},
+    {"type": "fill", "question": "Вставьте окончание (смешанное):", "sentence": "eine ___ (gut) Frage", "answer": "gute", "hint": "неопр. артикль, Nom., жен. род → -e"},
+    {"type": "fill", "question": "Вставьте окончание (смешанное, Akk.):", "sentence": "einen ___ (neu) Computer", "answer": "neuen", "hint": "неопр. артикль, Akk., муж. род → -en"},
+    {"type": "fill", "question": "Вставьте окончание (сильное склонение):", "sentence": "___ (kalt) Wasser", "answer": "kaltes", "hint": "без артикля, Nom., ср. род → -es"},
+    {"type": "fill", "question": "Вставьте окончание (сильное, Akk.):", "sentence": "Ich trinke ___ (gut) Kaffee.", "answer": "guten", "hint": "без артикля, Akk., муж. род → -en"},
+    {"type": "fill", "question": "Вставьте окончание (слабое, Dat.):", "sentence": "mit ___ (freundlich) Grüßen", "answer": "freundlichen", "hint": "мн. ч., Dativ → -en"},
+    {"type": "fill", "question": "Вставьте окончание (притяжательное местоимение):", "sentence": "mein ___ (gut) Freund", "answer": "guter", "hint": "притяж. местоимение, Nom., муж. род → -er"},
+    {"type": "fill", "question": "Вставьте окончание (притяжательное, Akk.):", "sentence": "dein ___ (gut) Freund", "answer": "guten", "hint": "притяж. местоимение, Akk., муж. род → -en"},
+    {"type": "choice", "question": "Выберите правильное окончание:", "sentence": "Das ist ein ___ Film.", "options": ["gut", "gute", "guter", "gutes"], "answer": "guter", "hint": "неопр. артикль, Nom., муж. род → -er"},
+    {"type": "choice", "question": "Выберите правильное окончание:", "sentence": "Das ist der ___ Film.", "options": ["gut", "gute", "guter", "gutes"], "answer": "gute", "hint": "опр. артикль, Nom., муж. род → -e"},
+    {"type": "choice", "question": "Выберите правильное окончание:", "sentence": "Ich trinke ___ Kaffee.", "options": ["gut", "gute", "guten", "gutes"], "answer": "guten", "hint": "без артикля, Akk., муж. род → -en"},
+    {"type": "choice", "question": "Выберите правильное окончание:", "sentence": "mit meinem ___ Freund", "options": ["gut", "gute", "guten", "guter"], "answer": "guten", "hint": "Dativ, муж. род → -en"},
+    {"type": "transform", "question": "Поставьте прилагательное в правильную форму (слабое):", "sentence": "Das Haus ist groß. → das ___ Haus", "answer": "große", "hint": "перед существительным → склоняется, определённый артикль, Nom., ср. род → -e"},
+    {"type": "transform", "question": "Поставьте прилагательное в правильную форму (смешанное):", "sentence": "Das Buch ist interessant. → ein ___ Buch", "answer": "interessantes", "hint": "неопр. артикль, Nom., ср. род → -es"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "большая собака", "answer": "der große hund", "hint": "der + groß + Hund = der große Hund"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "интересная книга", "answer": "ein interessantes buch", "hint": "ein + interessant + Buch = ein interessantes Buch"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "холодная вода", "answer": "kaltes wasser", "hint": "без артикля, kalt + Wasser = kaltes Wasser"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "У меня новый компьютер.", "answer": "ich habe einen neuen computer", "hint": "einen + neu + Computer = einen neuen Computer"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Это хороший фильм.", "answer": "das ist ein guter film", "hint": "ein + gut + Film = ein guter Film"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Я пью хороший кофе.", "answer": "ich trinke guten kaffee", "hint": "без артикля, Akk., guten Kaffee"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Маленький ребёнок спит.", "answer": "das kleine kind schläft", "hint": "das + klein + Kind = das kleine Kind"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Красивый цветок", "answer": "die schöne blume", "hint": "die + schön + Blume = die schöne Blume"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Мой хороший друг", "answer": "mein guter freund", "hint": "mein + gut + Freund = mein guter Freund"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "С моим хорошим другом", "answer": "mit meinem guten freund", "hint": "mit + Dativ, mein + gut + Freund = meinem guten Freund"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Свежий хлеб", "answer": "frisches brot", "hint": "без артикля, frisches Brot"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Чистая вода", "answer": "sauberes wasser", "hint": "без артикля, sauberes Wasser"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Старый дом", "answer": "das alte haus", "hint": "das + alt + Haus = das alte Haus"}
   ]
 }
