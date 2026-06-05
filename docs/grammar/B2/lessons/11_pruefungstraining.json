@@ -42,6 +42,7 @@
     {"type": "fill", "question": "Переведите на немецкий (adversativ mit während):", "sentence": "Тогда как мой брат большой, я маленький.", "answer": "während mein bruder groß ist bin ich klein", "hint": "während + ist в конце"},
     {"type": "fill", "question": "Переведите на немецкий (Doppelkonjunktion):", "sentence": "Он говорит не только по-немецки, но и по-английски.", "answer": "er spricht nicht nur deutsch sondern auch englisch", "hint": "nicht nur...sondern auch"},
     {"type": "fill", "question": "Переведите на немецкий (Präpositionaladverb):", "sentence": "Я жду этого.", "answer": "ich warte darauf", "hint": "darauf"},
-    {"type": "fill", "question": "Переведите на немецкий (введение в эссе):", "sentence": "По моему мнению, дети должны больше двигаться.", "answer": "meiner meinung nach sollten kinder mehr bewegung haben", "hint": "Meiner Meinung nach + глагол на 2-м месте"}
+    {"type": "fill", "question": "Переведите на немецкий (введение в эссе):", "sentence": "По моему мнению, дети должны больше двигаться.", "answer": "meiner meinung nach sollten kinder mehr bewegung haben", "hint": "Meiner Meinung nach + глагол на 2-м месте"},
+    {"type": "fill", "question": "Переведите на немецкий (Konjunktiv II Vergangenheit):", "sentence": "Если бы я знал правду, я бы сказал.", "answer": "wenn ich die wahrheit gewusst hätte hätte ich es gesagt", "hint": "hätte + gewusst, hätte + gesagt"}
   ]
 }
