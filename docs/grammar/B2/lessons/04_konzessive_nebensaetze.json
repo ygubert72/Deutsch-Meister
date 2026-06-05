@@ -41,6 +41,7 @@
     {"type": "fill", "question": "Переведите на немецкий (so...auch):", "sentence": "Как бы я ни старался, я не мог открыть дверь.", "answer": "so sehr ich mich auch bemühte ich konnte die tür nicht öffnen", "hint": "so + sehr + auch"},
     {"type": "fill", "question": "Переведите на немецкий (obwohl):", "sentence": "Хотя я голоден, я не буду есть.", "answer": "obwohl ich hunger habe werde ich nicht essen", "hint": "obwohl + habe в конце"},
     {"type": "fill", "question": "Переведите на немецкий (trotz + Genitiv):", "sentence": "Несмотря на запрет, он курил.", "answer": "trotz des verbots hat er geraucht", "hint": "trotz + Genitiv"},
-    {"type": "fill", "question": "Переведите на немецкий (trotzdem):", "sentence": "Он не выучил уроки, тем не менее получил хорошую оценку.", "answer": "er lernte die lektionen nicht trotzdem bekam er eine gute note", "hint": "trotzdem как наречие"}
+    {"type": "fill", "question": "Переведите на немецкий (trotzdem):", "sentence": "Он не выучил уроки, тем не менее получил хорошую оценку.", "answer": "er lernte die lektionen nicht trotzdem bekam er eine gute note", "hint": "trotzdem как наречие"},
+    {"type": "fill", "question": "Переведите на немецкий (obschon):", "sentence": "Хотя он был опытным водителем, он попал в аварию.", "answer": "obschon er ein erfahrener fahrer war hatte er einen unfall", "hint": "obschon + war в конце"}
   ]
 }
