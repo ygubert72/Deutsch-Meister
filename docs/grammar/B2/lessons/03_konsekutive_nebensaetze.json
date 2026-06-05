@@ -41,6 +41,7 @@
     {"type": "fill", "question": "Переведите на немецкий (so...dass):", "sentence": "Фильм был таким скучным, что я уснул.", "answer": "der film war so langweilig dass ich einschlief", "hint": "so + langweilig + dass"},
     {"type": "fill", "question": "Переведите на немецкий (sodass):", "sentence": "Он опоздал, так что мы начали без него.", "answer": "er kam zu spät sodass wir ohne ihn begannen", "hint": "sodass + begannen в конце"},
     {"type": "fill", "question": "Переведите на немецкий (so...dass):", "sentence": "Он был так зол, что ничего не сказал.", "answer": "er war so wütend dass er nichts sagte", "hint": "so + wütend + dass"},
-    {"type": "fill", "question": "Переведите на немецкий (so dass):", "sentence": "Она потеряла ключи, так что не могла войти.", "answer": "sie verlor die schlüssel so dass sie nicht reinkonnte", "hint": "so dass + konnte в конце"}
+    {"type": "fill", "question": "Переведите на немецкий (so dass):", "sentence": "Она потеряла ключи, так что не могла войти.", "answer": "sie verlor die schlüssel so dass sie nicht reinkonnte", "hint": "so dass + konnte в конце"},
+    {"type": "fill", "question": "Переведите на немецкий (dermaßen...dass):", "sentence": "Он был настолько зол, что ничего не сказал.", "answer": "er war dermaßen wütend dass er nichts sagte", "hint": "dermaßen + Adjektiv + dass"}
   ]
 }
