@@ -41,6 +41,7 @@
     {"type": "fill", "question": "Переведите на немецкий (противопоставление):", "sentence": "Тогда как одни любят кошек, другие предпочитают собак.", "answer": "während die einen katzen lieben bevorzugen die anderen hunde", "hint": "während + lieben в конце"},
     {"type": "fill", "question": "Переведите на немецкий (wohingegen):", "sentence": "Он предпочитает чай, тогда как я пью только кофе.", "answer": "er bevorzugt tee wohingegen ich nur kaffee trinke", "hint": "wohingegen + trinke в конце"},
     {"type": "fill", "question": "Переведите на немецкий (während):", "sentence": "Тогда как он много зарабатывает, у него мало свободного времени.", "answer": "während er viel verdient hat er wenig freizeit", "hint": "während + verdient в конце"},
-    {"type": "fill", "question": "Переведите на немецкий (wogegen):", "sentence": "Она всегда говорит правду, тогда как он часто лжёт.", "answer": "sie sagt immer die wahrheit wogegen er oft lügt", "hint": "wogegen + lügt в конце"}
+    {"type": "fill", "question": "Переведите на немецкий (wogegen):", "sentence": "Она всегда говорит правду, тогда как он часто лжёт.", "answer": "sie sagt immer die wahrheit wogegen er oft lügt", "hint": "wogegen + lügt в конце"},
+    {"type": "fill", "question": "Переведите на немецкий (wohingegen):", "sentence": "Мой отец работает в офисе, тогда как моя мать работает дома.", "answer": "mein vater arbeitet im büro wohingegen meine mutter zu hause arbeitet", "hint": "wohingegen + arbeitet в конце"}
   ]
 }
