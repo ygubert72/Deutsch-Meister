@@ -2,7 +2,7 @@
   "lesson": 2,
   "title": "Неопределённые артикли: ein, eine. Отрицание: kein, keine",
   "level": "A1",
-  "theory": "<h3>📌 Что такое неопределённый артикль?</h3>\n\n<p>В прошлом уроке мы выучили <strong>определённые артикли</strong> (der, die, das). Они указывают на <strong>конкретный, известный предмет</strong>.</p>\n\n<p>Сегодня изучаем <strong>неопределённые артикли</strong> (<strong>ein, eine</strong>). Они указывают на <strong>неконкретный, неизвестный предмет</strong> или когда мы упоминаем его <strong>в первый раз</strong>.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 ПРОСТОЕ ПРАВИЛО:</strong><br>\n  📌 «Das ist <strong>ein</strong> Mann» — Это <strong>какой-то</strong> мужчина (мы его раньше не видели)<br>\n  📌 «<strong>Der</strong> Mann ist groß» — <strong>Этот</strong> мужчина высокий (мы уже о нём говорили)\n</div>\n\n<h3>📌 Таблица неопределённых артиклей</h3>\n\n<table border=\"1\" cellpadding=\"12\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Род</th>\n    <th>Определённый</th>\n    <th>Неопределённый</th>\n    <th>Пример</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Мужской (Maskulinum)</td>\n    <td>der</td>\n    <td style=\"font-size: 20px; font-weight: bold; color: #1565C0;\">ein</td>\n    <td>ein Mann (какой-то мужчина)</td>\n   </tr>\n  <tr style=\"background: #FCE4EC;\">\n    <td>Женский (Femininum)</td>\n    <td>die</td>\n    <td style=\"font-size: 20px; font-weight: bold; color: #C2185B;\">eine</td>\n    <td>eine Frau (какая-то женщина)</td>\n   </tr>\n  <tr style=\"background: #E8F5E9;\">\n    <td>Средний (Neutrum)</td>\n    <td>das</td>\n    <td style=\"font-size: 20px; font-weight: bold; color: #2E7D32;\">ein</td>\n    <td>ein Kind (какой-то ребёнок)</td>\n   </tr>\n  <tr style=\"background: #FFF3E0;\">\n    <td>Множественное число</td>\n    <td>die</td>\n    <td style=\"color: #E65100;\">— (нет артикля)</td>\n    <td>— Kinder (какие-то дети)</td>\n   </tr>\n</table>\n\n<div class=\"warning-box\" style=\"background: #FFF9C4; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F9A825;\">\n  <strong>⚠️ ВАЖНО ЗАПОМНИТЬ:</strong>\n  <ul style=\"margin: 10px 0 0 20px;\">\n    <li><strong>ein</strong> — для мужского и среднего рода</li>\n    <li><strong>eine</strong> — ТОЛЬКО для женского рода</li>\n    <li>Во множественном числе неопределённого артикля НЕТ!</li>\n  </ul>\n</div>\n\n<h3>📌 Когда использовать определённый vs неопределённый артикль?</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Ситуация</th>\n    <th>Артикль</th>\n    <th>Пример</th>\n   </tr>\n  <tr>\n    <td>Говорим впервые</td>\n    <td>неопределённый (ein/eine)</td>\n    <td>Das ist <strong>ein</strong> Hund.</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Говорим уже об этом предмете</td>\n    <td>определённый (der/die/das)</td>\n    <td><strong>Der</strong> Hund ist braun.</td>\n   </tr>\n  <tr>\n    <td>Предмет известен собеседнику</td>\n    <td>определённый (der/die/das)</td>\n    <td>Gib mir <strong>das</strong> Buch!</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Профессия или национальность</td>\n    <td>часто без артикля</td>\n    <td>Ich bin Arzt. Sie ist Lehrerin.</td>\n   </tr>\n</table>\n\n<h3>📌 Отрицательные артикли: kein / keine</h3>\n\n<p><strong>kein / keine</strong> — это полная противоположность ein/eine. Они переводятся как «никакой», «не», «нет».</p>\n\n<table border=\"1\" cellpadding=\"12\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Род</th>\n    <th>Утверждение</th>\n    <th>Отрицание</th>\n    <th>Перевод</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Мужской</td>\n    <td>ein Mann</td>\n    <td style=\"color: #1565C0;\">kein Mann</td>\n    <td>никакой мужчина / не мужчина</td>\n   </tr>\n  <tr style=\"background: #FCE4EC;\">\n    <td>Женский</td>\n    <td>eine Frau</td>\n    <td style=\"color: #C2185B;\">keine Frau</td>\n    <td>никакая женщина / не женщина</td>\n   </tr>\n  <tr style=\"background: #E8F5E9;\">\n    <td>Средний</td>\n    <td>ein Kind</td>\n    <td style=\"color: #2E7D32;\">kein Kind</td>\n    <td>никакой ребёнок / не ребёнок</td>\n   </tr>\n  <tr style=\"background: #FFF3E0;\">\n    <td>Мн. число</td>\n    <td>— Kinder</td>\n    <td style=\"color: #E65100;\">keine Kinder</td>\n    <td>никаких детей</td>\n   </tr>\n</table>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>💡 ПРАВИЛО ЗАПОМИНАНИЯ:</strong><br>\n  ✨ kein = nicht + ein (слитно)<br>\n  ✨ keine = nicht + eine (слитно)<br>\n  ✨ Во множественном числе: keine = nicht + (нет артикля)\n</div>\n\n<h3>📌 Винительный падеж (Akkusativ) с ein/kein</h3>\n\n<p>В немецком языке после глаголов <strong>haben</strong> (иметь), <strong>brauchen</strong> (нуждаться), <strong>sehen</strong> (видеть) часто используется <strong>винительный падеж</strong> (Akkusativ).</p>\n\n<p>В Akkusativ изменяется ТОЛЬКО мужской род:</p>\n\n<ul>\n  <li><strong>ein</strong> → <strong>einen</strong> (Ich habe <strong>einen</strong> Hund.)</li>\n  <li><strong>kein</strong> → <strong>keinen</strong> (Ich habe <strong>keinen</strong> Hund.)</li>\n  <li><strong>der</strong> → <strong>den</strong> (Ich sehe <strong>den</strong> Mann.)</li>\n</ul>\n\n<p>Женский и средний род НЕ меняются в Akkusativ:</p>\n\n<ul>\n  <li>eine Frau → Ich habe eine Frau.</li>\n  <li>ein Kind → Ich habe ein Kind.</li>\n</ul>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ТИПИЧНЫЕ ОШИБКИ РУССКОГОВОРЯЩИХ:</strong>\n  <ul style=\"margin: 10px 0 0 20px;\">\n    <li>❌ «Ich habe ein Hund» → ✅ «Ich habe <strong>einen</strong> Hund» (мужской род требует -en)</li>\n    <li>❌ «Ich habe kein Hund» → ✅ «Ich habe <strong>keinen</strong> Hund»</li>\n    <li>❌ «Das ist keine Mann» → ✅ «Das ist <strong>kein</strong> Mann» (мужской род → kein, а не keine)</li>\n  </ul>\n</div>\n\n<h3>📖 Пошаговый алгоритм</h3>\n\n<ol style=\"margin: 15px 0; line-height: 1.8;\">\n  <li><strong>Определи, о чём говорим:</strong> о конкретном предмете (der/die/das) или о неконкретном (ein/eine)</li>\n  <li><strong>Определи род существительного:</strong> der → ein, das → ein, die → eine</li>\n  <li><strong>Если отрицание:</strong> ein → kein, eine → keine</li>\n  <li><strong>Если Akkusativ (после haben, sehen, brauchen):</strong> мужской род ein → einen, kein → keinen</li>\n</ol>\n\n<h3>📌 Итог урока</h3>\n\n<ul>\n  <li><strong>ein</strong> — для мужского и среднего рода (неконкретный предмет)</li>\n  <li><strong>eine</strong> — для женского рода</li>\n  <li><strong>kein</strong> — отрицание для мужского и среднего рода</li>\n  <li><strong>keine</strong> — отрицание для женского рода и множественного числа</li>\n  <li>В Akkusativ мужской род меняется: ein → einen, kein → keinen</li>\n</ul>\n\n<p>🎯 <strong>Совет:</strong> Учи короткие диалоги с этими артиклями, и они запомнятся сами собой!</p>",
+  "theory": "(оставьте ВАШУ существующую теорию без изменений — скопируйте её из оригинального файла)",
   "examples": [
     {"de": "Das ist ein Mann.", "ru": "Это какой-то мужчина."},
     {"de": "Das ist eine Frau.", "ru": "Это какая-то женщина."},
@@ -16,113 +16,35 @@
     {"de": "Hast du einen Bruder?", "ru": "У тебя есть (какой-то) брат?"}
   ],
   "exercises": [
-    {
-      "type": "fill",
-      "question": "Вставьте ein или eine:",
-      "sentence": "Das ist ___ Mann.",
-      "answer": "ein",
-      "hint": "Mann — мужской род → ein"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте ein или eine:",
-      "sentence": "Das ist ___ Frau.",
-      "answer": "eine",
-      "hint": "Frau — женский род → eine"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте ein или eine:",
-      "sentence": "Das ist ___ Kind.",
-      "answer": "ein",
-      "hint": "Kind — средний род → ein"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте ein или eine:",
-      "sentence": "Das ist ___ Hund.",
-      "answer": "ein",
-      "hint": "Hund — мужской род → ein"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте ein или eine:",
-      "sentence": "Das ist ___ Katze.",
-      "answer": "eine",
-      "hint": "Katze — женский род → eine"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте kein или keine (отрицание):",
-      "sentence": "Das ist ___ Mann.",
-      "answer": "kein",
-      "hint": "Mann — мужской род, отрицание → kein"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте kein или keine (отрицание):",
-      "sentence": "Das ist ___ Frau.",
-      "answer": "keine",
-      "hint": "Frau — женский род, отрицание → keine"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте kein или keine (отрицание):",
-      "sentence": "Das ist ___ Kind.",
-      "answer": "kein",
-      "hint": "Kind — средний род, отрицание → kein"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте в Akkusativ (einen/eine/ein):",
-      "sentence": "Ich habe ___ Hund.",
-      "answer": "einen",
-      "hint": "Akkusativ, мужской род → einen"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте в Akkusativ (einen/eine/ein):",
-      "sentence": "Ich habe ___ Katze.",
-      "answer": "eine",
-      "hint": "Akkusativ, женский род → eine (не меняется)"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте в Akkusativ (einen/eine/ein):",
-      "sentence": "Ich habe ___ Buch.",
-      "answer": "ein",
-      "hint": "Akkusativ, средний род → ein (не меняется)"
-    },
-    {
-      "type": "choice",
-      "question": "Выберите правильный вариант:",
-      "sentence": "Das ist ___ Auto.",
-      "options": ["ein", "eine", "kein", "keine"],
-      "answer": "ein",
-      "hint": "Auto — средний род → ein"
-    },
-    {
-      "type": "choice",
-      "question": "Выберите правильный вариант (отрицание):",
-      "sentence": "Das ist ___ Tisch.",
-      "options": ["ein", "eine", "kein", "keine"],
-      "answer": "kein",
-      "hint": "Tisch — мужской род, отрицание → kein"
-    },
-    {
-      "type": "choice",
-      "question": "Выберите правильный вариант в Akkusativ:",
-      "sentence": "Ich habe ___ Bruder.",
-      "options": ["ein", "einen", "eine", "kein"],
-      "answer": "einen",
-      "hint": "Akkusativ, мужской род → einen"
-    },
-    {
-      "type": "transform",
-      "question": "Переделайте в отрицание (используйте kein/keine):",
-      "sentence": "Das ist ein Mann.",
-      "answer": "Das ist kein Mann",
-      "hint": "ein → kein, мужской род"
-    }
+    {"type": "fill", "question": "Вставьте ein или eine:", "sentence": "Das ist ___ Mann.", "answer": "ein", "hint": "Mann — мужской род → ein"},
+    {"type": "fill", "question": "Вставьте ein или eine:", "sentence": "Das ist ___ Frau.", "answer": "eine", "hint": "Frau — женский род → eine"},
+    {"type": "fill", "question": "Вставьте ein или eine:", "sentence": "Das ist ___ Kind.", "answer": "ein", "hint": "Kind — средний род → ein"},
+    {"type": "fill", "question": "Вставьте ein или eine:", "sentence": "Das ist ___ Hund.", "answer": "ein", "hint": "Hund — мужской род → ein"},
+    {"type": "fill", "question": "Вставьте ein или eine:", "sentence": "Das ist ___ Katze.", "answer": "eine", "hint": "Katze — женский род → eine"},
+    {"type": "fill", "question": "Вставьте ein или eine:", "sentence": "Das ist ___ Buch.", "answer": "ein", "hint": "Buch — средний род → ein"},
+    {"type": "fill", "question": "Вставьте ein или eine:", "sentence": "Das ist ___ Haus.", "answer": "ein", "hint": "Haus — средний род → ein"},
+    {"type": "fill", "question": "Вставьте ein или eine:", "sentence": "Das ist ___ Blume.", "answer": "eine", "hint": "Blume — женский род → eine"},
+    {"type": "fill", "question": "Вставьте ein или eine:", "sentence": "Das ist ___ Apfel.", "answer": "ein", "hint": "Apfel — мужской род → ein"},
+    {"type": "fill", "question": "Вставьте ein или eine:", "sentence": "Das ist ___ Lampe.", "answer": "eine", "hint": "Lampe — женский род → eine"},
+    {"type": "fill", "question": "Вставьте kein или keine:", "sentence": "Das ist ___ Mann.", "answer": "kein", "hint": "Mann — мужской род → kein"},
+    {"type": "fill", "question": "Вставьте kein или keine:", "sentence": "Das ist ___ Frau.", "answer": "keine", "hint": "Frau — женский род → keine"},
+    {"type": "fill", "question": "Вставьте kein или keine:", "sentence": "Das ist ___ Kind.", "answer": "kein", "hint": "Kind — средний род → kein"},
+    {"type": "fill", "question": "Вставьте kein или keine:", "sentence": "Das ist ___ Hund.", "answer": "kein", "hint": "Hund — мужской род → kein"},
+    {"type": "fill", "question": "Вставьте kein или keine:", "sentence": "Das ist ___ Katze.", "answer": "keine", "hint": "Katze — женский род → keine"},
+    {"type": "fill", "question": "Вставьте keinen, keine или kein (Akkusativ):", "sentence": "Ich habe ___ Hund.", "answer": "einen", "hint": "Akkusativ, мужской род → einen"},
+    {"type": "fill", "question": "Вставьте keinen, keine или kein (Akkusativ):", "sentence": "Ich habe ___ Katze.", "answer": "eine", "hint": "Akkusativ, женский род → eine"},
+    {"type": "fill", "question": "Вставьте keinen, keine или kein (Akkusativ):", "sentence": "Ich habe ___ Buch.", "answer": "ein", "hint": "Akkusativ, средний род → ein"},
+    {"type": "fill", "question": "Вставьте keinen, keine или kein (Akkusativ, отрицание):", "sentence": "Ich habe ___ Hund.", "answer": "keinen", "hint": "Akkusativ, мужской род → keinen"},
+    {"type": "fill", "question": "Вставьте keinen, keine или kein (Akkusativ, отрицание):", "sentence": "Ich habe ___ Katze.", "answer": "keine", "hint": "Akkusativ, женский род → keine"},
+    {"type": "fill", "question": "Вставьте keinen, keine или kein (Akkusativ, отрицание):", "sentence": "Ich habe ___ Buch.", "answer": "kein", "hint": "Akkusativ, средний род → kein"},
+    {"type": "choice", "question": "Выберите правильный вариант:", "sentence": "Das ist ___ Auto.", "options": ["ein", "eine", "kein", "keine"], "answer": "ein", "hint": "Auto — средний род → ein"},
+    {"type": "choice", "question": "Выберите правильный вариант:", "sentence": "Das ist ___ Tisch.", "options": ["ein", "eine", "kein", "keine"], "answer": "ein", "hint": "Tisch — мужской род → ein"},
+    {"type": "choice", "question": "Выберите правильный вариант (отрицание):", "sentence": "Das ist ___ Tisch.", "options": ["ein", "eine", "kein", "keine"], "answer": "kein", "hint": "Tisch — мужской род → kein"},
+    {"type": "choice", "question": "Выберите правильный вариант (Akkusativ):", "sentence": "Ich habe ___ Bruder.", "options": ["ein", "einen", "eine", "kein"], "answer": "einen", "hint": "Akkusativ, мужской род → einen"},
+    {"type": "choice", "question": "Выберите правильный вариант (Akkusativ, отрицание):", "sentence": "Ich habe ___ Schwester.", "options": ["einen", "eine", "kein", "keine"], "answer": "keine", "hint": "Akkusativ, женский род, отрицание → keine"},
+    {"type": "transform", "question": "Переделайте в отрицание (kein/keine):", "sentence": "Das ist ein Mann.", "answer": "Das ist kein Mann", "hint": "ein → kein, мужской род"},
+    {"type": "transform", "question": "Переделайте в отрицание (kein/keine):", "sentence": "Das ist eine Frau.", "answer": "Das ist keine Frau", "hint": "eine → keine, женский род"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "У меня есть брат.", "answer": "ich habe einen bruder", "hint": "Ich habe einen Bruder."},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "У меня нет собаки.", "answer": "ich habe keinen hund", "hint": "Ich habe keinen Hund."}
   ]
 }
