@@ -2,7 +2,7 @@
   "lesson": 11,
   "title": "Genitiv — родительный падеж",
   "level": "A2",
-  "theory": "<h3>📌 Что такое Genitiv?</h3>\n\n<p>Genitiv — родительный падеж, отвечает на вопросы <strong>чей? кого? чего?</strong>. В русском языке соответствует: «чей?» — моего, твоего, нашего; «кого? чего?» — стола, книги, окна.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🎯 ВАЖНО:</strong><br>\n  В разговорной речи Genitiv часто заменяют на <strong>von + Dativ</strong>, но в письменной речи он обязателен!\n</div>\n\n<h3>📌 Изменение артиклей в Genitiv</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Nominativ</th>\n    <th>Genitiv</th>\n    <th>Окончание существительного</th>\n    <th>Пример</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>der (муж.)</th>\n    <td><strong>des</strong></th>\n    <td><strong>+ s/es</strong></th>\n    <td>das Buch <strong>des Mannes</strong></th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>die (жен.)</th>\n    <td><strong>der</strong></th>\n    <td><strong>без окончания</strong></th>\n    <td>die Tasche <strong>der Frau</strong></th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>das (ср.)</th>\n    <td><strong>des</strong></th>\n    <td><strong>+ s/es</strong></th>\n    <td>das Haus <strong>des Kindes</strong></th>\n   </td>\n  <tr style=\"background: #F5F5F5;\">\n    <td>die (мн.)</th>\n    <td><strong>der</strong></th>\n    <td><strong>+ n (иногда)</strong></th>\n    <td>die Arbeit <strong>der Studenten</strong></th>\n   </tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"4\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    der → des (+s/es), die → der, das → des (+s/es), die (мн.) → der</th>\n  </tr>\n\n<h3>📌 Неопределённый артикль в Genitiv</h3>\n\n<ul>\n<li>eines Mannes (какого-то мужчины)</li>\n<li>einer Frau (какой-то женщины)</li>\n<li>eines Kindes (какого-то ребёнка)</li>\n<li>keines Mannes (никакого мужчины)</li>\n</ul>\n\n<h3>📌 Притяжательные местоимения в Genitiv</h3>\n\n<ul>\n<li>meines Vaters (моего отца)</li>\n<li>deiner Mutter (твоей матери)</li>\n<li>seines Bruders (его брата)</li>\n<li>ihrer Schwester (её сестры)</li>\n<li>unseres Hauses (нашего дома)</li>\n</ul>\n\n<h3>📌 Предлоги, требующие Genitiv</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Предлог</th>\n    <th>Значение</th>\n    <th>Пример</th>\n    <th>Перевод</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>während</strong></th>\n    <td>во время</th>\n    <td>Während <strong>des Unterrichts</strong> ist das Handy aus.</th>\n    <td>Во время урока телефон выключен.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>wegen</strong></th>\n    <td>из-за</th>\n    <td>Wegen <strong>des Wetters</strong> bleiben wir zu Hause.</th>\n    <td>Из-за погоды мы остаёмся дома.</th>\n   </td>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>trotz</strong></th>\n    <td>несмотря на</th>\n    <td>Trotz <strong>des Regens</strong> gingen wir spazieren.</th>\n    <td>Несмотря на дождь, мы пошли гулять.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>außerhalb</strong></th>\n    <td>вне, за пределами</th>\n    <td>Außerhalb <strong>der Stadt</strong> ist es ruhig.</th>\n    <td>За городом тихо.</th>\n   <tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>innerhalb</strong></th>\n    <td>внутри, в пределах</th>\n    <td>Innerhalb <strong>einer Woche</strong> muss ich das machen.</th>\n    <td>В течение недели я должен это сделать.</th>\n   </td>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>anstatt</strong></th>\n    <td>вместо</th>\n    <td>Anstatt <strong>des Hundes</strong> nahm er die Katze.</th>\n    </td>Вместо собаки он взял кошку.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>laut</strong></th>\n    <td>согласно</th>\n    <td>Laut <strong>des Berichts</strong> ist alles in Ordnung.</th>\n    <td>Согласно отчёту, всё в порядке.</th>\n   </tr>\n  <tr style=\"background: #FFF9C4;\">\n    <td colspan=\"4\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>\n    während, wegen, trotz, außerhalb, innerhalb, anstatt, laut → Genitiv!</th>\n  </tr>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ТИПИЧНЫЕ ОШИБКИ:</strong><br>\n  ❌ Wegen <strong>dem Wetter</strong>... (разговорный вариант, но не правильный)<br>\n  ✅ Wegen <strong>des Wetters</strong>...<br>\n  <br>\n  ❌ Während <strong>dem Film</strong>...<br>\n  ✅ Während <strong>des Films</strong>...\n</div>\n\n<h3>📌 Genitiv вместо von + Dativ (разговорный vs письменный)</h3>\n\n<p>В разговорной речи чаще используют von + Dativ, в письменной — Genitiv:</p>\n<ul>\n<li>Разговор: das Buch <strong>von meinem Vater</strong></li>\n<li>Письменный: das Buch <strong>meines Vaters</strong></li>\n</ul>\n\n<h3>📖 Пошаговый алгоритм</h3>\n<ol>\n<li>Определи, нужно ли выразить принадлежность (чей?) или использовать предлог с Genitiv</li>\n<li>Если принадлежность: определи род существительного в Genitiv</li>\n<li>Измени артикль по таблице (der → des, die → der, das → des, die мн. → der)</li>\n<li>Добавь окончание -s/-es к существительному мужского и среднего рода</li>\n<li>Если предлог: запомни предлоги, требующие Genitiv (während, wegen, trotz...)</li>\n</ol>\n\n<h3>📌 Итог урока</h3>\n<ul>\n<li>Genitiv = родительный падеж (чей? кого? чего?)</li>\n<li>der → des + s/es, die → der, das → des + s/es, die (мн.) → der</li>\n<li>Предлоги с Genitiv: während, wegen, trotz, außerhalb, innerhalb, anstatt, laut</li>\n<li>В разговорной речи часто заменяется на von + Dativ</li>\n</ul>",
+  "theory": "<h3>📌 Что такое Genitiv?</h3><p>Genitiv — родительный падеж, отвечает на вопросы <strong>чей? кого? чего?</strong>. В русском языке соответствует: «чей?» — моего, твоего, нашего; «кого? чего?» — стола, книги, окна.</p><div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\"><strong>🎯 ВАЖНО:</strong><br>В разговорной речи Genitiv часто заменяют на <strong>von + Dativ</strong>, но в письменной речи он обязателен!</div><h3>📌 Изменение артиклей в Genitiv</h3><table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\"><tr style=\"background: #3B6FE0; color: white;\"><th>Nominativ</th><th>Genitiv</th><th>Окончание существительного</th><th>Пример</th></td><tr style=\"background: #E3F2FD;\"><td>der (муж.)</th><td><strong>des</strong></th><td><strong>+ s/es</strong></th><td>das Buch <strong>des Mannes</strong></th></tr><tr style=\"background: #F5F5F5;\"><td>die (жен.)</th><td><strong>der</strong></th><td><strong>без окончания</strong></th><td>die Tasche <strong>der Frau</strong></th></td><tr style=\"background: #E3F2FD;\"><td>das (ср.)</th><td><strong>des</strong></th><td><strong>+ s/es</strong></th><td>das Haus <strong>des Kindes</strong></th></td><tr style=\"background: #F5F5F5;\"><td>die (мн.)</th><td><strong>der</strong></th><td><strong>+ n (иногда)</strong></th><td>die Arbeit <strong>der Studenten</strong></th></tr><tr style=\"background: #FFF9C4;\"><td colspan=\"4\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>der → des (+s/es), die → der, das → des (+s/es), die (мн.) → der</th></td><h3>📌 Неопределённый артикль и притяжательные местоимения в Genitiv</h3><ul><li>eines Mannes (какого-то мужчины)</li><li>einer Frau (какой-то женщины)</li><li>eines Kindes (какого-то ребёнка)</li><li>meines Vaters (моего отца)</li><li>deiner Mutter (твоей матери)</li><li>seines Bruders (его брата)</li><li>ihrer Schwester (её сестры)</li><li>unseres Hauses (нашего дома)</li></ul><h3>📌 Предлоги, требующие Genitiv</h3><table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\"><tr style=\"background: #3B6FE0; color: white;\"><th>Предлог</th><th>Значение</th><th>Пример</th><th>Перевод</th></tr><tr style=\"background: #E3F2FD;\"><td><strong>während</strong></th><td>во время</th><td>Während <strong>des Unterrichts</strong> ist das Handy aus.</th><td>Во время урока телефон выключен.</th></tr><tr style=\"background: #F5F5F5;\"><td><strong>wegen</strong></th><td>из-за</th><td>Wegen <strong>des Wetters</strong> bleiben wir zu Hause.</th><td>Из-за погоды мы остаёмся дома.</th><tr><tr style=\"background: #E3F2FD;\"><td><strong>trotz</strong></th><td>несмотря на</th><td>Trotz <strong>des Regens</strong> gingen wir spazieren.</th><td>Несмотря на дождь, мы пошли гулять.</th></tr><tr style=\"background: #F5F5F5;\"><td><strong>außerhalb</strong></th><td>вне, за пределами</th><td>Außerhalb <strong>der Stadt</strong> ist es ruhig.</th><td>За городом тихо.</th></tr><tr style=\"background: #E3F2FD;\"><td><strong>innerhalb</strong></th><td>внутри, в пределах</th><td>Innerhalb <strong>einer Woche</strong> muss ich das machen.</th><td>В течение недели я должен это сделать.</th></td><tr style=\"background: #F5F5F5;\"><td><strong>anstatt / statt</strong></th><td>вместо</th><td>Anstatt <strong>des Hundes</strong> nahm er die Katze.</th><td>Вместо собаки он взял кошку.</th></tr><tr style=\"background: #E3F2FD;\"><td><strong>laut</strong></th><td>согласно</th><td>Laut <strong>des Berichts</strong> ist alles in Ordnung.</th><td>Согласно отчёту, всё в порядке.</th></td><tr style=\"background: #FFF9C4;\"><td colspan=\"4\"><strong>💡 ЗАПОМИНАЛКА:</strong><br>während, wegen, trotz, außerhalb, innerhalb, anstatt, laut → Genitiv!</th></tr><div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\"><strong>⚠️ ТИПИЧНЫЕ ОШИБКИ:</strong><br>❌ Wegen <strong>dem Wetter</strong>... (разговорный вариант, но не правильный)<br>✅ Wegen <strong>des Wetters</strong>...<br><br>❌ Während <strong>dem Film</strong>...<br>✅ Während <strong>des Films</strong>...</div><h3>📌 Genitiv вместо von + Dativ (разговорный vs письменный)</h3><p>В разговорной речи чаще используют von + Dativ, в письменной — Genitiv:</p><ul><li>Разговор: das Buch <strong>von meinem Vater</strong></li><li>Письменный: das Buch <strong>meines Vaters</strong></li></ul><h3>📖 Пошаговый алгоритм</h3><ol><li>Определи, нужно ли выразить принадлежность (чей?) или использовать предлог с Genitiv</li><li>Если принадлежность: определи род существительного в Genitiv</li><li>Измени артикль по таблице (der → des, die → der, das → des, die мн. → der)</li><li>Добавь окончание -s/-es к существительному мужского и среднего рода</li><li>Если предлог: запомни предлоги, требующие Genitiv (während, wegen, trotz...)</li></ol><h3>📌 Итог урока</h3><ul><li>Genitiv = родительный падеж (чей? кого? чего?)</li><li>der → des + s/es, die → der, das → des + s/es, die (мн.) → der</li><li>Предлоги с Genitiv: während, wegen, trotz, außerhalb, innerhalb, anstatt, laut</li><li>В разговорной речи часто заменяется на von + Dativ</li></ul>",
   "examples": [
     {"de": "Das Buch des Mannes.", "ru": "Книга мужчины."},
     {"de": "Die Tasche der Frau.", "ru": "Сумка женщины."},
@@ -14,91 +14,35 @@
     {"de": "Das Ende des Films war überraschend.", "ru": "Конец фильма был неожиданным."}
   ],
   "exercises": [
-    {
-      "type": "fill",
-      "question": "Вставьте Genitiv:",
-      "sentence": "Das Buch ___ (der Mann).",
-      "answer": "des Mannes",
-      "hint": "der Mann → des Mannes"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте Genitiv:",
-      "sentence": "Die Tasche ___ (die Frau).",
-      "answer": "der Frau",
-      "hint": "die Frau → der Frau"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте Genitiv:",
-      "sentence": "Das Haus ___ (das Kind).",
-      "answer": "des Kindes",
-      "hint": "das Kind → des Kindes"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте предлог с Genitiv:",
-      "sentence": "___ des Wetters bleiben wir zu Hause.",
-      "answer": "Wegen",
-      "hint": "из-за → Wegen"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте предлог с Genitiv:",
-      "sentence": "___ des Unterrichts ist das Handy aus.",
-      "answer": "Während",
-      "hint": "во время → Während"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте предлог с Genitiv:",
-      "sentence": "___ des Regens gingen wir spazieren.",
-      "answer": "Trotz",
-      "hint": "несмотря на → Trotz"
-    },
-    {
-      "type": "choice",
-      "question": "Выберите правильную форму:",
-      "sentence": "Die Farbe ___ Autos ist rot.",
-      "options": ["des", "der", "dem", "den"],
-      "answer": "des",
-      "hint": "das Auto → des Autos"
-    },
-    {
-      "type": "choice",
-      "question": "Выберите правильную форму:",
-      "sentence": "Die Arbeit ___ Ärztin ist schwer.",
-      "options": ["des", "der", "dem", "die"],
-      "answer": "der",
-      "hint": "die Ärztin → der Ärztin"
-    },
-    {
-      "type": "transform",
-      "question": "Переделайте von + Dativ в Genitiv:",
-      "sentence": "das Buch von meinem Vater",
-      "answer": "das Buch meines Vaters",
-      "hint": "von + Dativ → Genitiv: meines Vaters"
-    },
-    {
-      "type": "fill",
-      "question": "Переведите на немецкий:",
-      "sentence": "Из-за дождя мы остались дома.",
-      "answer": "wegen des regens blieben wir zu hause",
-      "hint": "wegen + Genitiv"
-    },
-    {
-      "type": "fill",
-      "question": "Переведите на немецкий:",
-      "sentence": "Книга моего отца.",
-      "answer": "das buch meines vaters",
-      "hint": "mein Vater → meines Vaters"
-    },
-    {
-      "type": "fill",
-      "question": "Переведите на немецкий:",
-      "sentence": "Цвет машины красный.",
-      "answer": "die farbe des autos ist rot",
-      "hint": "das Auto → des Autos"
-    }
+    {"type": "fill", "question": "Вставьте Genitiv:", "sentence": "Das Buch ___ (der Mann).", "answer": "des Mannes", "hint": "der Mann → des Mannes"},
+    {"type": "fill", "question": "Вставьте Genitiv:", "sentence": "Die Tasche ___ (die Frau).", "answer": "der Frau", "hint": "die Frau → der Frau"},
+    {"type": "fill", "question": "Вставьте Genitiv:", "sentence": "Das Haus ___ (das Kind).", "answer": "des Kindes", "hint": "das Kind → des Kindes"},
+    {"type": "fill", "question": "Вставьте Genitiv:", "sentence": "Die Arbeit ___ (die Studenten).", "answer": "der Studenten", "hint": "die Studenten (мн.) → der Studenten"},
+    {"type": "fill", "question": "Вставьте предлог с Genitiv:", "sentence": "___ des Wetters bleiben wir zu Hause.", "answer": "Wegen", "hint": "из-за → Wegen"},
+    {"type": "fill", "question": "Вставьте предлог с Genitiv:", "sentence": "___ des Unterrichts ist das Handy aus.", "answer": "Während", "hint": "во время → Während"},
+    {"type": "fill", "question": "Вставьте предлог с Genitiv:", "sentence": "___ des Regens gingen wir spazieren.", "answer": "Trotz", "hint": "несмотря на → Trotz"},
+    {"type": "fill", "question": "Вставьте предлог с Genitiv:", "sentence": "___ der Stadt ist es ruhig.", "answer": "Außerhalb", "hint": "вне → Außerhalb"},
+    {"type": "fill", "question": "Вставьте предлог с Genitiv:", "sentence": "___ einer Woche muss ich das machen.", "answer": "Innerhalb", "hint": "в пределах → Innerhalb"},
+    {"type": "fill", "question": "Вставьте Genitiv (притяжательное местоимение):", "sentence": "das Buch ___ (mein Vater)", "answer": "meines Vaters", "hint": "mein Vater → meines Vaters"},
+    {"type": "choice", "question": "Выберите правильную форму:", "sentence": "Die Farbe ___ Autos ist rot.", "options": ["des", "der", "dem", "den"], "answer": "des", "hint": "das Auto → des Autos"},
+    {"type": "choice", "question": "Выберите правильную форму:", "sentence": "Die Arbeit ___ Ärztin ist schwer.", "options": ["des", "der", "dem", "die"], "answer": "der", "hint": "die Ärztin → der Ärztin"},
+    {"type": "choice", "question": "Выберите правильную форму:", "sentence": "Das Ende ___ Films war überraschend.", "options": ["des", "der", "dem", "den"], "answer": "des", "hint": "der Film → des Films"},
+    {"type": "transform", "question": "Переделайте von + Dativ в Genitiv:", "sentence": "das Buch von meinem Vater", "answer": "das Buch meines Vaters", "hint": "von + Dativ → Genitiv: meines Vaters"},
+    {"type": "transform", "question": "Переделайте von + Dativ в Genitiv:", "sentence": "die Tasche von meiner Mutter", "answer": "die Tasche meiner Mutter", "hint": "von + Dativ → Genitiv: meiner Mutter"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Из-за дождя мы остались дома.", "answer": "wegen des regens blieben wir zu hause", "hint": "wegen + Genitiv"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Книга моего отца.", "answer": "das buch meines vaters", "hint": "mein Vater → meines Vaters"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Цвет машины красный.", "answer": "die farbe des autos ist rot", "hint": "das Auto → des Autos"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Во время фильма я спал.", "answer": "während des films habe ich geschlafen", "hint": "während + Genitiv"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Несмотря на погоду, мы пошли гулять.", "answer": "trotz des wetters gingen wir spazieren", "hint": "trotz + Genitiv"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Вне города тихо.", "answer": "außerhalb der stadt ist es ruhig", "hint": "außerhalb + Genitiv"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "В течение недели я должен это сделать.", "answer": "innerhalb einer woche muss ich das machen", "hint": "innerhalb + Genitiv"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Вместо кофе я пью чай.", "answer": "statt des kaffees trinke ich tee", "hint": "statt + Genitiv"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Согласно отчёту, всё в порядке.", "answer": "laut des berichts ist alles in ordnung", "hint": "laut + Genitiv"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Конец фильма был неожиданным.", "answer": "das ende des films war überraschend", "hint": "des Films"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Сумка женщины.", "answer": "die tasche der frau", "hint": "der Frau"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Дом ребёнка.", "answer": "das haus des kindes", "hint": "des Kindes"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Работа студентов.", "answer": "die arbeit der studenten", "hint": "der Studenten (мн.ч.)"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Название книги.", "answer": "der titel des buches", "hint": "des Buches"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Мнение эксперта.", "answer": "die meinung des experten", "hint": "des Experten (слабое склонение)"}
   ]
 }
