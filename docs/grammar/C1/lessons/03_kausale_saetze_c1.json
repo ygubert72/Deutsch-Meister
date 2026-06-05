@@ -40,6 +40,7 @@
     {"type": "fill", "question": "Переведите на немецкий (infolge + Genitiv Plural).", "sentence": "Вследствие ошибок в расчётах проект провалился.", "answer": "infolge der fehler in der berechnung ist das projekt gescheitert", "hint": "infolge + Genitiv Plural"},
     {"type": "fill", "question": "Переведите на немецкий (aufgrund + Genitiv mit Artikel).", "sentence": "Из-за отсутствия доказательств дело было закрыто.", "answer": "aufgrund des fehlens von beweisen wurde der fall eingestellt", "hint": "aufgrund + Genitiv"},
     {"type": "fill", "question": "Переведите на немецкий (zumal mit Modalverb).", "sentence": "Я помогу тебе, тем более что могу это сделать.", "answer": "ich helfe dir zumal ich das machen kann", "hint": "zumal + kann в конце"},
-    {"type": "fill", "question": "Переведите на немецкий (aufgrund dessen, dass mit Modalverb).", "sentence": "Благодаря тому что он мог помочь, мы справились.", "answer": "aufgrund dessen dass er helfen konnte haben wir es geschafft", "hint": "aufgrund dessen, dass + konnte в конце"}
+    {"type": "fill", "question": "Переведите на немецкий (aufgrund dessen, dass mit Modalverb).", "sentence": "Благодаря тому что он мог помочь, мы справились.", "answer": "aufgrund dessen dass er helfen konnte haben wir es geschafft", "hint": "aufgrund dessen, dass + konnte в конце"},
+    {"type": "fill", "question": "Переведите на немецкий (zumal mit Modalverb Passiv):", "sentence": "Мы помогаем, тем более что можем помочь.", "answer": "wir helfen zumal wir helfen können", "hint": "zumal + können в конце"}
   ]
 }
