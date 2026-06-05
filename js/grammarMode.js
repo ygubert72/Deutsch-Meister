@@ -1,4 +1,4 @@
-// grammarMode.js - исправленная версия
+// grammarMode.js - полная версия с поддержкой 30+ упражнений
 
 let grammarDB = { A1: [], A2: [], B1: [], B2: [], C1: [] };
 let currentGrammarLesson = null;
@@ -9,7 +9,7 @@ let grammarExercises = [];
 let currentGrammarExerciseIndex = 0;
 let grammarBlinkTimer = null;
 
-// ========== ЗАГРУЗКА ГРАММАТИКИ (исправлена) ==========
+// ========== ЗАГРУЗКА ГРАММАТИКИ ==========
 async function loadGrammarData() {
     console.log('loadGrammarData: загрузка грамматики');
     const levels = ['A1', 'A2', 'B1', 'B2', 'C1'];
@@ -273,6 +273,8 @@ function showGrammarPractice(lessonIdx) {
     grammarExercises = lesson.exercises || [];
     currentGrammarExerciseIndex = 0;
     
+    console.log('📊 Всего упражнений в уроке:', grammarExercises.length);
+    
     if (!grammarExercises.length) {
         document.getElementById('grammarContent').innerHTML = `
             <div style="text-align: center; padding: 40px;">
@@ -341,8 +343,29 @@ function showGrammarExercise(exercise, lessonIdx) {
                 </div>
             `;
             break;
+        case 'order':
+            const wordsList = exercise.words || [];
+            html += `
+                <div style="font-size: 16px; margin: 20px 0;">Поставьте слова в правильном порядке:</div>
+                <div style="background: #F5F5F5; padding: 15px; border-radius: 12px; margin: 10px 0; text-align: center; font-size: 18px;">
+                    ${wordsList.join(' · ')}
+                </div>
+                <div style="margin: 20px 0;">
+                    <input type="text" id="grammarAnswerInput" 
+                        style="width: 100%; padding: 14px; font-size: 16px; border: 2px solid #D0D0D0; border-radius: 12px; text-align: center;"
+                        placeholder="Введите правильный порядок слов..." 
+                        autocomplete="off">
+                </div>
+            `;
+            break;
         default:
-            html += `<div style="margin: 20px 0;"><input type="text" id="grammarAnswerInput" style="width: 100%; padding: 14px; font-size: 16px; border: 2px solid #D0D0D0; border-radius: 12px; text-align: center;" placeholder="Введите ответ..."></div>`;
+            html += `
+                <div style="margin: 20px 0;">
+                    <input type="text" id="grammarAnswerInput" 
+                        style="width: 100%; padding: 14px; font-size: 16px; border: 2px solid #D0D0D0; border-radius: 12px; text-align: center;"
+                        placeholder="Введите ответ...">
+                </div>
+            `;
     }
     
     html += `
@@ -368,7 +391,8 @@ function showGrammarExercise(exercise, lessonIdx) {
     
     container.innerHTML = html;
     
-    if (exercise.type === 'fill' || exercise.type === 'transform') {
+    // Обработчики
+    if (exercise.type === 'fill' || exercise.type === 'transform' || exercise.type === 'order') {
         const input = document.getElementById('grammarAnswerInput');
         if (input) {
             input.focus();
