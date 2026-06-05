@@ -42,6 +42,7 @@
     {"type": "fill", "question": "Переведите на немецкий (dadurch dass):", "sentence": "Благодаря тому что он много тренировался, он выиграл соревнование.", "answer": "dadurch dass er viel trainierte gewann er den wettkampf", "hint": "dadurch dass + trainierte в конце"},
     {"type": "fill", "question": "Переведите на немецкий (indem):", "sentence": "Он сэкономил время, тем что пошёл коротким путём.", "answer": "er sparte zeit indem er den kurzen weg ging", "hint": "indem + ging в конце"},
     {"type": "fill", "question": "Переведите на немецкий (anstatt dass):", "sentence": "Вместо того чтобы учиться, он играл в игры.", "answer": "anstatt dass er lernte spielte er spiele", "hint": "anstatt dass + lernte в конце"},
-    {"type": "fill", "question": "Переведите на немецкий (ohne...zu):", "sentence": "Он уехал, не попрощавшись.", "answer": "er fuhr weg ohne sich zu verabschieden", "hint": "ohne + zu + verabschieden"}
+    {"type": "fill", "question": "Переведите на немецкий (ohne...zu):", "sentence": "Он уехал, не попрощавшись.", "answer": "er fuhr weg ohne sich zu verabschieden", "hint": "ohne + zu + verabschieden"},
+    {"type": "fill", "question": "Переведите на немецкий (ohne...zu):", "sentence": "Он ушёл с работы, не попрощавшись с коллегами.", "answer": "er verließ die arbeit ohne sich von den kollegen zu verabschieden", "hint": "ohne + zu + verabschieden"}
   ]
 }
