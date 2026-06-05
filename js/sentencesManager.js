@@ -1,8 +1,10 @@
+// sentencesManager.js - исправлены пути
 async function loadSentences() {
     const levels = ['A1', 'A2', 'B1', 'B2', 'C1'];
     for (const lvl of levels) {
         try {
-            const resp = await fetch(`/Deutsch-Meister/docs/sentences/${lvl}.json`);
+            // ИСПРАВЛЕНО: убран /Deutsch-Meister/ в начале
+            const resp = await fetch(`docs/sentences/${lvl}.json`);
             if (resp.ok) sentencesDB[lvl] = await resp.json();
             else sentencesDB[lvl] = [];
         } catch(e) { sentencesDB[lvl] = []; }
@@ -45,10 +47,10 @@ function createNormalSentences() {
     ];
     
     for (let i = 0; i < 20; i++) {
-        if (sentencesDB.A2.length < 20) sentencesDB.A2.push({de:`Satz_A2_${i}`, ru:`Фраза_A2_${i}`});
-        if (sentencesDB.B1.length < 20) sentencesDB.B1.push({de:`Satz_B1_${i}`, ru:`Фраза_B1_${i}`});
-        if (i < 15 && sentencesDB.B2.length < 15) sentencesDB.B2.push({de:`Satz_B2_${i}`, ru:`Фраза_B2_${i}`});
-        if (i < 10 && sentencesDB.C1.length < 10) sentencesDB.C1.push({de:`Satz_C1_${i}`, ru:`Фраза_C1_${i}`});
+        if (sentencesDB.A2 && sentencesDB.A2.length < 20) sentencesDB.A2.push({de:`Satz_A2_${i}`, ru:`Фраза_A2_${i}`});
+        if (sentencesDB.B1 && sentencesDB.B1.length < 20) sentencesDB.B1.push({de:`Satz_B1_${i}`, ru:`Фраза_B1_${i}`});
+        if (sentencesDB.B2 && i < 15 && sentencesDB.B2.length < 15) sentencesDB.B2.push({de:`Satz_B2_${i}`, ru:`Фраза_B2_${i}`});
+        if (sentencesDB.C1 && i < 10 && sentencesDB.C1.length < 10) sentencesDB.C1.push({de:`Satz_C1_${i}`, ru:`Фраза_C1_${i}`});
     }
 }
 
