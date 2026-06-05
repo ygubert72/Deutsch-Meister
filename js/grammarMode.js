@@ -1,4 +1,4 @@
-// grammarMode.js - полная версия с поддержкой 30+ упражнений
+// grammarMode.js - полная версия с единым отображением упражнений на голубом фоне
 
 let grammarDB = { A1: [], A2: [], B1: [], B2: [], C1: [] };
 let currentGrammarLesson = null;
@@ -307,65 +307,40 @@ function showGrammarExercise(exercise, lessonIdx) {
         html += `<div style="font-size: 16px; color: #666; margin-bottom: 10px;">${exercise.question}</div>`;
     }
     
-    switch (exercise.type) {
-        case 'fill':
+    // Единый формат для всех типов упражнений — голубой фон
+    // Для choice нужно сначала показать вопрос, потом кнопки
+    if (exercise.type === 'choice') {
+        html += `
+            <div style="background: #E8F0FE; padding: 20px; border-radius: 12px; margin: 20px 0; text-align: center; font-size: 18px; font-weight: 500;">
+                ${exercise.sentence}
+            </div>
+        `;
+        let optionsHtml = '<div class="quiz-grid" style="margin: 20px 0;">';
+        for (let opt of exercise.options) {
+            optionsHtml += `<button class="quiz-opt" data-value="${opt}">${opt}</button>`;
+        }
+        optionsHtml += '</div>';
+        html += optionsHtml;
+    } 
+    else if (exercise.type === 'fill' || exercise.type === 'transform' || exercise.type === 'order' || !exercise.type) {
+        // fill, transform, order — все на голубом фоне без лишних надписей
+        let sentenceText = exercise.sentence || '';
+        // Если есть исходное предложение для transform, показываем его в голубом блоке
+        if (exercise.sentence) {
             html += `
-                <div style="font-size: 20px; font-weight: 500; margin: 20px 0; text-align: center; background: #F5F5F5; padding: 20px; border-radius: 12px;">
+                <div style="background: #E8F0FE; padding: 20px; border-radius: 12px; margin: 20px 0; text-align: center; font-size: 18px; font-weight: 500;">
                     ${exercise.sentence}
                 </div>
-                <div style="margin: 20px 0;">
-                    <input type="text" id="grammarAnswerInput" 
-                        style="width: 100%; padding: 14px; font-size: 16px; border: 2px solid #D0D0D0; border-radius: 12px; text-align: center;"
-                        placeholder="Введите ответ..." 
-                        autocomplete="off">
-                </div>
             `;
-            break;
-        case 'choice':
-            let optionsHtml = '<div class="quiz-grid" style="margin: 20px 0;">';
-            for (let opt of exercise.options) {
-                optionsHtml += `<button class="quiz-opt" data-value="${opt}">${opt}</button>`;
-            }
-            optionsHtml += '</div>';
-            html += `<div style="font-size: 18px; font-weight: 500; margin: 20px 0; text-align: center;">${exercise.sentence}</div>${optionsHtml}`;
-            break;
-        case 'transform':
-            html += `
-                <div style="background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 20px 0; text-align: center;">
-                    <div style="font-size: 14px; color: #666;">Исходное предложение:</div>
-                    <div style="font-size: 18px; font-weight: 500;">${exercise.sentence}</div>
-                </div>
-                <div style="margin: 20px 0;">
-                    <input type="text" id="grammarAnswerInput" 
-                        style="width: 100%; padding: 14px; font-size: 16px; border: 2px solid #D0D0D0; border-radius: 12px; text-align: center;"
-                        placeholder="Введите преобразованное предложение..." 
-                        autocomplete="off">
-                </div>
-            `;
-            break;
-        case 'order':
-            const wordsList = exercise.words || [];
-            html += `
-                <div style="font-size: 16px; margin: 20px 0;">Поставьте слова в правильном порядке:</div>
-                <div style="background: #F5F5F5; padding: 15px; border-radius: 12px; margin: 10px 0; text-align: center; font-size: 18px;">
-                    ${wordsList.join(' · ')}
-                </div>
-                <div style="margin: 20px 0;">
-                    <input type="text" id="grammarAnswerInput" 
-                        style="width: 100%; padding: 14px; font-size: 16px; border: 2px solid #D0D0D0; border-radius: 12px; text-align: center;"
-                        placeholder="Введите правильный порядок слов..." 
-                        autocomplete="off">
-                </div>
-            `;
-            break;
-        default:
-            html += `
-                <div style="margin: 20px 0;">
-                    <input type="text" id="grammarAnswerInput" 
-                        style="width: 100%; padding: 14px; font-size: 16px; border: 2px solid #D0D0D0; border-radius: 12px; text-align: center;"
-                        placeholder="Введите ответ...">
-                </div>
-            `;
+        }
+        html += `
+            <div style="margin: 20px 0;">
+                <input type="text" id="grammarAnswerInput" 
+                    style="width: 100%; padding: 14px; font-size: 16px; border: 2px solid #D0D0D0; border-radius: 12px; text-align: center;"
+                    placeholder="Введите ответ..." 
+                    autocomplete="off">
+            </div>
+        `;
     }
     
     html += `
@@ -391,8 +366,8 @@ function showGrammarExercise(exercise, lessonIdx) {
     
     container.innerHTML = html;
     
-    // Обработчики
-    if (exercise.type === 'fill' || exercise.type === 'transform' || exercise.type === 'order') {
+    // Обработчики для полей ввода
+    if (exercise.type !== 'choice') {
         const input = document.getElementById('grammarAnswerInput');
         if (input) {
             input.focus();
@@ -405,6 +380,7 @@ function showGrammarExercise(exercise, lessonIdx) {
         }
     }
     
+    // Обработчики для choice (кнопки)
     if (exercise.type === 'choice') {
         const options = document.querySelectorAll('.quiz-opt');
         options.forEach(opt => {
@@ -413,7 +389,10 @@ function showGrammarExercise(exercise, lessonIdx) {
                 checkGrammarAnswer(userAnswer, exercise, lessonIdx);
             };
         });
-    } else {
+    }
+    
+    // Кнопка проверки для fill/transform/order
+    if (exercise.type !== 'choice') {
         const checkBtn = document.getElementById('grammarCheckBtn');
         if (checkBtn) {
             checkBtn.onclick = () => {
@@ -426,6 +405,7 @@ function showGrammarExercise(exercise, lessonIdx) {
         }
     }
     
+    // Кнопка озвучки
     const speakBtn = document.getElementById('grammarSpeakBtn');
     if (speakBtn) {
         speakBtn.onclick = () => {
@@ -441,6 +421,7 @@ function showGrammarExercise(exercise, lessonIdx) {
         };
     }
     
+    // Кнопка подсказки
     const hintBtn = document.getElementById('grammarHintBtn');
     if (hintBtn) {
         hintBtn.onclick = () => {
@@ -450,6 +431,7 @@ function showGrammarExercise(exercise, lessonIdx) {
         };
     }
     
+    // Кнопка назад
     const prevBtn = document.getElementById('grammarPrevBtn');
     if (prevBtn) {
         prevBtn.onclick = () => {
@@ -460,6 +442,7 @@ function showGrammarExercise(exercise, lessonIdx) {
         };
     }
     
+    // Кнопка вперёд
     const nextBtn = document.getElementById('grammarNextBtn');
     if (nextBtn) {
         nextBtn.onclick = () => {
