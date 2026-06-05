@@ -41,7 +41,6 @@
     {"type": "fill", "question": "Переведите на немецкий (damit):", "sentence": "Я покупаю подарок, чтобы порадовать маму.", "answer": "ich kaufe ein geschenk damit ich meine mutter freue", "hint": "damit + freue в конце"},
     {"type": "fill", "question": "Переведите на немецкий (um...zu):", "sentence": "Я звоню, чтобы сказать правду.", "answer": "ich rufe an um die wahrheit zu sagen", "hint": "um...zu + zu sagen"},
     {"type": "fill", "question": "Переведите на немецкий (damit):", "sentence": "Она готовит ужин, чтобы дети не были голодными.", "answer": "sie kocht das abendessen damit die kinder nicht hungrig sind", "hint": "damit + sind в конце"},
-    {"type": "fill", "question": "Переведите на немецкий (um...zu):", "sentence": "Мы едем в Берлин, чтобы посмотреть достопримечательности.", "answer": "wir fahren nach berlin um die sehenswürdigkeiten zu sehen", "hint": "um...zu + zu sehen"},
-    {"type": "fill", "question": "Переведите на немецкий (damit):", "sentence": "Я говорю медленно, чтобы ты меня понял.", "answer": "ich spreche langsam damit du mich verstehst", "hint": "damit + verstehst в конце"}
+    {"type": "fill", "question": "Переведите на немецкий (um...zu):", "sentence": "Мы едем в Берлин, чтобы посмотреть достопримечательности.", "answer": "wir fahren nach berlin um die sehenswürdigkeiten zu sehen", "hint": "um...zu + zu sehen"}
   ]
 }
