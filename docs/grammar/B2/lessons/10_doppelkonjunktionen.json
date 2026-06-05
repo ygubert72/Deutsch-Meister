@@ -41,6 +41,7 @@
     {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Чем больше я читаю, тем больше я знаю.", "answer": "je mehr ich lese desto mehr weiß ich", "hint": "je...desto"},
     {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Он не пьёт ни кофе, ни чай.", "answer": "er trinkt weder kaffee noch tee", "hint": "weder...noch"},
     {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Чем дольше я жду, тем нетерпеливее становлюсь.", "answer": "je länger ich warte desto ungeduldiger werde ich", "hint": "je...desto"},
-    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Он как умный, так и старательный.", "answer": "er ist sowohl intelligent als auch fleißig", "hint": "sowohl...als auch"}
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Он как умный, так и старательный.", "answer": "er ist sowohl intelligent als auch fleißig", "hint": "sowohl...als auch"},
+    {"type": "fill", "question": "Переведите на немецкий (nicht nur...sondern auch):", "sentence": "Не только я, но и мой брат любит футбол.", "answer": "nicht nur ich sondern auch mein bruder liebt fußball", "hint": "nicht nur...sondern auch"}
   ]
 }
