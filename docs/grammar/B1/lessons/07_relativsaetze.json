@@ -44,7 +44,5 @@
     {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Вот человек, с которым я работаю.", "answer": "das ist der mann mit dem ich arbeite", "hint": "mit dem + arbeite в конце"},
     {"type": "transform", "question": "Переведите на немецкий:", "sentence": "У меня есть друг, которого я очень люблю.", "answer": "ich habe einen freund den ich sehr liebe", "hint": "den + liebe в конце"},
     {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Всё, что он сказал, была правда.", "answer": "alles was er gesagt hat war wahrheit", "hint": "was + hat в конце"},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Тот, кто не рискует, не выигрывает.", "answer": "wer nicht wagt der nicht gewinnt", "hint": "wer + wagt в конце"},
-    {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Это подруга, о которой я тебе рассказывал.", "answer": "das ist die freundin von der ich dir erzählt habe", "hint": "von der + habe в конце"}
   ]
 }
