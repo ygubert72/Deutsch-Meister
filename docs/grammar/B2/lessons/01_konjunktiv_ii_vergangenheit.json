@@ -44,6 +44,7 @@
     {"type": "fill", "question": "Переведите на немецкий (нереальное условие с müssen):", "sentence": "Если бы он пришёл раньше, ему не пришлось бы так долго ждать.", "answer": "wenn er früher gekommen wäre hätte er nicht so lange warten müssen", "hint": "wäre + gekommen, hätte + warten + müssen"},
     {"type": "fill", "question": "Переведите на немецкий (нереальное условие с sollen):", "sentence": "Если бы ты меня спросил, мне следовало бы тебе помочь.", "answer": "wenn du mich gefragt hättest hätte ich dir helfen sollen", "hint": "hättest + gefragt, hätte + helfen + sollen"},
     {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Я бы прочитал эту книгу.", "answer": "ich hätte dieses buch gelesen", "hint": "hätte + gelesen"},
-    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Мы бы остались дома.", "answer": "wir wären zu hause geblieben", "hint": "wären + geblieben"}
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Мы бы остались дома.", "answer": "wir wären zu hause geblieben", "hint": "wären + geblieben"},
+    {"type": "fill", "question": "Переведите на немецкий (нереальное условие с können):", "sentence": "Если бы я больше учился, я мог бы сдать экзамен.", "answer": "wenn ich mehr gelernt hätte hätte ich die prüfung bestehen können", "hint": "hätte + gelernt, hätte + bestehen + können"}
   ]
 }
