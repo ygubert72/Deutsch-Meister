@@ -2,7 +2,7 @@
   "lesson": 8,
   "title": "Порядок слов в предложении. Глагол на 2-м месте",
   "level": "A1",
-  "theory": "<h3>📌 Самое главное правило немецкого языка</h3>\n\n<p>В немецком повествовательном предложении <strong>глагол всегда стоит на втором месте</strong>!</p>\n\n<p>Это железное правило, которое нельзя нарушать. Запомни его с первого урока.</p>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>🔑 ЗОЛОТОЕ ПРАВИЛО:</strong><br>\n  ГЛАГОЛ = ВТОРОЕ МЕСТО\n</div>\n\n<h3>📌 Схема простого предложения</h3>\n\n<p><strong>Место 1 — Место 2 — всё остальное</strong></p>\n\n<table border=\"1\" cellpadding=\"12\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Место 1</th>\n    <th>Место 2 (ГЛАГОЛ)</th>\n    <th>Остальные слова</th>\n    <th>Перевод</th>\n    </td>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Ich</th>\n    <td><strong>lerne</strong></th>\n    <td>Deutsch.</th>\n    <td>Я учу немецкий.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Er</th>\n    <td><strong>kommt</strong></th>\n    <td>nach Hause.</th>\n    <td>Он приходит домой.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Wir</th>\n    <td><strong>spielen</strong></th>\n    <td>Fußball.</th>\n    <td>Мы играем в футбол.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Das Kind</th>\n    <td><strong>schläft</strong></th>\n    <td>gut.</th>\n    <td>Ребёнок спит хорошо.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Ich</th>\n    <td><strong>habe</strong></th>\n    以来的einen Hund.</th>\n    <td>У меня есть собака.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Sie</th>\n    <td><strong>ist</strong></th>\n    <td>meine Schwester.</th>\n    <td>Она моя сестра.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Wir</th>\n    <td><strong>fahren</strong></th>\n    <td>nach Hause.</th>\n    <td>Мы едем домой.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Ihr</th>\n    <td><strong>arbeitet</strong></th>\n    <td>im Büro.</th>\n    <td>Вы работаете в офисе.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Sie (они)</th>\n    <td><strong>kommen</strong></th>\n    <td>aus Berlin.</th>\n    <td>Они из Берлина.</th>\n   </tr>\n</table>\n\n<h3>📌 Инверсия: когда предложение начинается не с подлежащего</h3>\n\n<p>Если предложение начинается с обстоятельства (сегодня, завтра, там, поэтому), то <strong>подлежащее и глагол меняются местами</strong>.</p>\n\n<p><strong>Схема:</strong> Обстоятельство — ГЛАГОЛ — подлежащее — ...</p>\n\n<table border=\"1\" cellpadding=\"12\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Место 1</th>\n    <th>Место 2 (ГЛАГОЛ)</th>\n    <th>Место 3 (подлежащее)</th>\n    <th>Остальное</th>\n    <th>Перевод</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Heute</th>\n    <td><strong>lerne</strong></th>\n    <td>ich</th>\n    <td>Deutsch.</th>\n    <td>Сегодня я учу немецкий.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Morgen</th>\n    <td><strong>fährt</strong></th>\n    <td>er</th>\n    <td>nach Berlin.</th>\n    <td>Завтра он едет в Берлин.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Dort</th>\n    <td><strong>wohnt</strong></th>\n    <td>mein Bruder</th>\n    <td>.</th>\n    <td>Там живёт мой брат.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Deshalb</th>\n    <td><strong>bin</strong></th>\n    <td>ich</th>\n    <td>müde.</th>\n    <td>Поэтому я устал.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Jetzt</th>\n    <td><strong>gehe</strong></th>\n    <td>ich</th>\n    <td>schlafen.</th>\n    <td>Сейчас я иду спать.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Im Sommer</th>\n    <td><strong>reisen</strong></th>\n    <td>wir</th>\n    <td>nach Italien.</th>\n    <td>Летом мы путешествуем в Италию.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Gestern</th>\n    <td><strong>war</strong></th>\n    <td>ich</th>\n    <td>im Kino.</th>\n    <td>Вчера я был в кино.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Zum Glück</th>\n    <td><strong>hat</strong></th>\n    <td>er</th>\n    <td>Zeit.</th>\n    <td>К счастью, у него есть время.</th>\n   </tr>\n</table>\n\n<div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\">\n  <strong>💡 ПРОСТАЯ ЗАПОМИНАЛКА:</strong><br>\n  «Сначала глагол — это вопрос. А потом глагол — это рассказ.»<br>\n  <strong>Kommst du?</strong> (вопрос: глагол на 1-м месте)<br>\n  <strong>Du kommst.</strong> (рассказ: глагол на 2-м месте)\n</div>\n\n<h3>📌 Вопросительные предложения</h3>\n\n<p><strong>1. Вопрос без вопросительного слова (Ja/Nein-Frage):</strong> Глагол на ПЕРВОМ месте.</p>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Вопрос</th>\n    <th>Ответ (да)</th>\n    <th>Ответ (нет)</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>Kommst</strong> du?</th>\n    <td>Ja, ich komme.</th>\n    <td>Nein, ich komme nicht.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>Hast</strong> du Zeit?</th>\n    <td>Ja, ich habe Zeit.</th>\n    <td>Nein, ich habe keine Zeit.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>Lernst</strong> du Deutsch?</th>\n    <td>Ja, ich lerne Deutsch.</th>\n    <td>Nein, ich lerne nicht Deutsch.</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td><strong>Ist</strong> er dein Bruder?</th>\n    <td>Ja, er ist mein Bruder.</th>\n    <td>Nein, er ist nicht mein Bruder.</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td><strong>Fährst</strong> du nach Hause?</th>\n    <td>Ja, ich fahre nach Hause.</th>\n    <td>Nein, ich fahre nicht nach Hause.</th>\n   </tr>\n</table>\n\n<p><strong>2. Вопрос с вопросительным словом (W-Frage):</strong> Вопросительное слово на 1-м месте, глагол на 2-м.</p>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Вопросительное слово</th>\n    <th>Глагол (2-е место)</th>\n    <th>Подлежащее</th>\n    <th>Остальное</th>\n    <th>Перевод</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Wo</th>\n    <td><strong>wohnst</strong></th>\n    <td>du</th>\n    <td>?</th>\n    <td>Где ты живёшь?</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Was</th>\n    <td><strong>machst</strong></th>\n    <td>du</th>\n    <td>?</th>\n    <td>Что ты делаешь?</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Wie</th>\n    <td><strong>heißt</strong></th>\n    <td>du</th>\n    <td>?</th>\n    <td>Как тебя зовут?</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Warum</th>\n    <td><strong>lernst</strong></th>\n    <td>du</th>\n    <td>Deutsch?</th>\n    <td>Почему ты учишь немецкий?</th>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td>Wohin</th>\n    <td><strong>gehst</strong></th>\n    <td>du</th>\n    <td>?</th>\n    <td>Куда ты идёшь?</th>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td>Woher</th>\n    <td><strong>kommst</strong></th>\n    <td>du</th>\n    <td>?</th>\n    <td>Откуда ты?</th>\n   </tr>\n</table>\n\n<h3>📌 Отрицание в предложении</h3>\n\n<p>Частица <strong>nicht</strong> (не) ставится <strong>после глагола</strong>.</p>\n\n<ul>\n  <li>Ich lerne <strong>nicht</strong> Deutsch. — Я не учу немецкий.</li>\n  <li>Er kommt <strong>nicht</strong> nach Hause. — Он не приходит домой.</li>\n  <li>Wir sind <strong>nicht</strong> müde. — Мы не устали.</li>\n  <li>Sie hat <strong>nicht</strong> genug Geld. — У неё недостаточно денег.</li>\n  <li>Das Kind schläft <strong>nicht</strong>. — Ребёнок не спит.</li>\n</ul>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>⚠️ ТИПИЧНЫЕ ОШИБКИ РУССКОГОВОРЯЩИХ:</strong><br>\n  ❌ Ich <strong>Deutsch lerne</strong> — глагол НЕ на втором месте!<br>\n  ✅ <strong>Ich lerne</strong> Deutsch.<br>\n  <br>\n  ❌ <strong>Lerne ich Deutsch</strong> — порядок для вопроса, не для рассказа!<br>\n  ✅ <strong>Ich lerne Deutsch.</strong>\n</div>\n\n<h3>📌 Сравнение порядка слов в разных типах предложений</h3>\n\n<table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Тип предложения</th>\n    <th>Схема</th>\n    <th>Пример</th>\n    <th>Перевод</th>\n    </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td style=\"font-weight: bold;\">Повествование</td>\n    <td>Подл. → ГЛАГОЛ → ...</td>\n    <td>Ich <strong>lerne</strong> Deutsch.</td>\n    <td>Я учу немецкий.</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td style=\"font-weight: bold;\">Инверсия</td>\n    <td>Обстоят. → ГЛАГОЛ → подл. → ...</td>\n    <td>Heute <strong>lerne</strong> ich Deutsch.</td>\n    <td>Сегодня я учу немецкий.</td>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td style=\"font-weight: bold;\">Вопрос (Ja/Nein)</td>\n    <td>ГЛАГОЛ → подл. → ...</td>\n    <td><strong>Lernst</strong> du Deutsch?</td>\n    <td>Ты учишь немецкий?</td>\n   </tr>\n  <tr style=\"background: #F5F5F5;\">\n    <td style=\"font-weight: bold;\">Вопрос (W-Frage)</td>\n    <td>W-Wort → ГЛАГОЛ → подл. → ...</td>\n    <td>Was <strong>lernst</strong> du?</td>\n    <td>Что ты учишь?</td>\n   </tr>\n  <tr style=\"background: #E3F2FD;\">\n    <td style=\"font-weight: bold;\">Отрицание</td>\n    <td>Подл. → ГЛАГОЛ → nicht → ...</td>\n    <td>Ich <strong>lerne</strong> nicht Deutsch.</td>\n    <td>Я не учу немецкий.</td>\n   </tr>\n</table>\n\n<h3>📌 Придаточные предложения (предупреждение для A1)</h3>\n\n<p>В придаточных предложениях с союзами <strong>dass, weil, wenn</strong> глагол уходит в <strong>конец</strong>. Но это тема уровня A2! В A1 просто знай, что такое существует.</p>\n\n<ul>\n  <li>Ich weiß, <strong>dass du recht hast</strong>. (глагол hast в конце)</li>\n  <li>Ich bleibe zu Hause, <strong>weil es regnet</strong>. (глагол regnet в конце)</li>\n</ul>\n\n<h3>📖 Пошаговый алгоритм</h3>\n\n<ol>\n  <li>Определи тип предложения: повествование, вопрос, инверсия</li>\n  <li>Найди глагол — он должен быть на 2-м месте (или на 1-м в вопросе)</li>\n  <li>Поставь подлежащее — обычно на 1-м месте, но при инверсии — после глагола</li>\n  <li>Если отрицание — добавь nicht после глагола</li>\n  <li>Если вопрос без W-Wort — начни с глагола</li>\n  <li>Если вопрос с W-Wort — начни с W-Wort, затем глагол, затем подлежащее</li>\n</ol>\n\n<h3>📌 Запоминалка</h3>\n\n<p>🎵 <strong>Стишок для запоминания:</strong></p>\n<p>«Глагол, наш друг, на месте два,<br>\nВсегда стоит, как голова.<br>\nА если спросим мы: «Ты где?» —<br>\nТо глагол скачет в первом месте!»</p>\n\n<h3>📌 Итог урока</h3>\n\n<ul>\n  <li>В повествовательном предложении глагол всегда на 2-м месте</li>\n  <li>В вопросе без вопросительного слова глагол на 1-м месте</li>\n  <li>В вопросе с W-Wort: W-Wort → глагол → подлежащее</li>\n  <li>При инверсии (начало с обстоятельства): обстоятельство → глагол → подлежащее</li>\n  <li>Отрицание nicht ставится после глагола</li>\n</ul>",
+  "theory": "<h3>📌 Самое главное правило немецкого языка</h3><p>В немецком повествовательном предложении <strong>глагол всегда стоит на втором месте</strong>!</p><p>Это железное правило, которое нельзя нарушать. Запомни его с первого урока.</p><div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\"><strong>🔑 ЗОЛОТОЕ ПРАВИЛО:</strong><br>ГЛАГОЛ = ВТОРОЕ МЕСТО</div><h3>📌 Схема простого предложения</h3><p><strong>Место 1 — Место 2 — всё остальное</strong></p><table border=\"1\" cellpadding=\"12\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\"><tr style=\"background: #3B6FE0; color: white;\"><th>Место 1</th><th>Место 2 (ГЛАГОЛ)</th><th>Остальные слова</th><th>Перевод</th></tr><tr style=\"background: #E3F2FD;\"><td>Ich</th><td><strong>lerne</strong></th><td>Deutsch.</th><td>Я учу немецкий.</th></tr><tr style=\"background: #F5F5F5;\"><td>Er</th><td><strong>kommt</strong></th><td>nach Hause.</th><td>Он приходит домой.</th></tr><tr style=\"background: #E3F2FD;\"><td>Wir</th><td><strong>spielen</strong></th><td>Fußball.</th><td>Мы играем в футбол.</th></tr><tr style=\"background: #F5F5F5;\"><td>Das Kind</th><td><strong>schläft</strong></th><td>gut.</th><td>Ребёнок спит хорошо.</th></tr></table><h3>📌 Инверсия: когда предложение начинается не с подлежащего</h3><p>Если предложение начинается с обстоятельства (сегодня, завтра, там, поэтому), то <strong>подлежащее и глагол меняются местами</strong>.</p><p><strong>Схема:</strong> Обстоятельство — ГЛАГОЛ — подлежащее — ...</p><table border=\"1\" cellpadding=\"12\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\"><tr style=\"background: #3B6FE0; color: white;\"><th>Место 1</th><th>Место 2 (ГЛАГОЛ)</th><th>Место 3 (подлежащее)</th><th>Остальное</th><th>Перевод</th><tr><tr style=\"background: #E3F2FD;\"><td>Heute</th><td><strong>lerne</strong></th><td>ich</th><td>Deutsch.</th><td>Сегодня я учу немецкий.</th></tr><tr style=\"background: #F5F5F5;\"><td>Morgen</th><td><strong>fährt</strong></th><td>er</th><td>nach Berlin.</th><td>Завтра он едет в Берлин.</th></tr><tr style=\"background: #E3F2FD;\"><td>Dort</th><td><strong>wohnt</strong></th><td>mein Bruder</th><td>.</th><td>Там живёт мой брат.</th></tr><tr style=\"background: #F5F5F5;\"><td>Deshalb</th><td><strong>bin</strong></th><td>ich</th><td>müde.</th><td>Поэтому я устал.</th></tr></table><div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\"><strong>💡 ПРОСТАЯ ЗАПОМИНАЛКА:</strong><br>«Сначала глагол — это вопрос. А потом глагол — это рассказ.»<br><strong>Kommst du?</strong> (вопрос: глагол на 1-м месте)<br><strong>Du kommst.</strong> (рассказ: глагол на 2-м месте)</div><h3>📌 Вопросительные предложения</h3><p><strong>1. Вопрос без вопросительного слова (Ja/Nein-Frage):</strong> Глагол на ПЕРВОМ месте.</p><table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\"><tr style=\"background: #3B6FE0; color: white;\"><th>Вопрос</th><th>Ответ (да)</th><th>Ответ (нет)</th></tr><tr style=\"background: #E3F2FD;\"><td><strong>Kommst</strong> du?</th><td>Ja, ich komme.</th><td>Nein, ich komme nicht.</th></tr><tr style=\"background: #F5F5F5;\"><td><strong>Hast</strong> du Zeit?</th><td>Ja, ich habe Zeit.</th><td>Nein, ich habe keine Zeit.</th></tr><tr style=\"background: #E3F2FD;\"><td><strong>Lernst</strong> du Deutsch?</th><td>Ja, ich lerne Deutsch.</th><td>Nein, ich lerne nicht Deutsch.</th></tr></table><p><strong>2. Вопрос с вопросительным словом (W-Frage):</strong> Вопросительное слово на 1-м месте, глагол на 2-м.</p><table border=\"1\" cellpadding=\"10\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\"><tr style=\"background: #3B6FE0; color: white;\"><th>Вопросительное слово</th><th>Глагол (2-е место)</th><th>Подлежащее</th><th>Перевод</th><tr><tr style=\"background: #E3F2FD;\"><td>Wo</th><td><strong>wohnst</strong></th><td>du</th><td>Где ты живёшь?</th></tr><tr style=\"background: #F5F5F5;\"><td>Was</th><td><strong>machst</strong></th><td>du</th><td>Что ты делаешь?</th></tr><tr style=\"background: #E3F2FD;\"><td>Wie</th><td><strong>heißt</strong></th><td>du</th><td>Как тебя зовут?</th></tr></table><h3>📌 Отрицание в предложении</h3><p>Частица <strong>nicht</strong> (не) ставится <strong>после глагола</strong>.</p><ul><li>Ich lerne <strong>nicht</strong> Deutsch. — Я не учу немецкий.</li><li>Er kommt <strong>nicht</strong> nach Hause. — Он не приходит домой.</li><li>Wir sind <strong>nicht</strong> müde. — Мы не устали.</li></ul><div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\"><strong>⚠️ ТИПИЧНЫЕ ОШИБКИ РУССКОГОВОРЯЩИХ:</strong><br>❌ Ich <strong>Deutsch lerne</strong> — глагол НЕ на втором месте!<br>✅ <strong>Ich lerne</strong> Deutsch.<br>❌ <strong>Lerne ich Deutsch</strong> — порядок для вопроса, не для рассказа!<br>✅ <strong>Ich lerne Deutsch.</strong></div><h3>📌 Итог урока</h3><ul><li>В повествовательном предложении глагол всегда на 2-м месте</li><li>В вопросе без вопросительного слова глагол на 1-м месте</li><li>В вопросе с W-Wort: W-Wort → глагол → подлежащее</li><li>При инверсии (начало с обстоятельства): обстоятельство → глагол → подлежащее</li><li>Отрицание nicht ставится после глагола</li></ul>",
   "examples": [
     {"de": "Ich lerne Deutsch.", "ru": "Я учу немецкий."},
     {"de": "Heute lerne ich Deutsch.", "ru": "Сегодня я учу немецкий."},
@@ -16,112 +16,35 @@
     {"de": "Deshalb bin ich müde.", "ru": "Поэтому я устал."}
   ],
   "exercises": [
-    {
-      "type": "transform",
-      "question": "Поставьте глагол на правильное место (2-е):",
-      "sentence": "Ich Deutsch lernen.",
-      "answer": "Ich lerne Deutsch",
-      "hint": "Глагол должен быть на втором месте: lerne"
-    },
-    {
-      "type": "transform",
-      "question": "Сделайте инверсию (начните с 'Heute'):",
-      "sentence": "Ich lerne Deutsch.",
-      "answer": "Heute lerne ich Deutsch",
-      "hint": "Heute на первом месте, затем глагол, затем подлежащее"
-    },
-    {
-      "type": "transform",
-      "question": "Переделайте в вопрос (Ja/Nein):",
-      "sentence": "Du lernst Deutsch.",
-      "answer": "Lernst du Deutsch",
-      "hint": "Глагол на первое место"
-    },
-    {
-      "type": "fill",
-      "question": "Составьте вопрос с 'Wo':",
-      "sentence": "___ du? (wohnen)",
-      "answer": "Wo wohnst du",
-      "hint": "W-Frage: Wo + глагол (wohnst) + подлежащее (du)"
-    },
-    {
-      "type": "transform",
-      "question": "Переделайте в отрицание (c 'nicht'):",
-      "sentence": "Ich lerne Deutsch.",
-      "answer": "Ich lerne nicht Deutsch",
-      "hint": "nicht после глагола"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте правильный порядок слов:",
-      "sentence": "___ (heute / ich / lerne / Deutsch)",
-      "answer": "heute lerne ich deutsch",
-      "hint": "Инверсия: обстоятельство → глагол → подлежащее → остальное"
-    },
-    {
-      "type": "fill",
-      "question": "Составьте вопрос с 'Was':",
-      "sentence": "___ du? (machen)",
-      "answer": "Was machst du",
-      "hint": "Was + machst + du"
-    },
-    {
-      "type": "choice",
-      "question": "Выберите правильный порядок слов:",
-      "sentence": "___ nach Berlin?",
-      "options": ["Fährst du", "Du fährst", "Fährt du", "Du fährt"],
-      "answer": "Fährst du",
-      "hint": "Вопрос: глагол на первом месте"
-    },
-    {
-      "type": "choice",
-      "question": "Выберите правильный порядок слов:",
-      "sentence": "___ nach Hause.",
-      "options": ["Ich gehe", "Gehe ich", "Ich gehen", "Gehen ich"],
-      "answer": "Ich gehe",
-      "hint": "Повествование: подлежащее → глагол"
-    },
-    {
-      "type": "fill",
-      "question": "Переведите на немецкий:",
-      "sentence": "Я не учу немецкий.",
-      "answer": "ich lerne nicht deutsch",
-      "hint": "nicht после глагола"
-    },
-    {
-      "type": "fill",
-      "question": "Переведите на немецкий (вопрос):",
-      "sentence": "Где ты живёшь?",
-      "answer": "wo wohnst du",
-      "hint": "Wo + wohnst + du"
-    },
-    {
-      "type": "fill",
-      "question": "Переведите на немецкий (инверсия):",
-      "sentence": "Завтра я еду домой.",
-      "answer": "morgen fahre ich nach hause",
-      "hint": "Morgen + fahre + ich + nach Hause"
-    },
-    {
-      "type": "fill",
-      "question": "Переведите на немецкий (повествование):",
-      "sentence": "Он живёт в Берлине.",
-      "answer": "er wohnt in berlin",
-      "hint": "Er + wohnt + in Berlin"
-    },
-    {
-      "type": "transform",
-      "question": "Переделайте в вопрос с 'Warum':",
-      "sentence": "Du lernst Deutsch.",
-      "answer": "Warum lernst du Deutsch",
-      "hint": "Warum + lernst + du + Deutsch"
-    },
-    {
-      "type": "fill",
-      "question": "Переведите на немецкий (вопрос с 'Wie'):",
-      "sentence": "Как тебя зовут?",
-      "answer": "wie heißt du",
-      "hint": "Wie + heißt + du"
-    }
+    {"type": "transform", "question": "Поставьте глагол на правильное место (2-е):", "sentence": "Ich Deutsch lernen.", "answer": "Ich lerne Deutsch", "hint": "Глагол должен быть на втором месте: lerne"},
+    {"type": "transform", "question": "Сделайте инверсию (начните с 'Heute'):", "sentence": "Ich lerne Deutsch.", "answer": "Heute lerne ich Deutsch", "hint": "Heute на первом месте, затем глагол, затем подлежащее"},
+    {"type": "transform", "question": "Переделайте в вопрос (Ja/Nein):", "sentence": "Du lernst Deutsch.", "answer": "Lernst du Deutsch", "hint": "Глагол на первое место"},
+    {"type": "fill", "question": "Составьте вопрос с 'Wo':", "sentence": "___ du? (wohnen)", "answer": "Wo wohnst du", "hint": "W-Frage: Wo + глагол (wohnst) + подлежащее (du)"},
+    {"type": "transform", "question": "Переделайте в отрицание (c 'nicht'):", "sentence": "Ich lerne Deutsch.", "answer": "Ich lerne nicht Deutsch", "hint": "nicht после глагола"},
+    {"type": "fill", "question": "Вставьте правильный порядок слов:", "sentence": "___ (heute / ich / lerne / Deutsch)", "answer": "heute lerne ich deutsch", "hint": "Инверсия: обстоятельство → глагол → подлежащее"},
+    {"type": "fill", "question": "Составьте вопрос с 'Was':", "sentence": "___ du? (machen)", "answer": "Was machst du", "hint": "Was + machst + du"},
+    {"type": "choice", "question": "Выберите правильный порядок слов:", "sentence": "___ nach Berlin?", "options": ["Fährst du", "Du fährst", "Fährt du", "Du fährt"], "answer": "Fährst du", "hint": "Вопрос: глагол на первом месте"},
+    {"type": "choice", "question": "Выберите правильный порядок слов:", "sentence": "___ nach Hause.", "options": ["Ich gehe", "Gehe ich", "Ich gehen", "Gehen ich"], "answer": "Ich gehe", "hint": "Повествование: подлежащее → глагол"},
+    {"type": "transform", "question": "Переделайте в вопрос с 'Warum':", "sentence": "Du lernst Deutsch.", "answer": "Warum lernst du Deutsch", "hint": "Warum + lernst + du + Deutsch"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Я не учу немецкий.", "answer": "ich lerne nicht deutsch", "hint": "nicht после глагола"},
+    {"type": "fill", "question": "Переведите на немецкий (вопрос):", "sentence": "Где ты живёшь?", "answer": "wo wohnst du", "hint": "Wo + wohnst + du"},
+    {"type": "fill", "question": "Переведите на немецкий (инверсия):", "sentence": "Завтра я еду домой.", "answer": "morgen fahre ich nach hause", "hint": "Morgen + fahre + ich + nach Hause"},
+    {"type": "fill", "question": "Переведите на немецкий (повествование):", "sentence": "Он живёт в Берлине.", "answer": "er wohnt in berlin", "hint": "Er + wohnt + in Berlin"},
+    {"type": "fill", "question": "Переведите на немецкий (вопрос с 'Wie'):", "sentence": "Как тебя зовут?", "answer": "wie heißt du", "hint": "Wie + heißt + du"},
+    {"type": "fill", "question": "Переведите на немецкий (вопрос с 'Was'):", "sentence": "Что ты делаешь?", "answer": "was machst du", "hint": "Was + machst + du"},
+    {"type": "fill", "question": "Переведите на немецкий (инверсия с 'Deshalb'):", "sentence": "Поэтому я устал.", "answer": "deshalb bin ich müde", "hint": "Deshalb + bin + ich + müde"},
+    {"type": "fill", "question": "Переведите на немецкий (отрицание):", "sentence": "Он не приходит домой.", "answer": "er kommt nicht nach hause", "hint": "nicht после глагола"},
+    {"type": "fill", "question": "Переведите на немецкий (вопрос):", "sentence": "Ты идёшь с нами?", "answer": "kommst du mit", "hint": "Вопрос: глагол на первом месте"},
+    {"type": "fill", "question": "Переведите на немецкий (повествование):", "sentence": "Мы играем в футбол.", "answer": "wir spielen fußball", "hint": "Wir + spielen + Fußball"},
+    {"type": "transform", "question": "Переделайте в вопрос (Ja/Nein):", "sentence": "Er wohnt in Berlin.", "answer": "Wohnt er in Berlin", "hint": "Глагол на первое место"},
+    {"type": "transform", "question": "Переделайте в инверсию (начните с 'Morgen'):", "sentence": "Ich fahre nach Berlin.", "answer": "Morgen fahre ich nach Berlin", "hint": "Morgen + fahre + ich + nach Berlin"},
+    {"type": "fill", "question": "Переведите на немецкий (отрицание):", "sentence": "Мы не устали.", "answer": "wir sind nicht müde", "hint": "nicht после глагола"},
+    {"type": "fill", "question": "Переведите на немецкий (вопрос с 'Woher'):", "sentence": "Откуда ты?", "answer": "woher kommst du", "hint": "Woher + kommst + du"},
+    {"type": "fill", "question": "Переведите на немецкий (повествование):", "sentence": "Ребёнок спит хорошо.", "answer": "das kind schläft gut", "hint": "Das Kind + schläft + gut"},
+    {"type": "fill", "question": "Переведите на немецкий (инверсия с 'Jetzt'):", "sentence": "Сейчас я иду домой.", "answer": "jetzt gehe ich nach hause", "hint": "Jetzt + gehe + ich + nach Hause"},
+    {"type": "fill", "question": "Переведите на немецкий (вопрос с 'Wann'):", "sentence": "Когда ты придёшь?", "answer": "wann kommst du", "hint": "Wann + kommst + du"},
+    {"type": "fill", "question": "Переведите на немецкий (отрицание):", "sentence": "Я не говорю по-немецки.", "answer": "ich spreche nicht deutsch", "hint": "nicht после глагола"},
+    {"type": "fill", "question": "Переведите на немецкий (повествование):", "sentence": "Она моя сестра.", "answer": "sie ist meine schwester", "hint": "Sie + ist + meine Schwester"},
+    {"type": "fill", "question": "Переведите на немецкий (вопрос с 'Wer'):", "sentence": "Кто это?", "answer": "wer ist das", "hint": "Wer + ist + das"}
   ]
 }
