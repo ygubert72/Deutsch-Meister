@@ -11,7 +11,7 @@ let grammarExercises = [];
 let currentGrammarExerciseIndex = 0;
 let grammarBlinkTimer = null;
 
-// ========== ЗАГРУЗКА ГРАММАТИКИ ==========
+// ========== ЗАГРУЗКА ГРАММАТИКИ (исправлены пути) ==========
 async function loadGrammarData() {
     console.log('loadGrammarData: загрузка грамматики по новой структуре');
     const levels = ['A1', 'A2', 'B1', 'B2', 'C1'];
@@ -20,6 +20,7 @@ async function loadGrammarData() {
         grammarDB[level] = [];
         
         try {
+            // ИСПРАВЛЕНО: убран /Deutsch-Meister/ в начале
             const indexUrl = `docs/grammar/${level}/index.json`;
             const indexResp = await fetch(indexUrl);
             
@@ -32,6 +33,7 @@ async function loadGrammarData() {
             console.log(`📚 Загружаю ${level}: ${index.lessons.length} уроков`);
             
             for (const lessonPath of index.lessons) {
+                // ИСПРАВЛЕНО: убран /Deutsch-Meister/ в начале
                 const lessonUrl = `docs/grammar/${level}/${lessonPath}`;
                 const lessonResp = await fetch(lessonUrl);
                 
