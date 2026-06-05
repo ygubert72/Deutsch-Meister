@@ -42,6 +42,7 @@
     {"type": "fill", "question": "Переведите на немецкий (Adversativsatz):", "sentence": "Тогда как мой брат большой, я маленький.", "answer": "während mein bruder groß ist bin ich klein", "hint": "während + ist в конце"},
     {"type": "fill", "question": "Переведите на немецкий (Finalsatz mit um...zu):", "sentence": "Я учу немецкий, чтобы работать в Германии.", "answer": "ich lerne deutsch um in deutschland zu arbeiten", "hint": "um...zu + Infinitiv"},
     {"type": "fill", "question": "Переведите на немецкий (Konjunktiv I):", "sentence": "Он сказал, что придёт.", "answer": "er sagte dass er komme", "hint": "komme (Konjunktiv I)"},
-    {"type": "fill", "question": "Переведите на немецкий (Nominalisierung mit -ung):", "sentence": "Перевод текста был трудным.", "answer": "die übersetzung des textes war schwierig", "hint": "die Übersetzung + Genitiv"}
+    {"type": "fill", "question": "Переведите на немецкий (Nominalisierung mit -ung):", "sentence": "Перевод текста был трудным.", "answer": "die übersetzung des textes war schwierig", "hint": "die Übersetzung + Genitiv"},
+    {"type": "fill", "question": "Переведите на немецкий (Fazit):", "sentence": "Подводя итог, можно сказать, что преимущества перевешивают.", "answer": "zusammenfassend kann man sagen dass die vorteile überwiegen", "hint": "Zusammenfassend kann man sagen, dass..."}
   ]
 }
