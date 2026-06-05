@@ -2,7 +2,7 @@
   "lesson": 3,
   "title": "Личные местоимения и глагол sein (быть, находиться)",
   "level": "A1",
-  "theory": "<h3>📌 Что такое личные местоимения?</h3>\n\n<p>Личные местоимения указывают на людей или предметы без названия: <strong>я, ты, он, она, оно, мы, вы, они, Вы</strong>.</p>\n\n<p>В немецком языке местоимения <strong>обязательны</strong> — их нельзя опускать, как в русском.</p>\n\n<div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\">\n  <strong>❌ ОШИБКА РУССКОГОВОРЯЩИХ:</strong><br>\n  В русском: «Я студент» — «Я» можно опустить, но смысл понятен.<br>\n  В немецком: <strong>«Ich bin Student»</strong> — местоимение <strong>обязательно</strong>!\n</div>\n\n<h3>📌 Таблица личных местоимений</h3>\n\n<table border=\"1\" cellpadding=\"12\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Русский</th>\n    <th>Немецкий</th>\n    <th>Пример</th>\n    </tr>\n  <tr><td>я</td><td style=\"font-size: 20px; font-weight: bold;\">ich</td><td>ich lerne</td></tr>\n  <tr style=\"background: #F5F5F5;\"><td>ты</td><td style=\"font-size: 20px; font-weight: bold;\">du</td><td>du lernst</td></tr>\n  <tr><td>он</td><td style=\"font-size: 20px; font-weight: bold;\">er</td><td>er lernt</td></tr>\n  <tr style=\"background: #F5F5F5;\"><td>она</td><td style=\"font-size: 20px; font-weight: bold;\">sie</td><td>sie lernt</td></tr>\n  <tr><td>оно</td><td style=\"font-size: 20px; font-weight: bold;\">es</td><td>es lernt</td></tr>\n  <tr style=\"background: #F5F5F5;\"><td>мы</td><td style=\"font-size: 20px; font-weight: bold;\">wir</td><td>wir lernen</td></tr>\n  <tr><td>вы</td><td style=\"font-size: 20px; font-weight: bold;\">ihr</td><td>ihr lernt</td></tr>\n  <tr style=\"background: #F5F5F5;\"><td>они</td><td style=\"font-size: 20px; font-weight: bold;\">sie</td><td>sie lernen</td></tr>\n  <tr><td>Вы (вежливое)</td><td style=\"font-size: 20px; font-weight: bold; color: #C2185B;\">Sie</td><td>Sie lernen</td></tr>\n</table>\n\n<h3>📌 Глагол sein — самый важный глагол</h3>\n\n<p><strong>sein</strong> переводится как «быть», «находиться», «являться».</p>\n\n<h3>📌 Спряжение глагола sein</h3>\n\n<table border=\"1\" cellpadding=\"12\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\">\n  <tr style=\"background: #3B6FE0; color: white;\">\n    <th>Местоимение</th>\n    <th>Форма sein</th>\n    <th>Пример</th>\n    <th>Перевод</th>\n    </tr>\n  <tr><td>ich</td><td style=\"font-size: 20px; font-weight: bold; color: #1565C0;\">bin</td><td>Ich bin Student.</td><td>Я студент.</td></tr>\n  <tr style=\"background: #F5F5F5;\"><td>du</td><td style=\"font-size: 20px; font-weight: bold; color: #1565C0;\">bist</td><td>Du bist nett.</td><td>Ты милый.</td></tr>\n  <tr><td>er/sie/es</td><td style=\"font-size: 20px; font-weight: bold; color: #1565C0;\">ist</td><td>Er ist mein Bruder.</td><td>Он мой брат.</td></tr>\n  <tr style=\"background: #F5F5F5;\"><td>wir</td><td style=\"font-size: 20px; font-weight: bold; color: #1565C0;\">sind</td><td>Wir sind glücklich.</td><td>Мы счастливы.</td></tr>\n  <tr><td>ihr</td><td style=\"font-size: 20px; font-weight: bold; color: #1565C0;\">seid</td><td>Ihr seid laut.</td><td>Вы громкие.</td></tr>\n  <tr style=\"background: #F5F5F5;\"><td>sie/Sie</td><td style=\"font-size: 20px; font-weight: bold; color: #1565C0;\">sind</td><td>Sie sind da.</td><td>Они/Вы здесь.</td></tr>\n</table>\n\n<h3>📌 Запоминалка</h3>\n<p>ich bin, du bist, er ist, wir sind, ihr seid, sie sind</p>\n\n<h3>📌 Вопросы с sein</h3>\n<p>В немецком языке вопрос без вопросительного слова: <strong>глагол на первом месте</strong>.</p>\n<p>Bist du müde? — Ja, ich bin müde. / Nein, ich bin nicht müde.</p>\n\n<h3>📌 Отрицание с sein</h3>\n<p>Отрицание nicht ставится после глагола sein: Ich bin nicht müde.</p>\n\n<h3>📌 Полезные фразы</h3>\n<ul>\n  <li>Wie geht es dir? — Как дела?</li>\n  <li>Mir geht es gut. — У меня всё хорошо.</li>\n  <li>Das ist super! — Это супер!</li>\n  <li>Wo bist du? — Где ты?</li>\n  <li>Ich bin hier. — Я здесь.</li>\n</ul>",
+  "theory": "<h3>📌 Что такое личные местоимения?</h3><p>Личные местоимения указывают на людей или предметы без названия: <strong>я, ты, он, она, оно, мы, вы, они, Вы</strong>.</p><p>В немецком языке местоимения <strong>обязательны</strong> — их нельзя опускать, как в русском.</p><div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\"><strong>❌ ОШИБКА РУССКОГОВОРЯЩИХ:</strong><br>В русском: «Я студент» — «Я» можно опустить, но смысл понятен.<br>В немецком: <strong>«Ich bin Student»</strong> — местоимение <strong>обязательно</strong>!</div><h3>📌 Таблица личных местоимений</h3><table border=\"1\" cellpadding=\"12\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\"><tr style=\"background: #3B6FE0; color: white;\"><th>Русский</th><th>Немецкий</th><th>Произношение</th><th>Пример</th></tr><tr style=\"background: #E3F2FD;\"><td>я</td><td style=\"font-size: 20px; font-weight: bold;\">ich</td><td>[их]</td><td>ich lerne</td></tr><tr style=\"background: #F5F5F5;\"><td>ты</td><td style=\"font-size: 20px; font-weight: bold;\">du</td><td>[ду]</td><td>du lernst</td></tr><tr style=\"background: #E3F2FD;\"><td>он</td><td style=\"font-size: 20px; font-weight: bold;\">er</td><td>[эр]</td><td>er lernt</td></tr><tr style=\"background: #F5F5F5;\"><td>она</td><td style=\"font-size: 20px; font-weight: bold;\">sie</td><td>[зи]</td><td>sie lernt</td></tr><tr style=\"background: #E3F2FD;\"><td>оно</td><td style=\"font-size: 20px; font-weight: bold;\">es</td><td>[эс]</td><td>es lernt</td></tr><tr style=\"background: #F5F5F5;\"><td>мы</td><td style=\"font-size: 20px; font-weight: bold;\">wir</td><td>[вир]</td><td>wir lernen</td></tr><tr style=\"background: #E3F2FD;\"><td>вы</td><td style=\"font-size: 20px; font-weight: bold;\">ihr</td><td>[ир]</td><td>ihr lernt</td></tr><tr style=\"background: #F5F5F5;\"><td>они</td><td style=\"font-size: 20px; font-weight: bold;\">sie</td><td>[зи]</td><td>sie lernen</td></tr><tr style=\"background: #E3F2FD;\"><td>Вы (вежл.)</td><td style=\"font-size: 20px; font-weight: bold; color: #C2185B;\">Sie</td><td>[зи]</td><td>Sie lernen</td></tr></table><h3>📌 Глагол sein — самый важный глагол</h3><p><strong>sein</strong> переводится как «быть», «находиться», «являться».</p><h3>📌 Спряжение глагола sein</h3><table border=\"1\" cellpadding=\"12\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\"><tr style=\"background: #3B6FE0; color: white;\"><th>Местоимение</th><th>Форма sein</th><th>Пример</th><th>Перевод</th></tr><tr style=\"background: #E3F2FD;\"><td>ich</td><td style=\"font-size: 20px; font-weight: bold; color: #1565C0;\">bin</td><td>Ich bin Student.</td><td>Я студент.</td></tr><tr style=\"background: #F5F5F5;\"><td>du</td><td style=\"font-size: 20px; font-weight: bold; color: #1565C0;\">bist</td><td>Du bist nett.</td><td>Ты милый.</td></tr><tr style=\"background: #E3F2FD;\"><td>er/sie/es</td><td style=\"font-size: 20px; font-weight: bold; color: #1565C0;\">ist</td><td>Er ist mein Bruder.</td><td>Он мой брат.</td></tr><tr style=\"background: #F5F5F5;\"><td>wir</td><td style=\"font-size: 20px; font-weight: bold; color: #1565C0;\">sind</td><td>Wir sind glücklich.</td><td>Мы счастливы.</td></tr><tr style=\"background: #E3F2FD;\"><td>ihr</td><td style=\"font-size: 20px; font-weight: bold; color: #1565C0;\">seid</td><td>Ihr seid laut.</td><td>Вы громкие.</td></tr><tr style=\"background: #F5F5F5;\"><td>sie/Sie</td><td style=\"font-size: 20px; font-weight: bold; color: #1565C0;\">sind</td><td>Sie sind da.</td><td>Они/Вы здесь.</td></tr></table><div class=\"info-box\" style=\"background: #E8F0FE; padding: 15px; border-radius: 12px; margin: 15px 0;\"><strong>🎯 ЗАПОМИНАЛКА:</strong><br>ich bin, du bist, er ist, wir sind, ihr seid, sie sind</div><h3>📌 Вопросы с sein</h3><p>В немецком языке вопрос без вопросительного слова: <strong>глагол на первом месте</strong>.</p><p>Bist du müde? — Ja, ich bin müde. / Nein, ich bin nicht müde.</p><h3>📌 Отрицание с sein</h3><p>Отрицание <strong>nicht</strong> ставится <strong>после</strong> глагола sein.</p><ul><li>Ich bin <strong>nicht</strong> müde. — Я не устал.</li><li>Er ist <strong>nicht</strong> mein Bruder. — Он не мой брат.</li><li>Wir sind <strong>nicht</strong> zu Hause. — Мы не дома.</li></ul><div class=\"warning-box\" style=\"background: #FFEBEE; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #F44336;\"><strong>⚠️ ТИПИЧНЫЕ ОШИБКИ:</strong><br>❌ Ich <strong>sein</strong> müde — нельзя, нужно спрягать!<br>✅ Ich <strong>bin</strong> müde.<br><br>❌ Du <strong>bin</strong> nett — неправильная форма!<br>✅ Du <strong>bist</strong> nett.<br><br>❌ Er <strong>sind</strong> mein Bruder — неправильно!<br>✅ Er <strong>ist</strong> mein Bruder.</div><h3>📌 Устойчивые выражения с sein</h3><table border=\"1\" cellpadding=\"8\" style=\"border-collapse: collapse; width: 100%; margin: 15px 0;\"><tr style=\"background: #3B6FE0; color: white;\"><th>Выражение</th><th>Перевод</th><th>Пример</th></tr><tr style=\"background: #E3F2FD;\"><td>einverstanden sein</td><td>быть согласным</td><td>Ich bin einverstanden.</td></tr><tr style=\"background: #F5F5F5;\"><td>fertig sein</td><td>быть готовым</td><td>Ich bin fertig.</td></tr><tr style=\"background: #E3F2FD;\"><td>gesund sein</td><td>быть здоровым</td><td>Er ist gesund.</td></tr><tr style=\"background: #F5F5F5;\"><td>krank sein</td><td>быть больным</td><td>Sie ist krank.</td></tr><tr style=\"background: #E3F2FD;\"><td>müde sein</td><td>быть усталым</td><td>Wir sind müde.</td></tr><tr style=\"background: #F5F5F5;\"><td>hungrig sein</td><td>быть голодным</td><td>Ich bin hungrig.</td></tr><tr style=\"background: #E3F2FD;\"><td>durstig sein</td><td>хотеть пить</td><td>Er ist durstig.</td></tr><tr style=\"background: #F5F5F5;\"><td>sicher sein</td><td>быть уверенным</td><td>Bist du sicher?</td></tr></table><h3>📌 Полезные фразы для ежедневного общения</h3><ul><li><strong>Wie geht es dir?</strong> — Как дела?</li><li><strong>Mir geht es gut.</strong> — У меня всё хорошо.</li><li><strong>Das ist super!</strong> — Это супер!</li><li><strong>Wo bist du?</strong> — Где ты?</li><li><strong>Ich bin hier.</strong> — Я здесь.</li><li><strong>Das ist wichtig.</strong> — Это важно.</li><li><strong>Das ist nicht wichtig.</strong> — Это не важно.</li><li><strong>Bist du bereit?</strong> — Ты готов?</li><li><strong>Ich bin bereit.</strong> — Я готов.</li></ul><h3>📖 Пошаговый алгоритм</h3><ol><li>Определи, кто совершает действие (я, ты, он...)</li><li>Вспомни нужную форму глагола sein (bin, bist, ist, sind, seid, sind)</li><li>Если вопрос — поставь глагол на первое место</li><li>Если отрицание — добавь <strong>nicht</strong> после глагола</li><li>Не забывай про местоимение! Оно обязательно!</li></ol>",
   "examples": [
     {"de": "Ich bin Student.", "ru": "Я студент."},
     {"de": "Du bist mein Freund.", "ru": "Ты мой друг."},
@@ -16,112 +16,35 @@
     {"de": "Ich bin nicht müde.", "ru": "Я не устал."}
   ],
   "exercises": [
-    {
-      "type": "fill",
-      "question": "Вставьте правильную форму sein:",
-      "sentence": "Ich ___ Student.",
-      "answer": "bin",
-      "hint": "ich → bin"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте правильную форму sein:",
-      "sentence": "Du ___ mein Freund.",
-      "answer": "bist",
-      "hint": "du → bist"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте правильную форму sein:",
-      "sentence": "Er ___ mein Bruder.",
-      "answer": "ist",
-      "hint": "er → ist"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте правильную форму sein:",
-      "sentence": "Sie ___ meine Schwester.",
-      "answer": "ist",
-      "hint": "sie (она) → ist"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте правильную форму sein:",
-      "sentence": "Wir ___ glücklich.",
-      "answer": "sind",
-      "hint": "wir → sind"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте правильную форму sein:",
-      "sentence": "Ihr ___ zu Hause.",
-      "answer": "seid",
-      "hint": "ihr → seid"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте правильную форму sein:",
-      "sentence": "Sie (они) ___ in Berlin.",
-      "answer": "sind",
-      "hint": "sie (они) → sind"
-    },
-    {
-      "type": "fill",
-      "question": "Вставьте правильную форму sein:",
-      "sentence": "___ du müde?",
-      "answer": "Bist",
-      "hint": "Вопрос: глагол на первом месте, du → bist"
-    },
-    {
-      "type": "choice",
-      "question": "Выберите правильную форму:",
-      "sentence": "Ich ___ Arzt.",
-      "options": ["bin", "bist", "ist", "sind"],
-      "answer": "bin",
-      "hint": "ich → bin"
-    },
-    {
-      "type": "choice",
-      "question": "Выберите правильную форму:",
-      "sentence": "Wir ___ in der Schule.",
-      "options": ["bin", "bist", "ist", "sind"],
-      "answer": "sind",
-      "hint": "wir → sind"
-    },
-    {
-      "type": "transform",
-      "question": "Переделайте в отрицание:",
-      "sentence": "Ich bin müde.",
-      "answer": "Ich bin nicht müde",
-      "hint": "nicht ставится после глагола"
-    },
-    {
-      "type": "transform",
-      "question": "Переделайте в вопрос:",
-      "sentence": "Du bist zu Hause.",
-      "answer": "Bist du zu Hause",
-      "hint": "Глагол на первое место"
-    },
-    {
-      "type": "fill",
-      "question": "Переведите на немецкий:",
-      "sentence": "Я студент.",
-      "answer": "ich bin student",
-      "hint": "Ich bin Student."
-    },
-    {
-      "type": "fill",
-      "question": "Переведите на немецкий:",
-      "sentence": "Ты дома.",
-      "answer": "du bist zu hause",
-      "hint": "Du bist zu Hause."
-    },
-    {
-      "type": "fill",
-      "question": "Переведите на немецкий:",
-      "sentence": "Мы счастливы.",
-      "answer": "wir sind glücklich",
-      "hint": "Wir sind glücklich."
-    }
+    {"type": "fill", "question": "Вставьте правильное местоимение:", "sentence": "___ bin Student.", "answer": "Ich", "hint": "глагол bin → местоимение ich"},
+    {"type": "fill", "question": "Вставьте правильное местоимение:", "sentence": "___ bist mein Freund.", "answer": "Du", "hint": "глагол bist → местоимение du"},
+    {"type": "fill", "question": "Вставьте правильную форму sein:", "sentence": "Ich ___ Student.", "answer": "bin", "hint": "ich → bin"},
+    {"type": "fill", "question": "Вставьте правильную форму sein:", "sentence": "Du ___ mein Freund.", "answer": "bist", "hint": "du → bist"},
+    {"type": "fill", "question": "Вставьте правильную форму sein:", "sentence": "Er ___ mein Bruder.", "answer": "ist", "hint": "er → ist"},
+    {"type": "fill", "question": "Вставьте правильную форму sein:", "sentence": "Sie ___ meine Schwester.", "answer": "ist", "hint": "sie (она) → ist"},
+    {"type": "fill", "question": "Вставьте правильную форму sein:", "sentence": "Wir ___ glücklich.", "answer": "sind", "hint": "wir → sind"},
+    {"type": "fill", "question": "Вставьте правильную форму sein:", "sentence": "Ihr ___ zu Hause.", "answer": "seid", "hint": "ihr → seid"},
+    {"type": "fill", "question": "Вставьте правильную форму sein:", "sentence": "Sie (они) ___ in Berlin.", "answer": "sind", "hint": "sie (они) → sind"},
+    {"type": "fill", "question": "Сделайте вопрос (глагол на 1-е место):", "sentence": "___ du müde?", "answer": "Bist", "hint": "Вопрос: глагол на первом месте, du → bist"},
+    {"type": "fill", "question": "Сделайте вопрос:", "sentence": "___ ihr zu Hause?", "answer": "Seid", "hint": "ihr → seid, глагол на первое место"},
+    {"type": "fill", "question": "Сделайте вопрос:", "sentence": "___ Sie (Вы) Herr Schmidt?", "answer": "Sind", "hint": "Sie (вежл.) → sind"},
+    {"type": "transform", "question": "Переделайте в отрицание с nicht:", "sentence": "Ich bin müde.", "answer": "Ich bin nicht müde", "hint": "nicht после глагола"},
+    {"type": "transform", "question": "Переделайте в отрицание:", "sentence": "Er ist mein Bruder.", "answer": "Er ist nicht mein Bruder", "hint": "nicht после глагола"},
+    {"type": "transform", "question": "Переделайте в отрицание:", "sentence": "Wir sind zu Hause.", "answer": "Wir sind nicht zu Hause", "hint": "nicht после глагола"},
+    {"type": "choice", "question": "Выберите правильную форму sein:", "sentence": "Ich ___ Arzt.", "options": ["bin", "bist", "ist", "sind"], "answer": "bin", "hint": "ich → bin"},
+    {"type": "choice", "question": "Выберите правильную форму:", "sentence": "Wir ___ in der Schule.", "options": ["bin", "bist", "ist", "sind"], "answer": "sind", "hint": "wir → sind"},
+    {"type": "choice", "question": "Выберите правильную форму:", "sentence": "___ du bereit?", "options": ["Bin", "Bist", "Ist", "Sind"], "answer": "Bist", "hint": "du → bist, вопрос начинается с глагола"},
+    {"type": "choice", "question": "Выберите правильную форму:", "sentence": "___ Sie (Вы) Frau Müller?", "options": ["Bin", "Bist", "Ist", "Sind"], "answer": "Sind", "hint": "Sie (вежл.) → sind"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Я студент.", "answer": "ich bin student", "hint": "Ich bin Student."},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Ты дома.", "answer": "du bist zu hause", "hint": "Du bist zu Hause."},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Мы счастливы.", "answer": "wir sind glücklich", "hint": "Wir sind glücklich."},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Он мой брат.", "answer": "er ist mein bruder", "hint": "Er ist mein Bruder."},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Она моя сестра.", "answer": "sie ist meine schwester", "hint": "Sie ist meine Schwester."},
+    {"type": "fill", "question": "Переведите на немецкий (отрицание):", "sentence": "Я не устал.", "answer": "ich bin nicht müde", "hint": "Ich bin nicht müde."},
+    {"type": "fill", "question": "Переведите на немецкий (вопрос):", "sentence": "Ты голоден?", "answer": "bist du hungrig", "hint": "Bist du hungrig?"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Где ты?", "answer": "wo bist du", "hint": "Wo bist du?"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Это моя книга.", "answer": "das ist mein buch", "hint": "Das ist mein Buch."},
+    {"type": "fill", "question": "Переведите на немецкий (вопрос):", "sentence": "Вы господин Шмидт?", "answer": "sind sie herr schmidt", "hint": "Sind Sie Herr Schmidt?"},
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Мы не дома.", "answer": "wir sind nicht zu hause", "hint": "Wir sind nicht zu Hause."}
   ]
 }
