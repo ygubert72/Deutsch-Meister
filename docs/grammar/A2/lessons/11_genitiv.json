@@ -38,11 +38,5 @@
     {"type": "fill", "question": "Переведите на немецкий:", "sentence": "В течение недели я должен это сделать.", "answer": "innerhalb einer woche muss ich das machen", "hint": "innerhalb + Genitiv"},
     {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Вместо кофе я пью чай.", "answer": "statt des kaffees trinke ich tee", "hint": "statt + Genitiv"},
     {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Согласно отчёту, всё в порядке.", "answer": "laut des berichts ist alles in ordnung", "hint": "laut + Genitiv"},
-    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Конец фильма был неожиданным.", "answer": "das ende des films war überraschend", "hint": "des Films"},
-    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Сумка женщины.", "answer": "die tasche der frau", "hint": "der Frau"},
-    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Дом ребёнка.", "answer": "das haus des kindes", "hint": "des Kindes"},
-    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Работа студентов.", "answer": "die arbeit der studenten", "hint": "der Studenten (мн.ч.)"},
-    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Название книги.", "answer": "der titel des buches", "hint": "des Buches"},
-    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Мнение эксперта.", "answer": "die meinung des experten", "hint": "des Experten (слабое склонение)"}
   ]
 }
