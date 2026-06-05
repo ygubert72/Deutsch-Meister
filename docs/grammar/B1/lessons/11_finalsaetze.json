@@ -17,12 +17,17 @@
     {"type": "fill", "question": "Вставьте 'um...zu' oder 'damit':", "sentence": "Er spricht langsam, ___ ich ihn verstehe.", "answer": "damit", "hint": "подлежащее разное → damit"},
     {"type": "fill", "question": "Вставьте 'um...zu' oder 'damit':", "sentence": "Er spart Geld, ___ ein Auto zu kaufen.", "answer": "um", "hint": "подлежащее совпадает → um...zu"},
     {"type": "fill", "question": "Вставьте 'um...zu' oder 'damit':", "sentence": "Ich gebe dir Geld, ___ du ein Auto kaufen kannst.", "answer": "damit", "hint": "подлежащее разное → damit"},
+    {"type": "fill", "question": "Вставьте 'um...zu' oder 'damit':", "sentence": "Wir schreiben es auf, ___ wir es nicht vergessen.", "answer": "damit", "hint": "подлежащее разное → damit"},
     {"type": "fill", "question": "Вставьте 'zu' + Infinitiv:", "sentence": "Ich versuche, ___ ___ (kommen).", "answer": "zu kommen", "hint": "versuchen + zu + Infinitiv"},
     {"type": "fill", "question": "Вставьте 'zu' + Infinitiv:", "sentence": "Er vergisst, ___ ___ (anrufen).", "answer": "anzurufen", "hint": "vergessen + zu + Infinitiv"},
+    {"type": "fill", "question": "Вставьте 'zu' + Infinitiv:", "sentence": "Er beginnt, ___ ___ (arbeiten).", "answer": "zu arbeiten", "hint": "beginnen + zu + Infinitiv"},
+    {"type": "fill", "question": "Вставьте 'zu' + Infinitiv:", "sentence": "Ich hoffe, ___ ___ (sehen).", "answer": "zu sehen", "hint": "hoffen + zu + Infinitiv"},
     {"type": "choice", "question": "Выберите правильный вариант:", "sentence": "Er spart Geld, ___ ein Auto zu kaufen.", "options": ["um", "damit"], "answer": "um", "hint": "подлежащее совпадает → um"},
     {"type": "choice", "question": "Выберите правильный вариант:", "sentence": "Ich gebe dir Geld, ___ du ein Auto kaufen kannst.", "options": ["um", "damit"], "answer": "damit", "hint": "подлежащее разное → damit"},
+    {"type": "choice", "question": "Выберите правильный вариант:", "sentence": "Sie lernt viel, ___ die Prüfung zu bestehen.", "options": ["um", "damit"], "answer": "um", "hint": "подлежащее совпадает → um"},
     {"type": "transform", "question": "Соедините с 'um...zu':", "sentence": "Ich lerne Deutsch. Ich will in Deutschland arbeiten.", "answer": "Ich lerne Deutsch, um in Deutschland zu arbeiten", "hint": "um...zu + Infinitiv"},
     {"type": "transform", "question": "Соедините с 'damit':", "sentence": "Ich lerne Deutsch. Mein Kind soll mir helfen können.", "answer": "Ich lerne Deutsch, damit mein Kind mir helfen kann", "hint": "damit + глагол в конце"},
+    {"type": "transform", "question": "Соедините с 'damit':", "sentence": "Er spricht langsam. Ich soll ihn verstehen.", "answer": "Er spricht langsam, damit ich ihn verstehe", "hint": "damit + verstehe в конце"},
     {"type": "fill", "question": "Переведите на немецкий (um...zu):", "sentence": "Я учу немецкий, чтобы работать в Германии.", "answer": "ich lerne deutsch um in deutschland zu arbeiten", "hint": "um...zu + Infinitiv"},
     {"type": "fill", "question": "Переведите на немецкий (damit):", "sentence": "Я даю тебе деньги, чтобы ты купил машину.", "answer": "ich gebe dir geld damit du ein auto kaufst", "hint": "damit + глагол в конце"},
     {"type": "fill", "question": "Переведите на немецкий (zu + Infinitiv):", "sentence": "Я пытаюсь прийти.", "answer": "ich versuche zu kommen", "hint": "versuchen + zu + kommen"},
@@ -41,6 +46,7 @@
     {"type": "fill", "question": "Переведите на немецкий (damit):", "sentence": "Она готовит ужин, чтобы дети не были голодными.", "answer": "sie kocht das abendessen damit die kinder nicht hungrig sind", "hint": "damit + sind в конце"},
     {"type": "fill", "question": "Переведите на немецкий (um...zu):", "sentence": "Мы едем в Берлин, чтобы посмотреть достопримечательности.", "answer": "wir fahren nach berlin um die sehenswürdigkeiten zu sehen", "hint": "um...zu + zu sehen"},
     {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Он пытается найти работу.", "answer": "er versucht eine arbeit zu finden", "hint": "versuchen + zu + finden"},
-    {"type": "fill", "question": "Переведите на немецкий (damit):", "sentence": "Я учусь, чтобы получить хорошие оценки.", "answer": "ich lerne damit ich gute noten bekomme", "hint": "damit + bekomme в конце"}
+    {"type": "fill", "question": "Переведите на немецкий (damit):", "sentence": "Я учусь, чтобы получить хорошие оценки.", "answer": "ich lerne damit ich gute noten bekomme", "hint": "damit + bekomme в конце"},
+    {"type": "fill", "question": "Переведите на немецкий (um...zu):", "sentence": "Она много тренируется, чтобы выиграть соревнование.", "answer": "sie trainiert viel um den wettkampf zu gewinnen", "hint": "um...zu + zu gewinnen"}
   ]
 }
