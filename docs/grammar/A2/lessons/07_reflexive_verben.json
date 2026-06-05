@@ -47,6 +47,6 @@
     {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Она одевается.", "answer": "sie zieht sich an", "hint": "sich anziehen"},
     {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Я раздеваюсь.", "answer": "ich ziehe mich aus", "hint": "sich ausziehen"},
     {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Они беседуют.", "answer": "sie unterhalten sich", "hint": "sich unterhalten"},
-    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Они беседуют.", "answer": "sie unterhalten sich", "hint": "sich unterhalten"}
+    {"type": "fill", "question": "Переведите на немецкий:", "sentence": "Он принимает душ.", "answer": "er duscht sich", "hint": "sich duschen"}
   ]
 }
