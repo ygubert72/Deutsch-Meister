@@ -40,7 +40,6 @@
     {"type": "fill", "question": "Переведите на немецкий (geschweige denn с прилагательным).", "sentence": "Он не богат, не говоря уже о том, чтобы быть миллионером.", "answer": "er ist nicht reich geschweige denn millionär", "hint": "geschweige denn + существительное"},
     {"type": "fill", "question": "Переведите на немецкий (insofern als с Adjektiv).", "sentence": "Решение было хорошим постольку, поскольку оно было быстрым.", "answer": "die entscheidung war gut insofern als sie schnell war", "hint": "insofern als + Adjektiv"},
     {"type": "fill", "question": "Переведите на немецкий (je nachdem, ob с werden).", "sentence": "В зависимости от того, будет ли результат хорошим, мы продолжим.", "answer": "je nachdem ob das ergebnis gut sein wird werden wir weitermachen", "hint": "je nachdem, ob + Futur I"},
-    {"type": "fill", "question": "Переведите на немецкий (inwiefern als Fragewort).", "sentence": "В какой степени эти два метода отличаются друг от друга?", "answer": "inwiefern unterscheiden sich diese beiden methoden voneinander", "hint": "inwiefern = в какой степени"},
-    {"type": "fill", "question": "Переведите на немецкий (geschweige denn с komplexem Substantiv).", "sentence": "У него нет элементарных знаний, не говоря уже о глубоком понимании.", "answer": "er hat keine elementaren kenntnisse geschweige denn ein tiefes verständnis", "hint": "geschweige denn + существительное с прилагательным"}
+    {"type": "fill", "question": "Переведите на немецкий (inwiefern als Fragewort).", "sentence": "В какой степени эти два метода отличаются друг от друга?", "answer": "inwiefern unterscheiden sich diese beiden methoden voneinander", "hint": "inwiefern = в какой степени"}
   ]
 }
