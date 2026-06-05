@@ -42,6 +42,5 @@
     {"type": "transform", "question": "Переведите на немецкий (нереальное прошлое):", "sentence": "Если бы я не забыл ключи, я бы вошёл.", "answer": "wenn ich die schlüssel nicht vergessen hätte wäre ich reingegangen", "hint": "vergessen hätte, wäre reingegangen"},
     {"type": "transform", "question": "Переведите на немецкий:", "sentence": "Если ты хочешь, мы можем пойти вместе.", "answer": "wenn du willst können wir zusammen gehen", "hint": "wenn + willst в конце"},
     {"type": "transform", "question": "Переведите на немецкий (andernfalls):", "sentence": "Ты должен учиться, иначе не сдашь экзамен.", "answer": "du musst lernen andernfalls wirst du die prüfung nicht bestehen", "hint": "andernfalls + wirst"},
-    {"type": "transform", "question": "Переведите на немецкий (нереальное):", "sentence": "Если бы она была здесь, она бы помогла.", "answer": "wenn sie hier wäre würde sie helfen", "hint": "wenn + wäre, würde + helfen"}
   ]
 }
