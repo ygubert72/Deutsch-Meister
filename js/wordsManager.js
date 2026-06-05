@@ -1,9 +1,10 @@
-// Загрузка слов из JSON
+// wordsManager.js - исправлены пути
 async function loadWords() {
     const levels = ['A1', 'A2', 'B1', 'B2', 'C1'];
     for (const lvl of levels) {
         try {
-            const resp = await fetch(`/Deutsch-Meister/docs/words/${lvl}.json`);
+            // ИСПРАВЛЕНО: убран /Deutsch-Meister/ в начале
+            const resp = await fetch(`docs/words/${lvl}.json`);
             if (resp.ok) wordsDB[lvl] = await resp.json();
             else wordsDB[lvl] = [];
         } catch(e) { wordsDB[lvl] = []; }
@@ -18,10 +19,10 @@ function createDemoWords() {
         {de:"schlecht",ru:"плохой"},{de:"groß",ru:"большой"},{de:"klein",ru:"маленький"}
     ];
     for (let i = 0; i < 50; i++) {
-        wordsDB.A2.push({de:`Wort_A2_${i}`, ru:`Слово_A2_${i}`});
-        wordsDB.B1.push({de:`Wort_B1_${i}`, ru:`Слово_B1_${i}`});
-        if (i < 30) wordsDB.B2.push({de:`Wort_B2_${i}`, ru:`Слово_B2_${i}`});
-        if (i < 20) wordsDB.C1.push({de:`Wort_C1_${i}`, ru:`Слово_C1_${i}`});
+        if (wordsDB.A2) wordsDB.A2.push({de:`Wort_A2_${i}`, ru:`Слово_A2_${i}`});
+        if (wordsDB.B1) wordsDB.B1.push({de:`Wort_B1_${i}`, ru:`Слово_B1_${i}`});
+        if (wordsDB.B2 && i < 30) wordsDB.B2.push({de:`Wort_B2_${i}`, ru:`Слово_B2_${i}`});
+        if (wordsDB.C1 && i < 20) wordsDB.C1.push({de:`Wort_C1_${i}`, ru:`Слово_C1_${i}`});
     }
 }
 
