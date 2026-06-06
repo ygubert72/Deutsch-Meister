@@ -82,10 +82,10 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 #practice_words_dynamic { margin-bottom: 30px; }
 #sentWordsContainer { margin-bottom: 16px; }
 
-/* ========== СТИЛИ ДЛЯ ТАБЛИЦ В ТЕОРИИ ГРАММАТИКИ (отступы + центрирование заголовков) ========== */
+/* ========== СТИЛИ ДЛЯ ТАБЛИЦ В ТЕОРИИ ГРАММАТИКИ (отступы + центрирование заголовков, БЕЗ ПРИНУДИТЕЛЬНОЙ ПРОКРУТКИ) ========== */
 
 .lesson-text th {
-    padding: 12px 15px !important;
+    padding: 10px 12px !important;
     text-align: center !important;
     vertical-align: middle !important;
     background: #3B6FE0;
@@ -99,6 +99,7 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     margin: 20px 0;
     border-radius: 12px;
     overflow: hidden;
+    table-layout: auto;
 }
 
 .lesson-text th,
@@ -108,7 +109,7 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 }
 
 .lesson-text td {
-    padding: 8px 12px;
+    padding: 8px 10px;
     background: white;
     text-align: left;
 }
@@ -326,17 +327,11 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
         -webkit-overflow-scrolling: touch !important;
     }
     
-    /* Стили для таблиц на мобильных (горизонтальная прокрутка + центрирование заголовков) */
-    .lesson-text {
-        overflow-x: auto;
-    }
-    .lesson-text table {
-        min-width: 500px;
-    }
+    /* Таблицы на телефонах - убираем принудительную прокрутку, просто сжимаем содержимое */
     .lesson-text th,
     .lesson-text td {
-        padding: 8px 10px !important;
-        font-size: 12px;
+        padding: 6px 8px !important;
+        font-size: 11px;
     }
     .lesson-text th {
         text-align: center !important;
@@ -396,6 +391,13 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     .sidebar-content { padding: 10px; }
     .levels-container { gap: 4px; }
     .btn-level { width: 50px; font-size: 12px; }
+    
+    /* Ещё меньше отступы в таблицах на очень маленьких экранах */
+    .lesson-text th,
+    .lesson-text td {
+        padding: 4px 6px !important;
+        font-size: 10px;
+    }
 }
 
 /* Для устройств с сенсорным экраном - убираем hover эффекты */
