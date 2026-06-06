@@ -1,4 +1,4 @@
-// grammarMode.js - полная версия с умной озвучкой (замена _____ на answer, удаление скобок, исправление пробелов после любых знаков препинания)
+// grammarMode.js - полная версия с умной озвучкой (замена _____ на answer, удаление скобок, исправление пробелов без повреждения скобок/кавычек)
 
 let grammarDB = { A1: [], A2: [], B1: [], B2: [], C1: [] };
 let currentGrammarLesson = null;
@@ -9,15 +9,52 @@ let grammarExercises = [];
 let currentGrammarExerciseIndex = 0;
 let grammarBlinkTimer = null;
 
-// ========== ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ ДЛЯ ИСПРАВЛЕНИЯ ПРОБЕЛОВ ПОСЛЕ ЛЮБЫХ ЗНАКОВ ПРЕПИНАНИЯ ==========
+// ========== ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ ДЛЯ ИСПРАВЛЕНИЯ ПРОБЕЛОВ (с сохранением скобок и кавычек) ==========
 function fixTextSpacing(text) {
     if (!text) return text;
     
-    // Вставляем пробел после знаков препинания, если после них нет пробела и идёт буква/цифра
-    // Обрабатываем: . ! ? : ; , ) ] } > » " '
-    text = text.replace(/([.!?;:),}\]>»"'])([А-Яа-яA-Za-z0-9])/g, '$1 $2');
+    // Временно заменяем содержимое скобок и кавычек на плейсхолдеры
+    const placeholders = [];
     
-    // Убираем лишние множественные пробелы (которые могли образоваться)
+    // Сохраняем содержимое круглых скобок
+    text = text.replace(/\(([^)]+)\)/g, (match, content) => {
+        placeholders.push(`(${content})`);
+        return `%%%${placeholders.length - 1}%%%`;
+    });
+    
+    // Сохраняем содержимое квадратных скобок
+    text = text.replace(/\[([^\]]+)\]/g, (match, content) => {
+        placeholders.push(`[${content}]`);
+        return `%%%${placeholders.length - 1}%%%`;
+    });
+    
+    // Сохраняем содержимое фигурных скобок
+    text = text.replace(/\{([^}]+)\}/g, (match, content) => {
+        placeholders.push(`{${content}}`);
+        return `%%%${placeholders.length - 1}%%%`;
+    });
+    
+    // Сохраняем содержимое двойных кавычек
+    text = text.replace(/"([^"]+)"/g, (match, content) => {
+        placeholders.push(`"${content}"`);
+        return `%%%${placeholders.length - 1}%%%`;
+    });
+    
+    // Сохраняем содержимое одинарных кавычек
+    text = text.replace(/'([^']+)'/g, (match, content) => {
+        placeholders.push(`'${content}'`);
+        return `%%%${placeholders.length - 1}%%%`;
+    });
+    
+    // Теперь добавляем пробелы после знаков препинания во всём остальном тексте
+    text = text.replace(/([.!?;:),}\]>»])([А-Яа-яA-Za-z0-9])/g, '$1 $2');
+    
+    // Восстанавливаем сохранённые скобки и кавычки
+    text = text.replace(/%%%(\d+)%%%/g, (match, index) => {
+        return placeholders[parseInt(index)];
+    });
+    
+    // Убираем лишние пробелы
     text = text.replace(/\s+/g, ' ');
     
     return text;
