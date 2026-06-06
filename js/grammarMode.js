@@ -64,14 +64,17 @@ function fixTextSpacing(text) {
 function cleanChineseCharacters(text) {
     if (!text) return text;
     
-    // Заменяем "一方面" на нормальный разделитель
-    let cleaned = text.replace(/一方面/g, '▶ ');
+    // Заменяем "一方面" на " ▶ " (с пробелами до и после)
+    let cleaned = text.replace(/一方面/g, ' ▶ ');
     
     // Заменяем остальные китайские иероглифы (диапазон Unicode) на пробелы
     cleaned = cleaned.replace(/[\u4e00-\u9fff\u3400-\u4dbf\uf900-\ufaff]/g, ' ');
     
-    // Убираем лишние пробелы
+    // Убираем лишние пробелы (но оставляем по одному)
     cleaned = cleaned.replace(/\s+/g, ' ');
+    
+    // Убираем пробелы перед точкой, запятой и другими знаками препинания
+    cleaned = cleaned.replace(/\s+([.,!?;:])/g, '$1');
     
     return cleaned;
 }
