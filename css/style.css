@@ -82,6 +82,35 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 #practice_words_dynamic { margin-bottom: 30px; }
 #sentWordsContainer { margin-bottom: 16px; }
 
+/* ========== СТИЛИ ДЛЯ ТАБЛИЦ В ТЕОРИИ ГРАММАТИКИ (отступы для заголовков) ========== */
+
+.lesson-text th {
+    padding: 12px 15px !important;
+    text-align: left;
+    background: #3B6FE0;
+    color: white;
+    font-weight: bold;
+}
+
+.lesson-text table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.lesson-text th,
+.lesson-text td {
+    border: 1px solid #E0E0E0;
+    vertical-align: top;
+}
+
+.lesson-text td {
+    padding: 8px 12px;
+    background: white;
+}
+
 /* ========== МОБИЛЬНАЯ АДАПТАЦИЯ ========== */
 
 /* Планшеты и маленькие ноутбуки */
@@ -293,6 +322,19 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
         max-height: 55vh;
         overflow-y: auto !important;
         -webkit-overflow-scrolling: touch !important;
+    }
+    
+    /* Стили для таблиц на мобильных (горизонтальная прокрутка) */
+    .lesson-text {
+        overflow-x: auto;
+    }
+    .lesson-text table {
+        min-width: 500px;
+    }
+    .lesson-text th,
+    .lesson-text td {
+        padding: 8px 10px !important;
+        font-size: 12px;
     }
     
     /* Админ-панель на телефоне */
