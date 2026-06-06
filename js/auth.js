@@ -1,4 +1,4 @@
-// auth.js - полная версия с оплатой премиум и вспомогательными функциями
+// auth.js - полная версия с оплатой премиум и поддержкой мобильного меню
 
 let auth = null;
 let db = null;
@@ -138,16 +138,66 @@ async function addUserToFirestore(user) {
     }
 }
 
+// Функция добавления кнопки админа в оба меню
+function addAdminButton() {
+    // Удаляем старые кнопки, если есть
+    const oldAdminBtn = document.getElementById('adminBtn');
+    if (oldAdminBtn) oldAdminBtn.remove();
+    
+    const oldAdminBtnMobile = document.getElementById('adminBtnMobile');
+    if (oldAdminBtnMobile) oldAdminBtnMobile.remove();
+    
+    // Создаём кнопку для обычного сайдбара
+    const adminBtn = document.createElement('button');
+    adminBtn.id = 'adminBtn';
+    adminBtn.className = 'btn';
+    adminBtn.innerHTML = '👑 АДМИН-ПАНЕЛЬ';
+    adminBtn.style.background = '#FF9800';
+    adminBtn.style.color = 'white';
+    adminBtn.style.marginTop = '10px';
+    adminBtn.style.cursor = 'pointer';
+    adminBtn.onclick = () => window.showAdminPanel();
+    
+    // Добавляем в обычный сайдбар
+    const sidebarContent = document.querySelector('.sidebar .sidebar-content');
+    if (sidebarContent) {
+        sidebarContent.appendChild(adminBtn);
+    }
+    
+    // Создаём кнопку для мобильного меню
+    const adminBtnMobile = document.createElement('button');
+    adminBtnMobile.id = 'adminBtnMobile';
+    adminBtnMobile.className = 'btn';
+    adminBtnMobile.innerHTML = '👑 АДМИН-ПАНЕЛЬ';
+    adminBtnMobile.style.background = '#FF9800';
+    adminBtnMobile.style.color = 'white';
+    adminBtnMobile.style.marginTop = '10px';
+    adminBtnMobile.style.cursor = 'pointer';
+    adminBtnMobile.onclick = () => window.showAdminPanel();
+    
+    // Добавляем в мобильное меню
+    const mobileSidebarContent = document.querySelector('#mobileMenu .sidebar-content');
+    if (mobileSidebarContent) {
+        mobileSidebarContent.appendChild(adminBtnMobile);
+    }
+}
+
 // Обновление интерфейса
 function updateUI(user) {
     const loginBtn = document.getElementById('loginBtn');
     const userInfo = document.getElementById('userInfo');
+    const loginBtnMobile = document.getElementById('loginBtnMobile');
+    const userInfoMobile = document.getElementById('userInfoMobile');
     
     if (!loginBtn || !userInfo) return;
     
     if (user) {
+        // Скрываем кнопки входа в обоих меню
         loginBtn.style.display = 'none';
+        if (loginBtnMobile) loginBtnMobile.style.display = 'none';
+        
         userInfo.style.display = 'block';
+        if (userInfoMobile) userInfoMobile.style.display = 'block';
         
         const hasPremium = currentUserData && currentUserData.hasPremiumAccess === true;
         
@@ -161,7 +211,7 @@ function updateUI(user) {
             </div>
         ` : '';
         
-        userInfo.innerHTML = `
+        const userInfoHtml = `
             <div style="background:#E8F0FE; border-radius:8px; padding:8px; text-align:center;">
                 <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:5px; flex-wrap:wrap;">
                     <span style="font-size:20px;">🎓</span>
@@ -172,42 +222,58 @@ function updateUI(user) {
             </div>
         `;
         
+        userInfo.innerHTML = userInfoHtml;
+        if (userInfoMobile) userInfoMobile.innerHTML = userInfoHtml;
+        
         // Привязываем обработчик кнопки оплаты
         if (!hasPremium && user.email !== 'ygubert72@gmail.com') {
             setTimeout(() => {
                 const payBtn = document.getElementById('premiumPayBtn');
                 if (payBtn) payBtn.onclick = () => showPaymentModal();
+                
+                // Также для мобильной версии
+                const payBtnMobile = document.getElementById('premiumPayBtn');
+                if (payBtnMobile) payBtnMobile.onclick = () => showPaymentModal();
             }, 100);
         }
         
-        // Кнопка админа
+        // Добавляем кнопку админа для администратора
         if (user.email === 'ygubert72@gmail.com') {
-            let adminBtn = document.getElementById('adminBtn');
-            if (!adminBtn) {
-                adminBtn = document.createElement('button');
-                adminBtn.id = 'adminBtn';
-                adminBtn.className = 'btn';
-                adminBtn.innerHTML = '👑 АДМИН-ПАНЕЛЬ';
-                adminBtn.style.background = '#FF9800';
-                adminBtn.style.color = 'white';
-                adminBtn.style.marginTop = '10px';
-                adminBtn.style.cursor = 'pointer';
-                adminBtn.onclick = () => window.showAdminPanel();
-                const sidebar = document.querySelector('.sidebar-content');
-                if (sidebar) sidebar.appendChild(adminBtn);
-            }
+            addAdminButton();
+        } else {
+            // Удаляем кнопки админа, если пользователь не админ
+            const oldAdminBtn = document.getElementById('adminBtn');
+            if (oldAdminBtn) oldAdminBtn.remove();
+            const oldAdminBtnMobile = document.getElementById('adminBtnMobile');
+            if (oldAdminBtnMobile) oldAdminBtnMobile.remove();
         }
         
     } else {
+        // Пользователь не авторизован
         loginBtn.style.display = 'block';
+        if (loginBtnMobile) loginBtnMobile.style.display = 'block';
+        
         userInfo.style.display = 'block';
-        userInfo.innerHTML = `
+        if (userInfoMobile) userInfoMobile.style.display = 'block';
+        
+        const guestHtml = `
             <div style="background:#E8F0FE; border-radius:8px; padding:8px; text-align:center;">
                 <div style="font-size:14px; font-weight:bold;">👋 Гостевой режим</div>
                 <div style="font-size:11px; color:#666; margin-top:4px;">прогресс не сохраняется</div>
             </div>
         `;
+        
+        userInfo.innerHTML = guestHtml;
+        if (userInfoMobile) userInfoMobile.innerHTML = guestHtml;
+        
         loginBtn.onclick = () => showLoginModal();
+        if (loginBtnMobile) loginBtnMobile.onclick = () => showLoginModal();
+        
+        // Удаляем кнопки админа
+        const oldAdminBtn = document.getElementById('adminBtn');
+        if (oldAdminBtn) oldAdminBtn.remove();
+        const oldAdminBtnMobile = document.getElementById('adminBtnMobile');
+        if (oldAdminBtnMobile) oldAdminBtnMobile.remove();
     }
 }
 
