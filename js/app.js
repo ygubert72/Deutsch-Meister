@@ -170,6 +170,28 @@ function openMobileMenu() {
     history.pushState(null, null, location.href);
 }
 
+function syncMobileUserInfo() {
+    const userInfo = document.getElementById('userInfo');
+    const userInfoMobile = document.getElementById('userInfoMobile');
+    const loginBtnMobile = document.getElementById('loginBtnMobile');
+    
+    if (userInfoMobile && userInfo) {
+        userInfoMobile.innerHTML = userInfo.innerHTML;
+        userInfoMobile.style.display = userInfo.style.display;
+    }
+    
+    // Синхронизируем видимость кнопки "Войти" в мобильном меню
+    if (loginBtnMobile) {
+        const loginBtn = document.getElementById('loginBtn');
+        if (loginBtn) {
+            loginBtnMobile.style.display = loginBtn.style.display;
+            if (loginBtn.onclick) {
+                loginBtnMobile.onclick = loginBtn.onclick;
+            }
+        }
+    }
+}
+
 function initMobileMenu() {
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     const closeMenuBtn = document.getElementById('closeMenuBtn');
@@ -214,33 +236,14 @@ function initMobileMenu() {
         }
     });
     
-    // Дублируем авторизацию для мобильного меню
-    const loginBtnMobile = document.getElementById('loginBtnMobile');
-    const userInfoMobile = document.getElementById('userInfoMobile');
+    // Синхронизация состояния авторизации с мобильным меню
+    syncMobileUserInfo();
     
-    if (loginBtnMobile) {
-        // Функция синхронизации userInfo в мобильное меню
-        function syncUserInfoToMobile() {
-            const userInfo = document.getElementById('userInfo');
-            if (userInfoMobile && userInfo) {
-                userInfoMobile.innerHTML = userInfo.innerHTML;
-                userInfoMobile.style.display = userInfo.style.display;
-            }
-        }
-        
-        // Наблюдаем за изменениями userInfo
-        const observer = new MutationObserver(syncUserInfoToMobile);
-        const userInfo = document.getElementById('userInfo');
-        if (userInfo) {
-            observer.observe(userInfo, { attributes: true, childList: true, subtree: true });
-        }
-        syncUserInfoToMobile();
-        
-        // Копируем обработчик кнопки входа
-        const loginBtn = document.getElementById('loginBtn');
-        if (loginBtn && loginBtn.onclick) {
-            loginBtnMobile.onclick = loginBtn.onclick;
-        }
+    // Наблюдаем за изменениями userInfo
+    const observer = new MutationObserver(syncMobileUserInfo);
+    const userInfo = document.getElementById('userInfo');
+    if (userInfo) {
+        observer.observe(userInfo, { attributes: true, childList: true, subtree: true });
     }
 }
 
