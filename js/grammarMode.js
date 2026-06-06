@@ -1,4 +1,4 @@
-// grammarMode.js - полная версия с умной озвучкой (замена _____ на answer и удаление текста в скобках)
+// grammarMode.js - полная версия с умной озвучкой (замена _____ на answer, удаление скобок, исправление пробелов после любых знаков препинания)
 
 let grammarDB = { A1: [], A2: [], B1: [], B2: [], C1: [] };
 let currentGrammarLesson = null;
@@ -8,6 +8,20 @@ let grammarLessonData = null;
 let grammarExercises = [];
 let currentGrammarExerciseIndex = 0;
 let grammarBlinkTimer = null;
+
+// ========== ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ ДЛЯ ИСПРАВЛЕНИЯ ПРОБЕЛОВ ПОСЛЕ ЛЮБЫХ ЗНАКОВ ПРЕПИНАНИЯ ==========
+function fixTextSpacing(text) {
+    if (!text) return text;
+    
+    // Вставляем пробел после знаков препинания, если после них нет пробела и идёт буква/цифра
+    // Обрабатываем: . ! ? : ; , ) ] } > » " '
+    text = text.replace(/([.!?;:),}\]>»"'])([А-Яа-яA-Za-z0-9])/g, '$1 $2');
+    
+    // Убираем лишние множественные пробелы (которые могли образоваться)
+    text = text.replace(/\s+/g, ' ');
+    
+    return text;
+}
 
 // ========== ЗАГРУЗКА ГРАММАТИКИ ==========
 async function loadGrammarData() {
@@ -245,14 +259,25 @@ function showGrammarTheory() {
     const container = document.getElementById('grammarContent');
     if (!container || !grammarLessonData) return;
     
+    // Исправляем пробелы в тексте теории
+    let fixedTheory = grammarLessonData.theory || '';
+    if (fixedTheory) {
+        fixedTheory = fixTextSpacing(fixedTheory);
+    }
+    
     let examplesHtml = '';
     if (grammarLessonData.examples && grammarLessonData.examples.length) {
         examplesHtml = '<div style="margin-top: 20px;"><h4>📝 Примеры с озвучкой:</h4><ul style="list-style: none; padding: 0;">';
         for (const ex of grammarLessonData.examples) {
-            const safeText = ex.de.replace(/'/g, "\\'");
+            // Исправляем пробелы в примерах на немецком
+            let fixedDe = ex.de || '';
+            if (fixedDe) {
+                fixedDe = fixTextSpacing(fixedDe);
+            }
+            const safeText = fixedDe.replace(/'/g, "\\'");
             examplesHtml += `
                 <li style="background: #E8F0FE; margin: 8px 0; padding: 10px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
-                    <span><strong>${ex.de}</strong> — ${ex.ru}</span>
+                    <span><strong>${fixedDe}</strong> — ${ex.ru}</span>
                     <button class="speak-btn-inline" onclick="speak('${safeText}')">🔊</button>
                 </li>
             `;
@@ -262,7 +287,7 @@ function showGrammarTheory() {
     
     container.innerHTML = `
         <div style="background: white; border-radius: 16px; padding: 25px; line-height: 1.6;">
-            ${grammarLessonData.theory}
+            ${fixedTheory}
             ${examplesHtml}
         </div>
     `;
@@ -318,7 +343,6 @@ function getCleanTextForSpeak(exercise) {
     if (!text) return '';
     
     // Удаляем всё, что в круглых скобках, включая сами скобки
-    // Пример: "der ___ (groß) Hund" -> "der ___ Hund" (потом подчёркивания заменятся на ответ)
     text = text.replace(/\s*\([^)]*\)\s*/g, ' ');
     
     // Убираем лишние пробелы
@@ -444,7 +468,7 @@ function showGrammarExercise(exercise, lessonIdx) {
         }
     }
     
-    // ========== КНОПКА ОЗВУЧКИ (исправлена: удаляет текст в скобках) ==========
+    // ========== КНОПКА ОЗВУЧКИ ==========
     const speakBtn = document.getElementById('grammarSpeakBtn');
     if (speakBtn) {
         speakBtn.onclick = () => {
