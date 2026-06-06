@@ -1,4 +1,4 @@
-// grammarMode.js - полная версия с умной озвучкой (замена _____ на answer, удаление скобок, исправление пробелов без повреждения скобок/кавычек)
+// grammarMode.js - полная версия с умной озвучкой (замена _____ на answer, удаление скобок, исправление пробелов, очистка от иероглифов)
 
 let grammarDB = { A1: [], A2: [], B1: [], B2: [], C1: [] };
 let currentGrammarLesson = null;
@@ -58,6 +58,22 @@ function fixTextSpacing(text) {
     text = text.replace(/\s+/g, ' ');
     
     return text;
+}
+
+// ========== ФУНКЦИЯ ДЛЯ ОЧИСТКИ ТЕКСТА ОТ КИТАЙСКИХ ИЕРОГЛИФОВ ==========
+function cleanChineseCharacters(text) {
+    if (!text) return text;
+    
+    // Заменяем "一方面" на нормальный разделитель
+    let cleaned = text.replace(/一方面/g, '▶ ');
+    
+    // Заменяем остальные китайские иероглифы (диапазон Unicode) на пробелы
+    cleaned = cleaned.replace(/[\u4e00-\u9fff\u3400-\u4dbf\uf900-\ufaff]/g, ' ');
+    
+    // Убираем лишние пробелы
+    cleaned = cleaned.replace(/\s+/g, ' ');
+    
+    return cleaned;
 }
 
 // ========== ЗАГРУЗКА ГРАММАТИКИ ==========
@@ -296,9 +312,12 @@ function showGrammarTheory() {
     const container = document.getElementById('grammarContent');
     if (!container || !grammarLessonData) return;
     
-    // Исправляем пробелы в тексте теории
+    // Очищаем текст теории от китайских иероглифов
     let fixedTheory = grammarLessonData.theory || '';
     if (fixedTheory) {
+        // Удаляем китайские иероглифы
+        fixedTheory = cleanChineseCharacters(fixedTheory);
+        // Исправляем пробелы после знаков препинания
         fixedTheory = fixTextSpacing(fixedTheory);
     }
     
@@ -306,7 +325,6 @@ function showGrammarTheory() {
     if (grammarLessonData.examples && grammarLessonData.examples.length) {
         examplesHtml = '<div style="margin-top: 20px;"><h4>📝 Примеры с озвучкой:</h4><ul style="list-style: none; padding: 0;">';
         for (const ex of grammarLessonData.examples) {
-            // Исправляем пробелы в примерах на немецком
             let fixedDe = ex.de || '';
             if (fixedDe) {
                 fixedDe = fixTextSpacing(fixedDe);
