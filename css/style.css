@@ -82,11 +82,12 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 #practice_words_dynamic { margin-bottom: 30px; }
 #sentWordsContainer { margin-bottom: 16px; }
 
-/* ========== СТИЛИ ДЛЯ ТАБЛИЦ В ТЕОРИИ ГРАММАТИКИ (отступы для заголовков) ========== */
+/* ========== СТИЛИ ДЛЯ ТАБЛИЦ В ТЕОРИИ ГРАММАТИКИ (отступы + центрирование заголовков) ========== */
 
 .lesson-text th {
     padding: 12px 15px !important;
-    text-align: left;
+    text-align: center !important;
+    vertical-align: middle !important;
     background: #3B6FE0;
     color: white;
     font-weight: bold;
@@ -109,6 +110,7 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 .lesson-text td {
     padding: 8px 12px;
     background: white;
+    text-align: left;
 }
 
 /* ========== МОБИЛЬНАЯ АДАПТАЦИЯ ========== */
@@ -324,7 +326,7 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
         -webkit-overflow-scrolling: touch !important;
     }
     
-    /* Стили для таблиц на мобильных (горизонтальная прокрутка) */
+    /* Стили для таблиц на мобильных (горизонтальная прокрутка + центрирование заголовков) */
     .lesson-text {
         overflow-x: auto;
     }
@@ -335,6 +337,9 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     .lesson-text td {
         padding: 8px 10px !important;
         font-size: 12px;
+    }
+    .lesson-text th {
+        text-align: center !important;
     }
     
     /* Админ-панель на телефоне */
