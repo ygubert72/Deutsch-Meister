@@ -1,4 +1,4 @@
-// grammarMode.js - полная версия с умной озвучкой (замена _____ на answer)
+// grammarMode.js - полная версия с умной озвучкой (замена _____ на answer и удаление текста в скобках)
 
 let grammarDB = { A1: [], A2: [], B1: [], B2: [], C1: [] };
 let currentGrammarLesson = null;
@@ -288,40 +288,43 @@ function showGrammarPractice(lessonIdx) {
     showGrammarExercise(grammarExercises[0], lessonIdx);
 }
 
-// Функция для получения чистого текста для озвучки (заменяет _____ на answer)
+// Функция для получения чистого текста для озвучки (заменяет _____ на answer и удаляет текст в скобках)
 function getCleanTextForSpeak(exercise) {
     // 1. Если есть original_sentence - используем его
+    let text = '';
     if (exercise.original_sentence) {
-        return exercise.original_sentence.trim();
+        text = exercise.original_sentence;
     }
-    
     // 2. Если есть sentence - заменяем подчёркивания на answer
-    if (exercise.sentence) {
-        let clean = exercise.sentence;
+    else if (exercise.sentence) {
+        text = exercise.sentence;
         // Заменяем _____ или ___ на правильный ответ
         if (exercise.answer) {
-            clean = clean.replace(/_{3,}/g, exercise.answer);
+            text = text.replace(/_{3,}/g, exercise.answer);
         } else {
             // Если ответа нет - просто убираем подчёркивания
-            clean = clean.replace(/_{3,}/g, '');
-        }
-        clean = clean.replace(/\s+/g, ' ').trim();
-        if (clean.length > 0) {
-            return clean;
+            text = text.replace(/_{3,}/g, '');
         }
     }
-    
     // 3. Если есть question - используем его
-    if (exercise.question) {
-        return exercise.question.trim();
+    else if (exercise.question) {
+        text = exercise.question;
     }
-    
     // 4. В крайнем случае - ответ
-    if (exercise.answer) {
-        return exercise.answer.trim();
+    else if (exercise.answer) {
+        text = exercise.answer;
     }
     
-    return '';
+    if (!text) return '';
+    
+    // Удаляем всё, что в круглых скобках, включая сами скобки
+    // Пример: "der ___ (groß) Hund" -> "der ___ Hund" (потом подчёркивания заменятся на ответ)
+    text = text.replace(/\s*\([^)]*\)\s*/g, ' ');
+    
+    // Убираем лишние пробелы
+    text = text.replace(/\s+/g, ' ').trim();
+    
+    return text;
 }
 
 function showGrammarExercise(exercise, lessonIdx) {
@@ -441,7 +444,7 @@ function showGrammarExercise(exercise, lessonIdx) {
         }
     }
     
-    // ========== КНОПКА ОЗВУЧКИ (исправлена) ==========
+    // ========== КНОПКА ОЗВУЧКИ (исправлена: удаляет текст в скобках) ==========
     const speakBtn = document.getElementById('grammarSpeakBtn');
     if (speakBtn) {
         speakBtn.onclick = () => {
