@@ -82,38 +82,6 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 #practice_words_dynamic { margin-bottom: 30px; }
 #sentWordsContainer { margin-bottom: 16px; }
 
-/* ========== СТИЛИ ДЛЯ ТАБЛИЦ В ТЕОРИИ ГРАММАТИКИ (отступы + центрирование заголовков, БЕЗ ПРИНУДИТЕЛЬНОЙ ПРОКРУТКИ) ========== */
-
-.lesson-text th {
-    padding: 10px 12px !important;
-    text-align: center !important;
-    vertical-align: middle !important;
-    background: #3B6FE0;
-    color: white;
-    font-weight: bold;
-}
-
-.lesson-text table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    border-radius: 12px;
-    overflow: hidden;
-    table-layout: auto;
-}
-
-.lesson-text th,
-.lesson-text td {
-    border: 1px solid #E0E0E0;
-    vertical-align: top;
-}
-
-.lesson-text td {
-    padding: 8px 10px;
-    background: white;
-    text-align: left;
-}
-
 /* ========== МОБИЛЬНАЯ АДАПТАЦИЯ ========== */
 
 /* Планшеты и маленькие ноутбуки */
@@ -327,16 +295,6 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
         -webkit-overflow-scrolling: touch !important;
     }
     
-    /* Таблицы на телефонах - убираем принудительную прокрутку, просто сжимаем содержимое */
-    .lesson-text th,
-    .lesson-text td {
-        padding: 6px 8px !important;
-        font-size: 11px;
-    }
-    .lesson-text th {
-        text-align: center !important;
-    }
-    
     /* Админ-панель на телефоне */
     #adminPanel > div > div {
         width: 95% !important;
@@ -391,13 +349,6 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     .sidebar-content { padding: 10px; }
     .levels-container { gap: 4px; }
     .btn-level { width: 50px; font-size: 12px; }
-    
-    /* Ещё меньше отступы в таблицах на очень маленьких экранах */
-    .lesson-text th,
-    .lesson-text td {
-        padding: 4px 6px !important;
-        font-size: 10px;
-    }
 }
 
 /* Для устройств с сенсорным экраном - убираем hover эффекты */
