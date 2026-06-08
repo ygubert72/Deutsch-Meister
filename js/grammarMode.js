@@ -1,4 +1,4 @@
-// grammarMode.js - полная версия с исправленной прокруткой
+// grammarMode.js - полная версия с правильным форматом верхней панели для всех уроков
 
 let grammarDB = { A1: [], A2: [], B1: [], B2: [], C1: [] };
 let currentGrammarLesson = null;
@@ -9,52 +9,43 @@ let grammarExercises = [];
 let currentGrammarExerciseIndex = 0;
 let grammarBlinkTimer = null;
 
-// ========== ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ ДЛЯ ИСПРАВЛЕНИЯ ПРОБЕЛОВ (с сохранением скобок и кавычек) ==========
+// ========== ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ ДЛЯ ИСПРАВЛЕНИЯ ПРОБЕЛОВ ==========
 function fixTextSpacing(text) {
     if (!text) return text;
     
-    // Временно заменяем содержимое скобок и кавычек на плейсхолдеры
     const placeholders = [];
     
-    // Сохраняем содержимое круглых скобок
     text = text.replace(/\(([^)]+)\)/g, (match, content) => {
         placeholders.push(`(${content})`);
         return `%%%${placeholders.length - 1}%%%`;
     });
     
-    // Сохраняем содержимое квадратных скобок
     text = text.replace(/\[([^\]]+)\]/g, (match, content) => {
         placeholders.push(`[${content}]`);
         return `%%%${placeholders.length - 1}%%%`;
     });
     
-    // Сохраняем содержимое фигурных скобок
     text = text.replace(/\{([^}]+)\}/g, (match, content) => {
         placeholders.push(`{${content}}`);
         return `%%%${placeholders.length - 1}%%%`;
     });
     
-    // Сохраняем содержимое двойных кавычек
     text = text.replace(/"([^"]+)"/g, (match, content) => {
         placeholders.push(`"${content}"`);
         return `%%%${placeholders.length - 1}%%%`;
     });
     
-    // Сохраняем содержимое одинарных кавычек
     text = text.replace(/'([^']+)'/g, (match, content) => {
         placeholders.push(`'${content}'`);
         return `%%%${placeholders.length - 1}%%%`;
     });
     
-    // Теперь добавляем пробелы после знаков препинания во всём остальном тексте
     text = text.replace(/([.!?;:),}\]>»])([А-Яа-яA-Za-z0-9])/g, '$1 $2');
     
-    // Восстанавливаем сохранённые скобки и кавычки
     text = text.replace(/%%%(\d+)%%%/g, (match, index) => {
         return placeholders[parseInt(index)];
     });
     
-    // Убираем лишние пробелы
     text = text.replace(/\s+/g, ' ');
     
     return text;
@@ -64,16 +55,9 @@ function fixTextSpacing(text) {
 function cleanChineseCharacters(text) {
     if (!text) return text;
     
-    // Заменяем "一方面" на " ▶ " (с пробелами до и после)
     let cleaned = text.replace(/一方面/g, ' ▶ ');
-    
-    // Заменяем остальные китайские иероглифы (диапазон Unicode) на пробелы
     cleaned = cleaned.replace(/[\u4e00-\u9fff\u3400-\u4dbf\uf900-\ufaff]/g, ' ');
-    
-    // Убираем лишние пробелы (но оставляем по одному)
     cleaned = cleaned.replace(/\s+/g, ' ');
-    
-    // Убираем пробелы перед точкой, запятой и другими знаками препинания
     cleaned = cleaned.replace(/\s+([.,!?;:])/g, '$1');
     
     return cleaned;
@@ -162,6 +146,19 @@ function renderGrammar() {
     console.log('renderGrammar: начат');
     const level = AppConfig.currentLevel;
     const lessons = grammarDB[level];
+    
+    // Сбрасываем индикатор в верхней панели на общий
+    const modeIndicator = document.getElementById('modeIndicator');
+    if (modeIndicator) {
+        modeIndicator.textContent = `Грамматика ${level}`;
+        modeIndicator.style.background = '';
+        modeIndicator.style.padding = '';
+        modeIndicator.style.color = '';
+        modeIndicator.style.fontWeight = '';
+    }
+    
+    // Сбрасываем счётчик
+    updateCounter();
     
     const savedLesson = localStorage.getItem('dm_last_grammar_lesson');
     const savedLevel = localStorage.getItem('dm_last_grammar_level');
@@ -255,23 +252,25 @@ function renderGrammarLesson(lessonIdx) {
     const totalLessons = lessons.length;
     const completedCount = grammarProgress[level]?.filter(p => p?.completed === true).length || 0;
     
-    // Сохраняем текущий индекс урока
-    window.currentGrammarLessonIndex = lessonIdx;
-    
-    // Обновляем верхнюю закреплённую панель: Грамматика A2 | Урок 5
+    // ========== ОБНОВЛЯЕМ ВЕРХНЮЮ ЗАКРЕПЛЁННУЮ ПАНЕЛЬ ==========
+    // Формат: "Грамматика A2 | Урок 1"
     const modeIndicator = document.getElementById('modeIndicator');
     if (modeIndicator) {
         modeIndicator.textContent = `Грамматика ${level} | Урок ${lesson.lesson}`;
+        // Убираем лишние стили
         modeIndicator.style.background = 'none';
         modeIndicator.style.padding = '0';
         modeIndicator.style.color = '#333';
         modeIndicator.style.fontWeight = 'normal';
+        modeIndicator.style.fontSize = '12px';
     }
     
-    // Обновляем счётчик в верхней панели
+    // Обновляем счётчик справа: "Пройдено: 0 из 12 уроков"
     const counterEl = document.getElementById('counter');
     if (counterEl) {
         counterEl.textContent = `Пройдено: ${completedCount} из ${totalLessons} уроков`;
+        counterEl.style.fontSize = '12px';
+        counterEl.style.color = '#888';
     }
     
     document.getElementById('content').innerHTML = `
@@ -300,8 +299,16 @@ function renderGrammarLesson(lessonIdx) {
         backBtn.onclick = () => {
             localStorage.removeItem('dm_last_grammar_lesson');
             localStorage.removeItem('dm_last_grammar_level');
-            updateModeIndicator();
+            // Возвращаем общий индикатор
+            if (modeIndicator) {
+                modeIndicator.textContent = `Грамматика ${level}`;
+                modeIndicator.style.background = '';
+                modeIndicator.style.padding = '';
+                modeIndicator.style.color = '';
+                modeIndicator.style.fontWeight = '';
+            }
             updateCounter();
+            updateModeIndicator();
             renderGrammar();
         };
     }
@@ -350,7 +357,6 @@ function showGrammarTheory() {
     const container = document.getElementById('grammarContent');
     if (!container || !grammarLessonData) return;
     
-    // Очищаем текст теории от китайских иероглифов
     let fixedTheory = grammarLessonData.theory || '';
     if (fixedTheory) {
         fixedTheory = cleanChineseCharacters(fixedTheory);
@@ -635,8 +641,17 @@ function checkGrammarAnswer(userAnswer, exercise, lessonIdx) {
                     document.getElementById('backToGrammarFromComplete').onclick = () => {
                         localStorage.removeItem('dm_last_grammar_lesson');
                         localStorage.removeItem('dm_last_grammar_level');
-                        updateModeIndicator();
+                        const level = AppConfig.currentLevel;
+                        const modeIndicator = document.getElementById('modeIndicator');
+                        if (modeIndicator) {
+                            modeIndicator.textContent = `Грамматика ${level}`;
+                            modeIndicator.style.background = '';
+                            modeIndicator.style.padding = '';
+                            modeIndicator.style.color = '';
+                            modeIndicator.style.fontWeight = '';
+                        }
                         updateCounter();
+                        updateModeIndicator();
                         renderGrammar();
                     };
                 }
