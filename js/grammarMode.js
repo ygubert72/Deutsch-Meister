@@ -255,10 +255,10 @@ function renderGrammarLesson(lessonIdx) {
     const totalLessons = lessons.length;
     const completedCount = grammarProgress[level]?.filter(p => p?.completed === true).length || 0;
     
-    // Сохраняем текущий индекс урока в глобальную переменную для навигации
+    // Сохраняем текущий индекс урока
     window.currentGrammarLessonIndex = lessonIdx;
     
-    // Обновляем индикатор в верхней панели (без фона, просто текст)
+    // Обновляем верхнюю закреплённую панель: Грамматика A2 | Урок 5
     const modeIndicator = document.getElementById('modeIndicator');
     if (modeIndicator) {
         modeIndicator.textContent = `Грамматика ${level} | Урок ${lesson.lesson}`;
@@ -269,7 +269,10 @@ function renderGrammarLesson(lessonIdx) {
     }
     
     // Обновляем счётчик в верхней панели
-    updateCounter();
+    const counterEl = document.getElementById('counter');
+    if (counterEl) {
+        counterEl.textContent = `Пройдено: ${completedCount} из ${totalLessons} уроков`;
+    }
     
     document.getElementById('content').innerHTML = `
         <div style="max-width: 900px; margin: 0 auto;">
@@ -282,7 +285,6 @@ function renderGrammarLesson(lessonIdx) {
             </div>
             <div class="lesson-header">
                 <div class="lesson-title">📖 Урок ${lesson.lesson}: ${lesson.title}</div>
-                <div class="grammar-progress-info">Пройдено: ${completedCount} из ${totalLessons} уроков</div>
             </div>
             <div class="lesson-mode" id="grammarModeContainer">
                 <button id="grammarTheoryBtn" class="lesson-mode-btn active" style="cursor: pointer;">📘 ТЕОРИЯ</button>
@@ -298,8 +300,8 @@ function renderGrammarLesson(lessonIdx) {
         backBtn.onclick = () => {
             localStorage.removeItem('dm_last_grammar_lesson');
             localStorage.removeItem('dm_last_grammar_level');
-            // Восстанавливаем нормальный индикатор режима
             updateModeIndicator();
+            updateCounter();
             renderGrammar();
         };
     }
@@ -351,9 +353,7 @@ function showGrammarTheory() {
     // Очищаем текст теории от китайских иероглифов
     let fixedTheory = grammarLessonData.theory || '';
     if (fixedTheory) {
-        // Удаляем китайские иероглифы
         fixedTheory = cleanChineseCharacters(fixedTheory);
-        // Исправляем пробелы после знаков препинания
         fixedTheory = fixTextSpacing(fixedTheory);
     }
     
@@ -404,39 +404,29 @@ function showGrammarPractice(lessonIdx) {
     showGrammarExercise(grammarExercises[0], lessonIdx);
 }
 
-// Функция для получения чистого текста для озвучки (заменяет _____ на answer и удаляет текст в скобках)
 function getCleanTextForSpeak(exercise) {
-    // 1. Если есть original_sentence - используем его
     let text = '';
     if (exercise.original_sentence) {
         text = exercise.original_sentence;
     }
-    // 2. Если есть sentence - заменяем подчёркивания на answer
     else if (exercise.sentence) {
         text = exercise.sentence;
-        // Заменяем _____ или ___ на правильный ответ
         if (exercise.answer) {
             text = text.replace(/_{3,}/g, exercise.answer);
         } else {
-            // Если ответа нет - просто убираем подчёркивания
             text = text.replace(/_{3,}/g, '');
         }
     }
-    // 3. Если есть question - используем его
     else if (exercise.question) {
         text = exercise.question;
     }
-    // 4. В крайнем случае - ответ
     else if (exercise.answer) {
         text = exercise.answer;
     }
     
     if (!text) return '';
     
-    // Удаляем всё, что в круглых скобках, включая сами скобки
     text = text.replace(/\s*\([^)]*\)\s*/g, ' ');
-    
-    // Убираем лишние пробелы
     text = text.replace(/\s+/g, ' ').trim();
     
     return text;
@@ -461,7 +451,6 @@ function showGrammarExercise(exercise, lessonIdx) {
         html += `<div style="font-size: 16px; color: #666; margin-bottom: 10px;">${exercise.question}</div>`;
     }
     
-    // Единый формат для всех типов упражнений — голубой фон
     if (exercise.type === 'choice') {
         html += `
             <div style="background: #E8F0FE; padding: 20px; border-radius: 12px; margin: 20px 0; text-align: center; font-size: 18px; font-weight: 500;">
@@ -476,7 +465,6 @@ function showGrammarExercise(exercise, lessonIdx) {
         html += optionsHtml;
     } 
     else if (exercise.type === 'fill' || exercise.type === 'transform' || exercise.type === 'order' || !exercise.type) {
-        let sentenceText = exercise.sentence || '';
         if (exercise.sentence) {
             html += `
                 <div style="background: #E8F0FE; padding: 20px; border-radius: 12px; margin: 20px 0; text-align: center; font-size: 18px; font-weight: 500;">
@@ -517,10 +505,8 @@ function showGrammarExercise(exercise, lessonIdx) {
     
     container.innerHTML = html;
     
-    // Сохраняем чистый текст для озвучки
     const cleanTextForSpeak = getCleanTextForSpeak(exercise);
     
-    // Обработчики для полей ввода
     if (exercise.type !== 'choice') {
         const input = document.getElementById('grammarAnswerInput');
         if (input) {
@@ -534,7 +520,6 @@ function showGrammarExercise(exercise, lessonIdx) {
         }
     }
     
-    // Обработчики для choice (кнопки)
     if (exercise.type === 'choice') {
         const options = document.querySelectorAll('.quiz-opt');
         options.forEach(opt => {
@@ -545,7 +530,6 @@ function showGrammarExercise(exercise, lessonIdx) {
         });
     }
     
-    // Кнопка проверки для fill/transform/order
     if (exercise.type !== 'choice') {
         const checkBtn = document.getElementById('grammarCheckBtn');
         if (checkBtn) {
@@ -559,20 +543,15 @@ function showGrammarExercise(exercise, lessonIdx) {
         }
     }
     
-    // ========== КНОПКА ОЗВУЧКИ ==========
     const speakBtn = document.getElementById('grammarSpeakBtn');
     if (speakBtn) {
         speakBtn.onclick = () => {
             if (cleanTextForSpeak) {
-                console.log('Озвучиваю:', cleanTextForSpeak);
                 speak(cleanTextForSpeak);
-            } else {
-                console.log('Нет текста для озвучки');
             }
         };
     }
     
-    // Кнопка подсказки
     const hintBtn = document.getElementById('grammarHintBtn');
     if (hintBtn) {
         hintBtn.onclick = () => {
@@ -582,7 +561,6 @@ function showGrammarExercise(exercise, lessonIdx) {
         };
     }
     
-    // Кнопка назад
     const prevBtn = document.getElementById('grammarPrevBtn');
     if (prevBtn) {
         prevBtn.onclick = () => {
@@ -593,7 +571,6 @@ function showGrammarExercise(exercise, lessonIdx) {
         };
     }
     
-    // Кнопка вперёд
     const nextBtn = document.getElementById('grammarNextBtn');
     if (nextBtn) {
         nextBtn.onclick = () => {
@@ -659,6 +636,7 @@ function checkGrammarAnswer(userAnswer, exercise, lessonIdx) {
                         localStorage.removeItem('dm_last_grammar_lesson');
                         localStorage.removeItem('dm_last_grammar_level');
                         updateModeIndicator();
+                        updateCounter();
                         renderGrammar();
                     };
                 }
