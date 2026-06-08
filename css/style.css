@@ -173,7 +173,7 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     padding: 0 10px;
 }
 
-/* Стили для верхней панели на телефонах */
+/* Стили для верхней панели */
 .top-bar {
     display: flex;
     align-items: center;
@@ -185,12 +185,19 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     align-items: center;
 }
 
+/* Индикатор режима - обычный текст, без фона */
 .mode-indicator {
     font-size: 12px;
     color: #333;
     background: none;
     padding: 0;
     font-weight: normal;
+}
+
+/* Счётчик - маленький шрифт */
+#counter {
+    font-size: 12px;
+    color: #888;
 }
 
 /* Телефоны (вертикальная ориентация) */
@@ -288,7 +295,7 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     .hint-label { min-width: 120px; font-size: 11px; padding: 8px 12px; }
     .hint-area { gap: 8px; }
     
-    /* Грамматика - убираем фиксированные высоты для правильной прокрутки */
+    /* Грамматика */
     .lesson-title { font-size: 18px; }
     .lesson-mode-btn { padding: 10px 16px !important; font-size: 13px !important; }
     .lesson-text { 
@@ -362,7 +369,6 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 }
 
 /* ========== ГРАММАТИКА: ПРАВИЛЬНАЯ ПРОКРУТКА ========== */
-/* Убираем фиксацию заголовков в правой области грамматики */
 @media (min-width: 769px) {
     .grammar-scrollable-content {
         overflow-y: auto;
@@ -372,7 +378,6 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
         padding: 0 15px 20px 15px;
     }
     
-    /* Убираем max-height у .lesson-text, чтобы не было двойной прокрутки */
     .lesson-text {
         max-height: none !important;
         overflow-y: visible !important;
