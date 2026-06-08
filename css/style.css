@@ -362,7 +362,7 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     }
 }
 
-/* ========== ГРАММАТИКА: ДЕСКТОПНАЯ ПРОКРУТКА ========== */
+/* ========== ГРАММАТИКА: ПРАВИЛЬНАЯ ПРОКРУТКА ========== */
 /* Убираем фиксацию заголовков в правой области грамматики */
 @media (min-width: 769px) {
     .grammar-scrollable-content {
@@ -378,4 +378,13 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
         max-height: none !important;
         overflow-y: visible !important;
     }
+}
+
+/* Стиль для индикатора в грамматике (без фона) */
+.grammar-mode-indicator {
+    font-size: 12px;
+    color: #333;
+    font-weight: normal;
+    background: none !important;
+    padding: 0 !important;
 }
