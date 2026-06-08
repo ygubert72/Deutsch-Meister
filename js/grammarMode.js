@@ -258,14 +258,18 @@ function renderGrammarLesson(lessonIdx) {
     // Сохраняем текущий индекс урока в глобальную переменную для навигации
     window.currentGrammarLessonIndex = lessonIdx;
     
-    // Обновляем счётчик в верхней панели (для мобильной версии)
-    updateCounter();
-    
-    // Обновляем индикатор режима с номером урока
+    // Обновляем индикатор в верхней панели (без фона, просто текст)
     const modeIndicator = document.getElementById('modeIndicator');
     if (modeIndicator) {
-        modeIndicator.textContent = `Грамматика ${level} | Урок ${lesson.lesson}: ${lesson.title}`;
+        modeIndicator.textContent = `Грамматика ${level} | Урок ${lesson.lesson}`;
+        modeIndicator.style.background = 'none';
+        modeIndicator.style.padding = '0';
+        modeIndicator.style.color = '#333';
+        modeIndicator.style.fontWeight = 'normal';
     }
+    
+    // Обновляем счётчик в верхней панели
+    updateCounter();
     
     document.getElementById('content').innerHTML = `
         <div style="max-width: 900px; margin: 0 auto;">
@@ -278,7 +282,7 @@ function renderGrammarLesson(lessonIdx) {
             </div>
             <div class="lesson-header">
                 <div class="lesson-title">📖 Урок ${lesson.lesson}: ${lesson.title}</div>
-                <div>Уровень ${level} | Пройдено: ${completedCount} из ${totalLessons} уроков</div>
+                <div class="grammar-progress-info">Пройдено: ${completedCount} из ${totalLessons} уроков</div>
             </div>
             <div class="lesson-mode" id="grammarModeContainer">
                 <button id="grammarTheoryBtn" class="lesson-mode-btn active" style="cursor: pointer;">📘 ТЕОРИЯ</button>
@@ -294,7 +298,7 @@ function renderGrammarLesson(lessonIdx) {
         backBtn.onclick = () => {
             localStorage.removeItem('dm_last_grammar_lesson');
             localStorage.removeItem('dm_last_grammar_level');
-            // Восстанавливаем индикатор режима
+            // Восстанавливаем нормальный индикатор режима
             updateModeIndicator();
             renderGrammar();
         };
