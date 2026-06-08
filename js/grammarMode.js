@@ -258,60 +258,44 @@ function renderGrammarLesson(lessonIdx) {
     // Сохраняем текущий индекс урока в глобальную переменную для навигации
     window.currentGrammarLessonIndex = lessonIdx;
     
-    // HTML-структура с поддержкой десктопной и мобильной прокрутки
+    // Обновляем счётчик в верхней панели (для мобильной версии)
+    updateCounter();
+    
+    // Обновляем индикатор режима с номером урока
+    const modeIndicator = document.getElementById('modeIndicator');
+    if (modeIndicator) {
+        modeIndicator.textContent = `Грамматика ${level} | Урок ${lesson.lesson}: ${lesson.title}`;
+    }
+    
     document.getElementById('content').innerHTML = `
-        <div class="grammar-lesson-container" style="height: 100%; display: flex; flex-direction: column;">
-            <!-- ДЕСКТОПНАЯ ВЕРСИЯ: обычные заголовки (без фиксации) -->
-            <div class="desktop-only-header">
-                <div style="margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                    <button class="ctrl-btn" id="backToGrammarList" style="cursor: pointer; background: #3B6FE0; color: white;">← К СПИСКУ УРОКОВ</button>
-                    <div style="display: flex; gap: 10px;">
-                        ${!isFirstLesson ? '<button class="ctrl-btn" id="prevLessonBtn" style="cursor: pointer; background: #3B6FE0; color: white;">← ПРЕДЫДУЩИЙ</button>' : ''}
-                        ${!isLastLesson ? '<button class="ctrl-btn" id="nextLessonBtn" style="cursor: pointer; background: #3B6FE0; color: white;">СЛЕДУЮЩИЙ →</button>' : ''}
-                    </div>
-                </div>
-                <div class="lesson-header">
-                    <div class="lesson-title">📖 Урок ${lesson.lesson}: ${lesson.title}</div>
-                    <div>Уровень ${level} | Пройдено: ${completedCount} из ${totalLessons} уроков</div>
-                </div>
-                <div class="lesson-mode" id="grammarModeContainer">
-                    <button id="grammarTheoryBtn" class="lesson-mode-btn active" style="cursor: pointer;">📘 ТЕОРИЯ</button>
-                    <button id="grammarPracticeBtn" class="lesson-mode-btn" style="cursor: pointer;">✍️ УПРАЖНЕНИЯ</button>
+        <div style="max-width: 900px; margin: 0 auto;">
+            <div style="margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                <button class="ctrl-btn" id="backToGrammarList" style="cursor: pointer; background: #3B6FE0; color: white;">← К СПИСКУ УРОКОВ</button>
+                <div style="display: flex; gap: 10px;">
+                    ${!isFirstLesson ? '<button class="ctrl-btn" id="prevLessonBtn" style="cursor: pointer; background: #3B6FE0; color: white;">← ПРЕДЫДУЩИЙ УРОК</button>' : ''}
+                    ${!isLastLesson ? '<button class="ctrl-btn" id="nextLessonBtn" style="cursor: pointer; background: #3B6FE0; color: white;">СЛЕДУЮЩИЙ УРОК →</button>' : ''}
                 </div>
             </div>
-            
-            <!-- МОБИЛЬНАЯ ВЕРСИЯ: фиксированная верхняя панель -->
-            <div class="grammar-mobile-fixed-bar">
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <span class="mobile-lesson-title">📖 Урок ${lesson.lesson}</span>
-                    <span class="mobile-counter">📊 ${completedCount}/${totalLessons}</span>
-                </div>
-                <div style="display: flex; gap: 8px;">
-                    ${!isFirstLesson ? '<button class="ctrl-btn" id="mobilePrevLessonBtn" style="padding: 4px 10px; font-size: 11px;">←</button>' : ''}
-                    ${!isLastLesson ? '<button class="ctrl-btn" id="mobileNextLessonBtn" style="padding: 4px 10px; font-size: 11px;">→</button>' : ''}
-                    <button class="ctrl-btn" id="mobileBackToListBtn" style="padding: 4px 10px; font-size: 11px;">📋</button>
-                </div>
+            <div class="lesson-header">
+                <div class="lesson-title">📖 Урок ${lesson.lesson}: ${lesson.title}</div>
+                <div>Уровень ${level} | Пройдено: ${completedCount} из ${totalLessons} уроков</div>
             </div>
-            
-            <!-- МОБИЛЬНЫЕ КНОПКИ ПЕРЕКЛЮЧЕНИЯ РЕЖИМОВ (под фиксированной панелью) -->
-            <div class="lesson-mode" id="mobileGrammarModeContainer" style="margin: 10px 12px; display: none;">
-                <button id="mobileGrammarTheoryBtn" class="lesson-mode-btn active" style="cursor: pointer;">📘 ТЕОРИЯ</button>
-                <button id="mobileGrammarPracticeBtn" class="lesson-mode-btn" style="cursor: pointer;">✍️ УПРАЖНЕНИЯ</button>
+            <div class="lesson-mode" id="grammarModeContainer">
+                <button id="grammarTheoryBtn" class="lesson-mode-btn active" style="cursor: pointer;">📘 ТЕОРИЯ</button>
+                <button id="grammarPracticeBtn" class="lesson-mode-btn" style="cursor: pointer;">✍️ УПРАЖНЕНИЯ</button>
             </div>
-            
-            <!-- ПРОКРУЧИВАЕМАЯ ОБЛАСТЬ (общая для теории и упражнений) -->
-            <div class="grammar-scrollable-content" id="grammarContent">
-                <!-- Сюда динамически загружается теория или упражнения -->
-            </div>
+            <div class="grammar-scrollable-content" id="grammarContent"></div>
         </div>
     `;
     
-    // ========== ДЕСКТОПНЫЕ ОБРАБОТЧИКИ ==========
+    // ========== ОБРАБОТЧИКИ ==========
     const backBtn = document.getElementById('backToGrammarList');
     if (backBtn) {
         backBtn.onclick = () => {
             localStorage.removeItem('dm_last_grammar_lesson');
             localStorage.removeItem('dm_last_grammar_level');
+            // Восстанавливаем индикатор режима
+            updateModeIndicator();
             renderGrammar();
         };
     }
@@ -330,32 +314,7 @@ function renderGrammarLesson(lessonIdx) {
         };
     }
     
-    // ========== МОБИЛЬНЫЕ ОБРАБОТЧИКИ ==========
-    const mobilePrevBtn = document.getElementById('mobilePrevLessonBtn');
-    if (mobilePrevBtn && !isFirstLesson) {
-        mobilePrevBtn.onclick = () => {
-            renderGrammarLesson(lessonIdx - 1);
-        };
-    }
-    
-    const mobileNextBtn = document.getElementById('mobileNextLessonBtn');
-    if (mobileNextBtn && !isLastLesson) {
-        mobileNextBtn.onclick = () => {
-            renderGrammarLesson(lessonIdx + 1);
-        };
-    }
-    
-    const mobileBackBtn = document.getElementById('mobileBackToListBtn');
-    if (mobileBackBtn) {
-        mobileBackBtn.onclick = () => {
-            localStorage.removeItem('dm_last_grammar_lesson');
-            localStorage.removeItem('dm_last_grammar_level');
-            renderGrammar();
-        };
-    }
-    
     // ========== ПЕРЕКЛЮЧЕНИЕ РЕЖИМОВ ==========
-    // Десктопные кнопки
     const theoryBtn = document.getElementById('grammarTheoryBtn');
     const practiceBtn = document.getElementById('grammarPracticeBtn');
     
@@ -373,41 +332,6 @@ function renderGrammarLesson(lessonIdx) {
             currentGrammarMode = 'practice';
             practiceBtn.classList.add('active');
             if (theoryBtn) theoryBtn.classList.remove('active');
-            showGrammarPractice(lessonIdx);
-        };
-    }
-    
-    // Мобильные кнопки
-    const mobileModeContainer = document.getElementById('mobileGrammarModeContainer');
-    if (mobileModeContainer) {
-        mobileModeContainer.style.display = 'flex';
-    }
-    
-    const mobileTheoryBtn = document.getElementById('mobileGrammarTheoryBtn');
-    const mobilePracticeBtn = document.getElementById('mobileGrammarPracticeBtn');
-    
-    if (mobileTheoryBtn) {
-        mobileTheoryBtn.onclick = () => {
-            currentGrammarMode = 'theory';
-            mobileTheoryBtn.classList.add('active');
-            if (mobilePracticeBtn) mobilePracticeBtn.classList.remove('active');
-            if (theoryBtn) {
-                theoryBtn.classList.add('active');
-                if (practiceBtn) practiceBtn.classList.remove('active');
-            }
-            showGrammarTheory();
-        };
-    }
-    
-    if (mobilePracticeBtn) {
-        mobilePracticeBtn.onclick = () => {
-            currentGrammarMode = 'practice';
-            mobilePracticeBtn.classList.add('active');
-            if (mobileTheoryBtn) mobileTheoryBtn.classList.remove('active');
-            if (practiceBtn) {
-                practiceBtn.classList.add('active');
-                if (theoryBtn) theoryBtn.classList.remove('active');
-            }
             showGrammarPractice(lessonIdx);
         };
     }
@@ -727,7 +651,12 @@ function checkGrammarAnswer(userAnswer, exercise, lessonIdx) {
                             <button class="ctrl-btn" id="backToGrammarFromComplete" style="cursor: pointer;">ВЕРНУТЬСЯ К СПИСКУ УРОКОВ</button>
                         </div>
                     `;
-                    document.getElementById('backToGrammarFromComplete').onclick = () => renderGrammar();
+                    document.getElementById('backToGrammarFromComplete').onclick = () => {
+                        localStorage.removeItem('dm_last_grammar_lesson');
+                        localStorage.removeItem('dm_last_grammar_level');
+                        updateModeIndicator();
+                        renderGrammar();
+                    };
                 }
             }
         }, 500);
