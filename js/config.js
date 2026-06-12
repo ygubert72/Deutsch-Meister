@@ -30,6 +30,7 @@ function saveProgress() {
         last_mode: currentMode
     }));
     
+    // Сохраняем прогресс в облако, если пользователь авторизован
     if (window.saveUserProgressToFirebase) {
         window.saveUserProgressToFirebase();
     }
