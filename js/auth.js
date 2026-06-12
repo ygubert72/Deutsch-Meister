@@ -1,4 +1,4 @@
-// auth.js - полная версия с оплатой премиум и поддержкой мобильного меню
+// auth.js - полная версия с синхронизацией прогресса в облаке
 
 let auth = null;
 let db = null;
@@ -21,6 +21,83 @@ const firebaseConfig = {
     storageBucket: "deutsch-meister-248cf.firebasestorage.app",
     messagingSenderId: "549700335996",
     appId: "1:549700335996:web:97ed9e8f91224e34ab0cf9"
+};
+
+// ========== СОХРАНЕНИЕ ПРОГРЕССА В ОБЛАКО ==========
+window.saveUserProgressToFirebase = async function() {
+    if (!auth || !auth.currentUser) return;
+    
+    const userId = auth.currentUser.uid;
+    if (!db) return;
+    
+    try {
+        const progressData = {
+            wordsProgress: wordsProgress,
+            sentencesProgress: sentencesProgress,
+            grammarProgress: grammarProgress,
+            config: {
+                last_level: AppConfig.currentLevel,
+                show_language: AppConfig.show_language,
+                quiz_direction: AppConfig.quiz_direction,
+                sentence_lang_from: AppConfig.sentence_lang_from,
+                last_mode: currentMode
+            },
+            lastUpdated: new Date().toISOString()
+        };
+        
+        await db.collection('users').doc(userId).set({
+            progress: progressData
+        }, { merge: true });
+        
+        console.log('✅ Прогресс сохранён в облаке');
+    } catch(e) {
+        console.error('Ошибка сохранения прогресса:', e);
+    }
+};
+
+// ========== ЗАГРУЗКА ПРОГРЕССА ИЗ ОБЛАКА ==========
+window.loadUserProgressFromFirebase = async function() {
+    if (!auth || !auth.currentUser) return false;
+    
+    const userId = auth.currentUser.uid;
+    if (!db) return false;
+    
+    try {
+        const userDoc = await db.collection('users').doc(userId).get();
+        if (userDoc.exists && userDoc.data().progress) {
+            const progress = userDoc.data().progress;
+            
+            if (progress.wordsProgress) {
+                Object.assign(wordsProgress, progress.wordsProgress);
+                localStorage.setItem('dm_words_progress', JSON.stringify(wordsProgress));
+            }
+            
+            if (progress.sentencesProgress) {
+                Object.assign(sentencesProgress, progress.sentencesProgress);
+                localStorage.setItem('dm_sentences_progress', JSON.stringify(sentencesProgress));
+            }
+            
+            if (progress.grammarProgress) {
+                Object.assign(grammarProgress, progress.grammarProgress);
+                localStorage.setItem('dm_grammar_progress', JSON.stringify(grammarProgress));
+            }
+            
+            if (progress.config) {
+                AppConfig.currentLevel = progress.config.last_level || 'A1';
+                AppConfig.show_language = progress.config.show_language || 'de';
+                AppConfig.quiz_direction = progress.config.quiz_direction || 'de_to_ru';
+                AppConfig.sentence_lang_from = progress.config.sentence_lang_from || 'ru';
+                currentMode = progress.config.last_mode || 'grammar';
+                localStorage.setItem('dm_config', JSON.stringify(progress.config));
+            }
+            
+            console.log('✅ Прогресс загружен из облака');
+            return true;
+        }
+    } catch(e) {
+        console.error('Ошибка загрузки прогресса:', e);
+    }
+    return false;
 };
 
 // Инициализация Firebase
@@ -47,12 +124,15 @@ function initFirebase() {
         if (user) {
             console.log('Пользователь в системе:', user.email);
             await loadUserData(user.uid);
+            await loadUserProgressFromFirebase();
             await addUserToFirestore(user);
             await checkIfBlocked(user);
         } else {
             currentUserData = null;
         }
         updateUI(user);
+        if (typeof updateCounter === 'function') updateCounter();
+        if (typeof renderGrammar === 'function') renderGrammar();
     });
 }
 
@@ -72,17 +152,14 @@ async function loadUserData(uid) {
 
 // Проверка доступа к уровню
 window.hasAccessToLevel = function(level) {
-    // Админ имеет доступ ко всему
     if (auth.currentUser && auth.currentUser.email === 'ygubert72@gmail.com') {
         return true;
     }
     
-    // Уровни A1 и A2 бесплатны для всех
     if (level === 'A1' || level === 'A2') {
         return true;
     }
     
-    // Проверка наличия доступа к B1-C1
     if (currentUserData && currentUserData.hasPremiumAccess === true) {
         return true;
     }
@@ -140,14 +217,12 @@ async function addUserToFirestore(user) {
 
 // Функция добавления кнопки админа в оба меню
 function addAdminButton() {
-    // Удаляем старые кнопки, если есть
     const oldAdminBtn = document.getElementById('adminBtn');
     if (oldAdminBtn) oldAdminBtn.remove();
     
     const oldAdminBtnMobile = document.getElementById('adminBtnMobile');
     if (oldAdminBtnMobile) oldAdminBtnMobile.remove();
     
-    // Создаём кнопку для обычного сайдбара
     const adminBtn = document.createElement('button');
     adminBtn.id = 'adminBtn';
     adminBtn.className = 'btn';
@@ -158,13 +233,11 @@ function addAdminButton() {
     adminBtn.style.cursor = 'pointer';
     adminBtn.onclick = () => window.showAdminPanel();
     
-    // Добавляем в обычный сайдбар
     const sidebarContent = document.querySelector('.sidebar .sidebar-content');
     if (sidebarContent) {
         sidebarContent.appendChild(adminBtn);
     }
     
-    // Создаём кнопку для мобильного меню
     const adminBtnMobile = document.createElement('button');
     adminBtnMobile.id = 'adminBtnMobile';
     adminBtnMobile.className = 'btn';
@@ -175,7 +248,6 @@ function addAdminButton() {
     adminBtnMobile.style.cursor = 'pointer';
     adminBtnMobile.onclick = () => window.showAdminPanel();
     
-    // Добавляем в мобильное меню
     const mobileSidebarContent = document.querySelector('#mobileMenu .sidebar-content');
     if (mobileSidebarContent) {
         mobileSidebarContent.appendChild(adminBtnMobile);
@@ -192,7 +264,6 @@ function updateUI(user) {
     if (!loginBtn || !userInfo) return;
     
     if (user) {
-        // Скрываем кнопки входа в обоих меню
         loginBtn.style.display = 'none';
         if (loginBtnMobile) loginBtnMobile.style.display = 'none';
         
@@ -201,7 +272,6 @@ function updateUI(user) {
         
         const hasPremium = currentUserData && currentUserData.hasPremiumAccess === true;
         
-        // Показываем кнопку премиум (кроме админа)
         const premiumButtonHtml = (user.email !== 'ygubert72@gmail.com') ? `
             <div style="margin-top:8px;">
                 ${!hasPremium 
@@ -225,23 +295,19 @@ function updateUI(user) {
         userInfo.innerHTML = userInfoHtml;
         if (userInfoMobile) userInfoMobile.innerHTML = userInfoHtml;
         
-        // Привязываем обработчик кнопки оплаты
         if (!hasPremium && user.email !== 'ygubert72@gmail.com') {
             setTimeout(() => {
                 const payBtn = document.getElementById('premiumPayBtn');
                 if (payBtn) payBtn.onclick = () => showPaymentModal();
                 
-                // Также для мобильной версии
                 const payBtnMobile = document.getElementById('premiumPayBtn');
                 if (payBtnMobile) payBtnMobile.onclick = () => showPaymentModal();
             }, 100);
         }
         
-        // Добавляем кнопку админа для администратора
         if (user.email === 'ygubert72@gmail.com') {
             addAdminButton();
         } else {
-            // Удаляем кнопки админа, если пользователь не админ
             const oldAdminBtn = document.getElementById('adminBtn');
             if (oldAdminBtn) oldAdminBtn.remove();
             const oldAdminBtnMobile = document.getElementById('adminBtnMobile');
@@ -249,7 +315,6 @@ function updateUI(user) {
         }
         
     } else {
-        // Пользователь не авторизован
         loginBtn.style.display = 'block';
         if (loginBtnMobile) loginBtnMobile.style.display = 'block';
         
@@ -259,7 +324,7 @@ function updateUI(user) {
         const guestHtml = `
             <div style="background:#E8F0FE; border-radius:8px; padding:8px; text-align:center;">
                 <div style="font-size:14px; font-weight:bold;">👋 Гостевой режим</div>
-                <div style="font-size:11px; color:#666; margin-top:4px;">прогресс не сохраняется</div>
+                <div style="font-size:11px; color:#666; margin-top:4px;">прогресс не сохраняется между устройствами</div>
             </div>
         `;
         
@@ -269,7 +334,6 @@ function updateUI(user) {
         loginBtn.onclick = () => showLoginModal();
         if (loginBtnMobile) loginBtnMobile.onclick = () => showLoginModal();
         
-        // Удаляем кнопки админа
         const oldAdminBtn = document.getElementById('adminBtn');
         if (oldAdminBtn) oldAdminBtn.remove();
         const oldAdminBtnMobile = document.getElementById('adminBtnMobile');
@@ -411,7 +475,6 @@ window.showAdminPanel = async function() {
         return;
     }
     
-    // Получаем пользователей
     let users = [];
     if (db) {
         try {
@@ -441,7 +504,6 @@ window.showAdminPanel = async function() {
                     <button id="closeAdminPanel" style="background:none; border:none; font-size:28px; cursor:pointer;">&times;</button>
                 </div>
                 <div style="padding:20px;">
-                    <!-- Статистика -->
                     <h3>📊 Статистика</h3>
                     <div style="display:flex; gap:15px; flex-wrap:wrap; margin-bottom:20px;">
                         <div style="background:#E8F0FE; padding:10px 20px; border-radius:12px;">Всего: <strong>${users.length}</strong></div>
@@ -449,7 +511,6 @@ window.showAdminPanel = async function() {
                         <div style="background:#FFCDD2; padding:10px 20px; border-radius:12px;">Заблокировано: <strong>${users.filter(u => u.blocked).length}</strong></div>
                     </div>
                     
-                    <!-- Ручное управление -->
                     <h3>🔧 Ручное управление пользователями</h3>
                     <div style="display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap;">
                         <input type="email" id="premiumEmail" placeholder="Email пользователя" style="flex:1; padding:10px; border:2px solid #E0E0E0; border-radius:8px;">
@@ -457,7 +518,6 @@ window.showAdminPanel = async function() {
                         <button id="deactivatePremiumBtn" style="padding:10px 20px; background:#FF9800; color:white; border:none; border-radius:8px; cursor:pointer;">🔒 Снять премиум</button>
                     </div>
                     
-                    <!-- Список пользователей -->
                     <h3>👥 Список пользователей</h3>
                     <div id="usersList">
                         ${users.map(user => `
@@ -529,7 +589,6 @@ window.deactivatePremiumByUid = async function(uid) {
     } catch(e) { alert('Ошибка: ' + e.message); }
 };
 
-// Блокировка пользователя
 window.blockUser = async function(uid) {
     if (!confirm('Заблокировать пользователя?')) return;
     try {
@@ -633,8 +692,10 @@ window.showLoginModal = function() {
         try {
             if (isLogin) {
                 await auth.signInWithEmailAndPassword(email, password);
+                await window.loadUserProgressFromFirebase();
                 alert('Добро пожаловать, ' + email + '!');
                 modal.remove();
+                location.reload();
             } else {
                 const userCredential = await auth.createUserWithEmailAndPassword(email, password);
                 if (db) {
@@ -648,6 +709,7 @@ window.showLoginModal = function() {
                 }
                 alert('Регистрация успешна! Добро пожаловать, ' + email + '!');
                 modal.remove();
+                location.reload();
             }
         } catch(error) {
             let msg = 'Ошибка: ';
@@ -664,7 +726,7 @@ window.showLoginModal = function() {
     
     document.getElementById('guestBtn').onclick = () => {
         modal.remove();
-        alert('Гостевой режим (прогресс не сохранится)');
+        alert('Гостевой режим (прогресс не сохраняется между устройствами)');
     };
     
     document.getElementById('closeModal').onclick = () => modal.remove();
