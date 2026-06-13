@@ -51,6 +51,49 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 .word-btn { padding: 8px 16px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: pointer; font-size: 13px; transition: all 0.05s linear; box-shadow: 0 3px 4px rgba(0,0,0,0.1); text-align: center; }
 .word-btn:active { transform: translateY(2px); box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
 
+/* ========== МОБИЛЬНЫЙ ТРЕНАЖЁР: 3 РЯДА СЛОВ ========== */
+.words-container-mobile {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin: 15px 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.word-btn-mobile {
+    padding: 10px 12px;
+    background: #E8F0FE;
+    border: 2px solid #D0D0D0;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.05s linear;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+    text-align: center;
+    word-break: break-word;
+    white-space: normal;
+    min-height: 50px;
+}
+
+.word-btn-mobile:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+
+/* Для очень маленьких экранов (320px) делаем 2 ряда */
+@media (max-width: 480px) {
+    .words-container-mobile {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+    }
+    .word-btn-mobile {
+        font-size: 11px;
+        padding: 8px 10px;
+        min-height: 44px;
+    }
+}
+
 .lesson-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; }
 .lesson-title { font-size: 24px; font-weight: bold; color: #1A1A1A; }
 .lesson-mode { display: flex; gap: 12px; justify-content: center; margin-bottom: 12px; }
@@ -271,7 +314,7 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     .card-word { font-size: 22px; padding: 20px; }
     .card { min-height: 220px; margin: 10px auto; }
     
-    /* Слова в тренажёре */
+    /* Слова в тренажёре (десктопные 6 колонок на телефоне не используются) */
     .words-container { 
         grid-template-columns: repeat(3, auto); 
         gap: 8px;
