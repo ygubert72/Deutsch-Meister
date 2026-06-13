@@ -245,7 +245,7 @@ function renderSentencesDesktop() {
     updateCounter();
 }
 
-// ========== МОДАЛЬНОЕ ОКНО ДЛЯ ДЕСКТОПА ==========
+// ========== МОДАЛЬНОЕ ОКНО ДЛЯ ДЕСКТОПА (ИСПРАВЛЕНО) ==========
 function showStudiedSentencesModalDesktop(initialSentences) {
     const oldModal = document.getElementById('studiedSentencesModal');
     if (oldModal) oldModal.remove();
@@ -257,7 +257,7 @@ function showStudiedSentencesModalDesktop(initialSentences) {
     const modalContent = document.createElement('div');
     modalContent.style.cssText = `background:white; border-radius:20px; max-width:500px; width:90%; max-height:80vh; display:flex; flex-direction:column; margin:20px;`;
     
-    function updateModalContent() {
+    function refreshModalContent() {
         const currentStudied = sentencesDB[AppConfig.currentLevel].filter((_, idx) => sentencesProgress[AppConfig.currentLevel]?.[idx]?.studied);
         const header = modalContent.querySelector('h3');
         const itemsContainer = modalContent.querySelector('.items-container');
@@ -286,7 +286,7 @@ function showStudiedSentencesModalDesktop(initialSentences) {
                             sentencesIndex = 0;
                             showCurrentSentence();
                             updateCounter();
-                            updateModalContent();
+                            refreshModalContent();
                         }
                     };
                 });
@@ -320,27 +320,9 @@ function showStudiedSentencesModalDesktop(initialSentences) {
             sentencesIndex = 0;
             showCurrentSentence();
             updateCounter();
-            updateModalContent();
+            refreshModalContent();
         }
     };
-    
-    document.querySelectorAll('.studied-sentence-item').forEach(btn => {
-        btn.onclick = () => {
-            const idx = parseInt(btn.getAttribute('data-index'));
-            const sentence = initialSentences[idx];
-            const sIdx = sentencesDB[AppConfig.currentLevel].findIndex(s => s.de === sentence.de && s.ru === sentence.ru);
-            if (sIdx !== -1) {
-                if (!sentencesProgress[AppConfig.currentLevel]) sentencesProgress[AppConfig.currentLevel] = [];
-                sentencesProgress[AppConfig.currentLevel][sIdx] = { studied: false };
-                saveProgress();
-                sentencesList = getUnstudiedSentences();
-                sentencesIndex = 0;
-                showCurrentSentence();
-                updateCounter();
-                updateModalContent();
-            }
-        };
-    });
 }
 
 // ========== МОБИЛЬНАЯ ВЕРСИЯ ==========
@@ -617,7 +599,7 @@ function renderSentencesMobile() {
     });
 }
 
-// ========== МОДАЛЬНОЕ ОКНО ДЛЯ МОБИЛЬНОЙ ВЕРСИИ ==========
+// ========== МОДАЛЬНОЕ ОКНО ДЛЯ МОБИЛЬНОЙ ВЕРСИИ (ИСПРАВЛЕНО) ==========
 function showStudiedSentencesModalMobile(initialSentences) {
     const oldModal = document.getElementById('studiedSentencesModal');
     if (oldModal) oldModal.remove();
@@ -629,7 +611,7 @@ function showStudiedSentencesModalMobile(initialSentences) {
     const modalContent = document.createElement('div');
     modalContent.style.cssText = `background:white; border-radius:20px; max-width:500px; width:90%; max-height:80vh; display:flex; flex-direction:column; margin:20px;`;
     
-    function updateModalContent() {
+    function refreshModalContent() {
         const currentStudied = sentencesDB[AppConfig.currentLevel].filter((_, idx) => sentencesProgress[AppConfig.currentLevel]?.[idx]?.studied);
         const header = modalContent.querySelector('h3');
         const itemsContainer = modalContent.querySelector('.items-container');
@@ -658,7 +640,7 @@ function showStudiedSentencesModalMobile(initialSentences) {
                             sentencesIndex = 0;
                             refreshCarousel();
                             updateCounter();
-                            updateModalContent();
+                            refreshModalContent();
                         }
                     };
                 });
@@ -692,27 +674,9 @@ function showStudiedSentencesModalMobile(initialSentences) {
             sentencesIndex = 0;
             refreshCarousel();
             updateCounter();
-            updateModalContent();
+            refreshModalContent();
         }
     };
-    
-    document.querySelectorAll('.studied-sentence-item').forEach(btn => {
-        btn.onclick = () => {
-            const idx = parseInt(btn.getAttribute('data-index'));
-            const sentence = initialSentences[idx];
-            const sIdx = sentencesDB[AppConfig.currentLevel].findIndex(s => s.de === sentence.de && s.ru === sentence.ru);
-            if (sIdx !== -1) {
-                if (!sentencesProgress[AppConfig.currentLevel]) sentencesProgress[AppConfig.currentLevel] = [];
-                sentencesProgress[AppConfig.currentLevel][sIdx] = { studied: false };
-                saveProgress();
-                sentencesList = getUnstudiedSentences();
-                sentencesIndex = 0;
-                refreshCarousel();
-                updateCounter();
-                updateModalContent();
-            }
-        };
-    });
 }
 
 function getStudiedSentencesCount() {
