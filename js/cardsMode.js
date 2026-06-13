@@ -2,10 +2,33 @@ let cardsList = [];
 let cardsIndex = 0;
 let cardsFlipped = false;
 
+// Переменные для свайпа
+let touchStartX = 0;
+let touchStartY = 0;
+let touchEndX = 0;
+let touchEndY = 0;
+const minSwipeDistance = 50;
+
+// Проверка, мобильное ли устройство (ширина экрана <= 768px)
+function isMobileDevice() {
+    return window.innerWidth <= 768;
+}
+
 function renderCards() {
     cardsList = getUnstudiedWords();
     cardsIndex = 0;
     cardsFlipped = false;
+    
+    const isMobile = isMobileDevice();
+    
+    // Кнопки навигации показываем только на компьютере
+    const navigationButtons = isMobile ? '' : `
+        <button class="ctrl-btn" id="prevBtn">◀ НАЗАД</button>
+        <button class="ctrl-btn" id="nextBtn">ВПЕРЕД ▶</button>
+    `;
+    
+    // Подсказка о свайпах только для мобильных
+    const swipeHint = isMobile ? '<div class="hint">👆 Свайп влево/вправо для листания карточек</div>' : '';
     
     document.getElementById('content').innerHTML = `
         <div style="text-align: center;">
@@ -17,10 +40,9 @@ function renderCards() {
                 <button class="ctrl-btn" id="studyBtn">ИЗУЧЕНО</button>
                 <button class="ctrl-btn" id="containerBtn">В КОНТЕЙНЕР</button>
                 <button class="ctrl-btn" id="speakBtn">🔊</button>
-                <button class="ctrl-btn" id="prevBtn">◀ НАЗАД</button>
-                <button class="ctrl-btn" id="nextBtn">ВПЕРЕД ▶</button>
+                ${navigationButtons}
             </div>
-            <div class="hint">Нажмите на карточку для перевода</div>
+            ${swipeHint}
         </div>
     `;
     
@@ -49,6 +71,80 @@ function renderCards() {
         }
     }
     
+    // ========== СВАЙПЫ (ТОЛЬКО ДЛЯ МОБИЛЬНЫХ) ==========
+    if (isMobile) {
+        const cardElement = document.getElementById('card');
+        
+        cardElement.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+        });
+        
+        cardElement.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            touchEndY = e.changedTouches[0].screenY;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            const deltaX = touchEndX - touchStartX;
+            const deltaY = touchEndY - touchStartY;
+            
+            // Проверяем, что свайп горизонтальный
+            if (Math.abs(deltaX) < Math.abs(deltaY)) return;
+            if (Math.abs(deltaX) < minSwipeDistance) return;
+            
+            if (deltaX > 0) {
+                // Свайп вправо - ПРЕДЫДУЩАЯ карточка
+                if (cardsList.length && cardsIndex > 0) {
+                    cardsIndex--;
+                    cardsFlipped = false;
+                    updateCardDisplay();
+                } else if (cardsList.length && cardsIndex === 0) {
+                    cardsIndex = cardsList.length - 1;
+                    cardsFlipped = false;
+                    updateCardDisplay();
+                }
+            } else {
+                // Свайп влево - СЛЕДУЮЩАЯ карточка
+                if (cardsList.length) {
+                    cardsIndex = (cardsIndex + 1) % cardsList.length;
+                    cardsFlipped = false;
+                    updateCardDisplay();
+                }
+            }
+        }
+    }
+    
+    // ========== КНОПКИ НАВИГАЦИИ (ТОЛЬКО ДЛЯ КОМПЬЮТЕРА) ==========
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    
+    if (prevBtn) {
+        prevBtn.onclick = () => {
+            if (cardsList.length && cardsIndex > 0) {
+                cardsIndex--;
+                cardsFlipped = false;
+                updateCardDisplay();
+            } else if (cardsList.length && cardsIndex === 0) {
+                cardsIndex = cardsList.length - 1;
+                cardsFlipped = false;
+                updateCardDisplay();
+            }
+        };
+    }
+    
+    if (nextBtn) {
+        nextBtn.onclick = () => {
+            if (cardsList.length) {
+                cardsIndex = (cardsIndex + 1) % cardsList.length;
+                cardsFlipped = false;
+                updateCardDisplay();
+            }
+        };
+    }
+    
+    // ========== ОБЩИЕ ОБРАБОТЧИКИ ==========
     document.getElementById('dirBtn').onclick = () => {
         AppConfig.show_language = AppConfig.show_language === 'de' ? 'ru' : 'de';
         cardsFlipped = false;
@@ -57,14 +153,14 @@ function renderCards() {
         saveProgress();
     };
     
-    document.getElementById('card').onclick = () => {
+    const cardElement = document.getElementById('card');
+    cardElement.onclick = () => {
         if (cardsList.length) {
             cardsFlipped = !cardsFlipped;
             updateCardDisplay();
         }
     };
     
-    // Кнопка "ИЗУЧЕНО" - перемещает слово в изученные (контейнер)
     document.getElementById('studyBtn').onclick = () => {
         if (cardsList.length && cardsList[cardsIndex]) {
             markWordAsStudied(cardsList[cardsIndex]);
@@ -76,7 +172,6 @@ function renderCards() {
         }
     };
     
-    // Кнопка "В КОНТЕЙНЕР" - открывает модальное окно со списком изученных слов
     document.getElementById('containerBtn').onclick = () => {
         const studied = getStudiedWordsList();
         if (!studied.length) { 
@@ -88,22 +183,6 @@ function renderCards() {
     
     document.getElementById('speakBtn').onclick = () => {
         if (cardsList[cardsIndex]) speak(cardsList[cardsIndex].de);
-    };
-    
-    document.getElementById('prevBtn').onclick = () => {
-        if (cardsList.length && cardsIndex > 0) {
-            cardsIndex--;
-            cardsFlipped = false;
-            updateCardDisplay();
-        }
-    };
-    
-    document.getElementById('nextBtn').onclick = () => {
-        if (cardsList.length) {
-            cardsIndex = (cardsIndex + 1) % cardsList.length;
-            cardsFlipped = false;
-            updateCardDisplay();
-        }
     };
     
     updateCardDisplay();
@@ -208,7 +287,7 @@ function showStudiedWordsModal(studiedWords) {
             cardsList = getUnstudiedWords();
             updateCardDisplay();
             updateCounter();
-            // Обновляем модальное окно (убираем возвращённое слово)
+            // Обновляем модальное окно
             const updatedStudied = getStudiedWordsList();
             if (updatedStudied.length === 0) {
                 closeModal();
