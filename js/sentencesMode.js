@@ -7,6 +7,13 @@ let sentencesActive = {};
 let sentencesHintIndex = 0;
 let sentencesHintWords = [];
 
+// Переменные для мобильной карусели
+let mobileTouchStartX = 0;
+let mobileIsDragging = false;
+let mobileContainerWidth = 0;
+let mobileCurrentTranslate = 0;
+const mobileMinSwipeDistance = 50;
+
 function isMobileDevice() {
     return window.innerWidth <= 768;
 }
@@ -238,12 +245,16 @@ function renderSentencesDesktop() {
     updateCounter();
 }
 
-// ========== МОБИЛЬНАЯ ВЕРСИЯ (только 3 ряда слов, остальное как было) ==========
+// ========== МОБИЛЬНАЯ ВЕРСИЯ (с каруселью и 3 рядами слов) ==========
 function renderSentencesMobile() {
     document.getElementById('content').innerHTML = `
         <div style="text-align: center;">
             <button class="dir-btn" id="sentDirBtn">${AppConfig.sentence_lang_from === 'ru' ? 'Ru → De' : 'De → Ru'}</button>
-            <div class="sent-question" id="sentQuestion"></div>
+            <div id="carouselWrapper" style="overflow: hidden; width: 100%; position: relative; touch-action: pan-y pinch-zoom;">
+                <div id="carouselTrack" style="display: flex; transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1); will-change: transform;">
+                    ${generateSentencesCards()}
+                </div>
+            </div>
             <div class="sent-result" id="sentResult"></div>
             <div class="words-container-mobile" id="sentWordsContainer"></div>
             <div class="btn-group">
@@ -259,13 +270,47 @@ function renderSentencesMobile() {
             <div class="btn-group">
                 <button class="ctrl-btn" id="sentStudyBtn">ИЗУЧЕНО</button>
                 <button class="ctrl-btn" id="sentContainerBtn">В КОНТЕЙНЕР</button>
-                <button class="ctrl-btn" id="sentPrevBtn">◀ НАЗАД</button>
-                <button class="ctrl-btn" id="sentNextBtn">ВПЕРЕД ▶</button>
                 <button class="ctrl-btn" id="sentResetStartBtn">⏮ В НАЧАЛО</button>
             </div>
             <div class="hint" id="sentProgress"></div>
+            <div class="hint">👆 Свайп влево/вправо для листания фраз</div>
         </div>
     `;
+    
+    function generateSentencesCards() {
+        if (!sentencesList.length) {
+            return `<div class="sent-carousel-card" style="flex: 0 0 100%; min-width: 100%; padding: 20px;"><div style="background: #E8F0FE; border-radius: 20px; padding: 40px; text-align: center;">🎉 Все фразы изучены!</div></div>`;
+        }
+        const total = sentencesList.length;
+        let html = '';
+        for (let i = -2; i <= 2; i++) {
+            let idx = sentencesIndex + i;
+            if (idx < 0) idx = total + idx;
+            if (idx >= total) idx = idx - total;
+            const sentence = sentencesList[idx];
+            const question = AppConfig.sentence_lang_from === 'ru' ? sentence.ru : sentence.de;
+            html += `
+                <div class="sent-carousel-card" data-idx="${idx}" style="flex: 0 0 100%; min-width: 100%; padding: 20px;">
+                    <div class="sent-question" style="background: #E8F0FE; border-radius: 20px; padding: 25px;">
+                        <div style="font-size: 16px; margin-bottom: 10px; color: #666;">Составьте предложение:</div>
+                        <div style="font-size: 20px; font-weight: bold;">${question}</div>
+                    </div>
+                </div>
+            `;
+        }
+        return html;
+    }
+    
+    function updateCarouselPosition(animate = true) {
+        const track = document.getElementById('carouselTrack');
+        if (!track) return;
+        if (!animate) track.style.transition = 'none';
+        else track.style.transition = `transform 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1)`;
+        const offset = -2 * mobileContainerWidth;
+        track.style.transform = `translateX(${offset}px)`;
+        mobileCurrentTranslate = offset;
+        if (!animate) setTimeout(() => { if (track) track.style.transition = ''; }, 50);
+    }
     
     function updateSentenceDisplay() {
         const container = document.getElementById('sentWordsContainer');
@@ -305,23 +350,14 @@ function renderSentencesMobile() {
         if (hintLabel) hintLabel.textContent = '';
     }
     
-    function showCurrentSentence() {
+    function refreshCurrentSentence() {
         resetHint();
         if (!sentencesList.length) {
-            const studiedCount = getStudiedSentencesCount();
-            if (studiedCount > 0) {
-                document.getElementById('sentQuestion').innerHTML = "🎉 Все фразы в контейнере!<br><br>Нажмите 'В КОНТЕЙНЕР' чтобы просмотреть<br>или вернуть фразы";
-            } else {
-                document.getElementById('sentQuestion').innerHTML = "🎉 Все фразы изучены!<br><br>Выберите другой уровень";
-            }
-            const container = document.getElementById('sentWordsContainer');
-            if (container) container.innerHTML = '';
-            const result = document.getElementById('sentResult');
-            if (result) result.textContent = '';
-            document.getElementById('sentProgress').textContent = '';
+            document.getElementById('sentWordsContainer').innerHTML = '';
+            document.getElementById('sentResult').textContent = '';
+            document.getElementById('sentProgress').textContent = 'Фраз нет';
             return;
         }
-        if (sentencesIndex >= sentencesList.length) sentencesIndex = 0;
         sentencesCurrent = sentencesList[sentencesIndex];
         
         let question, correctTokens, targetLangForDistractors;
@@ -338,7 +374,6 @@ function renderSentencesMobile() {
         }
         
         sentencesHintWords = sentencesHintWords.map(w => w.replace(/[.,!?;:]/g, ''));
-        document.getElementById('sentQuestion').innerHTML = `Составьте предложение:<br><br><strong>${question}</strong>`;
         correctTokens = correctTokens.map(t => t.replace(/[.,!?;:]/g, ''));
         
         let available = [...correctTokens];
@@ -359,22 +394,53 @@ function renderSentencesMobile() {
         document.getElementById('sentProgress').textContent = `Фраза: ${sentencesIndex+1} из ${sentencesList.length}`;
     }
     
-    function goToStart() {
-        if (sentencesList.length) {
-            sentencesIndex = 0;
-            showCurrentSentence();
-            updateCounter();
-        }
+    function refreshCarousel() {
+        const track = document.getElementById('carouselTrack');
+        if (!track) return;
+        track.innerHTML = generateSentencesCards();
+        updateCarouselPosition(false);
+        refreshCurrentSentence();
     }
     
-    function getStudiedSentencesCount() {
-        const progress = sentencesProgress[AppConfig.currentLevel] || [];
-        return progress.filter(p => p?.studied === true).length;
+    const wrapper = document.getElementById('carouselWrapper');
+    const track = document.getElementById('carouselTrack');
+    if (track && wrapper) {
+        mobileContainerWidth = wrapper.offsetWidth;
+        refreshCarousel();
+        
+        track.addEventListener('touchstart', (e) => {
+            mobileIsDragging = true;
+            mobileTouchStartX = e.changedTouches[0].screenX;
+            track.style.transition = 'none';
+        });
+        track.addEventListener('touchmove', (e) => {
+            if (!mobileIsDragging) return;
+            const touchCurrentX = e.changedTouches[0].screenX;
+            const delta = touchCurrentX - mobileTouchStartX;
+            track.style.transform = `translateX(${mobileCurrentTranslate + delta}px)`;
+        });
+        track.addEventListener('touchend', (e) => {
+            if (!mobileIsDragging) return;
+            mobileIsDragging = false;
+            const endX = e.changedTouches[0].screenX;
+            const delta = endX - mobileTouchStartX;
+            if (Math.abs(delta) > mobileMinSwipeDistance) {
+                if (delta > 0) {
+                    sentencesIndex = sentencesIndex === 0 ? sentencesList.length - 1 : sentencesIndex - 1;
+                } else {
+                    sentencesIndex = (sentencesIndex + 1) % sentencesList.length;
+                }
+                refreshCarousel();
+                updateCounter();
+            } else {
+                updateCarouselPosition(true);
+            }
+        });
     }
     
     document.getElementById('sentDirBtn').onclick = () => {
         AppConfig.sentence_lang_from = AppConfig.sentence_lang_from === 'ru' ? 'de' : 'ru';
-        showCurrentSentence();
+        refreshCarousel();
         document.getElementById('sentDirBtn').textContent = AppConfig.sentence_lang_from === 'ru' ? 'Ru → De' : 'De → Ru';
         saveProgress();
     };
@@ -411,7 +477,7 @@ function renderSentencesMobile() {
             setTimeout(() => {
                 result.style.backgroundColor = '#FFFFFF';
                 sentencesIndex = (sentencesIndex + 1) % sentencesList.length;
-                showCurrentSentence();
+                refreshCarousel();
             }, 500);
         } else {
             result.style.backgroundColor = '#FFCDD2';
@@ -431,7 +497,14 @@ function renderSentencesMobile() {
             markSentenceAsStudied(sentencesCurrent);
             sentencesList = getUnstudiedSentences();
             sentencesIndex = 0;
-            showCurrentSentence();
+            refreshCarousel();
+            updateCounter();
+        }
+    };
+    document.getElementById('sentResetStartBtn').onclick = () => {
+        if (sentencesList.length) {
+            sentencesIndex = 0;
+            refreshCarousel();
             updateCounter();
         }
     };
@@ -440,21 +513,10 @@ function renderSentencesMobile() {
         if (!completed.length) { alert("📦 Контейнер пуст\n\nВыучите фразы, чтобы они появились здесь."); return; }
         showStudiedSentencesModal(completed);
     };
-    document.getElementById('sentPrevBtn').onclick = () => {
-        if (sentencesList.length && sentencesIndex > 0) {
-            sentencesIndex--;
-            showCurrentSentence();
-        }
-    };
-    document.getElementById('sentNextBtn').onclick = () => {
-        if (sentencesList.length) {
-            sentencesIndex = (sentencesIndex + 1) % sentencesList.length;
-            showCurrentSentence();
-        }
-    };
-    document.getElementById('sentResetStartBtn').onclick = goToStart;
-    showCurrentSentence();
-    updateCounter();
+    window.addEventListener('resize', () => {
+        mobileContainerWidth = wrapper?.offsetWidth || 0;
+        updateCarouselPosition(false);
+    });
 }
 
 function getStudiedSentencesCount() {
@@ -462,7 +524,7 @@ function getStudiedSentencesCount() {
     return progress.filter(p => p?.studied === true).length;
 }
 
-// ========== МОДАЛЬНОЕ ОКНО КОНТЕЙНЕРА (без изменений) ==========
+// ========== МОДАЛЬНОЕ ОКНО КОНТЕЙНЕРА ==========
 function showStudiedSentencesModal(initialSentences) {
     const oldModal = document.getElementById('studiedSentencesModal');
     if (oldModal) oldModal.remove();
@@ -501,7 +563,7 @@ function showStudiedSentencesModal(initialSentences) {
                             saveProgress();
                             sentencesList = getUnstudiedSentences();
                             if (isMobileDevice()) {
-                                showCurrentSentence();
+                                refreshCarousel();
                             } else {
                                 showCurrentSentence();
                             }
@@ -538,7 +600,7 @@ function showStudiedSentencesModal(initialSentences) {
             resetAllSentences();
             sentencesList = getUnstudiedSentences();
             if (isMobileDevice()) {
-                showCurrentSentence();
+                refreshCarousel();
             } else {
                 showCurrentSentence();
             }
@@ -558,7 +620,7 @@ function showStudiedSentencesModal(initialSentences) {
                 saveProgress();
                 sentencesList = getUnstudiedSentences();
                 if (isMobileDevice()) {
-                    showCurrentSentence();
+                    refreshCarousel();
                 } else {
                     showCurrentSentence();
                 }
