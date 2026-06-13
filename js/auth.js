@@ -619,6 +619,19 @@ window.deleteUser = async function(uid) {
     } catch(e) { alert('Ошибка: ' + e.message); }
 };
 
+// ========== ФУНКЦИЯ ДЛЯ ПЕРЕКЛЮЧЕНИЯ ВИДИМОСТИ ПАРОЛЯ ==========
+function togglePasswordVisibility(inputId, eyeIconId) {
+    const input = document.getElementById(inputId);
+    const eyeIcon = document.getElementById(eyeIconId);
+    if (input.type === 'password') {
+        input.type = 'text';
+        eyeIcon.textContent = '🙈';
+    } else {
+        input.type = 'password';
+        eyeIcon.textContent = '👁️';
+    }
+}
+
 // Модальное окно входа/регистрации
 window.showLoginModal = function() {
     if (document.getElementById('authModal')) {
@@ -629,7 +642,7 @@ window.showLoginModal = function() {
     modal.id = 'authModal';
     modal.innerHTML = `
         <div style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); display:flex; justify-content:center; align-items:center; z-index:999999;">
-            <div style="background:white; border-radius:20px; max-width:380px; width:90%; padding:25px;">
+            <div style="background:white; border-radius:20px; max-width:400px; width:90%; padding:25px;">
                 <h2 style="text-align:center; margin:0 0 20px 0;">🔐 Deutsch-Meister</h2>
                 
                 <div style="display:flex; gap:10px; margin-bottom:20px;">
@@ -638,7 +651,16 @@ window.showLoginModal = function() {
                 </div>
                 
                 <input type="email" id="authEmail" placeholder="Email" style="width:100%; padding:12px; margin:10px 0; border:2px solid #E0E0E0; border-radius:10px; box-sizing:border-box;">
-                <input type="password" id="authPassword" placeholder="Пароль (мин. 6 символов)" style="width:100%; padding:12px; margin:10px 0; border:2px solid #E0E0E0; border-radius:10px; box-sizing:border-box;">
+                
+                <div style="position: relative; margin:10px 0;">
+                    <input type="password" id="authPassword" placeholder="Пароль (мин. 6 символов)" style="width:100%; padding:12px; border:2px solid #E0E0E0; border-radius:10px; box-sizing:border-box; padding-right: 40px;">
+                    <span id="togglePasswordEye" onclick="togglePasswordVisibility('authPassword', 'togglePasswordEye')" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 20px;">👁️</span>
+                </div>
+                
+                <div id="confirmPasswordContainer" style="position: relative; margin:10px 0; display: none;">
+                    <input type="password" id="authConfirmPassword" placeholder="Повторите пароль" style="width:100%; padding:12px; border:2px solid #E0E0E0; border-radius:10px; box-sizing:border-box; padding-right: 40px;">
+                    <span id="toggleConfirmEye" onclick="togglePasswordVisibility('authConfirmPassword', 'toggleConfirmEye')" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 20px;">👁️</span>
+                </div>
                 
                 <button id="actionBtn" style="width:100%; padding:12px; background:#3B6FE0; color:white; border:none; border-radius:10px; cursor:pointer; font-size:16px; font-weight:bold;">Войти</button>
                 
@@ -656,6 +678,8 @@ window.showLoginModal = function() {
     const actionBtn = document.getElementById('actionBtn');
     const emailInput = document.getElementById('authEmail');
     const passInput = document.getElementById('authPassword');
+    const confirmContainer = document.getElementById('confirmPasswordContainer');
+    const confirmInput = document.getElementById('authConfirmPassword');
     
     loginTab.onclick = () => {
         isLogin = true;
@@ -664,6 +688,7 @@ window.showLoginModal = function() {
         registerTab.style.background = '#E0E0E0';
         registerTab.style.color = 'black';
         actionBtn.textContent = 'Войти';
+        confirmContainer.style.display = 'none';
     };
     
     registerTab.onclick = () => {
@@ -673,6 +698,7 @@ window.showLoginModal = function() {
         loginTab.style.background = '#E0E0E0';
         loginTab.style.color = 'black';
         actionBtn.textContent = 'Зарегистрироваться';
+        confirmContainer.style.display = 'block';
     };
     
     actionBtn.onclick = async () => {
@@ -687,6 +713,15 @@ window.showLoginModal = function() {
         if (!isLogin && password.length < 6) {
             alert('Пароль должен быть минимум 6 символов');
             return;
+        }
+        
+        // Проверка совпадения паролей при регистрации
+        if (!isLogin) {
+            const confirmPassword = confirmInput.value;
+            if (password !== confirmPassword) {
+                alert('❌ Пароли не совпадают! Пожалуйста, повторите ввод.');
+                return;
+            }
         }
         
         try {
