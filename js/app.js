@@ -19,19 +19,16 @@ function updateCounter() {
         const level = AppConfig.currentLevel;
         const grammarData = grammarDB[level];
         
-        // Проверяем, открыт ли конкретный урок
         const savedLesson = localStorage.getItem('dm_last_grammar_lesson');
         const savedLevel = localStorage.getItem('dm_last_grammar_level');
         const isLessonOpen = (savedLesson !== null && savedLevel === level);
         
         if (isLessonOpen && grammarData && grammarData.length > 0) {
-            // Режим: открыт конкретный урок - показываем прогресс по урокам
             const totalLessons = grammarData.length;
             const completed = grammarProgress[level]?.filter(p => p?.completed === true).length || 0;
             el.textContent = `Пройдено: ${completed} из ${totalLessons} уроков`;
         }
         else if (grammarData && grammarData.length > 0) {
-            // Режим: список уроков - показываем только количество уроков
             el.textContent = `Всего уроков: ${grammarData.length}`;
         }
         else if (grammarData && grammarData.length === 0) {
@@ -45,7 +42,6 @@ function updateCounter() {
         el.textContent = `Deutsch-Meister`;
     }
     
-    // Обновляем индикатор в шапке
     updateModeIndicator();
 }
 
@@ -77,7 +73,6 @@ function updateModeIndicator() {
     }
     
     if (currentMode === 'grammar' && isLessonOpen) {
-        // Если открыт конкретный урок: "Грамматика A2 | Урок 1"
         const lessonIdx = parseInt(savedLesson);
         const lessons = grammarDB[level];
         if (lessons && lessons[lessonIdx]) {
@@ -87,7 +82,6 @@ function updateModeIndicator() {
             indicator.textContent = `${modeText} ${level}`;
         }
     } else {
-        // Список уроков или другой режим
         indicator.textContent = `${modeText} ${level}`;
     }
 }
@@ -108,15 +102,12 @@ function setMode(mode) {
     updateCounter();
     updateModeIndicator();
     
-    // Закрываем мобильное меню после выбора режима
     closeMobileMenu();
 }
 
 function setLevel(level) {
-    // Проверка доступа к платным уровням B1, B2, C1
     if (typeof window.hasAccessToLevel !== 'undefined' && !window.hasAccessToLevel(level)) {
         if (level === 'B1' || level === 'B2' || level === 'C1') {
-            // Проверяем, авторизован ли пользователь
             const isAuthenticated = window.isAuthenticated && window.isAuthenticated();
             const currentUser = window.getCurrentUser && window.getCurrentUser();
             
@@ -150,7 +141,6 @@ function setLevel(level) {
     updateModeIndicator();
     saveProgress();
     
-    // Закрываем мобильное меню после выбора уровня
     closeMobileMenu();
 }
 
@@ -175,8 +165,6 @@ window.forceUpdateCounter = function() {
         updateCounter();
     }, 100);
 };
-
-// ========== МОБИЛЬНОЕ МЕНЮ (ГАМБУРГЕР) ==========
 
 function closeMobileMenu() {
     const mobileMenu = document.getElementById('mobileMenu');
@@ -203,7 +191,6 @@ function openMobileMenu() {
     }
     document.body.style.overflow = 'hidden';
     
-    // Добавляем состояние для кнопки "Назад"
     history.pushState(null, null, location.href);
 }
 
@@ -217,7 +204,6 @@ function syncMobileUserInfo() {
         userInfoMobile.style.display = userInfo.style.display;
     }
     
-    // Синхронизируем видимость кнопки "Войти" в мобильном меню
     if (loginBtnMobile) {
         const loginBtn = document.getElementById('loginBtn');
         if (loginBtn) {
@@ -236,20 +222,16 @@ function initMobileMenu() {
     
     if (!hamburgerBtn) return;
     
-    // Открытие по кнопке гамбургер
     hamburgerBtn.onclick = openMobileMenu;
     
-    // Закрытие по крестику
     if (closeMenuBtn) {
         closeMenuBtn.onclick = closeMobileMenu;
     }
     
-    // Закрытие по оверлею (затемнению)
     if (menuOverlay) {
         menuOverlay.onclick = closeMobileMenu;
     }
     
-    // Закрытие при выборе уровня в мобильном меню
     const levelButtonsMobile = document.querySelectorAll('#levelsContainerMobile [data-level]');
     levelButtonsMobile.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -257,7 +239,6 @@ function initMobileMenu() {
         });
     });
     
-    // Закрытие при выборе режима в мобильном меню
     const modeButtonsMobile = document.querySelectorAll('#mobileMenu .mode-btn');
     modeButtonsMobile.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -265,7 +246,6 @@ function initMobileMenu() {
         });
     });
     
-    // Закрытие по кнопке "Назад" на телефоне
     window.addEventListener('popstate', function() {
         const mobileMenu = document.getElementById('mobileMenu');
         if (mobileMenu && mobileMenu.classList.contains('show')) {
@@ -273,10 +253,8 @@ function initMobileMenu() {
         }
     });
     
-    // Синхронизация состояния авторизации с мобильным меню
     syncMobileUserInfo();
     
-    // Наблюдаем за изменениями userInfo
     const observer = new MutationObserver(syncMobileUserInfo);
     const userInfo = document.getElementById('userInfo');
     if (userInfo) {
@@ -306,9 +284,10 @@ async function init() {
         else btn.classList.remove('active');
     });
     
-    setMode(currentMode);
+    // ========== ИСПРАВЛЕНИЕ: всегда показываем Грамматику при загрузке ==========
+    currentMode = 'grammar';
+    setMode('grammar');
     
-    // Инициализация мобильного меню
     initMobileMenu();
     updateModeIndicator();
     
