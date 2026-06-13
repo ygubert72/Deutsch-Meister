@@ -215,32 +215,28 @@ function renderSentences() {
     document.getElementById('sentUnstudyBtn').onclick = () => {
         const completed = sentencesDB[AppConfig.currentLevel].filter((_, idx) => sentencesProgress[AppConfig.currentLevel]?.[idx]?.studied);
         if (!completed.length) { alert("Нет изученных фраз"); return; }
-        let msg = "Выберите фразу для возврата:\n";
-        completed.forEach((s, i) => msg += `${i+1}. ${s.de} -> ${s.ru}\n`);
-        const n = prompt(msg);
-        if (n) {
-            const idx = parseInt(n) - 1;
-            if (idx >= 0 && idx < completed.length) {
-                const sIdx = sentencesDB[AppConfig.currentLevel].findIndex(s => s.de === completed[idx].de);
-                if (sIdx !== -1) {
-                    if (!sentencesProgress[AppConfig.currentLevel]) sentencesProgress[AppConfig.currentLevel] = [];
-                    sentencesProgress[AppConfig.currentLevel][sIdx] = { studied: false };
-                    saveProgress();
-                    sentencesList = getUnstudiedSentences();
-                    sentencesIndex = 0;
-                    showCurrentSentence();
-                    updateCounter();
-                }
+        showSentenceReturnModal(completed, (sentence) => {
+            const sIdx = sentencesDB[AppConfig.currentLevel].findIndex(s => s.de === sentence.de && s.ru === sentence.ru);
+            if (sIdx !== -1) {
+                if (!sentencesProgress[AppConfig.currentLevel]) sentencesProgress[AppConfig.currentLevel] = [];
+                sentencesProgress[AppConfig.currentLevel][sIdx] = { studied: false };
+                saveProgress();
+                sentencesList = getUnstudiedSentences();
+                sentencesIndex = 0;
+                showCurrentSentence();
+                updateCounter();
             }
-        }
+        });
     };
     
     document.getElementById('sentResetAllBtn').onclick = () => {
-        resetAllSentences();
-        sentencesList = getUnstudiedSentences();
-        sentencesIndex = 0;
-        showCurrentSentence();
-        updateCounter();
+        if (confirm("Вы уверены? Все изученные фразы будут возвращены.")) {
+            resetAllSentences();
+            sentencesList = getUnstudiedSentences();
+            sentencesIndex = 0;
+            showCurrentSentence();
+            updateCounter();
+        }
     };
     
     document.getElementById('sentPrevBtn').onclick = () => {
@@ -259,4 +255,90 @@ function renderSentences() {
     
     showCurrentSentence();
     updateCounter();
+}
+
+// ========== МОДАЛЬНОЕ ОКНО ДЛЯ ВЫБОРА ФРАЗЫ ==========
+function showSentenceReturnModal(sentencesList, onSelect) {
+    const oldModal = document.getElementById('sentenceReturnModal');
+    if (oldModal) oldModal.remove();
+    
+    const modal = document.createElement('div');
+    modal.id = 'sentenceReturnModal';
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000000;
+        overflow: auto;
+    `;
+    
+    const modalContent = document.createElement('div');
+    modalContent.style.cssText = `
+        background: white;
+        border-radius: 20px;
+        max-width: 500px;
+        width: 90%;
+        max-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        margin: 20px;
+    `;
+    
+    let itemsHtml = '';
+    sentencesList.forEach((sentence, idx) => {
+        // Экранируем кавычки для безопасного отображения
+        const safeDe = sentence.de.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+        const safeRu = sentence.ru.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+        itemsHtml += `
+            <button class="sentence-return-item" data-index="${idx}" style="
+                width: 100%;
+                text-align: left;
+                padding: 12px 15px;
+                background: #E8F0FE;
+                border: none;
+                border-bottom: 1px solid #ddd;
+                cursor: pointer;
+                font-size: 14px;
+            ">
+                <strong>${safeDe}</strong> → ${safeRu}
+            </button>
+        `;
+    });
+    
+    modalContent.innerHTML = `
+        <div style="padding: 15px; border-bottom: 1px solid #ddd; display: flex; justify-content: space-between; align-items: center;">
+            <h3 style="margin: 0;">📖 Выберите фразу для возврата</h3>
+            <button id="closeSentenceModalBtn" style="background: none; border: none; font-size: 24px; cursor: pointer;">&times;</button>
+        </div>
+        <div style="overflow-y: auto; flex: 1; padding: 10px 0;">
+            ${itemsHtml}
+        </div>
+        <div style="padding: 15px; border-top: 1px solid #ddd;">
+            <button id="cancelSentenceModalBtn" style="width: 100%; padding: 10px; background: #ddd; border: none; border-radius: 8px; cursor: pointer;">Отмена</button>
+        </div>
+    `;
+    
+    modal.appendChild(modalContent);
+    document.body.appendChild(modal);
+    
+    const closeModal = () => modal.remove();
+    
+    document.getElementById('closeSentenceModalBtn').onclick = closeModal;
+    document.getElementById('cancelSentenceModalBtn').onclick = closeModal;
+    modal.onclick = (e) => { if (e.target === modal) closeModal(); };
+    
+    document.querySelectorAll('.sentence-return-item').forEach(btn => {
+        btn.onclick = () => {
+            const idx = parseInt(btn.getAttribute('data-index'));
+            const selectedSentence = sentencesList[idx];
+            closeModal();
+            onSelect(selectedSentence);
+        };
+    });
 }
