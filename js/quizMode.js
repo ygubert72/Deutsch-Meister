@@ -101,27 +101,23 @@ function renderQuiz() {
     document.getElementById('quizUnstudyBtn').onclick = () => {
         const studied = getStudiedWordsList();
         if (!studied.length) { alert("Нет изученных слов"); return; }
-        let msg = "Выберите слово для возврата:\n";
-        studied.forEach((w, i) => msg += `${i+1}. ${w.de} - ${w.ru}\n`);
-        const n = prompt(msg);
-        if (n) {
-            const idx = parseInt(n) - 1;
-            if (idx >= 0 && idx < studied.length) {
-                unstudyWord(studied[idx]);
-                quizList = getUnstudiedWords();
-                quizIndex = 0;
-                showCurrentQuiz();
-                updateCounter();
-            }
-        }
+        showWordReturnModalQuiz(studied, (word) => {
+            unstudyWord(word);
+            quizList = getUnstudiedWords();
+            quizIndex = 0;
+            showCurrentQuiz();
+            updateCounter();
+        });
     };
     
     document.getElementById('quizResetBtn').onclick = () => {
-        resetAllStudied();
-        quizList = getUnstudiedWords();
-        quizIndex = 0;
-        showCurrentQuiz();
-        updateCounter();
+        if (confirm("Вы уверены? Все изученные слова будут возвращены.")) {
+            resetAllStudied();
+            quizList = getUnstudiedWords();
+            quizIndex = 0;
+            showCurrentQuiz();
+            updateCounter();
+        }
     };
     
     document.getElementById('quizPrevBtn').onclick = () => {
@@ -140,4 +136,87 @@ function renderQuiz() {
     
     showCurrentQuiz();
     updateCounter();
+}
+
+// ========== МОДАЛЬНОЕ ОКНО ДЛЯ ВЫБОРА СЛОВА (QUIZ) ==========
+function showWordReturnModalQuiz(wordsList, onSelect) {
+    const oldModal = document.getElementById('wordReturnModal');
+    if (oldModal) oldModal.remove();
+    
+    const modal = document.createElement('div');
+    modal.id = 'wordReturnModal';
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000000;
+        overflow: auto;
+    `;
+    
+    const modalContent = document.createElement('div');
+    modalContent.style.cssText = `
+        background: white;
+        border-radius: 20px;
+        max-width: 500px;
+        width: 90%;
+        max-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        margin: 20px;
+    `;
+    
+    let itemsHtml = '';
+    wordsList.forEach((word, idx) => {
+        itemsHtml += `
+            <button class="word-return-item" data-index="${idx}" style="
+                width: 100%;
+                text-align: left;
+                padding: 12px 15px;
+                background: #E8F0FE;
+                border: none;
+                border-bottom: 1px solid #ddd;
+                cursor: pointer;
+                font-size: 14px;
+            ">
+                <strong>${word.de}</strong> — ${word.ru}
+            </button>
+        `;
+    });
+    
+    modalContent.innerHTML = `
+        <div style="padding: 15px; border-bottom: 1px solid #ddd; display: flex; justify-content: space-between; align-items: center;">
+            <h3 style="margin: 0;">📖 Выберите слово для возврата</h3>
+            <button id="closeWordModalBtn" style="background: none; border: none; font-size: 24px; cursor: pointer;">&times;</button>
+        </div>
+        <div style="overflow-y: auto; flex: 1; padding: 10px 0;">
+            ${itemsHtml}
+        </div>
+        <div style="padding: 15px; border-top: 1px solid #ddd;">
+            <button id="cancelWordModalBtn" style="width: 100%; padding: 10px; background: #ddd; border: none; border-radius: 8px; cursor: pointer;">Отмена</button>
+        </div>
+    `;
+    
+    modal.appendChild(modalContent);
+    document.body.appendChild(modal);
+    
+    const closeModal = () => modal.remove();
+    
+    document.getElementById('closeWordModalBtn').onclick = closeModal;
+    document.getElementById('cancelWordModalBtn').onclick = closeModal;
+    modal.onclick = (e) => { if (e.target === modal) closeModal(); };
+    
+    document.querySelectorAll('.word-return-item').forEach(btn => {
+        btn.onclick = () => {
+            const idx = parseInt(btn.getAttribute('data-index'));
+            const selectedWord = wordsList[idx];
+            closeModal();
+            onSelect(selectedWord);
+        };
+    });
 }
