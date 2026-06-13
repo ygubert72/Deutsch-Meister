@@ -81,8 +81,8 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     box-shadow: 0 1px 1px rgba(0,0,0,0.1);
 }
 
-/* Для очень маленьких экранов (320px) делаем 2 ряда */
-@media (max-width: 480px) {
+/* Для очень маленьких экранов (ширина ≤ 400px) делаем 2 ряда */
+@media (max-width: 400px) {
     .words-container-mobile {
         grid-template-columns: repeat(2, 1fr);
         gap: 6px;
