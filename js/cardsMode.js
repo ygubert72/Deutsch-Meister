@@ -1,6 +1,7 @@
 let cardsList = [];
 let cardsIndex = 0;
 let cardsFlipped = false;
+let isAnimating = false; // блокировка анимации во время переключения
 
 // Переменные для свайпа
 let touchStartX = 0;
@@ -14,6 +15,31 @@ function isMobileDevice() {
     return window.innerWidth <= 768;
 }
 
+// Анимированное обновление карточки
+function animateCardUpdate(callback) {
+    if (isAnimating) return;
+    isAnimating = true;
+    
+    const cardWord = document.getElementById('cardWord');
+    if (!cardWord) {
+        if (callback) callback();
+        isAnimating = false;
+        return;
+    }
+    
+    cardWord.style.transition = 'opacity 0.15s ease';
+    cardWord.style.opacity = '0';
+    
+    setTimeout(() => {
+        if (callback) callback();
+        cardWord.style.opacity = '1';
+        setTimeout(() => {
+            cardWord.style.transition = '';
+            isAnimating = false;
+        }, 150);
+    }, 150);
+}
+
 function renderCards() {
     cardsList = getUnstudiedWords();
     cardsIndex = 0;
@@ -21,13 +47,11 @@ function renderCards() {
     
     const isMobile = isMobileDevice();
     
-    // Кнопки навигации показываем только на компьютере
     const navigationButtons = isMobile ? '' : `
         <button class="ctrl-btn" id="prevBtn">◀ НАЗАД</button>
         <button class="ctrl-btn" id="nextBtn">ВПЕРЕД ▶</button>
     `;
     
-    // Подсказка о свайпах только для мобильных
     const swipeHint = isMobile ? '<div class="hint">👆 Свайп влево/вправо для листания карточек</div>' : '';
     
     document.getElementById('content').innerHTML = `
@@ -46,8 +70,10 @@ function renderCards() {
         </div>
     `;
     
-    function updateCardDisplay() {
+    function updateCardDisplayContent() {
         const wordEl = document.getElementById('cardWord');
+        if (!wordEl) return;
+        
         if (!cardsList.length) {
             const studiedCount = getStudiedWordsList().length;
             if (studiedCount > 0) {
@@ -71,16 +97,24 @@ function renderCards() {
         }
     }
     
+    function updateCardDisplay() {
+        animateCardUpdate(() => {
+            updateCardDisplayContent();
+        });
+    }
+    
     // ========== СВАЙПЫ (ТОЛЬКО ДЛЯ МОБИЛЬНЫХ) ==========
     if (isMobile) {
         const cardElement = document.getElementById('card');
         
         cardElement.addEventListener('touchstart', (e) => {
+            if (isAnimating) return;
             touchStartX = e.changedTouches[0].screenX;
             touchStartY = e.changedTouches[0].screenY;
         });
         
         cardElement.addEventListener('touchend', (e) => {
+            if (isAnimating) return;
             touchEndX = e.changedTouches[0].screenX;
             touchEndY = e.changedTouches[0].screenY;
             handleSwipe();
@@ -90,12 +124,11 @@ function renderCards() {
             const deltaX = touchEndX - touchStartX;
             const deltaY = touchEndY - touchStartY;
             
-            // Проверяем, что свайп горизонтальный
             if (Math.abs(deltaX) < Math.abs(deltaY)) return;
             if (Math.abs(deltaX) < minSwipeDistance) return;
             
             if (deltaX > 0) {
-                // Свайп вправо - ПРЕДЫДУЩАЯ карточка
+                // Свайп вправо - ПРЕДЫДУЩАЯ
                 if (cardsList.length && cardsIndex > 0) {
                     cardsIndex--;
                     cardsFlipped = false;
@@ -106,7 +139,7 @@ function renderCards() {
                     updateCardDisplay();
                 }
             } else {
-                // Свайп влево - СЛЕДУЮЩАЯ карточка
+                // Свайп влево - СЛЕДУЮЩАЯ
                 if (cardsList.length) {
                     cardsIndex = (cardsIndex + 1) % cardsList.length;
                     cardsFlipped = false;
@@ -116,12 +149,13 @@ function renderCards() {
         }
     }
     
-    // ========== КНОПКИ НАВИГАЦИИ (ТОЛЬКО ДЛЯ КОМПЬЮТЕРА) ==========
+    // ========== КНОПКИ НАВИГАЦИИ (ДЛЯ КОМПЬЮТЕРА) ==========
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     
     if (prevBtn) {
         prevBtn.onclick = () => {
+            if (isAnimating) return;
             if (cardsList.length && cardsIndex > 0) {
                 cardsIndex--;
                 cardsFlipped = false;
@@ -136,6 +170,7 @@ function renderCards() {
     
     if (nextBtn) {
         nextBtn.onclick = () => {
+            if (isAnimating) return;
             if (cardsList.length) {
                 cardsIndex = (cardsIndex + 1) % cardsList.length;
                 cardsFlipped = false;
@@ -146,6 +181,7 @@ function renderCards() {
     
     // ========== ОБЩИЕ ОБРАБОТЧИКИ ==========
     document.getElementById('dirBtn').onclick = () => {
+        if (isAnimating) return;
         AppConfig.show_language = AppConfig.show_language === 'de' ? 'ru' : 'de';
         cardsFlipped = false;
         updateCardDisplay();
@@ -155,6 +191,7 @@ function renderCards() {
     
     const cardElement = document.getElementById('card');
     cardElement.onclick = () => {
+        if (isAnimating) return;
         if (cardsList.length) {
             cardsFlipped = !cardsFlipped;
             updateCardDisplay();
@@ -162,6 +199,7 @@ function renderCards() {
     };
     
     document.getElementById('studyBtn').onclick = () => {
+        if (isAnimating) return;
         if (cardsList.length && cardsList[cardsIndex]) {
             markWordAsStudied(cardsList[cardsIndex]);
             cardsList = getUnstudiedWords();
@@ -185,7 +223,7 @@ function renderCards() {
         if (cardsList[cardsIndex]) speak(cardsList[cardsIndex].de);
     };
     
-    updateCardDisplay();
+    updateCardDisplayContent();
     updateCounter();
 }
 
@@ -265,7 +303,6 @@ function showStudiedWordsModal(studiedWords) {
     document.getElementById('cancelModalBtn').onclick = closeModal;
     modal.onclick = (e) => { if (e.target === modal) closeModal(); };
     
-    // Возврат всех слов
     document.getElementById('returnAllBtn').onclick = () => {
         if (confirm("Вы уверены? Все слова из контейнера будут возвращены в изучение.")) {
             resetAllStudied();
@@ -278,7 +315,6 @@ function showStudiedWordsModal(studiedWords) {
         }
     };
     
-    // Возврат отдельного слова (клик по слову)
     document.querySelectorAll('.studied-word-item').forEach(btn => {
         btn.onclick = () => {
             const idx = parseInt(btn.getAttribute('data-index'));
@@ -287,7 +323,6 @@ function showStudiedWordsModal(studiedWords) {
             cardsList = getUnstudiedWords();
             updateCardDisplay();
             updateCounter();
-            // Обновляем модальное окно
             const updatedStudied = getStudiedWordsList();
             if (updatedStudied.length === 0) {
                 closeModal();
