@@ -29,7 +29,7 @@ function renderSentences() {
     }
 }
 
-// ========== ДЕСКТОПНАЯ ВЕРСИЯ (без изменений) ==========
+// ========== ДЕСКТОПНАЯ ВЕРСИЯ ==========
 function renderSentencesDesktop() {
     document.getElementById('content').innerHTML = `
         <div style="text-align: center;">
@@ -524,7 +524,7 @@ function getStudiedSentencesCount() {
     return progress.filter(p => p?.studied === true).length;
 }
 
-// ========== МОДАЛЬНОЕ ОКНО КОНТЕЙНЕРА ==========
+// ========== МОДАЛЬНОЕ ОКНО КОНТЕЙНЕРА (ИСПРАВЛЕНО) ==========
 function showStudiedSentencesModal(initialSentences) {
     const oldModal = document.getElementById('studiedSentencesModal');
     if (oldModal) oldModal.remove();
@@ -599,13 +599,15 @@ function showStudiedSentencesModal(initialSentences) {
         if (confirm("Вы уверены? Все фразы из контейнера будут возвращены в изучение.")) {
             resetAllSentences();
             sentencesList = getUnstudiedSentences();
+            sentencesIndex = 0;
+            // ОБНОВЛЯЕМ КАРУСЕЛЬ И ТЕКУЩУЮ ФРАЗУ
             if (isMobileDevice()) {
                 refreshCarousel();
             } else {
                 showCurrentSentence();
             }
             updateCounter();
-            updateModalContent();
+            updateModalContent(); // обновляем содержимое модалки
         }
     };
     
