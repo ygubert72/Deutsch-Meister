@@ -29,6 +29,7 @@ function renderSentences() {
     }
 }
 
+// ========== ДЕСКТОПНАЯ ВЕРСИЯ (полная, без изменений) ==========
 function renderSentencesDesktop() {
     document.getElementById('content').innerHTML = `
         <div style="text-align: center;">
@@ -244,6 +245,7 @@ function renderSentencesDesktop() {
     updateCounter();
 }
 
+// ========== МОБИЛЬНАЯ ВЕРСИЯ (карусель + ПОЛНЫЙ функционал) ==========
 function renderSentencesMobile() {
     document.getElementById('content').innerHTML = `
         <div style="text-align: center;">
@@ -252,6 +254,18 @@ function renderSentencesMobile() {
                 <div id="carouselTrack" style="display: flex; transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1); will-change: transform;">
                     ${generateSentencesCards()}
                 </div>
+            </div>
+            <div class="sent-result" id="sentResult"></div>
+            <div class="words-container" id="sentWordsContainer"></div>
+            <div class="btn-group">
+                <button class="ctrl-btn" id="sentUndoBtn">ВЕРНУТЬ СЛОВО</button>
+                <button class="ctrl-btn" id="sentResetBtn">СБРОСИТЬ ВСЁ</button>
+                <button class="ctrl-btn check-btn" id="sentCheckBtn">ПРОВЕРИТЬ</button>
+                <button class="ctrl-btn" id="sentSpeakBtn">🔊</button>
+            </div>
+            <div class="hint-area">
+                <button class="ctrl-btn" id="sentHintBtn">ПОДСКАЗКА</button>
+                <div class="hint-label" id="sentHintLabel"></div>
             </div>
             <div class="btn-group">
                 <button class="ctrl-btn" id="sentStudyBtn">ИЗУЧЕНО</button>
@@ -275,15 +289,11 @@ function renderSentencesMobile() {
             if (idx >= total) idx = idx - total;
             const sentence = sentencesList[idx];
             const question = AppConfig.sentence_lang_from === 'ru' ? sentence.ru : sentence.de;
-            const answerHint = AppConfig.sentence_lang_from === 'ru' ? sentence.de : sentence.ru;
             html += `
                 <div class="sent-carousel-card" data-idx="${idx}" style="flex: 0 0 100%; min-width: 100%; padding: 20px;">
-                    <div style="background: #E8F0FE; border-radius: 20px; padding: 25px; min-height: 250px;">
-                        <div style="font-size: 18px; margin-bottom: 15px; color: #666;">Составьте предложение:</div>
-                        <div style="font-size: 20px; font-weight: bold; margin-bottom: 20px;">${question}</div>
-                        <div style="font-size: 14px; color: #999; border-top: 1px solid #ddd; padding-top: 15px; margin-top: 15px;">
-                            💡 Подсказка: ${answerHint.substring(0, 50)}...
-                        </div>
+                    <div class="sent-question" style="background: #E8F0FE; border-radius: 20px; padding: 25px;">
+                        <div style="font-size: 16px; margin-bottom: 10px; color: #666;">Составьте предложение:</div>
+                        <div style="font-size: 20px; font-weight: bold;">${question}</div>
                     </div>
                 </div>
             `;
@@ -302,12 +312,94 @@ function renderSentencesMobile() {
         if (!animate) setTimeout(() => { if (track) track.style.transition = ''; }, 50);
     }
     
+    function updateSentenceDisplay() {
+        const container = document.getElementById('sentWordsContainer');
+        const resultEl = document.getElementById('sentResult');
+        if (!container) return;
+        container.innerHTML = '';
+        sentencesAvailable.forEach(word => {
+            if (sentencesActive[word]) {
+                const btn = document.createElement('button');
+                btn.className = 'word-btn';
+                btn.textContent = word;
+                btn.onclick = () => {
+                    if (sentencesActive[word]) {
+                        sentencesActive[word] = false;
+                        sentencesSelected.push(word);
+                        updateSentenceDisplay();
+                    }
+                };
+                container.appendChild(btn);
+            }
+        });
+        resultEl.textContent = sentencesSelected.join(' ');
+    }
+    
+    function showHint() {
+        if (!sentencesHintWords.length) return;
+        if (sentencesHintIndex >= sentencesHintWords.length) return;
+        const currentHint = sentencesHintWords.slice(0, sentencesHintIndex + 1).join(' ');
+        const hintLabel = document.getElementById('sentHintLabel');
+        if (hintLabel) hintLabel.textContent = '💡 ' + currentHint;
+        sentencesHintIndex++;
+    }
+    
+    function resetHint() {
+        sentencesHintIndex = 0;
+        const hintLabel = document.getElementById('sentHintLabel');
+        if (hintLabel) hintLabel.textContent = '';
+    }
+    
+    function refreshCurrentSentence() {
+        resetHint();
+        if (!sentencesList.length) {
+            document.getElementById('sentWordsContainer').innerHTML = '';
+            document.getElementById('sentResult').textContent = '';
+            document.getElementById('sentProgress').textContent = 'Фраз нет';
+            return;
+        }
+        sentencesCurrent = sentencesList[sentencesIndex];
+        
+        let question, correctTokens, targetLangForDistractors;
+        if (AppConfig.sentence_lang_from === 'ru') {
+            question = sentencesCurrent.ru;
+            correctTokens = sentencesCurrent.de.split(/\s+/);
+            sentencesHintWords = sentencesCurrent.de.split(/\s+/);
+            targetLangForDistractors = 'de';
+        } else {
+            question = sentencesCurrent.de;
+            correctTokens = sentencesCurrent.ru.split(/\s+/);
+            sentencesHintWords = sentencesCurrent.ru.split(/\s+/);
+            targetLangForDistractors = 'ru';
+        }
+        
+        sentencesHintWords = sentencesHintWords.map(w => w.replace(/[.,!?;:]/g, ''));
+        correctTokens = correctTokens.map(t => t.replace(/[.,!?;:]/g, ''));
+        
+        let available = [...correctTokens];
+        const needed = 12 - available.length;
+        if (needed > 0) {
+            const distractors = getDistractorsForSentences(needed, correctTokens, targetLangForDistractors);
+            available.push(...distractors);
+        }
+        for (let i = available.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [available[i], available[j]] = [available[j], available[i]];
+        }
+        sentencesAvailable = available.slice(0, 12);
+        sentencesSelected = [];
+        sentencesActive = {};
+        sentencesAvailable.forEach(w => { sentencesActive[w] = true; });
+        updateSentenceDisplay();
+        document.getElementById('sentProgress').textContent = `Фраза: ${sentencesIndex+1} из ${sentencesList.length}`;
+    }
+    
     function refreshCarousel() {
         const track = document.getElementById('carouselTrack');
         if (!track) return;
         track.innerHTML = generateSentencesCards();
         updateCarouselPosition(false);
-        document.getElementById('sentProgress').textContent = `Фраза: ${sentencesIndex+1} из ${sentencesList.length}`;
+        refreshCurrentSentence();
     }
     
     const wrapper = document.getElementById('carouselWrapper');
@@ -346,15 +438,64 @@ function renderSentencesMobile() {
         });
     }
     
+    // Обработчики кнопок
     document.getElementById('sentDirBtn').onclick = () => {
         AppConfig.sentence_lang_from = AppConfig.sentence_lang_from === 'ru' ? 'de' : 'ru';
         refreshCarousel();
         document.getElementById('sentDirBtn').textContent = AppConfig.sentence_lang_from === 'ru' ? 'Ru → De' : 'De → Ru';
         saveProgress();
     };
+    document.getElementById('sentUndoBtn').onclick = () => {
+        if (sentencesSelected.length) {
+            const last = sentencesSelected.pop();
+            sentencesActive[last] = true;
+            updateSentenceDisplay();
+        }
+    };
+    document.getElementById('sentResetBtn').onclick = () => {
+        sentencesSelected = [];
+        sentencesAvailable.forEach(w => { sentencesActive[w] = true; });
+        updateSentenceDisplay();
+        resetHint();
+    };
+    document.getElementById('sentCheckBtn').onclick = () => {
+        if (!sentencesSelected.length) {
+            const result = document.getElementById('sentResult');
+            result.style.backgroundColor = '#FFCDD2';
+            setTimeout(() => result.style.backgroundColor = '#FFFFFF', 500);
+            return;
+        }
+        let correctAnswer;
+        if (AppConfig.sentence_lang_from === 'ru') {
+            correctAnswer = sentencesCurrent.de.toLowerCase().replace(/[.,!?;:]/g, '');
+        } else {
+            correctAnswer = sentencesCurrent.ru.toLowerCase().replace(/[.,!?;:]/g, '');
+        }
+        const userAnswer = sentencesSelected.join(' ').toLowerCase().replace(/[.,!?;:]/g, '');
+        const result = document.getElementById('sentResult');
+        if (userAnswer === correctAnswer) {
+            result.style.backgroundColor = '#C8E6C9';
+            setTimeout(() => {
+                result.style.backgroundColor = '#FFFFFF';
+                sentencesIndex = (sentencesIndex + 1) % sentencesList.length;
+                refreshCarousel();
+            }, 500);
+        } else {
+            result.style.backgroundColor = '#FFCDD2';
+            setTimeout(() => {
+                result.style.backgroundColor = '#FFFFFF';
+                sentencesSelected = [];
+                sentencesAvailable.forEach(w => { sentencesActive[w] = true; });
+                updateSentenceDisplay();
+                resetHint();
+            }, 500);
+        }
+    };
+    document.getElementById('sentHintBtn').onclick = showHint;
+    document.getElementById('sentSpeakBtn').onclick = () => { if (sentencesCurrent) speak(sentencesCurrent.de); };
     document.getElementById('sentStudyBtn').onclick = () => {
-        if (sentencesList.length && sentencesList[sentencesIndex]) {
-            markSentenceAsStudied(sentencesList[sentencesIndex]);
+        if (sentencesCurrent) {
+            markSentenceAsStudied(sentencesCurrent);
             sentencesList = getUnstudiedSentences();
             sentencesIndex = 0;
             refreshCarousel();
@@ -384,7 +525,7 @@ function getStudiedSentencesCount() {
     return progress.filter(p => p?.studied === true).length;
 }
 
-// Модальное окно контейнера для Sentences (без крестика, с обновлением без закрытия)
+// ========== МОДАЛЬНОЕ ОКНО КОНТЕЙНЕРА (без крестика, с обновлением без закрытия) ==========
 function showStudiedSentencesModal(initialSentences) {
     const oldModal = document.getElementById('studiedSentencesModal');
     if (oldModal) oldModal.remove();
