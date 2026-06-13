@@ -14,9 +14,8 @@ function renderCards() {
                 <div class="card-word" id="cardWord"></div>
             </div>
             <div class="btn-group">
-                <button class="ctrl-btn" id="studyBtn">В ИЗУЧЕНО</button>
-                <button class="ctrl-btn" id="unstudyBtn">ВЕРНУТЬ</button>
-                <button class="ctrl-btn" id="resetBtn">ВЕРНУТЬ ВСЕ</button>
+                <button class="ctrl-btn" id="studyBtn">ИЗУЧЕНО</button>
+                <button class="ctrl-btn" id="containerBtn">В КОНТЕЙНЕР</button>
                 <button class="ctrl-btn" id="speakBtn">🔊</button>
                 <button class="ctrl-btn" id="prevBtn">◀ НАЗАД</button>
                 <button class="ctrl-btn" id="nextBtn">ВПЕРЕД ▶</button>
@@ -28,7 +27,12 @@ function renderCards() {
     function updateCardDisplay() {
         const wordEl = document.getElementById('cardWord');
         if (!cardsList.length) {
-            wordEl.textContent = "🎉 Все слова изучены!\n\nВерните слова из 'Изучено' или\nвыберите другой уровень";
+            const studiedCount = getStudiedWordsList().length;
+            if (studiedCount > 0) {
+                wordEl.textContent = "🎉 Все слова в контейнере!\n\nНажмите 'В КОНТЕЙНЕР' чтобы просмотреть\nили вернуть слова";
+            } else {
+                wordEl.textContent = "🎉 Все слова изучены!\n\nВыберите другой уровень";
+            }
             return;
         }
         if (cardsIndex >= cardsList.length) cardsIndex = 0;
@@ -60,6 +64,7 @@ function renderCards() {
         }
     };
     
+    // Кнопка "ИЗУЧЕНО" - перемещает слово в изученные (контейнер)
     document.getElementById('studyBtn').onclick = () => {
         if (cardsList.length && cardsList[cardsIndex]) {
             markWordAsStudied(cardsList[cardsIndex]);
@@ -71,26 +76,14 @@ function renderCards() {
         }
     };
     
-    document.getElementById('unstudyBtn').onclick = () => {
+    // Кнопка "В КОНТЕЙНЕР" - открывает модальное окно со списком изученных слов
+    document.getElementById('containerBtn').onclick = () => {
         const studied = getStudiedWordsList();
-        if (!studied.length) { alert("Нет изученных слов"); return; }
-        showWordReturnModal(studied, (word) => {
-            unstudyWord(word);
-            cardsList = getUnstudiedWords();
-            updateCardDisplay();
-            updateCounter();
-        });
-    };
-    
-    document.getElementById('resetBtn').onclick = () => {
-        if (confirm("Вы уверены? Все изученные слова будут возвращены.")) {
-            resetAllStudied();
-            cardsList = getUnstudiedWords();
-            cardsIndex = 0;
-            cardsFlipped = false;
-            updateCardDisplay();
-            updateCounter();
+        if (!studied.length) { 
+            alert("📦 Контейнер пуст\n\nВыучите слова, чтобы они появились здесь."); 
+            return; 
         }
+        showStudiedWordsModal(studied);
     };
     
     document.getElementById('speakBtn').onclick = () => {
@@ -117,14 +110,13 @@ function renderCards() {
     updateCounter();
 }
 
-// ========== МОДАЛЬНОЕ ОКНО ДЛЯ ВЫБОРА СЛОВА ==========
-function showWordReturnModal(wordsList, onSelect) {
-    // Удаляем старый модал, если есть
-    const oldModal = document.getElementById('wordReturnModal');
+// ========== МОДАЛЬНОЕ ОКНО ДЛЯ ПРОСМОТРА И ВОЗВРАТА ИЗУЧЕННЫХ СЛОВ ==========
+function showStudiedWordsModal(studiedWords) {
+    const oldModal = document.getElementById('studiedWordsModal');
     if (oldModal) oldModal.remove();
     
     const modal = document.createElement('div');
-    modal.id = 'wordReturnModal';
+    modal.id = 'studiedWordsModal';
     modal.style.cssText = `
         position: fixed;
         top: 0;
@@ -152,9 +144,11 @@ function showWordReturnModal(wordsList, onSelect) {
     `;
     
     let itemsHtml = '';
-    wordsList.forEach((word, idx) => {
+    studiedWords.forEach((word, idx) => {
+        const safeDe = word.de.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+        const safeRu = word.ru.replace(/'/g, "\\'").replace(/"/g, '&quot;');
         itemsHtml += `
-            <button class="word-return-item" data-index="${idx}" style="
+            <button class="studied-word-item" data-index="${idx}" style="
                 width: 100%;
                 text-align: left;
                 padding: 12px 15px;
@@ -164,21 +158,22 @@ function showWordReturnModal(wordsList, onSelect) {
                 cursor: pointer;
                 font-size: 14px;
             ">
-                <strong>${word.de}</strong> — ${word.ru}
+                <strong>${safeDe}</strong> — ${safeRu}
             </button>
         `;
     });
     
     modalContent.innerHTML = `
         <div style="padding: 15px; border-bottom: 1px solid #ddd; display: flex; justify-content: space-between; align-items: center;">
-            <h3 style="margin: 0;">📖 Выберите слово для возврата</h3>
-            <button id="closeWordModalBtn" style="background: none; border: none; font-size: 24px; cursor: pointer;">&times;</button>
+            <h3 style="margin: 0;">📦 КОНТЕЙНЕР (${studiedWords.length} слов)</h3>
+            <button id="closeModalBtn" style="background: none; border: none; font-size: 24px; cursor: pointer;">&times;</button>
         </div>
         <div style="overflow-y: auto; flex: 1; padding: 10px 0;">
             ${itemsHtml}
         </div>
-        <div style="padding: 15px; border-top: 1px solid #ddd;">
-            <button id="cancelWordModalBtn" style="width: 100%; padding: 10px; background: #ddd; border: none; border-radius: 8px; cursor: pointer;">Отмена</button>
+        <div style="padding: 15px; border-top: 1px solid #ddd; display: flex; gap: 10px;">
+            <button id="returnAllBtn" style="flex: 1; padding: 10px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer;">🔄 ВЕРНУТЬ ВСЁ</button>
+            <button id="cancelModalBtn" style="flex: 1; padding: 10px; background: #ddd; border: none; border-radius: 8px; cursor: pointer;">ЗАКРЫТЬ</button>
         </div>
     `;
     
@@ -187,16 +182,42 @@ function showWordReturnModal(wordsList, onSelect) {
     
     const closeModal = () => modal.remove();
     
-    document.getElementById('closeWordModalBtn').onclick = closeModal;
-    document.getElementById('cancelWordModalBtn').onclick = closeModal;
+    document.getElementById('closeModalBtn').onclick = closeModal;
+    document.getElementById('cancelModalBtn').onclick = closeModal;
     modal.onclick = (e) => { if (e.target === modal) closeModal(); };
     
-    document.querySelectorAll('.word-return-item').forEach(btn => {
+    // Возврат всех слов
+    document.getElementById('returnAllBtn').onclick = () => {
+        if (confirm("Вы уверены? Все слова из контейнера будут возвращены в изучение.")) {
+            resetAllStudied();
+            cardsList = getUnstudiedWords();
+            cardsIndex = 0;
+            cardsFlipped = false;
+            updateCardDisplay();
+            updateCounter();
+            closeModal();
+        }
+    };
+    
+    // Возврат отдельного слова (клик по слову)
+    document.querySelectorAll('.studied-word-item').forEach(btn => {
         btn.onclick = () => {
             const idx = parseInt(btn.getAttribute('data-index'));
-            const selectedWord = wordsList[idx];
-            closeModal();
-            onSelect(selectedWord);
+            const word = studiedWords[idx];
+            unstudyWord(word);
+            cardsList = getUnstudiedWords();
+            updateCardDisplay();
+            updateCounter();
+            // Обновляем модальное окно (убираем возвращённое слово)
+            const updatedStudied = getStudiedWordsList();
+            if (updatedStudied.length === 0) {
+                closeModal();
+                alert("📦 Контейнер пуст");
+            } else {
+                btn.remove();
+                const header = modalContent.querySelector('h3');
+                if (header) header.textContent = `📦 КОНТЕЙНЕР (${updatedStudied.length} слов)`;
+            }
         };
     });
 }
