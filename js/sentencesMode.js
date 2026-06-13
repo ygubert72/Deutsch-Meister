@@ -18,6 +18,10 @@ function isMobileDevice() {
     return window.innerWidth <= 768;
 }
 
+// Глобальные функции для обновления интерфейса
+window.refreshSentencesCarousel = null;
+window.refreshSentencesDesktop = null;
+
 function renderSentences() {
     sentencesList = getUnstudiedSentences();
     sentencesIndex = 0;
@@ -95,7 +99,7 @@ function renderSentencesDesktop() {
         if (hintLabel) hintLabel.textContent = '';
     }
     
-    function showCurrentSentence() {
+    window.showCurrentSentenceDesktop = function() {
         resetHint();
         if (!sentencesList.length) {
             const studiedCount = getStudiedSentencesCount();
@@ -145,12 +149,12 @@ function renderSentencesDesktop() {
         sentencesActive = {};
         sentencesAvailable.forEach(w => { sentencesActive[w] = true; });
         updateSentenceDisplay();
-    }
+    };
     
     function goToStart() {
         if (sentencesList.length) {
             sentencesIndex = 0;
-            showCurrentSentence();
+            window.showCurrentSentenceDesktop();
             updateCounter();
         }
     }
@@ -162,7 +166,7 @@ function renderSentencesDesktop() {
     
     document.getElementById('sentDirBtn').onclick = () => {
         AppConfig.sentence_lang_from = AppConfig.sentence_lang_from === 'ru' ? 'de' : 'ru';
-        showCurrentSentence();
+        window.showCurrentSentenceDesktop();
         document.getElementById('sentDirBtn').textContent = AppConfig.sentence_lang_from === 'ru' ? 'Ru → De' : 'De → Ru';
         saveProgress();
     };
@@ -199,7 +203,7 @@ function renderSentencesDesktop() {
             setTimeout(() => {
                 result.style.backgroundColor = '#FFFFFF';
                 sentencesIndex = (sentencesIndex + 1) % sentencesList.length;
-                showCurrentSentence();
+                window.showCurrentSentenceDesktop();
             }, 500);
         } else {
             result.style.backgroundColor = '#FFCDD2';
@@ -219,7 +223,7 @@ function renderSentencesDesktop() {
             markSentenceAsStudied(sentencesCurrent);
             sentencesList = getUnstudiedSentences();
             sentencesIndex = 0;
-            showCurrentSentence();
+            window.showCurrentSentenceDesktop();
             updateCounter();
         }
     };
@@ -231,21 +235,21 @@ function renderSentencesDesktop() {
     document.getElementById('sentPrevBtn').onclick = () => {
         if (sentencesList.length && sentencesIndex > 0) {
             sentencesIndex--;
-            showCurrentSentence();
+            window.showCurrentSentenceDesktop();
         }
     };
     document.getElementById('sentNextBtn').onclick = () => {
         if (sentencesList.length) {
             sentencesIndex = (sentencesIndex + 1) % sentencesList.length;
-            showCurrentSentence();
+            window.showCurrentSentenceDesktop();
         }
     };
     document.getElementById('sentResetStartBtn').onclick = goToStart;
-    showCurrentSentence();
+    window.showCurrentSentenceDesktop();
     updateCounter();
 }
 
-// ========== МОДАЛЬНОЕ ОКНО ДЛЯ ДЕСКТОПА (ИСПРАВЛЕНО) ==========
+// ========== МОДАЛЬНОЕ ОКНО ДЛЯ ДЕСКТОПА ==========
 function showStudiedSentencesModalDesktop(initialSentences) {
     const oldModal = document.getElementById('studiedSentencesModal');
     if (oldModal) oldModal.remove();
@@ -257,7 +261,7 @@ function showStudiedSentencesModalDesktop(initialSentences) {
     const modalContent = document.createElement('div');
     modalContent.style.cssText = `background:white; border-radius:20px; max-width:500px; width:90%; max-height:80vh; display:flex; flex-direction:column; margin:20px;`;
     
-    function refreshModalContent() {
+    function updateModalContent() {
         const currentStudied = sentencesDB[AppConfig.currentLevel].filter((_, idx) => sentencesProgress[AppConfig.currentLevel]?.[idx]?.studied);
         const header = modalContent.querySelector('h3');
         const itemsContainer = modalContent.querySelector('.items-container');
@@ -284,9 +288,9 @@ function showStudiedSentencesModalDesktop(initialSentences) {
                             saveProgress();
                             sentencesList = getUnstudiedSentences();
                             sentencesIndex = 0;
-                            showCurrentSentence();
+                            window.showCurrentSentenceDesktop();
                             updateCounter();
-                            refreshModalContent();
+                            updateModalContent();
                         }
                     };
                 });
@@ -318,9 +322,9 @@ function showStudiedSentencesModalDesktop(initialSentences) {
             resetAllSentences();
             sentencesList = getUnstudiedSentences();
             sentencesIndex = 0;
-            showCurrentSentence();
+            window.showCurrentSentenceDesktop();
             updateCounter();
-            refreshModalContent();
+            updateModalContent();
         }
     };
 }
@@ -430,7 +434,12 @@ function renderSentencesMobile() {
         if (hintLabel) hintLabel.textContent = '';
     }
     
-    function refreshCurrentSentence() {
+    window.refreshSentencesCarousel = function() {
+        const track = document.getElementById('carouselTrack');
+        if (!track) return;
+        track.innerHTML = generateSentencesCards();
+        updateCarouselPosition(false);
+        
         resetHint();
         if (!sentencesList.length) {
             document.getElementById('sentWordsContainer').innerHTML = '';
@@ -472,21 +481,13 @@ function renderSentencesMobile() {
         sentencesAvailable.forEach(w => { sentencesActive[w] = true; });
         updateSentenceDisplay();
         document.getElementById('sentProgress').textContent = `Фраза: ${sentencesIndex+1} из ${sentencesList.length}`;
-    }
-    
-    function refreshCarousel() {
-        const track = document.getElementById('carouselTrack');
-        if (!track) return;
-        track.innerHTML = generateSentencesCards();
-        updateCarouselPosition(false);
-        refreshCurrentSentence();
-    }
+    };
     
     const wrapper = document.getElementById('carouselWrapper');
     const track = document.getElementById('carouselTrack');
     if (track && wrapper) {
         mobileContainerWidth = wrapper.offsetWidth;
-        refreshCarousel();
+        window.refreshSentencesCarousel();
         
         track.addEventListener('touchstart', (e) => {
             mobileIsDragging = true;
@@ -510,7 +511,7 @@ function renderSentencesMobile() {
                 } else {
                     sentencesIndex = (sentencesIndex + 1) % sentencesList.length;
                 }
-                refreshCarousel();
+                window.refreshSentencesCarousel();
                 updateCounter();
             } else {
                 updateCarouselPosition(true);
@@ -520,7 +521,7 @@ function renderSentencesMobile() {
     
     document.getElementById('sentDirBtn').onclick = () => {
         AppConfig.sentence_lang_from = AppConfig.sentence_lang_from === 'ru' ? 'de' : 'ru';
-        refreshCarousel();
+        window.refreshSentencesCarousel();
         document.getElementById('sentDirBtn').textContent = AppConfig.sentence_lang_from === 'ru' ? 'Ru → De' : 'De → Ru';
         saveProgress();
     };
@@ -557,7 +558,7 @@ function renderSentencesMobile() {
             setTimeout(() => {
                 result.style.backgroundColor = '#FFFFFF';
                 sentencesIndex = (sentencesIndex + 1) % sentencesList.length;
-                refreshCarousel();
+                window.refreshSentencesCarousel();
             }, 500);
         } else {
             result.style.backgroundColor = '#FFCDD2';
@@ -577,14 +578,14 @@ function renderSentencesMobile() {
             markSentenceAsStudied(sentencesCurrent);
             sentencesList = getUnstudiedSentences();
             sentencesIndex = 0;
-            refreshCarousel();
+            window.refreshSentencesCarousel();
             updateCounter();
         }
     };
     document.getElementById('sentResetStartBtn').onclick = () => {
         if (sentencesList.length) {
             sentencesIndex = 0;
-            refreshCarousel();
+            window.refreshSentencesCarousel();
             updateCounter();
         }
     };
@@ -599,7 +600,7 @@ function renderSentencesMobile() {
     });
 }
 
-// ========== МОДАЛЬНОЕ ОКНО ДЛЯ МОБИЛЬНОЙ ВЕРСИИ (ИСПРАВЛЕНО) ==========
+// ========== МОДАЛЬНОЕ ОКНО ДЛЯ МОБИЛЬНОЙ ВЕРСИИ ==========
 function showStudiedSentencesModalMobile(initialSentences) {
     const oldModal = document.getElementById('studiedSentencesModal');
     if (oldModal) oldModal.remove();
@@ -611,7 +612,7 @@ function showStudiedSentencesModalMobile(initialSentences) {
     const modalContent = document.createElement('div');
     modalContent.style.cssText = `background:white; border-radius:20px; max-width:500px; width:90%; max-height:80vh; display:flex; flex-direction:column; margin:20px;`;
     
-    function refreshModalContent() {
+    function updateModalContent() {
         const currentStudied = sentencesDB[AppConfig.currentLevel].filter((_, idx) => sentencesProgress[AppConfig.currentLevel]?.[idx]?.studied);
         const header = modalContent.querySelector('h3');
         const itemsContainer = modalContent.querySelector('.items-container');
@@ -638,9 +639,9 @@ function showStudiedSentencesModalMobile(initialSentences) {
                             saveProgress();
                             sentencesList = getUnstudiedSentences();
                             sentencesIndex = 0;
-                            refreshCarousel();
+                            window.refreshSentencesCarousel();
                             updateCounter();
-                            refreshModalContent();
+                            updateModalContent();
                         }
                     };
                 });
@@ -672,9 +673,9 @@ function showStudiedSentencesModalMobile(initialSentences) {
             resetAllSentences();
             sentencesList = getUnstudiedSentences();
             sentencesIndex = 0;
-            refreshCarousel();
+            window.refreshSentencesCarousel();
             updateCounter();
-            refreshModalContent();
+            updateModalContent();
         }
     };
 }
