@@ -34,9 +34,8 @@ function renderSentences() {
             </div>
             
             <div class="btn-group">
-                <button class="ctrl-btn" id="sentStudyBtn">В ИЗУЧЕНО</button>
-                <button class="ctrl-btn" id="sentUnstudyBtn">ВЕРНУТЬ</button>
-                <button class="ctrl-btn" id="sentResetAllBtn">ВЕРНУТЬ ВСЕ</button>
+                <button class="ctrl-btn" id="sentStudyBtn">ИЗУЧЕНО</button>
+                <button class="ctrl-btn" id="sentContainerBtn">В КОНТЕЙНЕР</button>
                 <button class="ctrl-btn" id="sentPrevBtn">◀ НАЗАД</button>
                 <button class="ctrl-btn" id="sentNextBtn">ВПЕРЕД ▶</button>
             </div>
@@ -86,7 +85,12 @@ function renderSentences() {
         resetHint();
         
         if (!sentencesList.length) {
-            document.getElementById('sentQuestion').innerHTML = "🎉 Все фразы изучены!<br><br>Верните фразы из 'Изучено' или<br>выберите другой уровень";
+            const studiedCount = getStudiedSentencesCount();
+            if (studiedCount > 0) {
+                document.getElementById('sentQuestion').innerHTML = "🎉 Все фразы в контейнере!<br><br>Нажмите 'В КОНТЕЙНЕР' чтобы просмотреть<br>или вернуть фразы";
+            } else {
+                document.getElementById('sentQuestion').innerHTML = "🎉 Все фразы изучены!<br><br>Выберите другой уровень";
+            }
             const container = document.getElementById('sentWordsContainer');
             if (container) container.innerHTML = '';
             const result = document.getElementById('sentResult');
@@ -134,6 +138,12 @@ function renderSentences() {
         sentencesAvailable.forEach(w => { sentencesActive[w] = true; });
         
         updateSentenceDisplay();
+    }
+    
+    // Получение количества изученных фраз
+    function getStudiedSentencesCount() {
+        const progress = sentencesProgress[AppConfig.currentLevel] || [];
+        return progress.filter(p => p?.studied === true).length;
     }
     
     document.getElementById('sentDirBtn').onclick = () => {
@@ -202,6 +212,7 @@ function renderSentences() {
         if (sentencesCurrent) speak(sentencesCurrent.de);
     };
     
+    // Кнопка "ИЗУЧЕНО" - перемещает фразу в контейнер (изученные)
     document.getElementById('sentStudyBtn').onclick = () => {
         if (sentencesCurrent) {
             markSentenceAsStudied(sentencesCurrent);
@@ -212,31 +223,14 @@ function renderSentences() {
         }
     };
     
-    document.getElementById('sentUnstudyBtn').onclick = () => {
+    // Кнопка "В КОНТЕЙНЕР" - открывает модальное окно со списком изученных фраз
+    document.getElementById('sentContainerBtn').onclick = () => {
         const completed = sentencesDB[AppConfig.currentLevel].filter((_, idx) => sentencesProgress[AppConfig.currentLevel]?.[idx]?.studied);
-        if (!completed.length) { alert("Нет изученных фраз"); return; }
-        showSentenceReturnModal(completed, (sentence) => {
-            const sIdx = sentencesDB[AppConfig.currentLevel].findIndex(s => s.de === sentence.de && s.ru === sentence.ru);
-            if (sIdx !== -1) {
-                if (!sentencesProgress[AppConfig.currentLevel]) sentencesProgress[AppConfig.currentLevel] = [];
-                sentencesProgress[AppConfig.currentLevel][sIdx] = { studied: false };
-                saveProgress();
-                sentencesList = getUnstudiedSentences();
-                sentencesIndex = 0;
-                showCurrentSentence();
-                updateCounter();
-            }
-        });
-    };
-    
-    document.getElementById('sentResetAllBtn').onclick = () => {
-        if (confirm("Вы уверены? Все изученные фразы будут возвращены.")) {
-            resetAllSentences();
-            sentencesList = getUnstudiedSentences();
-            sentencesIndex = 0;
-            showCurrentSentence();
-            updateCounter();
+        if (!completed.length) { 
+            alert("📦 Контейнер пуст\n\nВыучите фразы, чтобы они появились здесь."); 
+            return; 
         }
+        showStudiedSentencesModal(completed);
     };
     
     document.getElementById('sentPrevBtn').onclick = () => {
@@ -257,13 +251,13 @@ function renderSentences() {
     updateCounter();
 }
 
-// ========== МОДАЛЬНОЕ ОКНО ДЛЯ ВЫБОРА ФРАЗЫ ==========
-function showSentenceReturnModal(sentencesList, onSelect) {
-    const oldModal = document.getElementById('sentenceReturnModal');
+// ========== МОДАЛЬНОЕ ОКНО ДЛЯ ПРОСМОТРА И ВОЗВРАТА ИЗУЧЕННЫХ ФРАЗ ==========
+function showStudiedSentencesModal(studiedSentences) {
+    const oldModal = document.getElementById('studiedSentencesModal');
     if (oldModal) oldModal.remove();
     
     const modal = document.createElement('div');
-    modal.id = 'sentenceReturnModal';
+    modal.id = 'studiedSentencesModal';
     modal.style.cssText = `
         position: fixed;
         top: 0;
@@ -291,12 +285,11 @@ function showSentenceReturnModal(sentencesList, onSelect) {
     `;
     
     let itemsHtml = '';
-    sentencesList.forEach((sentence, idx) => {
-        // Экранируем кавычки для безопасного отображения
+    studiedSentences.forEach((sentence, idx) => {
         const safeDe = sentence.de.replace(/'/g, "\\'").replace(/"/g, '&quot;');
         const safeRu = sentence.ru.replace(/'/g, "\\'").replace(/"/g, '&quot;');
         itemsHtml += `
-            <button class="sentence-return-item" data-index="${idx}" style="
+            <button class="studied-sentence-item" data-index="${idx}" style="
                 width: 100%;
                 text-align: left;
                 padding: 12px 15px;
@@ -313,14 +306,15 @@ function showSentenceReturnModal(sentencesList, onSelect) {
     
     modalContent.innerHTML = `
         <div style="padding: 15px; border-bottom: 1px solid #ddd; display: flex; justify-content: space-between; align-items: center;">
-            <h3 style="margin: 0;">📖 Выберите фразу для возврата</h3>
-            <button id="closeSentenceModalBtn" style="background: none; border: none; font-size: 24px; cursor: pointer;">&times;</button>
+            <h3 style="margin: 0;">📦 КОНТЕЙНЕР (${studiedSentences.length} фраз)</h3>
+            <button id="closeModalBtn" style="background: none; border: none; font-size: 24px; cursor: pointer;">&times;</button>
         </div>
         <div style="overflow-y: auto; flex: 1; padding: 10px 0;">
             ${itemsHtml}
         </div>
-        <div style="padding: 15px; border-top: 1px solid #ddd;">
-            <button id="cancelSentenceModalBtn" style="width: 100%; padding: 10px; background: #ddd; border: none; border-radius: 8px; cursor: pointer;">Отмена</button>
+        <div style="padding: 15px; border-top: 1px solid #ddd; display: flex; gap: 10px;">
+            <button id="returnAllBtn" style="flex: 1; padding: 10px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer;">🔄 ВЕРНУТЬ ВСЁ</button>
+            <button id="cancelModalBtn" style="flex: 1; padding: 10px; background: #ddd; border: none; border-radius: 8px; cursor: pointer;">ЗАКРЫТЬ</button>
         </div>
     `;
     
@@ -329,16 +323,45 @@ function showSentenceReturnModal(sentencesList, onSelect) {
     
     const closeModal = () => modal.remove();
     
-    document.getElementById('closeSentenceModalBtn').onclick = closeModal;
-    document.getElementById('cancelSentenceModalBtn').onclick = closeModal;
+    document.getElementById('closeModalBtn').onclick = closeModal;
+    document.getElementById('cancelModalBtn').onclick = closeModal;
     modal.onclick = (e) => { if (e.target === modal) closeModal(); };
     
-    document.querySelectorAll('.sentence-return-item').forEach(btn => {
+    // Возврат всех фраз
+    document.getElementById('returnAllBtn').onclick = () => {
+        if (confirm("Вы уверены? Все фразы из контейнера будут возвращены в изучение.")) {
+            resetAllSentences();
+            sentencesList = getUnstudiedSentences();
+            sentencesIndex = 0;
+            showCurrentSentence();
+            updateCounter();
+            closeModal();
+        }
+    };
+    
+    // Возврат отдельной фразы
+    document.querySelectorAll('.studied-sentence-item').forEach(btn => {
         btn.onclick = () => {
             const idx = parseInt(btn.getAttribute('data-index'));
-            const selectedSentence = sentencesList[idx];
-            closeModal();
-            onSelect(selectedSentence);
+            const sentence = studiedSentences[idx];
+            const sIdx = sentencesDB[AppConfig.currentLevel].findIndex(s => s.de === sentence.de && s.ru === sentence.ru);
+            if (sIdx !== -1) {
+                if (!sentencesProgress[AppConfig.currentLevel]) sentencesProgress[AppConfig.currentLevel] = [];
+                sentencesProgress[AppConfig.currentLevel][sIdx] = { studied: false };
+                saveProgress();
+                sentencesList = getUnstudiedSentences();
+                sentencesIndex = 0;
+                showCurrentSentence();
+                updateCounter();
+                btn.remove();
+                const updatedStudied = sentencesDB[AppConfig.currentLevel].filter((_, i) => sentencesProgress[AppConfig.currentLevel]?.[i]?.studied);
+                const header = modalContent.querySelector('h3');
+                if (header) header.textContent = `📦 КОНТЕЙНЕР (${updatedStudied.length} фраз)`;
+                if (updatedStudied.length === 0) {
+                    setTimeout(closeModal, 500);
+                    alert("📦 Контейнер пуст");
+                }
+            }
         };
     });
 }
