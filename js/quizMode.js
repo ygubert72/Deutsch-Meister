@@ -14,9 +14,8 @@ function renderQuiz() {
             <div class="quiz-question" id="quizQuestion"></div>
             <div class="quiz-grid" id="quizGrid"></div>
             <div class="btn-group">
-                <button class="ctrl-btn" id="quizStudyBtn">В ИЗУЧЕНО</button>
-                <button class="ctrl-btn" id="quizUnstudyBtn">ВЕРНУТЬ</button>
-                <button class="ctrl-btn" id="quizResetBtn">ВЕРНУТЬ ВСЕ</button>
+                <button class="ctrl-btn" id="quizStudyBtn">ИЗУЧЕНО</button>
+                <button class="ctrl-btn" id="quizContainerBtn">В КОНТЕЙНЕР</button>
                 <button class="ctrl-btn" id="quizPrevBtn">◀ НАЗАД</button>
                 <button class="ctrl-btn" id="quizNextBtn">ВПЕРЕД ▶</button>
             </div>
@@ -26,8 +25,14 @@ function renderQuiz() {
     
     function showCurrentQuiz() {
         if (!quizList.length) {
-            document.getElementById('quizQuestion').textContent = "🎉 Все слова изучены!";
-            document.getElementById('quizGrid').innerHTML = '';
+            const studiedCount = getStudiedWordsList().length;
+            if (studiedCount > 0) {
+                document.getElementById('quizQuestion').textContent = "🎉 Все слова в контейнере!";
+                document.getElementById('quizGrid').innerHTML = '<div style="text-align:center; padding:20px;">Нажмите "В КОНТЕЙНЕР" чтобы просмотреть или вернуть слова</div>';
+            } else {
+                document.getElementById('quizQuestion').textContent = "🎉 Все слова изучены!";
+                document.getElementById('quizGrid').innerHTML = '';
+            }
             return;
         }
         if (quizIndex >= quizList.length) quizIndex = 0;
@@ -88,6 +93,7 @@ function renderQuiz() {
         saveProgress();
     };
     
+    // Кнопка "ИЗУЧЕНО" - перемещает слово в контейнер (изученные)
     document.getElementById('quizStudyBtn').onclick = () => {
         if (quizCurrentWord) {
             markWordAsStudied(quizCurrentWord);
@@ -98,26 +104,14 @@ function renderQuiz() {
         }
     };
     
-    document.getElementById('quizUnstudyBtn').onclick = () => {
+    // Кнопка "В КОНТЕЙНЕР" - открывает модальное окно со списком изученных слов
+    document.getElementById('quizContainerBtn').onclick = () => {
         const studied = getStudiedWordsList();
-        if (!studied.length) { alert("Нет изученных слов"); return; }
-        showWordReturnModalQuiz(studied, (word) => {
-            unstudyWord(word);
-            quizList = getUnstudiedWords();
-            quizIndex = 0;
-            showCurrentQuiz();
-            updateCounter();
-        });
-    };
-    
-    document.getElementById('quizResetBtn').onclick = () => {
-        if (confirm("Вы уверены? Все изученные слова будут возвращены.")) {
-            resetAllStudied();
-            quizList = getUnstudiedWords();
-            quizIndex = 0;
-            showCurrentQuiz();
-            updateCounter();
+        if (!studied.length) { 
+            alert("📦 Контейнер пуст\n\nВыучите слова, чтобы они появились здесь."); 
+            return; 
         }
+        showStudiedWordsModalQuiz(studied);
     };
     
     document.getElementById('quizPrevBtn').onclick = () => {
@@ -138,13 +132,13 @@ function renderQuiz() {
     updateCounter();
 }
 
-// ========== МОДАЛЬНОЕ ОКНО ДЛЯ ВЫБОРА СЛОВА (QUIZ) ==========
-function showWordReturnModalQuiz(wordsList, onSelect) {
-    const oldModal = document.getElementById('wordReturnModal');
+// ========== МОДАЛЬНОЕ ОКНО ДЛЯ ПРОСМОТРА И ВОЗВРАТА ИЗУЧЕННЫХ СЛОВ (QUIZ) ==========
+function showStudiedWordsModalQuiz(studiedWords) {
+    const oldModal = document.getElementById('studiedWordsModal');
     if (oldModal) oldModal.remove();
     
     const modal = document.createElement('div');
-    modal.id = 'wordReturnModal';
+    modal.id = 'studiedWordsModal';
     modal.style.cssText = `
         position: fixed;
         top: 0;
@@ -172,9 +166,11 @@ function showWordReturnModalQuiz(wordsList, onSelect) {
     `;
     
     let itemsHtml = '';
-    wordsList.forEach((word, idx) => {
+    studiedWords.forEach((word, idx) => {
+        const safeDe = word.de.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+        const safeRu = word.ru.replace(/'/g, "\\'").replace(/"/g, '&quot;');
         itemsHtml += `
-            <button class="word-return-item" data-index="${idx}" style="
+            <button class="studied-word-item" data-index="${idx}" style="
                 width: 100%;
                 text-align: left;
                 padding: 12px 15px;
@@ -184,21 +180,22 @@ function showWordReturnModalQuiz(wordsList, onSelect) {
                 cursor: pointer;
                 font-size: 14px;
             ">
-                <strong>${word.de}</strong> — ${word.ru}
+                <strong>${safeDe}</strong> — ${safeRu}
             </button>
         `;
     });
     
     modalContent.innerHTML = `
         <div style="padding: 15px; border-bottom: 1px solid #ddd; display: flex; justify-content: space-between; align-items: center;">
-            <h3 style="margin: 0;">📖 Выберите слово для возврата</h3>
-            <button id="closeWordModalBtn" style="background: none; border: none; font-size: 24px; cursor: pointer;">&times;</button>
+            <h3 style="margin: 0;">📦 КОНТЕЙНЕР (${studiedWords.length} слов)</h3>
+            <button id="closeModalBtn" style="background: none; border: none; font-size: 24px; cursor: pointer;">&times;</button>
         </div>
         <div style="overflow-y: auto; flex: 1; padding: 10px 0;">
             ${itemsHtml}
         </div>
-        <div style="padding: 15px; border-top: 1px solid #ddd;">
-            <button id="cancelWordModalBtn" style="width: 100%; padding: 10px; background: #ddd; border: none; border-radius: 8px; cursor: pointer;">Отмена</button>
+        <div style="padding: 15px; border-top: 1px solid #ddd; display: flex; gap: 10px;">
+            <button id="returnAllBtn" style="flex: 1; padding: 10px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer;">🔄 ВЕРНУТЬ ВСЁ</button>
+            <button id="cancelModalBtn" style="flex: 1; padding: 10px; background: #ddd; border: none; border-radius: 8px; cursor: pointer;">ЗАКРЫТЬ</button>
         </div>
     `;
     
@@ -207,16 +204,41 @@ function showWordReturnModalQuiz(wordsList, onSelect) {
     
     const closeModal = () => modal.remove();
     
-    document.getElementById('closeWordModalBtn').onclick = closeModal;
-    document.getElementById('cancelWordModalBtn').onclick = closeModal;
+    document.getElementById('closeModalBtn').onclick = closeModal;
+    document.getElementById('cancelModalBtn').onclick = closeModal;
     modal.onclick = (e) => { if (e.target === modal) closeModal(); };
     
-    document.querySelectorAll('.word-return-item').forEach(btn => {
+    // Возврат всех слов
+    document.getElementById('returnAllBtn').onclick = () => {
+        if (confirm("Вы уверены? Все слова из контейнера будут возвращены в изучение.")) {
+            resetAllStudied();
+            quizList = getUnstudiedWords();
+            quizIndex = 0;
+            showCurrentQuiz();
+            updateCounter();
+            closeModal();
+        }
+    };
+    
+    // Возврат отдельного слова
+    document.querySelectorAll('.studied-word-item').forEach(btn => {
         btn.onclick = () => {
             const idx = parseInt(btn.getAttribute('data-index'));
-            const selectedWord = wordsList[idx];
-            closeModal();
-            onSelect(selectedWord);
+            const word = studiedWords[idx];
+            unstudyWord(word);
+            quizList = getUnstudiedWords();
+            quizIndex = 0;
+            showCurrentQuiz();
+            updateCounter();
+            const updatedStudied = getStudiedWordsList();
+            if (updatedStudied.length === 0) {
+                closeModal();
+                alert("📦 Контейнер пуст");
+            } else {
+                btn.remove();
+                const header = modalContent.querySelector('h3');
+                if (header) header.textContent = `📦 КОНТЕЙНЕР (${updatedStudied.length} слов)`;
+            }
         };
     });
 }
