@@ -1,22 +1,23 @@
 let cardsList = [];
 let cardsIndex = 0;
 let cardsFlipped = false;
-let isAnimating = false; // блокировка анимации во время переключения
+let isAnimating = false;
 
-// Переменные для свайпа
+// Переменные для свайпа с анимацией за пальцем
 let touchStartX = 0;
-let touchStartY = 0;
+let touchCurrentX = 0;
 let touchEndX = 0;
-let touchEndY = 0;
+let isDragging = false;
+let dragOffset = 0;
 const minSwipeDistance = 50;
 
-// Проверка, мобильное ли устройство (ширина экрана <= 768px)
+// Проверка, мобильное ли устройство
 function isMobileDevice() {
     return window.innerWidth <= 768;
 }
 
-// Анимированное обновление карточки
-function animateCardUpdate(callback) {
+// Анимация затухания для компьютера
+function animateFade(callback) {
     if (isAnimating) return;
     isAnimating = true;
     
@@ -40,6 +41,50 @@ function animateCardUpdate(callback) {
     }, 150);
 }
 
+// Анимация сдвига карточки при свайпе
+function updateCardTransform(offsetX) {
+    const card = document.getElementById('card');
+    if (card) {
+        card.style.transition = 'none';
+        card.style.transform = `translateX(${offsetX}px)`;
+        card.style.opacity = `${1 - Math.abs(offsetX) / 200}`;
+    }
+}
+
+function resetCardTransform() {
+    const card = document.getElementById('card');
+    if (card) {
+        card.style.transition = 'transform 0.2s ease, opacity 0.2s ease';
+        card.style.transform = 'translateX(0)';
+        card.style.opacity = '1';
+        setTimeout(() => {
+            if (card) {
+                card.style.transition = '';
+            }
+        }, 200);
+    }
+}
+
+function animateCardSwipe(direction, callback) {
+    const card = document.getElementById('card');
+    if (!card) {
+        if (callback) callback();
+        return;
+    }
+    
+    const targetX = direction === 'left' ? -window.innerWidth : window.innerWidth;
+    card.style.transition = 'transform 0.2s ease-out, opacity 0.2s ease-out';
+    card.style.transform = `translateX(${targetX}px)`;
+    card.style.opacity = '0';
+    
+    setTimeout(() => {
+        card.style.transition = '';
+        card.style.transform = '';
+        card.style.opacity = '';
+        if (callback) callback();
+    }, 200);
+}
+
 function renderCards() {
     cardsList = getUnstudiedWords();
     cardsIndex = 0;
@@ -57,7 +102,7 @@ function renderCards() {
     document.getElementById('content').innerHTML = `
         <div style="text-align: center;">
             <button class="dir-btn" id="dirBtn">${AppConfig.show_language === 'de' ? 'De → Ru' : 'Ru → De'}</button>
-            <div class="card" id="card">
+            <div class="card" id="card" style="transition: transform 0.1s ease-out;">
                 <div class="card-word" id="cardWord"></div>
             </div>
             <div class="btn-group">
@@ -69,6 +114,20 @@ function renderCards() {
             ${swipeHint}
         </div>
     `;
+    
+    function getCurrentWordText() {
+        if (!cardsList.length) return null;
+        const word = cardsList[cardsIndex];
+        if (!cardsFlipped) {
+            return AppConfig.show_language === 'de' ? word.de : word.ru;
+        } else {
+            if (AppConfig.show_language === 'de') {
+                return `${word.de}\n\n➡️\n\n${word.ru}`;
+            } else {
+                return `${word.ru}\n\n➡️\n\n${word.de}`;
+            }
+        }
+    }
     
     function updateCardDisplayContent() {
         const wordEl = document.getElementById('cardWord');
@@ -83,70 +142,94 @@ function renderCards() {
             }
             return;
         }
-        if (cardsIndex >= cardsList.length) cardsIndex = 0;
-        const word = cardsList[cardsIndex];
         
-        if (!cardsFlipped) {
-            wordEl.textContent = AppConfig.show_language === 'de' ? word.de : word.ru;
-        } else {
-            if (AppConfig.show_language === 'de') {
-                wordEl.textContent = `${word.de}\n\n➡️\n\n${word.ru}`;
+        wordEl.textContent = getCurrentWordText();
+    }
+    
+    function goToNextCard() {
+        if (cardsList.length) {
+            cardsIndex = (cardsIndex + 1) % cardsList.length;
+            cardsFlipped = false;
+            updateCardDisplayContent();
+        }
+    }
+    
+    function goToPrevCard() {
+        if (cardsList.length) {
+            if (cardsIndex > 0) {
+                cardsIndex--;
             } else {
-                wordEl.textContent = `${word.ru}\n\n➡️\n\n${word.de}`;
+                cardsIndex = cardsList.length - 1;
+            }
+            cardsFlipped = false;
+            updateCardDisplayContent();
+        }
+    }
+    
+    function updateCardDisplay(isFade = true) {
+        if (isMobile) {
+            updateCardDisplayContent();
+        } else {
+            if (isFade) {
+                animateFade(() => {
+                    updateCardDisplayContent();
+                });
+            } else {
+                updateCardDisplayContent();
             }
         }
     }
     
-    function updateCardDisplay() {
-        animateCardUpdate(() => {
-            updateCardDisplayContent();
-        });
-    }
-    
-    // ========== СВАЙПЫ (ТОЛЬКО ДЛЯ МОБИЛЬНЫХ) ==========
+    // ========== СВАЙПЫ С ДВИЖЕНИЕМ ЗА ПАЛЬЦЕМ (ТОЛЬКО ДЛЯ МОБИЛЬНЫХ) ==========
     if (isMobile) {
         const cardElement = document.getElementById('card');
         
         cardElement.addEventListener('touchstart', (e) => {
             if (isAnimating) return;
+            isDragging = true;
             touchStartX = e.changedTouches[0].screenX;
-            touchStartY = e.changedTouches[0].screenY;
+            dragOffset = 0;
+            cardElement.style.transition = 'none';
+        });
+        
+        cardElement.addEventListener('touchmove', (e) => {
+            if (!isDragging || isAnimating) return;
+            touchCurrentX = e.changedTouches[0].screenX;
+            dragOffset = touchCurrentX - touchStartX;
+            updateCardTransform(dragOffset);
         });
         
         cardElement.addEventListener('touchend', (e) => {
-            if (isAnimating) return;
-            touchEndX = e.changedTouches[0].screenX;
-            touchEndY = e.changedTouches[0].screenY;
-            handleSwipe();
-        });
-        
-        function handleSwipe() {
-            const deltaX = touchEndX - touchStartX;
-            const deltaY = touchEndY - touchStartY;
+            if (!isDragging || isAnimating) {
+                isDragging = false;
+                return;
+            }
+            isDragging = false;
             
-            if (Math.abs(deltaX) < Math.abs(deltaY)) return;
-            if (Math.abs(deltaX) < minSwipeDistance) return;
+            const deltaX = dragOffset;
             
-            if (deltaX > 0) {
-                // Свайп вправо - ПРЕДЫДУЩАЯ
-                if (cardsList.length && cardsIndex > 0) {
-                    cardsIndex--;
-                    cardsFlipped = false;
-                    updateCardDisplay();
-                } else if (cardsList.length && cardsIndex === 0) {
-                    cardsIndex = cardsList.length - 1;
-                    cardsFlipped = false;
-                    updateCardDisplay();
+            if (Math.abs(deltaX) > minSwipeDistance) {
+                // Достаточный свайп
+                if (deltaX > 0) {
+                    // Свайп вправо - ПРЕДЫДУЩАЯ
+                    animateCardSwipe('right', () => {
+                        goToPrevCard();
+                        resetCardTransform();
+                        updateCounter();
+                    });
+                } else {
+                    // Свайп влево - СЛЕДУЮЩАЯ
+                    animateCardSwipe('left', () => {
+                        goToNextCard();
+                        resetCardTransform();
+                        updateCounter();
+                    });
                 }
             } else {
-                // Свайп влево - СЛЕДУЮЩАЯ
-                if (cardsList.length) {
-                    cardsIndex = (cardsIndex + 1) % cardsList.length;
-                    cardsFlipped = false;
-                    updateCardDisplay();
-                }
+                // Свайп слишком короткий - возвращаем карточку на место
+                resetCardTransform();
             }
-        }
+        });
     }
     
     // ========== КНОПКИ НАВИГАЦИИ (ДЛЯ КОМПЬЮТЕРА) ==========
@@ -156,14 +239,15 @@ function renderCards() {
     if (prevBtn) {
         prevBtn.onclick = () => {
             if (isAnimating) return;
-            if (cardsList.length && cardsIndex > 0) {
-                cardsIndex--;
+            if (cardsList.length) {
+                if (cardsIndex > 0) {
+                    cardsIndex--;
+                } else {
+                    cardsIndex = cardsList.length - 1;
+                }
                 cardsFlipped = false;
-                updateCardDisplay();
-            } else if (cardsList.length && cardsIndex === 0) {
-                cardsIndex = cardsList.length - 1;
-                cardsFlipped = false;
-                updateCardDisplay();
+                updateCardDisplay(true);
+                updateCounter();
             }
         };
     }
@@ -174,7 +258,8 @@ function renderCards() {
             if (cardsList.length) {
                 cardsIndex = (cardsIndex + 1) % cardsList.length;
                 cardsFlipped = false;
-                updateCardDisplay();
+                updateCardDisplay(true);
+                updateCounter();
             }
         };
     }
@@ -184,17 +269,17 @@ function renderCards() {
         if (isAnimating) return;
         AppConfig.show_language = AppConfig.show_language === 'de' ? 'ru' : 'de';
         cardsFlipped = false;
-        updateCardDisplay();
+        updateCardDisplay(true);
         document.getElementById('dirBtn').textContent = AppConfig.show_language === 'de' ? 'De → Ru' : 'Ru → De';
         saveProgress();
     };
     
     const cardElement = document.getElementById('card');
     cardElement.onclick = () => {
-        if (isAnimating) return;
+        if (isAnimating || isDragging) return;
         if (cardsList.length) {
             cardsFlipped = !cardsFlipped;
-            updateCardDisplay();
+            updateCardDisplay(true);
         }
     };
     
@@ -205,7 +290,7 @@ function renderCards() {
             cardsList = getUnstudiedWords();
             if (cardsIndex >= cardsList.length && cardsList.length) cardsIndex = 0;
             cardsFlipped = false;
-            updateCardDisplay();
+            updateCardDisplay(true);
             updateCounter();
         }
     };
@@ -223,7 +308,7 @@ function renderCards() {
         if (cardsList[cardsIndex]) speak(cardsList[cardsIndex].de);
     };
     
-    updateCardDisplayContent();
+    updateCardDisplay(false);
     updateCounter();
 }
 
@@ -309,7 +394,13 @@ function showStudiedWordsModal(studiedWords) {
             cardsList = getUnstudiedWords();
             cardsIndex = 0;
             cardsFlipped = false;
-            updateCardDisplay();
+            if (isMobileDevice()) {
+                updateCardDisplayContent();
+            } else {
+                animateFade(() => {
+                    updateCardDisplayContent();
+                });
+            }
             updateCounter();
             closeModal();
         }
@@ -321,7 +412,13 @@ function showStudiedWordsModal(studiedWords) {
             const word = studiedWords[idx];
             unstudyWord(word);
             cardsList = getUnstudiedWords();
-            updateCardDisplay();
+            if (isMobileDevice()) {
+                updateCardDisplayContent();
+            } else {
+                animateFade(() => {
+                    updateCardDisplayContent();
+                });
+            }
             updateCounter();
             const updatedStudied = getStudiedWordsList();
             if (updatedStudied.length === 0) {
