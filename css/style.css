@@ -51,49 +51,6 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 .word-btn { padding: 8px 16px; background: #E8F0FE; border: 2px solid #D0D0D0; border-radius: 40px; cursor: pointer; font-size: 13px; transition: all 0.05s linear; box-shadow: 0 3px 4px rgba(0,0,0,0.1); text-align: center; }
 .word-btn:active { transform: translateY(2px); box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
 
-/* ========== МОБИЛЬНЫЙ ТРЕНАЖЁР: 3 РЯДА СЛОВ ========== */
-.words-container-mobile {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    margin: 15px 0;
-    justify-content: center;
-    align-items: center;
-}
-
-.word-btn-mobile {
-    padding: 10px 12px;
-    background: #E8F0FE;
-    border: 2px solid #D0D0D0;
-    border-radius: 40px;
-    cursor: pointer;
-    font-size: 13px;
-    transition: all 0.05s linear;
-    box-shadow: 0 2px 3px rgba(0,0,0,0.1);
-    text-align: center;
-    word-break: break-word;
-    white-space: normal;
-    min-height: 50px;
-}
-
-.word-btn-mobile:active {
-    transform: translateY(2px);
-    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-}
-
-/* Для очень маленьких экранов (ширина ≤ 400px) делаем 2 ряда */
-@media (max-width: 400px) {
-    .words-container-mobile {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 6px;
-    }
-    .word-btn-mobile {
-        font-size: 11px;
-        padding: 8px 10px;
-        min-height: 44px;
-    }
-}
-
 .lesson-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; }
 .lesson-title { font-size: 24px; font-weight: bold; color: #1A1A1A; }
 .lesson-mode { display: flex; gap: 12px; justify-content: center; margin-bottom: 12px; }
@@ -124,6 +81,58 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
 
 #practice_words_dynamic { margin-bottom: 30px; }
 #sentWordsContainer { margin-bottom: 16px; }
+
+/* ========== КНОПКА "ПОДЕЛИТЬСЯ" ========== */
+.btn-share,
+.btn-share-mobile {
+    background: #4CAF50 !important;
+    color: white !important;
+    border-color: #388E3C !important;
+}
+
+.btn-share:hover,
+.btn-share-mobile:hover {
+    background: #43A047 !important;
+}
+
+.btn-share:active,
+.btn-share-mobile:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.btn-login,
+.btn-login-mobile {
+    background: #4CAF50 !important;
+    color: white !important;
+    border-color: #388E3C !important;
+}
+
+.btn-login:hover,
+.btn-login-mobile:hover {
+    background: #43A047 !important;
+}
+
+/* Стили для модального окна поделиться */
+.share-option-btn:hover {
+    background: #e0e0e0 !important;
+    border-color: #bbb !important;
+    transform: scale(1.02);
+}
+
+.share-option-btn:active {
+    transform: scale(0.97);
+}
+
+@media (max-width: 480px) {
+    .share-option-btn {
+        padding: 12px 8px !important;
+        font-size: 13px !important;
+    }
+    .share-option-btn div:first-child {
+        font-size: 24px !important;
+    }
+}
 
 /* ========== МОБИЛЬНАЯ АДАПТАЦИЯ ========== */
 
@@ -314,7 +323,7 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     .card-word { font-size: 22px; padding: 20px; }
     .card { min-height: 220px; margin: 10px auto; }
     
-    /* Слова в тренажёре (десктопные 6 колонок на телефоне не используются) */
+    /* Слова в тренажёре */
     .words-container { 
         grid-template-columns: repeat(3, auto); 
         gap: 8px;
