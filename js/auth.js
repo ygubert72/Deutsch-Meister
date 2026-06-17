@@ -796,3 +796,11 @@ window.addEventListener('load', function() {
         initFirebase();
     }
 });
+
+// ========== ПРОВЕРКА, ЯВЛЯЕТСЯ ЛИ ПОЛЬЗОВАТЕЛЬ АДМИНОМ ==========
+window.isAdmin = function() {
+    if (auth && auth.currentUser && auth.currentUser.email === 'ygubert72@gmail.com') {
+        return true;
+    }
+    return false;
+};
