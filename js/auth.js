@@ -494,8 +494,7 @@ function updateUI(user) {
         const hasPremium = currentUserData && currentUserData.hasPremiumAccess === true;
         const isAdmin = user.email === 'ygubert72@gmail.com';
         
-        // ===== СТАТУС ПОКАЗЫВАЕМ ТОЛЬКО АДМИНУ (и то только в админ-панели) =====
-        // Для обычных пользователей статус НЕ ПОКАЗЫВАЕМ
+        // ===== СТАТУС НЕ ПОКАЗЫВАЕМ =====
         let statusHtml = '';
         
         const premiumButtonHtml = (!isAdmin) ? `
@@ -514,7 +513,7 @@ function updateUI(user) {
                     <span style="word-break:break-all;">${user.email}</span>
                 </div>
                 ${statusHtml}
-                <button onclick="logout()" style="margin-top:5px; padding:8px 12px; background:#f44336; color:white; border:none; border-radius:16px; cursor:pointer; width:100%; font-size:12px; font-weight:bold;">🚪 Выйти</button>
+                <button onclick="logout()" style="margin-top:5px; padding:8px 12px; background:#4CAF50; color:white; border:none; border-radius:16px; cursor:pointer; width:100%; font-size:12px; font-weight:bold;">🚪 Выйти</button>
                 ${premiumButtonHtml}
             </div>
         `;
