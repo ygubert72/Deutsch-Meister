@@ -39,80 +39,6 @@ function getDeviceId() {
     return hash.toString();
 }
 
-// ========== ТЁМНАЯ ТЕМА ==========
-let darkModeEnabled = localStorage.getItem('dm_dark_mode') === 'true';
-
-function toggleDarkMode() {
-    darkModeEnabled = !darkModeEnabled;
-    localStorage.setItem('dm_dark_mode', darkModeEnabled);
-    applyDarkMode();
-    updateDarkModeButton();
-}
-
-function applyDarkMode() {
-    if (darkModeEnabled) {
-        document.body.classList.add('dark-mode');
-    } else {
-        document.body.classList.remove('dark-mode');
-    }
-}
-
-function updateDarkModeButton() {
-    const btn = document.getElementById('darkModeBtn');
-    const btnMobile = document.getElementById('darkModeBtnMobile');
-    if (btn) {
-        btn.textContent = darkModeEnabled ? '☀️ Светлая' : '🌙 Тёмная';
-    }
-    if (btnMobile) {
-        btnMobile.textContent = darkModeEnabled ? '☀️ Светлая' : '🌙 Тёмная';
-    }
-}
-
-function addDarkModeButton() {
-    const oldBtn = document.getElementById('darkModeBtn');
-    if (oldBtn) oldBtn.remove();
-    const oldBtnMobile = document.getElementById('darkModeBtnMobile');
-    if (oldBtnMobile) oldBtnMobile.remove();
-    
-    // Десктопная версия
-    const btn = document.createElement('button');
-    btn.id = 'darkModeBtn';
-    btn.className = 'btn';
-    btn.style.marginTop = '5px';
-    btn.style.cursor = 'pointer';
-    btn.onclick = toggleDarkMode;
-    
-    const sidebarContent = document.querySelector('.sidebar .sidebar-content');
-    if (sidebarContent) {
-        const shareBtn = document.getElementById('shareBtnDesktop');
-        if (shareBtn) {
-            sidebarContent.insertBefore(btn, shareBtn);
-        } else {
-            sidebarContent.appendChild(btn);
-        }
-    }
-    
-    // Мобильная версия
-    const btnMobile = document.createElement('button');
-    btnMobile.id = 'darkModeBtnMobile';
-    btnMobile.className = 'btn';
-    btnMobile.style.marginTop = '5px';
-    btnMobile.style.cursor = 'pointer';
-    btnMobile.onclick = toggleDarkMode;
-    
-    const mobileSidebarContent = document.querySelector('#mobileMenu .sidebar-content');
-    if (mobileSidebarContent) {
-        const shareBtnMobile = document.getElementById('shareBtnMobile');
-        if (shareBtnMobile) {
-            mobileSidebarContent.insertBefore(btnMobile, shareBtnMobile);
-        } else {
-            mobileSidebarContent.appendChild(btnMobile);
-        }
-    }
-    
-    updateDarkModeButton();
-}
-
 // ========== ОБНОВЛЕНИЕ СЧЁТЧИКА ==========
 function updateCounter() {
     const el = document.getElementById('counter');
@@ -466,7 +392,6 @@ function initSwipeToClose() {
         const deltaX = touchCurrentX - touchStartX;
         const deltaY = touchCurrentY - touchStartY;
         
-        // Если свайп влево (отрицательный deltaX) и больше чем вниз/вверх
         if (deltaX < -30 && Math.abs(deltaX) > Math.abs(deltaY)) {
             isSwiping = false;
             closeMobileMenu();
@@ -516,7 +441,6 @@ function initMobileMenu() {
         menuOverlay.onclick = closeMobileMenu;
     }
     
-    // ===== ИНИЦИАЛИЗИРУЕМ СВАЙП =====
     initSwipeToClose();
     
     const levelButtonsMobile = document.querySelectorAll('#levelsContainerMobile [data-level]');
@@ -595,10 +519,6 @@ async function init() {
         if (btn.dataset.level === AppConfig.currentLevel) btn.classList.add('active');
         else btn.classList.remove('active');
     });
-    
-    // ===== ДОБАВЛЯЕМ КНОПКУ ТЁМНОЙ ТЕМЫ =====
-    addDarkModeButton();
-    applyDarkMode();
     
     setMode(currentMode);
     
