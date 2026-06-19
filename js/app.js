@@ -3,7 +3,6 @@
 // ========== ЛОГИРОВАНИЕ ДЕЙСТВИЙ ПОЛЬЗОВАТЕЛЯ ==========
 async function logUserAction(action, details = {}) {
     try {
-        // Проверяем, авторизован ли пользователь
         if (typeof window.isAuthenticated === 'undefined' || !window.isAuthenticated()) {
             return;
         }
@@ -11,10 +10,8 @@ async function logUserAction(action, details = {}) {
         const user = window.getCurrentUser ? window.getCurrentUser() : null;
         if (!user) return;
         
-        // Получаем db из глобальной области (из auth.js)
         const db = window.db || firebase.firestore();
         
-        // Добавляем запись в коллекцию user_actions
         await db.collection('user_actions').add({
             userId: user.uid,
             email: user.email,
@@ -32,7 +29,6 @@ async function logUserAction(action, details = {}) {
     }
 }
 
-// Вспомогательная функция для получения ID устройства (если нет в auth.js)
 function getDeviceId() {
     let id = navigator.userAgent + navigator.platform + window.screen.width + window.screen.height;
     let hash = 0;
@@ -41,6 +37,80 @@ function getDeviceId() {
         hash |= 0;
     }
     return hash.toString();
+}
+
+// ========== ТЁМНАЯ ТЕМА ==========
+let darkModeEnabled = localStorage.getItem('dm_dark_mode') === 'true';
+
+function toggleDarkMode() {
+    darkModeEnabled = !darkModeEnabled;
+    localStorage.setItem('dm_dark_mode', darkModeEnabled);
+    applyDarkMode();
+    updateDarkModeButton();
+}
+
+function applyDarkMode() {
+    if (darkModeEnabled) {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+    }
+}
+
+function updateDarkModeButton() {
+    const btn = document.getElementById('darkModeBtn');
+    const btnMobile = document.getElementById('darkModeBtnMobile');
+    if (btn) {
+        btn.textContent = darkModeEnabled ? '☀️ Светлая' : '🌙 Тёмная';
+    }
+    if (btnMobile) {
+        btnMobile.textContent = darkModeEnabled ? '☀️ Светлая' : '🌙 Тёмная';
+    }
+}
+
+function addDarkModeButton() {
+    const oldBtn = document.getElementById('darkModeBtn');
+    if (oldBtn) oldBtn.remove();
+    const oldBtnMobile = document.getElementById('darkModeBtnMobile');
+    if (oldBtnMobile) oldBtnMobile.remove();
+    
+    // Десктопная версия
+    const btn = document.createElement('button');
+    btn.id = 'darkModeBtn';
+    btn.className = 'btn';
+    btn.style.marginTop = '5px';
+    btn.style.cursor = 'pointer';
+    btn.onclick = toggleDarkMode;
+    
+    const sidebarContent = document.querySelector('.sidebar .sidebar-content');
+    if (sidebarContent) {
+        const shareBtn = document.getElementById('shareBtnDesktop');
+        if (shareBtn) {
+            sidebarContent.insertBefore(btn, shareBtn);
+        } else {
+            sidebarContent.appendChild(btn);
+        }
+    }
+    
+    // Мобильная версия
+    const btnMobile = document.createElement('button');
+    btnMobile.id = 'darkModeBtnMobile';
+    btnMobile.className = 'btn';
+    btnMobile.style.marginTop = '5px';
+    btnMobile.style.cursor = 'pointer';
+    btnMobile.onclick = toggleDarkMode;
+    
+    const mobileSidebarContent = document.querySelector('#mobileMenu .sidebar-content');
+    if (mobileSidebarContent) {
+        const shareBtnMobile = document.getElementById('shareBtnMobile');
+        if (shareBtnMobile) {
+            mobileSidebarContent.insertBefore(btnMobile, shareBtnMobile);
+        } else {
+            mobileSidebarContent.appendChild(btnMobile);
+        }
+    }
+    
+    updateDarkModeButton();
 }
 
 // ========== ОБНОВЛЕНИЕ СЧЁТЧИКА ==========
@@ -89,7 +159,6 @@ function updateCounter() {
     updateModeIndicator();
 }
 
-// ========== ОБНОВЛЕНИЕ ИНДИКАТОРА В ШАПКЕ ==========
 function updateModeIndicator() {
     const indicator = document.getElementById('modeIndicator');
     if (!indicator) return;
@@ -131,7 +200,6 @@ function updateModeIndicator() {
     }
 }
 
-// ========== УСТАНОВКА РЕЖИМА ==========
 function setMode(mode) {
     currentMode = mode;
     document.querySelectorAll('.mode-btn').forEach(btn => {
@@ -139,7 +207,6 @@ function setMode(mode) {
         else btn.classList.remove('active');
     });
     
-    // 🔥 ЛОГИРУЕМ ДЕЙСТВИЕ ПОЛЬЗОВАТЕЛЯ
     logUserAction('change_mode', { mode: mode, level: AppConfig.currentLevel });
     
     if (mode === 'cards') renderCards();
@@ -154,9 +221,7 @@ function setMode(mode) {
     closeMobileMenu();
 }
 
-// ========== УСТАНОВКА УРОВНЯ ==========
 function setLevel(level) {
-    // Проверка доступа к платным уровням B1, B2, C1
     if (typeof window.hasAccessToLevel !== 'undefined' && !window.hasAccessToLevel(level)) {
         if (level === 'B1' || level === 'B2' || level === 'C1') {
             const isAuthenticated = window.isAuthenticated && window.isAuthenticated();
@@ -178,7 +243,6 @@ function setLevel(level) {
         else btn.classList.remove('active');
     });
     
-    // 🔥 ЛОГИРУЕМ ДЕЙСТВИЕ ПОЛЬЗОВАТЕЛЯ
     logUserAction('change_level', { level: level, mode: currentMode });
     
     if (currentMode === 'cards') {
@@ -198,7 +262,6 @@ function setLevel(level) {
     closeMobileMenu();
 }
 
-// ========== ЗАГРУЗКА ПРОГРЕССА ГРАММАТИКИ ==========
 function loadGrammarProgress() {
     try {
         const gp = localStorage.getItem('dm_grammar_progress');
@@ -228,7 +291,6 @@ function shareApp() {
     const text = '🇩🇪 Бесплатное приложение для изучения немецкого языка: карточки, тесты, тренажёр и грамматика. Попробуйте!';
     const fullText = `${text}\n\n🔗 ${url}`;
     
-    // 🔥 ЛОГИРУЕМ ДЕЙСТВИЕ
     logUserAction('share_app', { method: 'modal_opened' });
     
     const modal = document.createElement('div');
@@ -377,10 +439,43 @@ function openMobileMenu() {
     }
     document.body.style.overflow = 'hidden';
     
-    // 🔥 ЛОГИРУЕМ ОТКРЫТИЕ МЕНЮ
     logUserAction('open_mobile_menu', {});
     
     history.pushState(null, null, location.href);
+}
+
+// ========== СВАЙП ДЛЯ ЗАКРЫТИЯ МЕНЮ ==========
+function initSwipeToClose() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (!mobileMenu) return;
+    
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let isSwiping = false;
+    
+    mobileMenu.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+        isSwiping = true;
+    }, { passive: true });
+    
+    mobileMenu.addEventListener('touchmove', function(e) {
+        if (!isSwiping) return;
+        const touchCurrentX = e.changedTouches[0].screenX;
+        const touchCurrentY = e.changedTouches[0].screenY;
+        const deltaX = touchCurrentX - touchStartX;
+        const deltaY = touchCurrentY - touchStartY;
+        
+        // Если свайп влево (отрицательный deltaX) и больше чем вниз/вверх
+        if (deltaX < -30 && Math.abs(deltaX) > Math.abs(deltaY)) {
+            isSwiping = false;
+            closeMobileMenu();
+        }
+    }, { passive: true });
+    
+    mobileMenu.addEventListener('touchend', function() {
+        isSwiping = false;
+    }, { passive: true });
 }
 
 function syncMobileUserInfo() {
@@ -420,6 +515,9 @@ function initMobileMenu() {
     if (menuOverlay) {
         menuOverlay.onclick = closeMobileMenu;
     }
+    
+    // ===== ИНИЦИАЛИЗИРУЕМ СВАЙП =====
+    initSwipeToClose();
     
     const levelButtonsMobile = document.querySelectorAll('#levelsContainerMobile [data-level]');
     levelButtonsMobile.forEach(btn => {
@@ -471,7 +569,6 @@ function updateShareButtons() {
 async function init() {
     console.log('init: начало загрузки');
     
-    // 🔥 ЛОГИРУЕМ ЗАПУСК ПРИЛОЖЕНИЯ (если пользователь уже авторизован)
     if (window.isAuthenticated && window.isAuthenticated()) {
         logUserAction('app_start', { 
             level: AppConfig.currentLevel,
@@ -499,6 +596,10 @@ async function init() {
         else btn.classList.remove('active');
     });
     
+    // ===== ДОБАВЛЯЕМ КНОПКУ ТЁМНОЙ ТЕМЫ =====
+    addDarkModeButton();
+    applyDarkMode();
+    
     setMode(currentMode);
     
     initMobileMenu();
@@ -517,7 +618,6 @@ async function init() {
     
     setInterval(updateShareButtons, 2000);
     
-    // 🔥 ПЕРИОДИЧЕСКИ ЛОГИРУЕМ АКТИВНОСТЬ (каждые 5 минут)
     setInterval(() => {
         if (window.isAuthenticated && window.isAuthenticated()) {
             logUserAction('heartbeat', {
