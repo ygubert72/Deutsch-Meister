@@ -5,29 +5,27 @@ const STATIC_CACHE = 'static-v1';
 
 // Файлы, которые кешируем при установке
 const STATIC_ASSETS = [
-  './',
-  './index.html',
-  './css/style.css',
-  './js/config.js',
-  './js/wordsManager.js',
-  './js/sentencesManager.js',
-  './js/cardsMode.js',
-  './js/quizMode.js',
-  './js/sentencesMode.js',
-  './js/grammarMode.js',
-  './js/app.js',
-  './js/auth.js',
-  './admin.html',
-  './manifest.json',
-  './icons/icon.svg',
-  './icons/icon-72x72.png',
-  './icons/icon-96x96.png',
-  './icons/icon-128x128.png',
-  './icons/icon-144x144.png',
-  './icons/icon-152x152.png',
-  './icons/icon-192x192.png',
-  './icons/icon-384x384.png',
-  './icons/icon-512x512.png'
+  '/Deutsch-Meister/',
+  '/Deutsch-Meister/index.html',
+  '/Deutsch-Meister/css/style.css',
+  '/Deutsch-Meister/js/config.js',
+  '/Deutsch-Meister/js/wordsManager.js',
+  '/Deutsch-Meister/js/sentencesManager.js',
+  '/Deutsch-Meister/js/cardsMode.js',
+  '/Deutsch-Meister/js/quizMode.js',
+  '/Deutsch-Meister/js/sentencesMode.js',
+  '/Deutsch-Meister/js/grammarMode.js',
+  '/Deutsch-Meister/js/app.js',
+  '/Deutsch-Meister/js/auth.js',
+  '/Deutsch-Meister/admin.html',
+  '/Deutsch-Meister/manifest.json',
+  '/Deutsch-Meister/icons/icon.svg',
+  '/Deutsch-Meister/icons/72.png',
+  '/Deutsch-Meister/icons/114.png',
+  '/Deutsch-Meister/icons/128.png',
+  '/Deutsch-Meister/icons/144.png',
+  '/Deutsch-Meister/icons/152.png',
+  '/Deutsch-Meister/icons/192.png'
 ];
 
 // ========== УСТАНОВКА ==========
@@ -78,7 +76,7 @@ self.addEventListener('fetch', event => {
   const request = event.request;
   const url = new URL(request.url);
   
-  // ===== ИГНОРИРУЕМ ЗАПРОСЫ К РАСШИРЕНИЯМ =====
+  // Игнорируем запросы к расширениям Chrome
   if (url.protocol === 'chrome-extension:') {
     event.respondWith(fetch(request));
     return;
@@ -113,7 +111,6 @@ self.addEventListener('fetch', event => {
                   cache.put(request, responseClone);
                 })
                 .catch(err => {
-                  // Игнорируем ошибки кеширования (например, chrome-extension)
                   console.log('[SW] Пропускаем кеширование:', request.url);
                 });
             }
@@ -167,7 +164,7 @@ self.addEventListener('fetch', event => {
                     <p>Проверьте подключение к интернету<br>и попробуйте снова.</p>
                     <button class="btn retry-btn" onclick="location.reload()">🔄 Попробовать снова</button>
                     <br><br>
-                    <a href="./" class="btn" style="background:#666;">🏠 На главную</a>
+                    <a href="/Deutsch-Meister/" class="btn" style="background:#666;">🏠 На главную</a>
                   </div>
                 </body>
                 </html>
