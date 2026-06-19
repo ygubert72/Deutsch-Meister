@@ -182,7 +182,7 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     visibility: visible;
 }
 
-/* Мобильное меню (выезжающее) — плавно выезжает и заезжает */
+/* Мобильное меню — ПЛАВНОЕ ПОЯВЛЕНИЕ И ИСЧЕЗНОВЕНИЕ */
 .mobile-menu {
     position: fixed;
     top: 0;
