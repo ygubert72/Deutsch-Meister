@@ -3,7 +3,7 @@
 const CACHE_NAME = 'deutsch-meister-v1';
 const STATIC_CACHE = 'static-v1';
 
-// Файлы, которые кешируем при установке (используем относительные пути)
+// Файлы, которые кешируем при установке
 const STATIC_ASSETS = [
   './',
   './index.html',
@@ -78,7 +78,13 @@ self.addEventListener('fetch', event => {
   const request = event.request;
   const url = new URL(request.url);
   
-  // Пропускаем запросы к Firebase (они и так работают через интернет)
+  // ===== ИГНОРИРУЕМ ЗАПРОСЫ К РАСШИРЕНИЯМ =====
+  if (url.protocol === 'chrome-extension:') {
+    event.respondWith(fetch(request));
+    return;
+  }
+  
+  // Пропускаем запросы к Firebase
   if (url.hostname.includes('firebase') || url.hostname.includes('googleapis')) {
     event.respondWith(fetch(request));
     return;
@@ -105,12 +111,15 @@ self.addEventListener('fetch', event => {
               caches.open(STATIC_CACHE)
                 .then(cache => {
                   cache.put(request, responseClone);
+                })
+                .catch(err => {
+                  // Игнорируем ошибки кеширования (например, chrome-extension)
+                  console.log('[SW] Пропускаем кеширование:', request.url);
                 });
             }
             return networkResponse;
           })
           .catch(() => {
-            // Если нет интернета и нет кеша — показываем страницу офлайн
             if (request.headers.get('accept')?.includes('text/html')) {
               return new Response(`
                 <!DOCTYPE html>
