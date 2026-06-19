@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель — Мониторинг пользователей</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f5f5f5; padding: 20px; }
+        
+        .container { max-width: 1400px; margin: 0 auto; }
+        
+        .header {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .header h1 { font-size: 24px; color: #333; }
+        .header .stats { display: flex; gap: 20px; flex-wrap: wrap; }
+        .stat-item { padding: 8px 16px; border-radius: 8px; background: #f0f0f0; }
+        .stat-item .num { font-weight: bold; font-size: 20px; }
+        .stat-item .label { font-size: 12px; color: #666; }
+        
+        .stat-item.danger { background: #FFEBEE; }
+        .stat-item.danger .num { color: #F44336; }
+        .stat-item.warning { background: #FFF3E0; }
+        .stat-item.warning .num { color: #FF9800; }
+        .stat-item.success { background: #E8F5E9; }
+        .stat-item.success .num { color: #4CAF50; }
+        
+        .filters {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .filters select, .filters input {
+            padding: 8px 12px;
+            border: 2px solid #E0E0E0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        .filters button {
+            padding: 8px 20px;
+            background: #3B6FE0;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        .filters button:hover { background: #2B5BC7; }
+        
+        .user-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .user-card.warning { border-left-color: #FF9800; }
+        .user-card.danger { border-left-color: #F44336; }
+        .user-card.blocked { border-left-color: #9E9E9E; opacity: 0.7; }
+        
+        .user-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        
+        .user-email { font-size: 18px; font-weight: bold; }
+        .user-status {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .status-ok { background: #E8F5E9; color: #4CAF50; }
+        .status-monitor { background: #FFF3E0; color: #FF9800; }
+        .status-warning { background: #FFEBEE; color: #F44336; }
+        .status-blocked { background: #F5F5F5; color: #9E9E9E; }
+        
+        .user-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .user-body { grid-template-columns: 1fr; }
+        }
+        
+        .info-section {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 12px;
+        }
+        
+        .info-section h4 {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        
+        .info-section .item {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+            font-size: 14px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .info-section .item:last-child { border-bottom: none; }
+        .info-section .value { font-weight: 500; }
+        
+        .flag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            margin: 2px;
+        }
+        .flag-true { background: #FFCDD2; color: #F44336; }
+        .flag-false { background: #E8F5E9; color: #4CAF50; }
+        
+        .user-actions {
+            margin-top: 12px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .user-actions button {
+            padding: 6px 14px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .btn-block { background: #F44336; color: white; }
+        .btn-unblock { background: #4CAF50; color: white; }
+        .btn-warn { background: #FF9800; color: white; }
+        .btn-ignore { background: #9E9E9E; color: white; }
+        .btn-premium { background: #FFD700; color: #333; }
+        
+        .user-actions button:hover { opacity: 0.8; }
+        
+        .refresh-btn {
+            padding: 8px 20px;
+            background: #3B6FE0;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .refresh-btn:hover { background: #2B5BC7; }
+        
+        .no-users {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+        
+        .no-users .icon { font-size: 48px; margin-bottom: 15px; }
+        
+        .log-entry {
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 8px 12px;
+            margin: 4px 0;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .log-entry .time { color: #666; }
+        .log-entry .event { font-weight: 500; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Шапка -->
+        <div class="header">
+            <h1>📊 Мониторинг пользователей</h1>
+            <div class="stats" id="statsContainer">
+                <div class="stat-item success">
+                    <div class="num" id="statOk">0</div>
+                    <div class="label">✅ OK</div>
+                </div>
+                <div class="stat-item warning">
+                    <div class="num" id="statMonitor">0</div>
+                    <div class="label">👀 Наблюдение</div>
+                </div>
+                <div class="stat-item danger">
+                    <div class="num" id="statWarning">0</div>
+                    <div class="label">⚠️ Подозрение</div>
+                </div>
+                <div class="stat-item">
+                    <div class="num" id="statBlocked">0</div>
+                    <div class="label">🚫 Заблокированы</div>
+                </div>
+                <div class="stat-item">
+                    <div class="num" id="statPremium">0</div>
+                    <div class="label">💎 Премиум</div>
+                </div>
+            </div>
+            <button class="refresh-btn" onclick="loadData()">🔄 Обновить</button>
+        </div>
+        
+        <!-- Фильтры -->
+        <div class="filters">
+            <select id="filterStatus">
+                <option value="all">Все статусы</option>
+                <option value="ok">✅ OK</option>
+                <option value="monitor">👀 Наблюдение</option>
+                <option value="warning">⚠️ Подозрение</option>
+                <option value="blocked">🚫 Заблокированы</option>
+            </select>
+            <select id="filterPremium">
+                <option value="all">Все пользователи</option>
+                <option value="premium">💎 Премиум</option>
+                <option value="free">Бесплатные</option>
+            </select>
+            <input type="text" id="searchEmail" placeholder="Поиск по email..." style="flex:1; min-width:150px;">
+            <button onclick="applyFilters()">🔍 Применить</button>
+        </div>
+        
+        <!-- Список пользователей -->
+        <div id="usersContainer">
+            <div class="no-users">
+                <div class="icon">🔄</div>
+                <div>Загрузка данных...</div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    
+    <script>
+        // ========== КОНФИГ FIREBASE ==========
+        const firebaseConfig = {
+            apiKey: "AIzaSyAUj_2cLQyWvs2JTT7Zl2BYox0krDb3X7I",
+            authDomain: "deutsch-meister-248cf.firebaseapp.com",
+            projectId: "deutsch-meister-248cf",
+            storageBucket: "deutsch-meister-248cf.firebasestorage.app",
+            messagingSenderId: "549700335996",
+            appId: "1:549700335996:web:97ed9e8f91224e34ab0cf9"
+        };
+        
+        let auth, db;
+        let allUsers = [];
+        let filteredUsers = [];
+        
+        // ========== ИНИЦИАЛИЗАЦИЯ ==========
+        function init() {
+            firebase.initializeApp(firebaseConfig);
+            auth = firebase.auth();
+            db = firebase.firestore();
+            
+            auth.onAuthStateChanged(async (user) => {
+                if (!user || user.email !== 'ygubert72@gmail.com') {
+                    document.getElementById('usersContainer').innerHTML = `
+                        <div class="no-users">
+                            <div class="icon">🔒</div>
+                            <div>Доступ только для администратора</div>
+                            <div style="font-size:14px; margin-top:10px;">
+                                <button onclick="loginAsAdmin()" style="padding:10px 30px; background:#3B6FE0; color:white; border:none; border-radius:8px; cursor:pointer; font-size:16px;">
+                                    🔐 Войти как администратор
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                loadData();
+            });
+        }
+        
+        // ========== ВХОД КАК АДМИН ==========
+        function loginAsAdmin() {
+            const email = prompt('Введите email администратора:');
+            if (!email) return;
+            const password = prompt('Введите пароль:');
+            if (!password) return;
+            
+            auth.signInWithEmailAndPassword(email, password)
+                .then(() => loadData())
+                .catch(err => alert('Ошибка: ' + err.message));
+        }
+        
+        // ========== ЗАГРУЗКА ДАННЫХ ==========
+        async function loadData() {
+            if (!db) return;
+            
+            document.getElementById('usersContainer').innerHTML = `
+                <div class="no-users">
+                    <div class="icon">🔄</div>
+                    <div>Загрузка данных...</div>
+                </div>
+            `;
+            
+            try {
+                const snapshot = await db.collection('users').get();
+                allUsers = [];
+                
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    allUsers.push({
+                        uid: doc.id,
+                        email: data.email || 'No email',
+                        createdAt: data.createdAt || 'Unknown',
+                        hasPremiumAccess: data.hasPremiumAccess === true,
+                        blocked: data.blocked === true,
+                        status: data.status || 'ok',
+                        devices: data.devices || [],
+                        dailyStats: data.dailyStats || {},
+                        flags: data.flags || { totalFlags: 0 },
+                        lastChecked: data.lastChecked || null
+                    });
+                });
+                
+                // Сортируем по флагам (сначала подозрительные)
+                allUsers.sort((a, b) => b.flags.totalFlags - a.flags.totalFlags);
+                
+                updateStats();
+                applyFilters();
+                
+            } catch(e) {
+                console.error('Ошибка загрузки:', e);
+                document.getElementById('usersContainer').innerHTML = `
+                    <div class="no-users">
+                        <div class="icon">❌</div>
+                        <div>Ошибка загрузки данных</div>
+                        <div style="font-size:14px; color:#666; margin-top:10px;">${e.message}</div>
+                    </div>
+                `;
+            }
+        }
+        
+        // ========== ОБНОВЛЕНИЕ СТАТИСТИКИ ==========
+        function updateStats() {
+            const stats = {
+                ok: 0,
+                monitor: 0,
+                warning: 0,
+                blocked: 0,
+                premium: 0
+            };
+            
+            allUsers.forEach(u => {
+                if (u.blocked) stats.blocked++;
+                else if (u.status === 'warning') stats.warning++;
+                else if (u.status === 'monitor') stats.monitor++;
+                else stats.ok++;
+                
+                if (u.hasPremiumAccess) stats.premium++;
+            });
+            
+            document.getElementById('statOk').textContent = stats.ok;
+            document.getElementById('statMonitor').textContent = stats.monitor;
+            document.getElementById('statWarning').textContent = stats.warning;
+            document.getElementById('statBlocked').textContent = stats.blocked;
+            document.getElementById('statPremium').textContent = stats.premium;
+        }
+        
+        // ========== ПРИМЕНЕНИЕ ФИЛЬТРОВ ==========
+        function applyFilters() {
+            const statusFilter = document.getElementById('filterStatus').value;
+            const premiumFilter = document.getElementById('filterPremium').value;
+            const search = document.getElementById('searchEmail').value.toLowerCase();
+            
+            filteredUsers = allUsers.filter(u => {
+                // Фильтр по статусу
+                if (statusFilter !== 'all') {
+                    if (u.blocked && statusFilter !== 'blocked') return false;
+                    if (!u.blocked && u.status !== statusFilter) return false;
+                }
+                
+                // Фильтр по премиуму
+                if (premiumFilter === 'premium' && !u.hasPremiumAccess) return false;
+                if (premiumFilter === 'free' && u.hasPremiumAccess) return false;
+                
+                // Поиск по email
+                if (search && !u.email.toLowerCase().includes(search)) return false;
+                
+                return true;
+            });
+            
+            renderUsers();
+        }
+        
+        // ========== ОТОБРАЖЕНИЕ ПОЛЬЗОВАТЕЛЕЙ ==========
+        function renderUsers() {
+            const container = document.getElementById('usersContainer');
+            
+            if (filteredUsers.length === 0) {
+                container.innerHTML = `
+                    <div class="no-users">
+                        <div class="icon">📭</div>
+                        <div>Пользователи не найдены</div>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = '';
+            
+            filteredUsers.forEach(user => {
+                const today = new Date().toISOString().split('T')[0];
+                const stats = user.dailyStats[today] || { sessions: 0, totalMinutes: 0, uniqueIPs: [], uniqueCities: [] };
+                const flags = user.flags || { totalFlags: 0 };
+                
+                const statusClass = user.blocked ? 'blocked' : 
+                                   user.status === 'warning' ? 'danger' : 
+                                   user.status === 'monitor' ? 'warning' : '';
+                
+                const statusLabel = user.blocked ? '🚫 Заблокирован' :
+                                   user.status === 'warning' ? '⚠️ Подозрение' :
+                                   user.status === 'monitor' ? '👀 Наблюдение' : '✅ OK';
+                
+                const statusColor = user.blocked ? 'status-blocked' :
+                                   user.status === 'warning' ? 'status-warning' :
+                                   user.status === 'monitor' ? 'status-monitor' : 'status-ok';
+                
+                const deviceCount = user.devices.length;
+                const ipCount = stats.uniqueIPs?.length || 0;
+                const cityCount = stats.uniqueCities?.length || 0;
+                
+                html += `
+                    <div class="user-card ${statusClass}">
+                        <div class="user-header">
+                            <div>
+                                <span class="user-email">${user.email}</span>
+                                ${user.hasPremiumAccess ? ' <span style="background:#FFD700; padding:2px 8px; border-radius:10px; font-size:11px; font-weight:bold;">💎 ПРЕМИУМ</span>' : ''}
+                                <span class="user-status ${statusColor}">${statusLabel}</span>
+                            </div>
+                            <div style="font-size:12px; color:#999;">
+                                Регистрация: ${new Date(user.createdAt).toLocaleDateString()}
+                            </div>
+                        </div>
+                        
+                        <div class="user-body">
+                            <div class="info-section">
+                                <h4>📊 Активность сегодня</h4>
+                                <div class="item"><span>Сессии</span><span class="value">${stats.sessions || 0}</span></div>
+                                <div class="item"><span>Время</span><span class="value">${Math.round((stats.totalMinutes || 0) / 60)}ч ${(stats.totalMinutes || 0) % 60}м</span></div>
+                                <div class="item"><span>Устройства</span><span class="value">${deviceCount}</span></div>
+                                <div class="item"><span>Уникальные IP</span><span class="value">${ipCount}</span></div>
+                                <div class="item"><span>Города</span><span class="value">${cityCount}</span></div>
+                            </div>
+                            
+                            <div class="info-section">
+                                <h4>🚩 Флаги подозрительности (${flags.totalFlags})</h4>
+                                <div class="item">
+                                    <span>Много устройств (>2)</span>
+                                    <span class="flag ${flags.multipleDevices ? 'flag-true' : 'flag-false'}">${flags.multipleDevices ? '⚠️ Да' : '✅ Нет'}</span>
+                                </div>
+                                <div class="item">
+                                    <span>Разные города (>2)</span>
+                                    <span class="flag ${flags.differentCities ? 'flag-true' : 'flag-false'}">${flags.differentCities ? '⚠️ Да' : '✅ Нет'}</span>
+                                </div>
+                                <div class="item">
+                                    <span>Высокая активность (>3ч)</span>
+                                    <span class="flag ${flags.highActivity ? 'flag-true' : 'flag-false'}">${flags.highActivity ? '⚠️ Да' : '✅ Нет'}</span>
+                                </div>
+                                <div class="item">
+                                    <span>Много IP (>3)</span>
+                                    <span class="flag ${flags.manyIPs ? 'flag-true' : 'flag-false'}">${flags.manyIPs ? '⚠️ Да' : '✅ Нет'}</span>
+                                </div>
+                                <div class="item">
+                                    <span>Неестественное время</span>
+                                    <span class="flag ${flags.unnaturalHours ? 'flag-true' : 'flag-false'}">${flags.unnaturalHours ? '⚠️ Да' : '✅ Нет'}</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        ${user.devices.length > 0 ? `
+                            <div class="info-section" style="margin-top:10px;">
+                                <h4>📱 Устройства</h4>
+                                ${user.devices.map(d => `
+                                    <div class="log-entry">
+                                        <span>${d.type === 'mobile' ? '📱' : '💻'} ${d.city || 'Unknown'}, ${d.country || ''}</span>
+                                        <span class="time">${new Date(d.lastSeen).toLocaleDateString()}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+                        
+                        <div class="user-actions">
+                            ${!user.blocked ? `
+                                <button class="btn-block" onclick="blockUser('${user.uid}')">🚫 Заблокировать</button>
+                                ${user.status === 'warning' ? `<button class="btn-ignore" onclick="setStatus('${user.uid}', 'ok')">✅ Снять подозрение</button>` : ''}
+                                ${user.status === 'monitor' ? `<button class="btn-ignore" onclick="setStatus('${user.uid}', 'ok')">✅ Снять наблюдение</button>` : ''}
+                            ` : `
+                                <button class="btn-unblock" onclick="unblockUser('${user.uid}')">🔓 Разблокировать</button>
+                            `}
+                            ${!user.hasPremiumAccess ? `
+                                <button class="btn-premium" onclick="givePremium('${user.uid}')">💎 Дать премиум</button>
+                            ` : `
+                                <button class="btn-block" onclick="removePremium('${user.uid}')">🔒 Снять премиум</button>
+                            `}
+                            <button onclick="showUserLogs('${user.uid}')" style="background:#E0E0E0;">📋 Логи</button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        // ========== ДЕЙСТВИЯ АДМИНА ==========
+        async function blockUser(uid) {
+            if (!confirm('Заблокировать пользователя?')) return;
+            try {
+                await db.collection('users').doc(uid).update({ blocked: true, status: 'blocked' });
+                await logAdminAction(uid, 'blocked');
+                loadData();
+            } catch(e) { alert('Ошибка: ' + e.message); }
+        }
+        
+        async function unblockUser(uid) {
+            if (!confirm('Разблокировать пользователя?')) return;
+            try {
+                await db.collection('users').doc(uid).update({ blocked: false, status: 'ok' });
+                await logAdminAction(uid, 'unblocked');
+                loadData();
+            } catch(e) { alert('Ошибка: ' + e.message); }
+        }
+        
+        async function setStatus(uid, status) {
+            try {
+                await db.collection('users').doc(uid).update({ status: status });
+                await logAdminAction(uid, 'status_changed', { newStatus: status });
+                loadData();
+            } catch(e) { alert('Ошибка: ' + e.message); }
+        }
+        
+        async function givePremium(uid) {
+            if (!confirm('Дать премиум-доступ этому пользователю?')) return;
+            try {
+                await db.collection('users').doc(uid).update({
+                    hasPremiumAccess: true,
+                    premiumActivatedAt: new Date().toISOString()
+                });
+                await logAdminAction(uid, 'premium_given');
+                loadData();
+            } catch(e) { alert('Ошибка: ' + e.message); }
+        }
+        
+        async function removePremium(uid) {
+            if (!confirm('Снять премиум-доступ?')) return;
+            try {
+                await db.collection('users').doc(uid).update({
+                    hasPremiumAccess: false,
+                    premiumActivatedAt: null
+                });
+                await logAdminAction(uid, 'premium_removed');
+                loadData();
+            } catch(e) { alert('Ошибка: ' + e.message); }
+        }
+        
+        async function logAdminAction(uid, action, details = {}) {
+            try {
+                const user = auth.currentUser;
+                await db.collection('admin_actions').add({
+                    userId: uid,
+                    adminEmail: user.email,
+                    action: action,
+                    details: details,
+                    timestamp: new Date().toISOString()
+                });
+            } catch(e) { console.error('Ошибка логирования:', e); }
+        }
+        
+        async function showUserLogs(uid) {
+            try {
+                const logsSnapshot = await db.collection('admin_logs')
+                    .where('userId', '==', uid)
+                    .orderBy('timestamp', 'desc')
+                    .limit(20)
+                    .get();
+                
+                const logs = [];
+                logsSnapshot.forEach(doc => logs.push(doc.data()));
+                
+                if (logs.length === 0) {
+                    alert('📋 Логов для этого пользователя нет');
+                    return;
+                }
+                
+                let msg = '📋 Последние логи:\n\n';
+                logs.forEach(log => {
+                    const time = new Date(log.timestamp).toLocaleString();
+                    msg += `[${time}] ${log.event} (флаги: ${log.flagsBefore} → ${log.flagsAfter})\n`;
+                    if (log.flags) {
+                        const activeFlags = Object.entries(log.flags).filter(([k,v]) => v === true && k !== 'totalFlags');
+                        if (activeFlags.length > 0) {
+                            msg += `  🚩 ${activeFlags.map(([k]) => k).join(', ')}\n`;
+                        }
+                    }
+                });
+                
+                alert(msg);
+            } catch(e) {
+                alert('Ошибка загрузки логов: ' + e.message);
+            }
+        }
+        
+        // ========== ЗАПУСК ==========
+        window.onload = init;
+    </script>
+</body>
+</html>
