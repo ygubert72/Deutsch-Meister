@@ -7,20 +7,20 @@
     <title>Deutsch-Meister</title>
     
     <!-- ===== PWA: МАНИФЕСТ ===== -->
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="/deutsch-meister/manifest.json">
     
     <!-- ===== PWA: ИКОНКИ ===== -->
-    <link rel="icon" type="image/png" sizes="72x72" href="icons/icon-72x72.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="icons/icon-96x96.png">
-    <link rel="icon" type="image/png" sizes="128x128" href="icons/icon-128x128.png">
-    <link rel="icon" type="image/png" sizes="144x144" href="icons/icon-144x144.png">
-    <link rel="icon" type="image/png" sizes="152x152" href="icons/icon-152x152.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="384x384" href="icons/icon-384x384.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512x512.png">
+    <link rel="icon" type="image/png" sizes="72x72" href="/deutsch-meister/icons/icon-72x72.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/deutsch-meister/icons/icon-96x96.png">
+    <link rel="icon" type="image/png" sizes="128x128" href="/deutsch-meister/icons/icon-128x128.png">
+    <link rel="icon" type="image/png" sizes="144x144" href="/deutsch-meister/icons/icon-144x144.png">
+    <link rel="icon" type="image/png" sizes="152x152" href="/deutsch-meister/icons/icon-152x152.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/deutsch-meister/icons/icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="384x384" href="/deutsch-meister/icons/icon-384x384.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/deutsch-meister/icons/icon-512x512.png">
     
-    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
-    <link rel="apple-touch-icon-precomposed" href="icons/icon-192x192.png">
+    <link rel="apple-touch-icon" href="/deutsch-meister/icons/icon-192x192.png">
+    <link rel="apple-touch-icon-precomposed" href="/deutsch-meister/icons/icon-192x192.png">
     
     <!-- ===== PWA: ЦВЕТА ===== -->
     <meta name="theme-color" content="#3B6FE0">
@@ -29,9 +29,9 @@
     <meta name="apple-mobile-web-app-title" content="Deutsch-Meister">
     <meta name="application-name" content="Deutsch-Meister">
     <meta name="msapplication-TileColor" content="#3B6FE0">
-    <meta name="msapplication-TileImage" content="icons/icon-144x144.png">
+    <meta name="msapplication-TileImage" content="/deutsch-meister/icons/icon-144x144.png">
     
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/deutsch-meister/css/style.css">
     
     <style>
         .app { 
@@ -219,21 +219,21 @@
     </div>
 </div>
 
-<script src="js/config.js"></script>
-<script src="js/wordsManager.js"></script>
-<script src="js/sentencesManager.js"></script>
-<script src="js/cardsMode.js"></script>
-<script src="js/quizMode.js"></script>
-<script src="js/sentencesMode.js"></script>
-<script src="js/grammarMode.js"></script>
-<script src="js/app.js"></script>
-<script src="js/auth.js"></script>
+<script src="/deutsch-meister/js/config.js"></script>
+<script src="/deutsch-meister/js/wordsManager.js"></script>
+<script src="/deutsch-meister/js/sentencesManager.js"></script>
+<script src="/deutsch-meister/js/cardsMode.js"></script>
+<script src="/deutsch-meister/js/quizMode.js"></script>
+<script src="/deutsch-meister/js/sentencesMode.js"></script>
+<script src="/deutsch-meister/js/grammarMode.js"></script>
+<script src="/deutsch-meister/js/app.js"></script>
+<script src="/deutsch-meister/js/auth.js"></script>
 
 <script>
     // ===== PWA: РЕГИСТРАЦИЯ SERVICE WORKER =====
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
-            navigator.serviceWorker.register('/sw.js')
+            navigator.serviceWorker.register('/deutsch-meister/sw.js')
                 .then(function(registration) {
                     console.log('✅ Service Worker зарегистрирован:', registration.scope);
                 })
