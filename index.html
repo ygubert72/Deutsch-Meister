@@ -6,33 +6,26 @@
     
     <title>Deutsch-Meister</title>
     
-    <!-- Основная иконка (SVG) -->
+    <!-- ===== PWA: МАНИФЕСТ ===== -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- ===== PWA: ИКОНКИ ===== -->
     <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <link rel="apple-touch-icon-precomposed" href="icons/icon-192x192.png">
     
-    <!-- Иконки для iOS (iPhone, iPad) -->
-    <link rel="apple-touch-icon" href="icons/icon.svg">
-    <link rel="apple-touch-icon-precomposed" href="icons/icon.svg">
-    
-    <!-- Иконки для Android через SVG -->
-    <link rel="icon" type="image/svg+xml" sizes="any" href="icons/icon.svg">
-    
-    <!-- Цвет темы для браузера (Android) -->
+    <!-- ===== PWA: ЦВЕТА ===== -->
     <meta name="theme-color" content="#3B6FE0">
-    
-    <!-- Для iOS: цвет статус-бара -->
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Deutsch-Meister">
-    
-    <!-- Для Android -->
     <meta name="application-name" content="Deutsch-Meister">
     <meta name="msapplication-TileColor" content="#3B6FE0">
-    <meta name="msapplication-TileImage" content="icons/icon.svg">
+    <meta name="msapplication-TileImage" content="icons/icon-144x144.png">
     
     <link rel="stylesheet" href="css/style.css">
     
     <style>
-        /* ===== СТИЛИ ДЛЯ ЛОАДЕРА ===== */
         .app { 
             opacity: 0; 
             transition: opacity 0.3s ease;
@@ -101,6 +94,38 @@
             75% { content: '...'; }
             100% { content: ''; }
         }
+
+        /* Кнопка "Установить приложение" (показывается только на телефонах) */
+        .install-banner {
+            display: none;
+            background: #3B6FE0;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin: 10px 0;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(59,111,224,0.3);
+            transition: all 0.2s;
+        }
+        .install-banner:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 16px rgba(59,111,224,0.4);
+        }
+        .install-banner .sub {
+            font-size: 11px;
+            font-weight: normal;
+            opacity: 0.8;
+            display: block;
+            margin-top: 4px;
+        }
+        @media (max-width: 768px) {
+            .install-banner {
+                display: block;
+            }
+        }
     </style>
 </head>
 <body>
@@ -130,7 +155,13 @@
             <button data-mode="cards" class="btn mode-btn">КАРТОЧКИ</button>
             <button data-mode="quiz" class="btn mode-btn">ТЕСТ</button>
             <button data-mode="sentences" class="btn mode-btn">ТРЕНАЖЁР</button>
-            <!-- Кнопка "Поделиться" для десктопа (скрывается для админа) -->
+            
+            <!-- ===== PWA: БАННЕР УСТАНОВКИ ===== -->
+            <div class="install-banner" id="installBanner">
+                📱 Установить приложение
+                <span class="sub">Быстрый доступ с главного экрана</span>
+            </div>
+            
             <button id="shareBtnDesktop" class="btn btn-share" style="display: none; margin-top: 10px;">🔗 ПОДЕЛИТЬСЯ</button>
         </div>
     </div>
@@ -169,7 +200,13 @@
         <button data-mode="cards" class="btn mode-btn">КАРТОЧКИ</button>
         <button data-mode="quiz" class="btn mode-btn">ТЕСТ</button>
         <button data-mode="sentences" class="btn mode-btn">ТРЕНАЖЁР</button>
-        <!-- Кнопка "Поделиться" для мобильной версии (скрывается для админа) -->
+        
+        <!-- ===== PWA: БАННЕР УСТАНОВКИ В МОБИЛЬНОМ МЕНЮ ===== -->
+        <div class="install-banner" id="installBannerMobile">
+            📱 Установить приложение
+            <span class="sub">Быстрый доступ с главного экрана</span>
+        </div>
+        
         <button id="shareBtnMobile" class="btn btn-share-mobile" style="display: none; margin-top: 10px;">🔗 ПОДЕЛИТЬСЯ</button>
     </div>
 </div>
@@ -185,12 +222,93 @@
 <script src="js/auth.js"></script>
 
 <script>
-    // ===== СКРЫВАЕМ ЛОАДЕР И ПОКАЗЫВАЕМ ПРИЛОЖЕНИЕ ПОСЛЕ ЗАГРУЗКИ =====
+    // ===== PWA: РЕГИСТРАЦИЯ SERVICE WORKER =====
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/sw.js')
+                .then(function(registration) {
+                    console.log('✅ Service Worker зарегистрирован:', registration.scope);
+                })
+                .catch(function(error) {
+                    console.log('❌ Ошибка регистрации Service Worker:', error);
+                });
+        });
+    }
+    
+    // ===== PWA: БАННЕР УСТАНОВКИ =====
+    let deferredPrompt = null;
+    
+    window.addEventListener('beforeinstallprompt', function(e) {
+        e.preventDefault();
+        deferredPrompt = e;
+        
+        // Показываем баннеры
+        document.querySelectorAll('.install-banner').forEach(banner => {
+            banner.style.display = 'block';
+        });
+    });
+    
+    // Обработка клика по баннеру
+    document.querySelectorAll('.install-banner').forEach(banner => {
+        banner.addEventListener('click', function() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then(function(choiceResult) {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('✅ Пользователь установил приложение');
+                    } else {
+                        console.log('❌ Пользователь отказался от установки');
+                    }
+                    deferredPrompt = null;
+                    // Скрываем баннеры
+                    document.querySelectorAll('.install-banner').forEach(b => {
+                        b.style.display = 'none';
+                    });
+                });
+            } else {
+                // Если браузер не поддерживает автоматическую установку,
+                // показываем инструкцию
+                showInstallInstructions();
+            }
+        });
+    });
+    
+    // Инструкция по установке (если автоматическая установка не поддерживается)
+    function showInstallInstructions() {
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        const isAndroid = /Android/.test(navigator.userAgent);
+        
+        let message = '📱 Чтобы установить приложение:\n\n';
+        
+        if (isIOS) {
+            message += '1. Нажмите кнопку "Поделиться" (квадрат со стрелкой)\n';
+            message += '2. Пролистайте вниз и выберите "На экран «Домой»"\n';
+            message += '3. Нажмите "Добавить"';
+        } else if (isAndroid) {
+            message += '1. Нажмите на три точки в правом верхнем углу\n';
+            message += '2. Выберите "Добавить на главный экран"\n';
+            message += '3. Нажмите "Добавить"';
+        } else {
+            message += 'Откройте этот сайт в браузере на телефоне,\n';
+            message += 'чтобы установить приложение.';
+        }
+        
+        alert(message);
+    }
+    
+    // Скрываем баннеры, если приложение уже установлено
+    window.addEventListener('appinstalled', function() {
+        document.querySelectorAll('.install-banner').forEach(banner => {
+            banner.style.display = 'none';
+        });
+        deferredPrompt = null;
+        console.log('✅ Приложение установлено!');
+    });
+    
+    // ===== СКРЫВАЕМ ЛОАДЕР И ПОКАЗЫВАЕМ ПРИЛОЖЕНИЕ =====
     window.addEventListener('load', function() {
-        // Показываем приложение
         document.querySelector('.app').classList.add('loaded');
         
-        // Скрываем лоадер
         setTimeout(function() {
             document.getElementById('loader').classList.add('hidden');
         }, 300);
