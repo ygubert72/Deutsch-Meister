@@ -2,33 +2,32 @@
 
 const CACHE_NAME = 'deutsch-meister-v1';
 const STATIC_CACHE = 'static-v1';
-const DYNAMIC_CACHE = 'dynamic-v1';
 
 // Файлы, которые кешируем при установке
 const STATIC_ASSETS = [
-  '/',
-  '/index.html',
-  '/css/style.css',
-  '/js/config.js',
-  '/js/wordsManager.js',
-  '/js/sentencesManager.js',
-  '/js/cardsMode.js',
-  '/js/quizMode.js',
-  '/js/sentencesMode.js',
-  '/js/grammarMode.js',
-  '/js/app.js',
-  '/js/auth.js',
-  '/admin.html',
-  '/manifest.json',
-  '/icons/icon.svg',
-  '/icons/icon-72x72.png',
-  '/icons/icon-96x96.png',
-  '/icons/icon-128x128.png',
-  '/icons/icon-144x144.png',
-  '/icons/icon-152x152.png',
-  '/icons/icon-192x192.png',
-  '/icons/icon-384x384.png',
-  '/icons/icon-512x512.png'
+  '/deutsch-meister/',
+  '/deutsch-meister/index.html',
+  '/deutsch-meister/css/style.css',
+  '/deutsch-meister/js/config.js',
+  '/deutsch-meister/js/wordsManager.js',
+  '/deutsch-meister/js/sentencesManager.js',
+  '/deutsch-meister/js/cardsMode.js',
+  '/deutsch-meister/js/quizMode.js',
+  '/deutsch-meister/js/sentencesMode.js',
+  '/deutsch-meister/js/grammarMode.js',
+  '/deutsch-meister/js/app.js',
+  '/deutsch-meister/js/auth.js',
+  '/deutsch-meister/admin.html',
+  '/deutsch-meister/manifest.json',
+  '/deutsch-meister/icons/icon.svg',
+  '/deutsch-meister/icons/icon-72x72.png',
+  '/deutsch-meister/icons/icon-96x96.png',
+  '/deutsch-meister/icons/icon-128x128.png',
+  '/deutsch-meister/icons/icon-144x144.png',
+  '/deutsch-meister/icons/icon-152x152.png',
+  '/deutsch-meister/icons/icon-192x192.png',
+  '/deutsch-meister/icons/icon-384x384.png',
+  '/deutsch-meister/icons/icon-512x512.png'
 ];
 
 // ========== УСТАНОВКА ==========
@@ -60,7 +59,7 @@ self.addEventListener('activate', event => {
       .then(cacheNames => {
         return Promise.all(
           cacheNames
-            .filter(name => name !== STATIC_CACHE && name !== DYNAMIC_CACHE)
+            .filter(name => name !== STATIC_CACHE)
             .map(name => {
               console.log('[SW] Удаляем старый кеш:', name);
               return caches.delete(name);
@@ -79,7 +78,7 @@ self.addEventListener('fetch', event => {
   const request = event.request;
   const url = new URL(request.url);
   
-  // Пропускаем запросы к Firebase (они и так работают через интернет)
+  // Пропускаем запросы к Firebase
   if (url.hostname.includes('firebase') || url.hostname.includes('googleapis')) {
     event.respondWith(fetch(request));
     return;
@@ -95,31 +94,15 @@ self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(request)
       .then(cachedResponse => {
-        // Если есть в кеше — возвращаем
         if (cachedResponse) {
-          // Обновляем кеш в фоне (для динамических запросов)
-          if (request.method === 'GET') {
-            fetch(request)
-              .then(networkResponse => {
-                if (networkResponse && networkResponse.status === 200) {
-                  caches.open(DYNAMIC_CACHE)
-                    .then(cache => {
-                      cache.put(request, networkResponse.clone());
-                    });
-                }
-              })
-              .catch(() => {});
-          }
           return cachedResponse;
         }
         
-        // Если нет в кеше — идём в сеть
         return fetch(request)
           .then(networkResponse => {
-            // Кешируем успешные GET-запросы
             if (request.method === 'GET' && networkResponse && networkResponse.status === 200) {
               const responseClone = networkResponse.clone();
-              caches.open(DYNAMIC_CACHE)
+              caches.open(STATIC_CACHE)
                 .then(cache => {
                   cache.put(request, responseClone);
                 });
@@ -127,55 +110,66 @@ self.addEventListener('fetch', event => {
             return networkResponse;
           })
           .catch(() => {
-            // Если нет интернета и нет кеша — показываем офлайн-страницу
             if (request.headers.get('accept')?.includes('text/html')) {
-              return caches.match('/offline.html');
+              return new Response(`
+                <!DOCTYPE html>
+                <html lang="ru">
+                <head>
+                  <meta charset="UTF-8">
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                  <title>Нет соединения</title>
+                  <style>
+                    * { margin: 0; padding: 0; box-sizing: border-box; }
+                    body {
+                      font-family: 'Segoe UI', sans-serif;
+                      background: #F8F8F8;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      height: 100vh;
+                      text-align: center;
+                      padding: 20px;
+                    }
+                    .icon { font-size: 64px; margin-bottom: 20px; }
+                    h1 { font-size: 24px; color: #333; margin-bottom: 10px; }
+                    p { color: #666; font-size: 16px; line-height: 1.6; margin-bottom: 20px; }
+                    .btn {
+                      display: inline-block;
+                      padding: 12px 30px;
+                      background: #3B6FE0;
+                      color: white;
+                      border: none;
+                      border-radius: 12px;
+                      font-size: 16px;
+                      font-weight: bold;
+                      cursor: pointer;
+                      text-decoration: none;
+                    }
+                    .btn:hover { background: #2B5BC7; }
+                    .retry-btn { margin-top: 10px; background: #4CAF50; }
+                    .retry-btn:hover { background: #388E3C; }
+                  </style>
+                </head>
+                <body>
+                  <div>
+                    <div class="icon">📡</div>
+                    <h1>Нет соединения</h1>
+                    <p>Проверьте подключение к интернету<br>и попробуйте снова.</p>
+                    <button class="btn retry-btn" onclick="location.reload()">🔄 Попробовать снова</button>
+                    <br><br>
+                    <a href="/deutsch-meister/" class="btn" style="background:#666;">🏠 На главную</a>
+                  </div>
+                </body>
+                </html>
+              `, {
+                headers: { 'Content-Type': 'text/html' }
+              });
             }
             return new Response('Нет соединения', {
               status: 503,
               statusText: 'Service Unavailable'
             });
           });
-      })
-  );
-});
-
-// ========== ОБРАБОТКА PUSH-УВЕДОМЛЕНИЙ ==========
-self.addEventListener('push', event => {
-  const data = event.data ? event.data.json() : {};
-  const title = data.title || '🇩🇪 Deutsch-Meister';
-  const options = {
-    body: data.body || 'Пора повторить слова!',
-    icon: '/icons/icon-192x192.png',
-    badge: '/icons/icon-72x72.png',
-    vibrate: [200, 100, 200],
-    data: {
-      url: data.url || '/'
-    }
-  };
-  
-  event.waitUntil(
-    self.registration.showNotification(title, options)
-  );
-});
-
-// ========== ОБРАБОТКА КЛИКА ПО УВЕДОМЛЕНИЮ ==========
-self.addEventListener('notificationclick', event => {
-  event.notification.close();
-  
-  const urlToOpen = event.notification.data?.url || '/';
-  
-  event.waitUntil(
-    clients.matchAll({ type: 'window', includeUncontrolled: true })
-      .then(windowClients => {
-        for (const client of windowClients) {
-          if (client.url === urlToOpen && 'focus' in client) {
-            return client.focus();
-          }
-        }
-        if (clients.openWindow) {
-          return clients.openWindow(urlToOpen);
-        }
       })
   );
 });
