@@ -1,4 +1,4 @@
-// app.js - полная версия с проверкой доступа к уровням, мобильным меню и ЛОГИРОВАНИЕМ ДЕЙСТВИЙ
+// app.js - полная версия с плавным мобильным меню
 
 // ========== ЛОГИРОВАНИЕ ДЕЙСТВИЙ ПОЛЬЗОВАТЕЛЯ ==========
 async function logUserAction(action, details = {}) {
@@ -370,7 +370,7 @@ function openMobileMenu() {
     history.pushState(null, null, location.href);
 }
 
-// ========== СВАЙП ДЛЯ ЗАКРЫТИЯ МЕНЮ ==========
+// ========== ПЛАВНЫЙ СВАЙП ДЛЯ ЗАКРЫТИЯ МЕНЮ ==========
 function initSwipeToClose() {
     const mobileMenu = document.getElementById('mobileMenu');
     if (!mobileMenu) return;
@@ -392,7 +392,8 @@ function initSwipeToClose() {
         const deltaX = touchCurrentX - touchStartX;
         const deltaY = touchCurrentY - touchStartY;
         
-        if (deltaX < -30 && Math.abs(deltaX) > Math.abs(deltaY)) {
+        // УМЕНЬШИЛ ПОРОГ С 30px ДО 20px ДЛЯ БОЛЕЕ ЧУТКОГО СВАЙПА
+        if (deltaX < -20 && Math.abs(deltaX) > Math.abs(deltaY)) {
             isSwiping = false;
             closeMobileMenu();
         }
