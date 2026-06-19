@@ -3,31 +3,31 @@
 const CACHE_NAME = 'deutsch-meister-v1';
 const STATIC_CACHE = 'static-v1';
 
-// Файлы, которые кешируем при установке
+// Файлы, которые кешируем при установке (используем относительные пути)
 const STATIC_ASSETS = [
-  '/deutsch-meister/',
-  '/deutsch-meister/index.html',
-  '/deutsch-meister/css/style.css',
-  '/deutsch-meister/js/config.js',
-  '/deutsch-meister/js/wordsManager.js',
-  '/deutsch-meister/js/sentencesManager.js',
-  '/deutsch-meister/js/cardsMode.js',
-  '/deutsch-meister/js/quizMode.js',
-  '/deutsch-meister/js/sentencesMode.js',
-  '/deutsch-meister/js/grammarMode.js',
-  '/deutsch-meister/js/app.js',
-  '/deutsch-meister/js/auth.js',
-  '/deutsch-meister/admin.html',
-  '/deutsch-meister/manifest.json',
-  '/deutsch-meister/icons/icon.svg',
-  '/deutsch-meister/icons/icon-72x72.png',
-  '/deutsch-meister/icons/icon-96x96.png',
-  '/deutsch-meister/icons/icon-128x128.png',
-  '/deutsch-meister/icons/icon-144x144.png',
-  '/deutsch-meister/icons/icon-152x152.png',
-  '/deutsch-meister/icons/icon-192x192.png',
-  '/deutsch-meister/icons/icon-384x384.png',
-  '/deutsch-meister/icons/icon-512x512.png'
+  './',
+  './index.html',
+  './css/style.css',
+  './js/config.js',
+  './js/wordsManager.js',
+  './js/sentencesManager.js',
+  './js/cardsMode.js',
+  './js/quizMode.js',
+  './js/sentencesMode.js',
+  './js/grammarMode.js',
+  './js/app.js',
+  './js/auth.js',
+  './admin.html',
+  './manifest.json',
+  './icons/icon.svg',
+  './icons/icon-72x72.png',
+  './icons/icon-96x96.png',
+  './icons/icon-128x128.png',
+  './icons/icon-144x144.png',
+  './icons/icon-152x152.png',
+  './icons/icon-192x192.png',
+  './icons/icon-384x384.png',
+  './icons/icon-512x512.png'
 ];
 
 // ========== УСТАНОВКА ==========
@@ -78,7 +78,7 @@ self.addEventListener('fetch', event => {
   const request = event.request;
   const url = new URL(request.url);
   
-  // Пропускаем запросы к Firebase
+  // Пропускаем запросы к Firebase (они и так работают через интернет)
   if (url.hostname.includes('firebase') || url.hostname.includes('googleapis')) {
     event.respondWith(fetch(request));
     return;
@@ -110,6 +110,7 @@ self.addEventListener('fetch', event => {
             return networkResponse;
           })
           .catch(() => {
+            // Если нет интернета и нет кеша — показываем страницу офлайн
             if (request.headers.get('accept')?.includes('text/html')) {
               return new Response(`
                 <!DOCTYPE html>
@@ -157,7 +158,7 @@ self.addEventListener('fetch', event => {
                     <p>Проверьте подключение к интернету<br>и попробуйте снова.</p>
                     <button class="btn retry-btn" onclick="location.reload()">🔄 Попробовать снова</button>
                     <br><br>
-                    <a href="/deutsch-meister/" class="btn" style="background:#666;">🏠 На главную</a>
+                    <a href="./" class="btn" style="background:#666;">🏠 На главную</a>
                   </div>
                 </body>
                 </html>
