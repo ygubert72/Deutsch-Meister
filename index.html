@@ -30,12 +30,89 @@
     <meta name="msapplication-TileImage" content="icons/icon.svg">
     
     <link rel="stylesheet" href="css/style.css">
+    
     <style>
-        .app { opacity: 0; transition: opacity 0.1s ease; }
-        .app.loaded { opacity: 1; }
+        /* ===== СТИЛИ ДЛЯ ЛОАДЕРА ===== */
+        .app { 
+            opacity: 0; 
+            transition: opacity 0.3s ease;
+            display: none;
+        }
+        .app.loaded { 
+            opacity: 1; 
+            display: flex;
+        }
+        
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #F8F8F8;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 999999;
+            transition: opacity 0.5s ease;
+        }
+        #loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .loader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid #E0E0E0;
+            border-top: 5px solid #3B6FE0;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loader-text {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #666;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        .loader-logo {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .loader-dots::after {
+            content: '';
+            animation: dots 1.2s steps(4, end) infinite;
+        }
+        
+        @keyframes dots {
+            0% { content: ''; }
+            25% { content: '.'; }
+            50% { content: '..'; }
+            75% { content: '...'; }
+            100% { content: ''; }
+        }
     </style>
 </head>
 <body>
+
+<!-- ===== ЛОАДЕР ===== -->
+<div id="loader">
+    <div class="loader-logo">🇩🇪</div>
+    <div class="loader-spinner"></div>
+    <div class="loader-text">Загрузка<span class="loader-dots"></span></div>
+</div>
+
+<!-- ===== ПРИЛОЖЕНИЕ ===== -->
 <div class="app">
     <!-- Обычный сайдбар (для компьютеров) -->
     <div class="sidebar">
@@ -108,8 +185,15 @@
 <script src="js/auth.js"></script>
 
 <script>
+    // ===== СКРЫВАЕМ ЛОАДЕР И ПОКАЗЫВАЕМ ПРИЛОЖЕНИЕ ПОСЛЕ ЗАГРУЗКИ =====
     window.addEventListener('load', function() {
+        // Показываем приложение
         document.querySelector('.app').classList.add('loaded');
+        
+        // Скрываем лоадер
+        setTimeout(function() {
+            document.getElementById('loader').classList.add('hidden');
+        }, 300);
     });
     
     // Фикс прокрутки на телефонах
@@ -122,5 +206,6 @@
         }
     }, 500);
 </script>
+
 </body>
 </html>
