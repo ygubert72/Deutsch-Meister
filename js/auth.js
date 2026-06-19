@@ -1,4 +1,4 @@
-// auth.js - полная версия с синхронизацией прогресса в облаке
+// auth.js - полная версия с логированием активности для админа
 
 let auth = null;
 let db = null;
@@ -22,6 +22,212 @@ const firebaseConfig = {
     messagingSenderId: "549700335996",
     appId: "1:549700335996:web:97ed9e8f91224e34ab0cf9"
 };
+
+// ========== ПОЛУЧЕНИЕ IP И ГОРОДА (БЕСПЛАТНО) ==========
+async function getUserLocation() {
+    try {
+        // Бесплатный сервис для определения IP и города
+        const response = await fetch('https://ipapi.co/json/');
+        const data = await response.json();
+        return {
+            ip: data.ip || 'unknown',
+            city: data.city || 'unknown',
+            country: data.country_name || 'unknown',
+            region: data.region || 'unknown'
+        };
+    } catch (e) {
+        console.log('Не удалось определить геолокацию');
+        return {
+            ip: 'unknown',
+            city: 'unknown',
+            country: 'unknown',
+            region: 'unknown'
+        };
+    }
+}
+
+// ========== ПОЛУЧЕНИЕ ID УСТРОЙСТВА ==========
+function getDeviceId() {
+    let id = navigator.userAgent + navigator.platform + window.screen.width + window.screen.height;
+    let hash = 0;
+    for (let i = 0; i < id.length; i++) {
+        hash = ((hash << 5) - hash) + id.charCodeAt(i);
+        hash |= 0;
+    }
+    return hash.toString();
+}
+
+function isMobileDevice() {
+    const mobilePlatforms = ['iPhone', 'iPad', 'iPod', 'Android', 'BlackBerry', 'Windows Phone'];
+    return mobilePlatforms.some(p => navigator.platform.includes(p));
+}
+
+// ========== АНАЛИЗ ФЛАГОВ ПОДОЗРИТЕЛЬНОСТИ ==========
+function analyzeFlags(userData, today) {
+    const flags = {
+        multipleDevices: false,
+        differentCities: false,
+        highActivity: false,
+        manyIPs: false,
+        unnaturalHours: false,
+        totalFlags: 0
+    };
+    
+    // 1. Много устройств (>2)
+    if (userData.devices && userData.devices.length > 2) {
+        flags.multipleDevices = true;
+        flags.totalFlags++;
+    }
+    
+    // 2. Разные города за день
+    const stats = userData.dailyStats?.[today];
+    if (stats && stats.uniqueCities && stats.uniqueCities.length > 2) {
+        flags.differentCities = true;
+        flags.totalFlags++;
+    }
+    
+    // 3. Высокая активность (>3 часов в день)
+    if (stats && stats.totalMinutes > 180) {
+        flags.highActivity = true;
+        flags.totalFlags++;
+    }
+    
+    // 4. Много IP (>3 в день)
+    if (stats && stats.uniqueIPs && stats.uniqueIPs.length > 3) {
+        flags.manyIPs = true;
+        flags.totalFlags++;
+    }
+    
+    // 5. Неестественное время (активность и ночью, и утром)
+    if (stats && stats.firstActivity && stats.lastActivity) {
+        const firstHour = new Date(stats.firstActivity).getHours();
+        const lastHour = new Date(stats.lastActivity).getHours();
+        // Если активность и в 0-6 часов, и в 8-12 часов
+        if ((firstHour >= 0 && firstHour <= 6) && (lastHour >= 8 && lastHour <= 12)) {
+            flags.unnaturalHours = true;
+            flags.totalFlags++;
+        }
+        if ((firstHour >= 8 && firstHour <= 12) && (lastHour >= 20 && lastHour <= 23)) {
+            flags.unnaturalHours = true;
+            flags.totalFlags++;
+        }
+    }
+    
+    return flags;
+}
+
+// ========== ЛОГИРОВАНИЕ АКТИВНОСТИ ПОЛЬЗОВАТЕЛЯ ==========
+async function logUserActivity(user) {
+    if (!user || !db) return;
+    
+    const uid = user.uid;
+    const today = new Date().toISOString().split('T')[0];
+    
+    try {
+        // Получаем геолокацию
+        const location = await getUserLocation();
+        const deviceId = getDeviceId();
+        const deviceType = isMobileDevice() ? 'mobile' : 'desktop';
+        
+        // Получаем текущие данные пользователя
+        const userDoc = await db.collection('users').doc(uid).get();
+        let data = userDoc.exists ? userDoc.data() : {};
+        
+        // --- 1. Обновляем устройства ---
+        if (!data.devices) data.devices = [];
+        const existingDevice = data.devices.find(d => d.id === deviceId);
+        
+        if (!existingDevice) {
+            data.devices.push({
+                id: deviceId,
+                type: deviceType,
+                firstSeen: new Date().toISOString(),
+                lastSeen: new Date().toISOString(),
+                userAgent: navigator.userAgent,
+                ip: location.ip,
+                city: location.city,
+                country: location.country
+            });
+        } else {
+            existingDevice.lastSeen = new Date().toISOString();
+            existingDevice.ip = location.ip;
+            existingDevice.city = location.city;
+            existingDevice.country = location.country;
+        }
+        
+        // --- 2. Обновляем дневную статистику ---
+        if (!data.dailyStats) data.dailyStats = {};
+        if (!data.dailyStats[today]) {
+            data.dailyStats[today] = {
+                sessions: 0,
+                totalMinutes: 0,
+                uniqueIPs: [],
+                uniqueCities: [],
+                wordsLearned: 0,
+                firstActivity: null,
+                lastActivity: null
+            };
+        }
+        
+        const stats = data.dailyStats[today];
+        stats.sessions += 1;
+        
+        if (!stats.uniqueIPs.includes(location.ip) && location.ip !== 'unknown') {
+            stats.uniqueIPs.push(location.ip);
+        }
+        if (!stats.uniqueCities.includes(location.city) && location.city !== 'unknown') {
+            stats.uniqueCities.push(location.city);
+        }
+        if (!stats.firstActivity) {
+            stats.firstActivity = new Date().toISOString();
+        }
+        stats.lastActivity = new Date().toISOString();
+        
+        // --- 3. Анализируем флаги ---
+        const flags = analyzeFlags(data, today);
+        data.flags = flags;
+        
+        // --- 4. Если флагов стало больше, записываем в лог для админа ---
+        const oldFlags = data._previousFlags || { totalFlags: 0 };
+        if (flags.totalFlags > oldFlags.totalFlags) {
+            await db.collection('admin_logs').add({
+                userId: uid,
+                email: user.email,
+                timestamp: new Date().toISOString(),
+                event: 'flags_increased',
+                flagsBefore: oldFlags.totalFlags,
+                flagsAfter: flags.totalFlags,
+                flags: flags,
+                details: {
+                    deviceId: deviceId,
+                    deviceType: deviceType,
+                    ip: location.ip,
+                    city: location.city,
+                    country: location.country
+                }
+            });
+        }
+        data._previousFlags = flags;
+        
+        // --- 5. Обновляем статус пользователя ---
+        // Если флагов >= 3, меняем статус на "warning"
+        if (flags.totalFlags >= 3) {
+            data.status = 'warning';
+        } else if (flags.totalFlags >= 2) {
+            data.status = 'monitor';
+        } else {
+            data.status = 'ok';
+        }
+        
+        // --- 6. Сохраняем ---
+        await db.collection('users').doc(uid).set(data, { merge: true });
+        
+        console.log(`✅ Активность пользователя ${user.email} залогирована, флагов: ${flags.totalFlags}`);
+        
+    } catch (e) {
+        console.error('Ошибка логирования активности:', e);
+    }
+}
 
 // ========== СОХРАНЕНИЕ ПРОГРЕССА В ОБЛАКО ==========
 window.saveUserProgressToFirebase = async function() {
@@ -100,7 +306,7 @@ window.loadUserProgressFromFirebase = async function() {
     return false;
 };
 
-// Инициализация Firebase
+// ========== ИНИЦИАЛИЗАЦИЯ FIREBASE ==========
 function initFirebase() {
     if (typeof firebase === 'undefined') {
         setTimeout(initFirebase, 500);
@@ -123,6 +329,10 @@ function initFirebase() {
     auth.onAuthStateChanged(async (user) => {
         if (user) {
             console.log('Пользователь в системе:', user.email);
+            
+            // 🔥 ЛОГИРУЕМ АКТИВНОСТЬ ПРИ ВХОДЕ
+            await logUserActivity(user);
+            
             await loadUserData(user.uid);
             await loadUserProgressFromFirebase();
             await addUserToFirestore(user);
@@ -136,7 +346,7 @@ function initFirebase() {
     });
 }
 
-// Загрузка данных пользователя
+// ========== ЗАГРУЗКА ДАННЫХ ПОЛЬЗОВАТЕЛЯ ==========
 async function loadUserData(uid) {
     if (!db) return;
     try {
@@ -150,7 +360,7 @@ async function loadUserData(uid) {
     }
 }
 
-// Проверка доступа к уровню
+// ========== ПРОВЕРКА ДОСТУПА К УРОВНЮ ==========
 window.hasAccessToLevel = function(level) {
     if (auth.currentUser && auth.currentUser.email === 'ygubert72@gmail.com') {
         return true;
@@ -202,20 +412,21 @@ async function addUserToFirestore(user) {
                 createdAt: new Date().toISOString(),
                 hasPremiumAccess: false,
                 premiumActivatedAt: null,
-                blocked: false
+                blocked: false,
+                status: 'ok',
+                devices: [],
+                dailyStats: {},
+                flags: { totalFlags: 0 },
+                _previousFlags: { totalFlags: 0 }
             });
             console.log('✅ Пользователь добавлен в Firestore:', user.email);
-        } else {
-            if (userDoc.data().hasPremiumAccess === undefined) {
-                await db.collection('users').doc(user.uid).update({ hasPremiumAccess: false });
-            }
         }
     } catch(e) {
         console.error('Ошибка добавления пользователя:', e);
     }
 }
 
-// Функция добавления кнопки админа в оба меню
+// ========== АДМИН-КНОПКИ ==========
 function addAdminButton() {
     const oldAdminBtn = document.getElementById('adminBtn');
     if (oldAdminBtn) oldAdminBtn.remove();
@@ -223,15 +434,16 @@ function addAdminButton() {
     const oldAdminBtnMobile = document.getElementById('adminBtnMobile');
     if (oldAdminBtnMobile) oldAdminBtnMobile.remove();
     
+    // Кнопка "МОНИТОРИНГ" вместо "Админ-панель"
     const adminBtn = document.createElement('button');
     adminBtn.id = 'adminBtn';
     adminBtn.className = 'btn';
-    adminBtn.innerHTML = '👑 АДМИН-ПАНЕЛЬ';
+    adminBtn.innerHTML = '📊 МОНИТОРИНГ';
     adminBtn.style.background = '#FF9800';
     adminBtn.style.color = 'white';
     adminBtn.style.marginTop = '10px';
     adminBtn.style.cursor = 'pointer';
-    adminBtn.onclick = () => window.showAdminPanel();
+    adminBtn.onclick = () => window.open('admin.html', '_blank');
     
     const sidebarContent = document.querySelector('.sidebar .sidebar-content');
     if (sidebarContent) {
@@ -241,12 +453,12 @@ function addAdminButton() {
     const adminBtnMobile = document.createElement('button');
     adminBtnMobile.id = 'adminBtnMobile';
     adminBtnMobile.className = 'btn';
-    adminBtnMobile.innerHTML = '👑 АДМИН-ПАНЕЛЬ';
+    adminBtnMobile.innerHTML = '📊 МОНИТОРИНГ';
     adminBtnMobile.style.background = '#FF9800';
     adminBtnMobile.style.color = 'white';
     adminBtnMobile.style.marginTop = '10px';
     adminBtnMobile.style.cursor = 'pointer';
-    adminBtnMobile.onclick = () => window.showAdminPanel();
+    adminBtnMobile.onclick = () => window.open('admin.html', '_blank');
     
     const mobileSidebarContent = document.querySelector('#mobileMenu .sidebar-content');
     if (mobileSidebarContent) {
@@ -254,7 +466,7 @@ function addAdminButton() {
     }
 }
 
-// Обновление интерфейса
+// ========== ОБНОВЛЕНИЕ ИНТЕРФЕЙСА ==========
 function updateUI(user) {
     const loginBtn = document.getElementById('loginBtn');
     const userInfo = document.getElementById('userInfo');
@@ -281,11 +493,29 @@ function updateUI(user) {
             </div>
         ` : '';
         
+        // Показываем статус пользователя (для админа)
+        const statusText = currentUserData?.status || 'ok';
+        const statusColors = {
+            'ok': '#4CAF50',
+            'monitor': '#FF9800',
+            'warning': '#F44336',
+            'blocked': '#9E9E9E'
+        };
+        const statusLabels = {
+            'ok': '✅ Всё хорошо',
+            'monitor': '👀 Наблюдение',
+            'warning': '⚠️ Подозрение',
+            'blocked': '🚫 Заблокирован'
+        };
+        
         const userInfoHtml = `
             <div style="background:#E8F0FE; border-radius:8px; padding:8px; text-align:center;">
                 <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:5px; flex-wrap:wrap;">
                     <span style="font-size:20px;">🎓</span>
                     <span style="word-break:break-all;">${user.email}</span>
+                </div>
+                <div style="font-size:11px; color:${statusColors[statusText]}; margin:5px 0;">
+                    ${statusLabels[statusText] || 'ok'}
                 </div>
                 <button onclick="logout()" style="margin-top:5px; padding:8px 12px; background:#f44336; color:white; border:none; border-radius:16px; cursor:pointer; width:100%; font-size:12px; font-weight:bold;">🚪 Выйти</button>
                 ${premiumButtonHtml}
@@ -341,13 +571,13 @@ function updateUI(user) {
     }
 }
 
-// Функция выхода
+// ========== ВЫХОД ==========
 window.logout = async function() {
     if (auth) await auth.signOut();
     location.reload();
 };
 
-// Модальное окно оплаты
+// ========== МОДАЛЬНОЕ ОКНО ОПЛАТЫ ==========
 function showPaymentModal() {
     if (!auth.currentUser) {
         alert('Сначала войдите в аккаунт');
@@ -468,7 +698,7 @@ window.deactivatePremium = async function(email) {
     }
 };
 
-// ========== АДМИН-ПАНЕЛЬ ==========
+// ========== АДМИН-ПАНЕЛЬ (старая, оставляем) ==========
 window.showAdminPanel = async function() {
     if (!auth.currentUser || auth.currentUser.email !== 'ygubert72@gmail.com') {
         alert('У вас нет прав администратора');
@@ -619,7 +849,7 @@ window.deleteUser = async function(uid) {
     } catch(e) { alert('Ошибка: ' + e.message); }
 };
 
-// ========== ФУНКЦИЯ ДЛЯ ПЕРЕКЛЮЧЕНИЯ ВИДИМОСТИ ПАРОЛЯ ==========
+// ========== ПЕРЕКЛЮЧЕНИЕ ВИДИМОСТИ ПАРОЛЯ ==========
 function togglePasswordVisibility(inputId, eyeIconId) {
     const input = document.getElementById(inputId);
     const eyeIcon = document.getElementById(eyeIconId);
@@ -632,7 +862,7 @@ function togglePasswordVisibility(inputId, eyeIconId) {
     }
 }
 
-// Модальное окно входа/регистрации
+// ========== МОДАЛЬНОЕ ОКНО ВХОДА/РЕГИСТРАЦИИ ==========
 window.showLoginModal = function() {
     if (document.getElementById('authModal')) {
         document.getElementById('authModal').remove();
@@ -715,7 +945,6 @@ window.showLoginModal = function() {
             return;
         }
         
-        // Проверка совпадения паролей при регистрации
         if (!isLogin) {
             const confirmPassword = confirmInput.value;
             if (password !== confirmPassword) {
@@ -739,7 +968,12 @@ window.showLoginModal = function() {
                         createdAt: new Date().toISOString(),
                         hasPremiumAccess: false,
                         premiumActivatedAt: null,
-                        blocked: false
+                        blocked: false,
+                        status: 'ok',
+                        devices: [],
+                        dailyStats: {},
+                        flags: { totalFlags: 0 },
+                        _previousFlags: { totalFlags: 0 }
                     });
                 }
                 alert('Регистрация успешна! Добро пожаловать, ' + email + '!');
@@ -767,7 +1001,7 @@ window.showLoginModal = function() {
     document.getElementById('closeModal').onclick = () => modal.remove();
 };
 
-// Запуск при загрузке страницы
+// ========== ЗАПУСК ==========
 window.addEventListener('load', function() {
     console.log('Загрузка страницы...');
     const loginBtn = document.getElementById('loginBtn');
