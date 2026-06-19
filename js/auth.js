@@ -1,4 +1,5 @@
 // auth.js - полная версия с логированием активности для админа
+// Админ (ygubert72@gmail.com) НЕ отслеживается
 
 let auth = null;
 let db = null;
@@ -26,7 +27,6 @@ const firebaseConfig = {
 // ========== ПОЛУЧЕНИЕ IP И ГОРОДА (БЕСПЛАТНО) ==========
 async function getUserLocation() {
     try {
-        // Бесплатный сервис для определения IP и города
         const response = await fetch('https://ipapi.co/json/');
         const data = await response.json();
         return {
@@ -60,6 +60,12 @@ function getDeviceId() {
 function isMobileDevice() {
     const mobilePlatforms = ['iPhone', 'iPad', 'iPod', 'Android', 'BlackBerry', 'Windows Phone'];
     return mobilePlatforms.some(p => navigator.platform.includes(p));
+}
+
+// ========== ПРОВЕРКА, ЯВЛЯЕТСЯ ЛИ ПОЛЬЗОВАТЕЛЬ АДМИНОМ ==========
+function isAdminUser(user) {
+    if (!user) return false;
+    return user.email === 'ygubert72@gmail.com';
 }
 
 // ========== АНАЛИЗ ФЛАГОВ ПОДОЗРИТЕЛЬНОСТИ ==========
@@ -102,7 +108,6 @@ function analyzeFlags(userData, today) {
     if (stats && stats.firstActivity && stats.lastActivity) {
         const firstHour = new Date(stats.firstActivity).getHours();
         const lastHour = new Date(stats.lastActivity).getHours();
-        // Если активность и в 0-6 часов, и в 8-12 часов
         if ((firstHour >= 0 && firstHour <= 6) && (lastHour >= 8 && lastHour <= 12)) {
             flags.unnaturalHours = true;
             flags.totalFlags++;
@@ -120,16 +125,20 @@ function analyzeFlags(userData, today) {
 async function logUserActivity(user) {
     if (!user || !db) return;
     
+    // ⛔ ЕСЛИ ЭТО АДМИН — НЕ ЛОГИРУЕМ (экономия ресурсов)
+    if (isAdminUser(user)) {
+        console.log('⛔ Админ не отслеживается');
+        return;
+    }
+    
     const uid = user.uid;
     const today = new Date().toISOString().split('T')[0];
     
     try {
-        // Получаем геолокацию
         const location = await getUserLocation();
         const deviceId = getDeviceId();
         const deviceType = isMobileDevice() ? 'mobile' : 'desktop';
         
-        // Получаем текущие данные пользователя
         const userDoc = await db.collection('users').doc(uid).get();
         let data = userDoc.exists ? userDoc.data() : {};
         
@@ -210,7 +219,6 @@ async function logUserActivity(user) {
         data._previousFlags = flags;
         
         // --- 5. Обновляем статус пользователя ---
-        // Если флагов >= 3, меняем статус на "warning"
         if (flags.totalFlags >= 3) {
             data.status = 'warning';
         } else if (flags.totalFlags >= 2) {
@@ -330,7 +338,7 @@ function initFirebase() {
         if (user) {
             console.log('Пользователь в системе:', user.email);
             
-            // 🔥 ЛОГИРУЕМ АКТИВНОСТЬ ПРИ ВХОДЕ
+            // 🔥 ЛОГИРУЕМ АКТИВНОСТЬ ПРИ ВХОДЕ (только не админа)
             await logUserActivity(user);
             
             await loadUserData(user.uid);
@@ -362,6 +370,7 @@ async function loadUserData(uid) {
 
 // ========== ПРОВЕРКА ДОСТУПА К УРОВНЮ ==========
 window.hasAccessToLevel = function(level) {
+    // Админ имеет доступ ко всем уровням
     if (auth.currentUser && auth.currentUser.email === 'ygubert72@gmail.com') {
         return true;
     }
@@ -434,7 +443,7 @@ function addAdminButton() {
     const oldAdminBtnMobile = document.getElementById('adminBtnMobile');
     if (oldAdminBtnMobile) oldAdminBtnMobile.remove();
     
-    // Кнопка "МОНИТОРИНГ" вместо "Админ-панель"
+    // Кнопка "МОНИТОРИНГ"
     const adminBtn = document.createElement('button');
     adminBtn.id = 'adminBtn';
     adminBtn.className = 'btn';
@@ -483,8 +492,13 @@ function updateUI(user) {
         if (userInfoMobile) userInfoMobile.style.display = 'block';
         
         const hasPremium = currentUserData && currentUserData.hasPremiumAccess === true;
+        const isAdmin = user.email === 'ygubert72@gmail.com';
         
-        const premiumButtonHtml = (user.email !== 'ygubert72@gmail.com') ? `
+        // ===== СТАТУС ПОКАЗЫВАЕМ ТОЛЬКО АДМИНУ (и то только в админ-панели) =====
+        // Для обычных пользователей статус НЕ ПОКАЗЫВАЕМ
+        let statusHtml = '';
+        
+        const premiumButtonHtml = (!isAdmin) ? `
             <div style="margin-top:8px;">
                 ${!hasPremium 
                     ? `<button id="premiumPayBtn" style="width:100%; padding:8px; background:linear-gradient(135deg, #FFD700, #FFA500); color:#333; border:none; border-radius:16px; cursor:pointer; font-weight:bold; font-size:12px;">💎 ОПЛАТИТЬ ПРЕМИУМ</button>`
@@ -493,30 +507,13 @@ function updateUI(user) {
             </div>
         ` : '';
         
-        // Показываем статус пользователя (для админа)
-        const statusText = currentUserData?.status || 'ok';
-        const statusColors = {
-            'ok': '#4CAF50',
-            'monitor': '#FF9800',
-            'warning': '#F44336',
-            'blocked': '#9E9E9E'
-        };
-        const statusLabels = {
-            'ok': '✅ Всё хорошо',
-            'monitor': '👀 Наблюдение',
-            'warning': '⚠️ Подозрение',
-            'blocked': '🚫 Заблокирован'
-        };
-        
         const userInfoHtml = `
             <div style="background:#E8F0FE; border-radius:8px; padding:8px; text-align:center;">
                 <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:5px; flex-wrap:wrap;">
                     <span style="font-size:20px;">🎓</span>
                     <span style="word-break:break-all;">${user.email}</span>
                 </div>
-                <div style="font-size:11px; color:${statusColors[statusText]}; margin:5px 0;">
-                    ${statusLabels[statusText] || 'ok'}
-                </div>
+                ${statusHtml}
                 <button onclick="logout()" style="margin-top:5px; padding:8px 12px; background:#f44336; color:white; border:none; border-radius:16px; cursor:pointer; width:100%; font-size:12px; font-weight:bold;">🚪 Выйти</button>
                 ${premiumButtonHtml}
             </div>
@@ -525,7 +522,18 @@ function updateUI(user) {
         userInfo.innerHTML = userInfoHtml;
         if (userInfoMobile) userInfoMobile.innerHTML = userInfoHtml;
         
-        if (!hasPremium && user.email !== 'ygubert72@gmail.com') {
+        // ===== КНОПКИ ДЛЯ АДМИНА =====
+        if (isAdmin) {
+            addAdminButton();
+        } else {
+            const oldAdminBtn = document.getElementById('adminBtn');
+            if (oldAdminBtn) oldAdminBtn.remove();
+            const oldAdminBtnMobile = document.getElementById('adminBtnMobile');
+            if (oldAdminBtnMobile) oldAdminBtnMobile.remove();
+        }
+        
+        // ===== КНОПКА ОПЛАТЫ (только для обычных пользователей) =====
+        if (!isAdmin && !hasPremium) {
             setTimeout(() => {
                 const payBtn = document.getElementById('premiumPayBtn');
                 if (payBtn) payBtn.onclick = () => showPaymentModal();
@@ -535,16 +543,8 @@ function updateUI(user) {
             }, 100);
         }
         
-        if (user.email === 'ygubert72@gmail.com') {
-            addAdminButton();
-        } else {
-            const oldAdminBtn = document.getElementById('adminBtn');
-            if (oldAdminBtn) oldAdminBtn.remove();
-            const oldAdminBtnMobile = document.getElementById('adminBtnMobile');
-            if (oldAdminBtnMobile) oldAdminBtnMobile.remove();
-        }
-        
     } else {
+        // ===== ГОСТЕВОЙ РЕЖИМ =====
         loginBtn.style.display = 'block';
         if (loginBtnMobile) loginBtnMobile.style.display = 'block';
         
@@ -698,7 +698,7 @@ window.deactivatePremium = async function(email) {
     }
 };
 
-// ========== АДМИН-ПАНЕЛЬ (старая, оставляем) ==========
+// ========== АДМИН-ПАНЕЛЬ (старая) ==========
 window.showAdminPanel = async function() {
     if (!auth.currentUser || auth.currentUser.email !== 'ygubert72@gmail.com') {
         alert('У вас нет прав администратора');
