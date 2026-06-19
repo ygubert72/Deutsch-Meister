@@ -435,3 +435,335 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
         overflow-y: visible !important;
     }
 }
+
+/* ================================================================ */
+/* ========== ТЁМНАЯ ТЕМА ========== */
+/* ================================================================ */
+
+body.dark-mode {
+    background: #1a1a2e;
+    color: #e0e0e0;
+}
+
+body.dark-mode .sidebar {
+    background: #16213e;
+    border-right-color: #2a3a5e;
+}
+
+body.dark-mode .sidebar-content {
+    background: #16213e;
+}
+
+body.dark-mode .top-bar {
+    background: #1a1a2e;
+    border-bottom-color: #2a3a5e;
+    color: #e0e0e0;
+}
+
+body.dark-mode .content {
+    background: #1a1a2e;
+}
+
+body.dark-mode .card {
+    background: #16213e;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    color: #e0e0e0;
+}
+
+body.dark-mode .card-word {
+    color: #e0e0e0;
+}
+
+body.dark-mode .btn {
+    background: #2a3a5e;
+    border-color: #3a4a6e;
+    color: #e0e0e0;
+}
+
+body.dark-mode .btn.active {
+    background: #3B6FE0;
+    color: white;
+    border-color: #2B5BC7;
+}
+
+body.dark-mode .btn-level {
+    background: #2a3a5e;
+    border-color: #3a4a6e;
+}
+
+body.dark-mode .mode-btn {
+    background: #2a3a5e;
+    border-color: #3a4a6e;
+}
+
+body.dark-mode .ctrl-btn {
+    background: #2a3a5e;
+    border-color: #3a4a6e;
+    color: #e0e0e0;
+}
+
+body.dark-mode .check-btn {
+    background: #3B6FE0 !important;
+    color: white !important;
+    border-color: #2B5BC7 !important;
+}
+
+body.dark-mode .dir-btn {
+    background: #3B6FE0;
+    color: white;
+}
+
+body.dark-mode .quiz-opt {
+    background: #16213e;
+    border-color: #3a4a6e;
+    color: #e0e0e0;
+}
+
+body.dark-mode .quiz-opt.correct {
+    background: #1a4a2a;
+    border-color: #4CAF50;
+    color: #e0e0e0;
+}
+
+body.dark-mode .quiz-opt.wrong {
+    background: #4a1a1a;
+    border-color: #F44336;
+    color: #e0e0e0;
+}
+
+body.dark-mode .sent-question {
+    background: #16213e;
+    color: #e0e0e0;
+}
+
+body.dark-mode .sent-result {
+    background: #16213e;
+    border-color: #3a4a6e;
+    color: #e0e0e0;
+}
+
+body.dark-mode .word-btn {
+    background: #2a3a5e;
+    border-color: #3a4a6e;
+    color: #e0e0e0;
+}
+
+body.dark-mode .lesson-header {
+    color: #e0e0e0;
+}
+
+body.dark-mode .lesson-title {
+    color: #e0e0e0;
+}
+
+body.dark-mode .lesson-text {
+    background: #16213e;
+    color: #e0e0e0;
+}
+
+body.dark-mode .lesson-mode-btn {
+    background: #2a3a5e;
+    border-color: #3a4a6e;
+    color: #e0e0e0;
+}
+
+body.dark-mode .lesson-mode-btn.active {
+    background: #3B6FE0;
+    color: white;
+    border-color: #2B5BC7;
+}
+
+body.dark-mode .lesson-grid-btn {
+    background: #2a3a5e;
+    border-color: #3a4a6e;
+    color: #e0e0e0;
+}
+
+body.dark-mode .lesson-grid-btn:hover {
+    background: #3a4a6e;
+}
+
+body.dark-mode .hint-label {
+    background: #16213e;
+    border-color: #3a4a6e;
+    color: #3B6FE0;
+}
+
+body.dark-mode .hint {
+    color: #888;
+}
+
+body.dark-mode .mode-indicator {
+    color: #e0e0e0;
+}
+
+body.dark-mode #counter {
+    color: #888;
+}
+
+body.dark-mode .mobile-menu {
+    background: #16213e;
+}
+
+body.dark-mode .mobile-menu-header {
+    background: #16213e;
+    border-bottom-color: #2a3a5e;
+    color: #e0e0e0;
+}
+
+body.dark-mode .mobile-menu-header h3 {
+    color: #3B6FE0;
+}
+
+body.dark-mode .close-menu-btn {
+    color: #e0e0e0;
+}
+
+body.dark-mode .menu-overlay {
+    background: rgba(0,0,0,0.7);
+}
+
+body.dark-mode #userInfo {
+    background: #2a3a5e !important;
+    color: #e0e0e0;
+}
+
+body.dark-mode #userInfoMobile {
+    background: #2a3a5e !important;
+    color: #e0e0e0;
+}
+
+body.dark-mode .btn-login,
+body.dark-mode .btn-login-mobile {
+    background: #4CAF50 !important;
+    color: white !important;
+    border-color: #388E3C !important;
+}
+
+body.dark-mode .btn-share,
+body.dark-mode .btn-share-mobile {
+    background: #4CAF50 !important;
+    color: white !important;
+    border-color: #388E3C !important;
+}
+
+body.dark-mode .speak-btn-inline {
+    background: #3B6FE0;
+    color: white;
+}
+
+body.dark-mode .practice-selected-area {
+    background: #16213e;
+    border-color: #3a4a6e;
+    color: #e0e0e0;
+}
+
+/* Модальные окна в тёмной теме */
+body.dark-mode div[id$="Modal"] > div {
+    background: #16213e !important;
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode div[id$="Modal"] h2,
+body.dark-mode div[id$="Modal"] h3,
+body.dark-mode div[id$="Modal"] h4 {
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode div[id$="Modal"] p,
+body.dark-mode div[id$="Modal"] div {
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode div[id$="Modal"] input {
+    background: #2a3a5e !important;
+    border-color: #3a4a6e !important;
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode div[id$="Modal"] button {
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode div[id$="Modal"] .share-option-btn {
+    background: #2a3a5e !important;
+    border-color: #3a4a6e !important;
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode div[id$="Modal"] .share-option-btn:hover {
+    background: #3a4a6e !important;
+}
+
+/* Админ-панель в тёмной теме */
+body.dark-mode #adminPanel > div > div {
+    background: #16213e !important;
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode #adminPanel h2,
+body.dark-mode #adminPanel h3 {
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode #adminPanel .user-card {
+    background: #1a1a2e !important;
+    color: #e0e0e0 !important;
+    border-color: #2a3a5e !important;
+}
+
+body.dark-mode #adminPanel .user-card .user-email {
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode #adminPanel .info-section {
+    background: #1a1a2e !important;
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode #adminPanel .info-section .item {
+    border-bottom-color: #2a3a5e !important;
+}
+
+body.dark-mode #adminPanel .filters {
+    background: #16213e !important;
+}
+
+body.dark-mode #adminPanel .filters select,
+body.dark-mode #adminPanel .filters input {
+    background: #2a3a5e !important;
+    border-color: #3a4a6e !important;
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode #adminPanel .stat-item {
+    background: #2a3a5e !important;
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode #adminPanel .header {
+    background: #16213e !important;
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode #adminPanel .header h1 {
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode #adminPanel .log-entry {
+    background: #1a1a2e !important;
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode #adminPanel .log-entry .time {
+    color: #888 !important;
+}
+
+body.dark-mode #adminPanel .log-modal-content {
+    background: #16213e !important;
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode #adminPanel .log-empty {
+    color: #888 !important;
+}
