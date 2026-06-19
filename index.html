@@ -11,8 +11,8 @@
     
     <!-- ===== PWA: ИКОНКИ ===== -->
     <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
-    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
-    <link rel="apple-touch-icon-precomposed" href="icons/icon-192x192.png">
+    <link rel="apple-touch-icon" href="icons/icon.svg">
+    <link rel="apple-touch-icon-precomposed" href="icons/icon.svg">
     
     <!-- ===== PWA: ЦВЕТА ===== -->
     <meta name="theme-color" content="#3B6FE0">
@@ -21,7 +21,7 @@
     <meta name="apple-mobile-web-app-title" content="Deutsch-Meister">
     <meta name="application-name" content="Deutsch-Meister">
     <meta name="msapplication-TileColor" content="#3B6FE0">
-    <meta name="msapplication-TileImage" content="icons/icon-144x144.png">
+    <meta name="msapplication-TileImage" content="icons/icon.svg">
     
     <link rel="stylesheet" href="css/style.css">
     
@@ -242,13 +242,11 @@
         e.preventDefault();
         deferredPrompt = e;
         
-        // Показываем баннеры
         document.querySelectorAll('.install-banner').forEach(banner => {
             banner.style.display = 'block';
         });
     });
     
-    // Обработка клика по баннеру
     document.querySelectorAll('.install-banner').forEach(banner => {
         banner.addEventListener('click', function() {
             if (deferredPrompt) {
@@ -260,20 +258,16 @@
                         console.log('❌ Пользователь отказался от установки');
                     }
                     deferredPrompt = null;
-                    // Скрываем баннеры
                     document.querySelectorAll('.install-banner').forEach(b => {
                         b.style.display = 'none';
                     });
                 });
             } else {
-                // Если браузер не поддерживает автоматическую установку,
-                // показываем инструкцию
                 showInstallInstructions();
             }
         });
     });
     
-    // Инструкция по установке (если автоматическая установка не поддерживается)
     function showInstallInstructions() {
         const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
         const isAndroid = /Android/.test(navigator.userAgent);
@@ -296,7 +290,6 @@
         alert(message);
     }
     
-    // Скрываем баннеры, если приложение уже установлено
     window.addEventListener('appinstalled', function() {
         document.querySelectorAll('.install-banner').forEach(banner => {
             banner.style.display = 'none';
@@ -305,7 +298,7 @@
         console.log('✅ Приложение установлено!');
     });
     
-    // ===== СКРЫВАЕМ ЛОАДЕР И ПОКАЗЫВАЕМ ПРИЛОЖЕНИЕ =====
+    // ===== СКРЫВАЕМ ЛОАДЕР =====
     window.addEventListener('load', function() {
         document.querySelector('.app').classList.add('loaded');
         
