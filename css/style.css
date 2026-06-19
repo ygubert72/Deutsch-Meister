@@ -186,7 +186,7 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     background: white;
     z-index: 999;
     transform: translateX(-100%);
-    transition: transform 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1);
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
 }
@@ -223,6 +223,19 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
     cursor: pointer;
     color: #666;
     padding: 0 10px;
+}
+
+/* Плавное появление оверлея */
+.menu-overlay {
+    transition: opacity 0.4s ease;
+}
+
+.menu-overlay.show {
+    display: block;
+}
+
+.mobile-menu.show {
+    display: block;
 }
 
 /* Стили для верхней панели */
@@ -288,15 +301,6 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
         height: calc(100vh - 50px);
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
-    }
-    
-    /* Анимация для оверлея */
-    .menu-overlay.show {
-        display: block;
-    }
-    
-    .mobile-menu.show {
-        display: block;
     }
     
     /* Адаптация кнопок в меню */
