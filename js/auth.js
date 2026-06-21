@@ -48,7 +48,7 @@ function initFirebase() {
             
             await loadUserData(user.uid);
             
-            // Загружаем прогресс из Firebase
+            // ЗАГРУЖАЕМ ПРОГРЕСС ИЗ FIREBASE
             await window.loadUserProgressFromFirebase();
             
             await addUserToFirestore(user);
@@ -59,7 +59,6 @@ function initFirebase() {
         
         updateUI(user);
         
-        // БЕЗОПАСНЫЙ ВЫЗОВ — проверяем, что функции существуют
         if (typeof updateCounter === 'function') {
             updateCounter();
         }
@@ -515,7 +514,7 @@ window.saveUserProgressToFirebase = async function() {
     }
 };
 
-// ========== ЗАГРУЗКА ПРОГРЕССА ИЗ ОБЛАКА ==========
+// ========== ЗАГРУЗКА ПРОГРЕССА ИЗ ОБЛАКА (С ПРИНУДИТЕЛЬНЫМ ПЕРЕЗАПУСКОМ) ==========
 window.loadUserProgressFromFirebase = async function() {
     if (!auth || !auth.currentUser) return false;
     const userId = auth.currentUser.uid;
@@ -525,26 +524,28 @@ window.loadUserProgressFromFirebase = async function() {
         if (userDoc.exists && userDoc.data().progress) {
             const progress = userDoc.data().progress;
             
+            // Загружаем прогресс
             if (progress.wordsProgress) {
                 Object.assign(wordsProgress, progress.wordsProgress);
                 localStorage.setItem('dm_words_progress', JSON.stringify(wordsProgress));
             }
-            
             if (progress.sentencesProgress) {
                 Object.assign(sentencesProgress, progress.sentencesProgress);
                 localStorage.setItem('dm_sentences_progress', JSON.stringify(sentencesProgress));
             }
-            
             if (progress.grammarProgress) {
                 Object.assign(grammarProgress, progress.grammarProgress);
                 localStorage.setItem('dm_grammar_progress', JSON.stringify(grammarProgress));
             }
             
+            // Загружаем конфигурацию
             if (progress.config) {
                 const config = progress.config;
                 
+                // Сохраняем в localStorage
                 localStorage.setItem('dm_config', JSON.stringify(config));
                 
+                // Обновляем глобальные переменные
                 if (config.last_level) {
                     AppConfig.currentLevel = config.last_level;
                 }
@@ -557,34 +558,57 @@ window.loadUserProgressFromFirebase = async function() {
                 
                 console.log('☁️ Загружено из Firebase:', { mode: currentMode, level: AppConfig.currentLevel });
                 
-                // Применяем состояние, если приложение уже инициализировано
-                if (window.appInitialized) {
-                    console.log('🔄 Применяем состояние из Firebase');
-                    
-                    document.querySelectorAll('[data-level]').forEach(btn => {
-                        if (btn.dataset.level === AppConfig.currentLevel) {
-                            btn.classList.add('active');
-                        } else {
-                            btn.classList.remove('active');
-                        }
-                    });
-                    
-                    document.querySelectorAll('.mode-btn').forEach(btn => {
-                        if (btn.dataset.mode === currentMode) {
-                            btn.classList.add('active');
-                        } else {
-                            btn.classList.remove('active');
-                        }
-                    });
-                    
-                    if (currentMode === 'cards' && typeof renderCards === 'function') renderCards();
-                    else if (currentMode === 'quiz' && typeof renderQuiz === 'function') renderQuiz();
-                    else if (currentMode === 'sentences' && typeof renderSentences === 'function') renderSentences();
-                    else if (currentMode === 'grammar' && typeof renderGrammar === 'function') renderGrammar();
-                    
-                    if (typeof updateCounter === 'function') updateCounter(true);
-                    if (typeof updateModeIndicator === 'function') updateModeIndicator();
+                // ===== ПРИНУДИТЕЛЬНО ПРИМЕНЯЕМ СОСТОЯНИЕ =====
+                // 1. Обновляем кнопки уровня
+                document.querySelectorAll('[data-level]').forEach(btn => {
+                    if (btn.dataset.level === AppConfig.currentLevel) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+                
+                // 2. Обновляем кнопки режима
+                document.querySelectorAll('.mode-btn').forEach(btn => {
+                    if (btn.dataset.mode === currentMode) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+                
+                // 3. ПРИНУДИТЕЛЬНО ПЕРЕЗАПУСКАЕМ РЕЖИМ
+                console.log('🔄 Принудительный перезапуск режима:', currentMode);
+                
+                // Очищаем контент
+                const content = document.getElementById('content');
+                if (content) {
+                    content.innerHTML = '<div style="text-align:center;padding:40px;">🔄 Загрузка...</div>';
                 }
+                
+                // Небольшая задержка
+                await new Promise(resolve => setTimeout(resolve, 50));
+                
+                // Запускаем нужный режим
+                if (currentMode === 'cards' && typeof renderCards === 'function') {
+                    renderCards();
+                } else if (currentMode === 'quiz' && typeof renderQuiz === 'function') {
+                    renderQuiz();
+                } else if (currentMode === 'sentences' && typeof renderSentences === 'function') {
+                    renderSentences();
+                } else if (currentMode === 'grammar' && typeof renderGrammar === 'function') {
+                    renderGrammar();
+                }
+                
+                // Обновляем счетчик и индикатор
+                if (typeof updateCounter === 'function') {
+                    updateCounter(true);
+                }
+                if (typeof updateModeIndicator === 'function') {
+                    updateModeIndicator();
+                }
+                
+                console.log('✅ Состояние применено из Firebase');
             }
             
             if (window.Logger) {
