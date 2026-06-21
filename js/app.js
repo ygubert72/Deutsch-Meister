@@ -1,4 +1,4 @@
-// app.js — исправленная версия с правильным сохранением состояния
+// app.js — ПРОСТАЯ И НАДЕЖНАЯ ВЕРСИЯ
 
 let documentHidden = false;
 let appInitialized = false;
@@ -35,7 +35,6 @@ function openMobileMenu() {
     document.body.style.overflow = 'hidden';
 }
 
-// ========== ИНИЦИАЛИЗАЦИЯ МОБИЛЬНОГО МЕНЮ ==========
 function initMobileMenu() {
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     const closeMenuBtn = document.getElementById('closeMenuBtn');
@@ -408,8 +407,12 @@ function updateShareButtons() {
 function loadStateFromLocalStorage() {
     try {
         const cfg = localStorage.getItem('dm_config');
+        console.log('🔍 Проверяем localStorage dm_config:', cfg);
+        
         if (cfg) {
             const parsed = JSON.parse(cfg);
+            console.log('🔍 Распарсенный config:', parsed);
+            
             if (parsed.last_level) {
                 AppConfig.currentLevel = parsed.last_level;
             }
@@ -419,14 +422,20 @@ function loadStateFromLocalStorage() {
             AppConfig.show_language = parsed.show_language || 'de';
             AppConfig.quiz_direction = parsed.quiz_direction || 'de_to_ru';
             AppConfig.sentence_lang_from = parsed.sentence_lang_from || 'ru';
+            
             console.log('📦 ЗАГРУЖЕНО ИЗ LOCALSTORAGE:', { mode: currentMode, level: AppConfig.currentLevel });
             return true;
         } else {
             console.log('📦 LOCALSTORAGE ПУСТ, используем значения по умолчанию');
+            // Значения по умолчанию
+            currentMode = 'grammar';
+            AppConfig.currentLevel = 'A1';
             return false;
         }
     } catch(e) {
         console.error('Ошибка загрузки из localStorage:', e);
+        currentMode = 'grammar';
+        AppConfig.currentLevel = 'A1';
         return false;
     }
 }
@@ -476,6 +485,7 @@ async function init() {
     
     // ===== ШАГ 1: ЗАГРУЖАЕМ СОСТОЯНИЕ ИЗ LOCALSTORAGE =====
     loadStateFromLocalStorage();
+    console.log('📌 ПОСЛЕ ЗАГРУЗКИ LOCALSTORAGE: mode=' + currentMode + ', level=' + AppConfig.currentLevel);
     
     // ===== ШАГ 2: ЗАГРУЖАЕМ ПРОГРЕСС =====
     loadProgress();
