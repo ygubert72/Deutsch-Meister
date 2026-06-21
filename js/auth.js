@@ -506,7 +506,7 @@ window.saveUserProgressToFirebase = async function() {
     }
 };
 
-// ========== ЗАГРУЗКА ПРОГРЕССА ИЗ ОБЛАКА ==========
+// ========== ЗАГРУЗКА ПРОГРЕССА ИЗ ОБЛАКА (С ВОССТАНОВЛЕНИЕМ СОСТОЯНИЯ) ==========
 window.loadUserProgressFromFirebase = async function() {
     if (!auth || !auth.currentUser) return false;
     const userId = auth.currentUser.uid;
@@ -515,27 +515,50 @@ window.loadUserProgressFromFirebase = async function() {
         const userDoc = await db.collection('users').doc(userId).get();
         if (userDoc.exists && userDoc.data().progress) {
             const progress = userDoc.data().progress;
+            
+            // Загружаем прогресс слов
             if (progress.wordsProgress) {
                 Object.assign(wordsProgress, progress.wordsProgress);
                 localStorage.setItem('dm_words_progress', JSON.stringify(wordsProgress));
             }
+            
+            // Загружаем прогресс фраз
             if (progress.sentencesProgress) {
                 Object.assign(sentencesProgress, progress.sentencesProgress);
                 localStorage.setItem('dm_sentences_progress', JSON.stringify(sentencesProgress));
             }
+            
+            // Загружаем прогресс грамматики
             if (progress.grammarProgress) {
                 Object.assign(grammarProgress, progress.grammarProgress);
                 localStorage.setItem('dm_grammar_progress', JSON.stringify(grammarProgress));
             }
+            
+            // Загружаем конфигурацию (ВАЖНО: режим и уровень)
             if (progress.config) {
-                AppConfig.currentLevel = progress.config.last_level || 'A1';
-                AppConfig.show_language = progress.config.show_language || 'de';
-                AppConfig.quiz_direction = progress.config.quiz_direction || 'de_to_ru';
-                AppConfig.sentence_lang_from = progress.config.sentence_lang_from || 'ru';
-                currentMode = progress.config.last_mode || 'grammar';
-                localStorage.setItem('dm_config', JSON.stringify(progress.config));
+                const config = progress.config;
+                
+                // Восстанавливаем уровень
+                if (config.last_level) {
+                    AppConfig.currentLevel = config.last_level;
+                }
+                
+                // Восстанавливаем режим
+                if (config.last_mode) {
+                    currentMode = config.last_mode;
+                }
+                
+                // Восстанавливаем остальные настройки
+                AppConfig.show_language = config.show_language || 'de';
+                AppConfig.quiz_direction = config.quiz_direction || 'de_to_ru';
+                AppConfig.sentence_lang_from = config.sentence_lang_from || 'ru';
+                
+                // Сохраняем в localStorage
+                localStorage.setItem('dm_config', JSON.stringify(config));
             }
+            
             Logger.info('Прогресс загружен из облака');
+            Logger.info('Восстановлен режим:', currentMode, 'уровень:', AppConfig.currentLevel);
             return true;
         }
     } catch(e) {
