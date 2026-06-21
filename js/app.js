@@ -1,6 +1,7 @@
-// app.js — исправленная версия с функциями меню и сохранением состояния
+// app.js — исправленная версия с правильным восстановлением состояния
 
 let documentHidden = false;
+let appInitialized = false;
 
 // ========== ПРОВЕРКА ВИДИМОСТИ СТРАНИЦЫ ==========
 document.addEventListener('visibilitychange', function() {
@@ -407,26 +408,79 @@ function updateShareButtons() {
     if (shareMobile) shareMobile.style.display = shouldShow ? 'block' : 'none';
 }
 
-// ========== ИНИЦИАЛИЗАЦИЯ (С ВОССТАНОВЛЕНИЕМ СОСТОЯНИЯ) ==========
+// ========== ЗАГРУЗКА СОСТОЯНИЯ ИЗ LOCALSTORAGE ==========
+function loadStateFromLocalStorage() {
+    try {
+        const cfg = localStorage.getItem('dm_config');
+        if (cfg) {
+            const parsed = JSON.parse(cfg);
+            if (parsed.last_level) {
+                AppConfig.currentLevel = parsed.last_level;
+            }
+            if (parsed.last_mode) {
+                currentMode = parsed.last_mode;
+            }
+            AppConfig.show_language = parsed.show_language || 'de';
+            AppConfig.quiz_direction = parsed.quiz_direction || 'de_to_ru';
+            AppConfig.sentence_lang_from = parsed.sentence_lang_from || 'ru';
+            console.log('📦 Загружено из localStorage:', { mode: currentMode, level: AppConfig.currentLevel });
+            return true;
+        }
+    } catch(e) {
+        console.error('Ошибка загрузки из localStorage:', e);
+    }
+    return false;
+}
+
+// ========== ПРИМЕНЕНИЕ СОСТОЯНИЯ (ПОСЛЕ ЗАГРУЗКИ ВСЕХ ДАННЫХ) ==========
+function applyState() {
+    console.log('🔄 Применяем состояние:', { mode: currentMode, level: AppConfig.currentLevel });
+    
+    // Обновляем кнопки уровня
+    document.querySelectorAll('[data-level]').forEach(btn => {
+        if (btn.dataset.level === AppConfig.currentLevel) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+    
+    // Обновляем кнопки режима
+    document.querySelectorAll('.mode-btn').forEach(btn => {
+        if (btn.dataset.mode === currentMode) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+    
+    // Запускаем нужный режим
+    if (currentMode === 'cards') renderCards();
+    else if (currentMode === 'quiz') renderQuiz();
+    else if (currentMode === 'sentences') renderSentences();
+    else if (currentMode === 'grammar') renderGrammar();
+    
+    updateCounter(true);
+    updateModeIndicator();
+}
+
+// ========== ИНИЦИАЛИЗАЦИЯ ==========
 async function init() {
     console.log('init: начало загрузки');
     
-    if (window.isAuthenticated && window.isAuthenticated()) {
-        logUserAction('app_start', { 
-            level: AppConfig.currentLevel,
-            mode: currentMode,
-            timestamp: new Date().toISOString()
-        });
-    }
+    // 1. Сначала загружаем состояние из localStorage
+    loadStateFromLocalStorage();
     
+    // 2. Загружаем прогресс
     loadProgress();
     loadGrammarProgress();
     
+    // 3. Загружаем данные (слова, фразы, грамматику)
     await loadWords();
     await loadSentences();
     await loadGrammarData();
     
-    // ===== ПРИВЯЗКА СОБЫТИЙ К КНОПКАМ =====
+    // 4. Привязываем события к кнопкам
     document.querySelectorAll('.mode-btn').forEach(btn => {
         btn.onclick = () => setMode(btn.dataset.mode);
     });
@@ -434,39 +488,13 @@ async function init() {
         btn.onclick = () => setLevel(btn.dataset.level);
     });
     
-    // ===== ВОССТАНОВЛЕНИЕ СОСТОЯНИЯ =====
-    // 1. Восстанавливаем уровень
-    const savedLevel = AppConfig.currentLevel || 'A1';
-    document.querySelectorAll('[data-level]').forEach(btn => {
-        if (btn.dataset.level === savedLevel) {
-            btn.classList.add('active');
-        } else {
-            btn.classList.remove('active');
-        }
-    });
-    
-    // 2. Восстанавливаем режим (синхронизируем с кнопками)
-    const savedMode = currentMode || 'grammar';
-    
-    // Устанавливаем активную кнопку режима
-    document.querySelectorAll('.mode-btn').forEach(btn => {
-        if (btn.dataset.mode === savedMode) {
-            btn.classList.add('active');
-        } else {
-            btn.classList.remove('active');
-        }
-    });
-    
-    // 3. Запускаем нужный режим
-    setMode(savedMode);
-    
+    // 5. Инициализируем мобильное меню
     initMobileMenu();
-    updateModeIndicator();
     
-    setTimeout(() => {
-        updateCounter(true);
-    }, 1000);
+    // 6. Применяем состояние (запускаем нужный режим)
+    applyState();
     
+    // 7. Настройка кнопки "Поделиться"
     setTimeout(() => {
         const shareDesktop = document.getElementById('shareBtnDesktop');
         const shareMobile = document.getElementById('shareBtnMobile');
@@ -474,6 +502,7 @@ async function init() {
         if (shareMobile) shareMobile.onclick = shareApp;
     }, 500);
     
+    // 8. Периодические задачи
     setInterval(() => {
         if (!documentHidden) {
             updateShareButtons();
@@ -491,7 +520,8 @@ async function init() {
         }
     }, 5 * 60 * 1000);
     
-    console.log('init: завершено');
+    appInitialized = true;
+    console.log('init: завершено, режим:', currentMode, 'уровень:', AppConfig.currentLevel);
 }
 
 // ========== ЗАПУСК ==========
