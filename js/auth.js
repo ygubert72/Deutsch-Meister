@@ -1,11 +1,10 @@
 // auth.js — ТОЛЬКО вход, выход, регистрация и состояние пользователя
-// Остальная логика вынесена в userService.js, activityTracker.js, adminUI.js
 
 let auth = null;
 let db = null;
 let currentUserData = null;
 
-// Конфигурация Firebase (остаётся здесь)
+// Конфигурация Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyAUj_2cLQyWvs2JTT7Zl2BYox0krDb3X7I",
     authDomain: "deutsch-meister-248cf.firebaseapp.com",
@@ -30,31 +29,43 @@ function initFirebase() {
     db = firebase.firestore();
     
     auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-        .then(() => Logger.info('Сессия будет сохраняться'))
-        .catch((error) => Logger.error('Ошибка настройки сохранения:', error));
+        .then(() => {
+            if (window.Logger) Logger.info('Сессия будет сохраняться');
+        })
+        .catch((error) => {
+            if (window.Logger) Logger.error('Ошибка настройки сохранения:', error);
+        });
     
-    Logger.info('Firebase готов');
+    if (window.Logger) Logger.info('Firebase готов');
     
     auth.onAuthStateChanged(async (user) => {
         if (user) {
-            Logger.info('Пользователь в системе:', user.email);
+            if (window.Logger) Logger.info('Пользователь в системе:', user.email);
             
-            // Логируем активность через activityTracker
             if (window.ActivityTracker) {
                 await window.ActivityTracker.logUserActivity(user);
             }
             
-            // Загружаем данные пользователя
             await loadUserData(user.uid);
+            
+            // Загружаем прогресс из Firebase
             await window.loadUserProgressFromFirebase();
+            
             await addUserToFirestore(user);
             await checkIfBlocked(user);
         } else {
             currentUserData = null;
         }
+        
         updateUI(user);
-        if (typeof updateCounter === 'function') updateCounter();
-        if (typeof renderGrammar === 'function') renderGrammar();
+        
+        // БЕЗОПАСНЫЙ ВЫЗОВ — проверяем, что функции существуют
+        if (typeof updateCounter === 'function') {
+            updateCounter();
+        }
+        if (typeof renderGrammar === 'function') {
+            renderGrammar();
+        }
     });
 }
 
@@ -65,10 +76,12 @@ async function loadUserData(uid) {
         const userDoc = await db.collection('users').doc(uid).get();
         if (userDoc.exists) {
             currentUserData = userDoc.data();
-            Logger.info('Данные пользователя загружены, доступ к B1-C1:', currentUserData.hasPremiumAccess);
+            if (window.Logger) {
+                Logger.info('Данные пользователя загружены, доступ к B1-C1:', currentUserData.hasPremiumAccess);
+            }
         }
     } catch(e) {
-        Logger.error('Ошибка загрузки данных пользователя:', e);
+        if (window.Logger) Logger.error('Ошибка загрузки данных пользователя:', e);
     }
 }
 
@@ -106,7 +119,7 @@ async function checkIfBlocked(user) {
             location.reload();
         }
     } catch(e) {
-        Logger.error('Ошибка проверки блокировки:', e);
+        if (window.Logger) Logger.error('Ошибка проверки блокировки:', e);
     }
 }
 
@@ -128,10 +141,10 @@ async function addUserToFirestore(user) {
                 flags: { totalFlags: 0 },
                 _previousFlags: { totalFlags: 0 }
             });
-            Logger.info('Пользователь добавлен в Firestore:', user.email);
+            if (window.Logger) Logger.info('Пользователь добавлен в Firestore:', user.email);
         }
     } catch(e) {
-        Logger.error('Ошибка добавления пользователя:', e);
+        if (window.Logger) Logger.error('Ошибка добавления пользователя:', e);
     }
 }
 
@@ -140,10 +153,10 @@ async function login(email, password) {
     try {
         await auth.signInWithEmailAndPassword(email, password);
         await window.loadUserProgressFromFirebase();
-        Logger.info('Вход выполнен:', email);
+        if (window.Logger) Logger.info('Вход выполнен:', email);
         return { success: true };
     } catch(error) {
-        Logger.error('Ошибка входа:', error.message);
+        if (window.Logger) Logger.error('Ошибка входа:', error.message);
         return { success: false, error: error.message };
     }
 }
@@ -166,10 +179,10 @@ async function register(email, password) {
                 _previousFlags: { totalFlags: 0 }
             });
         }
-        Logger.info('Регистрация выполнена:', email);
+        if (window.Logger) Logger.info('Регистрация выполнена:', email);
         return { success: true };
     } catch(error) {
-        Logger.error('Ошибка регистрации:', error.message);
+        if (window.Logger) Logger.error('Ошибка регистрации:', error.message);
         return { success: false, error: error.message };
     }
 }
@@ -178,7 +191,7 @@ async function register(email, password) {
 window.logout = async function() {
     if (auth) {
         await auth.signOut();
-        Logger.info('Выход выполнен');
+        if (window.Logger) Logger.info('Выход выполнен');
     }
     location.reload();
 };
@@ -217,7 +230,7 @@ function updateUI(user) {
                     <span style="font-size:20px;">🎓</span>
                     <span style="word-break:break-all;">${user.email}</span>
                 </div>
-                <button onclick="logout()" style="margin-top:5px; padding:8px 12px; background:#4CAF50; color:white; border:none; border-radius:16px; cursor:pointer; width:100%; font-size:12px; font-weight:bold;">🚪 Выйти</button>
+                <button onclick="window.logout()" style="margin-top:5px; padding:8px 12px; background:#4CAF50; color:white; border:none; border-radius:16px; cursor:pointer; width:100%; font-size:12px; font-weight:bold;">🚪 Выйти</button>
                 ${premiumButtonHtml}
             </div>
         `;
@@ -225,12 +238,10 @@ function updateUI(user) {
         userInfo.innerHTML = userInfoHtml;
         if (userInfoMobile) userInfoMobile.innerHTML = userInfoHtml;
         
-        // Админ-кнопка через adminUI
         if (isAdmin && window.AdminUI) {
             window.AdminUI.addAdminButton();
         }
         
-        // Кнопка оплаты
         if (!isAdmin && !hasPremium) {
             setTimeout(() => {
                 const payBtn = document.getElementById('premiumPayBtn');
@@ -239,7 +250,6 @@ function updateUI(user) {
         }
         
     } else {
-        // Гостевой режим
         loginBtn.style.display = 'block';
         if (loginBtnMobile) loginBtnMobile.style.display = 'block';
         
@@ -259,7 +269,6 @@ function updateUI(user) {
         loginBtn.onclick = () => showLoginModal();
         if (loginBtnMobile) loginBtnMobile.onclick = () => showLoginModal();
         
-        // Удаляем админ-кнопку
         const oldAdminBtn = document.getElementById('adminBtn');
         if (oldAdminBtn) oldAdminBtn.remove();
         const oldAdminBtnMobile = document.getElementById('adminBtnMobile');
@@ -500,13 +509,13 @@ window.saveUserProgressToFirebase = async function() {
         await db.collection('users').doc(userId).set({
             progress: progressData
         }, { merge: true });
-        Logger.debug('Прогресс сохранён в облаке');
+        if (window.Logger) Logger.debug('Прогресс сохранён в облаке');
     } catch(e) {
-        Logger.error('Ошибка сохранения прогресса:', e);
+        if (window.Logger) Logger.error('Ошибка сохранения прогресса:', e);
     }
 };
 
-// ========== ЗАГРУЗКА ПРОГРЕССА ИЗ ОБЛАКА (С ВОССТАНОВЛЕНИЕМ СОСТОЯНИЯ) ==========
+// ========== ЗАГРУЗКА ПРОГРЕССА ИЗ ОБЛАКА ==========
 window.loadUserProgressFromFirebase = async function() {
     if (!auth || !auth.currentUser) return false;
     const userId = auth.currentUser.uid;
@@ -516,60 +525,83 @@ window.loadUserProgressFromFirebase = async function() {
         if (userDoc.exists && userDoc.data().progress) {
             const progress = userDoc.data().progress;
             
-            // Загружаем прогресс слов
             if (progress.wordsProgress) {
                 Object.assign(wordsProgress, progress.wordsProgress);
                 localStorage.setItem('dm_words_progress', JSON.stringify(wordsProgress));
             }
             
-            // Загружаем прогресс фраз
             if (progress.sentencesProgress) {
                 Object.assign(sentencesProgress, progress.sentencesProgress);
                 localStorage.setItem('dm_sentences_progress', JSON.stringify(sentencesProgress));
             }
             
-            // Загружаем прогресс грамматики
             if (progress.grammarProgress) {
                 Object.assign(grammarProgress, progress.grammarProgress);
                 localStorage.setItem('dm_grammar_progress', JSON.stringify(grammarProgress));
             }
             
-            // Загружаем конфигурацию (ВАЖНО: режим и уровень)
             if (progress.config) {
                 const config = progress.config;
                 
-                // Восстанавливаем уровень
+                localStorage.setItem('dm_config', JSON.stringify(config));
+                
                 if (config.last_level) {
                     AppConfig.currentLevel = config.last_level;
                 }
-                
-                // Восстанавливаем режим
                 if (config.last_mode) {
                     currentMode = config.last_mode;
                 }
-                
-                // Восстанавливаем остальные настройки
                 AppConfig.show_language = config.show_language || 'de';
                 AppConfig.quiz_direction = config.quiz_direction || 'de_to_ru';
                 AppConfig.sentence_lang_from = config.sentence_lang_from || 'ru';
                 
-                // Сохраняем в localStorage
-                localStorage.setItem('dm_config', JSON.stringify(config));
+                console.log('☁️ Загружено из Firebase:', { mode: currentMode, level: AppConfig.currentLevel });
+                
+                // Применяем состояние, если приложение уже инициализировано
+                if (window.appInitialized) {
+                    console.log('🔄 Применяем состояние из Firebase');
+                    
+                    document.querySelectorAll('[data-level]').forEach(btn => {
+                        if (btn.dataset.level === AppConfig.currentLevel) {
+                            btn.classList.add('active');
+                        } else {
+                            btn.classList.remove('active');
+                        }
+                    });
+                    
+                    document.querySelectorAll('.mode-btn').forEach(btn => {
+                        if (btn.dataset.mode === currentMode) {
+                            btn.classList.add('active');
+                        } else {
+                            btn.classList.remove('active');
+                        }
+                    });
+                    
+                    if (currentMode === 'cards' && typeof renderCards === 'function') renderCards();
+                    else if (currentMode === 'quiz' && typeof renderQuiz === 'function') renderQuiz();
+                    else if (currentMode === 'sentences' && typeof renderSentences === 'function') renderSentences();
+                    else if (currentMode === 'grammar' && typeof renderGrammar === 'function') renderGrammar();
+                    
+                    if (typeof updateCounter === 'function') updateCounter(true);
+                    if (typeof updateModeIndicator === 'function') updateModeIndicator();
+                }
             }
             
-            Logger.info('Прогресс загружен из облака');
-            Logger.info('Восстановлен режим:', currentMode, 'уровень:', AppConfig.currentLevel);
+            if (window.Logger) {
+                Logger.info('Прогресс загружен из облака');
+                Logger.info('Восстановлен режим:', currentMode, 'уровень:', AppConfig.currentLevel);
+            }
             return true;
         }
     } catch(e) {
-        Logger.error('Ошибка загрузки прогресса:', e);
+        if (window.Logger) Logger.error('Ошибка загрузки прогресса:', e);
     }
     return false;
 };
 
 // ========== ЗАПУСК ==========
 window.addEventListener('load', function() {
-    Logger.info('Загрузка страницы...');
+    if (window.Logger) Logger.info('Загрузка страницы...');
     const loginBtn = document.getElementById('loginBtn');
     if (loginBtn) {
         loginBtn.style.background = '#4CAF50';
