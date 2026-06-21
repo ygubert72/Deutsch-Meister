@@ -1,4 +1,4 @@
-// app.js — исправленная версия с функциями меню и сохранением состояния
+// app.js — исправленная версия с правильным сохранением состояния
 
 let documentHidden = false;
 let appInitialized = false;
@@ -419,19 +419,23 @@ function loadStateFromLocalStorage() {
             AppConfig.show_language = parsed.show_language || 'de';
             AppConfig.quiz_direction = parsed.quiz_direction || 'de_to_ru';
             AppConfig.sentence_lang_from = parsed.sentence_lang_from || 'ru';
-            console.log('📦 Загружено из localStorage:', { mode: currentMode, level: AppConfig.currentLevel });
+            console.log('📦 ЗАГРУЖЕНО ИЗ LOCALSTORAGE:', { mode: currentMode, level: AppConfig.currentLevel });
             return true;
+        } else {
+            console.log('📦 LOCALSTORAGE ПУСТ, используем значения по умолчанию');
+            return false;
         }
     } catch(e) {
         console.error('Ошибка загрузки из localStorage:', e);
+        return false;
     }
-    return false;
 }
 
 // ========== ПРИМЕНЕНИЕ СОСТОЯНИЯ ==========
 function applyState() {
-    console.log('🔄 Применяем состояние из localStorage:', { mode: currentMode, level: AppConfig.currentLevel });
+    console.log('🔄 ПРИМЕНЯЕМ СОСТОЯНИЕ:', { mode: currentMode, level: AppConfig.currentLevel });
     
+    // Обновляем кнопки уровня
     document.querySelectorAll('[data-level]').forEach(btn => {
         if (btn.dataset.level === AppConfig.currentLevel) {
             btn.classList.add('active');
@@ -440,6 +444,7 @@ function applyState() {
         }
     });
     
+    // Обновляем кнопки режима
     document.querySelectorAll('.mode-btn').forEach(btn => {
         if (btn.dataset.mode === currentMode) {
             btn.classList.add('active');
@@ -447,6 +452,9 @@ function applyState() {
             btn.classList.remove('active');
         }
     });
+    
+    // ЗАПУСКАЕМ РЕЖИМ
+    console.log('🚀 ЗАПУСКАЕМ РЕЖИМ:', currentMode);
     
     if (currentMode === 'cards') {
         if (typeof renderCards === 'function') renderCards();
@@ -464,16 +472,21 @@ function applyState() {
 
 // ========== ИНИЦИАЛИЗАЦИЯ ==========
 async function init() {
-    console.log('init: начало загрузки');
+    console.log('🔥 INIT: НАЧАЛО ЗАГРУЗКИ');
     
+    // ===== ШАГ 1: ЗАГРУЖАЕМ СОСТОЯНИЕ ИЗ LOCALSTORAGE =====
     loadStateFromLocalStorage();
+    
+    // ===== ШАГ 2: ЗАГРУЖАЕМ ПРОГРЕСС =====
     loadProgress();
     loadGrammarProgress();
     
+    // ===== ШАГ 3: ЗАГРУЖАЕМ ДАННЫЕ =====
     await loadWords();
     await loadSentences();
     await loadGrammarData();
     
+    // ===== ШАГ 4: ПРИВЯЗЫВАЕМ СОБЫТИЯ К КНОПКАМ =====
     document.querySelectorAll('.mode-btn').forEach(btn => {
         btn.onclick = () => setMode(btn.dataset.mode);
     });
@@ -481,9 +494,13 @@ async function init() {
         btn.onclick = () => setLevel(btn.dataset.level);
     });
     
+    // ===== ШАГ 5: ИНИЦИАЛИЗИРУЕМ МОБИЛЬНОЕ МЕНЮ =====
     initMobileMenu();
+    
+    // ===== ШАГ 6: ПРИМЕНЯЕМ СОСТОЯНИЕ =====
     applyState();
     
+    // ===== ШАГ 7: НАСТРОЙКА КНОПКИ "ПОДЕЛИТЬСЯ" =====
     setTimeout(() => {
         const shareDesktop = document.getElementById('shareBtnDesktop');
         const shareMobile = document.getElementById('shareBtnMobile');
@@ -491,6 +508,7 @@ async function init() {
         if (shareMobile) shareMobile.onclick = shareApp;
     }, 500);
     
+    // ===== ШАГ 8: ПЕРИОДИЧЕСКИЕ ЗАДАЧИ =====
     setInterval(() => {
         if (!documentHidden) {
             updateShareButtons();
@@ -509,7 +527,7 @@ async function init() {
     }, 5 * 60 * 1000);
     
     appInitialized = true;
-    console.log('✅ init: завершено, режим:', currentMode, 'уровень:', AppConfig.currentLevel);
+    console.log('✅ INIT: ЗАВЕРШЕНО, режим:', currentMode, 'уровень:', AppConfig.currentLevel);
 }
 
 // ========== ЗАПУСК ==========
