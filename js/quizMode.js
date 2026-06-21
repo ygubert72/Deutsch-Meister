@@ -1,4 +1,4 @@
-// quizMode.js — ИСПРАВЛЕНАЯ ВЕРСИЯ (без дублирования переменных)
+// quizMode.js — С КАРУСЕЛЬЮ (как в cardsMode)
 
 let quizList = [];
 let quizIndex = 0;
@@ -22,7 +22,7 @@ function renderQuiz() {
 }
 
 // ============================================================
-// ========== ДЕСКТОПНАЯ ВЕРСИЯ ==========
+// ========== ДЕСКТОПНАЯ ВЕРСИЯ (КНОПКИ) ==========
 // ============================================================
 function renderQuizDesktop() {
     document.getElementById('content').innerHTML = `
@@ -98,6 +98,7 @@ function renderQuizDesktop() {
         document.getElementById('quizProgress').textContent = `Текущее слово: ${quizIndex+1} из ${quizList.length}`;
     };
 
+    // --- ОБРАБОТЧИКИ КНОПОК (ДЕСКТОП) ---
     document.getElementById('quizDirBtn').onclick = () => {
         AppConfig.quiz_direction = AppConfig.quiz_direction === 'de_to_ru' ? 'ru_to_de' : 'de_to_ru';
         window.showCurrentQuiz();
@@ -151,14 +152,14 @@ function renderQuizDesktop() {
 }
 
 // ============================================================
-// ========== МОБИЛЬНАЯ ВЕРСИЯ (использует переменные из cardsMode) ==========
+// ========== МОБИЛЬНАЯ ВЕРСИЯ (КАРУСЕЛЬ) ==========
 // ============================================================
 function renderQuizMobile() {
     document.getElementById('content').innerHTML = `
         <div style="text-align: center;">
             <button class="dir-btn" id="quizDirBtn">${AppConfig.quiz_direction === 'de_to_ru' ? 'De → Ru' : 'Ru → De'}</button>
             <div id="carouselWrapper" style="overflow: hidden; width: 100%; position: relative; touch-action: pan-y pinch-zoom;">
-                <div id="carouselTrack" style="display: flex; transition: transform ${snapDuration}ms cubic-bezier(0.2, 0.9, 0.4, 1.1); will-change: transform;">
+                <div id="carouselTrack" style="display: flex; transition: transform 250ms cubic-bezier(0.2, 0.9, 0.4, 1.1); will-change: transform;">
                     ${generateQuizCards()}
                 </div>
             </div>
@@ -172,6 +173,7 @@ function renderQuizMobile() {
         </div>
     `;
 
+    // --- ГЕНЕРАЦИЯ КАРТОЧЕК КАРУСЕЛИ (5 штук) ---
     function generateQuizCards() {
         if (!quizList.length) {
             return `<div class="quiz-carousel-card" style="flex: 0 0 100%; min-width: 100%; padding: 20px;"><div class="quiz-question">🎉 Все слова изучены!</div></div>`;
@@ -215,6 +217,7 @@ function renderQuizMobile() {
         return html;
     }
 
+    // --- ПРИВЯЗКА СОБЫТИЙ К КНОПКАМ В КАРУСЕЛИ ---
     function attachQuizEvents() {
         const cards = document.querySelectorAll('#carouselTrack .quiz-carousel-card');
         cards.forEach((card) => {
@@ -253,17 +256,19 @@ function renderQuizMobile() {
         });
     }
 
+    // --- УПРАВЛЕНИЕ ПОЗИЦИЕЙ КАРУСЕЛИ ---
     function updateCarouselPosition(animate = true) {
         const track = document.getElementById('carouselTrack');
         if (!track) return;
         if (!animate) track.style.transition = 'none';
-        else track.style.transition = `transform ${snapDuration}ms cubic-bezier(0.2, 0.9, 0.4, 1.1)`;
-        const offset = -2 * containerWidth;
+        else track.style.transition = 'transform 250ms cubic-bezier(0.2, 0.9, 0.4, 1.1)';
+        const trackWidth = track.parentElement.offsetWidth || window.innerWidth;
+        const offset = -2 * trackWidth;
         track.style.transform = `translateX(${offset}px)`;
-        currentTranslate = offset;
         if (!animate) setTimeout(() => { if (track) track.style.transition = ''; }, 50);
     }
 
+    // --- ОБНОВЛЕНИЕ КАРУСЕЛИ ---
     window.refreshQuizCarousel = function() {
         const track = document.getElementById('carouselTrack');
         if (!track) return;
@@ -273,15 +278,23 @@ function renderQuizMobile() {
         document.getElementById('quizProgress').textContent = `Слово: ${quizIndex+1} из ${quizList.length}`;
     };
 
+    // --- ОБРАБОТЧИКИ СВАЙПА ---
     const wrapper = document.getElementById('carouselWrapper');
     const track = document.getElementById('carouselTrack');
     if (track && wrapper) {
-        containerWidth = wrapper.offsetWidth;
-        window.refreshQuizCarousel();
+        let touchStartX = 0;
+        let isDragging = false;
+        let currentTranslate = 0;
+        const minSwipeDistance = 50;
+        
+        // Инициализация
+        refreshQuizCarousel();
         
         track.addEventListener('touchstart', (e) => {
             isDragging = true;
             touchStartX = e.changedTouches[0].screenX;
+            const trackWidth = wrapper.offsetWidth;
+            currentTranslate = -2 * trackWidth;
             track.style.transition = 'none';
         });
         
@@ -311,6 +324,7 @@ function renderQuizMobile() {
         });
     }
 
+    // --- ОБРАБОТЧИКИ КНОПОК (МОБИЛЬНЫЕ) ---
     document.getElementById('quizDirBtn').onclick = () => {
         AppConfig.quiz_direction = AppConfig.quiz_direction === 'de_to_ru' ? 'ru_to_de' : 'de_to_ru';
         refreshQuizCarousel();
@@ -346,7 +360,6 @@ function renderQuizMobile() {
     };
 
     window.addEventListener('resize', () => {
-        containerWidth = wrapper?.offsetWidth || 0;
         updateCarouselPosition(false);
     });
 }
@@ -386,7 +399,6 @@ function showQuizContainer(studiedWords) {
             }
         });
     } else {
-        // fallback
         const oldModal = document.getElementById('studiedWordsModal');
         if (oldModal) oldModal.remove();
         alert('ContainerManager не загружен, но слова возвращены.');
