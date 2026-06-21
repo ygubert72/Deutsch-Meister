@@ -1,10 +1,11 @@
-// quizMode.js — С КАРУСЕЛЬЮ (исправлен)
-
-const snapDuration = 250;  // ← ДОБАВЛЕНО!
+// quizMode.js — ИСПРАВЛЕНАЯ ВЕРСИЯ (без ошибок)
 
 let quizList = [];
 let quizIndex = 0;
 let quizCurrentWord = null;
+
+// Используем глобальную snapDuration из cardsMode.js
+// НЕ ОБЪЯВЛЯЕМ ЕЁ ЗДЕСЬ!
 
 // ========== ОПРЕДЕЛЕНИЕ МОБИЛЬНОГО УСТРОЙСТВА ==========
 function isMobileDevice() {
@@ -100,6 +101,7 @@ function renderQuizDesktop() {
         document.getElementById('quizProgress').textContent = `Текущее слово: ${quizIndex+1} из ${quizList.length}`;
     };
 
+    // --- ОБРАБОТЧИКИ КНОПОК (ДЕСКТОП) ---
     document.getElementById('quizDirBtn').onclick = () => {
         AppConfig.quiz_direction = AppConfig.quiz_direction === 'de_to_ru' ? 'ru_to_de' : 'de_to_ru';
         window.showCurrentQuiz();
@@ -278,6 +280,7 @@ function renderQuizMobile() {
     const wrapper = document.getElementById('carouselWrapper');
     const track = document.getElementById('carouselTrack');
     if (track && wrapper) {
+        // Локальные переменные для этой функции
         let touchStartX = 0;
         let isDragging = false;
         let currentTranslate = 0;
@@ -319,6 +322,7 @@ function renderQuizMobile() {
         });
     }
 
+    // --- ОБРАБОТЧИКИ КНОПОК (МОБИЛЬНЫЕ) ---
     document.getElementById('quizDirBtn').onclick = () => {
         AppConfig.quiz_direction = AppConfig.quiz_direction === 'de_to_ru' ? 'ru_to_de' : 'de_to_ru';
         refreshQuizCarousel();
@@ -359,7 +363,7 @@ function renderQuizMobile() {
 }
 
 // ============================================================
-// ========== УНИВЕРСАЛЬНЫЙ КОНТЕЙНЕР ДЛЯ QUIZ ==========
+// ========== КОНТЕЙНЕР ЧЕРЕЗ CONTAINERMANAGER ==========
 // ============================================================
 function showQuizContainer(studiedWords) {
     if (window.ContainerManager) {
@@ -393,6 +397,7 @@ function showQuizContainer(studiedWords) {
             }
         });
     } else {
+        // fallback (если ContainerManager не загружен)
         const oldModal = document.getElementById('studiedWordsModal');
         if (oldModal) oldModal.remove();
         alert('ContainerManager не загружен, но слова возвращены.');
