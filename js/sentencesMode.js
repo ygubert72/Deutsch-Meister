@@ -1,4 +1,6 @@
-// sentencesMode.js — С КАРУСЕЛЬЮ (как в cardsMode)
+// sentencesMode.js — С КАРУСЕЛЬЮ (исправлен)
+
+const snapDuration = 250;  // ← ДОБАВЛЕНО!
 
 let sentencesList = [];
 let sentencesIndex = 0;
@@ -252,7 +254,7 @@ function renderSentencesMobile() {
         <div style="text-align: center;">
             <button class="dir-btn" id="sentDirBtn">${AppConfig.sentence_lang_from === 'ru' ? 'Ru → De' : 'De → Ru'}</button>
             <div id="carouselWrapper" style="overflow: hidden; width: 100%; position: relative; touch-action: pan-y pinch-zoom;">
-                <div id="carouselTrack" style="display: flex; transition: transform 250ms cubic-bezier(0.2, 0.9, 0.4, 1.1); will-change: transform;">
+                <div id="carouselTrack" style="display: flex; transition: transform ${snapDuration}ms cubic-bezier(0.2, 0.9, 0.4, 1.1); will-change: transform;">
                     ${generateSentencesCards()}
                 </div>
             </div>
@@ -306,7 +308,7 @@ function renderSentencesMobile() {
         const track = document.getElementById('carouselTrack');
         if (!track) return;
         if (!animate) track.style.transition = 'none';
-        else track.style.transition = 'transform 250ms cubic-bezier(0.2, 0.9, 0.4, 1.1)';
+        else track.style.transition = `transform ${snapDuration}ms cubic-bezier(0.2, 0.9, 0.4, 1.1)`;
         const trackWidth = track.parentElement.offsetWidth || window.innerWidth;
         const offset = -2 * trackWidth;
         track.style.transform = `translateX(${offset}px)`;
