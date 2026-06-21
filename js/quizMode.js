@@ -1,4 +1,4 @@
-// quizMode.js — ИСПРАВЛЕННАЯ ВЕРСИЯ С КАРУСЕЛЬЮ
+// quizMode.js — с каруселью ТОЛЬКО в мобильной версии
 
 let quizList = [];
 let quizIndex = 0;
@@ -21,7 +21,7 @@ function renderQuiz() {
     }
 }
 
-// ========== ДЕСКТОПНАЯ ВЕРСИЯ ==========
+// ========== ДЕСКТОПНАЯ ВЕРСИЯ (НЕ ТРОГАЕМ) ==========
 function renderQuizDesktop() {
     document.getElementById('content').innerHTML = `
         <div style="text-align: center;">
@@ -148,27 +148,32 @@ function renderQuizDesktop() {
     updateCounter();
 }
 
-// ========== МОБИЛЬНАЯ ВЕРСИЯ (КАРУСЕЛЬ) ==========
+// ========== МОБИЛЬНАЯ ВЕРСИЯ (С КАРУСЕЛЬЮ, БЕЗ КНОПОК ВПЕРЕД-НАЗАД) ==========
 function renderQuizMobile() {
     document.getElementById('content').innerHTML = `
         <div style="text-align: center;">
             <button class="dir-btn" id="quizDirBtn">${AppConfig.quiz_direction === 'de_to_ru' ? 'De → Ru' : 'Ru → De'}</button>
+            
+            <!-- КАРУСЕЛЬ -->
             <div id="carouselWrapper" style="overflow: hidden; width: 100%; position: relative; touch-action: pan-y pinch-zoom;">
                 <div id="carouselTrack" style="display: flex; transition: transform 250ms cubic-bezier(0.2, 0.9, 0.4, 1.1); will-change: transform;">
                     ${generateQuizCards()}
                 </div>
             </div>
+            
+            <!-- КНОПКИ: БЕЗ ВПЕРЕД/НАЗАД, ТОЛЬКО ИЗУЧЕНО, КОНТЕЙНЕР, В НАЧАЛО -->
             <div class="btn-group">
                 <button class="ctrl-btn" id="quizStudyBtn">ИЗУЧЕНО</button>
                 <button class="ctrl-btn" id="quizContainerBtn">В КОНТЕЙНЕР</button>
                 <button class="ctrl-btn" id="quizResetStartBtn">⏮ В НАЧАЛО</button>
             </div>
+            
             <div class="hint" id="quizProgress"></div>
             <div class="hint">👆 Свайп влево/вправо для листания</div>
         </div>
     `;
 
-    // --- ВСЕ ПЕРЕМЕННЫЕ КАРУСЕЛИ — ЛОКАЛЬНЫЕ! ---
+    // ========== ПЕРЕМЕННЫЕ КАРУСЕЛИ ==========
     let touchStartX = 0;
     let isDragging = false;
     let containerWidth = 0;
@@ -176,19 +181,28 @@ function renderQuizMobile() {
     const minSwipeDistance = 50;
     const snapDuration = 250;
 
+    // ========== ГЕНЕРАЦИЯ КАРТОЧЕК ==========
     function generateQuizCards() {
         if (!quizList.length) {
-            return `<div class="quiz-carousel-card" style="flex: 0 0 100%; min-width: 100%; padding: 20px;"><div class="quiz-question">🎉 Все слова изучены!</div></div>`;
+            return `<div class="quiz-carousel-card" style="flex: 0 0 100%; min-width: 100%; padding: 20px;">
+                <div class="quiz-question" style="font-size:24px; text-align:center; padding:40px;">🎉 Все слова изучены!</div>
+            </div>`;
         }
+        
         const total = quizList.length;
         let html = '';
+        
+        // Показываем 5 карточек: текущая + по 2 с каждой стороны
         for (let i = -2; i <= 2; i++) {
             let idx = quizIndex + i;
             if (idx < 0) idx = total + idx;
             if (idx >= total) idx = idx - total;
-            const word = quizList[idx];
-            const questionText = AppConfig.quiz_direction === 'de_to_ru' ? word.de : word.ru;
             
+            const word = quizList[idx];
+            const isDeToRu = AppConfig.quiz_direction === 'de_to_ru';
+            const questionText = isDeToRu ? word.de : word.ru;
+            
+            // Генерируем варианты ответов
             const allWords = wordsDB[AppConfig.currentLevel] || [];
             const otherWords = allWords.filter(w => w.de !== word.de);
             const shuffled = [...otherWords];
@@ -204,34 +218,42 @@ function renderQuizMobile() {
             
             let optionsHtml = '<div class="quiz-grid" style="margin-top: 20px;">';
             options.forEach(opt => {
-                const optText = AppConfig.quiz_direction === 'de_to_ru' ? opt.ru : opt.de;
-                optionsHtml += `<button class="quiz-opt" data-value="${optText.replace(/'/g, "\\'")}">${optText}</button>`;
+                const optText = isDeToRu ? opt.ru : opt.de;
+                const safeText = optText.replace(/'/g, "\\'");
+                optionsHtml += `<button class="quiz-opt" data-value="${safeText}">${optText}</button>`;
             });
             optionsHtml += '</div>';
             
             html += `
-                <div class="quiz-carousel-card" data-idx="${idx}" style="flex: 0 0 100%; min-width: 100%; padding: 20px;">
-                    <div class="quiz-question" style="font-size: 24px; margin: 20px 0;">${questionText}</div>
-                    ${optionsHtml}
+                <div class="quiz-carousel-card" data-idx="${idx}" style="flex: 0 0 100%; min-width: 100%; padding: 20px; box-sizing: border-box;">
+                    <div style="background:#FFFFFF; border-radius:20px; padding:20px; box-shadow:0 8px 24px rgba(0,0,0,0.1);">
+                        <div class="quiz-question" style="font-size:24px; text-align:center; margin:10px 0;">${questionText}</div>
+                        ${optionsHtml}
+                    </div>
                 </div>
             `;
         }
         return html;
     }
 
+    // ========== ПРИВЯЗКА СОБЫТИЙ К КНОПКАМ ВАРИАНТОВ ==========
     function attachQuizEvents() {
         const cards = document.querySelectorAll('#carouselTrack .quiz-carousel-card');
+        
         cards.forEach((card) => {
             const btns = card.querySelectorAll('.quiz-opt');
+            const wordIdx = parseInt(card.getAttribute('data-idx'));
+            const currentWord = quizList[wordIdx];
+            
             btns.forEach(btn => {
                 btn.onclick = (e) => {
                     e.stopPropagation();
+                    
                     const userAnswer = btn.getAttribute('data-value').toLowerCase();
-                    const wordIdx = parseInt(card.getAttribute('data-idx'));
-                    const currentWord = quizList[wordIdx];
                     if (!currentWord) return;
                     
-                    const correctAnswer = AppConfig.quiz_direction === 'de_to_ru' ? currentWord.ru.toLowerCase() : currentWord.de.toLowerCase();
+                    const isDeToRu = AppConfig.quiz_direction === 'de_to_ru';
+                    const correctAnswer = isDeToRu ? currentWord.ru.toLowerCase() : currentWord.de.toLowerCase();
                     
                     if (userAnswer === correctAnswer) {
                         btn.classList.add('correct');
@@ -257,54 +279,75 @@ function renderQuizMobile() {
         });
     }
 
+    // ========== УПРАВЛЕНИЕ ПОЗИЦИЕЙ КАРУСЕЛИ ==========
     function updateCarouselPosition(animate = true) {
         const track = document.getElementById('carouselTrack');
         if (!track) return;
-        if (!animate) track.style.transition = 'none';
-        else track.style.transition = `transform ${snapDuration}ms cubic-bezier(0.2, 0.9, 0.4, 1.1)`;
+        
+        if (!animate) {
+            track.style.transition = 'none';
+        } else {
+            track.style.transition = `transform ${snapDuration}ms cubic-bezier(0.2, 0.9, 0.4, 1.1)`;
+        }
+        
         const offset = -2 * containerWidth;
         track.style.transform = `translateX(${offset}px)`;
         currentTranslate = offset;
-        if (!animate) setTimeout(() => { if (track) track.style.transition = ''; }, 50);
+        
+        if (!animate) {
+            setTimeout(() => { 
+                if (track) track.style.transition = ''; 
+            }, 50);
+        }
     }
 
+    // ========== ОБНОВЛЕНИЕ КАРУСЕЛИ ==========
     function refreshCarousel() {
         const track = document.getElementById('carouselTrack');
         if (!track) return;
+        
         track.innerHTML = generateQuizCards();
         updateCarouselPosition(false);
         attachQuizEvents();
+        
         document.getElementById('quizProgress').textContent = `Слово: ${quizIndex+1} из ${quizList.length}`;
     }
 
+    // ========== ИНИЦИАЛИЗАЦИЯ КАРУСЕЛИ ==========
     const wrapper = document.getElementById('carouselWrapper');
     const track = document.getElementById('carouselTrack');
+    
     if (track && wrapper) {
         containerWidth = wrapper.offsetWidth;
         refreshCarousel();
         
+        // ========== ОБРАБОТЧИКИ СВАЙПОВ ==========
         track.addEventListener('touchstart', (e) => {
             isDragging = true;
             touchStartX = e.changedTouches[0].screenX;
             track.style.transition = 'none';
-        });
+        }, { passive: true });
         
         track.addEventListener('touchmove', (e) => {
             if (!isDragging) return;
             const touchCurrentX = e.changedTouches[0].screenX;
             const delta = touchCurrentX - touchStartX;
             track.style.transform = `translateX(${currentTranslate + delta}px)`;
-        });
+        }, { passive: true });
         
         track.addEventListener('touchend', (e) => {
             if (!isDragging) return;
             isDragging = false;
+            
             const endX = e.changedTouches[0].screenX;
             const delta = endX - touchStartX;
-            if (Math.abs(delta) > minSwipeDistance) {
+            
+            if (Math.abs(delta) > minSwipeDistance && quizList.length > 0) {
                 if (delta > 0) {
+                    // Свайп вправо → предыдущее слово
                     quizIndex = quizIndex === 0 ? quizList.length - 1 : quizIndex - 1;
                 } else {
+                    // Свайп влево → следующее слово
                     quizIndex = (quizIndex + 1) % quizList.length;
                 }
                 refreshCarousel();
@@ -312,9 +355,12 @@ function renderQuizMobile() {
             } else {
                 updateCarouselPosition(true);
             }
-        });
+        }, { passive: true });
     }
 
+    // ========== КНОПКИ ==========
+    
+    // Смена направления
     document.getElementById('quizDirBtn').onclick = () => {
         AppConfig.quiz_direction = AppConfig.quiz_direction === 'de_to_ru' ? 'ru_to_de' : 'de_to_ru';
         refreshCarousel();
@@ -322,6 +368,7 @@ function renderQuizMobile() {
         saveProgress();
     };
 
+    // ИЗУЧЕНО
     document.getElementById('quizStudyBtn').onclick = () => {
         if (quizList.length && quizList[quizIndex]) {
             markWordAsStudied(quizList[quizIndex]);
@@ -332,6 +379,7 @@ function renderQuizMobile() {
         }
     };
 
+    // В НАЧАЛО
     document.getElementById('quizResetStartBtn').onclick = () => {
         if (quizList.length) {
             quizIndex = 0;
@@ -340,6 +388,7 @@ function renderQuizMobile() {
         }
     };
 
+    // В КОНТЕЙНЕР
     document.getElementById('quizContainerBtn').onclick = () => {
         const studied = getStudiedWordsList();
         if (!studied.length) { 
@@ -349,13 +398,14 @@ function renderQuizMobile() {
         showQuizContainer(studied);
     };
 
+    // ========== ОБНОВЛЕНИЕ ПРИ ИЗМЕНЕНИИ РАЗМЕРА ==========
     window.addEventListener('resize', () => {
         containerWidth = wrapper?.offsetWidth || 0;
         updateCarouselPosition(false);
     });
 }
 
-// ========== УНИВЕРСАЛЬНЫЙ КОНТЕЙНЕР ДЛЯ QUIZ ==========
+// ========== КОНТЕЙНЕР ДЛЯ QUIZ ==========
 function showQuizContainer(studiedWords) {
     if (window.ContainerManager) {
         window.ContainerManager.show({
@@ -368,7 +418,7 @@ function showQuizContainer(studiedWords) {
                 unstudyWord(word);
                 quizList = getUnstudiedWords();
                 if (isMobileDevice()) {
-                    if (typeof refreshCarousel === 'function') refreshCarousel();
+                    refreshCarousel();
                 } else {
                     if (typeof window.showCurrentQuiz === 'function') window.showCurrentQuiz();
                 }
@@ -379,7 +429,7 @@ function showQuizContainer(studiedWords) {
                 resetAllStudied();
                 quizList = getUnstudiedWords();
                 if (isMobileDevice()) {
-                    if (typeof refreshCarousel === 'function') refreshCarousel();
+                    refreshCarousel();
                 } else {
                     if (typeof window.showCurrentQuiz === 'function') window.showCurrentQuiz();
                 }
@@ -388,8 +438,6 @@ function showQuizContainer(studiedWords) {
             }
         });
     } else {
-        const oldModal = document.getElementById('studiedWordsModal');
-        if (oldModal) oldModal.remove();
-        alert('ContainerManager не загружен, но слова возвращены.');
+        alert('ContainerManager не загружен');
     }
 }
