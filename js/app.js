@@ -1,41 +1,83 @@
-// app.js — с оптимизацией таймеров через Page Visibility API
+// app.js — исправленная версия с функциями меню
 
 let documentHidden = false;
 
 // ========== ПРОВЕРКА ВИДИМОСТИ СТРАНИЦЫ ==========
 document.addEventListener('visibilitychange', function() {
     documentHidden = document.hidden;
-    Logger.debug('Видимость страницы изменилась:', documentHidden ? 'скрыта' : 'видна');
 });
 
-// ========== ЛОГИРОВАНИЕ ДЕЙСТВИЙ ПОЛЬЗОВАТЕЛЯ (через ActivityTracker) ==========
-async function logUserAction(action, details = {}) {
-    if (window.ActivityTracker) {
-        await window.ActivityTracker.logUserAction(action, details);
-    } else {
-        // Fallback для совместимости
-        try {
-            if (typeof window.isAuthenticated === 'undefined' || !window.isAuthenticated()) return;
-            const user = window.getCurrentUser ? window.getCurrentUser() : null;
-            if (!user) return;
-            const db = window.db || firebase.firestore();
-            await db.collection('user_actions').add({
-                userId: user.uid,
-                email: user.email,
-                action: action,
-                details: details,
-                timestamp: new Date().toISOString(),
-                userAgent: navigator.userAgent,
-                url: window.location.href,
-                deviceId: window.utils?.getDeviceId ? window.utils.getDeviceId() : 'unknown'
-            });
-        } catch(e) {
-            console.error('Ошибка логирования:', e);
-        }
+// ========== МОБИЛЬНОЕ МЕНЮ (ГАМБУРГЕР) ==========
+function closeMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    if (mobileMenu) {
+        mobileMenu.classList.remove('show');
+        mobileMenu.classList.remove('open');
+    }
+    if (menuOverlay) {
+        menuOverlay.classList.remove('show');
+    }
+    document.body.style.overflow = '';
+}
+
+function openMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    if (mobileMenu) {
+        mobileMenu.classList.add('show');
+        mobileMenu.classList.add('open');
+    }
+    if (menuOverlay) {
+        menuOverlay.classList.add('show');
+    }
+    document.body.style.overflow = 'hidden';
+}
+
+// ========== ИНИЦИАЛИЗАЦИЯ МОБИЛЬНОГО МЕНЮ ==========
+function initMobileMenu() {
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const closeMenuBtn = document.getElementById('closeMenuBtn');
+    const menuOverlay = document.getElementById('menuOverlay');
+    
+    if (!hamburgerBtn) {
+        console.warn('Кнопка гамбургера не найдена');
+        return;
+    }
+    
+    hamburgerBtn.onclick = openMobileMenu;
+    
+    if (closeMenuBtn) {
+        closeMenuBtn.onclick = closeMobileMenu;
+    }
+    
+    if (menuOverlay) {
+        menuOverlay.onclick = closeMobileMenu;
     }
 }
 
-// ========== ОБНОВЛЕНИЕ СЧЁТЧИКА (С КЕШИРОВАНИЕМ) ==========
+// ========== ЛОГИРОВАНИЕ ==========
+async function logUserAction(action, details = {}) {
+    try {
+        if (typeof window.isAuthenticated === 'undefined' || !window.isAuthenticated()) return;
+        const user = window.getCurrentUser ? window.getCurrentUser() : null;
+        if (!user) return;
+        const db = window.db || firebase.firestore();
+        await db.collection('user_actions').add({
+            userId: user.uid,
+            email: user.email,
+            action: action,
+            details: details,
+            timestamp: new Date().toISOString(),
+            userAgent: navigator.userAgent,
+            url: window.location.href
+        });
+    } catch(e) {
+        console.error('Ошибка логирования:', e);
+    }
+}
+
+// ========== ОБНОВЛЕНИЕ СЧЁТЧИКА ==========
 let cachedCounter = null;
 let cachedCounterMode = null;
 let cachedCounterLevel = null;
@@ -46,7 +88,6 @@ function updateCounter(force = false) {
     
     const level = AppConfig.currentLevel;
     
-    // Кешируем результат, если ничего не изменилось
     if (!force && cachedCounter && cachedCounterMode === currentMode && cachedCounterLevel === level) {
         el.textContent = cachedCounter;
         return;
@@ -91,8 +132,6 @@ function updateCounter(force = false) {
     }
     
     el.textContent = result;
-    
-    // Кешируем
     cachedCounter = result;
     cachedCounterMode = currentMode;
     cachedCounterLevel = level;
@@ -147,7 +186,7 @@ function setMode(mode) {
     else if (mode === 'grammar') renderGrammar();
     
     saveProgress();
-    updateCounter(true); // Принудительное обновление
+    updateCounter(true);
     updateModeIndicator();
     closeMobileMenu();
 }
@@ -181,7 +220,7 @@ function setLevel(level) {
     else if (currentMode === 'sentences') renderSentences();
     else if (currentMode === 'grammar') renderGrammar();
     
-    updateCounter(true); // Принудительное обновление
+    updateCounter(true);
     updateModeIndicator();
     saveProgress();
     closeMobileMenu();
@@ -199,7 +238,7 @@ function loadGrammarProgress() {
             }
         }
     } catch(e) {
-        Logger.error('Ошибка загрузки прогресса грамматики:', e);
+        console.error('Ошибка загрузки прогресса грамматики:', e);
     }
 }
 
@@ -209,7 +248,135 @@ window.forceUpdateCounter = function() {
     }, 100);
 };
 
-// ========== УПРАВЛЕНИЕ КНОПКОЙ "ПОДЕЛИТЬСЯ" (обновляется только при изменении) ==========
+// ========== КНОПКА "ПОДЕЛИТЬСЯ" ==========
+function shareApp() {
+    const url = window.location.href;
+    const title = 'Deutsch-Meister — учите немецкий язык!';
+    const text = '🇩🇪 Бесплатное приложение для изучения немецкого языка: карточки, тесты, тренажёр и грамматика. Попробуйте!';
+    const fullText = `${text}\n\n🔗 ${url}`;
+    
+    logUserAction('share_app', { method: 'modal_opened' });
+    
+    const modal = document.createElement('div');
+    modal.id = 'shareModal';
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000000;
+        overflow: auto;
+    `;
+    
+    const modalContent = document.createElement('div');
+    modalContent.style.cssText = `
+        background: white;
+        border-radius: 20px;
+        max-width: 420px;
+        width: 90%;
+        padding: 25px;
+        text-align: center;
+        margin: 20px;
+        max-height: 90vh;
+        overflow-y: auto;
+    `;
+    
+    const shareOptions = [
+        { name: 'Telegram', icon: '✈️', url: `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}` },
+        { name: 'WhatsApp', icon: '💬', url: `https://api.whatsapp.com/send?text=${encodeURIComponent(fullText)}` },
+        { name: 'VK', icon: '📱', url: `https://vk.com/share.php?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}&description=${encodeURIComponent(text)}` },
+        { name: 'Instagram', icon: '📸', url: null, copy: true },
+        { name: 'Facebook', icon: '👍', url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(text)}` },
+        { name: 'Email', icon: '📧', url: `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(fullText)}` }
+    ];
+    
+    let buttonsHtml = '<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">';
+    shareOptions.forEach(opt => {
+        if (opt.name === 'Instagram' && opt.copy) {
+            buttonsHtml += `
+                <button class="share-option-btn" data-copy="true" style="
+                    padding: 14px 10px;
+                    background: #f0f0f0;
+                    border: 2px solid #ddd;
+                    border-radius: 12px;
+                    cursor: pointer;
+                    font-size: 14px;
+                    font-weight: bold;
+                    transition: all 0.1s;
+                ">
+                    <div style="font-size: 28px;">${opt.icon}</div>
+                    <div>${opt.name}</div>
+                    <div style="font-size: 10px; color: #888; margin-top: 4px;">(скопировать ссылку)</div>
+                </button>
+            `;
+        } else if (opt.url) {
+            buttonsHtml += `
+                <button class="share-option-btn" data-url="${opt.url}" style="
+                    padding: 14px 10px;
+                    background: #f0f0f0;
+                    border: 2px solid #ddd;
+                    border-radius: 12px;
+                    cursor: pointer;
+                    font-size: 14px;
+                    font-weight: bold;
+                    transition: all 0.1s;
+                ">
+                    <div style="font-size: 28px;">${opt.icon}</div>
+                    <div>${opt.name}</div>
+                </button>
+            `;
+        }
+    });
+    buttonsHtml += '</div>';
+    
+    modalContent.innerHTML = `
+        <h3 style="margin-top: 0; margin-bottom: 15px; font-size: 20px;">🔗 Поделиться приложением</h3>
+        <p style="color: #666; margin-bottom: 20px; font-size: 14px;">Выберите способ, чтобы поделиться с друзьями:</p>
+        ${buttonsHtml}
+        <button id="shareCloseBtn" style="
+            margin-top: 20px;
+            padding: 10px 30px;
+            background: #e0e0e0;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        ">Закрыть</button>
+    `;
+    
+    modal.appendChild(modalContent);
+    document.body.appendChild(modal);
+    
+    modalContent.querySelectorAll('.share-option-btn').forEach(btn => {
+        btn.onclick = () => {
+            const url = btn.getAttribute('data-url');
+            if (btn.getAttribute('data-copy') === 'true') {
+                navigator.clipboard.writeText(fullText).then(() => {
+                    alert('✅ Ссылка скопирована!');
+                    logUserAction('share_app', { method: 'copy_link' });
+                }).catch(() => {
+                    prompt('Скопируйте ссылку:', fullText);
+                });
+                return;
+            }
+            if (url) {
+                window.open(url, '_blank', 'width=600,height=500');
+                logUserAction('share_app', { method: opt.name });
+            }
+        };
+    });
+    
+    document.getElementById('shareCloseBtn').onclick = () => modal.remove();
+    modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
+}
+
+// ========== ОБНОВЛЕНИЕ КНОПКИ "ПОДЕЛИТЬСЯ" ==========
 let lastShareState = null;
 
 function updateShareButtons() {
@@ -220,7 +387,6 @@ function updateShareButtons() {
     const shouldShow = !isAdmin;
     const currentState = shouldShow ? 'show' : 'hide';
     
-    // Обновляем только если состояние изменилось
     if (currentState === lastShareState) return;
     lastShareState = currentState;
     
@@ -228,13 +394,9 @@ function updateShareButtons() {
     if (shareMobile) shareMobile.style.display = shouldShow ? 'block' : 'none';
 }
 
-// ========== ХРАНЕНИЕ ИНТЕРВАЛОВ ДЛЯ ОЧИСТКИ ==========
-let heartbeatInterval = null;
-let shareUpdateInterval = null;
-
 // ========== ИНИЦИАЛИЗАЦИЯ ==========
 async function init() {
-    Logger.info('init: начало загрузки');
+    console.log('init: начало загрузки');
     
     if (window.isAuthenticated && window.isAuthenticated()) {
         logUserAction('app_start', { 
@@ -279,15 +441,13 @@ async function init() {
         if (shareMobile) shareMobile.onclick = shareApp;
     }, 500);
     
-    // Запускаем обновление кнопки "Поделиться" (с проверкой видимости)
-    shareUpdateInterval = setInterval(() => {
+    setInterval(() => {
         if (!documentHidden) {
             updateShareButtons();
         }
     }, 5000);
     
-    // Heartbeat (только если страница видна)
-    heartbeatInterval = setInterval(() => {
+    setInterval(() => {
         if (!documentHidden && window.isAuthenticated && window.isAuthenticated()) {
             logUserAction('heartbeat', {
                 level: AppConfig.currentLevel,
@@ -298,13 +458,8 @@ async function init() {
         }
     }, 5 * 60 * 1000);
     
-    Logger.info('init: завершено');
+    console.log('init: завершено');
 }
 
-// ========== ОЧИСТКА ИНТЕРВАЛОВ ПРИ ВЫХОДЕ ==========
-window.addEventListener('beforeunload', function() {
-    if (heartbeatInterval) clearInterval(heartbeatInterval);
-    if (shareUpdateInterval) clearInterval(shareUpdateInterval);
-});
-
+// ========== ЗАПУСК ==========
 init();
