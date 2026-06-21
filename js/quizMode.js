@@ -1,19 +1,16 @@
-// quizMode.js — обновленная версия с использованием StudyMode
+// quizMode.js — с сохранением оригинального дизайна
 
 let quizModeInstance = null;
 let quizAnswered = false;
 
 function renderQuiz() {
-    // Удаляем старый экземпляр
     if (quizModeInstance) {
         quizModeInstance.destroy();
         quizModeInstance = null;
     }
     
     quizAnswered = false;
-    const unstudied = getUnstudiedWords();
     
-    // Функция генерации вариантов ответов
     function generateOptions(currentWord) {
         const allWords = wordsDB[AppConfig.currentLevel] || [];
         const otherWords = allWords.filter(w => w.de !== currentWord.de && w.ru !== currentWord.ru);
@@ -30,7 +27,6 @@ function renderQuiz() {
         return options;
     }
     
-    // Функция проверки ответа
     function checkAnswer(selectedText, currentWord, instance) {
         if (quizAnswered) return;
         
@@ -40,7 +36,6 @@ function renderQuiz() {
         
         if (userAnswer === correctAnswer) {
             quizAnswered = true;
-            // Отмечаем правильный ответ
             const allBtns = document.querySelectorAll('.quiz-opt');
             allBtns.forEach(btn => {
                 if (btn.getAttribute('data-value').toLowerCase() === correctAnswer) {
@@ -58,11 +53,14 @@ function renderQuiz() {
                     instance.currentIndex = 0;
                 }
                 quizAnswered = false;
-                instance.refreshCarousel();
+                if (instance.isMobile) {
+                    instance.refreshCarousel();
+                } else {
+                    instance.updateDisplay();
+                }
                 instance.updateCounter();
             }, 500);
         } else {
-            // Отмечаем неправильный ответ
             const allBtns = document.querySelectorAll('.quiz-opt');
             allBtns.forEach(btn => {
                 if (btn.getAttribute('data-value').toLowerCase() === userAnswer) {
@@ -73,7 +71,6 @@ function renderQuiz() {
         }
     }
     
-    // Настройки для режима теста
     const config = {
         prefix: 'quiz',
         getItems: getUnstudiedWords,
@@ -84,47 +81,42 @@ function renderQuiz() {
         showResult: false,
         showWordsContainer: false,
         showHint: false,
-        showNavigation: true,  // На десктопе показываем кнопки ◀ ▶
+        showNavigation: true,
         
-        // Десктопные кнопки
         desktopButtons: [
             { id: 'StudyBtn', label: 'ИЗУЧЕНО' },
             { id: 'ContainerBtn', label: 'В КОНТЕЙНЕР' }
         ],
         
-        // Мобильные кнопки (без ◀ ▶)
         mobileButtons: [
             { id: 'StudyBtn', label: 'ИЗУЧЕНО' },
             { id: 'ContainerBtn', label: 'В КОНТЕЙНЕР' }
         ],
         
-        // Получить вопрос для отображения
         getQuestion: function(item) {
             if (!item) return '';
             const isDeToRu = AppConfig.quiz_direction === 'de_to_ru';
-            return isDeToRu ? item.de : item.ru;
+            const question = isDeToRu ? item.de : item.ru;
+            return `<div class="quiz-question">${question}</div>`;
         },
         
-        // Смена направления
         onDirectionChange: function() {
             AppConfig.quiz_direction = AppConfig.quiz_direction === 'de_to_ru' ? 'ru_to_de' : 'de_to_ru';
             this.directionLabel = AppConfig.quiz_direction === 'de_to_ru' ? 'De → Ru' : 'Ru → De';
             quizAnswered = false;
         },
         
-        // Рендер карточки для карусели (мобильная версия)
         renderCard: function(item, idx) {
             const isDeToRu = AppConfig.quiz_direction === 'de_to_ru';
             const question = isDeToRu ? item.de : item.ru;
             const options = generateOptions(item);
             
-            let optionsHtml = '<div class="quiz-grid" style="margin-top: 20px;">';
+            let optionsHtml = '<div class="quiz-grid">';
             options.forEach(opt => {
                 const optText = isDeToRu ? opt.ru : opt.de;
                 const safeText = optText.replace(/'/g, "\\'");
                 optionsHtml += `
-                    <button class="quiz-opt" data-value="${safeText}" 
-                            style="padding: 16px; background: #FFFFFF; border: 2px solid #D0D0D0; border-radius: 16px; cursor: pointer; font-size: 16px; transition: all 0.05s linear; text-align: center; box-shadow: 0 3px 4px rgba(0,0,0,0.1);">
+                    <button class="quiz-opt" data-value="${safeText}">
                         ${optText}
                     </button>
                 `;
@@ -132,28 +124,24 @@ function renderQuiz() {
             optionsHtml += '</div>';
             
             return `
-                <div style="background: #FFFFFF; border-radius: 20px; padding: 30px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); min-height: 300px;">
-                    <div style="text-align: center; font-size: 28px; font-weight: bold; color: #1A1A1A; margin: 20px 0;">
-                        ${question}
-                    </div>
+                <div style="background:#FFFFFF; border-radius:20px; padding:20px; box-shadow:0 8px 24px rgba(0,0,0,0.1);">
+                    <div class="quiz-question" style="font-size:24px;">${question}</div>
                     ${optionsHtml}
                 </div>
             `;
         },
         
-        // Рендер для десктопа (одна карточка)
         renderItem: function(item) {
             const isDeToRu = AppConfig.quiz_direction === 'de_to_ru';
             const question = isDeToRu ? item.de : item.ru;
             const options = generateOptions(item);
             
-            let optionsHtml = '<div class="quiz-grid" style="margin-top: 20px;">';
+            let optionsHtml = '<div class="quiz-grid">';
             options.forEach(opt => {
                 const optText = isDeToRu ? opt.ru : opt.de;
                 const safeText = optText.replace(/'/g, "\\'");
                 optionsHtml += `
-                    <button class="quiz-opt" data-value="${safeText}" 
-                            style="padding: 16px; background: #FFFFFF; border: 2px solid #D0D0D0; border-radius: 16px; cursor: pointer; font-size: 16px; transition: all 0.05s linear; text-align: center; box-shadow: 0 3px 4px rgba(0,0,0,0.1);">
+                    <button class="quiz-opt" data-value="${safeText}">
                         ${optText}
                     </button>
                 `;
@@ -161,26 +149,20 @@ function renderQuiz() {
             optionsHtml += '</div>';
             
             return `
-                <div style="background: #FFFFFF; border-radius: 20px; padding: 30px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); max-width: 700px; margin: 0 auto; min-height: 300px;">
-                    <div style="text-align: center; font-size: 28px; font-weight: bold; color: #1A1A1A; margin: 20px 0;">
-                        ${question}
-                    </div>
+                <div style="background:#FFFFFF; border-radius:20px; padding:20px; box-shadow:0 8px 24px rgba(0,0,0,0.1); max-width:700px; margin:0 auto;">
+                    <div class="quiz-question" style="font-size:28px;">${question}</div>
                     ${optionsHtml}
                 </div>
             `;
         },
         
-        // Обновление отображения (привязываем события к кнопкам)
         updateWords: function(item) {
             if (!item) return;
             
-            // Привязываем события к кнопкам вариантов
             setTimeout(() => {
                 const btns = document.querySelectorAll('.quiz-opt');
                 btns.forEach(btn => {
-                    // Удаляем старые обработчики
                     btn.onclick = null;
-                    // Добавляем новый
                     btn.onclick = (e) => {
                         e.stopPropagation();
                         const value = btn.getAttribute('data-value');
@@ -190,7 +172,6 @@ function renderQuiz() {
             }, 50);
         },
         
-        // Кастомные кнопки
         customButtons: [
             {
                 id: 'StudyBtn',
@@ -202,7 +183,11 @@ function renderQuiz() {
                         instance.items = newItems;
                         instance.currentIndex = 0;
                         quizAnswered = false;
-                        instance.refreshCarousel();
+                        if (instance.isMobile) {
+                            instance.refreshCarousel();
+                        } else {
+                            instance.updateDisplay();
+                        }
                         instance.updateCounter();
                     }
                 }
@@ -229,7 +214,11 @@ function renderQuiz() {
                                 instance.items = newItems;
                                 instance.currentIndex = 0;
                                 quizAnswered = false;
-                                instance.refreshCarousel();
+                                if (instance.isMobile) {
+                                    instance.refreshCarousel();
+                                } else {
+                                    instance.updateDisplay();
+                                }
                                 instance.updateCounter();
                                 update();
                             },
@@ -239,33 +228,23 @@ function renderQuiz() {
                                 instance.items = newItems;
                                 instance.currentIndex = 0;
                                 quizAnswered = false;
-                                instance.refreshCarousel();
+                                if (instance.isMobile) {
+                                    instance.refreshCarousel();
+                                } else {
+                                    instance.updateDisplay();
+                                }
                                 instance.updateCounter();
                                 update();
                             }
                         });
-                    } else {
-                        alert('ContainerManager не загружен');
                     }
                 }
             }
         ]
     };
     
-    // Создаем экземпляр StudyMode
     quizModeInstance = new StudyMode(config);
     quizModeInstance.render();
 }
 
-// Функция для обновления теста извне
-function refreshQuiz() {
-    if (quizModeInstance) {
-        quizModeInstance.destroy();
-        quizModeInstance = null;
-    }
-    renderQuiz();
-}
-
-// Экспортируем для совместимости
 window.renderQuiz = renderQuiz;
-window.refreshQuiz = refreshQuiz;
