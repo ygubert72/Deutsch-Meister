@@ -10,13 +10,9 @@
     <link rel="manifest" href="/Deutsch-Meister/manifest.json">
     
     <!-- ===== PWA: ИКОНКИ ===== -->
-    <!-- ФАВИКОНКА ДЛЯ ВКЛАДКИ БРАУЗЕРА -->
     <link rel="icon" type="image/svg+xml" href="/Deutsch-Meister/icons/icon.svg">
-    
-    <!-- ИКОНКИ ДЛЯ PWA (УСТАНОВКИ НА ТЕЛЕФОН) -->
     <link rel="icon" type="image/png" sizes="192x192" href="/Deutsch-Meister/icons/icon-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="/Deutsch-Meister/icons/icon-512x512.png">
-    
     <link rel="apple-touch-icon" href="/Deutsch-Meister/icons/icon-192x192.png">
     <link rel="apple-touch-icon-precomposed" href="/Deutsch-Meister/icons/icon-192x192.png">
     
@@ -128,7 +124,6 @@
             margin-top: 4px;
         }
         
-        /* Показываем баннер ТОЛЬКО на мобильных */
         @media (max-width: 768px) {
             .install-banner {
                 display: block;
@@ -163,7 +158,6 @@
             <button data-mode="quiz" class="btn mode-btn">ТЕСТ</button>
             <button data-mode="sentences" class="btn mode-btn">ТРЕНАЖЁР</button>
             
-            <!-- ===== PWA: БАННЕР УСТАНОВКИ (ТОЛЬКО НА МОБИЛЬНЫХ) ===== -->
             <div class="install-banner" id="installBanner">
                 📱 Установить приложение
                 <span class="sub">Быстрый доступ с главного экрана</span>
@@ -207,7 +201,6 @@
         <button data-mode="quiz" class="btn mode-btn">ТЕСТ</button>
         <button data-mode="sentences" class="btn mode-btn">ТРЕНАЖЁР</button>
         
-        <!-- ===== PWA: БАННЕР УСТАНОВКИ В МОБИЛЬНОМ МЕНЮ ===== -->
         <div class="install-banner" id="installBannerMobile">
             📱 Установить приложение
             <span class="sub">Быстрый доступ с главного экрана</span>
@@ -217,7 +210,11 @@
     </div>
 </div>
 
+<!-- ===== ПОДКЛЮЧЕНИЕ СКРИПТОВ ===== -->
 <script src="/Deutsch-Meister/js/config.js"></script>
+<script src="/Deutsch-Meister/js/utils.js"></script>
+<script src="/Deutsch-Meister/js/containerManager.js"></script>
+<script src="/Deutsch-Meister/js/carousel.js"></script>
 <script src="/Deutsch-Meister/js/wordsManager.js"></script>
 <script src="/Deutsch-Meister/js/sentencesManager.js"></script>
 <script src="/Deutsch-Meister/js/cardsMode.js"></script>
@@ -253,7 +250,6 @@
         e.preventDefault();
         deferredPrompt = e;
         
-        // Показываем баннер ТОЛЬКО на мобильных устройствах
         if (isMobile()) {
             document.querySelectorAll('.install-banner').forEach(banner => {
                 banner.style.display = 'block';
