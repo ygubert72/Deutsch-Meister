@@ -48,7 +48,7 @@ function initFirebase() {
             
             await loadUserData(user.uid);
             
-            // ЗАГРУЖАЕМ ПРОГРЕСС ИЗ FIREBASE
+            // ЗАГРУЖАЕМ ПРОГРЕСС ИЗ FIREBASE (НО НЕ ПЕРЕЗАПИСЫВАЕМ РЕЖИМ)
             await window.loadUserProgressFromFirebase();
             
             await addUserToFirestore(user);
@@ -514,7 +514,7 @@ window.saveUserProgressToFirebase = async function() {
     }
 };
 
-// ========== ЗАГРУЗКА ПРОГРЕССА ИЗ ОБЛАКА (С ПРИНУДИТЕЛЬНЫМ ПЕРЕЗАПУСКОМ) ==========
+// ========== ЗАГРУЗКА ПРОГРЕССА ИЗ ОБЛАКА ==========
 window.loadUserProgressFromFirebase = async function() {
     if (!auth || !auth.currentUser) return false;
     const userId = auth.currentUser.uid;
@@ -542,78 +542,29 @@ window.loadUserProgressFromFirebase = async function() {
             if (progress.config) {
                 const config = progress.config;
                 
-                // Сохраняем в localStorage
+                // ===== СОХРАНЯЕМ В LOCALSTORAGE, НО НЕ ПЕРЕЗАПИСЫВАЕМ currentMode =====
                 localStorage.setItem('dm_config', JSON.stringify(config));
                 
-                // Обновляем глобальные переменные
-                if (config.last_level) {
-                    AppConfig.currentLevel = config.last_level;
-                }
-                if (config.last_mode) {
-                    currentMode = config.last_mode;
-                }
+                // Обновляем только вспомогательные настройки
                 AppConfig.show_language = config.show_language || 'de';
                 AppConfig.quiz_direction = config.quiz_direction || 'de_to_ru';
                 AppConfig.sentence_lang_from = config.sentence_lang_from || 'ru';
                 
-                console.log('☁️ Загружено из Firebase:', { mode: currentMode, level: AppConfig.currentLevel });
+                console.log('☁️ [Firebase] Конфиг загружен и сохранен в localStorage');
+                console.log('☁️ [Firebase] Текущий режим (из localStorage):', currentMode);
+                console.log('☁️ [Firebase] Режим из Firebase (игнорируем):', config.last_mode);
                 
-                // ===== ПРИНУДИТЕЛЬНО ПРИМЕНЯЕМ СОСТОЯНИЕ =====
-                // 1. Обновляем кнопки уровня
-                document.querySelectorAll('[data-level]').forEach(btn => {
-                    if (btn.dataset.level === AppConfig.currentLevel) {
-                        btn.classList.add('active');
-                    } else {
-                        btn.classList.remove('active');
-                    }
-                });
-                
-                // 2. Обновляем кнопки режима
-                document.querySelectorAll('.mode-btn').forEach(btn => {
-                    if (btn.dataset.mode === currentMode) {
-                        btn.classList.add('active');
-                    } else {
-                        btn.classList.remove('active');
-                    }
-                });
-                
-                // 3. ПРИНУДИТЕЛЬНО ПЕРЕЗАПУСКАЕМ РЕЖИМ
-                console.log('🔄 Принудительный перезапуск режима:', currentMode);
-                
-                // Очищаем контент
-                const content = document.getElementById('content');
-                if (content) {
-                    content.innerHTML = '<div style="text-align:center;padding:40px;">🔄 Загрузка...</div>';
-                }
-                
-                // Небольшая задержка
-                await new Promise(resolve => setTimeout(resolve, 50));
-                
-                // Запускаем нужный режим
-                if (currentMode === 'cards' && typeof renderCards === 'function') {
-                    renderCards();
-                } else if (currentMode === 'quiz' && typeof renderQuiz === 'function') {
-                    renderQuiz();
-                } else if (currentMode === 'sentences' && typeof renderSentences === 'function') {
-                    renderSentences();
-                } else if (currentMode === 'grammar' && typeof renderGrammar === 'function') {
-                    renderGrammar();
-                }
-                
-                // Обновляем счетчик и индикатор
+                // НЕ ПЕРЕЗАПУСКАЕМ РЕЖИМ, ТОЛЬКО ОБНОВЛЯЕМ СЧЕТЧИК
                 if (typeof updateCounter === 'function') {
                     updateCounter(true);
                 }
                 if (typeof updateModeIndicator === 'function') {
                     updateModeIndicator();
                 }
-                
-                console.log('✅ Состояние применено из Firebase');
             }
             
             if (window.Logger) {
                 Logger.info('Прогресс загружен из облака');
-                Logger.info('Восстановлен режим:', currentMode, 'уровень:', AppConfig.currentLevel);
             }
             return true;
         }
