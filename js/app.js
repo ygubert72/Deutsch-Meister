@@ -1,631 +1,516 @@
-// auth.js — ТОЛЬКО вход, выход, регистрация и состояние пользователя
-// Остальная логика вынесена в userService.js, activityTracker.js, adminUI.js
+// app.js — исправленная версия с функциями меню и сохранением состояния
 
-let auth = null;
-let db = null;
-let currentUserData = null;
+let documentHidden = false;
+let appInitialized = false;
 
-// Конфигурация Firebase (остаётся здесь)
-const firebaseConfig = {
-    apiKey: "AIzaSyAUj_2cLQyWvs2JTT7Zl2BYox0krDb3X7I",
-    authDomain: "deutsch-meister-248cf.firebaseapp.com",
-    projectId: "deutsch-meister-248cf",
-    storageBucket: "deutsch-meister-248cf.firebasestorage.app",
-    messagingSenderId: "549700335996",
-    appId: "1:549700335996:web:97ed9e8f91224e34ab0cf9"
-};
+// ========== ПРОВЕРКА ВИДИМОСТИ СТРАНИЦЫ ==========
+document.addEventListener('visibilitychange', function() {
+    documentHidden = document.hidden;
+});
 
-// ========== ИНИЦИАЛИЗАЦИЯ FIREBASE ==========
-function initFirebase() {
-    if (typeof firebase === 'undefined') {
-        setTimeout(initFirebase, 500);
+// ========== МОБИЛЬНОЕ МЕНЮ (ГАМБУРГЕР) ==========
+function closeMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    if (mobileMenu) {
+        mobileMenu.classList.remove('show');
+        mobileMenu.classList.remove('open');
+    }
+    if (menuOverlay) {
+        menuOverlay.classList.remove('show');
+    }
+    document.body.style.overflow = '';
+}
+
+function openMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    if (mobileMenu) {
+        mobileMenu.classList.add('show');
+        mobileMenu.classList.add('open');
+    }
+    if (menuOverlay) {
+        menuOverlay.classList.add('show');
+    }
+    document.body.style.overflow = 'hidden';
+}
+
+// ========== ИНИЦИАЛИЗАЦИЯ МОБИЛЬНОГО МЕНЮ ==========
+function initMobileMenu() {
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const closeMenuBtn = document.getElementById('closeMenuBtn');
+    const menuOverlay = document.getElementById('menuOverlay');
+    
+    if (!hamburgerBtn) {
+        console.warn('Кнопка гамбургера не найдена');
         return;
     }
     
-    if (!firebase.apps.length) {
-        firebase.initializeApp(firebaseConfig);
+    hamburgerBtn.onclick = openMobileMenu;
+    
+    if (closeMenuBtn) {
+        closeMenuBtn.onclick = closeMobileMenu;
     }
     
-    auth = firebase.auth();
-    db = firebase.firestore();
+    if (menuOverlay) {
+        menuOverlay.onclick = closeMobileMenu;
+    }
+}
+
+// ========== ЛОГИРОВАНИЕ ==========
+async function logUserAction(action, details = {}) {
+    try {
+        if (typeof window.isAuthenticated === 'undefined' || !window.isAuthenticated()) return;
+        const user = window.getCurrentUser ? window.getCurrentUser() : null;
+        if (!user) return;
+        const db = window.db || firebase.firestore();
+        await db.collection('user_actions').add({
+            userId: user.uid,
+            email: user.email,
+            action: action,
+            details: details,
+            timestamp: new Date().toISOString(),
+            userAgent: navigator.userAgent,
+            url: window.location.href
+        });
+    } catch(e) {
+        console.error('Ошибка логирования:', e);
+    }
+}
+
+// ========== ОБНОВЛЕНИЕ СЧЁТЧИКА ==========
+let cachedCounter = null;
+let cachedCounterMode = null;
+let cachedCounterLevel = null;
+
+function updateCounter(force = false) {
+    const el = document.getElementById('counter');
+    if (!el) return;
     
-    auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-        .then(() => Logger.info('Сессия будет сохраняться'))
-        .catch((error) => Logger.error('Ошибка настройки сохранения:', error));
+    const level = AppConfig.currentLevel;
     
-    Logger.info('Firebase готов');
+    if (!force && cachedCounter && cachedCounterMode === currentMode && cachedCounterLevel === level) {
+        el.textContent = cachedCounter;
+        return;
+    }
     
-    auth.onAuthStateChanged(async (user) => {
-        if (user) {
-            Logger.info('Пользователь в системе:', user.email);
-            
-            // Логируем активность через activityTracker
-            if (window.ActivityTracker) {
-                await window.ActivityTracker.logUserActivity(user);
-            }
-            
-            // Загружаем данные пользователя
-            await loadUserData(user.uid);
-            
-            // ЗАГРУЖАЕМ ПРОГРЕСС ИЗ FIREBASE (ЭТО ПЕРЕЗАПИШЕТ СОСТОЯНИЕ)
-            await window.loadUserProgressFromFirebase();
-            
-            await addUserToFirestore(user);
-            await checkIfBlocked(user);
+    let result = '';
+    
+    if (currentMode === 'cards' || currentMode === 'quiz') {
+        const total = wordsDB[AppConfig.currentLevel]?.length || 0;
+        const unstudied = getUnstudiedWords().length;
+        const studied = total - unstudied;
+        result = `Всего: ${total} | Учим: ${unstudied} | Выучено: ${studied}`;
+    } 
+    else if (currentMode === 'sentences') {
+        const total = sentencesDB[AppConfig.currentLevel]?.length || 0;
+        let completed = sentencesProgress[AppConfig.currentLevel]?.filter(p => p?.studied === true).length || 0;
+        result = `Всего фраз: ${total} | Выучено: ${completed}`;
+    } 
+    else if (currentMode === 'grammar') {
+        const grammarData = grammarDB[level];
+        const savedLesson = localStorage.getItem('dm_last_grammar_lesson');
+        const savedLevel = localStorage.getItem('dm_last_grammar_level');
+        const isLessonOpen = (savedLesson !== null && savedLevel === level);
+        
+        if (isLessonOpen && grammarData && grammarData.length > 0) {
+            const totalLessons = grammarData.length;
+            const completed = grammarProgress[level]?.filter(p => p?.completed === true).length || 0;
+            result = `Пройдено: ${completed} из ${totalLessons} уроков`;
+        }
+        else if (grammarData && grammarData.length > 0) {
+            result = `Всего уроков: ${grammarData.length}`;
+        }
+        else if (grammarData && grammarData.length === 0) {
+            result = 'Загрузка материалов...';
+        }
+        else {
+            result = 'Выберите уровень';
+        }
+    }
+    else {
+        result = 'Deutsch-Meister';
+    }
+    
+    el.textContent = result;
+    cachedCounter = result;
+    cachedCounterMode = currentMode;
+    cachedCounterLevel = level;
+    
+    updateModeIndicator();
+}
+
+function updateModeIndicator() {
+    const indicator = document.getElementById('modeIndicator');
+    if (!indicator) return;
+    
+    const level = AppConfig.currentLevel;
+    const savedLesson = localStorage.getItem('dm_last_grammar_lesson');
+    const savedLevel = localStorage.getItem('dm_last_grammar_level');
+    const isLessonOpen = (savedLesson !== null && savedLevel === level);
+    
+    let modeText = '';
+    switch(currentMode) {
+        case 'grammar': modeText = 'Грамматика'; break;
+        case 'cards': modeText = 'Карточки'; break;
+        case 'quiz': modeText = 'Тест'; break;
+        case 'sentences': modeText = 'Тренажёр'; break;
+        default: modeText = '';
+    }
+    
+    if (currentMode === 'grammar' && isLessonOpen) {
+        const lessonIdx = parseInt(savedLesson);
+        const lessons = grammarDB[level];
+        if (lessons && lessons[lessonIdx]) {
+            const lessonNum = lessons[lessonIdx].lesson;
+            indicator.textContent = `${modeText} ${level} | Урок ${lessonNum}`;
         } else {
-            currentUserData = null;
+            indicator.textContent = `${modeText} ${level}`;
         }
-        updateUI(user);
-        if (typeof updateCounter === 'function') updateCounter();
-        if (typeof renderGrammar === 'function') renderGrammar();
-    });
-}
-
-// ========== ЗАГРУЗКА ДАННЫХ ПОЛЬЗОВАТЕЛЯ ==========
-async function loadUserData(uid) {
-    if (!db) return;
-    try {
-        const userDoc = await db.collection('users').doc(uid).get();
-        if (userDoc.exists) {
-            currentUserData = userDoc.data();
-            Logger.info('Данные пользователя загружены, доступ к B1-C1:', currentUserData.hasPremiumAccess);
-        }
-    } catch(e) {
-        Logger.error('Ошибка загрузки данных пользователя:', e);
-    }
-}
-
-// ========== ПРОВЕРКА ДОСТУПА К УРОВНЮ ==========
-window.hasAccessToLevel = function(level) {
-    if (auth.currentUser && auth.currentUser.email === 'ygubert72@gmail.com') {
-        return true;
-    }
-    if (level === 'A1' || level === 'A2') {
-        return true;
-    }
-    if (currentUserData && currentUserData.hasPremiumAccess === true) {
-        return true;
-    }
-    return false;
-};
-
-// ========== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ==========
-window.isAuthenticated = function() {
-    return auth !== null && auth.currentUser !== null;
-};
-
-window.getCurrentUser = function() {
-    return auth ? auth.currentUser : null;
-};
-
-// ========== ПРОВЕРКА БЛОКИРОВКИ ==========
-async function checkIfBlocked(user) {
-    if (!db || !user) return;
-    try {
-        const userDoc = await db.collection('users').doc(user.uid).get();
-        if (userDoc.exists && userDoc.data().blocked === true) {
-            alert('❌ Ваш аккаунт заблокирован. Обратитесь к администратору.');
-            await auth.signOut();
-            location.reload();
-        }
-    } catch(e) {
-        Logger.error('Ошибка проверки блокировки:', e);
-    }
-}
-
-// ========== ДОБАВЛЕНИЕ ПОЛЬЗОВАТЕЛЯ ==========
-async function addUserToFirestore(user) {
-    if (!db || !user) return;
-    try {
-        const userDoc = await db.collection('users').doc(user.uid).get();
-        if (!userDoc.exists) {
-            await db.collection('users').doc(user.uid).set({
-                email: user.email,
-                createdAt: new Date().toISOString(),
-                hasPremiumAccess: false,
-                premiumActivatedAt: null,
-                blocked: false,
-                status: 'ok',
-                devices: [],
-                dailyStats: {},
-                flags: { totalFlags: 0 },
-                _previousFlags: { totalFlags: 0 }
-            });
-            Logger.info('Пользователь добавлен в Firestore:', user.email);
-        }
-    } catch(e) {
-        Logger.error('Ошибка добавления пользователя:', e);
-    }
-}
-
-// ========== ВХОД ==========
-async function login(email, password) {
-    try {
-        await auth.signInWithEmailAndPassword(email, password);
-        await window.loadUserProgressFromFirebase();
-        Logger.info('Вход выполнен:', email);
-        return { success: true };
-    } catch(error) {
-        Logger.error('Ошибка входа:', error.message);
-        return { success: false, error: error.message };
-    }
-}
-
-// ========== РЕГИСТРАЦИЯ ==========
-async function register(email, password) {
-    try {
-        const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-        if (db) {
-            await db.collection('users').doc(userCredential.user.uid).set({
-                email: email,
-                createdAt: new Date().toISOString(),
-                hasPremiumAccess: false,
-                premiumActivatedAt: null,
-                blocked: false,
-                status: 'ok',
-                devices: [],
-                dailyStats: {},
-                flags: { totalFlags: 0 },
-                _previousFlags: { totalFlags: 0 }
-            });
-        }
-        Logger.info('Регистрация выполнена:', email);
-        return { success: true };
-    } catch(error) {
-        Logger.error('Ошибка регистрации:', error.message);
-        return { success: false, error: error.message };
-    }
-}
-
-// ========== ВЫХОД ==========
-window.logout = async function() {
-    if (auth) {
-        await auth.signOut();
-        Logger.info('Выход выполнен');
-    }
-    location.reload();
-};
-
-// ========== ОБНОВЛЕНИЕ ИНТЕРФЕЙСА ==========
-function updateUI(user) {
-    const loginBtn = document.getElementById('loginBtn');
-    const userInfo = document.getElementById('userInfo');
-    const loginBtnMobile = document.getElementById('loginBtnMobile');
-    const userInfoMobile = document.getElementById('userInfoMobile');
-    
-    if (!loginBtn || !userInfo) return;
-    
-    if (user) {
-        loginBtn.style.display = 'none';
-        if (loginBtnMobile) loginBtnMobile.style.display = 'none';
-        
-        userInfo.style.display = 'block';
-        if (userInfoMobile) userInfoMobile.style.display = 'block';
-        
-        const hasPremium = currentUserData && currentUserData.hasPremiumAccess === true;
-        const isAdmin = user.email === 'ygubert72@gmail.com';
-        
-        const premiumButtonHtml = (!isAdmin) ? `
-            <div style="margin-top:8px;">
-                ${!hasPremium 
-                    ? `<button id="premiumPayBtn" style="width:100%; padding:8px; background:linear-gradient(135deg, #FFD700, #FFA500); color:#333; border:none; border-radius:16px; cursor:pointer; font-weight:bold; font-size:12px;">💎 ОПЛАТИТЬ ПРЕМИУМ</button>`
-                    : `<div style="background:#4CAF50; border-radius:16px; padding:8px; text-align:center; color:white; font-weight:bold; font-size:12px;">✅ ПРЕМИУМ АКТИВЕН</div>`
-                }
-            </div>
-        ` : '';
-        
-        const userInfoHtml = `
-            <div style="background:#E8F0FE; border-radius:8px; padding:8px; text-align:center;">
-                <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:5px; flex-wrap:wrap;">
-                    <span style="font-size:20px;">🎓</span>
-                    <span style="word-break:break-all;">${user.email}</span>
-                </div>
-                <button onclick="logout()" style="margin-top:5px; padding:8px 12px; background:#4CAF50; color:white; border:none; border-radius:16px; cursor:pointer; width:100%; font-size:12px; font-weight:bold;">🚪 Выйти</button>
-                ${premiumButtonHtml}
-            </div>
-        `;
-        
-        userInfo.innerHTML = userInfoHtml;
-        if (userInfoMobile) userInfoMobile.innerHTML = userInfoHtml;
-        
-        // Админ-кнопка через adminUI
-        if (isAdmin && window.AdminUI) {
-            window.AdminUI.addAdminButton();
-        }
-        
-        // Кнопка оплаты
-        if (!isAdmin && !hasPremium) {
-            setTimeout(() => {
-                const payBtn = document.getElementById('premiumPayBtn');
-                if (payBtn) payBtn.onclick = () => showPaymentModal();
-            }, 100);
-        }
-        
     } else {
-        // Гостевой режим
-        loginBtn.style.display = 'block';
-        if (loginBtnMobile) loginBtnMobile.style.display = 'block';
-        
-        userInfo.style.display = 'block';
-        if (userInfoMobile) userInfoMobile.style.display = 'block';
-        
-        const guestHtml = `
-            <div style="background:#E8F0FE; border-radius:8px; padding:8px; text-align:center;">
-                <div style="font-size:14px; font-weight:bold;">👋 Гостевой режим</div>
-                <div style="font-size:11px; color:#666; margin-top:4px;">прогресс не сохраняется между устройствами</div>
-            </div>
-        `;
-        
-        userInfo.innerHTML = guestHtml;
-        if (userInfoMobile) userInfoMobile.innerHTML = guestHtml;
-        
-        loginBtn.onclick = () => showLoginModal();
-        if (loginBtnMobile) loginBtnMobile.onclick = () => showLoginModal();
-        
-        // Удаляем админ-кнопку
-        const oldAdminBtn = document.getElementById('adminBtn');
-        if (oldAdminBtn) oldAdminBtn.remove();
-        const oldAdminBtnMobile = document.getElementById('adminBtnMobile');
-        if (oldAdminBtnMobile) oldAdminBtnMobile.remove();
+        indicator.textContent = `${modeText} ${level}`;
     }
 }
 
-// ========== МОДАЛЬНОЕ ОКНО ОПЛАТЫ ==========
-function showPaymentModal() {
-    if (!auth.currentUser) {
-        alert('Сначала войдите в аккаунт');
-        showLoginModal();
-        return;
+// ========== УСТАНОВКА РЕЖИМА ==========
+function setMode(mode) {
+    currentMode = mode;
+    
+    document.querySelectorAll('.mode-btn').forEach(btn => {
+        if (btn.dataset.mode === mode) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+    
+    logUserAction('change_mode', { mode: mode, level: AppConfig.currentLevel });
+    
+    if (mode === 'cards') renderCards();
+    else if (mode === 'quiz') renderQuiz();
+    else if (mode === 'sentences') renderSentences();
+    else if (mode === 'grammar') renderGrammar();
+    
+    saveProgress();
+    updateCounter(true);
+    updateModeIndicator();
+    closeMobileMenu();
+}
+
+// ========== УСТАНОВКА УРОВНЯ ==========
+function setLevel(level) {
+    if (typeof window.hasAccessToLevel !== 'undefined' && !window.hasAccessToLevel(level)) {
+        if (level === 'B1' || level === 'B2' || level === 'C1') {
+            const isAuthenticated = window.isAuthenticated && window.isAuthenticated();
+            const currentUser = window.getCurrentUser && window.getCurrentUser();
+            
+            if (!isAuthenticated || !currentUser) {
+                alert(`🔒 Уровень ${level} требует премиум-доступа.\n\n📝 Зарегистрируйтесь и оформите премиум в личном кабинете.`);
+            } else {
+                alert(`🔒 Уровень ${level} требует премиум-доступа.\n\n💎 Оформите премиум в личном кабинете (кнопка под email).`);
+            }
+            return;
+        }
     }
     
-    const PREMIUM_PRICE = 500;
-    const CONTACTS = {
-        telegram: "@SEO_2020",
-        email: "ygubert72@gmail.com"
-    };
+    AppConfig.currentLevel = level;
+    
+    document.querySelectorAll('[data-level]').forEach(btn => {
+        if (btn.dataset.level === level) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+    
+    logUserAction('change_level', { level: level, mode: currentMode });
+    
+    if (currentMode === 'cards') renderCards();
+    else if (currentMode === 'quiz') renderQuiz();
+    else if (currentMode === 'sentences') renderSentences();
+    else if (currentMode === 'grammar') renderGrammar();
+    
+    updateCounter(true);
+    updateModeIndicator();
+    saveProgress();
+    closeMobileMenu();
+}
+
+function loadGrammarProgress() {
+    try {
+        const gp = localStorage.getItem('dm_grammar_progress');
+        if (gp) {
+            const parsed = JSON.parse(gp);
+            for (const level in parsed) {
+                if (grammarProgress[level]) {
+                    grammarProgress[level] = parsed[level];
+                }
+            }
+        }
+    } catch(e) {
+        console.error('Ошибка загрузки прогресса грамматики:', e);
+    }
+}
+
+window.forceUpdateCounter = function() {
+    setTimeout(() => {
+        updateCounter(true);
+    }, 100);
+};
+
+// ========== КНОПКА "ПОДЕЛИТЬСЯ" ==========
+function shareApp() {
+    const url = window.location.href;
+    const title = 'Deutsch-Meister — учите немецкий язык!';
+    const text = '🇩🇪 Бесплатное приложение для изучения немецкого языка: карточки, тесты, тренажёр и грамматика. Попробуйте!';
+    const fullText = `${text}\n\n🔗 ${url}`;
+    
+    logUserAction('share_app', { method: 'modal_opened' });
     
     const modal = document.createElement('div');
-    modal.id = 'paymentModal';
-    modal.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); display:flex; justify-content:center; align-items:center; z-index:1000000; overflow:auto;';
+    modal.id = 'shareModal';
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000000;
+        overflow: auto;
+    `;
     
     const modalContent = document.createElement('div');
-    modalContent.style.cssText = 'background:white; border-radius:20px; max-width:400px; width:90%; padding:25px; text-align:center; margin:20px; max-height:90vh; overflow-y:auto;';
+    modalContent.style.cssText = `
+        background: white;
+        border-radius: 20px;
+        max-width: 420px;
+        width: 90%;
+        padding: 25px;
+        text-align: center;
+        margin: 20px;
+        max-height: 90vh;
+        overflow-y: auto;
+    `;
+    
+    const shareOptions = [
+        { name: 'Telegram', icon: '✈️', url: `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}` },
+        { name: 'WhatsApp', icon: '💬', url: `https://api.whatsapp.com/send?text=${encodeURIComponent(fullText)}` },
+        { name: 'VK', icon: '📱', url: `https://vk.com/share.php?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}&description=${encodeURIComponent(text)}` },
+        { name: 'Instagram', icon: '📸', url: null, copy: true },
+        { name: 'Facebook', icon: '👍', url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(text)}` },
+        { name: 'Email', icon: '📧', url: `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(fullText)}` }
+    ];
+    
+    let buttonsHtml = '<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">';
+    shareOptions.forEach(opt => {
+        if (opt.name === 'Instagram' && opt.copy) {
+            buttonsHtml += `
+                <button class="share-option-btn" data-copy="true" style="
+                    padding: 14px 10px;
+                    background: #f0f0f0;
+                    border: 2px solid #ddd;
+                    border-radius: 12px;
+                    cursor: pointer;
+                    font-size: 14px;
+                    font-weight: bold;
+                    transition: all 0.1s;
+                ">
+                    <div style="font-size: 28px;">${opt.icon}</div>
+                    <div>${opt.name}</div>
+                    <div style="font-size: 10px; color: #888; margin-top: 4px;">(скопировать ссылку)</div>
+                </button>
+            `;
+        } else if (opt.url) {
+            buttonsHtml += `
+                <button class="share-option-btn" data-url="${opt.url}" style="
+                    padding: 14px 10px;
+                    background: #f0f0f0;
+                    border: 2px solid #ddd;
+                    border-radius: 12px;
+                    cursor: pointer;
+                    font-size: 14px;
+                    font-weight: bold;
+                    transition: all 0.1s;
+                ">
+                    <div style="font-size: 28px;">${opt.icon}</div>
+                    <div>${opt.name}</div>
+                </button>
+            `;
+        }
+    });
+    buttonsHtml += '</div>';
+    
     modalContent.innerHTML = `
-        <h2 style="margin:0 0 10px 0; font-size:22px;">💎 Премиум доступ</h2>
-        <div style="font-size:13px; color:#666; margin-bottom:15px;">Уровни B1, B2, C1</div>
-        <div style="font-size:32px; color:#3B6FE0; font-weight:bold; margin-bottom:10px;">${PREMIUM_PRICE} ₽</div>
-        <div style="font-size:11px; color:#666; margin-bottom:15px;">Разовый платёж / бессрочный доступ</div>
-        
-        <div style="background:#f5f5f5; border-radius:12px; padding:12px; margin-bottom:15px; text-align:left;">
-            <div style="margin-bottom:6px; font-size:13px;">✅ Все уровни немецкого (A1-C1)</div>
-            <div style="margin-bottom:6px; font-size:13px;">✅ Все уроки грамматики</div>
-            <div style="margin-bottom:6px; font-size:13px;">✅ Тренажёры и тесты</div>
-            <div style="font-size:13px;">✅ Сохранение прогресса в облаке</div>
-        </div>
-        
-        <div style="background:#FFF3E0; border-radius:12px; padding:15px; margin-bottom:15px; text-align:center;">
-            <div style="font-weight:bold; margin-bottom:12px; font-size:14px;">📱 Свяжитесь с нами любым удобным способом:</div>
-            <div style="margin:8px 0;">
-                <div style="background:#0088cc; color:white; padding:10px; border-radius:10px; margin:5px 0; font-size:14px;">
-                    📲 Telegram: <strong>${CONTACTS.telegram}</strong>
-                </div>
-                <div style="background:#EA4335; color:white; padding:10px; border-radius:10px; margin:5px 0; font-size:14px;">
-                    📧 Email: <strong>${CONTACTS.email}</strong>
-                </div>
-            </div>
-            <div style="font-size:14px; color:#333; margin-top:12px; padding:8px; background:#fff; border-radius:8px; font-weight:bold;">
-                📧 В сообщении укажите ваш email: <strong style="color:#3B6FE0;">${auth.currentUser.email}</strong>
-            </div>
-        </div>
-        
-        <button id="paymentCloseBtn" style="width:100%; padding:12px; background:#3B6FE0; color:white; border:none; border-radius:12px; cursor:pointer; font-size:14px; font-weight:bold;">Закрыть</button>
+        <h3 style="margin-top: 0; margin-bottom: 15px; font-size: 20px;">🔗 Поделиться приложением</h3>
+        <p style="color: #666; margin-bottom: 20px; font-size: 14px;">Выберите способ, чтобы поделиться с друзьями:</p>
+        ${buttonsHtml}
+        <button id="shareCloseBtn" style="
+            margin-top: 20px;
+            padding: 10px 30px;
+            background: #e0e0e0;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        ">Закрыть</button>
     `;
     
     modal.appendChild(modalContent);
     document.body.appendChild(modal);
     
-    document.getElementById('paymentCloseBtn').onclick = () => modal.remove();
+    modalContent.querySelectorAll('.share-option-btn').forEach(btn => {
+        btn.onclick = () => {
+            const url = btn.getAttribute('data-url');
+            if (btn.getAttribute('data-copy') === 'true') {
+                navigator.clipboard.writeText(fullText).then(() => {
+                    alert('✅ Ссылка скопирована!');
+                    logUserAction('share_app', { method: 'copy_link' });
+                }).catch(() => {
+                    prompt('Скопируйте ссылку:', fullText);
+                });
+                return;
+            }
+            if (url) {
+                window.open(url, '_blank', 'width=600,height=500');
+                logUserAction('share_app', { method: opt.name });
+            }
+        };
+    });
+    
+    document.getElementById('shareCloseBtn').onclick = () => modal.remove();
     modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
 }
 
-// ========== МОДАЛЬНОЕ ОКНО ВХОДА/РЕГИСТРАЦИИ ==========
-window.showLoginModal = function() {
-    if (document.getElementById('authModal')) {
-        document.getElementById('authModal').remove();
-    }
-    
-    const modal = document.createElement('div');
-    modal.id = 'authModal';
-    modal.innerHTML = `
-        <div style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); display:flex; justify-content:center; align-items:center; z-index:999999;">
-            <div style="background:white; border-radius:20px; max-width:400px; width:90%; padding:25px;">
-                <h2 style="text-align:center; margin:0 0 20px 0;">🔐 Deutsch-Meister</h2>
-                
-                <div style="display:flex; gap:10px; margin-bottom:20px;">
-                    <button id="loginTab" style="flex:1; padding:10px; background:#3B6FE0; color:white; border:none; border-radius:10px; cursor:pointer;">Вход</button>
-                    <button id="registerTab" style="flex:1; padding:10px; background:#E0E0E0; border:none; border-radius:10px; cursor:pointer;">Регистрация</button>
-                </div>
-                
-                <input type="email" id="authEmail" placeholder="Email" style="width:100%; padding:12px; margin:10px 0; border:2px solid #E0E0E0; border-radius:10px; box-sizing:border-box;">
-                
-                <div style="position: relative; margin:10px 0;">
-                    <input type="password" id="authPassword" placeholder="Пароль (мин. 6 символов)" style="width:100%; padding:12px; border:2px solid #E0E0E0; border-radius:10px; box-sizing:border-box; padding-right: 40px;">
-                    <span id="togglePasswordEye" onclick="togglePasswordVisibility('authPassword', 'togglePasswordEye')" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 20px;">👁️</span>
-                </div>
-                
-                <div id="confirmPasswordContainer" style="position: relative; margin:10px 0; display: none;">
-                    <input type="password" id="authConfirmPassword" placeholder="Повторите пароль" style="width:100%; padding:12px; border:2px solid #E0E0E0; border-radius:10px; box-sizing:border-box; padding-right: 40px;">
-                    <span id="toggleConfirmEye" onclick="togglePasswordVisibility('authConfirmPassword', 'toggleConfirmEye')" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 20px;">👁️</span>
-                </div>
-                
-                <button id="actionBtn" style="width:100%; padding:12px; background:#3B6FE0; color:white; border:none; border-radius:10px; cursor:pointer; font-size:16px; font-weight:bold;">Войти</button>
-                
-                <button id="guestBtn" style="width:100%; margin-top:10px; padding:10px; background:#F5F5F5; border:2px solid #E0E0E0; border-radius:10px; cursor:pointer;">👤 Продолжить без регистрации</button>
-                
-                <button id="closeModal" style="width:100%; margin-top:10px; padding:8px; background:none; border:none; cursor:pointer; color:#999;">Закрыть</button>
-            </div>
-        </div>
-    `;
-    document.body.appendChild(modal);
-    
-    let isLogin = true;
-    const loginTab = document.getElementById('loginTab');
-    const registerTab = document.getElementById('registerTab');
-    const actionBtn = document.getElementById('actionBtn');
-    const emailInput = document.getElementById('authEmail');
-    const passInput = document.getElementById('authPassword');
-    const confirmContainer = document.getElementById('confirmPasswordContainer');
-    const confirmInput = document.getElementById('authConfirmPassword');
-    
-    loginTab.onclick = () => {
-        isLogin = true;
-        loginTab.style.background = '#3B6FE0';
-        loginTab.style.color = 'white';
-        registerTab.style.background = '#E0E0E0';
-        registerTab.style.color = 'black';
-        actionBtn.textContent = 'Войти';
-        confirmContainer.style.display = 'none';
-    };
-    
-    registerTab.onclick = () => {
-        isLogin = false;
-        registerTab.style.background = '#3B6FE0';
-        registerTab.style.color = 'white';
-        loginTab.style.background = '#E0E0E0';
-        loginTab.style.color = 'black';
-        actionBtn.textContent = 'Зарегистрироваться';
-        confirmContainer.style.display = 'block';
-    };
-    
-    actionBtn.onclick = async () => {
-        const email = emailInput.value.trim();
-        const password = passInput.value;
-        
-        if (!email || !password) {
-            alert('Введите email и пароль');
-            return;
-        }
-        
-        if (!isLogin && password.length < 6) {
-            alert('Пароль должен быть минимум 6 символов');
-            return;
-        }
-        
-        if (!isLogin) {
-            const confirmPassword = confirmInput.value;
-            if (password !== confirmPassword) {
-                alert('❌ Пароли не совпадают!');
-                return;
-            }
-        }
-        
-        try {
-            if (isLogin) {
-                const result = await login(email, password);
-                if (result.success) {
-                    alert('Добро пожаловать, ' + email + '!');
-                    modal.remove();
-                    location.reload();
-                } else {
-                    alert('Ошибка входа: ' + result.error);
-                }
-            } else {
-                const result = await register(email, password);
-                if (result.success) {
-                    alert('Регистрация успешна! Добро пожаловать, ' + email + '!');
-                    modal.remove();
-                    location.reload();
-                } else {
-                    alert('Ошибка регистрации: ' + result.error);
-                }
-            }
-        } catch(error) {
-            let msg = 'Ошибка: ';
-            if (error.code === 'auth/invalid-credential') msg = 'Неверный email или пароль';
-            else if (error.code === 'auth/email-already-in-use') msg = 'Этот email уже зарегистрирован';
-            else if (error.code === 'auth/weak-password') msg = 'Пароль слишком слабый (минимум 6 символов)';
-            else if (error.code === 'auth/user-not-found') msg = 'Пользователь не найден';
-            else if (error.code === 'auth/wrong-password') msg = 'Неверный пароль';
-            else if (error.code === 'auth/too-many-requests') msg = 'Слишком много попыток. Попробуйте позже';
-            else msg += error.message;
-            alert(msg);
-        }
-    };
-    
-    document.getElementById('guestBtn').onclick = () => {
-        modal.remove();
-        alert('Гостевой режим (прогресс не сохраняется между устройствами)');
-    };
-    
-    document.getElementById('closeModal').onclick = () => modal.remove();
-};
+// ========== ОБНОВЛЕНИЕ КНОПКИ "ПОДЕЛИТЬСЯ" ==========
+let lastShareState = null;
 
-// ========== ПЕРЕКЛЮЧЕНИЕ ВИДИМОСТИ ПАРОЛЯ ==========
-function togglePasswordVisibility(inputId, eyeIconId) {
-    const input = document.getElementById(inputId);
-    const eyeIcon = document.getElementById(eyeIconId);
-    if (input.type === 'password') {
-        input.type = 'text';
-        eyeIcon.textContent = '🙈';
-    } else {
-        input.type = 'password';
-        eyeIcon.textContent = '👁️';
-    }
+function updateShareButtons() {
+    const shareDesktop = document.getElementById('shareBtnDesktop');
+    const shareMobile = document.getElementById('shareBtnMobile');
+    const isAdmin = window.isAdmin && window.isAdmin();
+    
+    const shouldShow = !isAdmin;
+    const currentState = shouldShow ? 'show' : 'hide';
+    
+    if (currentState === lastShareState) return;
+    lastShareState = currentState;
+    
+    if (shareDesktop) shareDesktop.style.display = shouldShow ? 'block' : 'none';
+    if (shareMobile) shareMobile.style.display = shouldShow ? 'block' : 'none';
 }
 
-// ========== ПРОВЕРКА АДМИНА ==========
-window.isAdmin = function() {
-    if (auth && auth.currentUser && auth.currentUser.email === 'ygubert72@gmail.com') {
-        return true;
-    }
-    return false;
-};
-
-// ========== СОХРАНЕНИЕ ПРОГРЕССА В ОБЛАКО ==========
-window.saveUserProgressToFirebase = async function() {
-    if (!auth || !auth.currentUser) return;
-    const userId = auth.currentUser.uid;
-    if (!db) return;
+// ========== ЗАГРУЗКА СОСТОЯНИЯ ИЗ LOCALSTORAGE ==========
+function loadStateFromLocalStorage() {
     try {
-        const progressData = {
-            wordsProgress: wordsProgress,
-            sentencesProgress: sentencesProgress,
-            grammarProgress: grammarProgress,
-            config: {
-                last_level: AppConfig.currentLevel,
-                show_language: AppConfig.show_language,
-                quiz_direction: AppConfig.quiz_direction,
-                sentence_lang_from: AppConfig.sentence_lang_from,
-                last_mode: currentMode
-            },
-            lastUpdated: new Date().toISOString()
-        };
-        await db.collection('users').doc(userId).set({
-            progress: progressData
-        }, { merge: true });
-        Logger.debug('Прогресс сохранён в облаке');
-    } catch(e) {
-        Logger.error('Ошибка сохранения прогресса:', e);
-    }
-};
-
-// ========== ЗАГРУЗКА ПРОГРЕССА ИЗ ОБЛАКА (С ВОССТАНОВЛЕНИЕМ СОСТОЯНИЯ) ==========
-window.loadUserProgressFromFirebase = async function() {
-    if (!auth || !auth.currentUser) return false;
-    const userId = auth.currentUser.uid;
-    if (!db) return false;
-    try {
-        const userDoc = await db.collection('users').doc(userId).get();
-        if (userDoc.exists && userDoc.data().progress) {
-            const progress = userDoc.data().progress;
-            
-            // Загружаем прогресс слов
-            if (progress.wordsProgress) {
-                Object.assign(wordsProgress, progress.wordsProgress);
-                localStorage.setItem('dm_words_progress', JSON.stringify(wordsProgress));
+        const cfg = localStorage.getItem('dm_config');
+        if (cfg) {
+            const parsed = JSON.parse(cfg);
+            if (parsed.last_level) {
+                AppConfig.currentLevel = parsed.last_level;
             }
-            
-            // Загружаем прогресс фраз
-            if (progress.sentencesProgress) {
-                Object.assign(sentencesProgress, progress.sentencesProgress);
-                localStorage.setItem('dm_sentences_progress', JSON.stringify(sentencesProgress));
+            if (parsed.last_mode) {
+                currentMode = parsed.last_mode;
             }
-            
-            // Загружаем прогресс грамматики
-            if (progress.grammarProgress) {
-                Object.assign(grammarProgress, progress.grammarProgress);
-                localStorage.setItem('dm_grammar_progress', JSON.stringify(grammarProgress));
-            }
-            
-            // Загружаем конфигурацию (ВАЖНО: режим и уровень)
-            if (progress.config) {
-                const config = progress.config;
-                
-                // Сохраняем в localStorage
-                localStorage.setItem('dm_config', JSON.stringify(config));
-                
-                // Обновляем глобальные переменные
-                if (config.last_level) {
-                    AppConfig.currentLevel = config.last_level;
-                }
-                if (config.last_mode) {
-                    currentMode = config.last_mode;
-                }
-                AppConfig.show_language = config.show_language || 'de';
-                AppConfig.quiz_direction = config.quiz_direction || 'de_to_ru';
-                AppConfig.sentence_lang_from = config.sentence_lang_from || 'ru';
-                
-                console.log('☁️ Загружено из Firebase:', { mode: currentMode, level: AppConfig.currentLevel });
-                
-                // ЕСЛИ ПРИЛОЖЕНИЕ УЖЕ ИНИЦИАЛИЗИРОВАНО — ПРИМЕНЯЕМ СОСТОЯНИЕ
-                if (window.appInitialized) {
-                    console.log('🔄 Применяем состояние из Firebase');
-                    // Обновляем кнопки
-                    document.querySelectorAll('[data-level]').forEach(btn => {
-                        if (btn.dataset.level === AppConfig.currentLevel) {
-                            btn.classList.add('active');
-                        } else {
-                            btn.classList.remove('active');
-                        }
-                    });
-                    document.querySelectorAll('.mode-btn').forEach(btn => {
-                        if (btn.dataset.mode === currentMode) {
-                            btn.classList.add('active');
-                        } else {
-                            btn.classList.remove('active');
-                        }
-                    });
-                    // Перезапускаем режим
-                    if (currentMode === 'cards') renderCards();
-                    else if (currentMode === 'quiz') renderQuiz();
-                    else if (currentMode === 'sentences') renderSentences();
-                    else if (currentMode === 'grammar') renderGrammar();
-                    updateCounter(true);
-                    updateModeIndicator();
-                }
-            }
-            
-            Logger.info('Прогресс загружен из облака');
-            Logger.info('Восстановлен режим:', currentMode, 'уровень:', AppConfig.currentLevel);
+            AppConfig.show_language = parsed.show_language || 'de';
+            AppConfig.quiz_direction = parsed.quiz_direction || 'de_to_ru';
+            AppConfig.sentence_lang_from = parsed.sentence_lang_from || 'ru';
+            console.log('📦 Загружено из localStorage:', { mode: currentMode, level: AppConfig.currentLevel });
             return true;
         }
     } catch(e) {
-        Logger.error('Ошибка загрузки прогресса:', e);
+        console.error('Ошибка загрузки из localStorage:', e);
     }
     return false;
-};
+}
 
-// ========== ЗАПУСК ==========
-window.addEventListener('load', function() {
-    Logger.info('Загрузка страницы...');
-    const loginBtn = document.getElementById('loginBtn');
-    if (loginBtn) {
-        loginBtn.style.background = '#4CAF50';
-        loginBtn.style.color = 'white';
-        loginBtn.innerHTML = '🔐 Войти';
+// ========== ПРИМЕНЕНИЕ СОСТОЯНИЯ ==========
+function applyState() {
+    console.log('🔄 Применяем состояние из localStorage:', { mode: currentMode, level: AppConfig.currentLevel });
+    
+    document.querySelectorAll('[data-level]').forEach(btn => {
+        if (btn.dataset.level === AppConfig.currentLevel) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+    
+    document.querySelectorAll('.mode-btn').forEach(btn => {
+        if (btn.dataset.mode === currentMode) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+    
+    if (currentMode === 'cards') {
+        if (typeof renderCards === 'function') renderCards();
+    } else if (currentMode === 'quiz') {
+        if (typeof renderQuiz === 'function') renderQuiz();
+    } else if (currentMode === 'sentences') {
+        if (typeof renderSentences === 'function') renderSentences();
+    } else if (currentMode === 'grammar') {
+        if (typeof renderGrammar === 'function') renderGrammar();
     }
     
-    if (typeof firebase === 'undefined') {
-        const script = document.createElement('script');
-        script.src = 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js';
-        script.onload = () => {
-            const authScript = document.createElement('script');
-            authScript.src = 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js';
-            authScript.onload = () => {
-                const firestoreScript = document.createElement('script');
-                firestoreScript.src = 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js';
-                firestoreScript.onload = initFirebase;
-                document.head.appendChild(firestoreScript);
-            };
-            document.head.appendChild(authScript);
-        };
-        document.head.appendChild(script);
-    } else {
-        initFirebase();
-    }
-});
+    if (typeof updateCounter === 'function') updateCounter(true);
+    if (typeof updateModeIndicator === 'function') updateModeIndicator();
+}
 
-// Экспорт для других модулей
-window.auth = auth;
-window.db = db;
-window.currentUserData = currentUserData;
+// ========== ИНИЦИАЛИЗАЦИЯ ==========
+async function init() {
+    console.log('init: начало загрузки');
+    
+    loadStateFromLocalStorage();
+    loadProgress();
+    loadGrammarProgress();
+    
+    await loadWords();
+    await loadSentences();
+    await loadGrammarData();
+    
+    document.querySelectorAll('.mode-btn').forEach(btn => {
+        btn.onclick = () => setMode(btn.dataset.mode);
+    });
+    document.querySelectorAll('[data-level]').forEach(btn => {
+        btn.onclick = () => setLevel(btn.dataset.level);
+    });
+    
+    initMobileMenu();
+    applyState();
+    
+    setTimeout(() => {
+        const shareDesktop = document.getElementById('shareBtnDesktop');
+        const shareMobile = document.getElementById('shareBtnMobile');
+        if (shareDesktop) shareDesktop.onclick = shareApp;
+        if (shareMobile) shareMobile.onclick = shareApp;
+    }, 500);
+    
+    setInterval(() => {
+        if (!documentHidden) {
+            updateShareButtons();
+        }
+    }, 5000);
+    
+    setInterval(() => {
+        if (!documentHidden && window.isAuthenticated && window.isAuthenticated()) {
+            logUserAction('heartbeat', {
+                level: AppConfig.currentLevel,
+                mode: currentMode,
+                wordsUnstudied: getUnstudiedWords().length,
+                sentencesUnstudied: getUnstudiedSentences().length
+            });
+        }
+    }, 5 * 60 * 1000);
+    
+    appInitialized = true;
+    console.log('✅ init: завершено, режим:', currentMode, 'уровень:', AppConfig.currentLevel);
+}
+
+// ========== ЗАПУСК ==========
+init();
