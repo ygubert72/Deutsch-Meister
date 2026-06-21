@@ -1,20 +1,11 @@
-// auth.js - полная версия с логированием активности для админа
-// Админ (ygubert72@gmail.com) НЕ отслеживается
+// auth.js — ТОЛЬКО вход, выход, регистрация и состояние пользователя
+// Остальная логика вынесена в userService.js, activityTracker.js, adminUI.js
 
 let auth = null;
 let db = null;
 let currentUserData = null;
 
-// Цена подписки (в рублях)
-const PREMIUM_PRICE = 500;
-
-// Контакты для связи
-const CONTACTS = {
-    telegram: "@SEO_2020",
-    email: "ygubert72@gmail.com"
-};
-
-// Правильная конфигурация Firebase
+// Конфигурация Firebase (остаётся здесь)
 const firebaseConfig = {
     apiKey: "AIzaSyAUj_2cLQyWvs2JTT7Zl2BYox0krDb3X7I",
     authDomain: "deutsch-meister-248cf.firebaseapp.com",
@@ -22,296 +13,6 @@ const firebaseConfig = {
     storageBucket: "deutsch-meister-248cf.firebasestorage.app",
     messagingSenderId: "549700335996",
     appId: "1:549700335996:web:97ed9e8f91224e34ab0cf9"
-};
-
-// ========== ПОЛУЧЕНИЕ IP И ГОРОДА (БЕСПЛАТНО) ==========
-async function getUserLocation() {
-    try {
-        const response = await fetch('https://ipapi.co/json/');
-        const data = await response.json();
-        return {
-            ip: data.ip || 'unknown',
-            city: data.city || 'unknown',
-            country: data.country_name || 'unknown',
-            region: data.region || 'unknown'
-        };
-    } catch (e) {
-        console.log('Не удалось определить геолокацию');
-        return {
-            ip: 'unknown',
-            city: 'unknown',
-            country: 'unknown',
-            region: 'unknown'
-        };
-    }
-}
-
-// ========== ПОЛУЧЕНИЕ ID УСТРОЙСТВА ==========
-function getDeviceId() {
-    let id = navigator.userAgent + navigator.platform + window.screen.width + window.screen.height;
-    let hash = 0;
-    for (let i = 0; i < id.length; i++) {
-        hash = ((hash << 5) - hash) + id.charCodeAt(i);
-        hash |= 0;
-    }
-    return hash.toString();
-}
-
-function isMobileDevice() {
-    const mobilePlatforms = ['iPhone', 'iPad', 'iPod', 'Android', 'BlackBerry', 'Windows Phone'];
-    return mobilePlatforms.some(p => navigator.platform.includes(p));
-}
-
-// ========== ПРОВЕРКА, ЯВЛЯЕТСЯ ЛИ ПОЛЬЗОВАТЕЛЬ АДМИНОМ ==========
-function isAdminUser(user) {
-    if (!user) return false;
-    return user.email === 'ygubert72@gmail.com';
-}
-
-// ========== АНАЛИЗ ФЛАГОВ ПОДОЗРИТЕЛЬНОСТИ ==========
-function analyzeFlags(userData, today) {
-    const flags = {
-        multipleDevices: false,
-        differentCities: false,
-        highActivity: false,
-        manyIPs: false,
-        unnaturalHours: false,
-        totalFlags: 0
-    };
-    
-    // 1. Много устройств (>2)
-    if (userData.devices && userData.devices.length > 2) {
-        flags.multipleDevices = true;
-        flags.totalFlags++;
-    }
-    
-    // 2. Разные города за день
-    const stats = userData.dailyStats?.[today];
-    if (stats && stats.uniqueCities && stats.uniqueCities.length > 2) {
-        flags.differentCities = true;
-        flags.totalFlags++;
-    }
-    
-    // 3. Высокая активность (>3 часов в день)
-    if (stats && stats.totalMinutes > 180) {
-        flags.highActivity = true;
-        flags.totalFlags++;
-    }
-    
-    // 4. Много IP (>3 в день)
-    if (stats && stats.uniqueIPs && stats.uniqueIPs.length > 3) {
-        flags.manyIPs = true;
-        flags.totalFlags++;
-    }
-    
-    // 5. Неестественное время (активность и ночью, и утром)
-    if (stats && stats.firstActivity && stats.lastActivity) {
-        const firstHour = new Date(stats.firstActivity).getHours();
-        const lastHour = new Date(stats.lastActivity).getHours();
-        if ((firstHour >= 0 && firstHour <= 6) && (lastHour >= 8 && lastHour <= 12)) {
-            flags.unnaturalHours = true;
-            flags.totalFlags++;
-        }
-        if ((firstHour >= 8 && firstHour <= 12) && (lastHour >= 20 && lastHour <= 23)) {
-            flags.unnaturalHours = true;
-            flags.totalFlags++;
-        }
-    }
-    
-    return flags;
-}
-
-// ========== ЛОГИРОВАНИЕ АКТИВНОСТИ ПОЛЬЗОВАТЕЛЯ ==========
-async function logUserActivity(user) {
-    if (!user || !db) return;
-    
-    // ⛔ ЕСЛИ ЭТО АДМИН — НЕ ЛОГИРУЕМ (экономия ресурсов)
-    if (isAdminUser(user)) {
-        console.log('⛔ Админ не отслеживается');
-        return;
-    }
-    
-    const uid = user.uid;
-    const today = new Date().toISOString().split('T')[0];
-    
-    try {
-        const location = await getUserLocation();
-        const deviceId = getDeviceId();
-        const deviceType = isMobileDevice() ? 'mobile' : 'desktop';
-        
-        const userDoc = await db.collection('users').doc(uid).get();
-        let data = userDoc.exists ? userDoc.data() : {};
-        
-        // --- 1. Обновляем устройства ---
-        if (!data.devices) data.devices = [];
-        const existingDevice = data.devices.find(d => d.id === deviceId);
-        
-        if (!existingDevice) {
-            data.devices.push({
-                id: deviceId,
-                type: deviceType,
-                firstSeen: new Date().toISOString(),
-                lastSeen: new Date().toISOString(),
-                userAgent: navigator.userAgent,
-                ip: location.ip,
-                city: location.city,
-                country: location.country
-            });
-        } else {
-            existingDevice.lastSeen = new Date().toISOString();
-            existingDevice.ip = location.ip;
-            existingDevice.city = location.city;
-            existingDevice.country = location.country;
-        }
-        
-        // --- 2. Обновляем дневную статистику ---
-        if (!data.dailyStats) data.dailyStats = {};
-        if (!data.dailyStats[today]) {
-            data.dailyStats[today] = {
-                sessions: 0,
-                totalMinutes: 0,
-                uniqueIPs: [],
-                uniqueCities: [],
-                wordsLearned: 0,
-                firstActivity: null,
-                lastActivity: null
-            };
-        }
-        
-        const stats = data.dailyStats[today];
-        stats.sessions += 1;
-        
-        if (!stats.uniqueIPs.includes(location.ip) && location.ip !== 'unknown') {
-            stats.uniqueIPs.push(location.ip);
-        }
-        if (!stats.uniqueCities.includes(location.city) && location.city !== 'unknown') {
-            stats.uniqueCities.push(location.city);
-        }
-        if (!stats.firstActivity) {
-            stats.firstActivity = new Date().toISOString();
-        }
-        stats.lastActivity = new Date().toISOString();
-        
-        // --- 3. Анализируем флаги ---
-        const flags = analyzeFlags(data, today);
-        data.flags = flags;
-        
-        // --- 4. Если флагов стало больше, записываем в лог для админа ---
-        const oldFlags = data._previousFlags || { totalFlags: 0 };
-        if (flags.totalFlags > oldFlags.totalFlags) {
-            await db.collection('admin_logs').add({
-                userId: uid,
-                email: user.email,
-                timestamp: new Date().toISOString(),
-                event: 'flags_increased',
-                flagsBefore: oldFlags.totalFlags,
-                flagsAfter: flags.totalFlags,
-                flags: flags,
-                details: {
-                    deviceId: deviceId,
-                    deviceType: deviceType,
-                    ip: location.ip,
-                    city: location.city,
-                    country: location.country
-                }
-            });
-        }
-        data._previousFlags = flags;
-        
-        // --- 5. Обновляем статус пользователя ---
-        if (flags.totalFlags >= 3) {
-            data.status = 'warning';
-        } else if (flags.totalFlags >= 2) {
-            data.status = 'monitor';
-        } else {
-            data.status = 'ok';
-        }
-        
-        // --- 6. Сохраняем ---
-        await db.collection('users').doc(uid).set(data, { merge: true });
-        
-        console.log(`✅ Активность пользователя ${user.email} залогирована, флагов: ${flags.totalFlags}`);
-        
-    } catch (e) {
-        console.error('Ошибка логирования активности:', e);
-    }
-}
-
-// ========== СОХРАНЕНИЕ ПРОГРЕССА В ОБЛАКО ==========
-window.saveUserProgressToFirebase = async function() {
-    if (!auth || !auth.currentUser) return;
-    
-    const userId = auth.currentUser.uid;
-    if (!db) return;
-    
-    try {
-        const progressData = {
-            wordsProgress: wordsProgress,
-            sentencesProgress: sentencesProgress,
-            grammarProgress: grammarProgress,
-            config: {
-                last_level: AppConfig.currentLevel,
-                show_language: AppConfig.show_language,
-                quiz_direction: AppConfig.quiz_direction,
-                sentence_lang_from: AppConfig.sentence_lang_from,
-                last_mode: currentMode
-            },
-            lastUpdated: new Date().toISOString()
-        };
-        
-        await db.collection('users').doc(userId).set({
-            progress: progressData
-        }, { merge: true });
-        
-        console.log('✅ Прогресс сохранён в облаке');
-    } catch(e) {
-        console.error('Ошибка сохранения прогресса:', e);
-    }
-};
-
-// ========== ЗАГРУЗКА ПРОГРЕССА ИЗ ОБЛАКА ==========
-window.loadUserProgressFromFirebase = async function() {
-    if (!auth || !auth.currentUser) return false;
-    
-    const userId = auth.currentUser.uid;
-    if (!db) return false;
-    
-    try {
-        const userDoc = await db.collection('users').doc(userId).get();
-        if (userDoc.exists && userDoc.data().progress) {
-            const progress = userDoc.data().progress;
-            
-            if (progress.wordsProgress) {
-                Object.assign(wordsProgress, progress.wordsProgress);
-                localStorage.setItem('dm_words_progress', JSON.stringify(wordsProgress));
-            }
-            
-            if (progress.sentencesProgress) {
-                Object.assign(sentencesProgress, progress.sentencesProgress);
-                localStorage.setItem('dm_sentences_progress', JSON.stringify(sentencesProgress));
-            }
-            
-            if (progress.grammarProgress) {
-                Object.assign(grammarProgress, progress.grammarProgress);
-                localStorage.setItem('dm_grammar_progress', JSON.stringify(grammarProgress));
-            }
-            
-            if (progress.config) {
-                AppConfig.currentLevel = progress.config.last_level || 'A1';
-                AppConfig.show_language = progress.config.show_language || 'de';
-                AppConfig.quiz_direction = progress.config.quiz_direction || 'de_to_ru';
-                AppConfig.sentence_lang_from = progress.config.sentence_lang_from || 'ru';
-                currentMode = progress.config.last_mode || 'grammar';
-                localStorage.setItem('dm_config', JSON.stringify(progress.config));
-            }
-            
-            console.log('✅ Прогресс загружен из облака');
-            return true;
-        }
-    } catch(e) {
-        console.error('Ошибка загрузки прогресса:', e);
-    }
-    return false;
 };
 
 // ========== ИНИЦИАЛИЗАЦИЯ FIREBASE ==========
@@ -329,20 +30,23 @@ function initFirebase() {
     db = firebase.firestore();
     
     auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-        .then(() => console.log('✅ Сессия будет сохраняться'))
-        .catch((error) => console.error('Ошибка настройки сохранения:', error));
+        .then(() => Logger.info('Сессия будет сохраняться'))
+        .catch((error) => Logger.error('Ошибка настройки сохранения:', error));
     
-    console.log('Firebase готов');
+    Logger.info('Firebase готов');
     
     auth.onAuthStateChanged(async (user) => {
         if (user) {
-            console.log('Пользователь в системе:', user.email);
+            Logger.info('Пользователь в системе:', user.email);
             
-            // 🔥 ЛОГИРУЕМ АКТИВНОСТЬ ПРИ ВХОДЕ (только не админа)
-            await logUserActivity(user);
+            // Логируем активность через activityTracker
+            if (window.ActivityTracker) {
+                await window.ActivityTracker.logUserActivity(user);
+            }
             
+            // Загружаем данные пользователя
             await loadUserData(user.uid);
-            await loadUserProgressFromFirebase();
+            await window.loadUserProgressFromFirebase();
             await addUserToFirestore(user);
             await checkIfBlocked(user);
         } else {
@@ -361,28 +65,24 @@ async function loadUserData(uid) {
         const userDoc = await db.collection('users').doc(uid).get();
         if (userDoc.exists) {
             currentUserData = userDoc.data();
-            console.log('📊 Данные пользователя загружены, доступ к B1-C1:', currentUserData.hasPremiumAccess);
+            Logger.info('Данные пользователя загружены, доступ к B1-C1:', currentUserData.hasPremiumAccess);
         }
     } catch(e) {
-        console.error('Ошибка загрузки данных:', e);
+        Logger.error('Ошибка загрузки данных пользователя:', e);
     }
 }
 
 // ========== ПРОВЕРКА ДОСТУПА К УРОВНЮ ==========
 window.hasAccessToLevel = function(level) {
-    // Админ имеет доступ ко всем уровням
     if (auth.currentUser && auth.currentUser.email === 'ygubert72@gmail.com') {
         return true;
     }
-    
     if (level === 'A1' || level === 'A2') {
         return true;
     }
-    
     if (currentUserData && currentUserData.hasPremiumAccess === true) {
         return true;
     }
-    
     return false;
 };
 
@@ -395,7 +95,7 @@ window.getCurrentUser = function() {
     return auth ? auth.currentUser : null;
 };
 
-// Проверка, заблокирован ли пользователь
+// ========== ПРОВЕРКА БЛОКИРОВКИ ==========
 async function checkIfBlocked(user) {
     if (!db || !user) return;
     try {
@@ -406,11 +106,11 @@ async function checkIfBlocked(user) {
             location.reload();
         }
     } catch(e) {
-        console.error('Ошибка проверки блокировки:', e);
+        Logger.error('Ошибка проверки блокировки:', e);
     }
 }
 
-// Добавление пользователя в Firestore
+// ========== ДОБАВЛЕНИЕ ПОЛЬЗОВАТЕЛЯ ==========
 async function addUserToFirestore(user) {
     if (!db || !user) return;
     try {
@@ -428,52 +128,60 @@ async function addUserToFirestore(user) {
                 flags: { totalFlags: 0 },
                 _previousFlags: { totalFlags: 0 }
             });
-            console.log('✅ Пользователь добавлен в Firestore:', user.email);
+            Logger.info('Пользователь добавлен в Firestore:', user.email);
         }
     } catch(e) {
-        console.error('Ошибка добавления пользователя:', e);
+        Logger.error('Ошибка добавления пользователя:', e);
     }
 }
 
-// ========== АДМИН-КНОПКИ ==========
-function addAdminButton() {
-    const oldAdminBtn = document.getElementById('adminBtn');
-    if (oldAdminBtn) oldAdminBtn.remove();
-    
-    const oldAdminBtnMobile = document.getElementById('adminBtnMobile');
-    if (oldAdminBtnMobile) oldAdminBtnMobile.remove();
-    
-    // Кнопка "МОНИТОРИНГ"
-    const adminBtn = document.createElement('button');
-    adminBtn.id = 'adminBtn';
-    adminBtn.className = 'btn';
-    adminBtn.innerHTML = '📊 МОНИТОРИНГ';
-    adminBtn.style.background = '#FF9800';
-    adminBtn.style.color = 'white';
-    adminBtn.style.marginTop = '10px';
-    adminBtn.style.cursor = 'pointer';
-    adminBtn.onclick = () => window.open('admin.html', '_blank');
-    
-    const sidebarContent = document.querySelector('.sidebar .sidebar-content');
-    if (sidebarContent) {
-        sidebarContent.appendChild(adminBtn);
-    }
-    
-    const adminBtnMobile = document.createElement('button');
-    adminBtnMobile.id = 'adminBtnMobile';
-    adminBtnMobile.className = 'btn';
-    adminBtnMobile.innerHTML = '📊 МОНИТОРИНГ';
-    adminBtnMobile.style.background = '#FF9800';
-    adminBtnMobile.style.color = 'white';
-    adminBtnMobile.style.marginTop = '10px';
-    adminBtnMobile.style.cursor = 'pointer';
-    adminBtnMobile.onclick = () => window.open('admin.html', '_blank');
-    
-    const mobileSidebarContent = document.querySelector('#mobileMenu .sidebar-content');
-    if (mobileSidebarContent) {
-        mobileSidebarContent.appendChild(adminBtnMobile);
+// ========== ВХОД ==========
+async function login(email, password) {
+    try {
+        await auth.signInWithEmailAndPassword(email, password);
+        await window.loadUserProgressFromFirebase();
+        Logger.info('Вход выполнен:', email);
+        return { success: true };
+    } catch(error) {
+        Logger.error('Ошибка входа:', error.message);
+        return { success: false, error: error.message };
     }
 }
+
+// ========== РЕГИСТРАЦИЯ ==========
+async function register(email, password) {
+    try {
+        const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+        if (db) {
+            await db.collection('users').doc(userCredential.user.uid).set({
+                email: email,
+                createdAt: new Date().toISOString(),
+                hasPremiumAccess: false,
+                premiumActivatedAt: null,
+                blocked: false,
+                status: 'ok',
+                devices: [],
+                dailyStats: {},
+                flags: { totalFlags: 0 },
+                _previousFlags: { totalFlags: 0 }
+            });
+        }
+        Logger.info('Регистрация выполнена:', email);
+        return { success: true };
+    } catch(error) {
+        Logger.error('Ошибка регистрации:', error.message);
+        return { success: false, error: error.message };
+    }
+}
+
+// ========== ВЫХОД ==========
+window.logout = async function() {
+    if (auth) {
+        await auth.signOut();
+        Logger.info('Выход выполнен');
+    }
+    location.reload();
+};
 
 // ========== ОБНОВЛЕНИЕ ИНТЕРФЕЙСА ==========
 function updateUI(user) {
@@ -494,9 +202,6 @@ function updateUI(user) {
         const hasPremium = currentUserData && currentUserData.hasPremiumAccess === true;
         const isAdmin = user.email === 'ygubert72@gmail.com';
         
-        // ===== СТАТУС НЕ ПОКАЗЫВАЕМ =====
-        let statusHtml = '';
-        
         const premiumButtonHtml = (!isAdmin) ? `
             <div style="margin-top:8px;">
                 ${!hasPremium 
@@ -512,7 +217,6 @@ function updateUI(user) {
                     <span style="font-size:20px;">🎓</span>
                     <span style="word-break:break-all;">${user.email}</span>
                 </div>
-                ${statusHtml}
                 <button onclick="logout()" style="margin-top:5px; padding:8px 12px; background:#4CAF50; color:white; border:none; border-radius:16px; cursor:pointer; width:100%; font-size:12px; font-weight:bold;">🚪 Выйти</button>
                 ${premiumButtonHtml}
             </div>
@@ -521,29 +225,21 @@ function updateUI(user) {
         userInfo.innerHTML = userInfoHtml;
         if (userInfoMobile) userInfoMobile.innerHTML = userInfoHtml;
         
-        // ===== КНОПКИ ДЛЯ АДМИНА =====
-        if (isAdmin) {
-            addAdminButton();
-        } else {
-            const oldAdminBtn = document.getElementById('adminBtn');
-            if (oldAdminBtn) oldAdminBtn.remove();
-            const oldAdminBtnMobile = document.getElementById('adminBtnMobile');
-            if (oldAdminBtnMobile) oldAdminBtnMobile.remove();
+        // Админ-кнопка через adminUI
+        if (isAdmin && window.AdminUI) {
+            window.AdminUI.addAdminButton();
         }
         
-        // ===== КНОПКА ОПЛАТЫ (только для обычных пользователей) =====
+        // Кнопка оплаты
         if (!isAdmin && !hasPremium) {
             setTimeout(() => {
                 const payBtn = document.getElementById('premiumPayBtn');
                 if (payBtn) payBtn.onclick = () => showPaymentModal();
-                
-                const payBtnMobile = document.getElementById('premiumPayBtn');
-                if (payBtnMobile) payBtnMobile.onclick = () => showPaymentModal();
             }, 100);
         }
         
     } else {
-        // ===== ГОСТЕВОЙ РЕЖИМ =====
+        // Гостевой режим
         loginBtn.style.display = 'block';
         if (loginBtnMobile) loginBtnMobile.style.display = 'block';
         
@@ -563,18 +259,13 @@ function updateUI(user) {
         loginBtn.onclick = () => showLoginModal();
         if (loginBtnMobile) loginBtnMobile.onclick = () => showLoginModal();
         
+        // Удаляем админ-кнопку
         const oldAdminBtn = document.getElementById('adminBtn');
         if (oldAdminBtn) oldAdminBtn.remove();
         const oldAdminBtnMobile = document.getElementById('adminBtnMobile');
         if (oldAdminBtnMobile) oldAdminBtnMobile.remove();
     }
 }
-
-// ========== ВЫХОД ==========
-window.logout = async function() {
-    if (auth) await auth.signOut();
-    location.reload();
-};
 
 // ========== МОДАЛЬНОЕ ОКНО ОПЛАТЫ ==========
 function showPaymentModal() {
@@ -583,6 +274,12 @@ function showPaymentModal() {
         showLoginModal();
         return;
     }
+    
+    const PREMIUM_PRICE = 500;
+    const CONTACTS = {
+        telegram: "@SEO_2020",
+        email: "ygubert72@gmail.com"
+    };
     
     const modal = document.createElement('div');
     modal.id = 'paymentModal';
@@ -626,239 +323,6 @@ function showPaymentModal() {
     
     document.getElementById('paymentCloseBtn').onclick = () => modal.remove();
     modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
-}
-
-// ========== АКТИВАЦИЯ ПРЕМИУМА (админ) ==========
-window.activatePremium = async function(email) {
-    if (!auth.currentUser || auth.currentUser.email !== 'ygubert72@gmail.com') {
-        alert('Нет прав');
-        return;
-    }
-    
-    try {
-        const usersSnapshot = await db.collection('users').where('email', '==', email).get();
-        if (usersSnapshot.empty) {
-            alert('Пользователь с таким email не найден');
-            return;
-        }
-        
-        const userDoc = usersSnapshot.docs[0];
-        await userDoc.ref.update({
-            hasPremiumAccess: true,
-            premiumActivatedAt: new Date().toISOString()
-        });
-        
-        alert(`✅ Премиум доступ активирован для ${email}`);
-        
-        if (auth.currentUser && auth.currentUser.email === email) {
-            currentUserData.hasPremiumAccess = true;
-            updateUI(auth.currentUser);
-        }
-        
-        document.getElementById('adminPanel')?.remove();
-        window.showAdminPanel();
-    } catch(e) {
-        alert('Ошибка: ' + e.message);
-    }
-};
-
-window.deactivatePremium = async function(email) {
-    if (!auth.currentUser || auth.currentUser.email !== 'ygubert72@gmail.com') {
-        alert('Нет прав');
-        return;
-    }
-    
-    if (!confirm('Отключить премиум доступ для этого пользователя?')) return;
-    
-    try {
-        const usersSnapshot = await db.collection('users').where('email', '==', email).get();
-        if (usersSnapshot.empty) {
-            alert('Пользователь с таким email не найден');
-            return;
-        }
-        
-        const userDoc = usersSnapshot.docs[0];
-        await userDoc.ref.update({
-            hasPremiumAccess: false,
-            premiumActivatedAt: null
-        });
-        
-        alert(`✅ Премиум доступ деактивирован для ${email}`);
-        
-        if (auth.currentUser && auth.currentUser.email === email) {
-            currentUserData.hasPremiumAccess = false;
-            updateUI(auth.currentUser);
-        }
-        
-        document.getElementById('adminPanel')?.remove();
-        window.showAdminPanel();
-    } catch(e) {
-        alert('Ошибка: ' + e.message);
-    }
-};
-
-// ========== АДМИН-ПАНЕЛЬ (старая) ==========
-window.showAdminPanel = async function() {
-    if (!auth.currentUser || auth.currentUser.email !== 'ygubert72@gmail.com') {
-        alert('У вас нет прав администратора');
-        return;
-    }
-    
-    let users = [];
-    if (db) {
-        try {
-            const usersSnapshot = await db.collection('users').get();
-            usersSnapshot.forEach(doc => {
-                const data = doc.data();
-                users.push({
-                    uid: doc.id,
-                    email: data.email || 'Email не указан',
-                    createdAt: data.createdAt || 'Неизвестно',
-                    hasPremiumAccess: data.hasPremiumAccess === true,
-                    blocked: data.blocked === true
-                });
-            });
-        } catch(e) {
-            console.error('Ошибка:', e);
-        }
-    }
-    
-    const modal = document.createElement('div');
-    modal.id = 'adminPanel';
-    modal.innerHTML = `
-        <div style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); display:flex; justify-content:center; align-items:center; z-index:1000000; overflow:auto;">
-            <div style="background:white; border-radius:20px; max-width:900px; width:95%; max-height:90vh; overflow-y:auto; margin:20px;">
-                <div style="padding:20px; border-bottom:1px solid #E0E0E0; display:flex; justify-content:space-between; align-items:center;">
-                    <h2 style="margin:0;">👑 Админ-панель</h2>
-                    <button id="closeAdminPanel" style="background:none; border:none; font-size:28px; cursor:pointer;">&times;</button>
-                </div>
-                <div style="padding:20px;">
-                    <h3>📊 Статистика</h3>
-                    <div style="display:flex; gap:15px; flex-wrap:wrap; margin-bottom:20px;">
-                        <div style="background:#E8F0FE; padding:10px 20px; border-radius:12px;">Всего: <strong>${users.length}</strong></div>
-                        <div style="background:#C8E6C9; padding:10px 20px; border-radius:12px;">Премиум: <strong>${users.filter(u => u.hasPremiumAccess).length}</strong></div>
-                        <div style="background:#FFCDD2; padding:10px 20px; border-radius:12px;">Заблокировано: <strong>${users.filter(u => u.blocked).length}</strong></div>
-                    </div>
-                    
-                    <h3>🔧 Ручное управление пользователями</h3>
-                    <div style="display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap;">
-                        <input type="email" id="premiumEmail" placeholder="Email пользователя" style="flex:1; padding:10px; border:2px solid #E0E0E0; border-radius:8px;">
-                        <button id="activatePremiumBtn" style="padding:10px 20px; background:#4CAF50; color:white; border:none; border-radius:8px; cursor:pointer;">💎 Активировать премиум</button>
-                        <button id="deactivatePremiumBtn" style="padding:10px 20px; background:#FF9800; color:white; border:none; border-radius:8px; cursor:pointer;">🔒 Снять премиум</button>
-                    </div>
-                    
-                    <h3>👥 Список пользователей</h3>
-                    <div id="usersList">
-                        ${users.map(user => `
-                            <div style="border:1px solid ${user.blocked ? '#f44336' : '#E0E0E0'}; border-radius:12px; padding:15px; margin-bottom:10px; background:${user.blocked ? '#FFEBEE' : 'white'}">
-                                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-                                    <div>
-                                        <strong>${user.email}</strong>
-                                        ${user.hasPremiumAccess ? '<span style="background:#4CAF50; color:white; padding:2px 8px; border-radius:10px; font-size:10px; margin-left:8px;">ПРЕМИУМ</span>' : '<span style="background:#999; color:white; padding:2px 8px; border-radius:10px; font-size:10px; margin-left:8px;">БЕСПЛАТНЫЙ</span>'}
-                                        ${user.blocked ? '<span style="color:#f44336; margin-left:8px;">[ЗАБЛОКИРОВАН]</span>' : ''}
-                                    </div>
-                                    <div style="font-size:11px; color:#666;">Регистрация: ${user.createdAt}</div>
-                                </div>
-                                <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
-                                    ${!user.hasPremiumAccess 
-                                        ? `<button onclick="window.activatePremiumByUid('${user.uid}')" style="padding:5px 15px; background:#4CAF50; color:white; border:none; border-radius:8px; cursor:pointer;">💎 Дать премиум</button>`
-                                        : `<button onclick="window.deactivatePremiumByUid('${user.uid}')" style="padding:5px 15px; background:#FF9800; color:white; border:none; border-radius:8px; cursor:pointer;">🔒 Снять премиум</button>`
-                                    }
-                                    ${!user.blocked 
-                                        ? `<button onclick="window.blockUser('${user.uid}')" style="padding:5px 15px; background:#f44336; color:white; border:none; border-radius:8px; cursor:pointer;">🚫 Заблокировать</button>`
-                                        : `<button onclick="window.unblockUser('${user.uid}')" style="padding:5px 15px; background:#4CAF50; color:white; border:none; border-radius:8px; cursor:pointer;">🔓 Разблокировать</button>`
-                                    }
-                                    <button onclick="window.deleteUser('${user.uid}')" style="padding:5px 15px; background:#555; color:white; border:none; border-radius:8px; cursor:pointer;">🗑️ Удалить</button>
-                                </div>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
-    document.body.appendChild(modal);
-    
-    document.getElementById('closeAdminPanel').onclick = () => modal.remove();
-    document.getElementById('activatePremiumBtn').onclick = () => {
-        const email = document.getElementById('premiumEmail').value;
-        if (email) window.activatePremium(email);
-        else alert('Введите email');
-    };
-    document.getElementById('deactivatePremiumBtn').onclick = () => {
-        const email = document.getElementById('premiumEmail').value;
-        if (email) window.deactivatePremium(email);
-        else alert('Введите email');
-    };
-    modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
-};
-
-window.activatePremiumByUid = async function(uid) {
-    try {
-        await db.collection('users').doc(uid).update({
-            hasPremiumAccess: true,
-            premiumActivatedAt: new Date().toISOString()
-        });
-        alert('✅ Премиум активирован');
-        document.getElementById('adminPanel')?.remove();
-        window.showAdminPanel();
-    } catch(e) { alert('Ошибка: ' + e.message); }
-};
-
-window.deactivatePremiumByUid = async function(uid) {
-    if (!confirm('Снять премиум доступ?')) return;
-    try {
-        await db.collection('users').doc(uid).update({
-            hasPremiumAccess: false,
-            premiumActivatedAt: null
-        });
-        alert('✅ Премиум снят');
-        document.getElementById('adminPanel')?.remove();
-        window.showAdminPanel();
-    } catch(e) { alert('Ошибка: ' + e.message); }
-};
-
-window.blockUser = async function(uid) {
-    if (!confirm('Заблокировать пользователя?')) return;
-    try {
-        await db.collection('users').doc(uid).update({ blocked: true });
-        alert('✅ Пользователь заблокирован');
-        document.getElementById('adminPanel')?.remove();
-        window.showAdminPanel();
-    } catch(e) { alert('Ошибка: ' + e.message); }
-};
-
-window.unblockUser = async function(uid) {
-    if (!confirm('Разблокировать пользователя?')) return;
-    try {
-        await db.collection('users').doc(uid).update({ blocked: false });
-        alert('✅ Пользователь разблокирован');
-        document.getElementById('adminPanel')?.remove();
-        window.showAdminPanel();
-    } catch(e) { alert('Ошибка: ' + e.message); }
-};
-
-window.deleteUser = async function(uid) {
-    if (!confirm('Удалить пользователя?')) return;
-    try {
-        await db.collection('users').doc(uid).delete();
-        alert('✅ Пользователь удалён');
-        document.getElementById('adminPanel')?.remove();
-        window.showAdminPanel();
-    } catch(e) { alert('Ошибка: ' + e.message); }
-};
-
-// ========== ПЕРЕКЛЮЧЕНИЕ ВИДИМОСТИ ПАРОЛЯ ==========
-function togglePasswordVisibility(inputId, eyeIconId) {
-    const input = document.getElementById(inputId);
-    const eyeIcon = document.getElementById(eyeIconId);
-    if (input.type === 'password') {
-        input.type = 'text';
-        eyeIcon.textContent = '🙈';
-    } else {
-        input.type = 'password';
-        eyeIcon.textContent = '👁️';
-    }
 }
 
 // ========== МОДАЛЬНОЕ ОКНО ВХОДА/РЕГИСТРАЦИИ ==========
@@ -947,37 +411,30 @@ window.showLoginModal = function() {
         if (!isLogin) {
             const confirmPassword = confirmInput.value;
             if (password !== confirmPassword) {
-                alert('❌ Пароли не совпадают! Пожалуйста, повторите ввод.');
+                alert('❌ Пароли не совпадают!');
                 return;
             }
         }
         
         try {
             if (isLogin) {
-                await auth.signInWithEmailAndPassword(email, password);
-                await window.loadUserProgressFromFirebase();
-                alert('Добро пожаловать, ' + email + '!');
-                modal.remove();
-                location.reload();
-            } else {
-                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-                if (db) {
-                    await db.collection('users').doc(userCredential.user.uid).set({
-                        email: email,
-                        createdAt: new Date().toISOString(),
-                        hasPremiumAccess: false,
-                        premiumActivatedAt: null,
-                        blocked: false,
-                        status: 'ok',
-                        devices: [],
-                        dailyStats: {},
-                        flags: { totalFlags: 0 },
-                        _previousFlags: { totalFlags: 0 }
-                    });
+                const result = await login(email, password);
+                if (result.success) {
+                    alert('Добро пожаловать, ' + email + '!');
+                    modal.remove();
+                    location.reload();
+                } else {
+                    alert('Ошибка входа: ' + result.error);
                 }
-                alert('Регистрация успешна! Добро пожаловать, ' + email + '!');
-                modal.remove();
-                location.reload();
+            } else {
+                const result = await register(email, password);
+                if (result.success) {
+                    alert('Регистрация успешна! Добро пожаловать, ' + email + '!');
+                    modal.remove();
+                    location.reload();
+                } else {
+                    alert('Ошибка регистрации: ' + result.error);
+                }
             }
         } catch(error) {
             let msg = 'Ошибка: ';
@@ -1000,9 +457,96 @@ window.showLoginModal = function() {
     document.getElementById('closeModal').onclick = () => modal.remove();
 };
 
+// ========== ПЕРЕКЛЮЧЕНИЕ ВИДИМОСТИ ПАРОЛЯ ==========
+function togglePasswordVisibility(inputId, eyeIconId) {
+    const input = document.getElementById(inputId);
+    const eyeIcon = document.getElementById(eyeIconId);
+    if (input.type === 'password') {
+        input.type = 'text';
+        eyeIcon.textContent = '🙈';
+    } else {
+        input.type = 'password';
+        eyeIcon.textContent = '👁️';
+    }
+}
+
+// ========== ПРОВЕРКА АДМИНА ==========
+window.isAdmin = function() {
+    if (auth && auth.currentUser && auth.currentUser.email === 'ygubert72@gmail.com') {
+        return true;
+    }
+    return false;
+};
+
+// ========== СОХРАНЕНИЕ ПРОГРЕССА В ОБЛАКО ==========
+window.saveUserProgressToFirebase = async function() {
+    if (!auth || !auth.currentUser) return;
+    const userId = auth.currentUser.uid;
+    if (!db) return;
+    try {
+        const progressData = {
+            wordsProgress: wordsProgress,
+            sentencesProgress: sentencesProgress,
+            grammarProgress: grammarProgress,
+            config: {
+                last_level: AppConfig.currentLevel,
+                show_language: AppConfig.show_language,
+                quiz_direction: AppConfig.quiz_direction,
+                sentence_lang_from: AppConfig.sentence_lang_from,
+                last_mode: currentMode
+            },
+            lastUpdated: new Date().toISOString()
+        };
+        await db.collection('users').doc(userId).set({
+            progress: progressData
+        }, { merge: true });
+        Logger.debug('Прогресс сохранён в облаке');
+    } catch(e) {
+        Logger.error('Ошибка сохранения прогресса:', e);
+    }
+};
+
+// ========== ЗАГРУЗКА ПРОГРЕССА ИЗ ОБЛАКА ==========
+window.loadUserProgressFromFirebase = async function() {
+    if (!auth || !auth.currentUser) return false;
+    const userId = auth.currentUser.uid;
+    if (!db) return false;
+    try {
+        const userDoc = await db.collection('users').doc(userId).get();
+        if (userDoc.exists && userDoc.data().progress) {
+            const progress = userDoc.data().progress;
+            if (progress.wordsProgress) {
+                Object.assign(wordsProgress, progress.wordsProgress);
+                localStorage.setItem('dm_words_progress', JSON.stringify(wordsProgress));
+            }
+            if (progress.sentencesProgress) {
+                Object.assign(sentencesProgress, progress.sentencesProgress);
+                localStorage.setItem('dm_sentences_progress', JSON.stringify(sentencesProgress));
+            }
+            if (progress.grammarProgress) {
+                Object.assign(grammarProgress, progress.grammarProgress);
+                localStorage.setItem('dm_grammar_progress', JSON.stringify(grammarProgress));
+            }
+            if (progress.config) {
+                AppConfig.currentLevel = progress.config.last_level || 'A1';
+                AppConfig.show_language = progress.config.show_language || 'de';
+                AppConfig.quiz_direction = progress.config.quiz_direction || 'de_to_ru';
+                AppConfig.sentence_lang_from = progress.config.sentence_lang_from || 'ru';
+                currentMode = progress.config.last_mode || 'grammar';
+                localStorage.setItem('dm_config', JSON.stringify(progress.config));
+            }
+            Logger.info('Прогресс загружен из облака');
+            return true;
+        }
+    } catch(e) {
+        Logger.error('Ошибка загрузки прогресса:', e);
+    }
+    return false;
+};
+
 // ========== ЗАПУСК ==========
 window.addEventListener('load', function() {
-    console.log('Загрузка страницы...');
+    Logger.info('Загрузка страницы...');
     const loginBtn = document.getElementById('loginBtn');
     if (loginBtn) {
         loginBtn.style.background = '#4CAF50';
@@ -1030,10 +574,7 @@ window.addEventListener('load', function() {
     }
 });
 
-// ========== ПРОВЕРКА, ЯВЛЯЕТСЯ ЛИ ПОЛЬЗОВАТЕЛЬ АДМИНОМ ==========
-window.isAdmin = function() {
-    if (auth && auth.currentUser && auth.currentUser.email === 'ygubert72@gmail.com') {
-        return true;
-    }
-    return false;
-};
+// Экспорт для других модулей
+window.auth = auth;
+window.db = db;
+window.currentUserData = currentUserData;
