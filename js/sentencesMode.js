@@ -1,3 +1,5 @@
+// sentencesMode.js — упрощённая версия с использованием containerManager и carousel
+
 let sentencesList = [];
 let sentencesIndex = 0;
 let sentencesCurrent = null;
@@ -6,27 +8,13 @@ let sentencesAvailable = [];
 let sentencesActive = {};
 let sentencesHintIndex = 0;
 let sentencesHintWords = [];
-
-// Переменные для мобильной карусели
-let mobileTouchStartX = 0;
-let mobileIsDragging = false;
-let mobileContainerWidth = 0;
-let mobileCurrentTranslate = 0;
-const mobileMinSwipeDistance = 50;
-
-function isMobileDevice() {
-    return window.innerWidth <= 768;
-}
-
-// Глобальные функции для обновления интерфейса
-window.refreshSentencesCarousel = null;
-window.refreshSentencesDesktop = null;
+let sentencesCarousel = null;
 
 function renderSentences() {
     sentencesList = getUnstudiedSentences();
     sentencesIndex = 0;
     
-    if (isMobileDevice()) {
+    if (window.utils.isMobileDevice()) {
         renderSentencesMobile();
     } else {
         renderSentencesDesktop();
@@ -61,128 +49,111 @@ function renderSentencesDesktop() {
         </div>
     `;
     
-    function updateSentenceDisplay() {
-        const container = document.getElementById('sentWordsContainer');
-        const resultEl = document.getElementById('sentResult');
-        if (!container) return;
-        container.innerHTML = '';
-        sentencesAvailable.forEach(word => {
-            if (sentencesActive[word]) {
-                const btn = document.createElement('button');
-                btn.className = 'word-btn';
-                btn.textContent = word;
-                btn.onclick = () => {
-                    if (sentencesActive[word]) {
-                        sentencesActive[word] = false;
-                        sentencesSelected.push(word);
-                        updateSentenceDisplay();
-                    }
-                };
-                container.appendChild(btn);
-            }
-        });
-        resultEl.textContent = sentencesSelected.join(' ');
+    window.showCurrentSentenceDesktop = showCurrentSentenceDesktop;
+    showCurrentSentenceDesktop();
+    attachSentencesDesktopEvents();
+}
+
+function showCurrentSentenceDesktop() {
+    resetHintDesktop();
+    
+    if (!sentencesList.length) {
+        const studiedCount = getStudiedSentencesCount();
+        document.getElementById('sentQuestion').innerHTML = studiedCount > 0
+            ? "🎉 Все фразы в контейнере!<br><br>Нажмите 'В КОНТЕЙНЕР' чтобы просмотреть<br>или вернуть фразы"
+            : "🎉 Все фразы изучены!<br><br>Выберите другой уровень";
+        document.getElementById('sentWordsContainer').innerHTML = '';
+        document.getElementById('sentResult').textContent = '';
+        return;
     }
     
-    function showHint() {
-        if (!sentencesHintWords.length) return;
-        if (sentencesHintIndex >= sentencesHintWords.length) return;
-        const currentHint = sentencesHintWords.slice(0, sentencesHintIndex + 1).join(' ');
-        const hintLabel = document.getElementById('sentHintLabel');
-        if (hintLabel) hintLabel.textContent = '💡 ' + currentHint;
-        sentencesHintIndex++;
+    if (sentencesIndex >= sentencesList.length) sentencesIndex = 0;
+    sentencesCurrent = sentencesList[sentencesIndex];
+    
+    const isRuToDe = AppConfig.sentence_lang_from === 'ru';
+    const question = isRuToDe ? sentencesCurrent.ru : sentencesCurrent.de;
+    const correctTokens = isRuToDe ? sentencesCurrent.de.split(/\s+/) : sentencesCurrent.ru.split(/\s+/);
+    sentencesHintWords = correctTokens.map(w => w.replace(/[.,!?;:]/g, ''));
+    
+    document.getElementById('sentQuestion').innerHTML = `Составьте предложение:<br><br><strong>${question}</strong>`;
+    
+    let available = correctTokens.map(t => t.replace(/[.,!?;:]/g, ''));
+    const needed = 12 - available.length;
+    if (needed > 0) {
+        const distractors = getDistractorsForSentences(needed, available, isRuToDe ? 'de' : 'ru');
+        available.push(...distractors);
     }
-    
-    function resetHint() {
-        sentencesHintIndex = 0;
-        const hintLabel = document.getElementById('sentHintLabel');
-        if (hintLabel) hintLabel.textContent = '';
+    for (let i = available.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [available[i], available[j]] = [available[j], available[i]];
     }
-    
-    window.showCurrentSentenceDesktop = function() {
-        resetHint();
-        if (!sentencesList.length) {
-            const studiedCount = getStudiedSentencesCount();
-            if (studiedCount > 0) {
-                document.getElementById('sentQuestion').innerHTML = "🎉 Все фразы в контейнере!<br><br>Нажмите 'В КОНТЕЙНЕР' чтобы просмотреть<br>или вернуть фразы";
-            } else {
-                document.getElementById('sentQuestion').innerHTML = "🎉 Все фразы изучены!<br><br>Выберите другой уровень";
-            }
-            const container = document.getElementById('sentWordsContainer');
-            if (container) container.innerHTML = '';
-            const result = document.getElementById('sentResult');
-            if (result) result.textContent = '';
-            return;
+    sentencesAvailable = available.slice(0, 12);
+    sentencesSelected = [];
+    sentencesActive = {};
+    sentencesAvailable.forEach(w => { sentencesActive[w] = true; });
+    updateSentenceDisplayDesktop();
+}
+
+function updateSentenceDisplayDesktop() {
+    const container = document.getElementById('sentWordsContainer');
+    const resultEl = document.getElementById('sentResult');
+    if (!container) return;
+    container.innerHTML = '';
+    sentencesAvailable.forEach(word => {
+        if (sentencesActive[word]) {
+            const btn = document.createElement('button');
+            btn.className = 'word-btn';
+            btn.textContent = word;
+            btn.onclick = () => {
+                if (sentencesActive[word]) {
+                    sentencesActive[word] = false;
+                    sentencesSelected.push(word);
+                    updateSentenceDisplayDesktop();
+                }
+            };
+            container.appendChild(btn);
         }
-        if (sentencesIndex >= sentencesList.length) sentencesIndex = 0;
-        sentencesCurrent = sentencesList[sentencesIndex];
-        
-        let question, correctTokens, targetLangForDistractors;
-        if (AppConfig.sentence_lang_from === 'ru') {
-            question = sentencesCurrent.ru;
-            correctTokens = sentencesCurrent.de.split(/\s+/);
-            sentencesHintWords = sentencesCurrent.de.split(/\s+/);
-            targetLangForDistractors = 'de';
-        } else {
-            question = sentencesCurrent.de;
-            correctTokens = sentencesCurrent.ru.split(/\s+/);
-            sentencesHintWords = sentencesCurrent.ru.split(/\s+/);
-            targetLangForDistractors = 'ru';
-        }
-        
-        sentencesHintWords = sentencesHintWords.map(w => w.replace(/[.,!?;:]/g, ''));
-        document.getElementById('sentQuestion').innerHTML = `Составьте предложение:<br><br><strong>${question}</strong>`;
-        correctTokens = correctTokens.map(t => t.replace(/[.,!?;:]/g, ''));
-        
-        let available = [...correctTokens];
-        const needed = 12 - available.length;
-        if (needed > 0) {
-            const distractors = getDistractorsForSentences(needed, correctTokens, targetLangForDistractors);
-            available.push(...distractors);
-        }
-        for (let i = available.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [available[i], available[j]] = [available[j], available[i]];
-        }
-        sentencesAvailable = available.slice(0, 12);
-        sentencesSelected = [];
-        sentencesActive = {};
-        sentencesAvailable.forEach(w => { sentencesActive[w] = true; });
-        updateSentenceDisplay();
-    };
-    
-    function goToStart() {
-        if (sentencesList.length) {
-            sentencesIndex = 0;
-            window.showCurrentSentenceDesktop();
-            updateCounter();
-        }
-    }
-    
-    function getStudiedSentencesCount() {
-        const progress = sentencesProgress[AppConfig.currentLevel] || [];
-        return progress.filter(p => p?.studied === true).length;
-    }
-    
+    });
+    resultEl.textContent = sentencesSelected.join(' ');
+}
+
+function resetHintDesktop() {
+    sentencesHintIndex = 0;
+    const hintLabel = document.getElementById('sentHintLabel');
+    if (hintLabel) hintLabel.textContent = '';
+}
+
+function showHintDesktop() {
+    if (!sentencesHintWords.length || sentencesHintIndex >= sentencesHintWords.length) return;
+    const currentHint = sentencesHintWords.slice(0, sentencesHintIndex + 1).join(' ');
+    const hintLabel = document.getElementById('sentHintLabel');
+    if (hintLabel) hintLabel.textContent = '💡 ' + currentHint;
+    sentencesHintIndex++;
+}
+
+function attachSentencesDesktopEvents() {
     document.getElementById('sentDirBtn').onclick = () => {
         AppConfig.sentence_lang_from = AppConfig.sentence_lang_from === 'ru' ? 'de' : 'ru';
-        window.showCurrentSentenceDesktop();
+        showCurrentSentenceDesktop();
         document.getElementById('sentDirBtn').textContent = AppConfig.sentence_lang_from === 'ru' ? 'Ru → De' : 'De → Ru';
         saveProgress();
     };
+    
     document.getElementById('sentUndoBtn').onclick = () => {
         if (sentencesSelected.length) {
             const last = sentencesSelected.pop();
             sentencesActive[last] = true;
-            updateSentenceDisplay();
+            updateSentenceDisplayDesktop();
         }
     };
+    
     document.getElementById('sentResetBtn').onclick = () => {
         sentencesSelected = [];
         sentencesAvailable.forEach(w => { sentencesActive[w] = true; });
-        updateSentenceDisplay();
-        resetHint();
+        updateSentenceDisplayDesktop();
+        resetHintDesktop();
     };
+    
     document.getElementById('sentCheckBtn').onclick = () => {
         if (!sentencesSelected.length) {
             const result = document.getElementById('sentResult');
@@ -190,20 +161,18 @@ function renderSentencesDesktop() {
             setTimeout(() => result.style.backgroundColor = '#FFFFFF', 500);
             return;
         }
-        let correctAnswer;
-        if (AppConfig.sentence_lang_from === 'ru') {
-            correctAnswer = sentencesCurrent.de.toLowerCase().replace(/[.,!?;:]/g, '');
-        } else {
-            correctAnswer = sentencesCurrent.ru.toLowerCase().replace(/[.,!?;:]/g, '');
-        }
+        
+        const isRuToDe = AppConfig.sentence_lang_from === 'ru';
+        const correctAnswer = (isRuToDe ? sentencesCurrent.de : sentencesCurrent.ru).toLowerCase().replace(/[.,!?;:]/g, '');
         const userAnswer = sentencesSelected.join(' ').toLowerCase().replace(/[.,!?;:]/g, '');
         const result = document.getElementById('sentResult');
+        
         if (userAnswer === correctAnswer) {
             result.style.backgroundColor = '#C8E6C9';
             setTimeout(() => {
                 result.style.backgroundColor = '#FFFFFF';
                 sentencesIndex = (sentencesIndex + 1) % sentencesList.length;
-                window.showCurrentSentenceDesktop();
+                showCurrentSentenceDesktop();
             }, 500);
         } else {
             result.style.backgroundColor = '#FFCDD2';
@@ -211,136 +180,67 @@ function renderSentencesDesktop() {
                 result.style.backgroundColor = '#FFFFFF';
                 sentencesSelected = [];
                 sentencesAvailable.forEach(w => { sentencesActive[w] = true; });
-                updateSentenceDisplay();
-                resetHint();
+                updateSentenceDisplayDesktop();
+                resetHintDesktop();
             }, 500);
         }
     };
-    document.getElementById('sentHintBtn').onclick = showHint;
+    
+    document.getElementById('sentHintBtn').onclick = showHintDesktop;
     document.getElementById('sentSpeakBtn').onclick = () => { if (sentencesCurrent) speak(sentencesCurrent.de); };
+    
     document.getElementById('sentStudyBtn').onclick = () => {
         if (sentencesCurrent) {
             markSentenceAsStudied(sentencesCurrent);
             sentencesList = getUnstudiedSentences();
             sentencesIndex = 0;
-            window.showCurrentSentenceDesktop();
+            showCurrentSentenceDesktop();
             updateCounter();
         }
     };
+    
     document.getElementById('sentContainerBtn').onclick = () => {
         const completed = sentencesDB[AppConfig.currentLevel].filter((_, idx) => sentencesProgress[AppConfig.currentLevel]?.[idx]?.studied);
-        if (!completed.length) { alert("📦 Контейнер пуст\n\nВыучите фразы, чтобы они появились здесь."); return; }
-        showStudiedSentencesModalDesktop(completed);
+        if (!completed.length) {
+            alert("📦 Контейнер пуст\n\nВыучите фразы, чтобы они появились здесь.");
+            return;
+        }
+        showSentencesContainer(completed);
     };
+    
     document.getElementById('sentPrevBtn').onclick = () => {
         if (sentencesList.length && sentencesIndex > 0) {
             sentencesIndex--;
-            window.showCurrentSentenceDesktop();
+            showCurrentSentenceDesktop();
         }
     };
+    
     document.getElementById('sentNextBtn').onclick = () => {
         if (sentencesList.length) {
             sentencesIndex = (sentencesIndex + 1) % sentencesList.length;
-            window.showCurrentSentenceDesktop();
+            showCurrentSentenceDesktop();
         }
     };
-    document.getElementById('sentResetStartBtn').onclick = goToStart;
-    window.showCurrentSentenceDesktop();
-    updateCounter();
-}
-
-// ========== МОДАЛЬНОЕ ОКНО ДЛЯ ДЕСКТОПА ==========
-function showStudiedSentencesModalDesktop(initialSentences) {
-    const oldModal = document.getElementById('studiedSentencesModal');
-    if (oldModal) oldModal.remove();
     
-    const modal = document.createElement('div');
-    modal.id = 'studiedSentencesModal';
-    modal.style.cssText = `position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); display:flex; justify-content:center; align-items:center; z-index:1000000; overflow:auto;`;
-    
-    const modalContent = document.createElement('div');
-    modalContent.style.cssText = `background:white; border-radius:20px; max-width:500px; width:90%; max-height:80vh; display:flex; flex-direction:column; margin:20px;`;
-    
-    function updateModalContent() {
-        const currentStudied = sentencesDB[AppConfig.currentLevel].filter((_, idx) => sentencesProgress[AppConfig.currentLevel]?.[idx]?.studied);
-        const header = modalContent.querySelector('h3');
-        const itemsContainer = modalContent.querySelector('.items-container');
-        if (header) header.textContent = `📦 КОНТЕЙНЕР (${currentStudied.length} фраз)`;
-        if (itemsContainer) {
-            if (currentStudied.length === 0) {
-                itemsContainer.innerHTML = '<div style="text-align:center; padding:40px; color:#999;">📭 Контейнер пуст</div>';
-            } else {
-                let itemsHtml = '';
-                currentStudied.forEach((sentence, idx) => {
-                    const safeDe = sentence.de.replace(/'/g, "\\'").replace(/"/g, '&quot;');
-                    const safeRu = sentence.ru.replace(/'/g, "\\'").replace(/"/g, '&quot;');
-                    itemsHtml += `<button class="studied-sentence-item" data-index="${idx}" style="width:100%; text-align:left; padding:12px 15px; background:#E8F0FE; border:none; border-bottom:1px solid #ddd; cursor:pointer; font-size:14px;"><strong>${safeDe}</strong> → ${safeRu}</button>`;
-                });
-                itemsContainer.innerHTML = itemsHtml;
-                document.querySelectorAll('.studied-sentence-item').forEach(btn => {
-                    btn.onclick = () => {
-                        const idx = parseInt(btn.getAttribute('data-index'));
-                        const sentence = currentStudied[idx];
-                        const sIdx = sentencesDB[AppConfig.currentLevel].findIndex(s => s.de === sentence.de && s.ru === sentence.ru);
-                        if (sIdx !== -1) {
-                            if (!sentencesProgress[AppConfig.currentLevel]) sentencesProgress[AppConfig.currentLevel] = [];
-                            sentencesProgress[AppConfig.currentLevel][sIdx] = { studied: false };
-                            saveProgress();
-                            sentencesList = getUnstudiedSentences();
-                            sentencesIndex = 0;
-                            window.showCurrentSentenceDesktop();
-                            updateCounter();
-                            updateModalContent();
-                        }
-                    };
-                });
-            }
-        }
-    }
-    
-    modalContent.innerHTML = `
-        <div style="padding: 15px; border-bottom: 1px solid #ddd; text-align: center;">
-            <h3 style="margin: 0;">📦 КОНТЕЙНЕР (${initialSentences.length} фраз)</h3>
-        </div>
-        <div class="items-container" style="overflow-y: auto; flex: 1; padding: 10px 0;">
-            ${initialSentences.map((sentence, idx) => `<button class="studied-sentence-item" data-index="${idx}" style="width:100%; text-align:left; padding:12px 15px; background:#E8F0FE; border:none; border-bottom:1px solid #ddd; cursor:pointer; font-size:14px;"><strong>${sentence.de.replace(/'/g, "\\'").replace(/"/g, '&quot;')}</strong> → ${sentence.ru.replace(/'/g, "\\'").replace(/"/g, '&quot;')}</button>`).join('')}
-        </div>
-        <div style="padding: 15px; border-top: 1px solid #ddd; display: flex; gap: 10px;">
-            <button id="returnAllBtn" style="flex: 1; padding: 10px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer;">🔄 ВЕРНУТЬ ВСЁ</button>
-            <button id="cancelModalBtn" style="flex: 1; padding: 10px; background: #ddd; border: none; border-radius: 8px; cursor: pointer;">ЗАКРЫТЬ</button>
-        </div>
-    `;
-    
-    modal.appendChild(modalContent);
-    document.body.appendChild(modal);
-    
-    document.getElementById('cancelModalBtn').onclick = () => modal.remove();
-    modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
-    
-    document.getElementById('returnAllBtn').onclick = () => {
-        if (confirm("Вы уверены? Все фразы из контейнера будут возвращены в изучение.")) {
-            resetAllSentences();
-            sentencesList = getUnstudiedSentences();
+    document.getElementById('sentResetStartBtn').onclick = () => {
+        if (sentencesList.length) {
             sentencesIndex = 0;
-            window.showCurrentSentenceDesktop();
+            showCurrentSentenceDesktop();
             updateCounter();
-            updateModalContent();
         }
     };
 }
 
-// ========== МОБИЛЬНАЯ ВЕРСИЯ ==========
+// ========== МОБИЛЬНАЯ ВЕРСИЯ (с использованием Carousel) ==========
 function renderSentencesMobile() {
     document.getElementById('content').innerHTML = `
         <div style="text-align: center;">
             <button class="dir-btn" id="sentDirBtn">${AppConfig.sentence_lang_from === 'ru' ? 'Ru → De' : 'De → Ru'}</button>
             <div id="carouselWrapper" style="overflow: hidden; width: 100%; position: relative; touch-action: pan-y pinch-zoom;">
-                <div id="carouselTrack" style="display: flex; transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1); will-change: transform;">
-                    ${generateSentencesCards()}
-                </div>
+                <div id="carouselTrack" style="display: flex; will-change: transform;"></div>
             </div>
             <div class="sent-result" id="sentResult"></div>
-            <div class="words-container-mobile" id="sentWordsContainer"></div>
+            <div class="words-container-mobile" id="sentWordsContainer" style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 10px 0;"></div>
             <div class="btn-group">
                 <button class="ctrl-btn" id="sentUndoBtn">ВЕРНУТЬ СЛОВО</button>
                 <button class="ctrl-btn" id="sentResetBtn">СБРОСИТЬ ВСЁ</button>
@@ -361,204 +261,148 @@ function renderSentencesMobile() {
         </div>
     `;
     
-    function generateSentencesCards() {
-        if (!sentencesList.length) {
-            return `<div class="sent-carousel-card" style="flex: 0 0 100%; min-width: 100%; padding: 20px;"><div style="background: #E8F0FE; border-radius: 20px; padding: 40px; text-align: center;">🎉 Все фразы изучены!</div></div>`;
-        }
-        const total = sentencesList.length;
-        let html = '';
-        for (let i = -2; i <= 2; i++) {
-            let idx = sentencesIndex + i;
-            if (idx < 0) idx = total + idx;
-            if (idx >= total) idx = idx - total;
-            const sentence = sentencesList[idx];
+    if (sentencesCarousel) sentencesCarousel.destroy();
+    
+    sentencesCarousel = new window.Carousel({
+        containerId: 'carouselWrapper',
+        trackId: 'carouselTrack',
+        initialIndex: 0,
+        getItems: () => sentencesList,
+        emptyMessage: '🎉 Все фразы изучены!',
+        renderItem: (sentence, idx) => {
             const question = AppConfig.sentence_lang_from === 'ru' ? sentence.ru : sentence.de;
-            html += `
-                <div class="sent-carousel-card" data-idx="${idx}" style="flex: 0 0 100%; min-width: 100%; padding: 20px;">
-                    <div class="sent-question" style="background: #E8F0FE; border-radius: 20px; padding: 25px;">
-                        <div style="font-size: 16px; margin-bottom: 10px; color: #666;">Составьте предложение:</div>
-                        <div style="font-size: 20px; font-weight: bold;">${question}</div>
-                    </div>
+            return `
+                <div style="background: #E8F0FE; border-radius: 20px; padding: 25px; text-align: center;">
+                    <div style="font-size: 16px; margin-bottom: 10px; color: #666;">Составьте предложение:</div>
+                    <div style="font-size: 20px; font-weight: bold;">${question}</div>
                 </div>
             `;
+        },
+        onSlideChange: (sentence, idx) => {
+            sentencesIndex = idx;
+            sentencesCurrent = sentence;
+            updateSentenceDisplayMobile();
+            document.getElementById('sentProgress').textContent = `Фраза: ${idx+1} из ${sentencesList.length}`;
         }
-        return html;
+    });
+    
+    // Инициализируем первое предложение
+    if (sentencesList.length > 0) {
+        sentencesCurrent = sentencesList[0];
+        setTimeout(() => {
+            updateSentenceDisplayMobile();
+        }, 100);
     }
     
-    function updateCarouselPosition(animate = true) {
-        const track = document.getElementById('carouselTrack');
-        if (!track) return;
-        if (!animate) track.style.transition = 'none';
-        else track.style.transition = `transform 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1)`;
-        const offset = -2 * mobileContainerWidth;
-        track.style.transform = `translateX(${offset}px)`;
-        mobileCurrentTranslate = offset;
-        if (!animate) setTimeout(() => { if (track) track.style.transition = ''; }, 50);
+    attachSentencesMobileEvents();
+}
+
+function updateSentenceDisplayMobile() {
+    if (!sentencesCurrent) {
+        document.getElementById('sentWordsContainer').innerHTML = '';
+        document.getElementById('sentResult').textContent = '';
+        return;
     }
     
-    function updateSentenceDisplay() {
-        const container = document.getElementById('sentWordsContainer');
-        const resultEl = document.getElementById('sentResult');
-        if (!container) return;
-        container.innerHTML = '';
-        sentencesAvailable.forEach(word => {
-            if (sentencesActive[word]) {
-                const btn = document.createElement('button');
-                btn.className = 'word-btn-mobile';
-                btn.textContent = word;
-                btn.onclick = () => {
-                    if (sentencesActive[word]) {
-                        sentencesActive[word] = false;
-                        sentencesSelected.push(word);
-                        updateSentenceDisplay();
-                    }
-                };
-                container.appendChild(btn);
-            }
-        });
-        resultEl.textContent = sentencesSelected.join(' ');
+    const isRuToDe = AppConfig.sentence_lang_from === 'ru';
+    const correctTokens = isRuToDe ? sentencesCurrent.de.split(/\s+/) : sentencesCurrent.ru.split(/\s+/);
+    sentencesHintWords = correctTokens.map(w => w.replace(/[.,!?;:]/g, ''));
+    
+    let available = correctTokens.map(t => t.replace(/[.,!?;:]/g, ''));
+    const needed = 12 - available.length;
+    if (needed > 0) {
+        const distractors = getDistractorsForSentences(needed, available, isRuToDe ? 'de' : 'ru');
+        available.push(...distractors);
     }
-    
-    function showHint() {
-        if (!sentencesHintWords.length) return;
-        if (sentencesHintIndex >= sentencesHintWords.length) return;
-        const currentHint = sentencesHintWords.slice(0, sentencesHintIndex + 1).join(' ');
-        const hintLabel = document.getElementById('sentHintLabel');
-        if (hintLabel) hintLabel.textContent = '💡 ' + currentHint;
-        sentencesHintIndex++;
+    for (let i = available.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [available[i], available[j]] = [available[j], available[i]];
     }
+    sentencesAvailable = available.slice(0, 12);
+    sentencesSelected = [];
+    sentencesActive = {};
+    sentencesAvailable.forEach(w => { sentencesActive[w] = true; });
     
-    function resetHint() {
-        sentencesHintIndex = 0;
-        const hintLabel = document.getElementById('sentHintLabel');
-        if (hintLabel) hintLabel.textContent = '';
-    }
-    
-    window.refreshSentencesCarousel = function() {
-        const track = document.getElementById('carouselTrack');
-        if (!track) return;
-        track.innerHTML = generateSentencesCards();
-        updateCarouselPosition(false);
-        
-        resetHint();
-        if (!sentencesList.length) {
-            document.getElementById('sentWordsContainer').innerHTML = '';
-            document.getElementById('sentResult').textContent = '';
-            document.getElementById('sentProgress').textContent = 'Фраз нет';
-            return;
-        }
-        sentencesCurrent = sentencesList[sentencesIndex];
-        
-        let question, correctTokens, targetLangForDistractors;
-        if (AppConfig.sentence_lang_from === 'ru') {
-            question = sentencesCurrent.ru;
-            correctTokens = sentencesCurrent.de.split(/\s+/);
-            sentencesHintWords = sentencesCurrent.de.split(/\s+/);
-            targetLangForDistractors = 'de';
-        } else {
-            question = sentencesCurrent.de;
-            correctTokens = sentencesCurrent.ru.split(/\s+/);
-            sentencesHintWords = sentencesCurrent.ru.split(/\s+/);
-            targetLangForDistractors = 'ru';
-        }
-        
-        sentencesHintWords = sentencesHintWords.map(w => w.replace(/[.,!?;:]/g, ''));
-        correctTokens = correctTokens.map(t => t.replace(/[.,!?;:]/g, ''));
-        
-        let available = [...correctTokens];
-        const needed = 12 - available.length;
-        if (needed > 0) {
-            const distractors = getDistractorsForSentences(needed, correctTokens, targetLangForDistractors);
-            available.push(...distractors);
-        }
-        for (let i = available.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [available[i], available[j]] = [available[j], available[i]];
-        }
-        sentencesAvailable = available.slice(0, 12);
-        sentencesSelected = [];
-        sentencesActive = {};
-        sentencesAvailable.forEach(w => { sentencesActive[w] = true; });
-        updateSentenceDisplay();
-        document.getElementById('sentProgress').textContent = `Фраза: ${sentencesIndex+1} из ${sentencesList.length}`;
-    };
-    
-    const wrapper = document.getElementById('carouselWrapper');
-    const track = document.getElementById('carouselTrack');
-    if (track && wrapper) {
-        mobileContainerWidth = wrapper.offsetWidth;
-        window.refreshSentencesCarousel();
-        
-        track.addEventListener('touchstart', (e) => {
-            mobileIsDragging = true;
-            mobileTouchStartX = e.changedTouches[0].screenX;
-            track.style.transition = 'none';
-        });
-        track.addEventListener('touchmove', (e) => {
-            if (!mobileIsDragging) return;
-            const touchCurrentX = e.changedTouches[0].screenX;
-            const delta = touchCurrentX - mobileTouchStartX;
-            track.style.transform = `translateX(${mobileCurrentTranslate + delta}px)`;
-        });
-        track.addEventListener('touchend', (e) => {
-            if (!mobileIsDragging) return;
-            mobileIsDragging = false;
-            const endX = e.changedTouches[0].screenX;
-            const delta = endX - mobileTouchStartX;
-            if (Math.abs(delta) > mobileMinSwipeDistance) {
-                if (delta > 0) {
-                    sentencesIndex = sentencesIndex === 0 ? sentencesList.length - 1 : sentencesIndex - 1;
-                } else {
-                    sentencesIndex = (sentencesIndex + 1) % sentencesList.length;
+    const container = document.getElementById('sentWordsContainer');
+    const resultEl = document.getElementById('sentResult');
+    if (!container) return;
+    container.innerHTML = '';
+    sentencesAvailable.forEach(word => {
+        if (sentencesActive[word]) {
+            const btn = document.createElement('button');
+            btn.className = 'word-btn';
+            btn.textContent = word;
+            btn.onclick = () => {
+                if (sentencesActive[word]) {
+                    sentencesActive[word] = false;
+                    sentencesSelected.push(word);
+                    updateSentenceDisplayMobile();
                 }
-                window.refreshSentencesCarousel();
-                updateCounter();
-            } else {
-                updateCarouselPosition(true);
-            }
-        });
-    }
-    
+            };
+            container.appendChild(btn);
+        }
+    });
+    resultEl.textContent = sentencesSelected.join(' ');
+    resetHintMobile();
+}
+
+function resetHintMobile() {
+    sentencesHintIndex = 0;
+    const hintLabel = document.getElementById('sentHintLabel');
+    if (hintLabel) hintLabel.textContent = '';
+}
+
+function showHintMobile() {
+    if (!sentencesHintWords.length || sentencesHintIndex >= sentencesHintWords.length) return;
+    const currentHint = sentencesHintWords.slice(0, sentencesHintIndex + 1).join(' ');
+    const hintLabel = document.getElementById('sentHintLabel');
+    if (hintLabel) hintLabel.textContent = '💡 ' + currentHint;
+    sentencesHintIndex++;
+}
+
+function attachSentencesMobileEvents() {
     document.getElementById('sentDirBtn').onclick = () => {
         AppConfig.sentence_lang_from = AppConfig.sentence_lang_from === 'ru' ? 'de' : 'ru';
-        window.refreshSentencesCarousel();
+        if (sentencesCarousel) sentencesCarousel.refresh();
         document.getElementById('sentDirBtn').textContent = AppConfig.sentence_lang_from === 'ru' ? 'Ru → De' : 'De → Ru';
         saveProgress();
     };
+    
     document.getElementById('sentUndoBtn').onclick = () => {
         if (sentencesSelected.length) {
             const last = sentencesSelected.pop();
             sentencesActive[last] = true;
-            updateSentenceDisplay();
+            updateSentenceDisplayMobile();
         }
     };
+    
     document.getElementById('sentResetBtn').onclick = () => {
         sentencesSelected = [];
         sentencesAvailable.forEach(w => { sentencesActive[w] = true; });
-        updateSentenceDisplay();
-        resetHint();
+        updateSentenceDisplayMobile();
+        resetHintMobile();
     };
+    
     document.getElementById('sentCheckBtn').onclick = () => {
-        if (!sentencesSelected.length) {
+        if (!sentencesSelected.length || !sentencesCurrent) {
             const result = document.getElementById('sentResult');
             result.style.backgroundColor = '#FFCDD2';
             setTimeout(() => result.style.backgroundColor = '#FFFFFF', 500);
             return;
         }
-        let correctAnswer;
-        if (AppConfig.sentence_lang_from === 'ru') {
-            correctAnswer = sentencesCurrent.de.toLowerCase().replace(/[.,!?;:]/g, '');
-        } else {
-            correctAnswer = sentencesCurrent.ru.toLowerCase().replace(/[.,!?;:]/g, '');
-        }
+        
+        const isRuToDe = AppConfig.sentence_lang_from === 'ru';
+        const correctAnswer = (isRuToDe ? sentencesCurrent.de : sentencesCurrent.ru).toLowerCase().replace(/[.,!?;:]/g, '');
         const userAnswer = sentencesSelected.join(' ').toLowerCase().replace(/[.,!?;:]/g, '');
         const result = document.getElementById('sentResult');
+        
         if (userAnswer === correctAnswer) {
             result.style.backgroundColor = '#C8E6C9';
             setTimeout(() => {
                 result.style.backgroundColor = '#FFFFFF';
                 sentencesIndex = (sentencesIndex + 1) % sentencesList.length;
-                window.refreshSentencesCarousel();
+                if (sentencesCarousel) sentencesCarousel.goTo(sentencesIndex);
+                updateSentenceDisplayMobile();
             }, 500);
         } else {
             result.style.backgroundColor = '#FFCDD2';
@@ -566,118 +410,81 @@ function renderSentencesMobile() {
                 result.style.backgroundColor = '#FFFFFF';
                 sentencesSelected = [];
                 sentencesAvailable.forEach(w => { sentencesActive[w] = true; });
-                updateSentenceDisplay();
-                resetHint();
+                updateSentenceDisplayMobile();
+                resetHintMobile();
             }, 500);
         }
     };
-    document.getElementById('sentHintBtn').onclick = showHint;
+    
+    document.getElementById('sentHintBtn').onclick = showHintMobile;
     document.getElementById('sentSpeakBtn').onclick = () => { if (sentencesCurrent) speak(sentencesCurrent.de); };
+    
     document.getElementById('sentStudyBtn').onclick = () => {
         if (sentencesCurrent) {
             markSentenceAsStudied(sentencesCurrent);
             sentencesList = getUnstudiedSentences();
             sentencesIndex = 0;
-            window.refreshSentencesCarousel();
+            if (sentencesCarousel) sentencesCarousel.refresh();
             updateCounter();
         }
     };
+    
     document.getElementById('sentResetStartBtn').onclick = () => {
         if (sentencesList.length) {
             sentencesIndex = 0;
-            window.refreshSentencesCarousel();
+            if (sentencesCarousel) sentencesCarousel.goTo(0);
             updateCounter();
         }
     };
+    
     document.getElementById('sentContainerBtn').onclick = () => {
         const completed = sentencesDB[AppConfig.currentLevel].filter((_, idx) => sentencesProgress[AppConfig.currentLevel]?.[idx]?.studied);
-        if (!completed.length) { alert("📦 Контейнер пуст\n\nВыучите фразы, чтобы они появились здесь."); return; }
-        showStudiedSentencesModalMobile(completed);
+        if (!completed.length) {
+            alert("📦 Контейнер пуст\n\nВыучите фразы, чтобы они появились здесь.");
+            return;
+        }
+        showSentencesContainer(completed);
     };
-    window.addEventListener('resize', () => {
-        mobileContainerWidth = wrapper?.offsetWidth || 0;
-        updateCarouselPosition(false);
-    });
 }
 
-// ========== МОДАЛЬНОЕ ОКНО ДЛЯ МОБИЛЬНОЙ ВЕРСИИ ==========
-function showStudiedSentencesModalMobile(initialSentences) {
-    const oldModal = document.getElementById('studiedSentencesModal');
-    if (oldModal) oldModal.remove();
-    
-    const modal = document.createElement('div');
-    modal.id = 'studiedSentencesModal';
-    modal.style.cssText = `position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); display:flex; justify-content:center; align-items:center; z-index:1000000; overflow:auto;`;
-    
-    const modalContent = document.createElement('div');
-    modalContent.style.cssText = `background:white; border-radius:20px; max-width:500px; width:90%; max-height:80vh; display:flex; flex-direction:column; margin:20px;`;
-    
-    function updateModalContent() {
-        const currentStudied = sentencesDB[AppConfig.currentLevel].filter((_, idx) => sentencesProgress[AppConfig.currentLevel]?.[idx]?.studied);
-        const header = modalContent.querySelector('h3');
-        const itemsContainer = modalContent.querySelector('.items-container');
-        if (header) header.textContent = `📦 КОНТЕЙНЕР (${currentStudied.length} фраз)`;
-        if (itemsContainer) {
-            if (currentStudied.length === 0) {
-                itemsContainer.innerHTML = '<div style="text-align:center; padding:40px; color:#999;">📭 Контейнер пуст</div>';
-            } else {
-                let itemsHtml = '';
-                currentStudied.forEach((sentence, idx) => {
-                    const safeDe = sentence.de.replace(/'/g, "\\'").replace(/"/g, '&quot;');
-                    const safeRu = sentence.ru.replace(/'/g, "\\'").replace(/"/g, '&quot;');
-                    itemsHtml += `<button class="studied-sentence-item" data-index="${idx}" style="width:100%; text-align:left; padding:12px 15px; background:#E8F0FE; border:none; border-bottom:1px solid #ddd; cursor:pointer; font-size:14px;"><strong>${safeDe}</strong> → ${safeRu}</button>`;
-                });
-                itemsContainer.innerHTML = itemsHtml;
-                document.querySelectorAll('.studied-sentence-item').forEach(btn => {
-                    btn.onclick = () => {
-                        const idx = parseInt(btn.getAttribute('data-index'));
-                        const sentence = currentStudied[idx];
-                        const sIdx = sentencesDB[AppConfig.currentLevel].findIndex(s => s.de === sentence.de && s.ru === sentence.ru);
-                        if (sIdx !== -1) {
-                            if (!sentencesProgress[AppConfig.currentLevel]) sentencesProgress[AppConfig.currentLevel] = [];
-                            sentencesProgress[AppConfig.currentLevel][sIdx] = { studied: false };
-                            saveProgress();
-                            sentencesList = getUnstudiedSentences();
-                            sentencesIndex = 0;
-                            window.refreshSentencesCarousel();
-                            updateCounter();
-                            updateModalContent();
-                        }
-                    };
-                });
+// ========== УНИВЕРСАЛЬНЫЙ КОНТЕЙНЕР ДЛЯ ПРЕДЛОЖЕНИЙ ==========
+function showSentencesContainer(completedSentences) {
+    window.ContainerManager.show({
+        title: `📦 КОНТЕЙНЕР (${completedSentences.length} фраз)`,
+        items: completedSentences,
+        getItems: () => sentencesDB[AppConfig.currentLevel].filter((_, idx) => sentencesProgress[AppConfig.currentLevel]?.[idx]?.studied),
+        emptyMessage: '📭 Контейнер пуст',
+        itemTemplate: (sentence) => `${sentence.de} → ${sentence.ru}`,
+        onItemClick: (sentence, idx, update) => {
+            const sIdx = sentencesDB[AppConfig.currentLevel].findIndex(s => s.de === sentence.de && s.ru === sentence.ru);
+            if (sIdx !== -1) {
+                if (!sentencesProgress[AppConfig.currentLevel]) sentencesProgress[AppConfig.currentLevel] = [];
+                sentencesProgress[AppConfig.currentLevel][sIdx] = { studied: false };
+                saveProgress();
+                sentencesList = getUnstudiedSentences();
+                sentencesIndex = 0;
+                if (window.utils.isMobileDevice()) {
+                    if (sentencesCarousel) sentencesCarousel.refresh();
+                } else {
+                    showCurrentSentenceDesktop();
+                }
+                updateCounter();
+                update();
             }
-        }
-    }
-    
-    modalContent.innerHTML = `
-        <div style="padding: 15px; border-bottom: 1px solid #ddd; text-align: center;">
-            <h3 style="margin: 0;">📦 КОНТЕЙНЕР (${initialSentences.length} фраз)</h3>
-        </div>
-        <div class="items-container" style="overflow-y: auto; flex: 1; padding: 10px 0;">
-            ${initialSentences.map((sentence, idx) => `<button class="studied-sentence-item" data-index="${idx}" style="width:100%; text-align:left; padding:12px 15px; background:#E8F0FE; border:none; border-bottom:1px solid #ddd; cursor:pointer; font-size:14px;"><strong>${sentence.de.replace(/'/g, "\\'").replace(/"/g, '&quot;')}</strong> → ${sentence.ru.replace(/'/g, "\\'").replace(/"/g, '&quot;')}</button>`).join('')}
-        </div>
-        <div style="padding: 15px; border-top: 1px solid #ddd; display: flex; gap: 10px;">
-            <button id="returnAllBtn" style="flex: 1; padding: 10px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer;">🔄 ВЕРНУТЬ ВСЁ</button>
-            <button id="cancelModalBtn" style="flex: 1; padding: 10px; background: #ddd; border: none; border-radius: 8px; cursor: pointer;">ЗАКРЫТЬ</button>
-        </div>
-    `;
-    
-    modal.appendChild(modalContent);
-    document.body.appendChild(modal);
-    
-    document.getElementById('cancelModalBtn').onclick = () => modal.remove();
-    modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
-    
-    document.getElementById('returnAllBtn').onclick = () => {
-        if (confirm("Вы уверены? Все фразы из контейнера будут возвращены в изучение.")) {
+        },
+        onReturnAll: (update) => {
             resetAllSentences();
             sentencesList = getUnstudiedSentences();
             sentencesIndex = 0;
-            window.refreshSentencesCarousel();
+            if (window.utils.isMobileDevice()) {
+                if (sentencesCarousel) sentencesCarousel.refresh();
+            } else {
+                showCurrentSentenceDesktop();
+            }
             updateCounter();
-            updateModalContent();
+            update();
         }
-    };
+    });
 }
 
 function getStudiedSentencesCount() {
