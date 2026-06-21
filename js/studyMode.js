@@ -1,4 +1,4 @@
-// studyMode.js — универсальный модуль для всех режимов обучения
+// studyMode.js — универсальный модуль с сохранением оригинального дизайна
 
 class StudyMode {
     constructor(config) {
@@ -6,17 +6,7 @@ class StudyMode {
         this.items = [];
         this.currentIndex = 0;
         this.isMobile = window.utils ? window.utils.isMobileDevice() : window.innerWidth <= 768;
-        
-        // Состояние для режимов
         this.flipped = false;
-        this.selected = [];
-        this.activeItems = {};
-        this.hintIndex = 0;
-        this.hintWords = [];
-        this.currentItem = null;
-        this.selectedItems = [];
-        
-        // Конфигурация карусели
         this.touchStartX = 0;
         this.isDragging = false;
         this.containerWidth = 0;
@@ -25,13 +15,10 @@ class StudyMode {
         this.snapDuration = 250;
         this.resizeHandler = null;
         
-        // Инициализация
         this.items = this.getItems();
         this.currentIndex = 0;
     }
 
-    // ========== ОСНОВНЫЕ МЕТОДЫ ==========
-    
     getItems() {
         return this.config.getItems ? this.config.getItems() : (this.config.items || []);
     }
@@ -45,7 +32,6 @@ class StudyMode {
         const container = document.getElementById('content');
         if (!container) return;
         
-        // Определяем мобильное устройство при каждом рендере
         this.isMobile = window.utils ? window.utils.isMobileDevice() : window.innerWidth <= 768;
         this.items = this.getItems();
         this.currentIndex = 0;
@@ -56,100 +42,78 @@ class StudyMode {
             this.renderDesktop(container);
         }
         
-        this.updateDisplay();
-        this.updateCounter();
-        this.attachEvents();
+        // Запускаем обновление после рендера
+        setTimeout(() => {
+            this.updateDisplay();
+            this.updateCounter();
+            this.attachEvents();
+        }, 50);
     }
 
-    // ========== ДЕСКТОПНАЯ ВЕРСИЯ ==========
+    // ========== ДЕСКТОПНАЯ ВЕРСИЯ (С СОХРАНЕНИЕМ ДИЗАЙНА) ==========
     
     renderDesktop(container) {
         const items = this.getItems();
         const hasItems = items.length > 0;
         
+        // СОХРАНЯЕМ ОРИГИНАЛЬНУЮ СТРУКТУРУ С КЛАССАМИ
         let html = `
             <div style="text-align: center;">
-                ${this.renderDirectionButton()}
-                ${this.renderQuestion(hasItems)}
-                ${this.renderResult()}
-                ${this.renderWordsContainer(hasItems)}
-                ${this.renderDesktopButtons()}
-                ${this.renderHintArea()}
-                ${this.renderNavigationButtons()}
-                ${this.renderProgress()}
+                <button class="dir-btn" id="${this.config.prefix}DirBtn">${this.config.directionLabel || 'De → Ru'}</button>
+                
+                <div class="${this.config.prefix}-question" id="${this.config.prefix}Question">
+                    ${!hasItems ? (this.config.emptyMessage || '🎉 Все элементы изучены!') : ''}
+                </div>
+                
+                ${this.config.showResult ? `<div class="${this.config.prefix}-result" id="${this.config.prefix}Result"></div>` : ''}
+                
+                ${this.config.showWordsContainer ? `<div class="words-container" id="${this.config.prefix}WordsContainer"></div>` : ''}
+                
+                <div class="btn-group">
+                    ${this.renderDesktopButtons()}
+                </div>
+                
+                ${this.config.showHint ? `
+                    <div class="hint-area">
+                        <button class="ctrl-btn" id="${this.config.prefix}HintBtn">ПОДСКАЗКА</button>
+                        <div class="hint-label" id="${this.config.prefix}HintLabel"></div>
+                    </div>
+                ` : ''}
+                
+                <div class="btn-group">
+                    ${this.config.showNavigation ? `
+                        <button class="ctrl-btn" id="${this.config.prefix}PrevBtn">◀ НАЗАД</button>
+                        <button class="ctrl-btn" id="${this.config.prefix}NextBtn">ВПЕРЕД ▶</button>
+                    ` : ''}
+                    <button class="ctrl-btn" id="${this.config.prefix}ResetStartBtn">⏮ В НАЧАЛО</button>
+                </div>
+                
+                <div class="hint" id="${this.config.prefix}Progress"></div>
             </div>
         `;
         
         container.innerHTML = html;
     }
 
-    renderDirectionButton() {
-        const label = this.config.directionLabel || 'De → Ru';
-        return `<button class="dir-btn" id="${this.config.prefix}DirBtn">${label}</button>`;
-    }
-
-    renderQuestion(hasItems) {
-        if (!hasItems) {
-            const emptyMsg = this.config.emptyMessage || '🎉 Все элементы изучены!';
-            return `<div class="${this.config.prefix}-question" id="${this.config.prefix}Question">${emptyMsg}</div>`;
-        }
-        return `<div class="${this.config.prefix}-question" id="${this.config.prefix}Question"></div>`;
-    }
-
-    renderResult() {
-        if (!this.config.showResult) return '';
-        return `<div class="${this.config.prefix}-result" id="${this.config.prefix}Result"></div>`;
-    }
-
-    renderWordsContainer(hasItems) {
-        if (!this.config.showWordsContainer) return '';
-        const containerClass = this.isMobile ? 'words-container-mobile' : 'words-container';
-        return `<div class="${containerClass}" id="${this.config.prefix}WordsContainer"></div>`;
-    }
-
     renderDesktopButtons() {
-        const buttons = this.config.desktopButtons || [];
-        let html = '<div class="btn-group">';
+        let html = '';
         
-        buttons.forEach(btn => {
-            if (btn.id === 'speakBtn' && !this.config.enableSpeak) return;
-            html += `<button class="ctrl-btn ${btn.class || ''}" id="${this.config.prefix}${btn.id}">${btn.label}</button>`;
-        });
+        // Основные кнопки
+        if (this.config.desktopButtons) {
+            this.config.desktopButtons.forEach(btn => {
+                if (btn.id === 'speakBtn' && !this.config.enableSpeak) return;
+                html += `<button class="ctrl-btn ${btn.class || ''}" id="${this.config.prefix}${btn.id}">${btn.label}</button>`;
+            });
+        }
         
-        // Добавляем дополнительные кнопки
+        // Дополнительные кнопки
         if (this.config.extraButtons) {
             this.config.extraButtons.forEach(btn => {
                 html += `<button class="ctrl-btn ${btn.class || ''}" id="${this.config.prefix}${btn.id}">${btn.label}</button>`;
             });
         }
         
-        html += '</div>';
         return html;
-    }
-
-    renderHintArea() {
-        if (!this.config.showHint) return '';
-        return `
-            <div class="hint-area">
-                <button class="ctrl-btn" id="${this.config.prefix}HintBtn">ПОДСКАЗКА</button>
-                <div class="hint-label" id="${this.config.prefix}HintLabel"></div>
-            </div>
-        `;
-    }
-
-    renderNavigationButtons() {
-        if (!this.config.showNavigation) return '';
-        return `
-            <div class="btn-group">
-                <button class="ctrl-btn" id="${this.config.prefix}PrevBtn">◀ НАЗАД</button>
-                <button class="ctrl-btn" id="${this.config.prefix}NextBtn">ВПЕРЕД ▶</button>
-                <button class="ctrl-btn" id="${this.config.prefix}ResetStartBtn">⏮ В НАЧАЛО</button>
-            </div>
-        `;
-    }
-
-    renderProgress() {
-        return `<div class="hint" id="${this.config.prefix}Progress"></div>`;
     }
 
     // ========== МОБИЛЬНАЯ ВЕРСИЯ ==========
@@ -160,18 +124,34 @@ class StudyMode {
         
         let html = `
             <div style="text-align: center;">
-                ${this.renderDirectionButton()}
+                <button class="dir-btn" id="${this.config.prefix}DirBtn">${this.config.directionLabel || 'De → Ru'}</button>
+                
                 <div id="${this.config.prefix}CarouselWrapper" style="overflow: hidden; width: 100%; position: relative; touch-action: pan-y pinch-zoom;">
-                    <div id="${this.config.prefix}CarouselTrack" style="display: flex; transition: transform ${this.snapDuration}ms cubic-bezier(0.2, 0.9, 0.4, 1.1); will-change: transform;">
+                    <div id="${this.config.prefix}CarouselTrack" style="display: flex; transition: transform 250ms cubic-bezier(0.2, 0.9, 0.4, 1.1); will-change: transform;">
                         ${this.generateCarouselCards()}
                     </div>
                 </div>
-                ${this.renderResult()}
-                ${this.renderWordsContainer(hasItems)}
-                ${this.renderMobileButtons()}
-                ${this.renderHintArea()}
-                ${this.renderMobileNavigation()}
-                ${this.renderProgress()}
+                
+                ${this.config.showResult ? `<div class="${this.config.prefix}-result" id="${this.config.prefix}Result"></div>` : ''}
+                
+                ${this.config.showWordsContainer ? `<div class="words-container-mobile" id="${this.config.prefix}WordsContainer"></div>` : ''}
+                
+                <div class="btn-group">
+                    ${this.renderMobileButtons()}
+                </div>
+                
+                ${this.config.showHint ? `
+                    <div class="hint-area">
+                        <button class="ctrl-btn" id="${this.config.prefix}HintBtn">ПОДСКАЗКА</button>
+                        <div class="hint-label" id="${this.config.prefix}HintLabel"></div>
+                    </div>
+                ` : ''}
+                
+                <div class="btn-group">
+                    <button class="ctrl-btn" id="${this.config.prefix}ResetStartBtn">⏮ В НАЧАЛО</button>
+                </div>
+                
+                <div class="hint" id="${this.config.prefix}Progress"></div>
                 <div class="hint">👆 Свайп влево/вправо для листания</div>
             </div>
         `;
@@ -204,7 +184,6 @@ class StudyMode {
             const item = items[idx];
             let cardContent = '';
             
-            // Используем renderCard для мобильной версии, если он есть
             if (this.config.renderCard) {
                 cardContent = this.config.renderCard(item, idx);
             } else if (this.config.renderItem) {
@@ -224,32 +203,22 @@ class StudyMode {
     }
 
     renderMobileButtons() {
-        const buttons = this.config.mobileButtons || [];
-        let html = '<div class="btn-group">';
+        let html = '';
         
-        buttons.forEach(btn => {
-            if (btn.id === 'speakBtn' && !this.config.enableSpeak) return;
-            html += `<button class="ctrl-btn ${btn.class || ''}" id="${this.config.prefix}${btn.id}">${btn.label}</button>`;
-        });
+        if (this.config.mobileButtons) {
+            this.config.mobileButtons.forEach(btn => {
+                if (btn.id === 'speakBtn' && !this.config.enableSpeak) return;
+                html += `<button class="ctrl-btn ${btn.class || ''}" id="${this.config.prefix}${btn.id}">${btn.label}</button>`;
+            });
+        }
         
-        // Добавляем дополнительные кнопки
         if (this.config.extraButtons) {
             this.config.extraButtons.forEach(btn => {
                 html += `<button class="ctrl-btn ${btn.class || ''}" id="${this.config.prefix}${btn.id}">${btn.label}</button>`;
             });
         }
         
-        html += '</div>';
         return html;
-    }
-
-    renderMobileNavigation() {
-        if (!this.config.showNavigation) return '';
-        return `
-            <div class="btn-group">
-                <button class="ctrl-btn" id="${this.config.prefix}ResetStartBtn">⏮ В НАЧАЛО</button>
-            </div>
-        `;
     }
 
     // ========== КАРУСЕЛЬ ==========
@@ -264,7 +233,6 @@ class StudyMode {
         this.updateCarouselPosition(false);
         this.attachCarouselEvents(track);
         
-        // Удаляем старый обработчик
         if (this.resizeHandler) {
             window.removeEventListener('resize', this.resizeHandler);
         }
@@ -284,7 +252,7 @@ class StudyMode {
         if (!animate) {
             track.style.transition = 'none';
         } else {
-            track.style.transition = `transform ${this.snapDuration}ms cubic-bezier(0.2, 0.9, 0.4, 1.1)`;
+            track.style.transition = `transform 250ms cubic-bezier(0.2, 0.9, 0.4, 1.1)`;
         }
         
         const offset = -2 * this.containerWidth;
@@ -299,7 +267,6 @@ class StudyMode {
     }
 
     attachCarouselEvents(track) {
-        // Удаляем старые обработчики (клон)
         const newTrack = track.cloneNode(true);
         track.parentNode.replaceChild(newTrack, track);
         
@@ -336,7 +303,6 @@ class StudyMode {
             }
         }, { passive: true });
         
-        // Привязываем клики на слайды
         this.attachSlideEvents(newTrack);
     }
 
@@ -349,14 +315,12 @@ class StudyMode {
             const idx = parseInt(slide.getAttribute('data-idx'));
             
             if (domIdx === 2 && this.config.onCenterClick) {
-                // Центральный слайд
                 slide.onclick = () => {
                     if (items.length > 0 && items[this.currentIndex]) {
                         this.config.onCenterClick(items[this.currentIndex], this);
                     }
                 };
             } else if (domIdx !== 2) {
-                // Боковые слайды — переход
                 slide.onclick = () => {
                     if (total === 0) return;
                     let newIndex = idx;
@@ -392,18 +356,15 @@ class StudyMode {
         
         this.currentItem = items[this.currentIndex % items.length];
         
-        // Обновляем вопрос
         const questionEl = document.getElementById(`${this.config.prefix}Question`);
         if (questionEl && this.config.getQuestion) {
             questionEl.innerHTML = this.config.getQuestion(this.currentItem);
         }
         
-        // Обновляем слова
         if (this.config.updateWords) {
             this.config.updateWords(this.currentItem);
         }
         
-        // Обновляем результат
         if (this.config.updateResult) {
             this.config.updateResult();
         }
@@ -414,8 +375,7 @@ class StudyMode {
     updateEmptyState() {
         const questionEl = document.getElementById(`${this.config.prefix}Question`);
         if (questionEl) {
-            const emptyMsg = this.config.emptyMessage || '🎉 Все элементы изучены!';
-            questionEl.innerHTML = emptyMsg;
+            questionEl.innerHTML = this.config.emptyMessage || '🎉 Все элементы изучены!';
         }
         
         const container = document.getElementById(`${this.config.prefix}WordsContainer`);
@@ -435,8 +395,7 @@ class StudyMode {
             return;
         }
         
-        const total = items.length;
-        progressEl.textContent = `${this.config.progressLabel || 'Элемент'}: ${this.currentIndex + 1} из ${total}`;
+        progressEl.textContent = `${this.config.progressLabel || 'Элемент'}: ${this.currentIndex + 1} из ${items.length}`;
     }
 
     updateCounter() {
@@ -452,7 +411,11 @@ class StudyMode {
         if (!items.length) return;
         
         this.currentIndex = this.currentIndex === 0 ? items.length - 1 : this.currentIndex - 1;
-        this.refreshCarousel();
+        if (this.isMobile) {
+            this.refreshCarousel();
+        } else {
+            this.updateDisplay();
+        }
         this.updateCounter();
     }
 
@@ -461,7 +424,11 @@ class StudyMode {
         if (!items.length) return;
         
         this.currentIndex = (this.currentIndex + 1) % items.length;
-        this.refreshCarousel();
+        if (this.isMobile) {
+            this.refreshCarousel();
+        } else {
+            this.updateDisplay();
+        }
         this.updateCounter();
     }
 
@@ -470,7 +437,11 @@ class StudyMode {
         if (!items.length) return;
         
         this.currentIndex = 0;
-        this.refreshCarousel();
+        if (this.isMobile) {
+            this.refreshCarousel();
+        } else {
+            this.updateDisplay();
+        }
         this.updateCounter();
     }
 
@@ -492,20 +463,11 @@ class StudyMode {
         if (hintLabel) hintLabel.textContent = '';
     }
 
-    // ========== ПОМОЩНИКИ ==========
-    
-    speak(text) {
-        if (typeof speak === 'function' && text) {
-            speak(text);
-        }
-    }
-
     // ========== ПРИВЯЗКА СОБЫТИЙ ==========
     
     attachEvents() {
         const prefix = this.config.prefix;
         
-        // Кнопка направления
         const dirBtn = document.getElementById(`${prefix}DirBtn`);
         if (dirBtn && this.config.onDirectionChange) {
             dirBtn.onclick = () => {
@@ -522,7 +484,6 @@ class StudyMode {
             };
         }
         
-        // Кнопки навигации
         const prevBtn = document.getElementById(`${prefix}PrevBtn`);
         if (prevBtn) prevBtn.onclick = () => this.goToPrev();
         
@@ -532,11 +493,9 @@ class StudyMode {
         const resetBtn = document.getElementById(`${prefix}ResetStartBtn`);
         if (resetBtn) resetBtn.onclick = () => this.goToStart();
         
-        // Кнопка подсказки
         const hintBtn = document.getElementById(`${prefix}HintBtn`);
         if (hintBtn) hintBtn.onclick = () => this.showHint();
         
-        // Кнопка озвучки
         const speakBtn = document.getElementById(`${prefix}SpeakBtn`);
         if (speakBtn && this.config.enableSpeak) {
             speakBtn.onclick = () => {
@@ -546,7 +505,6 @@ class StudyMode {
             };
         }
         
-        // Кастомные кнопки
         if (this.config.customButtons) {
             this.config.customButtons.forEach(btn => {
                 const el = document.getElementById(`${prefix}${btn.id}`);
@@ -557,8 +515,12 @@ class StudyMode {
         }
     }
 
-    // ========== УНИЧТОЖЕНИЕ ==========
-    
+    speak(text) {
+        if (typeof speak === 'function' && text) {
+            speak(text);
+        }
+    }
+
     destroy() {
         if (this.resizeHandler) {
             window.removeEventListener('resize', this.resizeHandler);
@@ -572,7 +534,5 @@ class StudyMode {
     }
 }
 
-// Экспорт
 window.StudyMode = StudyMode;
-
 console.log('✅ StudyMode загружен');
