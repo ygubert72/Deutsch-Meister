@@ -48,7 +48,7 @@ function initFirebase() {
             
             await loadUserData(user.uid);
             
-            // ЗАГРУЖАЕМ ПРОГРЕСС ИЗ FIREBASE (НО НЕ ПЕРЕЗАПИСЫВАЕМ РЕЖИМ)
+            // ЗАГРУЖАЕМ ПРОГРЕСС ИЗ FIREBASE
             await window.loadUserProgressFromFirebase();
             
             await addUserToFirestore(user);
@@ -514,7 +514,7 @@ window.saveUserProgressToFirebase = async function() {
     }
 };
 
-// ========== ЗАГРУЗКА ПРОГРЕССА ИЗ ОБЛАКА ==========
+// ========== ЗАГРУЗКА ПРОГРЕССА ИЗ ОБЛАКА (НЕ ПЕРЕЗАПИСЫВАЕТ РЕЖИМ) ==========
 window.loadUserProgressFromFirebase = async function() {
     if (!auth || !auth.currentUser) return false;
     const userId = auth.currentUser.uid;
@@ -538,23 +538,23 @@ window.loadUserProgressFromFirebase = async function() {
                 localStorage.setItem('dm_grammar_progress', JSON.stringify(grammarProgress));
             }
             
-            // Загружаем конфигурацию
+            // Загружаем конфигурацию, НО НЕ ПЕРЕЗАПИСЫВАЕМ ТЕКУЩИЙ РЕЖИМ
             if (progress.config) {
                 const config = progress.config;
                 
-                // ===== СОХРАНЯЕМ В LOCALSTORAGE, НО НЕ ПЕРЕЗАПИСЫВАЕМ currentMode =====
+                // Сохраняем в localStorage
                 localStorage.setItem('dm_config', JSON.stringify(config));
+                
+                console.log('☁️ [Firebase] Конфиг загружен и сохранен в localStorage');
+                console.log('☁️ [Firebase] Текущий режим (НЕ МЕНЯЕМ):', currentMode);
+                console.log('☁️ [Firebase] Режим из Firebase (ИГНОРИРУЕМ):', config.last_mode);
                 
                 // Обновляем только вспомогательные настройки
                 AppConfig.show_language = config.show_language || 'de';
                 AppConfig.quiz_direction = config.quiz_direction || 'de_to_ru';
                 AppConfig.sentence_lang_from = config.sentence_lang_from || 'ru';
                 
-                console.log('☁️ [Firebase] Конфиг загружен и сохранен в localStorage');
-                console.log('☁️ [Firebase] Текущий режим (из localStorage):', currentMode);
-                console.log('☁️ [Firebase] Режим из Firebase (игнорируем):', config.last_mode);
-                
-                // НЕ ПЕРЕЗАПУСКАЕМ РЕЖИМ, ТОЛЬКО ОБНОВЛЯЕМ СЧЕТЧИК
+                // Просто обновляем счетчик
                 if (typeof updateCounter === 'function') {
                     updateCounter(true);
                 }
