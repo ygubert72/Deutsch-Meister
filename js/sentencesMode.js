@@ -1,4 +1,4 @@
-// sentencesMode.js — ИСПРАВЛЕНАЯ ВЕРСИЯ (без дублирования переменных)
+// sentencesMode.js — С КАРУСЕЛЬЮ (как в cardsMode)
 
 let sentencesList = [];
 let sentencesIndex = 0;
@@ -245,14 +245,14 @@ function renderSentencesDesktop() {
 }
 
 // ============================================================
-// ========== МОБИЛЬНАЯ ВЕРСИЯ (использует переменные из cardsMode) ==========
+// ========== МОБИЛЬНАЯ ВЕРСИЯ (КАРУСЕЛЬ) ==========
 // ============================================================
 function renderSentencesMobile() {
     document.getElementById('content').innerHTML = `
         <div style="text-align: center;">
             <button class="dir-btn" id="sentDirBtn">${AppConfig.sentence_lang_from === 'ru' ? 'Ru → De' : 'De → Ru'}</button>
             <div id="carouselWrapper" style="overflow: hidden; width: 100%; position: relative; touch-action: pan-y pinch-zoom;">
-                <div id="carouselTrack" style="display: flex; transition: transform ${snapDuration}ms cubic-bezier(0.2, 0.9, 0.4, 1.1); will-change: transform;">
+                <div id="carouselTrack" style="display: flex; transition: transform 250ms cubic-bezier(0.2, 0.9, 0.4, 1.1); will-change: transform;">
                     ${generateSentencesCards()}
                 </div>
             </div>
@@ -306,10 +306,10 @@ function renderSentencesMobile() {
         const track = document.getElementById('carouselTrack');
         if (!track) return;
         if (!animate) track.style.transition = 'none';
-        else track.style.transition = `transform ${snapDuration}ms cubic-bezier(0.2, 0.9, 0.4, 1.1)`;
-        const offset = -2 * containerWidth;
+        else track.style.transition = 'transform 250ms cubic-bezier(0.2, 0.9, 0.4, 1.1)';
+        const trackWidth = track.parentElement.offsetWidth || window.innerWidth;
+        const offset = -2 * trackWidth;
         track.style.transform = `translateX(${offset}px)`;
-        currentTranslate = offset;
         if (!animate) setTimeout(() => { if (track) track.style.transition = ''; }, 50);
     }
     
@@ -403,20 +403,28 @@ function renderSentencesMobile() {
     const wrapper = document.getElementById('carouselWrapper');
     const track = document.getElementById('carouselTrack');
     if (track && wrapper) {
-        containerWidth = wrapper.offsetWidth;
-        window.refreshSentencesCarousel();
+        let touchStartX = 0;
+        let isDragging = false;
+        let currentTranslate = 0;
+        const minSwipeDistance = 50;
+        
+        refreshSentencesCarousel();
         
         track.addEventListener('touchstart', (e) => {
             isDragging = true;
             touchStartX = e.changedTouches[0].screenX;
+            const trackWidth = wrapper.offsetWidth;
+            currentTranslate = -2 * trackWidth;
             track.style.transition = 'none';
         });
+        
         track.addEventListener('touchmove', (e) => {
             if (!isDragging) return;
             const touchCurrentX = e.changedTouches[0].screenX;
             const delta = touchCurrentX - touchStartX;
             track.style.transform = `translateX(${currentTranslate + delta}px)`;
         });
+        
         track.addEventListener('touchend', (e) => {
             if (!isDragging) return;
             isDragging = false;
@@ -428,7 +436,7 @@ function renderSentencesMobile() {
                 } else {
                     sentencesIndex = (sentencesIndex + 1) % sentencesList.length;
                 }
-                window.refreshSentencesCarousel();
+                refreshSentencesCarousel();
                 updateCounter();
             } else {
                 updateCarouselPosition(true);
@@ -438,7 +446,7 @@ function renderSentencesMobile() {
     
     document.getElementById('sentDirBtn').onclick = () => {
         AppConfig.sentence_lang_from = AppConfig.sentence_lang_from === 'ru' ? 'de' : 'ru';
-        window.refreshSentencesCarousel();
+        refreshSentencesCarousel();
         document.getElementById('sentDirBtn').textContent = AppConfig.sentence_lang_from === 'ru' ? 'Ru → De' : 'De → Ru';
         saveProgress();
     };
@@ -475,7 +483,7 @@ function renderSentencesMobile() {
             setTimeout(() => {
                 result.style.backgroundColor = '#FFFFFF';
                 sentencesIndex = (sentencesIndex + 1) % sentencesList.length;
-                window.refreshSentencesCarousel();
+                refreshSentencesCarousel();
             }, 500);
         } else {
             result.style.backgroundColor = '#FFCDD2';
@@ -495,14 +503,14 @@ function renderSentencesMobile() {
             markSentenceAsStudied(sentencesCurrent);
             sentencesList = getUnstudiedSentences();
             sentencesIndex = 0;
-            window.refreshSentencesCarousel();
+            refreshSentencesCarousel();
             updateCounter();
         }
     };
     document.getElementById('sentResetStartBtn').onclick = () => {
         if (sentencesList.length) {
             sentencesIndex = 0;
-            window.refreshSentencesCarousel();
+            refreshSentencesCarousel();
             updateCounter();
         }
     };
@@ -512,7 +520,6 @@ function renderSentencesMobile() {
         showSentencesContainer(completed);
     };
     window.addEventListener('resize', () => {
-        containerWidth = wrapper?.offsetWidth || 0;
         updateCarouselPosition(false);
     });
 }
