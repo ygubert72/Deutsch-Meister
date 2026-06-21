@@ -1,4 +1,4 @@
-// sentencesMode.js — обновленная версия с использованием StudyMode
+// sentencesMode.js — с сохранением оригинального дизайна
 
 let sentencesModeInstance = null;
 let sentSelected = [];
@@ -10,13 +10,11 @@ let sentCurrentItem = null;
 let sentAnswerChecked = false;
 
 function renderSentences() {
-    // Удаляем старый экземпляр
     if (sentencesModeInstance) {
         sentencesModeInstance.destroy();
         sentencesModeInstance = null;
     }
     
-    // Сброс состояния
     sentSelected = [];
     sentActive = {};
     sentAvailable = [];
@@ -25,9 +23,6 @@ function renderSentences() {
     sentCurrentItem = null;
     sentAnswerChecked = false;
     
-    const unstudied = getUnstudiedSentences();
-    
-    // Функция обновления слов для сборки
     function updateSentenceWords(item, instance) {
         if (!item) return;
         
@@ -47,11 +42,9 @@ function renderSentences() {
             targetLangForDistractors = 'ru';
         }
         
-        // Очищаем от знаков препинания
         sentHintWords = sentHintWords.map(w => w.replace(/[.,!?;:]/g, ''));
         correctTokens = correctTokens.map(t => t.replace(/[.,!?;:]/g, ''));
         
-        // Генерируем доступные слова
         let available = [...correctTokens];
         const needed = 12 - available.length;
         if (needed > 0) {
@@ -67,12 +60,10 @@ function renderSentences() {
         sentActive = {};
         sentAvailable.forEach(w => { sentActive[w] = true; });
         
-        // Обновляем отображение
         updateWordsDisplay(instance);
         updateResultDisplay();
     }
     
-    // Функция обновления отображения слов
     function updateWordsDisplay(instance) {
         const container = document.getElementById('sentWordsContainer');
         if (!container) return;
@@ -96,7 +87,6 @@ function renderSentences() {
         });
     }
     
-    // Функция обновления результата
     function updateResultDisplay() {
         const resultEl = document.getElementById('sentResult');
         if (resultEl) {
@@ -104,7 +94,6 @@ function renderSentences() {
         }
     }
     
-    // Функция проверки ответа
     function checkSentenceAnswer(instance) {
         if (sentAnswerChecked) return;
         if (!sentSelected.length) {
@@ -145,7 +134,11 @@ function renderSentences() {
                 sentSelected = [];
                 sentActive = {};
                 sentAvailable = [];
-                instance.refreshCarousel();
+                if (instance.isMobile) {
+                    instance.refreshCarousel();
+                } else {
+                    instance.updateDisplay();
+                }
                 instance.updateCounter();
             }, 500);
         } else {
@@ -153,12 +146,10 @@ function renderSentences() {
                 result.style.backgroundColor = '#FFCDD2';
                 setTimeout(() => {
                     if (result) result.style.backgroundColor = '#FFFFFF';
-                    // Сбрасываем выбранные слова
                     sentSelected = [];
                     sentAvailable.forEach(w => { sentActive[w] = true; });
                     updateWordsDisplay(instance);
                     updateResultDisplay();
-                    // Сбрасываем подсказку
                     if (instance) {
                         instance.resetHint();
                     }
@@ -167,7 +158,6 @@ function renderSentences() {
         }
     }
     
-    // Настройки для режима тренажёра
     const config = {
         prefix: 'sent',
         getItems: getUnstudiedSentences,
@@ -178,9 +168,8 @@ function renderSentences() {
         showResult: true,
         showWordsContainer: true,
         showHint: true,
-        showNavigation: true,  // На десктопе показываем кнопки ◀ ▶
+        showNavigation: true,
         
-        // Десктопные кнопки
         desktopButtons: [
             { id: 'UndoBtn', label: 'ВЕРНУТЬ СЛОВО' },
             { id: 'ResetBtn', label: 'СБРОСИТЬ ВСЁ' },
@@ -188,7 +177,6 @@ function renderSentences() {
             { id: 'SpeakBtn', label: '🔊' }
         ],
         
-        // Мобильные кнопки (без ◀ ▶)
         mobileButtons: [
             { id: 'UndoBtn', label: 'ВЕРНУТЬ СЛОВО' },
             { id: 'ResetBtn', label: 'СБРОСИТЬ ВСЁ' },
@@ -196,26 +184,22 @@ function renderSentences() {
             { id: 'SpeakBtn', label: '🔊' }
         ],
         
-        // Дополнительные кнопки (общие для десктопа и мобилки)
         extraButtons: [
             { id: 'StudyBtn', label: 'ИЗУЧЕНО' },
             { id: 'ContainerBtn', label: 'В КОНТЕЙНЕР' }
         ],
         
-        // Получить вопрос для отображения
         getQuestion: function(item) {
             if (!item) return '';
             const isRuToDe = AppConfig.sentence_lang_from === 'ru';
             const question = isRuToDe ? item.ru : item.de;
-            return `Составьте предложение:<br><br><strong>${question}</strong>`;
+            return `<div class="sent-question">Составьте предложение:<br><br><strong>${question}</strong></div>`;
         },
         
-        // Получить текст для озвучки
         getSpeakText: function(item) {
             return item ? item.de : '';
         },
         
-        // Смена направления
         onDirectionChange: function() {
             AppConfig.sentence_lang_from = AppConfig.sentence_lang_from === 'ru' ? 'de' : 'ru';
             this.directionLabel = AppConfig.sentence_lang_from === 'ru' ? 'Ru → De' : 'De → Ru';
@@ -227,53 +211,42 @@ function renderSentences() {
             sentAnswerChecked = false;
         },
         
-        // Обновление слов
         updateWords: function(item) {
             if (item) {
                 updateSentenceWords(item, sentencesModeInstance);
             }
         },
         
-        // Обновление результата
         updateResult: function() {
             updateResultDisplay();
         },
         
-        // Рендер карточки для карусели (мобильная версия)
         renderCard: function(item, idx) {
             const isRuToDe = AppConfig.sentence_lang_from === 'ru';
             const question = isRuToDe ? item.ru : item.de;
             
             return `
-                <div style="background: #FFFFFF; border-radius: 20px; padding: 25px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); min-height: 200px;">
-                    <div style="text-align: center; font-size: 16px; margin-bottom: 10px; color: #666;">Составьте предложение:</div>
-                    <div style="text-align: center; font-size: 20px; font-weight: bold; color: #1A1A1A;">${question}</div>
-                    <div style="margin-top: 15px;">
-                        <div class="sent-result" id="sentResult" style="background: #FFFFFF; border: 2px solid #E0E0E0; border-radius: 16px; padding: 12px; text-align: center; font-weight: bold; font-size: 18px; min-height: 50px;"></div>
-                    </div>
-                    <div class="words-container-mobile" id="sentWordsContainer" style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 10px 0;"></div>
+                <div style="background:#FFFFFF; border-radius:20px; padding:20px; box-shadow:0 8px 24px rgba(0,0,0,0.1);">
+                    <div class="sent-question">Составьте предложение:<br><br><strong>${question}</strong></div>
+                    <div class="sent-result" id="sentResult"></div>
+                    <div class="words-container-mobile" id="sentWordsContainer"></div>
                 </div>
             `;
         },
         
-        // Рендер для десктопа (одна карточка)
         renderItem: function(item) {
             const isRuToDe = AppConfig.sentence_lang_from === 'ru';
             const question = isRuToDe ? item.ru : item.de;
             
             return `
-                <div style="background: #FFFFFF; border-radius: 20px; padding: 25px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); max-width: 700px; margin: 0 auto; min-height: 200px;">
-                    <div style="text-align: center; font-size: 16px; margin-bottom: 10px; color: #666;">Составьте предложение:</div>
-                    <div style="text-align: center; font-size: 20px; font-weight: bold; color: #1A1A1A;">${question}</div>
-                    <div style="margin-top: 15px;">
-                        <div class="sent-result" id="sentResult" style="background: #FFFFFF; border: 2px solid #E0E0E0; border-radius: 16px; padding: 12px; text-align: center; font-weight: bold; font-size: 18px; min-height: 50px;"></div>
-                    </div>
-                    <div class="words-container" id="sentWordsContainer" style="display: grid; grid-template-columns: repeat(6, auto); gap: 8px; margin: 10px 0; justify-content: center; align-items: center;"></div>
+                <div style="background:#FFFFFF; border-radius:20px; padding:20px; box-shadow:0 8px 24px rgba(0,0,0,0.1); max-width:700px; margin:0 auto;">
+                    <div class="sent-question">Составьте предложение:<br><br><strong>${question}</strong></div>
+                    <div class="sent-result" id="sentResult"></div>
+                    <div class="words-container" id="sentWordsContainer"></div>
                 </div>
             `;
         },
         
-        // Кастомные кнопки
         customButtons: [
             {
                 id: 'UndoBtn',
@@ -326,7 +299,11 @@ function renderSentences() {
                         sentActive = {};
                         sentAvailable = [];
                         sentAnswerChecked = false;
-                        instance.refreshCarousel();
+                        if (instance.isMobile) {
+                            instance.refreshCarousel();
+                        } else {
+                            instance.updateDisplay();
+                        }
                         instance.updateCounter();
                     }
                 }
@@ -369,7 +346,11 @@ function renderSentences() {
                                     sentActive = {};
                                     sentAvailable = [];
                                     sentAnswerChecked = false;
-                                    instance.refreshCarousel();
+                                    if (instance.isMobile) {
+                                        instance.refreshCarousel();
+                                    } else {
+                                        instance.updateDisplay();
+                                    }
                                     instance.updateCounter();
                                     update();
                                 }
@@ -383,36 +364,23 @@ function renderSentences() {
                                 sentActive = {};
                                 sentAvailable = [];
                                 sentAnswerChecked = false;
-                                instance.refreshCarousel();
+                                if (instance.isMobile) {
+                                    instance.refreshCarousel();
+                                } else {
+                                    instance.updateDisplay();
+                                }
                                 instance.updateCounter();
                                 update();
                             }
                         });
-                    } else {
-                        alert('ContainerManager не загружен');
                     }
                 }
             }
         ]
     };
     
-    // Создаем экземпляр StudyMode
     sentencesModeInstance = new StudyMode(config);
     sentencesModeInstance.render();
-    
-    // Сохраняем ссылку на инстанс для обновлений
-    window._sentencesModeInstance = sentencesModeInstance;
 }
 
-// Функция для обновления тренажёра извне
-function refreshSentences() {
-    if (sentencesModeInstance) {
-        sentencesModeInstance.destroy();
-        sentencesModeInstance = null;
-    }
-    renderSentences();
-}
-
-// Экспортируем для совместимости
 window.renderSentences = renderSentences;
-window.refreshSentences = refreshSentences;
