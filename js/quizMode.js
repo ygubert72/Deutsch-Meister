@@ -1,4 +1,4 @@
-// quizMode.js — ИСПРАВЛЕННАЯ ВЕРСИЯ С КАРУСЕЛЬЮ
+// quizMode.js — С КАРУСЕЛЬЮ (как в cardsMode)
 
 let quizList = [];
 let quizIndex = 0;
@@ -21,7 +21,9 @@ function renderQuiz() {
     }
 }
 
-// ========== ДЕСКТОПНАЯ ВЕРСИЯ ==========
+// ============================================================
+// ========== ДЕСКТОПНАЯ ВЕРСИЯ (без изменений) ==========
+// ============================================================
 function renderQuizDesktop() {
     document.getElementById('content').innerHTML = `
         <div style="text-align: center;">
@@ -38,7 +40,7 @@ function renderQuizDesktop() {
             <div class="hint" id="quizProgress"></div>
         </div>
     `;
-    
+
     window.showCurrentQuiz = function() {
         if (!quizList.length) {
             const studiedCount = getStudiedWordsList().length;
@@ -148,7 +150,9 @@ function renderQuizDesktop() {
     updateCounter();
 }
 
+// ============================================================
 // ========== МОБИЛЬНАЯ ВЕРСИЯ (КАРУСЕЛЬ) ==========
+// ============================================================
 function renderQuizMobile() {
     document.getElementById('content').innerHTML = `
         <div style="text-align: center;">
@@ -168,7 +172,7 @@ function renderQuizMobile() {
         </div>
     `;
 
-    // --- ВСЕ ПЕРЕМЕННЫЕ КАРУСЕЛИ — ЛОКАЛЬНЫЕ! ---
+    // ========== ЛОКАЛЬНЫЕ ПЕРЕМЕННЫЕ КАРУСЕЛИ ==========
     let touchStartX = 0;
     let isDragging = false;
     let containerWidth = 0;
@@ -176,9 +180,12 @@ function renderQuizMobile() {
     const minSwipeDistance = 50;
     const snapDuration = 250;
 
+    // ========== ГЕНЕРАЦИЯ КАРТОЧЕК ==========
     function generateQuizCards() {
         if (!quizList.length) {
-            return `<div class="quiz-carousel-card" style="flex: 0 0 100%; min-width: 100%; padding: 20px;"><div class="quiz-question">🎉 Все слова изучены!</div></div>`;
+            return `<div class="quiz-carousel-card" style="flex: 0 0 100%; min-width: 100%; padding: 20px;">
+                <div class="quiz-question">🎉 Все слова изучены!</div>
+            </div>`;
         }
         const total = quizList.length;
         let html = '';
@@ -219,6 +226,7 @@ function renderQuizMobile() {
         return html;
     }
 
+    // ========== ПРИВЯЗКА СОБЫТИЙ К КНОПКАМ ==========
     function attachQuizEvents() {
         const cards = document.querySelectorAll('#carouselTrack .quiz-carousel-card');
         cards.forEach((card) => {
@@ -257,6 +265,7 @@ function renderQuizMobile() {
         });
     }
 
+    // ========== УПРАВЛЕНИЕ ПОЗИЦИЕЙ ==========
     function updateCarouselPosition(animate = true) {
         const track = document.getElementById('carouselTrack');
         if (!track) return;
@@ -268,6 +277,7 @@ function renderQuizMobile() {
         if (!animate) setTimeout(() => { if (track) track.style.transition = ''; }, 50);
     }
 
+    // ========== ОБНОВЛЕНИЕ КАРУСЕЛИ ==========
     function refreshCarousel() {
         const track = document.getElementById('carouselTrack');
         if (!track) return;
@@ -277,25 +287,27 @@ function renderQuizMobile() {
         document.getElementById('quizProgress').textContent = `Слово: ${quizIndex+1} из ${quizList.length}`;
     }
 
+    // ========== ИНИЦИАЛИЗАЦИЯ КАРУСЕЛИ ==========
     const wrapper = document.getElementById('carouselWrapper');
     const track = document.getElementById('carouselTrack');
     if (track && wrapper) {
         containerWidth = wrapper.offsetWidth;
         refreshCarousel();
-        
+
+        // ========== ОБРАБОТЧИКИ СВАЙПА ==========
         track.addEventListener('touchstart', (e) => {
             isDragging = true;
             touchStartX = e.changedTouches[0].screenX;
             track.style.transition = 'none';
         });
-        
+
         track.addEventListener('touchmove', (e) => {
             if (!isDragging) return;
             const touchCurrentX = e.changedTouches[0].screenX;
             const delta = touchCurrentX - touchStartX;
             track.style.transform = `translateX(${currentTranslate + delta}px)`;
         });
-        
+
         track.addEventListener('touchend', (e) => {
             if (!isDragging) return;
             isDragging = false;
@@ -315,6 +327,7 @@ function renderQuizMobile() {
         });
     }
 
+    // ========== ОБРАБОТЧИКИ КНОПОК ==========
     document.getElementById('quizDirBtn').onclick = () => {
         AppConfig.quiz_direction = AppConfig.quiz_direction === 'de_to_ru' ? 'ru_to_de' : 'de_to_ru';
         refreshCarousel();
@@ -349,13 +362,16 @@ function renderQuizMobile() {
         showQuizContainer(studied);
     };
 
+    // ========== ОБНОВЛЕНИЕ ПРИ ИЗМЕНЕНИИ РАЗМЕРА ==========
     window.addEventListener('resize', () => {
         containerWidth = wrapper?.offsetWidth || 0;
         updateCarouselPosition(false);
     });
 }
 
-// ========== УНИВЕРСАЛЬНЫЙ КОНТЕЙНЕР ДЛЯ QUIZ ==========
+// ============================================================
+// ========== КОНТЕЙНЕР ЧЕРЕЗ CONTAINERMANAGER ==========
+// ============================================================
 function showQuizContainer(studiedWords) {
     if (window.ContainerManager) {
         window.ContainerManager.show({
