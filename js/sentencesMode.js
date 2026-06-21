@@ -1,6 +1,4 @@
-// sentencesMode.js — С КАРУСЕЛЬЮ (исправлен)
-
-const snapDuration = 250;  // ← ДОБАВЛЕНО!
+// sentencesMode.js — ИСПРАВЛЕНАЯ ВЕРСИЯ (без ошибок)
 
 let sentencesList = [];
 let sentencesIndex = 0;
@@ -10,6 +8,9 @@ let sentencesAvailable = [];
 let sentencesActive = {};
 let sentencesHintIndex = 0;
 let sentencesHintWords = [];
+
+// Используем глобальную snapDuration из cardsMode.js
+// НЕ ОБЪЯВЛЯЕМ ЕЁ ЗДЕСЬ!
 
 // ========== ОПРЕДЕЛЕНИЕ МОБИЛЬНОГО УСТРОЙСТВА ==========
 function isMobileDevice() {
@@ -161,6 +162,7 @@ function renderSentencesDesktop() {
         return progress.filter(p => p?.studied === true).length;
     }
     
+    // --- ОБРАБОТЧИКИ КНОПОК (ДЕСКТОП) ---
     document.getElementById('sentDirBtn').onclick = () => {
         AppConfig.sentence_lang_from = AppConfig.sentence_lang_from === 'ru' ? 'de' : 'ru';
         window.showCurrentSentenceDesktop();
@@ -446,6 +448,7 @@ function renderSentencesMobile() {
         });
     }
     
+    // --- ОБРАБОТЧИКИ КНОПОК (МОБИЛЬНЫЕ) ---
     document.getElementById('sentDirBtn').onclick = () => {
         AppConfig.sentence_lang_from = AppConfig.sentence_lang_from === 'ru' ? 'de' : 'ru';
         refreshSentencesCarousel();
@@ -527,7 +530,7 @@ function renderSentencesMobile() {
 }
 
 // ============================================================
-// ========== УНИВЕРСАЛЬНЫЙ КОНТЕЙНЕР ДЛЯ ПРЕДЛОЖЕНИЙ ==========
+// ========== КОНТЕЙНЕР ЧЕРЕЗ CONTAINERMANAGER ==========
 // ============================================================
 function showSentencesContainer(completedSentences) {
     if (window.ContainerManager) {
@@ -568,6 +571,7 @@ function showSentencesContainer(completedSentences) {
             }
         });
     } else {
+        // fallback
         const oldModal = document.getElementById('studiedSentencesModal');
         if (oldModal) oldModal.remove();
         alert('ContainerManager не загружен, но фразы возвращены.');
