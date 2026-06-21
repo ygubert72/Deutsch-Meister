@@ -1,4 +1,4 @@
-// app.js — исправленная версия с функциями меню
+// app.js — исправленная версия с функциями меню и сохранением состояния
 
 let documentHidden = false;
 
@@ -171,15 +171,22 @@ function updateModeIndicator() {
     }
 }
 
+// ========== УСТАНОВКА РЕЖИМА (С СИНХРОНИЗАЦИЕЙ КНОПОК) ==========
 function setMode(mode) {
     currentMode = mode;
+    
+    // Обновляем активную кнопку
     document.querySelectorAll('.mode-btn').forEach(btn => {
-        if (btn.dataset.mode === mode) btn.classList.add('active');
-        else btn.classList.remove('active');
+        if (btn.dataset.mode === mode) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
     });
     
     logUserAction('change_mode', { mode: mode, level: AppConfig.currentLevel });
     
+    // Запускаем нужный режим
     if (mode === 'cards') renderCards();
     else if (mode === 'quiz') renderQuiz();
     else if (mode === 'sentences') renderSentences();
@@ -191,6 +198,7 @@ function setMode(mode) {
     closeMobileMenu();
 }
 
+// ========== УСТАНОВКА УРОВНЯ (С СИНХРОНИЗАЦИЕЙ КНОПОК) ==========
 function setLevel(level) {
     if (typeof window.hasAccessToLevel !== 'undefined' && !window.hasAccessToLevel(level)) {
         if (level === 'B1' || level === 'B2' || level === 'C1') {
@@ -208,13 +216,18 @@ function setLevel(level) {
     
     AppConfig.currentLevel = level;
     
+    // Обновляем активную кнопку уровня
     document.querySelectorAll('[data-level]').forEach(btn => {
-        if (btn.dataset.level === level) btn.classList.add('active');
-        else btn.classList.remove('active');
+        if (btn.dataset.level === level) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
     });
     
     logUserAction('change_level', { level: level, mode: currentMode });
     
+    // Перерисовываем текущий режим с новым уровнем
     if (currentMode === 'cards') renderCards();
     else if (currentMode === 'quiz') renderQuiz();
     else if (currentMode === 'sentences') renderSentences();
@@ -394,7 +407,7 @@ function updateShareButtons() {
     if (shareMobile) shareMobile.style.display = shouldShow ? 'block' : 'none';
 }
 
-// ========== ИНИЦИАЛИЗАЦИЯ ==========
+// ========== ИНИЦИАЛИЗАЦИЯ (С ВОССТАНОВЛЕНИЕМ СОСТОЯНИЯ) ==========
 async function init() {
     console.log('init: начало загрузки');
     
@@ -413,6 +426,7 @@ async function init() {
     await loadSentences();
     await loadGrammarData();
     
+    // ===== ПРИВЯЗКА СОБЫТИЙ К КНОПКАМ =====
     document.querySelectorAll('.mode-btn').forEach(btn => {
         btn.onclick = () => setMode(btn.dataset.mode);
     });
@@ -420,12 +434,31 @@ async function init() {
         btn.onclick = () => setLevel(btn.dataset.level);
     });
     
+    // ===== ВОССТАНОВЛЕНИЕ СОСТОЯНИЯ =====
+    // 1. Восстанавливаем уровень
+    const savedLevel = AppConfig.currentLevel || 'A1';
     document.querySelectorAll('[data-level]').forEach(btn => {
-        if (btn.dataset.level === AppConfig.currentLevel) btn.classList.add('active');
-        else btn.classList.remove('active');
+        if (btn.dataset.level === savedLevel) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
     });
     
-    setMode(currentMode);
+    // 2. Восстанавливаем режим (синхронизируем с кнопками)
+    const savedMode = currentMode || 'grammar';
+    
+    // Устанавливаем активную кнопку режима
+    document.querySelectorAll('.mode-btn').forEach(btn => {
+        if (btn.dataset.mode === savedMode) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+    
+    // 3. Запускаем нужный режим
+    setMode(savedMode);
     
     initMobileMenu();
     updateModeIndicator();
