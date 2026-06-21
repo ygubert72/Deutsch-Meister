@@ -47,10 +47,7 @@ function initFirebase() {
             }
             
             await loadUserData(user.uid);
-            
-            // ЗАГРУЖАЕМ ПРОГРЕСС ИЗ FIREBASE
             await window.loadUserProgressFromFirebase();
-            
             await addUserToFirestore(user);
             await checkIfBlocked(user);
         } else {
@@ -514,7 +511,7 @@ window.saveUserProgressToFirebase = async function() {
     }
 };
 
-// ========== ЗАГРУЗКА ПРОГРЕССА ИЗ ОБЛАКА (НЕ ПЕРЕЗАПИСЫВАЕТ РЕЖИМ) ==========
+// ========== ЗАГРУЗКА ПРОГРЕССА ИЗ ОБЛАКА ==========
 window.loadUserProgressFromFirebase = async function() {
     if (!auth || !auth.currentUser) return false;
     const userId = auth.currentUser.uid;
@@ -524,15 +521,19 @@ window.loadUserProgressFromFirebase = async function() {
         if (userDoc.exists && userDoc.data().progress) {
             const progress = userDoc.data().progress;
             
-            // Загружаем прогресс
+            // Загружаем прогресс слов
             if (progress.wordsProgress) {
                 Object.assign(wordsProgress, progress.wordsProgress);
                 localStorage.setItem('dm_words_progress', JSON.stringify(wordsProgress));
             }
+            
+            // Загружаем прогресс фраз
             if (progress.sentencesProgress) {
                 Object.assign(sentencesProgress, progress.sentencesProgress);
                 localStorage.setItem('dm_sentences_progress', JSON.stringify(sentencesProgress));
             }
+            
+            // Загружаем прогресс грамматики
             if (progress.grammarProgress) {
                 Object.assign(grammarProgress, progress.grammarProgress);
                 localStorage.setItem('dm_grammar_progress', JSON.stringify(grammarProgress));
@@ -545,22 +546,11 @@ window.loadUserProgressFromFirebase = async function() {
                 // Сохраняем в localStorage
                 localStorage.setItem('dm_config', JSON.stringify(config));
                 
-                console.log('☁️ [Firebase] Конфиг загружен и сохранен в localStorage');
-                console.log('☁️ [Firebase] Текущий режим (НЕ МЕНЯЕМ):', currentMode);
-                console.log('☁️ [Firebase] Режим из Firebase (ИГНОРИРУЕМ):', config.last_mode);
-                
+                // НЕ ТРОГАЕМ currentMode и AppConfig.currentLevel
                 // Обновляем только вспомогательные настройки
                 AppConfig.show_language = config.show_language || 'de';
                 AppConfig.quiz_direction = config.quiz_direction || 'de_to_ru';
                 AppConfig.sentence_lang_from = config.sentence_lang_from || 'ru';
-                
-                // Просто обновляем счетчик
-                if (typeof updateCounter === 'function') {
-                    updateCounter(true);
-                }
-                if (typeof updateModeIndicator === 'function') {
-                    updateModeIndicator();
-                }
             }
             
             if (window.Logger) {
