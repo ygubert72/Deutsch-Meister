@@ -1,116 +1,138 @@
-// grammarMode.js - полная версия с правильным форматом верхней панели для всех уроков
+// grammarMode.js — с кешированием грамматики в localStorage
 
 let grammarDB = { A1: [], A2: [], B1: [], B2: [], C1: [] };
 let currentGrammarLesson = null;
 let currentGrammarMode = 'theory';
 let grammarLessonData = null;
-
 let grammarExercises = [];
 let currentGrammarExerciseIndex = 0;
 let grammarBlinkTimer = null;
 
+const GRAMMAR_CACHE_KEY = 'dm_grammar_cache';
+
+// ========== КЕШИРОВАНИЕ ГРАММАТИКИ ==========
+function getGrammarCache() {
+    try {
+        const cache = localStorage.getItem(GRAMMAR_CACHE_KEY);
+        return cache ? JSON.parse(cache) : {};
+    } catch(e) {
+        return {};
+    }
+}
+
+function setGrammarCache(level, data) {
+    try {
+        const cache = getGrammarCache();
+        cache[level] = data;
+        localStorage.setItem(GRAMMAR_CACHE_KEY, JSON.stringify(cache));
+        Logger.debug('Грамматика кеширована для уровня:', level);
+    } catch(e) {
+        Logger.error('Ошибка кеширования грамматики:', e);
+    }
+}
+
+function getGrammarFromCache(level) {
+    const cache = getGrammarCache();
+    return cache[level] || null;
+}
+
 // ========== ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ ДЛЯ ИСПРАВЛЕНИЯ ПРОБЕЛОВ ==========
 function fixTextSpacing(text) {
     if (!text) return text;
-    
     const placeholders = [];
     
     text = text.replace(/\(([^)]+)\)/g, (match, content) => {
         placeholders.push(`(${content})`);
         return `%%%${placeholders.length - 1}%%%`;
     });
-    
     text = text.replace(/\[([^\]]+)\]/g, (match, content) => {
         placeholders.push(`[${content}]`);
         return `%%%${placeholders.length - 1}%%%`;
     });
-    
     text = text.replace(/\{([^}]+)\}/g, (match, content) => {
         placeholders.push(`{${content}}`);
         return `%%%${placeholders.length - 1}%%%`;
     });
-    
     text = text.replace(/"([^"]+)"/g, (match, content) => {
         placeholders.push(`"${content}"`);
         return `%%%${placeholders.length - 1}%%%`;
     });
-    
     text = text.replace(/'([^']+)'/g, (match, content) => {
         placeholders.push(`'${content}'`);
         return `%%%${placeholders.length - 1}%%%`;
     });
-    
     text = text.replace(/([.!?;:),}\]>»])([А-Яа-яA-Za-z0-9])/g, '$1 $2');
-    
     text = text.replace(/%%%(\d+)%%%/g, (match, index) => {
         return placeholders[parseInt(index)];
     });
-    
     text = text.replace(/\s+/g, ' ');
-    
     return text;
 }
 
-// ========== ФУНКЦИЯ ДЛЯ ОЧИСТКИ ТЕКСТА ОТ КИТАЙСКИХ ИЕРОГЛИФОВ ==========
-function cleanChineseCharacters(text) {
-    if (!text) return text;
-    
-    let cleaned = text.replace(/一方面/g, ' ▶ ');
-    cleaned = cleaned.replace(/[\u4e00-\u9fff\u3400-\u4dbf\uf900-\ufaff]/g, ' ');
-    cleaned = cleaned.replace(/\s+/g, ' ');
-    cleaned = cleaned.replace(/\s+([.,!?;:])/g, '$1');
-    
-    return cleaned;
-}
-
-// ========== ЗАГРУЗКА ГРАММАТИКИ ==========
+// ========== ЗАГРУЗКА ГРАММАТИКИ С КЕШИРОВАНИЕМ ==========
 async function loadGrammarData() {
-    console.log('loadGrammarData: загрузка грамматики');
+    Logger.info('Загрузка грамматики...');
     const levels = ['A1', 'A2', 'B1', 'B2', 'C1'];
     
     for (const level of levels) {
-        grammarDB[level] = [];
+        // Сначала проверяем кеш
+        const cached = getGrammarFromCache(level);
+        if (cached && cached.length > 0) {
+            grammarDB[level] = cached;
+            Logger.info(`Грамматика ${level} загружена из кеша (${cached.length} уроков)`);
+            continue;
+        }
         
+        // Если в кеше нет — загружаем из сети
+        grammarDB[level] = [];
         try {
             const indexUrl = `docs/grammar/${level}/index.json`;
             const indexResp = await fetch(indexUrl);
             
             if (!indexResp.ok) {
-                console.log(`⚠️ Грамматика для уровня ${level} не найдена`);
+                Logger.warn(`Грамматика для уровня ${level} не найдена`);
                 continue;
             }
             
             const index = await indexResp.json();
-            console.log(`📚 Загружаю ${level}: ${index.lessons.length} уроков`);
+            Logger.info(`Загружаю ${level}: ${index.lessons.length} уроков`);
             
+            const lessons = [];
             for (const lessonPath of index.lessons) {
                 const lessonUrl = `docs/grammar/${level}/${lessonPath}`;
                 const lessonResp = await fetch(lessonUrl);
-                
                 if (lessonResp.ok) {
                     const lessonData = await lessonResp.json();
-                    grammarDB[level].push(lessonData);
-                    console.log(`  ✅ Урок ${lessonData.lesson}: ${lessonData.title}`);
+                    lessons.push(lessonData);
+                    Logger.debug(`  ✅ Урок ${lessonData.lesson}: ${lessonData.title}`);
                 } else {
-                    console.log(`  ❌ Ошибка загрузки: ${lessonPath}`);
+                    Logger.warn(`  ❌ Ошибка загрузки: ${lessonPath}`);
                 }
             }
             
-            if (!grammarProgress[level]) {
-                grammarProgress[level] = [];
-                for (let i = 0; i < grammarDB[level].length; i++) {
-                    grammarProgress[level][i] = { completed: false };
-                }
+            grammarDB[level] = lessons;
+            
+            // Сохраняем в кеш
+            if (lessons.length > 0) {
+                setGrammarCache(level, lessons);
             }
             
         } catch(e) {
-            console.error(`Ошибка загрузки ${level}:`, e);
+            Logger.error(`Ошибка загрузки ${level}:`, e);
             grammarDB[level] = [];
+        }
+        
+        // Инициализация прогресса
+        if (!grammarProgress[level]) {
+            grammarProgress[level] = [];
+            for (let i = 0; i < grammarDB[level].length; i++) {
+                grammarProgress[level][i] = { completed: false };
+            }
         }
     }
     
     saveGrammarProgress();
-    console.log('loadGrammarData: завершено');
+    Logger.info('Загрузка грамматики завершена');
 }
 
 function saveGrammarProgress() {
@@ -122,7 +144,6 @@ function loadGrammarProgress() {
         const gp = localStorage.getItem('dm_grammar_progress');
         if (gp) grammarProgress = JSON.parse(gp);
     } catch(e) {}
-    
     ['A1','A2','B1','B2','C1'].forEach(lvl => {
         if (!grammarProgress[lvl]) grammarProgress[lvl] = [];
     });
@@ -143,11 +164,10 @@ function isGrammarLessonCompleted(lessonIndex) {
 }
 
 function renderGrammar() {
-    console.log('renderGrammar: начат');
+    Logger.debug('renderGrammar: начат');
     const level = AppConfig.currentLevel;
     const lessons = grammarDB[level];
     
-    // Сбрасываем индикатор в верхней панели на общий
     const modeIndicator = document.getElementById('modeIndicator');
     if (modeIndicator) {
         modeIndicator.textContent = `Грамматика ${level}`;
@@ -157,14 +177,13 @@ function renderGrammar() {
         modeIndicator.style.fontWeight = '';
     }
     
-    // Сбрасываем счётчик
     updateCounter();
     
     const savedLesson = localStorage.getItem('dm_last_grammar_lesson');
     const savedLevel = localStorage.getItem('dm_last_grammar_level');
     if (savedLesson !== null && savedLevel === level && lessons && lessons[parseInt(savedLesson)]) {
         const lessonIdx = parseInt(savedLesson);
-        console.log('Восстанавливаю урок:', lessonIdx);
+        Logger.debug('Восстанавливаю урок:', lessonIdx);
         renderGrammarLesson(lessonIdx);
         return;
     }
@@ -208,7 +227,7 @@ function renderGrammar() {
     for (const btn of buttons) {
         const lessonIdx = parseInt(btn.getAttribute('data-lesson-index'));
         btn.onclick = () => {
-            console.log('КЛИК по уроку:', lessonIdx);
+            Logger.debug('КЛИК по уроку:', lessonIdx);
             renderGrammarLesson(lessonIdx);
         };
     }
@@ -232,7 +251,7 @@ function renderGrammar() {
 }
 
 function renderGrammarLesson(lessonIdx) {
-    console.log('renderGrammarLesson: открытие урока', lessonIdx);
+    Logger.debug('renderGrammarLesson: открытие урока', lessonIdx);
     const level = AppConfig.currentLevel;
     
     localStorage.setItem('dm_last_grammar_lesson', lessonIdx);
@@ -252,12 +271,9 @@ function renderGrammarLesson(lessonIdx) {
     const totalLessons = lessons.length;
     const completedCount = grammarProgress[level]?.filter(p => p?.completed === true).length || 0;
     
-    // ========== ОБНОВЛЯЕМ ВЕРХНЮЮ ЗАКРЕПЛЁННУЮ ПАНЕЛЬ ==========
-    // Формат: "Грамматика A2 | Урок 1"
     const modeIndicator = document.getElementById('modeIndicator');
     if (modeIndicator) {
         modeIndicator.textContent = `Грамматика ${level} | Урок ${lesson.lesson}`;
-        // Убираем лишние стили
         modeIndicator.style.background = 'none';
         modeIndicator.style.padding = '0';
         modeIndicator.style.color = '#333';
@@ -265,7 +281,6 @@ function renderGrammarLesson(lessonIdx) {
         modeIndicator.style.fontSize = '12px';
     }
     
-    // Обновляем счётчик справа: "Пройдено: 0 из 12 уроков"
     const counterEl = document.getElementById('counter');
     if (counterEl) {
         counterEl.textContent = `Пройдено: ${completedCount} из ${totalLessons} уроков`;
@@ -293,13 +308,12 @@ function renderGrammarLesson(lessonIdx) {
         </div>
     `;
     
-    // ========== ОБРАБОТЧИКИ ==========
+    // Обработчики
     const backBtn = document.getElementById('backToGrammarList');
     if (backBtn) {
         backBtn.onclick = () => {
             localStorage.removeItem('dm_last_grammar_lesson');
             localStorage.removeItem('dm_last_grammar_level');
-            // Возвращаем общий индикатор
             if (modeIndicator) {
                 modeIndicator.textContent = `Грамматика ${level}`;
                 modeIndicator.style.background = '';
@@ -315,19 +329,15 @@ function renderGrammarLesson(lessonIdx) {
     
     const prevBtn = document.getElementById('prevLessonBtn');
     if (prevBtn && !isFirstLesson) {
-        prevBtn.onclick = () => {
-            renderGrammarLesson(lessonIdx - 1);
-        };
+        prevBtn.onclick = () => renderGrammarLesson(lessonIdx - 1);
     }
     
     const nextBtn = document.getElementById('nextLessonBtn');
     if (nextBtn && !isLastLesson) {
-        nextBtn.onclick = () => {
-            renderGrammarLesson(lessonIdx + 1);
-        };
+        nextBtn.onclick = () => renderGrammarLesson(lessonIdx + 1);
     }
     
-    // ========== ПЕРЕКЛЮЧЕНИЕ РЕЖИМОВ ==========
+    // Переключение режимов
     const theoryBtn = document.getElementById('grammarTheoryBtn');
     const practiceBtn = document.getElementById('grammarPracticeBtn');
     
@@ -349,7 +359,6 @@ function renderGrammarLesson(lessonIdx) {
         };
     }
     
-    // Показываем теорию по умолчанию
     showGrammarTheory();
 }
 
@@ -359,7 +368,6 @@ function showGrammarTheory() {
     
     let fixedTheory = grammarLessonData.theory || '';
     if (fixedTheory) {
-        fixedTheory = cleanChineseCharacters(fixedTheory);
         fixedTheory = fixTextSpacing(fixedTheory);
     }
     
@@ -395,7 +403,7 @@ function showGrammarPractice(lessonIdx) {
     grammarExercises = lesson.exercises || [];
     currentGrammarExerciseIndex = 0;
     
-    console.log('📊 Всего упражнений в уроке:', grammarExercises.length);
+    Logger.debug('Всего упражнений в уроке:', grammarExercises.length);
     
     if (!grammarExercises.length) {
         document.getElementById('grammarContent').innerHTML = `
@@ -431,10 +439,8 @@ function getCleanTextForSpeak(exercise) {
     }
     
     if (!text) return '';
-    
     text = text.replace(/\s*\([^)]*\)\s*/g, ' ');
     text = text.replace(/\s+/g, ' ').trim();
-    
     return text;
 }
 
@@ -592,6 +598,13 @@ function checkGrammarAnswer(userAnswer, exercise, lessonIdx) {
     const correctAnswer = exercise.answer.toLowerCase();
     const input = document.getElementById('grammarAnswerInput');
     
+    function clearBlinkTimer() {
+        if (grammarBlinkTimer) {
+            clearTimeout(grammarBlinkTimer);
+            grammarBlinkTimer = null;
+        }
+    }
+    
     if (userAnswer === correctAnswer) {
         if (input) {
             input.style.backgroundColor = '#C8E6C9';
@@ -606,7 +619,7 @@ function checkGrammarAnswer(userAnswer, exercise, lessonIdx) {
             });
         }
         
-        if (grammarBlinkTimer) clearTimeout(grammarBlinkTimer);
+        clearBlinkTimer();
         grammarBlinkTimer = setTimeout(() => {
             if (input) {
                 input.style.backgroundColor = '';
@@ -661,8 +674,7 @@ function checkGrammarAnswer(userAnswer, exercise, lessonIdx) {
         if (input) {
             input.style.backgroundColor = '#FFCDD2';
             input.style.borderColor = '#F44336';
-            
-            if (grammarBlinkTimer) clearTimeout(grammarBlinkTimer);
+            clearBlinkTimer();
             grammarBlinkTimer = setTimeout(() => {
                 input.style.backgroundColor = '';
                 input.style.borderColor = '#D0D0D0';
