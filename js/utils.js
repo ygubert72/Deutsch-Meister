@@ -7,9 +7,9 @@ function isMobileDevice() {
 
 // ========== ID УСТРОЙСТВА (единая версия) ==========
 function getDeviceId() {
-    let id = navigator.userAgent + navigator.platform + window.screen.width + window.screen.height;
-    let hash = 0;
-    for (let i = 0; i < id.length; i++) {
+    var id = navigator.userAgent + navigator.platform + window.screen.width + window.screen.height;
+    var hash = 0;
+    for (var i = 0; i < id.length; i++) {
         hash = ((hash << 5) - hash) + id.charCodeAt(i);
         hash |= 0;
     }
@@ -18,10 +18,14 @@ function getDeviceId() {
 
 // ========== ДЕБАУНС ДЛЯ RESIZE ==========
 function debounce(func, wait) {
-    let timeout;
-    return function(...args) {
+    var timeout;
+    return function() {
+        var context = this;
+        var args = arguments;
         clearTimeout(timeout);
-        timeout = setTimeout(() => func.apply(this, args), wait);
+        timeout = setTimeout(function() {
+            func.apply(context, args);
+        }, wait);
     };
 }
 
@@ -49,10 +53,10 @@ function isAdminUser(user) {
 
 // ========== ЭКСПОРТ ==========
 window.utils = {
-    isMobileDevice,
-    getDeviceId,
-    debounce,
-    safeText,
-    clearTimer,
-    isAdminUser
+    isMobileDevice: isMobileDevice,
+    getDeviceId: getDeviceId,
+    debounce: debounce,
+    safeText: safeText,
+    clearTimer: clearTimer,
+    isAdminUser: isAdminUser
 };
