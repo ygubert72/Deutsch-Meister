@@ -1,7 +1,7 @@
 // sw.js — Service Worker для PWA
 
-const CACHE_NAME = 'deutsch-meister-v1';
-const STATIC_CACHE = 'static-v1';
+const CACHE_NAME = 'deutsch-meister-v2';
+const STATIC_CACHE = 'static-v2';
 
 // Файлы, которые кешируем при установке
 const STATIC_ASSETS = [
@@ -9,6 +9,10 @@ const STATIC_ASSETS = [
   '/Deutsch-Meister/index.html',
   '/Deutsch-Meister/css/style.css',
   '/Deutsch-Meister/js/config.js',
+  '/Deutsch-Meister/js/utils.js',
+  '/Deutsch-Meister/js/logger.js',
+  '/Deutsch-Meister/js/containerManager.js',
+  '/Deutsch-Meister/js/carousel.js',
   '/Deutsch-Meister/js/wordsManager.js',
   '/Deutsch-Meister/js/sentencesManager.js',
   '/Deutsch-Meister/js/cardsMode.js',
@@ -17,15 +21,25 @@ const STATIC_ASSETS = [
   '/Deutsch-Meister/js/grammarMode.js',
   '/Deutsch-Meister/js/app.js',
   '/Deutsch-Meister/js/auth.js',
+  '/Deutsch-Meister/js/userService.js',
+  '/Deutsch-Meister/js/activityTracker.js',
+  '/Deutsch-Meister/js/adminUI.js',
   '/Deutsch-Meister/admin.html',
   '/Deutsch-Meister/manifest.json',
   '/Deutsch-Meister/icons/icon.svg',
+  '/Deutsch-Meister/icons/16.png',
+  '/Deutsch-Meister/icons/32.png',
+  '/Deutsch-Meister/icons/48x48.png',
+  '/Deutsch-Meister/icons/64.png',
   '/Deutsch-Meister/icons/72.png',
-  '/Deutsch-Meister/icons/114.png',
+  '/Deutsch-Meister/icons/96x96.png',
   '/Deutsch-Meister/icons/128.png',
   '/Deutsch-Meister/icons/144.png',
-  '/Deutsch-Meister/icons/152.png',
-  '/Deutsch-Meister/icons/192.png'
+  '/Deutsch-Meister/icons/192.png',
+  '/Deutsch-Meister/icons/512.png',
+  '/Deutsch-Meister/icons/launchericon-144x144.png',
+  '/Deutsch-Meister/icons/launchericon-192x192.png',
+  '/Deutsch-Meister/icons/launchericon-512x512.png'
 ];
 
 // ========== УСТАНОВКА ==========
