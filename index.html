@@ -125,6 +125,57 @@
                 display: block;
             }
         }
+
+        /* ===== ВСТРОЕННЫЕ СТИЛИ ДЛЯ КНОПКИ "ПОДЕЛИТЬСЯ" (чтобы появлялась сразу) ===== */
+        .share-btn {
+            margin-top: 10px;
+            background: #4CAF50 !important;
+            color: white !important;
+            border-color: #388E3C !important;
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #388E3C;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            font-family: inherit;
+            box-shadow: 0 3px 4px rgba(0,0,0,0.1);
+            transition: all 0.05s linear;
+            display: block;
+        }
+        .share-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        .share-btn:hover {
+            opacity: 0.9;
+        }
+        /* Для мобильной версии */
+        .share-btn-mobile {
+            margin-top: 10px;
+            background: #4CAF50 !important;
+            color: white !important;
+            border-color: #388E3C !important;
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #388E3C;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            font-family: inherit;
+            box-shadow: 0 3px 4px rgba(0,0,0,0.1);
+            transition: all 0.05s linear;
+            display: block;
+        }
+        .share-btn-mobile:active {
+            transform: translateY(2px);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        .share-btn-mobile:hover {
+            opacity: 0.9;
+        }
     </style>
 </head>
 <body>
@@ -157,7 +208,8 @@
                 <span class="sub">Быстрый доступ с главного экрана</span>
             </div>
             
-            <button id="shareBtnDesktop" class="btn" style="margin-top: 10px; background: #4CAF50; color: white; border-color: #388E3C;" onclick="shareApp()">🔗 ПОДЕЛИТЬСЯ</button>
+            <!-- КНОПКА ПОДЕЛИТЬСЯ С ВСТРОЕННЫМ КЛАССОМ -->
+            <button id="shareBtnDesktop" class="share-btn" onclick="shareApp()">🔗 ПОДЕЛИТЬСЯ</button>
         </div>
     </div>
     
@@ -199,7 +251,8 @@
             <span class="sub">Быстрый доступ с главного экрана</span>
         </div>
         
-        <button id="shareBtnMobile" class="btn" style="margin-top: 10px; background: #4CAF50; color: white; border-color: #388E3C;" onclick="shareApp()">🔗 ПОДЕЛИТЬСЯ</button>
+        <!-- КНОПКА ПОДЕЛИТЬСЯ В МОБИЛЬНОМ МЕНЮ С ВСТРОЕННЫМ КЛАССОМ -->
+        <button id="shareBtnMobile" class="share-btn-mobile" onclick="shareApp()">🔗 ПОДЕЛИТЬСЯ</button>
     </div>
 </div>
 
