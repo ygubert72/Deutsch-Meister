@@ -1,12 +1,10 @@
-// sw.js — Service Worker для PWA
+// sw.js — Service Worker для PWA (упрощённая версия)
 
 // ===== ВЕРСИЯ =====
-// Используем дату для контроля обновлений
 const VERSION = '20260625';
 const CACHE_NAME = 'deutsch-meister-v' + VERSION;
-const STATIC_CACHE = 'static-v' + VERSION;
 
-// ===== ФАЙЛЫ ДЛЯ КЕШИРОВАНИЯ (ТОЛЬКО САМЫЕ НУЖНЫЕ) =====
+// ===== ФАЙЛЫ ДЛЯ КЕШИРОВАНИЯ (только самое важное) =====
 const STATIC_ASSETS = [
   './',
   './index.html',
@@ -45,9 +43,9 @@ self.addEventListener('install', function(event) {
   console.log('[SW] Установка... Версия:', VERSION);
   
   event.waitUntil(
-    caches.open(STATIC_CACHE)
+    caches.open(CACHE_NAME)
       .then(function(cache) {
-        console.log('[SW] Кешируем статические файлы');
+        console.log('[SW] Кешируем файлы');
         return cache.addAll(STATIC_ASSETS);
       })
       .then(function() {
@@ -70,7 +68,7 @@ self.addEventListener('activate', function(event) {
         return Promise.all(
           cacheNames
             .filter(function(name) {
-              return name !== STATIC_CACHE;
+              return name !== CACHE_NAME;
             })
             .map(function(name) {
               console.log('[SW] Удаляем старый кеш:', name);
@@ -85,75 +83,55 @@ self.addEventListener('activate', function(event) {
   );
 });
 
-// ========== ПЕРЕХВАТ ЗАПРОСОВ ==========
+// ========== ПЕРЕХВАТ ЗАПРОСОВ (ТОЛЬКО ДЛЯ СТАТИКИ) ==========
 self.addEventListener('fetch', function(event) {
   var request = event.request;
   var url = new URL(request.url);
   
-  // Пропускаем запросы к расширениям Chrome
-  if (url.protocol === 'chrome-extension:') {
-    event.respondWith(fetch(request));
-    return;
-  }
-  
-  // Пропускаем запросы к Firebase
+  // Пропускаем Firebase
   if (url.hostname.includes('firebase') || url.hostname.includes('googleapis')) {
     event.respondWith(fetch(request));
     return;
   }
   
-  // Пропускаем запросы к API геолокации
+  // Пропускаем API геолокации
   if (url.hostname.includes('ipapi.co')) {
     event.respondWith(fetch(request));
     return;
   }
   
-  // ===== НЕ КЕШИРУЕМ ДАННЫЕ (слова, фразы, грамматика) =====
+  // ===== ВСЕ ДАННЫЕ (/docs/) — ТОЛЬКО СЕТЬ =====
   if (url.pathname.includes('/docs/')) {
     event.respondWith(fetch(request));
     return;
   }
   
-  // ===== НЕ КЕШИРУЕМ JSON ФАЙЛЫ =====
+  // ===== JSON ФАЙЛЫ — ТОЛЬКО СЕТЬ =====
   if (url.pathname.endsWith('.json')) {
     event.respondWith(fetch(request));
     return;
   }
   
-  // ===== ДЛЯ ВСЕХ ОСТАЛЬНЫХ ФАЙЛОВ: СНАЧАЛА КЕШ, ПОТОМ СЕТЬ =====
+  // ===== ВСЁ ОСТАЛЬНОЕ — КЕШ + СЕТЬ =====
   event.respondWith(
     caches.match(request)
       .then(function(cachedResponse) {
         if (cachedResponse) {
           return cachedResponse;
         }
-        
-        return fetch(request)
-          .then(function(networkResponse) {
-            if (request.method === 'GET' && networkResponse && networkResponse.status === 200) {
-              var responseClone = networkResponse.clone();
-              caches.open(STATIC_CACHE)
-                .then(function(cache) {
-                  cache.put(request, responseClone);
-                })
-                .catch(function(err) {
-                  console.log('[SW] Пропускаем кеширование:', request.url);
-                });
-            }
-            return networkResponse;
-          })
-          .catch(function() {
-            if (request.headers.get('accept') && request.headers.get('accept').includes('text/html')) {
-              return new Response(
-                '<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Нет соединения</title><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:"Segoe UI",sans-serif;background:#F8F8F8;display:flex;justify-content:center;align-items:center;height:100vh;text-align:center;padding:20px}.icon{font-size:64px;margin-bottom:20px}h1{font-size:24px;color:#333;margin-bottom:10px}p{color:#666;font-size:16px;line-height:1.6;margin-bottom:20px}.btn{display:inline-block;padding:12px 30px;background:#3B6FE0;color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:bold;cursor:pointer;text-decoration:none}.btn:hover{background:#2B5BC7}.retry-btn{margin-top:10px;background:#4CAF50}.retry-btn:hover{background:#388E3C}</style></head><body><div><div class="icon">📡</div><h1>Нет соединения</h1><p>Проверьте подключение к интернету<br>и попробуйте снова.</p><button class="btn retry-btn" onclick="location.reload()">🔄 Попробовать снова</button><br><br><a href="./" class="btn" style="background:#666;">🏠 На главную</a></div></body></html>',
-                { headers: { 'Content-Type': 'text/html' } }
-              );
-            }
-            return new Response('Нет соединения', {
-              status: 503,
-              statusText: 'Service Unavailable'
-            });
-          });
+        return fetch(request);
+      })
+      .catch(function() {
+        if (request.headers.get('accept') && request.headers.get('accept').includes('text/html')) {
+          return new Response(
+            '<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Нет соединения</title><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:"Segoe UI",sans-serif;background:#F8F8F8;display:flex;justify-content:center;align-items:center;height:100vh;text-align:center;padding:20px}.icon{font-size:64px;margin-bottom:20px}h1{font-size:24px;color:#333;margin-bottom:10px}p{color:#666;font-size:16px;line-height:1.6;margin-bottom:20px}.btn{display:inline-block;padding:12px 30px;background:#3B6FE0;color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:bold;cursor:pointer;text-decoration:none}.btn:hover{background:#2B5BC7}.retry-btn{margin-top:10px;background:#4CAF50}.retry-btn:hover{background:#388E3C}</style></head><body><div><div class="icon">📡</div><h1>Нет соединения</h1><p>Проверьте подключение к интернету<br>и попробуйте снова.</p><button class="btn retry-btn" onclick="location.reload()">🔄 Попробовать снова</button><br><br><a href="./" class="btn" style="background:#666;">🏠 На главную</a></div></body></html>',
+            { headers: { 'Content-Type': 'text/html' } }
+          );
+        }
+        return new Response('Нет соединения', {
+          status: 503,
+          statusText: 'Service Unavailable'
+        });
       })
   );
 });
