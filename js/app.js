@@ -206,8 +206,8 @@ window.forceUpdateCounter = function() {
     }, 100);
 };
 
-// ========== КНОПКА "ПОДЕЛИТЬСЯ" ==========
-function shareApp() {
+// ========== КНОПКА "ПОДЕЛИТЬСЯ" (ФУНКЦИЯ ГЛОБАЛЬНАЯ) ==========
+window.shareApp = function() {
     const url = window.location.href;
     const title = 'Deutsch-Meister — учите немецкий язык!';
     const text = '🇩🇪 Бесплатное приложение для изучения немецкого языка: карточки, тесты, тренажёр и грамматика. Попробуйте!';
@@ -332,7 +332,7 @@ function shareApp() {
     
     document.getElementById('shareCloseBtn').onclick = () => modal.remove();
     modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
-}
+};
 
 // ========== МОБИЛЬНОЕ МЕНЮ (ГАМБУРГЕР) ==========
 
@@ -527,11 +527,8 @@ async function init() {
             updateCounter();
         }, 1000);
         
-        // ===== КНОПКА "ПОДЕЛИТЬСЯ" — ПРОСТО НАЗНАЧАЕМ ОБРАБОТЧИК =====
-        var shareDesktop = document.getElementById('shareBtnDesktop');
-        var shareMobile = document.getElementById('shareBtnMobile');
-        if (shareDesktop) shareDesktop.onclick = shareApp;
-        if (shareMobile) shareMobile.onclick = shareApp;
+        // ===== КНОПКА "ПОДЕЛИТЬСЯ" — БОЛЬШЕ НЕ НАЗНАЧАЕМ ОБРАБОТЧИК, ОН УЖЕ В HTML =====
+        // (удалены строки с shareDesktop.onclick и shareMobile.onclick)
         
         setInterval(function() {
             if (window.isAuthenticated && window.isAuthenticated()) {
