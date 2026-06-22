@@ -1,11 +1,12 @@
 // sw.js — Service Worker для PWA
 
-// ===== ВЕРСИЯ — АВТОМАТИЧЕСКАЯ =====
-const VERSION = Date.now();
+// ===== ВЕРСИЯ =====
+// Используем дату для контроля обновлений
+const VERSION = '20260625';
 const CACHE_NAME = 'deutsch-meister-v' + VERSION;
 const STATIC_CACHE = 'static-v' + VERSION;
 
-// ===== ФАЙЛЫ ДЛЯ КЕШИРОВАНИЯ =====
+// ===== ФАЙЛЫ ДЛЯ КЕШИРОВАНИЯ (ТОЛЬКО САМЫЕ НУЖНЫЕ) =====
 const STATIC_ASSETS = [
   './',
   './index.html',
@@ -59,7 +60,7 @@ self.addEventListener('install', function(event) {
   );
 });
 
-// ========== АКТИВАЦИЯ ==========
+// ========== АКТИВАЦИЯ С ПРИНУДИТЕЛЬНЫМ ОБНОВЛЕНИЕМ ==========
 self.addEventListener('activate', function(event) {
   console.log('[SW] Активация...');
   
@@ -78,7 +79,7 @@ self.addEventListener('activate', function(event) {
         );
       })
       .then(function() {
-        console.log('[SW] Service Worker активирован');
+        console.log('[SW] Service Worker активирован, версия:', VERSION);
         return self.clients.claim();
       })
   );
@@ -107,7 +108,19 @@ self.addEventListener('fetch', function(event) {
     return;
   }
   
-  // Стратегия: сначала кеш, потом сеть
+  // ===== НЕ КЕШИРУЕМ ДАННЫЕ (слова, фразы, грамматика) =====
+  if (url.pathname.includes('/docs/')) {
+    event.respondWith(fetch(request));
+    return;
+  }
+  
+  // ===== НЕ КЕШИРУЕМ JSON ФАЙЛЫ =====
+  if (url.pathname.endsWith('.json')) {
+    event.respondWith(fetch(request));
+    return;
+  }
+  
+  // ===== ДЛЯ ВСЕХ ОСТАЛЬНЫХ ФАЙЛОВ: СНАЧАЛА КЕШ, ПОТОМ СЕТЬ =====
   event.respondWith(
     caches.match(request)
       .then(function(cachedResponse) {
