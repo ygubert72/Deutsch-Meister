@@ -1,13 +1,18 @@
 // sw.js — Service Worker для PWA
 
-const CACHE_NAME = 'deutsch-meister-v2';  // ← поменял v1 → v2
-const STATIC_CACHE = 'static-v2';        // ← поменял v1 → v2
+const CACHE_NAME = 'deutsch-meister-v2';
+const STATIC_CACHE = 'static-v2';
 
+// Файлы, которые кешируем при установке
 const STATIC_ASSETS = [
   '/Deutsch-Meister/',
   '/Deutsch-Meister/index.html',
   '/Deutsch-Meister/css/style.css',
   '/Deutsch-Meister/js/config.js',
+  '/Deutsch-Meister/js/utils.js',
+  '/Deutsch-Meister/js/logger.js',
+  '/Deutsch-Meister/js/containerManager.js',
+  '/Deutsch-Meister/js/carousel.js',
   '/Deutsch-Meister/js/wordsManager.js',
   '/Deutsch-Meister/js/sentencesManager.js',
   '/Deutsch-Meister/js/cardsMode.js',
@@ -16,15 +21,14 @@ const STATIC_ASSETS = [
   '/Deutsch-Meister/js/grammarMode.js',
   '/Deutsch-Meister/js/app.js',
   '/Deutsch-Meister/js/auth.js',
+  '/Deutsch-Meister/js/userService.js',
+  '/Deutsch-Meister/js/activityTracker.js',
+  '/Deutsch-Meister/js/adminUI.js',
   '/Deutsch-Meister/admin.html',
   '/Deutsch-Meister/manifest.json',
   '/Deutsch-Meister/icons/icon.svg',
-  '/Deutsch-Meister/icons/72.png',
-  '/Deutsch-Meister/icons/114.png',
-  '/Deutsch-Meister/icons/128.png',
-  '/Deutsch-Meister/icons/144.png',
-  '/Deutsch-Meister/icons/152.png',
-  '/Deutsch-Meister/icons/192.png'
+  '/Deutsch-Meister/icons/icon-192x192.png',
+  '/Deutsch-Meister/icons/icon-512x512.png'
 ];
 
 // ========== УСТАНОВКА ==========
@@ -77,16 +81,19 @@ self.addEventListener('fetch', function(event) {
   var request = event.request;
   var url = new URL(request.url);
   
+  // Игнорируем запросы к расширениям Chrome
   if (url.protocol === 'chrome-extension:') {
     event.respondWith(fetch(request));
     return;
   }
   
+  // Пропускаем запросы к Firebase
   if (url.hostname.includes('firebase') || url.hostname.includes('googleapis')) {
     event.respondWith(fetch(request));
     return;
   }
   
+  // Пропускаем запросы к API геолокации
   if (url.hostname.includes('ipapi.co')) {
     event.respondWith(fetch(request));
     return;
@@ -98,11 +105,13 @@ self.addEventListener('fetch', function(event) {
     return;
   }
   
+  // ===== НЕ КЕШИРУЕМ JSON ФАЙЛЫ =====
   if (url.pathname.endsWith('.json')) {
     event.respondWith(fetch(request));
     return;
   }
   
+  // Стратегия: сначала кеш, потом сеть
   event.respondWith(
     caches.match(request)
       .then(function(cachedResponse) {
