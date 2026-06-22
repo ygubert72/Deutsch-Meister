@@ -506,11 +506,17 @@ async function init() {
         await loadSentences();
         await loadGrammarData();
         
+        // ===== ИНИЦИАЛИЗАЦИЯ КНОПОК МЕНЮ (как было) =====
         document.querySelectorAll('.mode-btn').forEach(function(btn) {
             btn.onclick = function() { setMode(btn.dataset.mode); };
         });
         document.querySelectorAll('[data-level]').forEach(function(btn) {
             btn.onclick = function() { setLevel(btn.dataset.level); };
+        });
+        
+        // ===== ИНИЦИАЛИЗАЦИЯ КНОПКИ "ПОДЕЛИТЬСЯ" (ТОЧНО ТАК ЖЕ, КАК КНОПКИ МЕНЮ) =====
+        document.querySelectorAll('[data-share="true"]').forEach(function(btn) {
+            btn.onclick = function() { window.shareApp(); };
         });
         
         document.querySelectorAll('[data-level]').forEach(function(btn) {
@@ -526,9 +532,6 @@ async function init() {
         setTimeout(function() {
             updateCounter();
         }, 1000);
-        
-        // ===== КНОПКА "ПОДЕЛИТЬСЯ" — БОЛЬШЕ НЕ НАЗНАЧАЕМ ОБРАБОТЧИК, ОН УЖЕ В HTML =====
-        // (удалены строки с shareDesktop.onclick и shareMobile.onclick)
         
         setInterval(function() {
             if (window.isAuthenticated && window.isAuthenticated()) {
