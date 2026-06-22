@@ -514,11 +514,7 @@ async function init() {
     // ===== ШАГ 5: ИНИЦИАЛИЗИРУЕМ МОБИЛЬНОЕ МЕНЮ =====
     initMobileMenu();
     
-    // ===== ШАГ 6: ПРИМЕНЯЕМ СОСТОЯНИЕ =====
-    // Не применяем сразу, ждём когда auth.js загрузит данные из облака
-    // applyState() будет вызван из auth.js после загрузки прогресса
-    
-    // ===== ШАГ 7: НАСТРОЙКА КНОПКИ "ПОДЕЛИТЬСЯ" =====
+    // ===== ШАГ 6: НАСТРОЙКА КНОПКИ "ПОДЕЛИТЬСЯ" =====
     setTimeout(() => {
         const shareDesktop = document.getElementById('shareBtnDesktop');
         const shareMobile = document.getElementById('shareBtnMobile');
@@ -526,7 +522,7 @@ async function init() {
         if (shareMobile) shareMobile.onclick = shareApp;
     }, 500);
     
-    // ===== ШАГ 8: ПЕРИОДИЧЕСКИЕ ЗАДАЧИ =====
+    // ===== ШАГ 7: ПЕРИОДИЧЕСКИЕ ЗАДАЧИ =====
     setInterval(() => {
         if (!documentHidden) {
             updateShareButtons();
@@ -561,3 +557,4 @@ init();
 
 // Экспортируем applyState для вызова из auth.js
 window.applyAppState = applyState;
+window.stateApplied = stateApplied;
