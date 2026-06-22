@@ -7,20 +7,14 @@
     <title>Deutsch-Meister</title>
     
     <!-- ===== PWA: МАНИФЕСТ ===== -->
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="/Deutsch-Meister/manifest.json">
     
     <!-- ===== PWA: ИКОНКИ ===== -->
-    <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
-    <link rel="icon" type="image/png" sizes="16x16" href="icons/16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="icons/32.png">
-    <link rel="icon" type="image/png" sizes="64x64" href="icons/64.png">
-    <link rel="icon" type="image/png" sizes="72x72" href="icons/72.png">
-    <link rel="icon" type="image/png" sizes="128x128" href="icons/128.png">
-    <link rel="icon" type="image/png" sizes="144x144" href="icons/144.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="icons/192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="icons/512.png">
-    <link rel="apple-touch-icon" href="icons/192.png">
-    <link rel="apple-touch-icon-precomposed" href="icons/192.png">
+    <link rel="icon" type="image/svg+xml" href="/Deutsch-Meister/icons/icon.svg">
+    <link rel="icon" type="image/png" sizes="192x192" href="/Deutsch-Meister/icons/icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/Deutsch-Meister/icons/icon-512x512.png">
+    <link rel="apple-touch-icon" href="/Deutsch-Meister/icons/icon-192x192.png">
+    <link rel="apple-touch-icon-precomposed" href="/Deutsch-Meister/icons/icon-192x192.png">
     
     <!-- ===== PWA: ЦВЕТА ===== -->
     <meta name="theme-color" content="#3B6FE0">
@@ -29,10 +23,9 @@
     <meta name="apple-mobile-web-app-title" content="Deutsch-Meister">
     <meta name="application-name" content="Deutsch-Meister">
     <meta name="msapplication-TileColor" content="#3B6FE0">
-    <meta name="msapplication-TileImage" content="icons/144.png">
+    <meta name="msapplication-TileImage" content="/Deutsch-Meister/icons/icon-144x144.png">
     
-    <!-- ===== CSS ===== -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/Deutsch-Meister/css/style.css">
     
     <style>
         .app { 
@@ -139,14 +132,12 @@
 </head>
 <body>
 
-<!-- ===== ЛОАДЕР ===== -->
 <div id="loader">
     <div class="loader-logo">🇩🇪</div>
     <div class="loader-spinner"></div>
     <div class="loader-text">Загрузка<span class="loader-dots"></span></div>
 </div>
 
-<!-- ===== ПРИЛОЖЕНИЕ ===== -->
 <div class="app">
     <div class="sidebar">
         <div class="sidebar-content">
@@ -185,7 +176,6 @@
     </div>
 </div>
 
-<!-- Мобильное меню -->
 <div class="menu-overlay" id="menuOverlay"></div>
 <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-menu-header">
@@ -216,66 +206,22 @@
     </div>
 </div>
 
-<!-- ===== ПОДКЛЮЧЕНИЕ СКРИПТОВ ===== -->
-<script src="js/config.js"></script>
-<script src="js/utils.js"></script>
-<script src="js/logger.js"></script>
-<script src="js/containerManager.js"></script>
-<script src="js/carousel.js"></script>
-<script src="js/wordsManager.js"></script>
-<script src="js/sentencesManager.js"></script>
-<script src="js/cardsMode.js"></script>
-<script src="js/quizMode.js"></script>
-<script src="js/sentencesMode.js"></script>
-<script src="js/grammarMode.js"></script>
-<script src="js/app.js"></script>
-<script src="js/auth.js"></script>
-<script src="js/userService.js"></script>
-<script src="js/activityTracker.js"></script>
-<script src="js/adminUI.js"></script>
-
-<!-- ===== АВТОМАТИЧЕСКОЕ ОБНОВЛЕНИЕ ВЕРСИЙ ===== -->
-<script>
-    (function() {
-        var version = Date.now();
-        console.log('🔄 Версия загрузки:', version);
-        
-        document.querySelectorAll('link[rel="stylesheet"]').forEach(function(el) {
-            if (el.href && !el.href.includes('firebase')) {
-                var url = new URL(el.href, window.location.origin);
-                url.searchParams.set('v', version);
-                el.href = url.toString();
-            }
-        });
-        
-        document.querySelectorAll('script[src]').forEach(function(el) {
-            if (el.src && !el.src.includes('firebase') && !el.src.includes('version')) {
-                var url = new URL(el.src, window.location.origin);
-                url.searchParams.set('v', version);
-                el.src = url.toString();
-            }
-        });
-        
-        var manifest = document.querySelector('link[rel="manifest"]');
-        if (manifest) {
-            var url = new URL(manifest.href, window.location.origin);
-            url.searchParams.set('v', version);
-            manifest.href = url.toString();
-        }
-    })();
-</script>
-
-<!-- ===== ПРИНУДИТЕЛЬНОЕ ОБНОВЛЕНИЕ SERVICE WORKER ===== -->
-<script>
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(function(registrations) {
-            for (var registration of registrations) {
-                registration.update();
-                console.log('🔄 Обновляем Service Worker');
-            }
-        });
-    }
-</script>
+<script src="/Deutsch-Meister/js/config.js"></script>
+<script src="/Deutsch-Meister/js/utils.js"></script>
+<script src="/Deutsch-Meister/js/logger.js"></script>
+<script src="/Deutsch-Meister/js/containerManager.js"></script>
+<script src="/Deutsch-Meister/js/carousel.js"></script>
+<script src="/Deutsch-Meister/js/wordsManager.js"></script>
+<script src="/Deutsch-Meister/js/sentencesManager.js"></script>
+<script src="/Deutsch-Meister/js/cardsMode.js"></script>
+<script src="/Deutsch-Meister/js/quizMode.js"></script>
+<script src="/Deutsch-Meister/js/sentencesMode.js"></script>
+<script src="/Deutsch-Meister/js/grammarMode.js"></script>
+<script src="/Deutsch-Meister/js/app.js"></script>
+<script src="/Deutsch-Meister/js/auth.js"></script>
+<script src="/Deutsch-Meister/js/userService.js"></script>
+<script src="/Deutsch-Meister/js/activityTracker.js"></script>
+<script src="/Deutsch-Meister/js/adminUI.js"></script>
 
 <script>
     function isMobile() {
@@ -284,7 +230,7 @@
 
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
-            navigator.serviceWorker.register('sw.js')
+            navigator.serviceWorker.register('/Deutsch-Meister/sw.js')
                 .then(function(registration) {
                     console.log('✅ Service Worker зарегистрирован:', registration.scope);
                 })
