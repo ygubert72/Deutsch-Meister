@@ -199,7 +199,7 @@ window.logout = async function() {
     location.reload();
 };
 
-// ========== ОБНОВЛЕНИЕ ИНТЕРФЕЙСА ==========
+// ========== ОБНОВЛЕНИЕ ИНТЕРФЕЙСА (ИСПРАВЛЕНО) ==========
 function updateUI(user) {
     const loginBtn = document.getElementById('loginBtn');
     const userInfo = document.getElementById('userInfo');
@@ -217,6 +217,11 @@ function updateUI(user) {
         
         const hasPremium = currentUserData && currentUserData.hasPremiumAccess === true;
         const isAdmin = user.email === 'ygubert72@gmail.com';
+        
+        // ===== ПОКАЗЫВАЕМ КНОПКУ АДМИНА (ЕСЛИ НУЖНО) =====
+        if (window.AdminUI) {
+            window.AdminUI.updateAdminButtonVisibility(isAdmin);
+        }
         
         const premiumButtonHtml = (!isAdmin) ? `
             <div style="margin-top:8px;">
@@ -241,10 +246,6 @@ function updateUI(user) {
         userInfo.innerHTML = userInfoHtml;
         if (userInfoMobile) userInfoMobile.innerHTML = userInfoHtml;
         
-        if (isAdmin && window.AdminUI) {
-            window.AdminUI.addAdminButton();
-        }
-        
         if (!isAdmin && !hasPremium) {
             setTimeout(() => {
                 const payBtn = document.getElementById('premiumPayBtn');
@@ -259,6 +260,11 @@ function updateUI(user) {
         userInfo.style.display = 'block';
         if (userInfoMobile) userInfoMobile.style.display = 'block';
         
+        // ===== СКРЫВАЕМ КНОПКУ АДМИНА =====
+        if (window.AdminUI) {
+            window.AdminUI.updateAdminButtonVisibility(false);
+        }
+        
         const guestHtml = `
             <div style="background:#E8F0FE; border-radius:8px; padding:8px; text-align:center;">
                 <div style="font-size:14px; font-weight:bold;">👋 Гостевой режим</div>
@@ -271,11 +277,6 @@ function updateUI(user) {
         
         loginBtn.onclick = () => showLoginModal();
         if (loginBtnMobile) loginBtnMobile.onclick = () => showLoginModal();
-        
-        const oldAdminBtn = document.getElementById('adminBtn');
-        if (oldAdminBtn) oldAdminBtn.remove();
-        const oldAdminBtnMobile = document.getElementById('adminBtnMobile');
-        if (oldAdminBtnMobile) oldAdminBtnMobile.remove();
     }
 }
 
