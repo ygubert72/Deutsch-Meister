@@ -1,7 +1,7 @@
 // sw.js — Service Worker для PWA
 
-// ===== ВЕРСИЯ =====
-const VERSION = '20260623';
+// ===== ВЕРСИЯ — АВТОМАТИЧЕСКАЯ =====
+const VERSION = Date.now();
 const CACHE_NAME = 'deutsch-meister-v' + VERSION;
 const STATIC_CACHE = 'static-v' + VERSION;
 
