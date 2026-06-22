@@ -6,11 +6,6 @@
     
     <title>Deutsch-Meister</title>
     
-    <!-- ОТКЛЮЧЕНИЕ КЕШИРОВАНИЯ -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    
     <link rel="manifest" href="/Deutsch-Meister/manifest.json">
     
     <link rel="icon" type="image/svg+xml" href="/Deutsch-Meister/icons/icon.svg">
@@ -27,7 +22,7 @@
     <meta name="msapplication-TileColor" content="#3B6FE0">
     <meta name="msapplication-TileImage" content="/Deutsch-Meister/icons/icon-144x144.png">
     
-    <link rel="stylesheet" href="/Deutsch-Meister/css/style.css?v=2">
+    <link rel="stylesheet" href="/Deutsch-Meister/css/style.css">
     
     <style>
         .app { 
@@ -162,7 +157,8 @@
                 <span class="sub">Быстрый доступ с главного экрана</span>
             </div>
             
-            <button id="shareBtnDesktop" data-share="true" class="btn btn-share share-btn" style="margin-top: 10px; background: #4CAF50; color: white; border-color: #388E3C;">🔗 ПОДЕЛИТЬСЯ</button>
+            <!-- КНОПКА ПОДЕЛИТЬСЯ - ТОЧНО КАК КНОПКИ МЕНЮ -->
+            <button data-share="true" class="btn share-btn" style="margin-top: 10px; background: #4CAF50; color: white; border-color: #388E3C;">🔗 ПОДЕЛИТЬСЯ</button>
         </div>
     </div>
     
@@ -204,7 +200,8 @@
             <span class="sub">Быстрый доступ с главного экрана</span>
         </div>
         
-        <button id="shareBtnMobile" data-share="true" class="btn btn-share-mobile share-btn" style="margin-top: 10px; background: #4CAF50; color: white; border-color: #388E3C;">🔗 ПОДЕЛИТЬСЯ</button>
+        <!-- МОБИЛЬНАЯ КНОПКА ПОДЕЛИТЬСЯ -->
+        <button data-share="true" class="btn share-btn" style="margin-top: 10px; background: #4CAF50; color: white; border-color: #388E3C;">🔗 ПОДЕЛИТЬСЯ</button>
     </div>
 </div>
 
