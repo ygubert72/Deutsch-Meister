@@ -1,10 +1,8 @@
-// sw.js — Service Worker для PWA (упрощённая версия)
+// sw.js — Service Worker для PWA
 
-// ===== ВЕРСИЯ =====
 const VERSION = '20260625';
 const CACHE_NAME = 'deutsch-meister-v' + VERSION;
 
-// ===== ФАЙЛЫ ДЛЯ КЕШИРОВАНИЯ (только самое важное) =====
 const STATIC_ASSETS = [
   './',
   './index.html',
@@ -38,10 +36,8 @@ const STATIC_ASSETS = [
   './icons/512.png'
 ];
 
-// ========== УСТАНОВКА ==========
 self.addEventListener('install', function(event) {
   console.log('[SW] Установка... Версия:', VERSION);
-  
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(function(cache) {
@@ -58,10 +54,8 @@ self.addEventListener('install', function(event) {
   );
 });
 
-// ========== АКТИВАЦИЯ С ПРИНУДИТЕЛЬНЫМ ОБНОВЛЕНИЕМ ==========
 self.addEventListener('activate', function(event) {
   console.log('[SW] Активация...');
-  
   event.waitUntil(
     caches.keys()
       .then(function(cacheNames) {
@@ -83,7 +77,6 @@ self.addEventListener('activate', function(event) {
   );
 });
 
-// ========== ПЕРЕХВАТ ЗАПРОСОВ (ТОЛЬКО ДЛЯ СТАТИКИ) ==========
 self.addEventListener('fetch', function(event) {
   var request = event.request;
   var url = new URL(request.url);
