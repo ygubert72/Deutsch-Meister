@@ -2,7 +2,7 @@
   "name": "Deutsch-Meister",
   "short_name": "Deutsch-Meister",
   "description": "Учите немецкий язык с карточками, тестами и тренажёром",
-  "start_url": "/Deutsch-Meister/",
+  "start_url": "/Deutsch-Meister/?v=20260623",
   "scope": "/Deutsch-Meister/",
   "display": "standalone",
   "background_color": "#F8F8F8",
