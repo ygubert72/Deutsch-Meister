@@ -528,7 +528,7 @@ async function init() {
             updateCounter();
         }, 1000);
         
-        // ===== КНОПКА "ПОДЕЛИТЬСЯ" — ВСЕГДА РАБОТАЕТ =====
+        // ===== КНОПКА "ПОДЕЛИТЬСЯ" — ПРОСТО НАЗНАЧАЕМ ОБРАБОТЧИК =====
         var shareDesktop = document.getElementById('shareBtnDesktop');
         var shareMobile = document.getElementById('shareBtnMobile');
         if (shareDesktop) shareDesktop.onclick = shareApp;
