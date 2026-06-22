@@ -75,7 +75,6 @@ async function loadGrammarData() {
     const levels = ['A1', 'A2', 'B1', 'B2', 'C1'];
     
     for (const level of levels) {
-        // Сначала проверяем кеш
         const cached = getGrammarFromCache(level);
         if (cached && cached.length > 0) {
             grammarDB[level] = cached;
@@ -83,7 +82,6 @@ async function loadGrammarData() {
             continue;
         }
         
-        // Если в кеше нет — загружаем из сети
         grammarDB[level] = [];
         try {
             const indexUrl = `docs/grammar/${level}/index.json`;
@@ -112,7 +110,6 @@ async function loadGrammarData() {
             
             grammarDB[level] = lessons;
             
-            // Сохраняем в кеш
             if (lessons.length > 0) {
                 setGrammarCache(level, lessons);
             }
@@ -122,7 +119,6 @@ async function loadGrammarData() {
             grammarDB[level] = [];
         }
         
-        // Инициализация прогресса
         if (!grammarProgress[level]) {
             grammarProgress[level] = [];
             for (let i = 0; i < grammarDB[level].length; i++) {
@@ -163,17 +159,15 @@ function isGrammarLessonCompleted(lessonIndex) {
     return grammarProgress[level]?.[lessonIndex]?.completed === true;
 }
 
-// ========== ОСНОВНАЯ ФУНКЦИЯ ОТОБРАЖЕНИЯ ГРАММАТИКИ (ИСПРАВЛЕНА) ==========
+// ========== ОСНОВНАЯ ФУНКЦИЯ ОТОБРАЖЕНИЯ ГРАММАТИКИ ==========
 function renderGrammar() {
     Logger.debug('renderGrammar: начат');
     const level = AppConfig.currentLevel;
     const lessons = grammarDB[level];
     
-    // Проверяем, есть ли сохранённый урок
     const savedLesson = localStorage.getItem('dm_last_grammar_lesson');
     const savedLevel = localStorage.getItem('dm_last_grammar_level');
     
-    // Если есть сохранённый урок и он соответствует текущему уровню — открываем его
     if (savedLesson !== null && savedLevel === level && lessons && lessons[parseInt(savedLesson)]) {
         const lessonIdx = parseInt(savedLesson);
         Logger.debug('Восстанавливаю урок:', lessonIdx);
@@ -181,7 +175,6 @@ function renderGrammar() {
         return;
     }
     
-    // Если уроков нет — показываем сообщение
     if (!lessons || lessons.length === 0) {
         document.getElementById('content').innerHTML = `
             <div style="text-align: center; padding: 40px;">
@@ -193,7 +186,6 @@ function renderGrammar() {
         return;
     }
     
-    // Показываем список уроков
     let html = `
         <div style="max-width: 800px; margin: 0 auto;">
             <div class="lesson-header">
@@ -227,7 +219,6 @@ function renderGrammar() {
         };
     }
     
-    // Обновляем индикатор режима
     const modeIndicator = document.getElementById('modeIndicator');
     if (modeIndicator) {
         modeIndicator.textContent = `Грамматика ${level}`;
@@ -309,7 +300,6 @@ function renderGrammarLesson(lessonIdx) {
         </div>
     `;
     
-    // Обработчики
     const backBtn = document.getElementById('backToGrammarList');
     if (backBtn) {
         backBtn.onclick = () => {
@@ -338,7 +328,6 @@ function renderGrammarLesson(lessonIdx) {
         nextBtn.onclick = () => renderGrammarLesson(lessonIdx + 1);
     }
     
-    // Переключение режимов
     const theoryBtn = document.getElementById('grammarTheoryBtn');
     const practiceBtn = document.getElementById('grammarPracticeBtn');
     
