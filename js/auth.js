@@ -3,6 +3,7 @@
 let auth = null;
 let db = null;
 let currentUserData = null;
+let authInitialized = false; // Флаг, что auth инициализирован
 
 // Конфигурация Firebase
 const firebaseConfig = {
@@ -39,6 +40,8 @@ function initFirebase() {
     if (window.Logger) Logger.info('Firebase готов');
     
     auth.onAuthStateChanged(async (user) => {
+        authInitialized = true;
+        
         if (user) {
             if (window.Logger) Logger.info('Пользователь в системе:', user.email);
             
@@ -61,14 +64,16 @@ function initFirebase() {
             }, 100);
         }
         
+        // Обновляем UI, но НЕ перерисовываем грамматику, если состояние уже применено
         updateUI(user);
         
+        // Обновляем счётчик, но НЕ перерисовываем контент принудительно
         if (typeof updateCounter === 'function') {
             updateCounter();
         }
-        if (typeof renderGrammar === 'function') {
-            renderGrammar();
-        }
+        
+        // НЕ вызываем renderGrammar() здесь, чтобы не перезаписывать состояние
+        // renderGrammar() будет вызван из applyState()
     });
 }
 
@@ -634,3 +639,4 @@ window.addEventListener('load', function() {
 window.auth = auth;
 window.db = db;
 window.currentUserData = currentUserData;
+window.authInitialized = authInitialized;
