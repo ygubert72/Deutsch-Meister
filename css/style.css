@@ -351,7 +351,7 @@ body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-
         justify-content: stretch !important;
     }
     .word-btn { 
-        font-size: 11px !important; 
+        font-size: 13px !important; 
         padding: 8px 4px !important;
         min-height: 36px !important;
         white-space: normal !important;
