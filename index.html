@@ -31,7 +31,7 @@
     <meta name="msapplication-TileColor" content="#3B6FE0">
     <meta name="msapplication-TileImage" content="icons/144.png">
     
-    <!-- ===== CSS (версия будет добавлена автоматически) ===== -->
+    <!-- ===== CSS ===== -->
     <link rel="stylesheet" href="css/style.css">
     
     <style>
@@ -216,7 +216,7 @@
     </div>
 </div>
 
-<!-- ===== ПОДКЛЮЧЕНИЕ СКРИПТОВ (версия будет добавлена автоматически) ===== -->
+<!-- ===== ПОДКЛЮЧЕНИЕ СКРИПТОВ ===== -->
 <script src="js/config.js"></script>
 <script src="js/utils.js"></script>
 <script src="js/logger.js"></script>
@@ -240,7 +240,6 @@
         var version = Date.now();
         console.log('🔄 Версия загрузки:', version);
         
-        // Обновляем CSS
         document.querySelectorAll('link[rel="stylesheet"]').forEach(function(el) {
             if (el.href && !el.href.includes('firebase')) {
                 var url = new URL(el.href, window.location.origin);
@@ -249,7 +248,6 @@
             }
         });
         
-        // Обновляем JS
         document.querySelectorAll('script[src]').forEach(function(el) {
             if (el.src && !el.src.includes('firebase') && !el.src.includes('version')) {
                 var url = new URL(el.src, window.location.origin);
@@ -258,7 +256,6 @@
             }
         });
         
-        // Обновляем manifest
         var manifest = document.querySelector('link[rel="manifest"]');
         if (manifest) {
             var url = new URL(manifest.href, window.location.origin);
@@ -266,6 +263,18 @@
             manifest.href = url.toString();
         }
     })();
+</script>
+
+<!-- ===== ПРИНУДИТЕЛЬНОЕ ОБНОВЛЕНИЕ SERVICE WORKER ===== -->
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for (var registration of registrations) {
+                registration.update();
+                console.log('🔄 Обновляем Service Worker');
+            }
+        });
+    }
 </script>
 
 <script>
