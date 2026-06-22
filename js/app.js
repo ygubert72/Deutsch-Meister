@@ -424,7 +424,6 @@ function syncMobileUserInfo() {
     }
 }
 
-// ===== ОСНОВНОЕ ИСПРАВЛЕНИЕ: МЕНЮ НЕ ЗАКРЫВАЕТСЯ ПРИ ВЫБОРЕ УРОВНЯ И РЕЖИМА =====
 function initMobileMenu() {
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     const closeMenuBtn = document.getElementById('closeMenuBtn');
@@ -554,14 +553,15 @@ async function init() {
             updateCounter();
         }, 1000);
         
-        setTimeout(function() {
-            var shareDesktop = document.getElementById('shareBtnDesktop');
-            var shareMobile = document.getElementById('shareBtnMobile');
-            if (shareDesktop) shareDesktop.onclick = shareApp;
-            if (shareMobile) shareMobile.onclick = shareApp;
-        }, 500);
+        // ===== ИСПРАВЛЕНИЕ: КНОПКА "ПОДЕЛИТЬСЯ" ПОЯВЛЯЕТСЯ СРАЗУ =====
+        var shareDesktop = document.getElementById('shareBtnDesktop');
+        var shareMobile = document.getElementById('shareBtnMobile');
+        if (shareDesktop) shareDesktop.onclick = shareApp;
+        if (shareMobile) shareMobile.onclick = shareApp;
+        updateShareButtons(); // <-- сразу показываем кнопку
         
-        setInterval(updateShareButtons, 2000);
+        // Оставляем интервал для обновления состояния (например, при входе/выходе)
+        setInterval(updateShareButtons, 5000);
         
         setInterval(function() {
             if (window.isAuthenticated && window.isAuthenticated()) {
