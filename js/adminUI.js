@@ -69,7 +69,7 @@ function updateAdminButtonVisibility(show) {
     }
 }
 
-// ========== АДМИН-ПАНЕЛЬ (НЕ ИЗМЕНЯЕТСЯ) ==========
+// ========== АДМИН-ПАНЕЛЬ ==========
 async function showAdminPanel() {
     if (!auth.currentUser || auth.currentUser.email !== 'ygubert72@gmail.com') {
         alert('У вас нет прав администратора');
