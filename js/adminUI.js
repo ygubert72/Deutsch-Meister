@@ -1,12 +1,11 @@
 // adminUI.js — админ-панель и кнопки
 
-// ========== УПРАВЛЕНИЕ КНОПКОЙ АДМИНА (БЕЗ ПЕРЕСОЗДАНИЯ) ==========
+// ========== УПРАВЛЕНИЕ КНОПКОЙ АДМИНА ==========
 function updateAdminButtonVisibility(show) {
     // Десктопная кнопка
     let adminBtn = document.getElementById('adminBtn');
     if (show) {
         if (!adminBtn) {
-            // Создаём только если её нет
             adminBtn = document.createElement('button');
             adminBtn.id = 'adminBtn';
             adminBtn.className = 'btn';
@@ -19,13 +18,8 @@ function updateAdminButtonVisibility(show) {
             
             const sidebarContent = document.querySelector('.sidebar .sidebar-content');
             if (sidebarContent) {
-                // Вставляем перед кнопкой "ПОДЕЛИТЬСЯ"
-                const shareBtn = document.getElementById('shareBtnDesktop');
-                if (shareBtn) {
-                    sidebarContent.insertBefore(adminBtn, shareBtn);
-                } else {
-                    sidebarContent.appendChild(adminBtn);
-                }
+                // ВСТАВЛЯЕМ В КОНЕЦ, НЕ ТРОГАЕМ КНОПКУ "ПОДЕЛИТЬСЯ"
+                sidebarContent.appendChild(adminBtn);
             }
         } else {
             adminBtn.style.display = 'block';
@@ -52,12 +46,8 @@ function updateAdminButtonVisibility(show) {
             
             const mobileSidebarContent = document.querySelector('#mobileMenu .sidebar-content');
             if (mobileSidebarContent) {
-                const shareBtnMobile = document.getElementById('shareBtnMobile');
-                if (shareBtnMobile) {
-                    mobileSidebarContent.insertBefore(adminBtnMobile, shareBtnMobile);
-                } else {
-                    mobileSidebarContent.appendChild(adminBtnMobile);
-                }
+                // ВСТАВЛЯЕМ В КОНЕЦ, НЕ ТРОГАЕМ КНОПКУ "ПОДЕЛИТЬСЯ"
+                mobileSidebarContent.appendChild(adminBtnMobile);
             }
         } else {
             adminBtnMobile.style.display = 'block';
