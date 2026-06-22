@@ -1,46 +1,47 @@
 // sw.js — Service Worker для PWA
 
-// ===== ВЕРСИЯ ГЕНЕРИРУЕТСЯ АВТОМАТИЧЕСКИ =====
-// Каждый раз при установке SW будет новая версия
-const CACHE_NAME = 'deutsch-meister-v' + Date.now();
-const STATIC_CACHE = 'static-v' + Date.now();
+// ===== ВЕРСИЯ =====
+const VERSION = '20260623';
+const CACHE_NAME = 'deutsch-meister-v' + VERSION;
+const STATIC_CACHE = 'static-v' + VERSION;
 
+// ===== ФАЙЛЫ ДЛЯ КЕШИРОВАНИЯ (ОТНОСИТЕЛЬНЫЕ ПУТИ) =====
 const STATIC_ASSETS = [
-  '/Deutsch-Meister/',
-  '/Deutsch-Meister/index.html',
-  '/Deutsch-Meister/css/style.css',
-  '/Deutsch-Meister/js/config.js',
-  '/Deutsch-Meister/js/utils.js',
-  '/Deutsch-Meister/js/logger.js',
-  '/Deutsch-Meister/js/containerManager.js',
-  '/Deutsch-Meister/js/carousel.js',
-  '/Deutsch-Meister/js/wordsManager.js',
-  '/Deutsch-Meister/js/sentencesManager.js',
-  '/Deutsch-Meister/js/cardsMode.js',
-  '/Deutsch-Meister/js/quizMode.js',
-  '/Deutsch-Meister/js/sentencesMode.js',
-  '/Deutsch-Meister/js/grammarMode.js',
-  '/Deutsch-Meister/js/app.js',
-  '/Deutsch-Meister/js/auth.js',
-  '/Deutsch-Meister/js/userService.js',
-  '/Deutsch-Meister/js/activityTracker.js',
-  '/Deutsch-Meister/js/adminUI.js',
-  '/Deutsch-Meister/admin.html',
-  '/Deutsch-Meister/manifest.json',
-  '/Deutsch-Meister/icons/icon.svg',
-  '/Deutsch-Meister/icons/16.png',
-  '/Deutsch-Meister/icons/32.png',
-  '/Deutsch-Meister/icons/64.png',
-  '/Deutsch-Meister/icons/72.png',
-  '/Deutsch-Meister/icons/128.png',
-  '/Deutsch-Meister/icons/144.png',
-  '/Deutsch-Meister/icons/192.png',
-  '/Deutsch-Meister/icons/512.png'
+  './',
+  './index.html',
+  './css/style.css',
+  './js/config.js',
+  './js/utils.js',
+  './js/logger.js',
+  './js/containerManager.js',
+  './js/carousel.js',
+  './js/wordsManager.js',
+  './js/sentencesManager.js',
+  './js/cardsMode.js',
+  './js/quizMode.js',
+  './js/sentencesMode.js',
+  './js/grammarMode.js',
+  './js/app.js',
+  './js/auth.js',
+  './js/userService.js',
+  './js/activityTracker.js',
+  './js/adminUI.js',
+  './admin.html',
+  './manifest.json',
+  './icons/icon.svg',
+  './icons/16.png',
+  './icons/32.png',
+  './icons/64.png',
+  './icons/72.png',
+  './icons/128.png',
+  './icons/144.png',
+  './icons/192.png',
+  './icons/512.png'
 ];
 
-// ========== ОСТАЛЬНОЙ КОД SW БЕЗ ИЗМЕНЕНИЙ ==========
+// ========== УСТАНОВКА ==========
 self.addEventListener('install', event => {
-  console.log('[SW] Установка...');
+  console.log('[SW] Установка... Версия:', VERSION);
   
   event.waitUntil(
     caches.open(STATIC_CACHE)
@@ -58,6 +59,7 @@ self.addEventListener('install', event => {
   );
 });
 
+// ========== АКТИВАЦИЯ ==========
 self.addEventListener('activate', event => {
   console.log('[SW] Активация...');
   
@@ -80,25 +82,30 @@ self.addEventListener('activate', event => {
   );
 });
 
+// ========== ПЕРЕХВАТ ЗАПРОСОВ ==========
 self.addEventListener('fetch', event => {
   const request = event.request;
   const url = new URL(request.url);
   
+  // Пропускаем запросы к расширениям
   if (url.protocol === 'chrome-extension:') {
     event.respondWith(fetch(request));
     return;
   }
   
+  // Пропускаем запросы к Firebase
   if (url.hostname.includes('firebase') || url.hostname.includes('googleapis')) {
     event.respondWith(fetch(request));
     return;
   }
   
+  // Пропускаем запросы к API геолокации
   if (url.hostname.includes('ipapi.co')) {
     event.respondWith(fetch(request));
     return;
   }
   
+  // Стратегия: сначала кеш, потом сеть
   event.respondWith(
     caches.match(request)
       .then(cachedResponse => {
@@ -168,7 +175,7 @@ self.addEventListener('fetch', event => {
                     <p>Проверьте подключение к интернету<br>и попробуйте снова.</p>
                     <button class="btn retry-btn" onclick="location.reload()">🔄 Попробовать снова</button>
                     <br><br>
-                    <a href="/Deutsch-Meister/" class="btn" style="background:#666;">🏠 На главную</a>
+                    <a href="./" class="btn" style="background:#666;">🏠 На главную</a>
                   </div>
                 </body>
                 </html>
