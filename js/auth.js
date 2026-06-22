@@ -52,6 +52,13 @@ function initFirebase() {
             await checkIfBlocked(user);
         } else {
             currentUserData = null;
+            // Если пользователь вышел, но состояние ещё не применено — применяем из localStorage
+            setTimeout(() => {
+                if (typeof window.applyAppState === 'function' && !window.stateApplied) {
+                    console.log('👤 Пользователь вышел, применяем состояние из localStorage');
+                    window.applyAppState();
+                }
+            }, 100);
         }
         
         updateUI(user);
@@ -511,11 +518,22 @@ window.saveUserProgressToFirebase = async function() {
     }
 };
 
-// ========== ЗАГРУЗКА ПРОГРЕССА ИЗ ОБЛАКА ==========
+// ========== ЗАГРУЗКА ПРОГРЕССА ИЗ ОБЛАКА (ИСПРАВЛЕНА) ==========
 window.loadUserProgressFromFirebase = async function() {
-    if (!auth || !auth.currentUser) return false;
+    if (!auth || !auth.currentUser) {
+        // Если пользователь не авторизован — применяем состояние из localStorage
+        setTimeout(() => {
+            if (typeof window.applyAppState === 'function' && !window.stateApplied) {
+                console.log('👤 Пользователь не авторизован, применяем состояние из localStorage');
+                window.applyAppState();
+            }
+        }, 100);
+        return false;
+    }
+    
     const userId = auth.currentUser.uid;
     if (!db) return false;
+    
     try {
         const userDoc = await db.collection('users').doc(userId).get();
         if (userDoc.exists && userDoc.data().progress) {
@@ -539,14 +557,14 @@ window.loadUserProgressFromFirebase = async function() {
                 localStorage.setItem('dm_grammar_progress', JSON.stringify(grammarProgress));
             }
             
-            // Загружаем конфигурацию, НО НЕ ПЕРЕЗАПИСЫВАЕМ ТЕКУЩИЙ РЕЖИМ
+            // Загружаем конфигурацию, НО НЕ ПЕРЕЗАПИСЫВАЕМ ТЕКУЩИЙ РЕЖИМ И УРОВЕНЬ
             if (progress.config) {
                 const config = progress.config;
                 
                 // Сохраняем в localStorage
                 localStorage.setItem('dm_config', JSON.stringify(config));
                 
-                // НЕ ТРОГАЕМ currentMode и AppConfig.currentLevel
+                // НЕ ТРОГАЕМ currentMode и AppConfig.currentLevel, если они уже установлены из localStorage
                 // Обновляем только вспомогательные настройки
                 AppConfig.show_language = config.show_language || 'de';
                 AppConfig.quiz_direction = config.quiz_direction || 'de_to_ru';
@@ -556,11 +574,29 @@ window.loadUserProgressFromFirebase = async function() {
             if (window.Logger) {
                 Logger.info('Прогресс загружен из облака');
             }
+            
+            // После загрузки прогресса из облака — применяем состояние
+            setTimeout(() => {
+                if (typeof window.applyAppState === 'function' && !window.stateApplied) {
+                    console.log('☁️ Применяем состояние после загрузки из облака');
+                    window.applyAppState();
+                }
+            }, 100);
+            
             return true;
         }
     } catch(e) {
         if (window.Logger) Logger.error('Ошибка загрузки прогресса:', e);
     }
+    
+    // Если облачного прогресса нет — всё равно применяем состояние
+    setTimeout(() => {
+        if (typeof window.applyAppState === 'function' && !window.stateApplied) {
+            console.log('☁️ Облачного прогресса нет, применяем состояние из localStorage');
+            window.applyAppState();
+        }
+    }, 100);
+    
     return false;
 };
 
