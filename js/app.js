@@ -469,23 +469,6 @@ function initMobileMenu() {
     }
 }
 
-// ========== УПРАВЛЕНИЕ КНОПКОЙ "ПОДЕЛИТЬСЯ" (ТОЛЬКО ДЛЯ АДМИНА) ==========
-function updateShareButtons() {
-    const shareDesktop = document.getElementById('shareBtnDesktop');
-    const shareMobile = document.getElementById('shareBtnMobile');
-    
-    const isAdmin = window.isAdmin && window.isAdmin();
-    
-    // Если админ — скрываем, иначе показываем
-    if (isAdmin) {
-        if (shareDesktop) shareDesktop.style.display = 'none';
-        if (shareMobile) shareMobile.style.display = 'none';
-    } else {
-        if (shareDesktop) shareDesktop.style.display = 'block';
-        if (shareMobile) shareMobile.style.display = 'block';
-    }
-}
-
 // ========== ИНИЦИАЛИЗАЦИЯ ==========
 async function init() {
     console.log('init: начало загрузки');
@@ -545,16 +528,11 @@ async function init() {
             updateCounter();
         }, 1000);
         
-        // ===== КНОПКА "ПОДЕЛИТЬСЯ" =====
+        // ===== КНОПКА "ПОДЕЛИТЬСЯ" — ВСЕГДА РАБОТАЕТ =====
         var shareDesktop = document.getElementById('shareBtnDesktop');
         var shareMobile = document.getElementById('shareBtnMobile');
         if (shareDesktop) shareDesktop.onclick = shareApp;
         if (shareMobile) shareMobile.onclick = shareApp;
-        
-        // Сразу показываем/скрываем кнопку (для админа)
-        updateShareButtons();
-        
-        setInterval(updateShareButtons, 5000);
         
         setInterval(function() {
             if (window.isAuthenticated && window.isAuthenticated()) {
