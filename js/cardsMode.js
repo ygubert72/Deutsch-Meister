@@ -7,10 +7,14 @@ let isAnimating = false;
 
 // Переменные для карусели
 let touchStartX = 0;
+let touchStartY = 0;
+let touchEndX = 0;
+let touchEndY = 0;
 let isDragging = false;
+let isSwiping = false;
 let containerWidth = 0;
 let currentTranslate = 0;
-const minSwipeDistance = 50;
+const minSwipeDistance = 30;
 const snapDuration = 250;
 let cardsCarousel = null;
 
@@ -240,35 +244,59 @@ function renderCardsMobile() {
         attachCardEvents();
     }
     
+    // ===== ОСНОВНОЕ ИСПРАВЛЕНИЕ: ОБЪЕДИНЕННЫЙ ОБРАБОТЧИК ДЛЯ КЛИКА И СВАЙПА =====
     function attachCardEvents() {
         var cards = document.querySelectorAll('#carouselTrack .card');
         cards.forEach(function(card, domIdx) {
-            var wordIdx = parseInt(card.getAttribute('data-idx'));
+            // Убираем старые обработчики
+            card.onclick = null;
+            card.ontouchstart = null;
+            card.ontouchend = null;
             
-            // Центральная карточка (индекс 2) — переворот по клику
+            var wordIdx = parseInt(card.getAttribute('data-idx'));
+            var startX = 0;
+            var startY = 0;
+            var isTap = true;
+            
+            // Центральная карточка (индекс 2)
             if (domIdx === 2) {
-                card.onclick = function(e) {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    
-                    var word = cardsList[cardsIndex];
-                    var wordDiv = card.querySelector('.card-word');
-                    if (!wordDiv) return;
-                    
-                    if (!cardsFlipped) {
-                        var displayText = AppConfig.show_language === 'de' 
-                            ? word.de + '\n\n➡️\n\n' + word.ru
-                            : word.ru + '\n\n➡️\n\n' + word.de;
-                        wordDiv.textContent = displayText;
-                    } else {
-                        var displayText = AppConfig.show_language === 'de' ? word.de : word.ru;
-                        wordDiv.textContent = displayText;
+                // Обработчик касания
+                card.addEventListener('touchstart', function(e) {
+                    var touch = e.changedTouches[0];
+                    startX = touch.screenX;
+                    startY = touch.screenY;
+                    isTap = true;
+                }, { passive: true });
+                
+                card.addEventListener('touchmove', function(e) {
+                    var touch = e.changedTouches[0];
+                    var deltaX = Math.abs(touch.screenX - startX);
+                    var deltaY = Math.abs(touch.screenY - startY);
+                    if (deltaX > 10 || deltaY > 10) {
+                        isTap = false;
                     }
-                    cardsFlipped = !cardsFlipped;
-                };
+                }, { passive: true });
+                
+                card.addEventListener('touchend', function(e) {
+                    if (isTap) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        flipCard(card);
+                    }
+                    isTap = true;
+                }, { passive: false });
+                
+                // Для мыши (отладка на десктопе)
+                card.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        // На мобильных клик обрабатывается через touch
+                        return;
+                    }
+                    flipCard(card);
+                });
             } else {
-                // Боковые карточки — переход к слову по клику
-                card.onclick = function(e) {
+                // Боковые карточки — переход по клику
+                card.addEventListener('click', function(e) {
                     e.stopPropagation();
                     e.preventDefault();
                     
@@ -279,9 +307,27 @@ function renderCardsMobile() {
                     cardsFlipped = false;
                     refreshCarousel();
                     updateCounter();
-                };
+                });
             }
         });
+    }
+    
+    // ===== ФУНКЦИЯ ПЕРЕВОРОТА КАРТОЧКИ =====
+    function flipCard(card) {
+        var word = cardsList[cardsIndex];
+        var wordDiv = card.querySelector('.card-word');
+        if (!wordDiv || !word) return;
+        
+        if (!cardsFlipped) {
+            var displayText = AppConfig.show_language === 'de' 
+                ? word.de + '\n\n➡️\n\n' + word.ru
+                : word.ru + '\n\n➡️\n\n' + word.de;
+            wordDiv.textContent = displayText;
+        } else {
+            var displayText = AppConfig.show_language === 'de' ? word.de : word.ru;
+            wordDiv.textContent = displayText;
+        }
+        cardsFlipped = !cardsFlipped;
     }
     
     var wrapper = document.getElementById('carouselWrapper');
@@ -291,25 +337,38 @@ function renderCardsMobile() {
         containerWidth = wrapper.offsetWidth;
         refreshCarousel();
         
+        // ===== ОБРАБОТКА СВАЙПА ДЛЯ ВСЕГО ТРЕКА =====
         track.addEventListener('touchstart', function(e) {
             isDragging = true;
+            isSwiping = false;
             touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
             track.style.transition = 'none';
         }, { passive: true });
         
         track.addEventListener('touchmove', function(e) {
             if (!isDragging) return;
             var touchCurrentX = e.changedTouches[0].screenX;
-            var delta = touchCurrentX - touchStartX;
-            track.style.transform = 'translateX(' + (currentTranslate + delta) + 'px)';
+            var touchCurrentY = e.changedTouches[0].screenY;
+            var deltaX = touchCurrentX - touchStartX;
+            var deltaY = touchCurrentY - touchStartY;
+            
+            if (Math.abs(deltaX) > 10) {
+                isSwiping = true;
+            }
+            
+            track.style.transform = 'translateX(' + (currentTranslate + deltaX) + 'px)';
         }, { passive: true });
         
         track.addEventListener('touchend', function(e) {
             if (!isDragging) return;
             isDragging = false;
+            
             var endX = e.changedTouches[0].screenX;
             var delta = endX - touchStartX;
-            if (Math.abs(delta) > minSwipeDistance) {
+            
+            // Если был свайп — листаем
+            if (isSwiping && Math.abs(delta) > minSwipeDistance) {
                 if (delta > 0) {
                     cardsIndex = cardsIndex === 0 ? cardsList.length - 1 : cardsIndex - 1;
                 } else {
@@ -318,9 +377,15 @@ function renderCardsMobile() {
                 cardsFlipped = false;
                 refreshCarousel();
                 updateCounter();
+            } else if (!isSwiping) {
+                // Если не было свайпа — ничего не делаем, клик отработает сам
+                // Но на всякий случай возвращаем позицию
+                updateCarouselPosition(true);
             } else {
                 updateCarouselPosition(true);
             }
+            
+            isSwiping = false;
         }, { passive: true });
     }
     
