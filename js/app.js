@@ -553,14 +553,13 @@ async function init() {
             updateCounter();
         }, 1000);
         
-        // ===== ИСПРАВЛЕНИЕ: КНОПКА "ПОДЕЛИТЬСЯ" ПОЯВЛЯЕТСЯ СРАЗУ =====
+        // ===== КНОПКА "ПОДЕЛИТЬСЯ" =====
         var shareDesktop = document.getElementById('shareBtnDesktop');
         var shareMobile = document.getElementById('shareBtnMobile');
         if (shareDesktop) shareDesktop.onclick = shareApp;
         if (shareMobile) shareMobile.onclick = shareApp;
-        updateShareButtons(); // <-- сразу показываем кнопку
+        updateShareButtons();
         
-        // Оставляем интервал для обновления состояния (например, при входе/выходе)
         setInterval(updateShareButtons, 5000);
         
         setInterval(function() {
@@ -594,3 +593,26 @@ async function init() {
 }
 
 init();
+
+// ===== ПРИНУДИТЕЛЬНОЕ ОТОБРАЖЕНИЕ КНОПКИ "ПОДЕЛИТЬСЯ" СРАЗУ ПОСЛЕ ЗАГРУЗКИ DOM =====
+// Это решает проблему с F5 (обычная перезагрузка с кешем)
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+        var shareDesktop = document.getElementById('shareBtnDesktop');
+        var shareMobile = document.getElementById('shareBtnMobile');
+        if (shareDesktop) shareDesktop.style.display = 'block';
+        if (shareMobile) shareMobile.style.display = 'block';
+        console.log('📢 Кнопка "Поделиться" принудительно показана (DOMContentLoaded)');
+    }, 50);
+});
+
+// ===== ДУБЛИРУЮЩИЙ ВЫЗОВ ДЛЯ СТРАХОВКИ (ЕСЛИ DOMContentLoaded УЖЕ СРАБОТАЛ) =====
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(function() {
+        var shareDesktop = document.getElementById('shareBtnDesktop');
+        var shareMobile = document.getElementById('shareBtnMobile');
+        if (shareDesktop) shareDesktop.style.display = 'block';
+        if (shareMobile) shareMobile.style.display = 'block';
+        console.log('📢 Кнопка "Поделиться" принудительно показана (страховка)');
+    }, 100);
+}
