@@ -1,47 +1,75 @@
 // adminUI.js — админ-панель и кнопки
 
-// ========== ДОБАВЛЕНИЕ АДМИН-КНОПКИ ==========
-function addAdminButton() {
-    // Удаляем старые кнопки
-    const oldAdminBtn = document.getElementById('adminBtn');
-    if (oldAdminBtn) oldAdminBtn.remove();
-    const oldAdminBtnMobile = document.getElementById('adminBtnMobile');
-    if (oldAdminBtnMobile) oldAdminBtnMobile.remove();
-    
-    // Кнопка в десктопном меню
-    const adminBtn = document.createElement('button');
-    adminBtn.id = 'adminBtn';
-    adminBtn.className = 'btn';
-    adminBtn.innerHTML = '📊 МОНИТОРИНГ';
-    adminBtn.style.background = '#FF9800';
-    adminBtn.style.color = 'white';
-    adminBtn.style.marginTop = '10px';
-    adminBtn.style.cursor = 'pointer';
-    adminBtn.onclick = () => window.open('admin.html', '_blank');
-    
-    const sidebarContent = document.querySelector('.sidebar .sidebar-content');
-    if (sidebarContent) {
-        sidebarContent.appendChild(adminBtn);
+// ========== УПРАВЛЕНИЕ КНОПКОЙ АДМИНА (БЕЗ ПЕРЕСОЗДАНИЯ) ==========
+function updateAdminButtonVisibility(show) {
+    // Десктопная кнопка
+    let adminBtn = document.getElementById('adminBtn');
+    if (show) {
+        if (!adminBtn) {
+            // Создаём только если её нет
+            adminBtn = document.createElement('button');
+            adminBtn.id = 'adminBtn';
+            adminBtn.className = 'btn';
+            adminBtn.innerHTML = '📊 МОНИТОРИНГ';
+            adminBtn.style.background = '#FF9800';
+            adminBtn.style.color = 'white';
+            adminBtn.style.marginTop = '10px';
+            adminBtn.style.cursor = 'pointer';
+            adminBtn.onclick = () => window.open('admin.html', '_blank');
+            
+            const sidebarContent = document.querySelector('.sidebar .sidebar-content');
+            if (sidebarContent) {
+                // Вставляем перед кнопкой "ПОДЕЛИТЬСЯ"
+                const shareBtn = document.getElementById('shareBtnDesktop');
+                if (shareBtn) {
+                    sidebarContent.insertBefore(adminBtn, shareBtn);
+                } else {
+                    sidebarContent.appendChild(adminBtn);
+                }
+            }
+        } else {
+            adminBtn.style.display = 'block';
+        }
+    } else {
+        if (adminBtn) {
+            adminBtn.style.display = 'none';
+        }
     }
     
-    // Кнопка в мобильном меню
-    const adminBtnMobile = document.createElement('button');
-    adminBtnMobile.id = 'adminBtnMobile';
-    adminBtnMobile.className = 'btn';
-    adminBtnMobile.innerHTML = '📊 МОНИТОРИНГ';
-    adminBtnMobile.style.background = '#FF9800';
-    adminBtnMobile.style.color = 'white';
-    adminBtnMobile.style.marginTop = '10px';
-    adminBtnMobile.style.cursor = 'pointer';
-    adminBtnMobile.onclick = () => window.open('admin.html', '_blank');
-    
-    const mobileSidebarContent = document.querySelector('#mobileMenu .sidebar-content');
-    if (mobileSidebarContent) {
-        mobileSidebarContent.appendChild(adminBtnMobile);
+    // Мобильная кнопка
+    let adminBtnMobile = document.getElementById('adminBtnMobile');
+    if (show) {
+        if (!adminBtnMobile) {
+            adminBtnMobile = document.createElement('button');
+            adminBtnMobile.id = 'adminBtnMobile';
+            adminBtnMobile.className = 'btn';
+            adminBtnMobile.innerHTML = '📊 МОНИТОРИНГ';
+            adminBtnMobile.style.background = '#FF9800';
+            adminBtnMobile.style.color = 'white';
+            adminBtnMobile.style.marginTop = '10px';
+            adminBtnMobile.style.cursor = 'pointer';
+            adminBtnMobile.onclick = () => window.open('admin.html', '_blank');
+            
+            const mobileSidebarContent = document.querySelector('#mobileMenu .sidebar-content');
+            if (mobileSidebarContent) {
+                const shareBtnMobile = document.getElementById('shareBtnMobile');
+                if (shareBtnMobile) {
+                    mobileSidebarContent.insertBefore(adminBtnMobile, shareBtnMobile);
+                } else {
+                    mobileSidebarContent.appendChild(adminBtnMobile);
+                }
+            }
+        } else {
+            adminBtnMobile.style.display = 'block';
+        }
+    } else {
+        if (adminBtnMobile) {
+            adminBtnMobile.style.display = 'none';
+        }
     }
 }
 
-// ========== ПОКАЗ АДМИН-ПАНЕЛИ ==========
+// ========== АДМИН-ПАНЕЛЬ (НЕ ИЗМЕНЯЕТСЯ) ==========
 async function showAdminPanel() {
     if (!auth.currentUser || auth.currentUser.email !== 'ygubert72@gmail.com') {
         alert('У вас нет прав администратора');
@@ -202,7 +230,7 @@ async function deleteUserByUid(uid) {
 
 // Экспорт
 window.AdminUI = {
-    addAdminButton,
+    updateAdminButtonVisibility,
     showAdminPanel,
     activatePremiumByUid,
     deactivatePremiumByUid,
