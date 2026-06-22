@@ -2,6 +2,7 @@
 
 let documentHidden = false;
 let appInitialized = false;
+let stateApplied = false; // Флаг, что состояние уже применено
 
 // ========== ПРОВЕРКА ВИДИМОСТИ СТРАНИЦЫ ==========
 document.addEventListener('visibilitychange', function() {
@@ -442,6 +443,12 @@ function loadStateFromLocalStorage() {
 
 // ========== ПРИМЕНЕНИЕ СОСТОЯНИЯ ==========
 function applyState() {
+    if (stateApplied) {
+        console.log('⚠️ Состояние уже применено, пропускаем');
+        return;
+    }
+    stateApplied = true;
+    
     console.log('🔄 ПРИМЕНЯЕМ СОСТОЯНИЕ:', { mode: currentMode, level: AppConfig.currentLevel });
     
     // Обновляем кнопки уровня
@@ -508,7 +515,8 @@ async function init() {
     initMobileMenu();
     
     // ===== ШАГ 6: ПРИМЕНЯЕМ СОСТОЯНИЕ =====
-    applyState();
+    // Не применяем сразу, ждём когда auth.js загрузит данные из облака
+    // applyState() будет вызван из auth.js после загрузки прогресса
     
     // ===== ШАГ 7: НАСТРОЙКА КНОПКИ "ПОДЕЛИТЬСЯ" =====
     setTimeout(() => {
@@ -538,7 +546,18 @@ async function init() {
     
     appInitialized = true;
     console.log('✅ INIT: ЗАВЕРШЕНО, режим:', currentMode, 'уровень:', AppConfig.currentLevel);
+    
+    // Если через 5 секунд состояние всё ещё не применено — применяем принудительно
+    setTimeout(() => {
+        if (!stateApplied) {
+            console.log('⏰ Таймаут: применяем состояние принудительно');
+            applyState();
+        }
+    }, 5000);
 }
 
 // ========== ЗАПУСК ==========
 init();
+
+// Экспортируем applyState для вызова из auth.js
+window.applyAppState = applyState;
