@@ -144,7 +144,7 @@ function setMode(mode) {
     updateCounter();
     updateModeIndicator();
     
-    closeMobileMenu();
+    // Меню НЕ закрывается при выборе режима!
 }
 
 function setLevel(level) {
@@ -185,7 +185,7 @@ function setLevel(level) {
     updateModeIndicator();
     saveProgress();
     
-    closeMobileMenu();
+    // Меню НЕ закрывается при выборе уровня!
 }
 
 function loadGrammarProgress() {
@@ -424,6 +424,7 @@ function syncMobileUserInfo() {
     }
 }
 
+// ===== ОСНОВНОЕ ИСПРАВЛЕНИЕ: МЕНЮ НЕ ЗАКРЫВАЕТСЯ ПРИ ВЫБОРЕ УРОВНЯ И РЕЖИМА =====
 function initMobileMenu() {
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     const closeMenuBtn = document.getElementById('closeMenuBtn');
@@ -443,17 +444,21 @@ function initMobileMenu() {
     
     initSwipeToClose();
     
+    // ===== УРОВНИ: МЕНЮ НЕ ЗАКРЫВАЕТСЯ =====
     const levelButtonsMobile = document.querySelectorAll('#levelsContainerMobile [data-level]');
-    levelButtonsMobile.forEach(btn => {
-        btn.addEventListener('click', () => {
-            setTimeout(closeMobileMenu, 200);
+    levelButtonsMobile.forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            // Меню остаётся открытым!
         });
     });
     
+    // ===== РЕЖИМЫ: МЕНЮ НЕ ЗАКРЫВАЕТСЯ =====
     const modeButtonsMobile = document.querySelectorAll('#mobileMenu .mode-btn');
-    modeButtonsMobile.forEach(btn => {
-        btn.addEventListener('click', () => {
-            setTimeout(closeMobileMenu, 200);
+    modeButtonsMobile.forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            // Меню остаётся открытым!
         });
     });
     
@@ -569,7 +574,6 @@ async function init() {
             }
         }, 5 * 60 * 1000);
         
-        // Очищаем таймаут
         if (timeoutId) {
             clearTimeout(timeoutId);
             timeoutId = null;
@@ -583,7 +587,6 @@ async function init() {
             clearTimeout(timeoutId);
             timeoutId = null;
         }
-        // Пробуем перезагрузить через 1 секунду
         setTimeout(function() {
             location.reload();
         }, 1000);
