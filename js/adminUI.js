@@ -46,7 +46,6 @@ function updateAdminButtonVisibility(show) {
             
             const mobileSidebarContent = document.querySelector('#mobileMenu .sidebar-content');
             if (mobileSidebarContent) {
-                // ВСТАВЛЯЕМ В КОНЕЦ, НЕ ТРОГАЕМ КНОПКУ "ПОДЕЛИТЬСЯ"
                 mobileSidebarContent.appendChild(adminBtnMobile);
             }
         } else {
