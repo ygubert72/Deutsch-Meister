@@ -1,193 +1,332 @@
-// sw.js — Service Worker для PWA
-
-// ===== ВЕРСИЯ =====
-const VERSION = '20260623';
-const CACHE_NAME = 'deutsch-meister-v' + VERSION;
-const STATIC_CACHE = 'static-v' + VERSION;
-
-// ===== ФАЙЛЫ ДЛЯ КЕШИРОВАНИЯ (ОТНОСИТЕЛЬНЫЕ ПУТИ) =====
-const STATIC_ASSETS = [
-  './',
-  './index.html',
-  './css/style.css',
-  './js/config.js',
-  './js/utils.js',
-  './js/logger.js',
-  './js/containerManager.js',
-  './js/carousel.js',
-  './js/wordsManager.js',
-  './js/sentencesManager.js',
-  './js/cardsMode.js',
-  './js/quizMode.js',
-  './js/sentencesMode.js',
-  './js/grammarMode.js',
-  './js/app.js',
-  './js/auth.js',
-  './js/userService.js',
-  './js/activityTracker.js',
-  './js/adminUI.js',
-  './admin.html',
-  './manifest.json',
-  './icons/icon.svg',
-  './icons/16.png',
-  './icons/32.png',
-  './icons/64.png',
-  './icons/72.png',
-  './icons/128.png',
-  './icons/144.png',
-  './icons/192.png',
-  './icons/512.png'
-];
-
-// ========== УСТАНОВКА ==========
-self.addEventListener('install', event => {
-  console.log('[SW] Установка... Версия:', VERSION);
-  
-  event.waitUntil(
-    caches.open(STATIC_CACHE)
-      .then(cache => {
-        console.log('[SW] Кешируем статические файлы');
-        return cache.addAll(STATIC_ASSETS);
-      })
-      .then(() => {
-        console.log('[SW] Кеширование завершено');
-        return self.skipWaiting();
-      })
-      .catch(err => {
-        console.error('[SW] Ошибка кеширования:', err);
-      })
-  );
-});
-
-// ========== АКТИВАЦИЯ ==========
-self.addEventListener('activate', event => {
-  console.log('[SW] Активация...');
-  
-  event.waitUntil(
-    caches.keys()
-      .then(cacheNames => {
-        return Promise.all(
-          cacheNames
-            .filter(name => name !== STATIC_CACHE)
-            .map(name => {
-              console.log('[SW] Удаляем старый кеш:', name);
-              return caches.delete(name);
-            })
-        );
-      })
-      .then(() => {
-        console.log('[SW] Service Worker активирован');
-        return self.clients.claim();
-      })
-  );
-});
-
-// ========== ПЕРЕХВАТ ЗАПРОСОВ ==========
-self.addEventListener('fetch', event => {
-  const request = event.request;
-  const url = new URL(request.url);
-  
-  // Пропускаем запросы к расширениям
-  if (url.protocol === 'chrome-extension:') {
-    event.respondWith(fetch(request));
-    return;
-  }
-  
-  // Пропускаем запросы к Firebase
-  if (url.hostname.includes('firebase') || url.hostname.includes('googleapis')) {
-    event.respondWith(fetch(request));
-    return;
-  }
-  
-  // Пропускаем запросы к API геолокации
-  if (url.hostname.includes('ipapi.co')) {
-    event.respondWith(fetch(request));
-    return;
-  }
-  
-  // Стратегия: сначала кеш, потом сеть
-  event.respondWith(
-    caches.match(request)
-      .then(cachedResponse => {
-        if (cachedResponse) {
-          return cachedResponse;
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    
+    <title>Deutsch-Meister</title>
+    
+    <!-- ===== PWA: МАНИФЕСТ ===== -->
+    <link rel="manifest" href="manifest.json?v=20260623">
+    
+    <!-- ===== PWA: ИКОНКИ ===== -->
+    <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/32.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="icons/64.png">
+    <link rel="icon" type="image/png" sizes="72x72" href="icons/72.png">
+    <link rel="icon" type="image/png" sizes="128x128" href="icons/128.png">
+    <link rel="icon" type="image/png" sizes="144x144" href="icons/144.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="icons/512.png">
+    <link rel="apple-touch-icon" href="icons/192.png">
+    <link rel="apple-touch-icon-precomposed" href="icons/192.png">
+    
+    <!-- ===== PWA: ЦВЕТА ===== -->
+    <meta name="theme-color" content="#3B6FE0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Deutsch-Meister">
+    <meta name="application-name" content="Deutsch-Meister">
+    <meta name="msapplication-TileColor" content="#3B6FE0">
+    <meta name="msapplication-TileImage" content="icons/144.png">
+    
+    <!-- ===== CSS ===== -->
+    <link rel="stylesheet" href="css/style.css?v=20260623">
+    
+    <style>
+        .app { 
+            opacity: 0; 
+            transition: opacity 0.3s ease;
+            display: none;
+        }
+        .app.loaded { 
+            opacity: 1; 
+            display: flex;
         }
         
-        return fetch(request)
-          .then(networkResponse => {
-            if (request.method === 'GET' && networkResponse && networkResponse.status === 200) {
-              const responseClone = networkResponse.clone();
-              caches.open(STATIC_CACHE)
-                .then(cache => {
-                  cache.put(request, responseClone);
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #F8F8F8;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 999999;
+            transition: opacity 0.5s ease;
+        }
+        #loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .loader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid #E0E0E0;
+            border-top: 5px solid #3B6FE0;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loader-text {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #666;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        .loader-logo {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .loader-dots::after {
+            content: '';
+            animation: dots 1.2s steps(4, end) infinite;
+        }
+        
+        @keyframes dots {
+            0% { content: ''; }
+            25% { content: '.'; }
+            50% { content: '..'; }
+            75% { content: '...'; }
+            100% { content: ''; }
+        }
+
+        .install-banner {
+            display: none;
+            background: #3B6FE0;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin: 10px 0;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(59,111,224,0.3);
+            transition: all 0.2s;
+        }
+        .install-banner:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 16px rgba(59,111,224,0.4);
+        }
+        .install-banner .sub {
+            font-size: 11px;
+            font-weight: normal;
+            opacity: 0.8;
+            display: block;
+            margin-top: 4px;
+        }
+        
+        @media (max-width: 768px) {
+            .install-banner {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== ЛОАДЕР ===== -->
+<div id="loader">
+    <div class="loader-logo">🇩🇪</div>
+    <div class="loader-spinner"></div>
+    <div class="loader-text">Загрузка<span class="loader-dots"></span></div>
+</div>
+
+<!-- ===== ПРИЛОЖЕНИЕ ===== -->
+<div class="app">
+    <div class="sidebar">
+        <div class="sidebar-content">
+            <button id="loginBtn" class="btn btn-login" style="margin-bottom: 10px;">🔐 Войти</button>
+            <div id="userInfo" style="display: none; margin: 10px 0; padding: 8px; background: #E8F0FE; border-radius: 8px; text-align: center; font-size: 12px;"></div>
+            <div class="levels-container" id="levelsContainer">
+                <button data-level="A1" class="btn btn-level">A1</button>
+                <button data-level="A2" class="btn btn-level">A2</button>
+                <button data-level="B1" class="btn btn-level">B1</button>
+                <button data-level="B2" class="btn btn-level">B2</button>
+                <button data-level="C1" class="btn btn-level">C1</button>
+            </div>
+            <button data-mode="grammar" class="btn mode-btn">ГРАММАТИКА</button>
+            <button data-mode="cards" class="btn mode-btn">КАРТОЧКИ</button>
+            <button data-mode="quiz" class="btn mode-btn">ТЕСТ</button>
+            <button data-mode="sentences" class="btn mode-btn">ТРЕНАЖЁР</button>
+            
+            <div class="install-banner" id="installBanner">
+                📱 Установить приложение
+                <span class="sub">Быстрый доступ с главного экрана</span>
+            </div>
+            
+            <button id="shareBtnDesktop" class="btn btn-share" style="display: none; margin-top: 10px;">🔗 ПОДЕЛИТЬСЯ</button>
+        </div>
+    </div>
+    
+    <div class="main">
+        <div class="top-bar">
+            <div class="top-bar-left">
+                <button class="hamburger-btn" id="hamburgerBtn">☰</button>
+                <span id="modeIndicator" class="mode-indicator">Грамматика A1</span>
+            </div>
+            <span id="counter">Загрузка...</span>
+        </div>
+        <div class="content" id="content"></div>
+    </div>
+</div>
+
+<!-- Мобильное меню -->
+<div class="menu-overlay" id="menuOverlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header">
+        <h3>📚 Deutsch-Meister</h3>
+        <button class="close-menu-btn" id="closeMenuBtn">✕</button>
+    </div>
+    <div class="sidebar-content">
+        <button id="loginBtnMobile" class="btn btn-login-mobile" style="margin-bottom: 10px;">🔐 Войти</button>
+        <div id="userInfoMobile" style="display: none; margin: 10px 0; padding: 8px; background: #E8F0FE; border-radius: 8px; text-align: center; font-size: 12px;"></div>
+        <div class="levels-container" id="levelsContainerMobile">
+            <button data-level="A1" class="btn btn-level">A1</button>
+            <button data-level="A2" class="btn btn-level">A2</button>
+            <button data-level="B1" class="btn btn-level">B1</button>
+            <button data-level="B2" class="btn btn-level">B2</button>
+            <button data-level="C1" class="btn btn-level">C1</button>
+        </div>
+        <button data-mode="grammar" class="btn mode-btn">ГРАММАТИКА</button>
+        <button data-mode="cards" class="btn mode-btn">КАРТОЧКИ</button>
+        <button data-mode="quiz" class="btn mode-btn">ТЕСТ</button>
+        <button data-mode="sentences" class="btn mode-btn">ТРЕНАЖЁР</button>
+        
+        <div class="install-banner" id="installBannerMobile">
+            📱 Установить приложение
+            <span class="sub">Быстрый доступ с главного экрана</span>
+        </div>
+        
+        <button id="shareBtnMobile" class="btn btn-share-mobile" style="display: none; margin-top: 10px;">🔗 ПОДЕЛИТЬСЯ</button>
+    </div>
+</div>
+
+<!-- ===== ПОДКЛЮЧЕНИЕ СКРИПТОВ ===== -->
+<script src="js/config.js?v=20260623"></script>
+<script src="js/utils.js?v=20260623"></script>
+<script src="js/logger.js?v=20260623"></script>
+<script src="js/containerManager.js?v=20260623"></script>
+<script src="js/carousel.js?v=20260623"></script>
+<script src="js/wordsManager.js?v=20260623"></script>
+<script src="js/sentencesManager.js?v=20260623"></script>
+<script src="js/cardsMode.js?v=20260623"></script>
+<script src="js/quizMode.js?v=20260623"></script>
+<script src="js/sentencesMode.js?v=20260623"></script>
+<script src="js/grammarMode.js?v=20260623"></script>
+<script src="js/app.js?v=20260623"></script>
+<script src="js/auth.js?v=20260623"></script>
+<script src="js/userService.js?v=20260623"></script>
+<script src="js/activityTracker.js?v=20260623"></script>
+<script src="js/adminUI.js?v=20260623"></script>
+
+<script>
+    function isMobile() {
+        return window.innerWidth <= 768;
+    }
+
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('sw.js?v=20260623')
+                .then(function(registration) {
+                    console.log('✅ Service Worker зарегистрирован:', registration.scope);
                 })
-                .catch(err => {
-                  console.log('[SW] Пропускаем кеширование:', request.url);
+                .catch(function(error) {
+                    console.log('❌ Ошибка регистрации Service Worker:', error);
                 });
-            }
-            return networkResponse;
-          })
-          .catch(() => {
-            if (request.headers.get('accept')?.includes('text/html')) {
-              return new Response(`
-                <!DOCTYPE html>
-                <html lang="ru">
-                <head>
-                  <meta charset="UTF-8">
-                  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                  <title>Нет соединения</title>
-                  <style>
-                    * { margin: 0; padding: 0; box-sizing: border-box; }
-                    body {
-                      font-family: 'Segoe UI', sans-serif;
-                      background: #F8F8F8;
-                      display: flex;
-                      justify-content: center;
-                      align-items: center;
-                      height: 100vh;
-                      text-align: center;
-                      padding: 20px;
-                    }
-                    .icon { font-size: 64px; margin-bottom: 20px; }
-                    h1 { font-size: 24px; color: #333; margin-bottom: 10px; }
-                    p { color: #666; font-size: 16px; line-height: 1.6; margin-bottom: 20px; }
-                    .btn {
-                      display: inline-block;
-                      padding: 12px 30px;
-                      background: #3B6FE0;
-                      color: white;
-                      border: none;
-                      border-radius: 12px;
-                      font-size: 16px;
-                      font-weight: bold;
-                      cursor: pointer;
-                      text-decoration: none;
-                    }
-                    .btn:hover { background: #2B5BC7; }
-                    .retry-btn { margin-top: 10px; background: #4CAF50; }
-                    .retry-btn:hover { background: #388E3C; }
-                  </style>
-                </head>
-                <body>
-                  <div>
-                    <div class="icon">📡</div>
-                    <h1>Нет соединения</h1>
-                    <p>Проверьте подключение к интернету<br>и попробуйте снова.</p>
-                    <button class="btn retry-btn" onclick="location.reload()">🔄 Попробовать снова</button>
-                    <br><br>
-                    <a href="./" class="btn" style="background:#666;">🏠 На главную</a>
-                  </div>
-                </body>
-                </html>
-              `, {
-                headers: { 'Content-Type': 'text/html' }
-              });
-            }
-            return new Response('Нет соединения', {
-              status: 503,
-              statusText: 'Service Unavailable'
+        });
+    }
+    
+    let deferredPrompt = null;
+    
+    window.addEventListener('beforeinstallprompt', function(e) {
+        e.preventDefault();
+        deferredPrompt = e;
+        if (isMobile()) {
+            document.querySelectorAll('.install-banner').forEach(function(banner) {
+                banner.style.display = 'block';
             });
-          });
-      })
-  );
-});
+        }
+    });
+    
+    document.querySelectorAll('.install-banner').forEach(function(banner) {
+        banner.addEventListener('click', function() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then(function(choiceResult) {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('✅ Пользователь установил приложение');
+                    } else {
+                        console.log('❌ Пользователь отказался от установки');
+                    }
+                    deferredPrompt = null;
+                    document.querySelectorAll('.install-banner').forEach(function(b) {
+                        b.style.display = 'none';
+                    });
+                });
+            } else {
+                showInstallInstructions();
+            }
+        });
+    });
+    
+    function showInstallInstructions() {
+        var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        var isAndroid = /Android/.test(navigator.userAgent);
+        var message = '📱 Чтобы установить приложение:\n\n';
+        if (isIOS) {
+            message += '1. Нажмите кнопку "Поделиться" (квадрат со стрелкой)\n';
+            message += '2. Пролистайте вниз и выберите "На экран «Домой»"\n';
+            message += '3. Нажмите "Добавить"';
+        } else if (isAndroid) {
+            message += '1. Нажмите на три точки в правом верхнем углу\n';
+            message += '2. Выберите "Добавить на главный экран"\n';
+            message += '3. Нажмите "Добавить"';
+        } else {
+            message += 'Откройте этот сайт в браузере на телефоне,\n';
+            message += 'чтобы установить приложение.';
+        }
+        alert(message);
+    }
+    
+    window.addEventListener('appinstalled', function() {
+        document.querySelectorAll('.install-banner').forEach(function(banner) {
+            banner.style.display = 'none';
+        });
+        deferredPrompt = null;
+        console.log('✅ Приложение установлено!');
+    });
+    
+    window.addEventListener('load', function() {
+        document.querySelector('.app').classList.add('loaded');
+        setTimeout(function() {
+            document.getElementById('loader').classList.add('hidden');
+        }, 300);
+    });
+    
+    setTimeout(function() {
+        var content = document.querySelector('.content');
+        if (content) {
+            content.style.overflowY = 'auto';
+            content.style.webkitOverflowScrolling = 'touch';
+            content.style.paddingBottom = '50px';
+        }
+    }, 500);
+</script>
+
+</body>
+</html>
