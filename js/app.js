@@ -2,7 +2,8 @@
 
 let documentHidden = false;
 let appInitialized = false;
-let stateApplied = false; // Флаг, что состояние уже применено
+let stateApplied = false;
+let loadTimeout = null;
 
 // ========== ПРОВЕРКА ВИДИМОСТИ СТРАНИЦЫ ==========
 document.addEventListener('visibilitychange', function() {
@@ -450,7 +451,6 @@ function applyState() {
     
     console.log('🔄 ПРИМЕНЯЕМ СОСТОЯНИЕ:', { mode: currentMode, level: AppConfig.currentLevel });
     
-    // Обновляем кнопки уровня
     document.querySelectorAll('[data-level]').forEach(btn => {
         if (btn.dataset.level === AppConfig.currentLevel) {
             btn.classList.add('active');
@@ -459,7 +459,6 @@ function applyState() {
         }
     });
     
-    // Обновляем кнопки режима
     document.querySelectorAll('.mode-btn').forEach(btn => {
         if (btn.dataset.mode === currentMode) {
             btn.classList.add('active');
@@ -468,7 +467,6 @@ function applyState() {
         }
     });
     
-    // ЗАПУСКАЕМ РЕЖИМ
     console.log('🚀 ЗАПУСКАЕМ РЕЖИМ:', currentMode);
     
     if (currentMode === 'cards') {
@@ -489,6 +487,24 @@ function applyState() {
 async function init() {
     console.log('🔥 INIT: НАЧАЛО ЗАГРУЗКИ');
     
+    // ===== ФОРСИРОВАННАЯ ПЕРЕЗАГРУЗКА ПРИ ЗАВИСАНИИ =====
+    var startTime = Date.now();
+    var maxWaitTime = 10000; // 10 секунд
+    
+    function checkTimeout() {
+        if (Date.now() - startTime > maxWaitTime) {
+            console.log('⏰ Превышено время ожидания загрузки, перезагружаем...');
+            if (loadTimeout) {
+                clearTimeout(loadTimeout);
+                loadTimeout = null;
+            }
+            location.reload();
+        }
+    }
+    
+    // Проверяем каждые 2 секунды
+    loadTimeout = setInterval(checkTimeout, 2000);
+    
     // ===== ШАГ 1: ЗАГРУЖАЕМ СОСТОЯНИЕ ИЗ LOCALSTORAGE =====
     loadStateFromLocalStorage();
     console.log('📌 ПОСЛЕ ЗАГРУЗКИ LOCALSTORAGE: mode=' + currentMode + ', level=' + AppConfig.currentLevel);
@@ -498,37 +514,50 @@ async function init() {
     loadGrammarProgress();
     
     // ===== ШАГ 3: ЗАГРУЖАЕМ ДАННЫЕ =====
-    await loadWords();
-    await loadSentences();
-    await loadGrammarData();
+    try {
+        await loadWords();
+        await loadSentences();
+        await loadGrammarData();
+    } catch(e) {
+        console.error('Ошибка загрузки данных:', e);
+        // Пробуем перезагрузить
+        if (loadTimeout) {
+            clearTimeout(loadTimeout);
+            loadTimeout = null;
+        }
+        setTimeout(function() {
+            location.reload();
+        }, 1000);
+        return;
+    }
     
     // ===== ШАГ 4: ПРИВЯЗЫВАЕМ СОБЫТИЯ К КНОПКАМ =====
     document.querySelectorAll('.mode-btn').forEach(btn => {
-        btn.onclick = () => setMode(btn.dataset.mode);
+        btn.onclick = function() { setMode(btn.dataset.mode); };
     });
     document.querySelectorAll('[data-level]').forEach(btn => {
-        btn.onclick = () => setLevel(btn.dataset.level);
+        btn.onclick = function() { setLevel(btn.dataset.level); };
     });
     
     // ===== ШАГ 5: ИНИЦИАЛИЗИРУЕМ МОБИЛЬНОЕ МЕНЮ =====
     initMobileMenu();
     
     // ===== ШАГ 6: НАСТРОЙКА КНОПКИ "ПОДЕЛИТЬСЯ" =====
-    setTimeout(() => {
-        const shareDesktop = document.getElementById('shareBtnDesktop');
-        const shareMobile = document.getElementById('shareBtnMobile');
+    setTimeout(function() {
+        var shareDesktop = document.getElementById('shareBtnDesktop');
+        var shareMobile = document.getElementById('shareBtnMobile');
         if (shareDesktop) shareDesktop.onclick = shareApp;
         if (shareMobile) shareMobile.onclick = shareApp;
     }, 500);
     
     // ===== ШАГ 7: ПЕРИОДИЧЕСКИЕ ЗАДАЧИ =====
-    setInterval(() => {
+    setInterval(function() {
         if (!documentHidden) {
             updateShareButtons();
         }
     }, 5000);
     
-    setInterval(() => {
+    setInterval(function() {
         if (!documentHidden && window.isAuthenticated && window.isAuthenticated()) {
             logUserAction('heartbeat', {
                 level: AppConfig.currentLevel,
@@ -542,8 +571,14 @@ async function init() {
     appInitialized = true;
     console.log('✅ INIT: ЗАВЕРШЕНО, режим:', currentMode, 'уровень:', AppConfig.currentLevel);
     
+    // Очищаем таймер
+    if (loadTimeout) {
+        clearTimeout(loadTimeout);
+        loadTimeout = null;
+    }
+    
     // Если через 5 секунд состояние всё ещё не применено — применяем принудительно
-    setTimeout(() => {
+    setTimeout(function() {
         if (!stateApplied) {
             console.log('⏰ Таймаут: применяем состояние принудительно');
             applyState();
@@ -554,6 +589,6 @@ async function init() {
 // ========== ЗАПУСК ==========
 init();
 
-// Экспортируем applyState для вызова из auth.js
+// Экспортируем
 window.applyAppState = applyState;
 window.stateApplied = stateApplied;
