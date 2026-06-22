@@ -143,8 +143,6 @@ function setMode(mode) {
     saveProgress();
     updateCounter();
     updateModeIndicator();
-    
-    // Меню НЕ закрывается при выборе режима!
 }
 
 function setLevel(level) {
@@ -184,8 +182,6 @@ function setLevel(level) {
     updateCounter();
     updateModeIndicator();
     saveProgress();
-    
-    // Меню НЕ закрывается при выборе уровня!
 }
 
 function loadGrammarProgress() {
@@ -443,21 +439,17 @@ function initMobileMenu() {
     
     initSwipeToClose();
     
-    // ===== УРОВНИ: МЕНЮ НЕ ЗАКРЫВАЕТСЯ =====
     const levelButtonsMobile = document.querySelectorAll('#levelsContainerMobile [data-level]');
     levelButtonsMobile.forEach(function(btn) {
         btn.addEventListener('click', function(e) {
             e.stopPropagation();
-            // Меню остаётся открытым!
         });
     });
     
-    // ===== РЕЖИМЫ: МЕНЮ НЕ ЗАКРЫВАЕТСЯ =====
     const modeButtonsMobile = document.querySelectorAll('#mobileMenu .mode-btn');
     modeButtonsMobile.forEach(function(btn) {
         btn.addEventListener('click', function(e) {
             e.stopPropagation();
-            // Меню остаётся открытым!
         });
     });
     
@@ -477,13 +469,14 @@ function initMobileMenu() {
     }
 }
 
-// ========== УПРАВЛЕНИЕ КНОПКОЙ "ПОДЕЛИТЬСЯ" ==========
+// ========== УПРАВЛЕНИЕ КНОПКОЙ "ПОДЕЛИТЬСЯ" (ТОЛЬКО ДЛЯ АДМИНА) ==========
 function updateShareButtons() {
     const shareDesktop = document.getElementById('shareBtnDesktop');
     const shareMobile = document.getElementById('shareBtnMobile');
     
     const isAdmin = window.isAdmin && window.isAdmin();
     
+    // Если админ — скрываем, иначе показываем
     if (isAdmin) {
         if (shareDesktop) shareDesktop.style.display = 'none';
         if (shareMobile) shareMobile.style.display = 'none';
@@ -515,7 +508,6 @@ async function init() {
     
     timeoutId = setInterval(checkTimeout, 2000);
     
-    // ===== ОСНОВНАЯ ЗАГРУЗКА =====
     try {
         if (window.isAuthenticated && window.isAuthenticated()) {
             logUserAction('app_start', { 
@@ -558,6 +550,8 @@ async function init() {
         var shareMobile = document.getElementById('shareBtnMobile');
         if (shareDesktop) shareDesktop.onclick = shareApp;
         if (shareMobile) shareMobile.onclick = shareApp;
+        
+        // Сразу показываем/скрываем кнопку (для админа)
         updateShareButtons();
         
         setInterval(updateShareButtons, 5000);
@@ -593,26 +587,3 @@ async function init() {
 }
 
 init();
-
-// ===== ПРИНУДИТЕЛЬНОЕ ОТОБРАЖЕНИЕ КНОПКИ "ПОДЕЛИТЬСЯ" СРАЗУ ПОСЛЕ ЗАГРУЗКИ DOM =====
-// Это решает проблему с F5 (обычная перезагрузка с кешем)
-document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(function() {
-        var shareDesktop = document.getElementById('shareBtnDesktop');
-        var shareMobile = document.getElementById('shareBtnMobile');
-        if (shareDesktop) shareDesktop.style.display = 'block';
-        if (shareMobile) shareMobile.style.display = 'block';
-        console.log('📢 Кнопка "Поделиться" принудительно показана (DOMContentLoaded)');
-    }, 50);
-});
-
-// ===== ДУБЛИРУЮЩИЙ ВЫЗОВ ДЛЯ СТРАХОВКИ (ЕСЛИ DOMContentLoaded УЖЕ СРАБОТАЛ) =====
-if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    setTimeout(function() {
-        var shareDesktop = document.getElementById('shareBtnDesktop');
-        var shareMobile = document.getElementById('shareBtnMobile');
-        if (shareDesktop) shareDesktop.style.display = 'block';
-        if (shareMobile) shareMobile.style.display = 'block';
-        console.log('📢 Кнопка "Поделиться" принудительно показана (страховка)');
-    }, 100);
-}
