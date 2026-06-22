@@ -163,24 +163,17 @@ function isGrammarLessonCompleted(lessonIndex) {
     return grammarProgress[level]?.[lessonIndex]?.completed === true;
 }
 
+// ========== ОСНОВНАЯ ФУНКЦИЯ ОТОБРАЖЕНИЯ ГРАММАТИКИ (ИСПРАВЛЕНА) ==========
 function renderGrammar() {
     Logger.debug('renderGrammar: начат');
     const level = AppConfig.currentLevel;
     const lessons = grammarDB[level];
     
-    const modeIndicator = document.getElementById('modeIndicator');
-    if (modeIndicator) {
-        modeIndicator.textContent = `Грамматика ${level}`;
-        modeIndicator.style.background = '';
-        modeIndicator.style.padding = '';
-        modeIndicator.style.color = '';
-        modeIndicator.style.fontWeight = '';
-    }
-    
-    updateCounter();
-    
+    // Проверяем, есть ли сохранённый урок
     const savedLesson = localStorage.getItem('dm_last_grammar_lesson');
     const savedLevel = localStorage.getItem('dm_last_grammar_level');
+    
+    // Если есть сохранённый урок и он соответствует текущему уровню — открываем его
     if (savedLesson !== null && savedLevel === level && lessons && lessons[parseInt(savedLesson)]) {
         const lessonIdx = parseInt(savedLesson);
         Logger.debug('Восстанавливаю урок:', lessonIdx);
@@ -188,6 +181,7 @@ function renderGrammar() {
         return;
     }
     
+    // Если уроков нет — показываем сообщение
     if (!lessons || lessons.length === 0) {
         document.getElementById('content').innerHTML = `
             <div style="text-align: center; padding: 40px;">
@@ -199,6 +193,7 @@ function renderGrammar() {
         return;
     }
     
+    // Показываем список уроков
     let html = `
         <div style="max-width: 800px; margin: 0 auto;">
             <div class="lesson-header">
@@ -230,6 +225,12 @@ function renderGrammar() {
             Logger.debug('КЛИК по уроку:', lessonIdx);
             renderGrammarLesson(lessonIdx);
         };
+    }
+    
+    // Обновляем индикатор режима
+    const modeIndicator = document.getElementById('modeIndicator');
+    if (modeIndicator) {
+        modeIndicator.textContent = `Грамматика ${level}`;
     }
     
     updateCounter();
