@@ -506,7 +506,7 @@ async function init() {
         await loadSentences();
         await loadGrammarData();
         
-        // ===== ИНИЦИАЛИЗАЦИЯ КНОПОК МЕНЮ (как было) =====
+        // ===== ИНИЦИАЛИЗАЦИЯ КНОПОК МЕНЮ =====
         document.querySelectorAll('.mode-btn').forEach(function(btn) {
             btn.onclick = function() { setMode(btn.dataset.mode); };
         });
@@ -514,7 +514,7 @@ async function init() {
             btn.onclick = function() { setLevel(btn.dataset.level); };
         });
         
-        // ===== ИНИЦИАЛИЗАЦИЯ КНОПКИ "ПОДЕЛИТЬСЯ" (ТОЧНО ТАК ЖЕ, КАК КНОПКИ МЕНЮ) =====
+        // ===== ИНИЦИАЛИЗАЦИЯ КНОПКИ "ПОДЕЛИТЬСЯ" (ТОЧНО КАК КНОПКИ МЕНЮ) =====
         document.querySelectorAll('[data-share="true"]').forEach(function(btn) {
             btn.onclick = function() { window.shareApp(); };
         });
