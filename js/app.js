@@ -469,44 +469,6 @@ function initMobileMenu() {
     }
 }
 
-// ===== ФИКС: ГАРАНТИРОВАННОЕ СОЗДАНИЕ КНОПКИ "ПОДЕЛИТЬСЯ" =====
-function ensureShareButton() {
-    // Проверяем, есть ли кнопка
-    let shareBtn = document.querySelector('.share-btn');
-    if (shareBtn) return; // уже есть
-    
-    console.log('🔧 Создаём кнопку ПОДЕЛИТЬСЯ...');
-    
-    // Ищем контейнер
-    const sidebarContent = document.querySelector('.sidebar .sidebar-content');
-    if (!sidebarContent) return;
-    
-    // Ищем кнопку по ID
-    let existingBtn = document.getElementById('shareBtnDesktop');
-    
-    if (existingBtn) {
-        // Если есть по ID, но нет класса - добавляем класс
-        existingBtn.classList.add('share-btn');
-        existingBtn.setAttribute('data-share', 'true');
-        existingBtn.onclick = function() { window.shareApp(); };
-        console.log('✅ Класс share-btn добавлен к существующей кнопке');
-        return;
-    }
-    
-    // Создаём новую кнопку
-    const btn = document.createElement('button');
-    btn.id = 'shareBtnDesktop';
-    btn.className = 'btn share-btn';
-    btn.setAttribute('data-share', 'true');
-    btn.textContent = '🔗 ПОДЕЛИТЬСЯ';
-    btn.style.cssText = 'margin-top: 10px; background: #4CAF50; color: white; border-color: #388E3C;';
-    btn.onclick = function() { window.shareApp(); };
-    
-    // Вставляем в конец
-    sidebarContent.appendChild(btn);
-    console.log('✅ Кнопка ПОДЕЛИТЬСЯ создана заново');
-}
-
 // ========== ИНИЦИАЛИЗАЦИЯ ==========
 async function init() {
     console.log('init: начало загрузки');
@@ -549,7 +511,7 @@ async function init() {
             btn.onclick = function() { setMode(btn.dataset.mode); };
         });
         
-        // ===== ИНИЦИАЛИЗАЦИЯ КНОПКИ "ПОДЕЛИТЬСЯ" =====
+        // ===== ИНИЦИАЛИЗАЦИЯ КНОПКИ "ПОДЕЛИТЬСЯ" (ТОЧНО ТАК ЖЕ, КАК КНОПКИ МЕНЮ) =====
         document.querySelectorAll('.share-btn').forEach(function(btn) {
             btn.onclick = function() { window.shareApp(); };
         });
@@ -585,11 +547,6 @@ async function init() {
         }
         
         console.log('init: завершено');
-        
-        // ===== ГАРАНТИРУЕМ СОЗДАНИЕ КНОПКИ =====
-        setTimeout(ensureShareButton, 50);
-        setTimeout(ensureShareButton, 200);
-        setTimeout(ensureShareButton, 500);
         
     } catch(e) {
         console.error('Ошибка загрузки:', e);
