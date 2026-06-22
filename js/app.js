@@ -1,70 +1,17 @@
-// app.js — ПРОСТАЯ И НАДЕЖНАЯ ВЕРСИЯ
+// app.js - полная версия с плавным мобильным меню
 
-let documentHidden = false;
-let appInitialized = false;
-let stateApplied = false;
-let loadTimeout = null;
-
-// ========== ПРОВЕРКА ВИДИМОСТИ СТРАНИЦЫ ==========
-document.addEventListener('visibilitychange', function() {
-    documentHidden = document.hidden;
-});
-
-// ========== МОБИЛЬНОЕ МЕНЮ (ГАМБУРГЕР) ==========
-function closeMobileMenu() {
-    const mobileMenu = document.getElementById('mobileMenu');
-    const menuOverlay = document.getElementById('menuOverlay');
-    if (mobileMenu) {
-        mobileMenu.classList.remove('show');
-        mobileMenu.classList.remove('open');
-    }
-    if (menuOverlay) {
-        menuOverlay.classList.remove('show');
-    }
-    document.body.style.overflow = '';
-}
-
-function openMobileMenu() {
-    const mobileMenu = document.getElementById('mobileMenu');
-    const menuOverlay = document.getElementById('menuOverlay');
-    if (mobileMenu) {
-        mobileMenu.classList.add('show');
-        mobileMenu.classList.add('open');
-    }
-    if (menuOverlay) {
-        menuOverlay.classList.add('show');
-    }
-    document.body.style.overflow = 'hidden';
-}
-
-function initMobileMenu() {
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
-    const closeMenuBtn = document.getElementById('closeMenuBtn');
-    const menuOverlay = document.getElementById('menuOverlay');
-    
-    if (!hamburgerBtn) {
-        console.warn('Кнопка гамбургера не найдена');
-        return;
-    }
-    
-    hamburgerBtn.onclick = openMobileMenu;
-    
-    if (closeMenuBtn) {
-        closeMenuBtn.onclick = closeMobileMenu;
-    }
-    
-    if (menuOverlay) {
-        menuOverlay.onclick = closeMobileMenu;
-    }
-}
-
-// ========== ЛОГИРОВАНИЕ ==========
+// ========== ЛОГИРОВАНИЕ ДЕЙСТВИЙ ПОЛЬЗОВАТЕЛЯ ==========
 async function logUserAction(action, details = {}) {
     try {
-        if (typeof window.isAuthenticated === 'undefined' || !window.isAuthenticated()) return;
+        if (typeof window.isAuthenticated === 'undefined' || !window.isAuthenticated()) {
+            return;
+        }
+        
         const user = window.getCurrentUser ? window.getCurrentUser() : null;
         if (!user) return;
+        
         const db = window.db || firebase.firestore();
+        
         await db.collection('user_actions').add({
             userId: user.uid,
             email: user.email,
@@ -72,44 +19,46 @@ async function logUserAction(action, details = {}) {
             details: details,
             timestamp: new Date().toISOString(),
             userAgent: navigator.userAgent,
-            url: window.location.href
+            url: window.location.href,
+            deviceId: getDeviceId ? getDeviceId() : 'unknown'
         });
+        
+        console.log('📊 Действие залогировано:', action, details);
     } catch(e) {
-        console.error('Ошибка логирования:', e);
+        console.error('Ошибка логирования действия:', e);
     }
 }
 
-// ========== ОБНОВЛЕНИЕ СЧЁТЧИКА ==========
-let cachedCounter = null;
-let cachedCounterMode = null;
-let cachedCounterLevel = null;
+function getDeviceId() {
+    let id = navigator.userAgent + navigator.platform + window.screen.width + window.screen.height;
+    let hash = 0;
+    for (let i = 0; i < id.length; i++) {
+        hash = ((hash << 5) - hash) + id.charCodeAt(i);
+        hash |= 0;
+    }
+    return hash.toString();
+}
 
-function updateCounter(force = false) {
+// ========== ОБНОВЛЕНИЕ СЧЁТЧИКА ==========
+function updateCounter() {
     const el = document.getElementById('counter');
     if (!el) return;
-    
-    const level = AppConfig.currentLevel;
-    
-    if (!force && cachedCounter && cachedCounterMode === currentMode && cachedCounterLevel === level) {
-        el.textContent = cachedCounter;
-        return;
-    }
-    
-    let result = '';
     
     if (currentMode === 'cards' || currentMode === 'quiz') {
         const total = wordsDB[AppConfig.currentLevel]?.length || 0;
         const unstudied = getUnstudiedWords().length;
         const studied = total - unstudied;
-        result = `Всего: ${total} | Учим: ${unstudied} | Выучено: ${studied}`;
+        el.textContent = `Всего: ${total} | Учим: ${unstudied} | Выучено: ${studied}`;
     } 
     else if (currentMode === 'sentences') {
         const total = sentencesDB[AppConfig.currentLevel]?.length || 0;
         let completed = sentencesProgress[AppConfig.currentLevel]?.filter(p => p?.studied === true).length || 0;
-        result = `Всего фраз: ${total} | Выучено: ${completed}`;
+        el.textContent = `Всего фраз: ${total} | Выучено: ${completed}`;
     } 
     else if (currentMode === 'grammar') {
+        const level = AppConfig.currentLevel;
         const grammarData = grammarDB[level];
+        
         const savedLesson = localStorage.getItem('dm_last_grammar_lesson');
         const savedLevel = localStorage.getItem('dm_last_grammar_level');
         const isLessonOpen = (savedLesson !== null && savedLevel === level);
@@ -117,26 +66,21 @@ function updateCounter(force = false) {
         if (isLessonOpen && grammarData && grammarData.length > 0) {
             const totalLessons = grammarData.length;
             const completed = grammarProgress[level]?.filter(p => p?.completed === true).length || 0;
-            result = `Пройдено: ${completed} из ${totalLessons} уроков`;
+            el.textContent = `Пройдено: ${completed} из ${totalLessons} уроков`;
         }
         else if (grammarData && grammarData.length > 0) {
-            result = `Всего уроков: ${grammarData.length}`;
+            el.textContent = `Всего уроков: ${grammarData.length}`;
         }
         else if (grammarData && grammarData.length === 0) {
-            result = 'Загрузка материалов...';
+            el.textContent = `Загрузка материалов...`;
         }
         else {
-            result = 'Выберите уровень';
+            el.textContent = `Выберите уровень`;
         }
     }
     else {
-        result = 'Deutsch-Meister';
+        el.textContent = `Deutsch-Meister`;
     }
-    
-    el.textContent = result;
-    cachedCounter = result;
-    cachedCounterMode = currentMode;
-    cachedCounterLevel = level;
     
     updateModeIndicator();
 }
@@ -152,11 +96,20 @@ function updateModeIndicator() {
     
     let modeText = '';
     switch(currentMode) {
-        case 'grammar': modeText = 'Грамматика'; break;
-        case 'cards': modeText = 'Карточки'; break;
-        case 'quiz': modeText = 'Тест'; break;
-        case 'sentences': modeText = 'Тренажёр'; break;
-        default: modeText = '';
+        case 'grammar': 
+            modeText = 'Грамматика';
+            break;
+        case 'cards': 
+            modeText = 'Карточки';
+            break;
+        case 'quiz': 
+            modeText = 'Тест';
+            break;
+        case 'sentences': 
+            modeText = 'Тренажёр';
+            break;
+        default: 
+            modeText = '';
     }
     
     if (currentMode === 'grammar' && isLessonOpen) {
@@ -173,16 +126,11 @@ function updateModeIndicator() {
     }
 }
 
-// ========== УСТАНОВКА РЕЖИМА ==========
 function setMode(mode) {
     currentMode = mode;
-    
     document.querySelectorAll('.mode-btn').forEach(btn => {
-        if (btn.dataset.mode === mode) {
-            btn.classList.add('active');
-        } else {
-            btn.classList.remove('active');
-        }
+        if (btn.dataset.mode === mode) btn.classList.add('active');
+        else btn.classList.remove('active');
     });
     
     logUserAction('change_mode', { mode: mode, level: AppConfig.currentLevel });
@@ -193,12 +141,12 @@ function setMode(mode) {
     else if (mode === 'grammar') renderGrammar();
     
     saveProgress();
-    updateCounter(true);
+    updateCounter();
     updateModeIndicator();
+    
     closeMobileMenu();
 }
 
-// ========== УСТАНОВКА УРОВНЯ ==========
 function setLevel(level) {
     if (typeof window.hasAccessToLevel !== 'undefined' && !window.hasAccessToLevel(level)) {
         if (level === 'B1' || level === 'B2' || level === 'C1') {
@@ -217,23 +165,26 @@ function setLevel(level) {
     AppConfig.currentLevel = level;
     
     document.querySelectorAll('[data-level]').forEach(btn => {
-        if (btn.dataset.level === level) {
-            btn.classList.add('active');
-        } else {
-            btn.classList.remove('active');
-        }
+        if (btn.dataset.level === level) btn.classList.add('active');
+        else btn.classList.remove('active');
     });
     
     logUserAction('change_level', { level: level, mode: currentMode });
     
-    if (currentMode === 'cards') renderCards();
-    else if (currentMode === 'quiz') renderQuiz();
-    else if (currentMode === 'sentences') renderSentences();
-    else if (currentMode === 'grammar') renderGrammar();
+    if (currentMode === 'cards') {
+        renderCards();
+    } else if (currentMode === 'quiz') {
+        renderQuiz();
+    } else if (currentMode === 'sentences') {
+        renderSentences();
+    } else if (currentMode === 'grammar') {
+        renderGrammar();
+    }
     
-    updateCounter(true);
+    updateCounter();
     updateModeIndicator();
     saveProgress();
+    
     closeMobileMenu();
 }
 
@@ -255,7 +206,7 @@ function loadGrammarProgress() {
 
 window.forceUpdateCounter = function() {
     setTimeout(() => {
-        updateCounter(true);
+        updateCounter();
     }, 100);
 };
 
@@ -369,7 +320,7 @@ function shareApp() {
             const url = btn.getAttribute('data-url');
             if (btn.getAttribute('data-copy') === 'true') {
                 navigator.clipboard.writeText(fullText).then(() => {
-                    alert('✅ Ссылка скопирована!');
+                    alert('✅ Ссылка скопирована! Теперь вы можете вставить её в Instagram или другое приложение.');
                     logUserAction('share_app', { method: 'copy_link' });
                 }).catch(() => {
                     prompt('Скопируйте ссылку:', fullText);
@@ -387,208 +338,256 @@ function shareApp() {
     modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
 }
 
-// ========== ОБНОВЛЕНИЕ КНОПКИ "ПОДЕЛИТЬСЯ" ==========
-let lastShareState = null;
+// ========== МОБИЛЬНОЕ МЕНЮ (ГАМБУРГЕР) ==========
 
+function closeMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    if (mobileMenu) {
+        mobileMenu.classList.remove('show');
+        mobileMenu.classList.remove('open');
+    }
+    if (menuOverlay) {
+        menuOverlay.classList.remove('show');
+    }
+    document.body.style.overflow = '';
+}
+
+function openMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    if (mobileMenu) {
+        mobileMenu.classList.add('show');
+        mobileMenu.classList.add('open');
+    }
+    if (menuOverlay) {
+        menuOverlay.classList.add('show');
+    }
+    document.body.style.overflow = 'hidden';
+    
+    logUserAction('open_mobile_menu', {});
+    
+    history.pushState(null, null, location.href);
+}
+
+// ========== ПЛАВНЫЙ СВАЙП ДЛЯ ЗАКРЫТИЯ МЕНЮ ==========
+function initSwipeToClose() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (!mobileMenu) return;
+    
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let isSwiping = false;
+    
+    mobileMenu.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+        isSwiping = true;
+    }, { passive: true });
+    
+    mobileMenu.addEventListener('touchmove', function(e) {
+        if (!isSwiping) return;
+        const touchCurrentX = e.changedTouches[0].screenX;
+        const touchCurrentY = e.changedTouches[0].screenY;
+        const deltaX = touchCurrentX - touchStartX;
+        const deltaY = touchCurrentY - touchStartY;
+        
+        if (deltaX < -20 && Math.abs(deltaX) > Math.abs(deltaY)) {
+            isSwiping = false;
+            closeMobileMenu();
+        }
+    }, { passive: true });
+    
+    mobileMenu.addEventListener('touchend', function() {
+        isSwiping = false;
+    }, { passive: true });
+}
+
+function syncMobileUserInfo() {
+    const userInfo = document.getElementById('userInfo');
+    const userInfoMobile = document.getElementById('userInfoMobile');
+    const loginBtnMobile = document.getElementById('loginBtnMobile');
+    
+    if (userInfoMobile && userInfo) {
+        userInfoMobile.innerHTML = userInfo.innerHTML;
+        userInfoMobile.style.display = userInfo.style.display;
+    }
+    
+    if (loginBtnMobile) {
+        const loginBtn = document.getElementById('loginBtn');
+        if (loginBtn) {
+            loginBtnMobile.style.display = loginBtn.style.display;
+            if (loginBtn.onclick) {
+                loginBtnMobile.onclick = loginBtn.onclick;
+            }
+        }
+    }
+}
+
+function initMobileMenu() {
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const closeMenuBtn = document.getElementById('closeMenuBtn');
+    const menuOverlay = document.getElementById('menuOverlay');
+    
+    if (!hamburgerBtn) return;
+    
+    hamburgerBtn.onclick = openMobileMenu;
+    
+    if (closeMenuBtn) {
+        closeMenuBtn.onclick = closeMobileMenu;
+    }
+    
+    if (menuOverlay) {
+        menuOverlay.onclick = closeMobileMenu;
+    }
+    
+    initSwipeToClose();
+    
+    const levelButtonsMobile = document.querySelectorAll('#levelsContainerMobile [data-level]');
+    levelButtonsMobile.forEach(btn => {
+        btn.addEventListener('click', () => {
+            setTimeout(closeMobileMenu, 200);
+        });
+    });
+    
+    const modeButtonsMobile = document.querySelectorAll('#mobileMenu .mode-btn');
+    modeButtonsMobile.forEach(btn => {
+        btn.addEventListener('click', () => {
+            setTimeout(closeMobileMenu, 200);
+        });
+    });
+    
+    window.addEventListener('popstate', function() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenu && mobileMenu.classList.contains('show')) {
+            closeMobileMenu();
+        }
+    });
+    
+    syncMobileUserInfo();
+    
+    const observer = new MutationObserver(syncMobileUserInfo);
+    const userInfo = document.getElementById('userInfo');
+    if (userInfo) {
+        observer.observe(userInfo, { attributes: true, childList: true, subtree: true });
+    }
+}
+
+// ========== УПРАВЛЕНИЕ КНОПКОЙ "ПОДЕЛИТЬСЯ" ==========
 function updateShareButtons() {
     const shareDesktop = document.getElementById('shareBtnDesktop');
     const shareMobile = document.getElementById('shareBtnMobile');
+    
     const isAdmin = window.isAdmin && window.isAdmin();
     
-    const shouldShow = !isAdmin;
-    const currentState = shouldShow ? 'show' : 'hide';
-    
-    if (currentState === lastShareState) return;
-    lastShareState = currentState;
-    
-    if (shareDesktop) shareDesktop.style.display = shouldShow ? 'block' : 'none';
-    if (shareMobile) shareMobile.style.display = shouldShow ? 'block' : 'none';
-}
-
-// ========== ЗАГРУЗКА СОСТОЯНИЯ ИЗ LOCALSTORAGE ==========
-function loadStateFromLocalStorage() {
-    try {
-        const cfg = localStorage.getItem('dm_config');
-        console.log('🔍 Проверяем localStorage dm_config:', cfg);
-        
-        if (cfg) {
-            const parsed = JSON.parse(cfg);
-            console.log('🔍 Распарсенный config:', parsed);
-            
-            if (parsed.last_level) {
-                AppConfig.currentLevel = parsed.last_level;
-            }
-            if (parsed.last_mode) {
-                currentMode = parsed.last_mode;
-            }
-            AppConfig.show_language = parsed.show_language || 'de';
-            AppConfig.quiz_direction = parsed.quiz_direction || 'de_to_ru';
-            AppConfig.sentence_lang_from = parsed.sentence_lang_from || 'ru';
-            
-            console.log('📦 ЗАГРУЖЕНО ИЗ LOCALSTORAGE:', { mode: currentMode, level: AppConfig.currentLevel });
-            return true;
-        } else {
-            console.log('📦 LOCALSTORAGE ПУСТ, используем значения по умолчанию');
-            currentMode = 'grammar';
-            AppConfig.currentLevel = 'A1';
-            return false;
-        }
-    } catch(e) {
-        console.error('Ошибка загрузки из localStorage:', e);
-        currentMode = 'grammar';
-        AppConfig.currentLevel = 'A1';
-        return false;
+    if (isAdmin) {
+        if (shareDesktop) shareDesktop.style.display = 'none';
+        if (shareMobile) shareMobile.style.display = 'none';
+    } else {
+        if (shareDesktop) shareDesktop.style.display = 'block';
+        if (shareMobile) shareMobile.style.display = 'block';
     }
-}
-
-// ========== ПРИМЕНЕНИЕ СОСТОЯНИЯ ==========
-function applyState() {
-    if (stateApplied) {
-        console.log('⚠️ Состояние уже применено, пропускаем');
-        return;
-    }
-    stateApplied = true;
-    
-    console.log('🔄 ПРИМЕНЯЕМ СОСТОЯНИЕ:', { mode: currentMode, level: AppConfig.currentLevel });
-    
-    document.querySelectorAll('[data-level]').forEach(btn => {
-        if (btn.dataset.level === AppConfig.currentLevel) {
-            btn.classList.add('active');
-        } else {
-            btn.classList.remove('active');
-        }
-    });
-    
-    document.querySelectorAll('.mode-btn').forEach(btn => {
-        if (btn.dataset.mode === currentMode) {
-            btn.classList.add('active');
-        } else {
-            btn.classList.remove('active');
-        }
-    });
-    
-    console.log('🚀 ЗАПУСКАЕМ РЕЖИМ:', currentMode);
-    
-    if (currentMode === 'cards') {
-        if (typeof renderCards === 'function') renderCards();
-    } else if (currentMode === 'quiz') {
-        if (typeof renderQuiz === 'function') renderQuiz();
-    } else if (currentMode === 'sentences') {
-        if (typeof renderSentences === 'function') renderSentences();
-    } else if (currentMode === 'grammar') {
-        if (typeof renderGrammar === 'function') renderGrammar();
-    }
-    
-    if (typeof updateCounter === 'function') updateCounter(true);
-    if (typeof updateModeIndicator === 'function') updateModeIndicator();
 }
 
 // ========== ИНИЦИАЛИЗАЦИЯ ==========
 async function init() {
-    console.log('🔥 INIT: НАЧАЛО ЗАГРУЗКИ');
+    console.log('init: начало загрузки');
     
-    // ===== ФОРСИРОВАННАЯ ПЕРЕЗАГРУЗКА ПРИ ЗАВИСАНИИ =====
+    // ===== ТАЙМАУТ ДЛЯ ПЕРЕЗАГРУЗКИ ПРИ ЗАВИСАНИИ =====
     var startTime = Date.now();
-    var maxWaitTime = 10000; // 10 секунд
+    var maxWaitTime = 10000;
+    var timeoutId = null;
     
     function checkTimeout() {
         if (Date.now() - startTime > maxWaitTime) {
-            console.log('⏰ Превышено время ожидания загрузки, перезагружаем...');
-            if (loadTimeout) {
-                clearTimeout(loadTimeout);
-                loadTimeout = null;
+            console.log('⏰ Превышено время ожидания, перезагружаем...');
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+                timeoutId = null;
             }
             location.reload();
         }
     }
     
-    // Проверяем каждые 2 секунды
-    loadTimeout = setInterval(checkTimeout, 2000);
+    timeoutId = setInterval(checkTimeout, 2000);
     
-    // ===== ШАГ 1: ЗАГРУЖАЕМ СОСТОЯНИЕ ИЗ LOCALSTORAGE =====
-    loadStateFromLocalStorage();
-    console.log('📌 ПОСЛЕ ЗАГРУЗКИ LOCALSTORAGE: mode=' + currentMode + ', level=' + AppConfig.currentLevel);
-    
-    // ===== ШАГ 2: ЗАГРУЖАЕМ ПРОГРЕСС =====
-    loadProgress();
-    loadGrammarProgress();
-    
-    // ===== ШАГ 3: ЗАГРУЖАЕМ ДАННЫЕ =====
+    // ===== ОСНОВНАЯ ЗАГРУЗКА =====
     try {
+        if (window.isAuthenticated && window.isAuthenticated()) {
+            logUserAction('app_start', { 
+                level: AppConfig.currentLevel,
+                mode: currentMode,
+                timestamp: new Date().toISOString()
+            });
+        }
+        
+        loadProgress();
+        loadGrammarProgress();
+        
         await loadWords();
         await loadSentences();
         await loadGrammarData();
-    } catch(e) {
-        console.error('Ошибка загрузки данных:', e);
-        // Пробуем перезагрузить
-        if (loadTimeout) {
-            clearTimeout(loadTimeout);
-            loadTimeout = null;
+        
+        document.querySelectorAll('.mode-btn').forEach(function(btn) {
+            btn.onclick = function() { setMode(btn.dataset.mode); };
+        });
+        document.querySelectorAll('[data-level]').forEach(function(btn) {
+            btn.onclick = function() { setLevel(btn.dataset.level); };
+        });
+        
+        document.querySelectorAll('[data-level]').forEach(function(btn) {
+            if (btn.dataset.level === AppConfig.currentLevel) btn.classList.add('active');
+            else btn.classList.remove('active');
+        });
+        
+        setMode(currentMode);
+        
+        initMobileMenu();
+        updateModeIndicator();
+        
+        setTimeout(function() {
+            updateCounter();
+        }, 1000);
+        
+        setTimeout(function() {
+            var shareDesktop = document.getElementById('shareBtnDesktop');
+            var shareMobile = document.getElementById('shareBtnMobile');
+            if (shareDesktop) shareDesktop.onclick = shareApp;
+            if (shareMobile) shareMobile.onclick = shareApp;
+        }, 500);
+        
+        setInterval(updateShareButtons, 2000);
+        
+        setInterval(function() {
+            if (window.isAuthenticated && window.isAuthenticated()) {
+                logUserAction('heartbeat', {
+                    level: AppConfig.currentLevel,
+                    mode: currentMode,
+                    wordsUnstudied: getUnstudiedWords().length,
+                    sentencesUnstudied: getUnstudiedSentences().length
+                });
+            }
+        }, 5 * 60 * 1000);
+        
+        // Очищаем таймаут
+        if (timeoutId) {
+            clearTimeout(timeoutId);
+            timeoutId = null;
         }
+        
+        console.log('init: завершено');
+        
+    } catch(e) {
+        console.error('Ошибка загрузки:', e);
+        if (timeoutId) {
+            clearTimeout(timeoutId);
+            timeoutId = null;
+        }
+        // Пробуем перезагрузить через 1 секунду
         setTimeout(function() {
             location.reload();
         }, 1000);
-        return;
     }
-    
-    // ===== ШАГ 4: ПРИВЯЗЫВАЕМ СОБЫТИЯ К КНОПКАМ =====
-    document.querySelectorAll('.mode-btn').forEach(btn => {
-        btn.onclick = function() { setMode(btn.dataset.mode); };
-    });
-    document.querySelectorAll('[data-level]').forEach(btn => {
-        btn.onclick = function() { setLevel(btn.dataset.level); };
-    });
-    
-    // ===== ШАГ 5: ИНИЦИАЛИЗИРУЕМ МОБИЛЬНОЕ МЕНЮ =====
-    initMobileMenu();
-    
-    // ===== ШАГ 6: НАСТРОЙКА КНОПКИ "ПОДЕЛИТЬСЯ" =====
-    setTimeout(function() {
-        var shareDesktop = document.getElementById('shareBtnDesktop');
-        var shareMobile = document.getElementById('shareBtnMobile');
-        if (shareDesktop) shareDesktop.onclick = shareApp;
-        if (shareMobile) shareMobile.onclick = shareApp;
-    }, 500);
-    
-    // ===== ШАГ 7: ПЕРИОДИЧЕСКИЕ ЗАДАЧИ =====
-    setInterval(function() {
-        if (!documentHidden) {
-            updateShareButtons();
-        }
-    }, 5000);
-    
-    setInterval(function() {
-        if (!documentHidden && window.isAuthenticated && window.isAuthenticated()) {
-            logUserAction('heartbeat', {
-                level: AppConfig.currentLevel,
-                mode: currentMode,
-                wordsUnstudied: getUnstudiedWords().length,
-                sentencesUnstudied: getUnstudiedSentences().length
-            });
-        }
-    }, 5 * 60 * 1000);
-    
-    appInitialized = true;
-    console.log('✅ INIT: ЗАВЕРШЕНО, режим:', currentMode, 'уровень:', AppConfig.currentLevel);
-    
-    // Очищаем таймер
-    if (loadTimeout) {
-        clearTimeout(loadTimeout);
-        loadTimeout = null;
-    }
-    
-    // Если через 5 секунд состояние всё ещё не применено — применяем принудительно
-    setTimeout(function() {
-        if (!stateApplied) {
-            console.log('⏰ Таймаут: применяем состояние принудительно');
-            applyState();
-        }
-    }, 5000);
 }
 
-// ========== ЗАПУСК ==========
 init();
-
-// Экспортируем
-window.applyAppState = applyState;
-window.stateApplied = stateApplied;
