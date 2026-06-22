@@ -510,12 +510,9 @@ async function init() {
         document.querySelectorAll('.mode-btn').forEach(function(btn) {
             btn.onclick = function() { setMode(btn.dataset.mode); };
         });
-        document.querySelectorAll('[data-level]').forEach(function(btn) {
-            btn.onclick = function() { setLevel(btn.dataset.level); };
-        });
         
-        // ===== ИНИЦИАЛИЗАЦИЯ КНОПКИ "ПОДЕЛИТЬСЯ" (ТОЧНО КАК КНОПКИ МЕНЮ) =====
-        document.querySelectorAll('[data-share="true"]').forEach(function(btn) {
+        // ===== ИНИЦИАЛИЗАЦИЯ КНОПКИ "ПОДЕЛИТЬСЯ" (ТОЧНО ТАК ЖЕ) =====
+        document.querySelectorAll('.share-btn').forEach(function(btn) {
             btn.onclick = function() { window.shareApp(); };
         });
         
