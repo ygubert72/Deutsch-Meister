@@ -316,7 +316,7 @@ function shareApp() {
             const url = btn.getAttribute('data-url');
             if (btn.getAttribute('data-copy') === 'true') {
                 navigator.clipboard.writeText(fullText).then(() => {
-                    alert('✅ Ссылка скопирована! Теперь вы можете вставить её в Instagram или другое приложение.');
+                    alert('✅ Ссылка скопирована!');
                     logUserAction('share_app', { method: 'copy_link' });
                 }).catch(() => {
                     prompt('Скопируйте ссылку:', fullText);
@@ -473,7 +473,6 @@ function initMobileMenu() {
 async function init() {
     console.log('init: начало загрузки');
     
-    // ===== ТАЙМАУТ ДЛЯ ПЕРЕЗАГРУЗКИ ПРИ ЗАВИСАНИИ =====
     var startTime = Date.now();
     var maxWaitTime = 10000;
     var timeoutId = null;
