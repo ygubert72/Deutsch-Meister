@@ -13,10 +13,8 @@
     <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
     <link rel="icon" type="image/png" sizes="16x16" href="icons/16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="icons/32.png">
-    <link rel="icon" type="image/png" sizes="48x48" href="icons/48x48.png">
     <link rel="icon" type="image/png" sizes="64x64" href="icons/64.png">
     <link rel="icon" type="image/png" sizes="72x72" href="icons/72.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="icons/96x96.png">
     <link rel="icon" type="image/png" sizes="128x128" href="icons/128.png">
     <link rel="icon" type="image/png" sizes="144x144" href="icons/144.png">
     <link rel="icon" type="image/png" sizes="192x192" href="icons/192.png">
@@ -33,7 +31,7 @@
     <meta name="msapplication-TileColor" content="#3B6FE0">
     <meta name="msapplication-TileImage" content="icons/144.png">
     
-    <!-- ===== CSS С ВЕРСИЕЙ ДЛЯ КЕШ-БАСТИНГА ===== -->
+    <!-- ===== CSS ===== -->
     <link rel="stylesheet" href="css/style.css?v=20260622">
     
     <style>
@@ -106,7 +104,6 @@
             100% { content: ''; }
         }
 
-        /* ===== БАННЕР УСТАНОВКИ — ТОЛЬКО ДЛЯ МОБИЛЬНЫХ ===== */
         .install-banner {
             display: none;
             background: #3B6FE0;
@@ -219,40 +216,29 @@
     </div>
 </div>
 
-<!-- ===== ПОДКЛЮЧЕНИЕ СКРИПТОВ С ВЕРСИЯМИ ДЛЯ КЕШ-БАСТИНГА ===== -->
-<!-- Базовые скрипты -->
+<!-- ===== ПОДКЛЮЧЕНИЕ СКРИПТОВ ===== -->
 <script src="js/config.js?v=20260622"></script>
 <script src="js/utils.js?v=20260622"></script>
 <script src="js/logger.js?v=20260622"></script>
-
-<!-- Основные модули -->
 <script src="js/containerManager.js?v=20260622"></script>
 <script src="js/carousel.js?v=20260622"></script>
 <script src="js/wordsManager.js?v=20260622"></script>
 <script src="js/sentencesManager.js?v=20260622"></script>
-
-<!-- Режимы обучения -->
 <script src="js/cardsMode.js?v=20260622"></script>
 <script src="js/quizMode.js?v=20260622"></script>
 <script src="js/sentencesMode.js?v=20260622"></script>
 <script src="js/grammarMode.js?v=20260622"></script>
-
-<!-- Ядро приложения -->
 <script src="js/app.js?v=20260622"></script>
-
-<!-- Аутентификация и сервисы -->
 <script src="js/auth.js?v=20260622"></script>
 <script src="js/userService.js?v=20260622"></script>
 <script src="js/activityTracker.js?v=20260622"></script>
 <script src="js/adminUI.js?v=20260622"></script>
 
 <script>
-    // ===== ПРОВЕРКА МОБИЛЬНОГО УСТРОЙСТВА =====
     function isMobile() {
         return window.innerWidth <= 768;
     }
 
-    // ===== PWA: SERVICE WORKER =====
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
             navigator.serviceWorker.register('sw.js?v=20260622')
@@ -265,13 +251,11 @@
         });
     }
     
-    // ===== PWA: БАННЕР УСТАНОВКИ =====
     let deferredPrompt = null;
     
     window.addEventListener('beforeinstallprompt', function(e) {
         e.preventDefault();
         deferredPrompt = e;
-        
         if (isMobile()) {
             document.querySelectorAll('.install-banner').forEach(banner => {
                 banner.style.display = 'block';
@@ -327,7 +311,6 @@
         console.log('✅ Приложение установлено!');
     });
     
-    // ===== СКРЫВАЕМ ЛОАДЕР =====
     window.addEventListener('load', function() {
         document.querySelector('.app').classList.add('loaded');
         setTimeout(function() {
