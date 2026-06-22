@@ -428,7 +428,6 @@ function loadStateFromLocalStorage() {
             return true;
         } else {
             console.log('📦 LOCALSTORAGE ПУСТ, используем значения по умолчанию');
-            // Значения по умолчанию
             currentMode = 'grammar';
             AppConfig.currentLevel = 'A1';
             return false;
