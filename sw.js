@@ -3,7 +3,6 @@
 const CACHE_NAME = 'deutsch-meister-v2';
 const STATIC_CACHE = 'static-v2';
 
-// Файлы, которые кешируем при установке
 const STATIC_ASSETS = [
   '/Deutsch-Meister/',
   '/Deutsch-Meister/index.html',
@@ -29,17 +28,12 @@ const STATIC_ASSETS = [
   '/Deutsch-Meister/icons/icon.svg',
   '/Deutsch-Meister/icons/16.png',
   '/Deutsch-Meister/icons/32.png',
-  '/Deutsch-Meister/icons/48x48.png',
   '/Deutsch-Meister/icons/64.png',
   '/Deutsch-Meister/icons/72.png',
-  '/Deutsch-Meister/icons/96x96.png',
   '/Deutsch-Meister/icons/128.png',
   '/Deutsch-Meister/icons/144.png',
   '/Deutsch-Meister/icons/192.png',
-  '/Deutsch-Meister/icons/512.png',
-  '/Deutsch-Meister/icons/launchericon-144x144.png',
-  '/Deutsch-Meister/icons/launchericon-192x192.png',
-  '/Deutsch-Meister/icons/launchericon-512x512.png'
+  '/Deutsch-Meister/icons/512.png'
 ];
 
 // ========== УСТАНОВКА ==========
@@ -90,25 +84,21 @@ self.addEventListener('fetch', event => {
   const request = event.request;
   const url = new URL(request.url);
   
-  // Игнорируем запросы к расширениям Chrome
   if (url.protocol === 'chrome-extension:') {
     event.respondWith(fetch(request));
     return;
   }
   
-  // Пропускаем запросы к Firebase
   if (url.hostname.includes('firebase') || url.hostname.includes('googleapis')) {
     event.respondWith(fetch(request));
     return;
   }
   
-  // Пропускаем запросы к API геолокации
   if (url.hostname.includes('ipapi.co')) {
     event.respondWith(fetch(request));
     return;
   }
   
-  // Стратегия: сначала кеш, потом сеть
   event.respondWith(
     caches.match(request)
       .then(cachedResponse => {
