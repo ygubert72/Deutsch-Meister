@@ -3,7 +3,7 @@
 let auth = null;
 let db = null;
 let currentUserData = null;
-let authInitialized = false; // Флаг, что auth инициализирован
+let authInitialized = false;
 
 // Конфигурация Firebase
 const firebaseConfig = {
@@ -55,7 +55,6 @@ function initFirebase() {
             await checkIfBlocked(user);
         } else {
             currentUserData = null;
-            // Если пользователь вышел, но состояние ещё не применено — применяем из localStorage
             setTimeout(() => {
                 if (typeof window.applyAppState === 'function' && !window.stateApplied) {
                     console.log('👤 Пользователь вышел, применяем состояние из localStorage');
@@ -64,16 +63,12 @@ function initFirebase() {
             }, 100);
         }
         
-        // Обновляем UI, но НЕ перерисовываем грамматику, если состояние уже применено
         updateUI(user);
         
-        // Обновляем счётчик, но НЕ перерисовываем контент принудительно
         if (typeof updateCounter === 'function') {
             updateCounter();
         }
-        
-        // НЕ вызываем renderGrammar() здесь, чтобы не перезаписывать состояние
-        // renderGrammar() будет вызван из applyState()
+        // НЕ вызываем renderGrammar() здесь!
     });
 }
 
@@ -523,10 +518,9 @@ window.saveUserProgressToFirebase = async function() {
     }
 };
 
-// ========== ЗАГРУЗКА ПРОГРЕССА ИЗ ОБЛАКА (ИСПРАВЛЕНА) ==========
+// ========== ЗАГРУЗКА ПРОГРЕССА ИЗ ОБЛАКА ==========
 window.loadUserProgressFromFirebase = async function() {
     if (!auth || !auth.currentUser) {
-        // Если пользователь не авторизован — применяем состояние из localStorage
         setTimeout(() => {
             if (typeof window.applyAppState === 'function' && !window.stateApplied) {
                 console.log('👤 Пользователь не авторизован, применяем состояние из localStorage');
@@ -544,33 +538,24 @@ window.loadUserProgressFromFirebase = async function() {
         if (userDoc.exists && userDoc.data().progress) {
             const progress = userDoc.data().progress;
             
-            // Загружаем прогресс слов
             if (progress.wordsProgress) {
                 Object.assign(wordsProgress, progress.wordsProgress);
                 localStorage.setItem('dm_words_progress', JSON.stringify(wordsProgress));
             }
             
-            // Загружаем прогресс фраз
             if (progress.sentencesProgress) {
                 Object.assign(sentencesProgress, progress.sentencesProgress);
                 localStorage.setItem('dm_sentences_progress', JSON.stringify(sentencesProgress));
             }
             
-            // Загружаем прогресс грамматики
             if (progress.grammarProgress) {
                 Object.assign(grammarProgress, progress.grammarProgress);
                 localStorage.setItem('dm_grammar_progress', JSON.stringify(grammarProgress));
             }
             
-            // Загружаем конфигурацию, НО НЕ ПЕРЕЗАПИСЫВАЕМ ТЕКУЩИЙ РЕЖИМ И УРОВЕНЬ
             if (progress.config) {
                 const config = progress.config;
-                
-                // Сохраняем в localStorage
                 localStorage.setItem('dm_config', JSON.stringify(config));
-                
-                // НЕ ТРОГАЕМ currentMode и AppConfig.currentLevel, если они уже установлены из localStorage
-                // Обновляем только вспомогательные настройки
                 AppConfig.show_language = config.show_language || 'de';
                 AppConfig.quiz_direction = config.quiz_direction || 'de_to_ru';
                 AppConfig.sentence_lang_from = config.sentence_lang_from || 'ru';
@@ -580,7 +565,6 @@ window.loadUserProgressFromFirebase = async function() {
                 Logger.info('Прогресс загружен из облака');
             }
             
-            // После загрузки прогресса из облака — применяем состояние
             setTimeout(() => {
                 if (typeof window.applyAppState === 'function' && !window.stateApplied) {
                     console.log('☁️ Применяем состояние после загрузки из облака');
@@ -594,7 +578,6 @@ window.loadUserProgressFromFirebase = async function() {
         if (window.Logger) Logger.error('Ошибка загрузки прогресса:', e);
     }
     
-    // Если облачного прогресса нет — всё равно применяем состояние
     setTimeout(() => {
         if (typeof window.applyAppState === 'function' && !window.stateApplied) {
             console.log('☁️ Облачного прогресса нет, применяем состояние из localStorage');
@@ -635,7 +618,6 @@ window.addEventListener('load', function() {
     }
 });
 
-// Экспорт для других модулей
 window.auth = auth;
 window.db = db;
 window.currentUserData = currentUserData;
