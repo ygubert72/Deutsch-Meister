@@ -145,7 +145,9 @@ function setMode(mode) {
     updateModeIndicator();
 }
 
+// ========== УСТАНОВКА УРОВНЯ (ИСПРАВЛЕНО) ==========
 function setLevel(level) {
+    // Проверка доступа к уровню
     if (typeof window.hasAccessToLevel !== 'undefined' && !window.hasAccessToLevel(level)) {
         if (level === 'B1' || level === 'B2' || level === 'C1') {
             const isAuthenticated = window.isAuthenticated && window.isAuthenticated();
@@ -158,17 +160,27 @@ function setLevel(level) {
             }
             return;
         }
+        return;
     }
     
+    // Устанавливаем уровень
     AppConfig.currentLevel = level;
     
+    // Обновляем активные кнопки
     document.querySelectorAll('[data-level]').forEach(btn => {
+        if (btn.dataset.level === level) btn.classList.add('active');
+        else btn.classList.remove('active');
+    });
+    
+    // Дублируем для мобильного меню
+    document.querySelectorAll('#levelsContainerMobile [data-level]').forEach(btn => {
         if (btn.dataset.level === level) btn.classList.add('active');
         else btn.classList.remove('active');
     });
     
     logUserAction('change_level', { level: level, mode: currentMode });
     
+    // Рендерим текущий режим с новым уровнем
     if (currentMode === 'cards') {
         renderCards();
     } else if (currentMode === 'quiz') {
@@ -206,7 +218,7 @@ window.forceUpdateCounter = function() {
     }, 100);
 };
 
-// ========== КНОПКА "ПОДЕЛИТЬСЯ" (ФУНКЦИЯ ГЛОБАЛЬНАЯ) ==========
+// ========== КНОПКА "ПОДЕЛИТЬСЯ" ==========
 window.shareApp = function() {
     const url = window.location.href;
     const title = 'Deutsch-Meister — учите немецкий язык!';
@@ -325,7 +337,7 @@ window.shareApp = function() {
             }
             if (url) {
                 window.open(url, '_blank', 'width=600,height=500');
-                logUserAction('share_app', { method: opt.name });
+                logUserAction('share_app', { method: 'social_share' });
             }
         };
     });
@@ -334,7 +346,7 @@ window.shareApp = function() {
     modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
 };
 
-// ========== МОБИЛЬНОЕ МЕНЮ (ГАМБУРГЕР) ==========
+// ========== МОБИЛЬНОЕ МЕНЮ ==========
 
 function closeMobileMenu() {
     const mobileMenu = document.getElementById('mobileMenu');
@@ -366,7 +378,6 @@ function openMobileMenu() {
     history.pushState(null, null, location.href);
 }
 
-// ========== ПЛАВНЫЙ СВАЙП ДЛЯ ЗАКРЫТИЯ МЕНЮ ==========
 function initSwipeToClose() {
     const mobileMenu = document.getElementById('mobileMenu');
     if (!mobileMenu) return;
@@ -439,18 +450,26 @@ function initMobileMenu() {
     
     initSwipeToClose();
     
+    // Синхронизация кликов на мобильных кнопках уровней
     const levelButtonsMobile = document.querySelectorAll('#levelsContainerMobile [data-level]');
     levelButtonsMobile.forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
+        btn.onclick = function(e) {
             e.stopPropagation();
-        });
+            const level = btn.getAttribute('data-level');
+            setLevel(level);
+            closeMobileMenu();
+        };
     });
     
+    // Синхронизация кликов на мобильных кнопках режимов
     const modeButtonsMobile = document.querySelectorAll('#mobileMenu .mode-btn');
     modeButtonsMobile.forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
+        btn.onclick = function(e) {
             e.stopPropagation();
-        });
+            const mode = btn.getAttribute('data-mode');
+            setMode(mode);
+            closeMobileMenu();
+        };
     });
     
     window.addEventListener('popstate', function() {
@@ -468,6 +487,36 @@ function initMobileMenu() {
         observer.observe(userInfo, { attributes: true, childList: true, subtree: true });
     }
 }
+
+// ========== ПРИМЕНЕНИЕ СОСТОЯНИЯ ИЗ LOCALSTORAGE ==========
+window.applyAppState = function() {
+    if (window.stateApplied) return;
+    window.stateApplied = true;
+    
+    console.log('🔄 Применяем состояние:', {
+        level: AppConfig.currentLevel,
+        mode: currentMode
+    });
+    
+    // Устанавливаем активные кнопки уровней
+    document.querySelectorAll('[data-level]').forEach(btn => {
+        if (btn.dataset.level === AppConfig.currentLevel) btn.classList.add('active');
+        else btn.classList.remove('active');
+    });
+    document.querySelectorAll('#levelsContainerMobile [data-level]').forEach(btn => {
+        if (btn.dataset.level === AppConfig.currentLevel) btn.classList.add('active');
+        else btn.classList.remove('active');
+    });
+    
+    // Устанавливаем активные кнопки режимов
+    document.querySelectorAll('.mode-btn').forEach(btn => {
+        if (btn.dataset.mode === currentMode) btn.classList.add('active');
+        else btn.classList.remove('active');
+    });
+    
+    updateCounter();
+    updateModeIndicator();
+};
 
 // ========== ИНИЦИАЛИЗАЦИЯ ==========
 async function init() {
@@ -511,16 +560,26 @@ async function init() {
             btn.onclick = function() { setMode(btn.dataset.mode); };
         });
         
-        // ===== ИНИЦИАЛИЗАЦИЯ КНОПКИ "ПОДЕЛИТЬСЯ" (ТОЧНО ТАК ЖЕ, КАК КНОПКИ МЕНЮ) =====
+        // ===== ИНИЦИАЛИЗАЦИЯ КНОПОК УРОВНЕЙ =====
+        document.querySelectorAll('[data-level]').forEach(function(btn) {
+            btn.onclick = function() { 
+                const level = btn.getAttribute('data-level');
+                setLevel(level);
+            };
+        });
+        
+        // ===== ИНИЦИАЛИЗАЦИЯ КНОПКИ "ПОДЕЛИТЬСЯ" =====
         document.querySelectorAll('.share-btn').forEach(function(btn) {
             btn.onclick = function() { window.shareApp(); };
         });
         
+        // Устанавливаем активный уровень
         document.querySelectorAll('[data-level]').forEach(function(btn) {
             if (btn.dataset.level === AppConfig.currentLevel) btn.classList.add('active');
             else btn.classList.remove('active');
         });
         
+        // Устанавливаем активный режим
         setMode(currentMode);
         
         initMobileMenu();
