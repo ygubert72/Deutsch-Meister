@@ -145,7 +145,7 @@ function setMode(mode) {
     updateModeIndicator();
 }
 
-// ========== УСТАНОВКА УРОВНЯ (ИСПРАВЛЕНО) ==========
+// ========== УСТАНОВКА УРОВНЯ ==========
 function setLevel(level) {
     // Проверка доступа к уровню
     if (typeof window.hasAccessToLevel !== 'undefined' && !window.hasAccessToLevel(level)) {
@@ -488,14 +488,15 @@ function initMobileMenu() {
     }
 }
 
-// ========== ПРИМЕНЕНИЕ СОСТОЯНИЯ ИЗ LOCALSTORAGE ==========
+// ========== ПРИМЕНЕНИЕ СОСТОЯНИЯ ИЗ ХРАНИЛИЩА ==========
 window.applyAppState = function() {
     if (window.stateApplied) return;
     window.stateApplied = true;
     
     console.log('🔄 Применяем состояние:', {
         level: AppConfig.currentLevel,
-        mode: currentMode
+        mode: currentMode,
+        isAuthenticated: window.isAuthenticated ? window.isAuthenticated() : false
     });
     
     // Устанавливаем активные кнопки уровней
@@ -540,14 +541,14 @@ async function init() {
     timeoutId = setInterval(checkTimeout, 2000);
     
     try {
-        if (window.isAuthenticated && window.isAuthenticated()) {
-            logUserAction('app_start', { 
-                level: AppConfig.currentLevel,
-                mode: currentMode,
-                timestamp: new Date().toISOString()
-            });
+        // ===== ВАЖНО: СБРАСЫВАЕМ ПРОГРЕСС ГОСТЯ ПРИ ЗАГРУЗКЕ =====
+        // Это гарантирует, что гость начинает с чистого листа при каждой загрузке
+        if (window.resetGuestProgress) {
+            window.resetGuestProgress();
+            console.log('🗑️ Прогресс гостя сброшен (новая сессия)');
         }
         
+        // Загружаем прогресс (для гостя — пустой, для авторизованного — из сессии/облака)
         loadProgress();
         loadGrammarProgress();
         
