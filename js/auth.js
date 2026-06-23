@@ -68,7 +68,6 @@ function initFirebase() {
         if (typeof updateCounter === 'function') {
             updateCounter();
         }
-        // НЕ вызываем renderGrammar() здесь!
     });
 }
 
@@ -88,17 +87,31 @@ async function loadUserData(uid) {
     }
 }
 
-// ========== ПРОВЕРКА ДОСТУПА К УРОВНЮ ==========
+// ========== ПРОВЕРКА ДОСТУПА К УРОВНЮ (ИСПРАВЛЕНО) ==========
 window.hasAccessToLevel = function(level) {
+    // Админ имеет доступ ко всем уровням
     if (auth.currentUser && auth.currentUser.email === 'ygubert72@gmail.com') {
         return true;
     }
+    
+    // Уровни A1 и A2 доступны всем
     if (level === 'A1' || level === 'A2') {
         return true;
     }
-    if (currentUserData && currentUserData.hasPremiumAccess === true) {
-        return true;
+    
+    // Уровни B1, B2, C1 требуют премиум-доступа
+    if (level === 'B1' || level === 'B2' || level === 'C1') {
+        // Если пользователь не авторизован — нет доступа
+        if (!auth.currentUser) {
+            return false;
+        }
+        // Проверяем премиум-доступ
+        if (currentUserData && currentUserData.hasPremiumAccess === true) {
+            return true;
+        }
+        return false;
     }
+    
     return false;
 };
 
@@ -199,7 +212,7 @@ window.logout = async function() {
     location.reload();
 };
 
-// ========== ОБНОВЛЕНИЕ ИНТЕРФЕЙСА (ИСПРАВЛЕНО) ==========
+// ========== ОБНОВЛЕНИЕ ИНТЕРФЕЙСА ==========
 function updateUI(user) {
     const loginBtn = document.getElementById('loginBtn');
     const userInfo = document.getElementById('userInfo');
@@ -218,7 +231,6 @@ function updateUI(user) {
         const hasPremium = currentUserData && currentUserData.hasPremiumAccess === true;
         const isAdmin = user.email === 'ygubert72@gmail.com';
         
-        // ===== ПОКАЗЫВАЕМ КНОПКУ АДМИНА (ЕСЛИ НУЖНО) =====
         if (window.AdminUI) {
             window.AdminUI.updateAdminButtonVisibility(isAdmin);
         }
@@ -260,7 +272,6 @@ function updateUI(user) {
         userInfo.style.display = 'block';
         if (userInfoMobile) userInfoMobile.style.display = 'block';
         
-        // ===== СКРЫВАЕМ КНОПКУ АДМИНА =====
         if (window.AdminUI) {
             window.AdminUI.updateAdminButtonVisibility(false);
         }
