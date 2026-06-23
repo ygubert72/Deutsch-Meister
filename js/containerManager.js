@@ -6,7 +6,7 @@ function showContainerModal(config) {
     if (oldModal) oldModal.remove();
     
     const {
-        title,           // "📦 КОНТЕЙНЕР (X слов)"
+        title,           // "📦 КОНТЕЙНЕР (X слов)" — X будет заменён на число
         items,           // массив объектов с полями display и callback
         onReturnAll,     // функция для кнопки "Вернуть всё"
         onItemClick,     // функция при клике на элемент
@@ -44,6 +44,7 @@ function showContainerModal(config) {
         display: flex;
         flex-direction: column;
         margin: 20px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.2);
     `;
     
     // Функция обновления содержимого (для динамического обновления)
@@ -51,10 +52,18 @@ function showContainerModal(config) {
         const currentItems = config.getItems ? config.getItems() : items;
         const header = modalContent.querySelector('.modal-header');
         const itemsContainer = modalContent.querySelector('.items-container');
+        const countEl = modalContent.querySelector('.item-count');
         
         if (header) {
             const count = currentItems ? currentItems.length : 0;
-            header.textContent = `${title.replace(/\d+/, count)} (${count})`;
+            // Убираем дублирование: заменяем (X слов) на просто число в заголовке
+            const cleanTitle = title.replace(/\(\d+ слов\)/, '').trim();
+            header.textContent = `${cleanTitle} (${count} слов)`;
+        }
+        
+        if (countEl) {
+            const count = currentItems ? currentItems.length : 0;
+            countEl.textContent = `${count}`;
         }
         
         if (itemsContainer) {
@@ -78,7 +87,12 @@ function showContainerModal(config) {
                             border-bottom: 1px solid #ddd;
                             cursor: pointer;
                             font-size: 14px;
-                        ">${display}</button>
+                            font-family: inherit;
+                            transition: background 0.1s;
+                        "
+                        onmouseover="this.style.background='#d0e2fc'"
+                        onmouseout="this.style.background='#E8F0FE'"
+                        >${display}</button>
                     `;
                 });
                 itemsContainer.innerHTML = html;
@@ -97,21 +111,55 @@ function showContainerModal(config) {
         }
     }
     
-    // Строим HTML
-    const displayTitle = isEmpty 
-        ? title.replace(/\d+/, '0') 
-        : title;
+    // Строим HTML — убираем дублирование счёта
+    const displayTitle = title.replace(/\(\d+ слов\)/, '').trim();
+    const count = items ? items.length : 0;
     
     modalContent.innerHTML = `
         <div style="padding: 15px; border-bottom: 1px solid #ddd; text-align: center;">
-            <h3 class="modal-header" style="margin: 0;">${displayTitle}</h3>
+            <h3 class="modal-header" style="margin: 0;">${displayTitle} (${count} слов)</h3>
         </div>
         <div class="items-container" style="overflow-y: auto; flex: 1; padding: 10px 0;">
             ${isEmpty ? `<div style="text-align:center; padding:40px; color:#999;">${emptyMessage || '📭 Контейнер пуст'}</div>` : ''}
         </div>
         <div style="padding: 15px; border-top: 1px solid #ddd; display: flex; gap: 10px;">
-            <button id="returnAllBtn" style="flex: 1; padding: 10px; background: #FF9800; color: white; border: none; border-radius: 8px; cursor: pointer;">🔄 ВЕРНУТЬ ВСЁ</button>
-            <button id="cancelModalBtn" style="flex: 1; padding: 10px; background: #ddd; border: none; border-radius: 8px; cursor: pointer;">ЗАКРЫТЬ</button>
+            <button id="returnAllBtn" style="
+                flex: 1; 
+                padding: 12px 16px; 
+                background: #FF9800; 
+                color: white; 
+                border: 2px solid #E68A00; 
+                border-radius: 8px; 
+                cursor: pointer; 
+                font-weight: bold; 
+                font-size: 14px;
+                font-family: inherit;
+                box-shadow: 0 3px 4px rgba(0,0,0,0.1);
+                transition: all 0.05s linear;
+            "
+            onmousedown="this.style.transform='translateY(2px)'; this.style.boxShadow='0 1px 2px rgba(0,0,0,0.1)'"
+            onmouseup="this.style.transform=''; this.style.boxShadow='0 3px 4px rgba(0,0,0,0.1)'"
+            onmouseleave="this.style.transform=''; this.style.boxShadow='0 3px 4px rgba(0,0,0,0.1)'"
+            >🔄 ВЕРНУТЬ ВСЁ</button>
+            
+            <button id="cancelModalBtn" style="
+                flex: 1; 
+                padding: 12px 16px; 
+                background: #3B6FE0; 
+                color: white; 
+                border: 2px solid #2B5BC7; 
+                border-radius: 8px; 
+                cursor: pointer; 
+                font-weight: bold; 
+                font-size: 14px;
+                font-family: inherit;
+                box-shadow: 0 3px 4px rgba(59,111,224,0.3);
+                transition: all 0.05s linear;
+            "
+            onmousedown="this.style.transform='translateY(2px)'; this.style.boxShadow='0 1px 2px rgba(59,111,224,0.3)'"
+            onmouseup="this.style.transform=''; this.style.boxShadow='0 3px 4px rgba(59,111,224,0.3)'"
+            onmouseleave="this.style.transform=''; this.style.boxShadow='0 3px 4px rgba(59,111,224,0.3)'"
+            >ЗАКРЫТЬ</button>
         </div>
     `;
     
