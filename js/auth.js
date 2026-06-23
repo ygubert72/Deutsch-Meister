@@ -279,7 +279,7 @@ function updateUI(user) {
         const guestHtml = `
             <div style="background:#E8F0FE; border-radius:8px; padding:8px; text-align:center;">
                 <div style="font-size:14px; font-weight:bold;">👋 Гостевой режим</div>
-                <div style="font-size:11px; color:#666; margin-top:4px;">прогресс не сохраняется между устройствами</div>
+                <div style="font-size:11px; color:#666; margin-top:4px;">прогресс не сохраняется</div>
             </div>
         `;
         
